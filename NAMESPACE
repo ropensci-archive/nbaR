@@ -1,1 +1,3 @@
-export(Specimen)
+##export(Specimen)
+##export(SpecimenApi)
+exportPattern("^[^\\.]")
