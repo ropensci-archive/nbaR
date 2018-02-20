@@ -1,18 +1,22 @@
-
 library(nbaR)
 library(testthat)
 
-dataDir <- 'data'
+
+wd <- getwd()
+if(grepl('testthat', wd)) {
+    dataDir <- file.path('data')
+} else {
+    ## for running test at package level
+    dataDir <- file.path('tests', 'testthat',
+                        'data')
+}
+
 testRecord <- file.path(dataDir, 'specimen.json')
-
-#test_that('fromJSONString works', {
-#    a <- 1
-#})
-
 
 test_that('fromJSONString works', {
     jsonString <- readChar(testRecord, file.info(testRecord)$size)
-    spec <- Specimen$new()$fromJSONString(jsonString)
-    #expect_true(class(spec) == 'Specimen')
+    spec <- Specimen$new()
+    spec$fromJSONString(jsonString)
+    expect_true(class(spec)[1] == 'Specimen')
 })
 

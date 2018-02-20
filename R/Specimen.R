@@ -517,8 +517,9 @@ Specimen <- R6::R6Class(
       self$`acquiredFrom` <- AgentObject$fromJSON(jsonlite::toJSON(SpecimenObject$acquiredFrom, auto_unbox = TRUE))
       GatheringEventObject <- GatheringEvent$new()
       self$`gatheringEvent` <- GatheringEventObject$fromJSON(jsonlite::toJSON(SpecimenObject$gatheringEvent, auto_unbox = TRUE))
-      self$`identifications` <- lapply(SpecimenObject$`identifications`, function(x) SpecimenIdentification$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self$`associatedMultiMediaUris` <- lapply(SpecimenObject$`associatedMultiMediaUris`, function(x) ServiceAccessPoint$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))
+      ## Hannes
+      ## self$`identifications` <- lapply(SpecimenObject$`identifications`, function(x) SpecimenIdentification$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))
+      ## self$`associatedMultiMediaUris` <- lapply(SpecimenObject$`associatedMultiMediaUris`, function(x) ServiceAccessPoint$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))
       self$`theme` <- SpecimenObject$`theme`
       self$`associatedMultiMediaObjects` <- lapply(SpecimenObject$`associatedMultiMediaObjects`, function(x) MultiMediaObject$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))
     }
