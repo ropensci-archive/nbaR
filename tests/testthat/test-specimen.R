@@ -7,8 +7,7 @@ if(grepl('testthat', wd)) {
     dataDir <- file.path('data')
 } else {
     ## for running test at package level
-    dataDir <- file.path('tests', 'testthat',
-                        'data')
+    dataDir <- file.path('tests', 'testthat', 'data')
 }
 
 testRecord <- file.path(dataDir, 'specimen.json')
