@@ -22,48 +22,33 @@ Organization <- R6::R6Class(
     `name` = NULL,
     initialize = function(`agentText`, `name`){
       if (!missing(`agentText`)) {
-        stopifnot(is.character(`agentText`), length(`agentText`) == 1)
-        self$`agentText` <- `agentText`
+          stopifnot(is.character(`agentText`), length(`agentText`) == 1)
+          self$`agentText` <- `agentText`
       }
       if (!missing(`name`)) {
-        stopifnot(is.character(`name`), length(`name`) == 1)
-        self$`name` <- `name`
+          stopifnot(is.character(`name`), length(`name`) == 1)
+          self$`name` <- `name`
       }
-    },
-    toJSON = function() {
-      OrganizationObject <- list()
+  },
+  toList = function() {
+      OrganizationList <- list()
       if (!is.null(self$`agentText`)) {
-        OrganizationObject[['agentText']] <- self$`agentText`
+          OrganizationList[['agentText']] <- self$`agentText`
       }
       if (!is.null(self$`name`)) {
-        OrganizationObject[['name']] <- self$`name`
-      }
-
-      OrganizationObject
-    },
-    fromJSON = function(OrganizationJson) {
-      OrganizationObject <- jsonlite::fromJSON(OrganizationJson)
-      if (!is.null(OrganizationObject$`agentText`)) {
-        self$`agentText` <- OrganizationObject$`agentText`
-      }
-      if (!is.null(OrganizationObject$`name`)) {
-        self$`name` <- OrganizationObject$`name`
-      }
-    },
-    toJSONString = function() {
-       sprintf(
-        '{
-           "agentText": %s,
-           "name": %s
-        }',
-        self$`agentText`,
-        self$`name`
-      )
-    },
-    fromJSONString = function(OrganizationJson) {
-      OrganizationObject <- jsonlite::fromJSON(OrganizationJson)
-      self$`agentText` <- OrganizationObject$`agentText`
-      self$`name` <- OrganizationObject$`name`
-    }
+          OrganizationList[['name']] <- self$`name`
+      }      
+      OrganizationList
+  },
+  fromList = function(list) {
+      self$`agentText` <- list$`agentText`
+      self$`name` <- list$`name`
+  },
+  toJSONString = function() {
+      jsonlite::toJSON(self$toList, auto_unbox=T)      
+  },
+  fromJSONString = function(OrganizationJson) {
+      self$fromList(jsonlite::fromJSON(OrganizationJson))      
+  }
   )
 )
