@@ -181,7 +181,7 @@ SpecimenIdentification <- R6::R6Class(
       SpecimenIdentificationObject
     },
     fromJSON = function(SpecimenIdentificationJson) {
-      SpecimenIdentificationObject <- jsonlite::fromJSON(SpecimenIdentificationJson)
+      SpecimenIdentificationObject <- jsonlite::fromJSON(SpecimenIdentificationJson, simplifyVector=F)
       if (!is.null(SpecimenIdentificationObject$`taxonRank`)) {
         self$`taxonRank` <- SpecimenIdentificationObject$`taxonRank`
       }
