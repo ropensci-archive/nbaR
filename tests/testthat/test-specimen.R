@@ -10,7 +10,7 @@ if(grepl('testthat', wd)) {
     dataDir <- file.path('tests', 'testthat', 'data')
 }
 
-testRecord <- file.path(dataDir, 'specimen.json')
+testRecord <- file.path(dataDir, 'specimen-2.json')
 
 test_that('fromJSONString works', {
     jsonString <- readChar(testRecord, file.info(testRecord)$size)
