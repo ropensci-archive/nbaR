@@ -1,0 +1,14 @@
+{
+  "taxonRank": "species",
+  "scientificName": {
+    "fullScientificName": "Carduelis sinica",
+    "genusOrMonomial": "Carduelis",
+    "specificEpithet": "sinica",
+    "scientificNameGroup": "carduelis sinica"
+  },
+  "defaultClassification": {
+    "genus": "Carduelis",
+    "specificEpithet": "sinica"
+  },
+  "preferred": true
+}

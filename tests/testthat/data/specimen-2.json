@@ -1,0 +1,327 @@
+{
+	"sourceSystem": {
+        "code": "CRS",
+        "name": "Naturalis - Zoology and Geology catalogues"
+    },
+    "sourceSystemId": "RMNH.ART.300",
+    "id": "RMNH.ART.300@CRS",
+    "unitID": "RMNH.ART.300",
+    "unitGUID": "http://data.biodiversitydata.nl/naturalis/specimen/RMNH.ART.300",
+    "sourceInstitutionID": "Naturalis Biodiversity Center",
+    "sourceID": "CRS",
+    "owner": "Naturalis Biodiversity Center",
+    "licenseType": "Copyright",
+    "license": "CC0",
+    "recordBasis": "MultimediaObject",
+    "kindOfUnit": "DrawingOrPhotograph",
+    "collectionType": "Arts",
+    "title": "RMNH.ART",
+    "preparationType": "not applicable",
+    "numberOfSpecimen": 1,
+    "fromCaptivity": false,
+    "objectPublic": true,
+    "multiMediaPublic": true,
+    "gatheringEvent": {
+        "country": "Japan",
+        "localityText": "Japan"
+    },
+    "identifications": [
+        {
+            "taxonRank": "species",
+            "scientificName": {
+				"fullScientificName": "Carduelis sinica",
+				"genusOrMonomial": "Carduelis",
+				"specificEpithet": "sinica",
+				"scientificNameGroup": "carduelis sinica"
+            },
+            "defaultClassification": {
+				"genus": "Carduelis",
+				"specificEpithet": "sinica"
+            },
+            "preferred": true
+        },
+        {
+            "taxonRank": "species",
+            "scientificName": {
+				"fullScientificName": "Otus scops",
+				"genusOrMonomial": "Otus",
+				"specificEpithet": "scops",
+				"scientificNameGroup": "otus scops"
+            },
+            "defaultClassification": {
+				"genus": "Otus",
+				"specificEpithet": "scops"
+            },
+            "taxonomicEnrichments": [
+				{
+					"vernacularNames": [
+						{
+							"name": "Eurasian Scops Owl",
+							"language": "English"
+						}
+					],
+					"sourceSystem": {
+						"code": "COL"
+					},
+					"taxonId": "27743597@COL"
+				},
+				{
+					"vernacularNames": [
+						{
+							"name": "Dwergooruil",
+							"language": "Dutch"
+						},
+						{
+							"name": "European Scops Owl",
+							"language": "English"
+						}
+					],
+					"sourceSystem": {
+						"code": "NSR"
+					},
+					"taxonId": "464944189@NSR"
+				}
+            ],
+            "preferred": true
+        },
+        {
+            "taxonRank": "species",
+            "scientificName": {
+				"fullScientificName": "Strix uralensis",
+				"genusOrMonomial": "Strix",
+				"specificEpithet": "uralensis",
+				"scientificNameGroup": "strix uralensis"
+            },
+            "defaultClassification": {
+				"genus": "Strix",
+				"specificEpithet": "uralensis"
+            },
+            "taxonomicEnrichments": [
+				{
+					"vernacularNames": [
+						{
+							"name": "Ural Owl",
+							"language": "English"
+						}
+					],
+					"sourceSystem": {
+						"code": "COL"
+					},
+					"taxonId": "27743654@COL"
+				}
+            ],
+            "preferred": true
+        },
+        {
+            "taxonRank": "species",
+            "scientificName": {
+				"fullScientificName": "Leucosticte arctoa",
+				"genusOrMonomial": "Leucosticte",
+				"specificEpithet": "arctoa",
+				"scientificNameGroup": "leucosticte arctoa"
+            },
+            "defaultClassification": {
+				"genus": "Leucosticte",
+				"specificEpithet": "arctoa"
+            },
+            "taxonomicEnrichments": [
+				{
+					"vernacularNames": [
+						{
+							"name": "Rosy Finch",
+							"language": "English"
+						},
+						{
+							"name": "Asian Rosy Finch",
+							"language": "English"
+						}
+					],
+					"sourceSystem": {
+						"code": "COL"
+					},
+					"taxonId": "27741316@COL"
+				}
+            ],
+            "preferred": true
+        },
+        {
+            "taxonRank": "subspecies",
+            "scientificName": {
+				"fullScientificName": "Lonchura maja maja",
+				"genusOrMonomial": "Lonchura",
+				"specificEpithet": "maja",
+				"infraspecificEpithet": "maja",
+				"scientificNameGroup": "lonchura maja maja"
+            },
+            "defaultClassification": {
+				"genus": "Lonchura",
+				"specificEpithet": "maja",
+				"infraspecificEpithet": "maja"
+            },
+            "preferred": true
+        },
+        {
+            "taxonRank": "species",
+            "scientificName": {
+				"fullScientificName": "Upupa epops",
+				"genusOrMonomial": "Upupa",
+				"specificEpithet": "epops",
+				"scientificNameGroup": "upupa epops"
+            },
+            "defaultClassification": {
+				"genus": "Upupa",
+				"specificEpithet": "epops"
+            },
+            "taxonomicEnrichments": [
+				{
+					"vernacularNames": [
+						{
+							"name": "Common Hoopoe",
+							"language": "English"
+						},
+						{
+							"name": "Eurasian Hoopoe",
+							"language": "English"
+						}
+					],
+					"sourceSystem": {
+						"code": "COL"
+					},
+					"taxonId": "27740421@COL"
+				},
+				{
+					"vernacularNames": [
+						{
+							"name": "Hop",
+							"language": "Dutch"
+						},
+						{
+							"name": "Eurasian Hoopoe",
+							"language": "English"
+						}
+					],
+					"sourceSystem": {
+						"code": "NSR"
+					},
+					"taxonId": "464943186@NSR"
+				}
+            ],
+            "preferred": true
+        },
+        {
+            "taxonRank": "species",
+            "scientificName": {
+				"fullScientificName": "Emberiza spodocephala",
+				"genusOrMonomial": "Emberiza",
+				"specificEpithet": "spodocephala",
+				"scientificNameGroup": "emberiza spodocephala"
+            },
+            "defaultClassification": {
+				"genus": "Emberiza",
+				"specificEpithet": "spodocephala"
+            },
+            "taxonomicEnrichments": [
+				{
+					"vernacularNames": [
+						{
+							"name": "Black-faced Bunting",
+							"language": "English"
+						}
+					],
+					"sourceSystem": {
+						"code": "COL"
+					},
+					"taxonId": "27745365@COL"
+				},
+				{
+					"vernacularNames": [
+						{
+							"name": "Maskergors",
+							"language": "Dutch"
+						},
+						{
+							"name": "Black-faced Bunting",
+							"language": "English"
+						}
+					],
+					"sourceSystem": {
+						"code": "NSR"
+					},
+					"taxonId": "464941695@NSR"
+				}
+            ],
+            "preferred": true
+        },
+        {
+            "taxonRank": "species",
+            "scientificName": {
+				"fullScientificName": "Fringilla montifringilla",
+				"genusOrMonomial": "Fringilla",
+				"specificEpithet": "montifringilla",
+				"scientificNameGroup": "fringilla montifringilla"
+            },
+            "defaultClassification": {
+				"genus": "Fringilla",
+				"specificEpithet": "montifringilla"
+            },
+            "taxonomicEnrichments": [
+				{
+					"vernacularNames": [
+						{
+							"name": "Keep",
+							"language": "Dutch"
+						},
+						{
+							"name": "Brambling",
+							"language": "English"
+						}
+					],
+					"sourceSystem": {
+						"code": "NSR"
+					},
+					"taxonId": "464941800@NSR"
+				},
+				{
+					"vernacularNames": [
+						{
+							"name": "Brambling",
+							"language": "English"
+						}
+					],
+					"sourceSystem": {
+						"code": "COL"
+					},
+					"taxonId": "27741267@COL"
+				}
+            ],
+            "preferred": true
+        },
+        {
+            "taxonRank": "species",
+            "scientificName": {
+				"fullScientificName": "Parus varius",
+				"genusOrMonomial": "Parus",
+				"specificEpithet": "varius",
+				"scientificNameGroup": "parus varius"
+            },
+            "defaultClassification": {
+				"genus": "Parus",
+				"specificEpithet": "varius"
+            },
+            "preferred": true
+        }
+    ],
+    "associatedMultiMediaUris": [
+        {
+            "accessUri": "http://medialib.naturalis.nl/file/id/RMNH.ART.300/format/large",
+            "format": "image/jpeg",
+            "variant": "MEDIUM_QUALITY"
+        }
+    ],
+    "theme": [
+        "arts"
+    ]
+}
+
+
+
