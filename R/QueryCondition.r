@@ -38,7 +38,7 @@ QueryCondition <- R6::R6Class(
         self[['not']] <- `not`
       }
       if (!missing(`field`)) {
-        stopifnot(R6::is.R6(`field`))
+        stopifnot(is.character(`field`), length(`field`) == 1)
         self[['field']] <- `field`
       }
       if (!missing(`operator`)) {
@@ -46,7 +46,7 @@ QueryCondition <- R6::R6Class(
         self[['operator']] <- `operator`
       }
       if (!missing(`value`)) {
-        stopifnot(R6::is.R6(`value`))
+        stopifnot(is.character(`value`), length(`value`) == 1)
         self[['value']] <- `value`
       }
       if (!missing(`and`)) {
@@ -74,13 +74,13 @@ QueryCondition <- R6::R6Class(
         QueryConditionList[['not']] <- self[['not']]
       }
         if (!is.null(self[['field']])) {
-        QueryConditionList[['field']] <- self[['field']]$toList()
+        QueryConditionList[['field']] <- self[['field']]
       }
         if (!is.null(self[['operator']])) {
         QueryConditionList[['operator']] <- self[['operator']]
       }
         if (!is.null(self[['value']])) {
-        QueryConditionList[['value']] <- self[['value']]$toList()
+        QueryConditionList[['value']] <- self[['value']]
       }
         if (!is.null(self[['and']])) {
         QueryConditionList[['and']] <- lapply(self[['and']], function(x) x$toList())
@@ -103,13 +103,13 @@ QueryCondition <- R6::R6Class(
           self[['not']] <- QueryConditionList[['not']]
       }
       if (!is.null(QueryConditionList[['field']])) {      
-          self[['field']] <- Path$new()$fromList(QueryConditionList[['field']])
+          self[['field']] <- QueryConditionList[['field']]
       }
       if (!is.null(QueryConditionList[['operator']])) {      
           self[['operator']] <- QueryConditionList[['operator']]
       }
       if (!is.null(QueryConditionList[['value']])) {      
-          self[['value']] <- TODO_OBJECT_MAPPING$new()$fromList(QueryConditionList[['value']])
+          self[['value']] <- QueryConditionList[['value']]
       }
       if (!is.null(QueryConditionList[['and']])) {      
           self[['and']] <- lapply(QueryConditionList[['and']], function(x) {
@@ -137,11 +137,9 @@ QueryCondition <- R6::R6Class(
     fromJSONString = function(QueryConditionJson) {
       QueryConditionObject <- jsonlite::fromJSON(QueryConditionJson, simplifyVector=F)
       self[['not']] <- QueryConditionObject[['not']]
-      PathObject <- Path$new()
-      self[['field']] <- PathObject$fromJSONString(jsonlite::toJSON(QueryConditionObject[['field']], auto_unbox = TRUE))
+      self[['field']] <- QueryConditionObject[['field']]
       self[['operator']] <- QueryConditionObject[['operator']]
-      TODO_OBJECT_MAPPINGObject <- TODO_OBJECT_MAPPING$new()
-      self[['value']] <- TODO_OBJECT_MAPPINGObject$fromJSONString(jsonlite::toJSON(QueryConditionObject[['value']], auto_unbox = TRUE))
+      self[['value']] <- QueryConditionObject[['value']]
       self[['and']] <- lapply(QueryConditionObject[['and']], function(x) QueryCondition$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
       self[['or']] <- lapply(QueryConditionObject[['or']], function(x) QueryCondition$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
       self[['constantScore']] <- QueryConditionObject[['constantScore']]

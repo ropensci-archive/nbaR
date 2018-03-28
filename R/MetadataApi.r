@@ -50,8 +50,8 @@
 #' }
 #'
 #' @export
-MetadataApi <- R6::R6Class(
-  'MetadataApi',
+MetadataClient <- R6::R6Class(
+  'MetadataClient',
   public = list(
     userAgent = "Swagger-Codegen/1.0.0/r",
     apiClient = NULL,
@@ -249,7 +249,7 @@ MetadataApi <- R6::R6Class(
                                  ...)
       
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- TODO_OBJECT_MAPPING$new()
+        returnObject <- Specimen$new()
         result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
         Response$new(returnObject, resp)
       } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
@@ -273,7 +273,7 @@ MetadataApi <- R6::R6Class(
                                  ...)
       
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- TODO_OBJECT_MAPPING$new()
+        returnObject <- Specimen$new()
         result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
         Response$new(returnObject, resp)
       } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {

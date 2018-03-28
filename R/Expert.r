@@ -36,35 +36,39 @@ Expert <- R6::R6Class(
         self[['organization']] <- `organization`
       }
     },
+
     toList = function() {
       ExpertList <- list()
-      if (!is.null(self[['agentText']])) {
+        if (!is.null(self[['agentText']])) {
         ExpertList[['agentText']] <- self[['agentText']]
       }
-      if (!is.null(self[['fullName']])) {
+        if (!is.null(self[['fullName']])) {
         ExpertList[['fullName']] <- self[['fullName']]
       }
-      if (!is.null(self[['organization']])) {
+        if (!is.null(self[['organization']])) {
         ExpertList[['organization']] <- self[['organization']]$toList()
       }
       ## omit empty nested lists in returned list
       ExpertList[sapply(ExpertList, length) > 0]
-    },
+      },
+
     fromList = function(ExpertList) {
-      if (!is.null(ExpertList[['agentText']])) {
-        self[['agentText']] <- ExpertList[['agentText']]
+      if (!is.null(ExpertList[['agentText']])) {      
+          self[['agentText']] <- ExpertList[['agentText']]
       }
-      if (!is.null(ExpertList[['fullName']])) {
-        self[['fullName']] <- ExpertList[['fullName']]
+      if (!is.null(ExpertList[['fullName']])) {      
+          self[['fullName']] <- ExpertList[['fullName']]
       }
-      if (!is.null(ExpertList[['organization']])) {
-        self[['organization']] <- ExpertList[['organization']]
+      if (!is.null(ExpertList[['organization']])) {      
+          self[['organization']] <- Organization$new()$fromList(ExpertList[['organization']])
       }
       return(self)
     },
+
     toJSONString = function(pretty=T) {
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
+
     fromJSONString = function(ExpertJson) {
       ExpertObject <- jsonlite::fromJSON(ExpertJson, simplifyVector=F)
       self[['agentText']] <- ExpertObject[['agentText']]

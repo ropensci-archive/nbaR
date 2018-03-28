@@ -62,8 +62,8 @@
 #' }
 #'
 #' @export
-GeoApi <- R6::R6Class(
-  'GeoApi',
+GeoClient <- R6::R6Class(
+  'GeoClient',
   public = list(
     userAgent = "Swagger-Codegen/1.0.0/r",
     apiClient = NULL,
@@ -207,7 +207,7 @@ GeoApi <- R6::R6Class(
                                  ...)
       
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- TODO_OBJECT_MAPPING$new()
+        returnObject <- Specimen$new()
         result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
         Response$new(returnObject, resp)
       } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
@@ -241,7 +241,7 @@ GeoApi <- R6::R6Class(
                                  ...)
       
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- TODO_OBJECT_MAPPING$new()
+        returnObject <- Specimen$new()
         result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
         Response$new(returnObject, resp)
       } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
@@ -265,7 +265,7 @@ GeoApi <- R6::R6Class(
                                  ...)
       
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- TODO_OBJECT_MAPPING$new()
+        returnObject <- Specimen$new()
         result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
         Response$new(returnObject, resp)
       } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
@@ -341,7 +341,7 @@ GeoApi <- R6::R6Class(
                                  ...)
       
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- TODO_OBJECT_MAPPING$new()
+        returnObject <- Specimen$new()
         result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
         Response$new(returnObject, resp)
       } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
@@ -369,7 +369,7 @@ GeoApi <- R6::R6Class(
                                  ...)
       
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- TODO_OBJECT_MAPPING$new()
+        returnObject <- Specimen$new()
         result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
         Response$new(returnObject, resp)
       } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
@@ -401,7 +401,7 @@ GeoApi <- R6::R6Class(
                                  ...)
       
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- TODO_OBJECT_MAPPING$new()
+        returnObject <- Specimen$new()
         result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
         Response$new(returnObject, resp)
       } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {

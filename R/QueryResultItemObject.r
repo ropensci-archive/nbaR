@@ -48,7 +48,7 @@ QueryResultItemObject <- R6::R6Class(
           self[['score']] <- QueryResultItemObjectList[['score']]
       }
       if (!is.null(QueryResultItemObjectList[['item']])) {      
-          self[['item']] <- TODO_OBJECT_MAPPING$new()$fromList(QueryResultItemObjectList[['item']])
+          self[['item']] <- Specimen$new()$fromList(QueryResultItemObjectList[['item']])
       }
       return(self)
     },
@@ -60,8 +60,8 @@ QueryResultItemObject <- R6::R6Class(
     fromJSONString = function(QueryResultItemObjectJson) {
       QueryResultItemObjectObject <- jsonlite::fromJSON(QueryResultItemObjectJson, simplifyVector=F)
       self[['score']] <- QueryResultItemObjectObject[['score']]
-      TODO_OBJECT_MAPPINGObject <- TODO_OBJECT_MAPPING$new()
-      self[['item']] <- TODO_OBJECT_MAPPINGObject$fromJSONString(jsonlite::toJSON(QueryResultItemObjectObject[['item']], auto_unbox = TRUE))
+      SpecimenObject <- Specimen$new()
+      self[['item']] <- SpecimenObject$fromJSONString(jsonlite::toJSON(QueryResultItemObjectObject[['item']], auto_unbox = TRUE))
       invisible(self)
     }
   )

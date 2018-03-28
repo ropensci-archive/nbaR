@@ -79,7 +79,7 @@ Feature <- R6::R6Class(
           self[['bbox']] <- FeatureList[['bbox']]
       }
       if (!is.null(FeatureList[['properties']])) {      
-          self[['properties']] <- TODO_OBJECT_MAPPING$new()$fromList(FeatureList[['properties']])
+          self[['properties']] <- Specimen$new()$fromList(FeatureList[['properties']])
       }
       if (!is.null(FeatureList[['geometry']])) {      
           self[['geometry']] <- GeoJsonObject$new()$fromList(FeatureList[['geometry']])
@@ -99,8 +99,8 @@ Feature <- R6::R6Class(
       CrsObject <- Crs$new()
       self[['crs']] <- CrsObject$fromJSONString(jsonlite::toJSON(FeatureObject[['crs']], auto_unbox = TRUE))
       self[['bbox']] <- FeatureObject[['bbox']]
-      TODO_OBJECT_MAPPINGObject <- TODO_OBJECT_MAPPING$new()
-      self[['properties']] <- TODO_OBJECT_MAPPINGObject$fromJSONString(jsonlite::toJSON(FeatureObject[['properties']], auto_unbox = TRUE))
+      SpecimenObject <- Specimen$new()
+      self[['properties']] <- SpecimenObject$fromJSONString(jsonlite::toJSON(FeatureObject[['properties']], auto_unbox = TRUE))
       GeoJsonObjectObject <- GeoJsonObject$new()
       self[['geometry']] <- GeoJsonObjectObject$fromJSONString(jsonlite::toJSON(FeatureObject[['geometry']], auto_unbox = TRUE))
       self[['id']] <- FeatureObject[['id']]

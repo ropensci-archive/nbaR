@@ -48,7 +48,7 @@ Crs <- R6::R6Class(
           self[['type']] <- CrsList[['type']]
       }
       if (!is.null(CrsList[['properties']])) {      
-          self[['properties']] <- TODO_OBJECT_MAPPING$new()$fromList(CrsList[['properties']])
+          self[['properties']] <- Specimen$new()$fromList(CrsList[['properties']])
       }
       return(self)
     },
@@ -60,8 +60,8 @@ Crs <- R6::R6Class(
     fromJSONString = function(CrsJson) {
       CrsObject <- jsonlite::fromJSON(CrsJson, simplifyVector=F)
       self[['type']] <- CrsObject[['type']]
-      TODO_OBJECT_MAPPINGObject <- TODO_OBJECT_MAPPING$new()
-      self[['properties']] <- TODO_OBJECT_MAPPINGObject$fromJSONString(jsonlite::toJSON(CrsObject[['properties']], auto_unbox = TRUE))
+      SpecimenObject <- Specimen$new()
+      self[['properties']] <- SpecimenObject$fromJSONString(jsonlite::toJSON(CrsObject[['properties']], auto_unbox = TRUE))
       invisible(self)
     }
   )

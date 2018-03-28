@@ -40,28 +40,28 @@ ApiClient  <- R6::R6Class(
             self$defaultHeaders <- defaultHeaders
         }
 
-        self$`userAgent` <- 'Swagger-Codegen/1.0.0/r'
+        self$`userAgent` <- 'Swagger-Codegen/0.0.0/r'
     },
     callApi = function(url, method, queryParams, headerParams, body, ...){
         headers <- httr::add_headers(headerParams)
 
         if (method == "GET") {
-            httr::GET(url, queryParams, headers, ...)
+            httr::GET(url, query = queryParams, headers = headers, ...)
         }
         else if (method == "POST") {
-            httr::POST(url, queryParams, headers, body = body, ...)
+            httr::POST(url, query = queryParams, headers = headers, body = body, ...)
         }
         else if (method == "PUT") {
-            httr::PUT(url, queryParams, headers, body = body, ...)
+            httr::PUT(url, query = queryParams, headers = headers, body = body, ...)
         }
         else if (method == "PATCH") {
-            httr::PATCH(url, queryParams, headers, body = body, ...)
+            httr::PATCH(url, query = queryParams, headers = headers, body = body, ...)
         }
         else if (method == "HEAD") {
-            httr::HEAD(url, queryParams, headers, ...)
+            httr::HEAD(url, query = queryParams, headers = headers, ...)
         }
         else if (method == "DELETE") {
-            httr::DELETE(url, queryParams, headers, ...)
+            httr::DELETE(url, query = queryParams, headers = headers, ...)
         }
         else {
             stop("http method must be `GET`, `HEAD`, `OPTIONS`, `POST`, `PATCH`, `PUT` or `DELETE`.")
