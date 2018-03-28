@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/naturalis/nbaR.svg?branch=master)](https://travis-ci.org/naturalis/nbaR)
+
 # R API client for nbaR
 
 Access to the digitised Natural History collection at the Naturalis Biodiversity Center
