@@ -1,0 +1,9 @@
+{
+	"packageName" : "nbaR",
+	"systemProperties" : {
+		"generateApiDocs" : "true",
+		"apiDocs" : "true",
+		"packageVersion" : "0.0.0"
+	}
+	
+}
