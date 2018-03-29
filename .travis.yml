@@ -6,10 +6,10 @@ r_binary_packages:
     - testthat
     - roxygen2
 
-install:
-    - R -e 'devtools::install_deps(dep = T)'
+install:    
     - Rscript -e 'roxygen2::roxygenise()'
 
 script:
+    - R -e 'devtools::install_deps(dep = T)'
     - R CMD build .
     - R CMD check *tar.gz
