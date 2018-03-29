@@ -8,4 +8,3 @@ r_binary_packages:
 
 before_install:
     - Rscript -e 'roxygen2::roxygenise()'
-	
