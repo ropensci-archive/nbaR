@@ -32,8 +32,18 @@
         self$apiClient <- ApiClient$new()
       }
     },
-    {{#operation}}
-    {{operationId}} = function({{#allParams}}{{paramName}}, {{/allParams}}...){
+
+    {{#operation}} 
+      # '@name {{operationId}}
+      # '@title {{summary}}
+      # '@description {{notes}}
+      # '@return \code{ {{returnType}} }
+      {{#hasQueryParams}}
+      {{#queryParams}}
+      # '@param {{paramName}}: {{dataType}}; {{description}}
+      {{/queryParams}}
+      {{/hasQueryParams}}        
+      {{operationId}} = function({{#allParams}}{{paramName}}, {{/allParams}}...){
       args <- list(...)
       queryParams <- list()
       headerParams <- character()
