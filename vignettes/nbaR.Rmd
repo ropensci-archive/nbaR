@@ -1,0 +1,83 @@
+---
+title: "nbaR: R access to the Netherlands Biodiversity API"
+author: "Hannes Hettling"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Background
+	
+### The Netherlands Biodiversity API
+The Netherlands Biodiversity API
+(NBA) facilitates access to the Natural History Collection at the
+Naturalis Biodiversity Center. Next to than museum specimen records
+and metadata, access to taxonomic classification and nomenclature,
+geographical information, and to multimedia files is provided. By
+using the powerful Elasticsearch engine, the NBA facilitates searching
+for collection- and biodiversity data in near real-time. Furthermore,
+by incorporating information from taxonomic databases, taxonomic name
+resolution can be accomplished with the NBA. Persistent Uniform
+Resource Identifiers (PURLs) ensure that each species accessible via
+the NBA is represented by a citable unambiguous web reference. Access
+to our data is provided via a REST interface and several clients such
+as the [BioPortal](http://bioportal.naturalis.nl/), a web application
+for browsing biodiversity data that is served by the NBA.  For more
+information about the NBA, please see our
+[detailed documentation](http://docs.biodiversitydata.nl/).
+	
+### R access
+The R programming language is established as a common tool in scientific resarch.
+To ease the access to the NBA for researchers, we developed this R client.
+
+## Getting started
+
+### Main data types and classes
+The data served by the NBA consists of four main data types:
+
+    * Specimen
+	* Taxon
+	* Multimedia
+	* Geo
+
+Additionally, the data type *Metadata* stores miscellaneous
+information about NBA settings. Each of the data types is modelled
+as an `R6` class and therefore has its own members such as fields
+and methods. Documentation about a specific class can be retrieved
+in the standard manner:
+
+```
+?Specimen
+```
+
+Each class of the data model can be instanciated and has a `toJSONString` and `toList` method returning
+the object's JSON representation and the object's data as a list datatype, respectively.
+
+
+```
+# instanciate specimen opject
+spec <- Specimen$new()
+# represent data as JSON or list
+spec$toJSONString()
+spec$toList()
+```
+
+TODO: many other classes are there
+
+### API Client classes
+The 
+
+```
+ac <- ApiClient$new(basePath="http://api.biodiversitydata.nl/v2")
+api <- SpecimenClient$new(ac)
+res <- api$query_http_get2()
+```
+	
+
+	
+### Queries
+
+	
