@@ -23,7 +23,7 @@
 ApiClient  <- R6::R6Class(
   'ApiClient',
   public = list(
-    basePath = "https://localhost/v2",
+    basePath = "http://api.biodiversitydata.nl/v2",
     configuration = NULL,
     userAgent = NULL,
     defaultHeaders = NULL,

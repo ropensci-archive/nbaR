@@ -28,37 +28,38 @@ SpecimenClient <- R6::R6Class(
     inherit=ApiClient,
     public = list(
         userAgent = "Swagger-Codegen/0.0.0/r",
-        apiClient = NULL,
         initialize = function(basePath){
         super$initialize(basePath)
     },
 
-      # '@name query_http_get2
+      # '@name query
       # '@title Query for specimens
       # '@description Search for specimens (GET) using query parameters or a querySpec JSON
       # '@return \code{ QueryResult }
-      # '@param query_spec: QuerySpec; Object of type QuerySpec or its JSON representation
-    query_http_get2 = function(query_spec, ...){
+      # '@param querySpec: \code{ QuerySpec }; Object of type QuerySpec or its JSON representation
+      # '@param queryParams; \code{ list }; Additional query parameters
+     query = function(querySpec=NULL, queryParams=NULL, ...){
         args <- list(...)
         queryParams <- list()
         headerParams <- character()
-        
-        if (! missing(`query_spec`)) {
-            if (class(query_spec)[2] != "R6" | is.na(class(query_spec)[2])) {
-                queryParams['_querySpec'] <- query_spec
+
+        ## if (! missing(`querySpec`)) {
+        if (! is.null(querySpec)) {
+            if (class(querySpec)[2] != "R6" | is.na(class(querySpec)[2])) {
+                queryParams['_querySpec'] <- querySpec
             } else {
-                queryParams['_querySpec'] <- query_spec$toJSONString()
-            }          
+                queryParams['_querySpec'] <- querySpec$toJSONString()
+            }
         }
-        
+
         urlPath <- "/specimen/query"
         resp <- self$callApi(url = paste0(self$basePath, urlPath),
                              method = "GET",
                              queryParams = queryParams,
                              headerParams = headerParams,
-                             body = body,
+                             ## body = body,
                              ...)
-        
+
         if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
             returnObject <- QueryResult$new()
             result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
@@ -67,7 +68,7 @@ SpecimenClient <- R6::R6Class(
             Response$new("API client error", resp)
         } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
             Response$new("API server error", resp)
-        }    
+        }
     }
   )
 )
