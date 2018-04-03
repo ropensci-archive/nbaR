@@ -40,11 +40,14 @@ SpecimenClient <- R6::R6Class(
       # '@param queryParams; \code{ list }; Additional query parameters
      query = function(querySpec=NULL, queryParams=NULL, ...){
         args <- list(...)
-        queryParams <- list()
         headerParams <- character()
 
-        ## if (! missing(`querySpec`)) {
+        if (!is.null(querySpec) & !is.null(queryParams)) {
+            stop("QuerySpec object cannot be combined with other query parameters")
+        }
+        
         if (! is.null(querySpec)) {
+            queryParams <- list()
             if (class(querySpec)[2] != "R6" | is.na(class(querySpec)[2])) {
                 queryParams['_querySpec'] <- querySpec
             } else {
