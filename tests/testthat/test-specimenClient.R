@@ -31,7 +31,7 @@ test_that("Query with SpecimenClient returns specimens", {
 })
 
 test_that("Query with QuerySpec works", {
-    res <- sc$query(query_spec=qs)
+    res <- sc$query(querySpec=qs)
     expect_is(res$content$resultSet[[1]]$item, "Specimen")
 })
 
@@ -54,10 +54,10 @@ test_that("Query with query params works", {
     ## test for other query if we get the same result with QuerySpec
     qp <- list("identifications.defaultClassification.genus"="Passiflora")    
     qc <- QueryCondition$new(field="identifications.defaultClassification.genus", operator="EQUALS", value="Passiflora")
-    qs <- QuerySpec(conditions=list(qs))
+    qs <- QuerySpec$new(conditions=list(qc))
     res1 <- sc$query(queryParams=qp)
     res2 <- sc$query(querySpec=qs)
-    expext_equivalent(res1$content$resultSet, res2$content$resultSet)    
+    expect_equivalent(res1$content$resultSet, res2$content$resultSet)    
 })
 
 
