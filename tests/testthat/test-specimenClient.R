@@ -13,12 +13,12 @@ sc <- SpecimenClient$new(basePath="http://api.biodiversitydata.nl/v2")
 qc <- QueryCondition$new(field="unitID", operator="EQUALS", value="L.4304195")
 qs <- QuerySpec$new(conditions=list(qc))
 
-
 test_that("Class hierarchy correct", {
     expect_is(sc, "SpecimenClient")
     expect_is(sc, "ApiClient")
 })
 
+context("Testing query function")
 test_that("Query with SpecimenClient returns specimens", {
     res <- sc$query()
 
@@ -46,13 +46,28 @@ test_that("Operators other than EQUALS work", {
     }
 })
 
-q1 <- QueryCondition$new(field = "sex", operator="EQUALS", value="female")
-q2 <- QueryCondition$new(field = "identifications.defaultClassification.family", operator="EQUALS", value="Equidae")
-q3 <- QueryCondition$new(field = "identifications.taxonRank", operator="EQUALS", value="species")
-q4 <- QueryCondition$new(field = "identifications.taxonRank", operator="EQUALS", value="subspecies")
-q3_4 <- QueryCondition$new(or=list(q3, q4))
+test_that("Query with query params works", {
+    qp <- list("_size"=100)
+    res <- sc$query(queryParams=qp)
+    expect_length(res$content$resultSet, 100)
 
-qs <- QuerySpec$new(conditions=list(q1, q2, q3_4))
+    ## test for other query if we get the same result with QuerySpec
+    qp <- list("identifications.defaultClassification.genus"="Passiflora")    
+    qc <- QueryCondition$new(field="identifications.defaultClassification.genus", operator="EQUALS", value="Passiflora")
+    qs <- QuerySpec(conditions=list(qs))
+    res1 <- sc$query(queryParams=qp)
+    res2 <- sc$query(querySpec=qs)
+    expext_equivalent(res1$content$resultSet, res2$content$resultSet)    
+})
+
+
+
+#q1 <- QueryCondition$new(field = "sex", operator="EQUALS", value="female")
+#q2 <- QueryCondition$new(field = "identifications.defaultClassification.family", operator="EQUALS", value="Equidae")
+#q3 <- QueryCondition$new(field = "identifications.taxonRank", operator="EQUALS", value="species")
+#q4 <- QueryCondition$new(field = "identifications.taxonRank", operator="EQUALS", value="subspecies")
+#q3_4 <- QueryCondition$new(or=list(q3, q4))
+#qs <- QuerySpec$new(conditions=list(q1, q2, q3_4))
 
 ## q1 AND q2 AND (q3 OR q4)
 
