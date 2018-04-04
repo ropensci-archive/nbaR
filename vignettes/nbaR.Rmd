@@ -123,9 +123,8 @@ res <- sc$query(querySpec=qs)
 q1 <- QueryCondition$new(field = "sex", operator="EQUALS", value="female")
 q2 <- QueryCondition$new(field = "identifications.defaultClassification.family", operator="EQUALS", value="Equidae")
 q3 <- QueryCondition$new(field = "identifications.taxonRank", operator="EQUALS", value="species")
-q4 <- QueryCondition$new(field = "identifications.taxonRank", operator="EQUALS", value="subspecies")
-q3_4 <- QueryCondition$new(or=list(q3, q4))
-qs <- QuerySpec$new(conditions=list(q1, q2, q3_4))
+q3$or <- list(QueryCondition$new(field = "identifications.taxonRank", operator="EQUALS", value="subspecies"))
+qs <- QuerySpec$new(conditions=list(q1, q2, q3))
 res <- sc$query(querySpec=qs)
 ```
 
