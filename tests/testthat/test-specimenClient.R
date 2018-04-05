@@ -60,24 +60,40 @@ test_that("Query with query params works", {
     expect_equivalent(res1$content$resultSet, res2$content$resultSet)    
 })
 
+test_that("Nested query works" {
+    ## complex query example from http://api.biodiversitydata.nl/scratchpad/
+    q1 <- QueryCondition$new(field="gatheringEvent.country", operator="EQUALS_IC", value="Nederland", boost=2)
+    q1$or <- list(QueryCondition$new(field="gatheringEvent.country", operator="EQUALS_IC", value="Netherlands", boost=0.5),
+                  QueryCondition$new(field="gatheringEvent.country", operator="EQUALS_IC", value="Netherlands, The", boost=1))
+    q2 <- QueryCondition$new(field="kindOfUnit", operator="EQUALS_IC", value="EGG")
+    q3 <- QueryCondition$new(field="identifications.taxonRank", operator="EQUALS_IC", value="species")
+    q3$and <- list(QueryCondition$new(field="identifications.scientificName.genusOrMonomial", operator="EQUALS_IC", value="corvus"))
+    qs <- QuerySpec$new(conditions=list(q1, q2, q3),
+                        fields=list("gatheringEvent.dateTimeBegin",
+                                    "gatheringEvent.locality",
+                                    "identifications.scientificName",
+                                    "kindOfUnit"),
+                        sortFields=list(SortField$new(path="unitID", sortOrder = "desc")),
+                        from=0, size=5, logicalOperator="AND")
+    
+    ## test if query with this QuerySpec works
+    res <- sc$query(querySpec=qs)
+    expect_length(res$content$resultSet, 5)
 
+    ## load reference querySpec from file
+    testQuery <- file.path(dataDir, "nested-query.json")
+    jsonString <- readChar(testQuery, file.info(testQuery)$size)
+    ref <- jsonlite::fromJSON(jsonString, simplifyVector=F)
+    ## compare JSON of reference and our querySpec, without regarding the order
+    ## TODO: Below test could be moved to QuerySpec test
+    test <- jsonlite::fromJSON(qs$toJSONString(), simplifyVector=F)
+    flattened1 <- rapply(ref, function(x)x)
+    flattened2 <- rapply(test, function(x)x)
+    expect_true(all(sort(names(flattened1)) == sort(names(flattened2))))
+    expect_true(all(sort(flattened1) == sort(flattened2)))
 
-#q1 <- QueryCondition$new(field = "sex", operator="EQUALS", value="female")
-#q2 <- QueryCondition$new(field = "identifications.defaultClassification.family", operator="EQUALS", value="Equidae")
-#q3 <- QueryCondition$new(field = "identifications.taxonRank", operator="EQUALS", value="species")
-#q4 <- QueryCondition$new(field = "identifications.taxonRank", operator="EQUALS", value="subspecies")
-#q3_4 <- QueryCondition$new(or=list(q3, q4))
-#qs <- QuerySpec$new(conditions=list(q1, q2, q3_4))
-
-## q1 AND q2 AND (q3 OR q4)
-
-#q1 <- QueryCondition$new("field" = "gatheringEvent.country", "operator" = "EQUALS_IC", "value" = "Nederland", "boost"= 2.0)
-#q2 <- QueryCondition$new("field" = "gatheringEvent.country", "operator" = "EQUALS_IC", "value" = "Netherlands", "boost"= 0.5)
-#q3 <- QueryCondition$new("field" = "gatheringEvent.country", "operator" = "EQUALS_IC", "value" = "Netherlands, The", "boost": 1)
-#q4 <- QueryCondition$new("field" = "kindOfUnit", "operator" = "EQUALS_IC", "value" = "EGG")
-#q5 <- QueryCondition$new("field" = "identifications.taxonRank", "operator" = "EQUALS_IC", "value" = "species")
-
-
+    
+})
 
 #test_that("POST requests work", {
 #    res <- sc$query_http_get2(method="POST")
