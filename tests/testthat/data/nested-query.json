@@ -1,0 +1,23 @@
+{
+	"conditions" : [
+		{ "field" : "gatheringEvent.country", "operator" : "EQUALS_IC", "value" : "Nederland", "boost": 2.0,
+		  "or" : [
+			  { "field" : "gatheringEvent.country", "operator" : "EQUALS_IC", "value" : "Netherlands", "boost": 0.5 },
+			  { "field" : "gatheringEvent.country", "operator" : "EQUALS_IC", "value" : "Netherlands, The", "boost": 1 }
+		  ]
+		},
+		{ "field" : "kindOfUnit", "operator" : "EQUALS_IC", "value" : "EGG"
+		},
+		{ "field" : "identifications.taxonRank", "operator" : "EQUALS_IC", "value" : "species",
+		  "and" : [
+			  { "field" : "identifications.scientificName.genusOrMonomial", "operator" : "EQUALS_IC", "value" : "corvus" }
+		  ]
+		}
+	],
+	"logicalOperator" : "AND",
+	"fields" : ["gatheringEvent.dateTimeBegin","gatheringEvent.locality","identifications.scientificName","kindOfUnit"],
+	"sortFields" : [ { "path" : "unitID", "sortOrder" : "desc" } ],
+	"from" : 0,
+	"size" : 5
+}
+
