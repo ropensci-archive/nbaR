@@ -60,7 +60,7 @@ test_that("Query with query params works", {
     expect_equivalent(res1$content$resultSet, res2$content$resultSet)    
 })
 
-test_that("Nested query works" {
+test_that("Nested query works", {
     ## complex query example from http://api.biodiversitydata.nl/scratchpad/
     q1 <- QueryCondition$new(field="gatheringEvent.country", operator="EQUALS_IC", value="Nederland", boost=2)
     q1$or <- list(QueryCondition$new(field="gatheringEvent.country", operator="EQUALS_IC", value="Netherlands", boost=0.5),
@@ -90,9 +90,7 @@ test_that("Nested query works" {
     flattened1 <- rapply(ref, function(x)x)
     flattened2 <- rapply(test, function(x)x)
     expect_true(all(sort(names(flattened1)) == sort(names(flattened2))))
-    expect_true(all(sort(flattened1) == sort(flattened2)))
-
-    
+    expect_true(all(sort(flattened1) == sort(flattened2)))    
 })
 
 #test_that("POST requests work", {
