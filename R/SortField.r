@@ -24,7 +24,6 @@ SortField <- R6::R6Class(
     `ascending` = NULL,
     initialize = function(`path`, `sortOrder`, `ascending`){
       if (!missing(`path`)) {
-        stopifnot(R6::is.R6(`path`))
         self[['path']] <- `path`
       }
       if (!missing(`sortOrder`)) {
@@ -39,7 +38,7 @@ SortField <- R6::R6Class(
     toList = function() {
       SortFieldList <- list()
         if (!is.null(self[['path']])) {
-        SortFieldList[['path']] <- self[['path']]$toList()
+        SortFieldList[['path']] <- self[['path']]
       }
         if (!is.null(self[['sortOrder']])) {
         SortFieldList[['sortOrder']] <- self[['sortOrder']]
@@ -53,7 +52,7 @@ SortField <- R6::R6Class(
 
     fromList = function(SortFieldList) {
       if (!is.null(SortFieldList[['path']])) {      
-          self[['path']] <- Path$new()$fromList(SortFieldList[['path']])
+          self[['path']] <- SortFieldList[['path']]
       }
       if (!is.null(SortFieldList[['sortOrder']])) {      
           self[['sortOrder']] <- SortFieldList[['sortOrder']]
@@ -70,8 +69,7 @@ SortField <- R6::R6Class(
 
     fromJSONString = function(SortFieldJson) {
       SortFieldObject <- jsonlite::fromJSON(SortFieldJson, simplifyVector=F)
-      PathObject <- Path$new()
-      self[['path']] <- PathObject$fromJSONString(jsonlite::toJSON(SortFieldObject[['path']], auto_unbox = TRUE))
+      self[['path']] <- SortFieldObject[['path']]
       self[['sortOrder']] <- SortFieldObject[['sortOrder']]
       self[['ascending']] <- SortFieldObject[['ascending']]
       invisible(self)
