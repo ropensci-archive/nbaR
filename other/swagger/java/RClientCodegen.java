@@ -90,6 +90,7 @@ public class RClientCodegen extends DefaultCodegen implements CodegenConfig {
 		// Hannes
         typeMapping.put("object", "Specimen");
 		typeMapping.put("Specimen", "Specimen");
+		typeMapping.put("Path", "character");
 		
         cliOptions.clear();
         cliOptions.add(new CliOption(CodegenConstants.PACKAGE_NAME, "R package name (convention: lowercase).")
