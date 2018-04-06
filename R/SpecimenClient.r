@@ -18,7 +18,7 @@
 #' @section Methods:
 #' \describe{
 #'
-#' query_http_get2 Query for specimens
+#' query Query for specimens
 #'
 #' }
 #'
@@ -31,18 +31,18 @@ SpecimenClient <- R6::R6Class(
         initialize = function(basePath){
         super$initialize(basePath)
     },
-
+        
       # '@name query
       # '@title Query for specimens
       # '@description Search for specimens (GET) using query parameters or a querySpec JSON
       # '@return \code{ QueryResult }
       # '@param querySpec: \code{ QuerySpec }; Object of type QuerySpec or its JSON representation
       # '@param queryParams; \code{ list }; Additional query parameters
-     query = function(querySpec=NULL, queryParams=NULL, ...){
+    query = function(querySpec=NULL, queryParams=list(), ...){
         args <- list(...)
         headerParams <- character()
 
-        if (!is.null(querySpec) & !is.null(queryParams)) {
+        if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with other query parameters")
         }
         
