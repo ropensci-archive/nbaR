@@ -49,7 +49,7 @@ as an `R6` class and therefore has its own members such as fields
 and methods. Documentation about a specific class can be retrieved
 in the standard manner:
 
-```
+```r
 ?Specimen
 ```
 
@@ -57,9 +57,10 @@ Each class of the data model can be instanciated and has a `toJSONString` and `t
 the object's JSON representation and the object's data as a list datatype, respectively.
 
 
-```
+```r
 # instanciate specimen opject
 spec <- Specimen$new()
+
 # represent data as JSON or list
 spec$toJSONString()
 spec$toList()
@@ -77,7 +78,7 @@ The interaction with the API is accomplished by the API client classes:
 * MetadataClient
 
 
-```
+```r
 # initialize client
 client <- SpecimenClient$new()
 ```
@@ -91,7 +92,7 @@ For testing purposes, this can be set to a different URL, see `?SpecimenClient` 
 
 With the SpecimentClient created above, the `query` endpoint for specimens can now be reached via the `query` function.
 
-```
+```r
 # retrieve results of empty query.
 res <- client$query()
 ```
@@ -99,9 +100,10 @@ res <- client$query()
 The `query` function then returns an object of class `Response`, which, in turn, has a field `content`
 of class `QueryResult`. From the `QueryResult`, the single result items can be accessed as follows:
 
-```
+```r
 # get first element of results
 spec <- res$content$resultSet[[1]]$item
+
 # object should be of type Specimen
 class(spec)
 
@@ -112,32 +114,56 @@ class(spec)
 
 #### Using the QuerySpec object
 
-```
+```r
+# specify search in QueryCondition object
 qc <- QueryCondition$new(field="unitID", operator="EQUALS", value="L.4304195")
+
+# build QuerySpec using above conditions
 qs <- QuerySpec$new(conditions=list(qc))
+
+# do the query
 res <- sc$query(querySpec=qs)
 ```
 
 
-```
-q1 <- QueryCondition$new(field = "sex", operator="EQUALS", value="female")
-q2 <- QueryCondition$new(field = "identifications.defaultClassification.family", operator="EQUALS", value="Equidae")
-q3 <- QueryCondition$new(field = "identifications.taxonRank", operator="EQUALS", value="species")
-q3$or <- list(QueryCondition$new(field = "identifications.taxonRank", operator="EQUALS", value="subspecies"))
-qs <- QuerySpec$new(conditions=list(q1, q2, q3))
-res <- sc$query(querySpec=qs)
+```r
+# specify multiple conditions
+q1 <- QueryCondition$new(field = "sex", operator="EQUALS",
+                         value="female")
+q2 <- QueryCondition$new(field="identifications.defaultClassification.family",
+                         operator="EQUALS",
+                         value="Equidae")
+q3 <- QueryCondition$new(field="identifications.taxonRank",
+                         operator="EQUALS", value="species")
+
+# logical conjunction using 'or' method
+q3$or<- list(QueryCondition$new(field = "identifications.taxonRank",
+                                operator="EQUALS",
+                                value="subspecies"))
+
+# build QuerySpec from QueryConditions
+qs <-QuerySpec$new(conditions=list(q1, q2, q3))
+
+# call API
+res <-sc$query(querySpec=qs)
 ```
 
 
-```
+```r
 # get 1000 specimen items from plant order 'Gentianales'
-qc <- QueryCondition$new(field = "identifications.defaultClassification.order", operator="EQUALS", value="Gentianales")
+qc <- QueryCondition$new(field = "identifications.defaultClassification.order",
+                         operator="EQUALS",
+                         value="Gentianales")
 qs <- QuerySpec$new(conditions=list(qc), size=1000)
 res <- sc$query(querySpec=qs)
-# extract orders from first identification
-families <- unlist(sapply(res$content$resultSet, function(x)x$item$identifications[[1]]$defaultClassification$family))
+
+# extract orders from first identification of each specimen
+families <- unlist(sapply(res$content$resultSet,
+                          function(x)x$item$identifications[[1]]$defaultClassification$family))
 # plot frequencies
-barplot(table(families), horiz=T, col=rainbow(length(unique(families))), las=2, xlab="frequency", cex.names=0.5)
+barplot(table(families), horiz=T,
+        col=rainbow(length(unique(families))),
+        las=2, xlab="frequency", cex.names=0.5)
 ```
 
 
