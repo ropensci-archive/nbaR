@@ -35,7 +35,7 @@ library('nbaR')
 
 ### Documentation
 User documentation is provided in the package vignette and can be displayed as follows
-```
+```R
 vignette('nbaR')
 ```
 
