@@ -122,7 +122,7 @@ qc <- QueryCondition$new(field="unitID", operator="EQUALS", value="L.4304195")
 qs <- QuerySpec$new(conditions=list(qc))
 
 # do the query
-res <- sc$query(querySpec=qs)
+res <- client$query(querySpec=qs)
 ```
 
 
@@ -145,7 +145,7 @@ q3$or<- list(QueryCondition$new(field = "identifications.taxonRank",
 qs <-QuerySpec$new(conditions=list(q1, q2, q3))
 
 # call API
-res <-sc$query(querySpec=qs)
+res <-client$query(querySpec=qs)
 ```
 
 
@@ -155,7 +155,7 @@ qc <- QueryCondition$new(field = "identifications.defaultClassification.order",
                          operator="EQUALS",
                          value="Gentianales")
 qs <- QuerySpec$new(conditions=list(qc), size=1000)
-res <- sc$query(querySpec=qs)
+res <- client$query(querySpec=qs)
 
 # extract orders from first identification of each specimen
 families <- unlist(sapply(res$content$resultSet,
