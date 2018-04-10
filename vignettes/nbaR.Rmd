@@ -109,11 +109,27 @@ class(spec)
 
 ```
 
-#### Passing query parameters
+#### Passing query parameters as list
+Query parameters can be specified as a list with named parameters.
+To query for instance for specimen records that have the type status holotype and a female sex,
+one can pass a named list as the `queryParams` parameter to the `query` function:
+
+```r
+# specify two query conditions
+l <- list(identifications.typeStatus="holotype", sex="female")
+
+# run query
+res <- client$query(queryParams=l)
+```
+
+Note that by default, both conditions are connected by a logical `AND`. 
+The `queryParams` passed as a list thus correspond to 
+basic [*human readable* queries](http://docs.biodiversitydata.nl/en/latest/quickstart/#human-readable).
+For more advanced queries, containing different logical operators or nested subqueries, 
+the user can specify tha query in a `QuerySpec` object.
 
 
 #### Using the QuerySpec object
-
 ```r
 # specify search in QueryCondition object
 qc <- QueryCondition$new(field="unitID", operator="EQUALS", value="L.4304195")
