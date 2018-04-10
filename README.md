@@ -27,6 +27,12 @@ library(devtools)
 install_github("naturalis/nbaR", build_vignettes=T)
 ```
 
+### Using the package
+After installation, the package can be loaded as follows:
+```R
+library('nbaR')
+```
+
 ### Documentation
 User documentation is provided in the package vignette and can be displayed as follows
 ```
@@ -34,6 +40,5 @@ vignette('nbaR')
 ```
 
 ## Author
-Hannes Hettling
 nba@naturalis.nl
 
