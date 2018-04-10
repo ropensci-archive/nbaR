@@ -25,7 +25,7 @@ nbaR.Specimen
 
 \describe{
 
-query_http_get2 Query for specimens
+query Query for specimens
 
 }
 }
