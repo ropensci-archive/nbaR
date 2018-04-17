@@ -10,6 +10,7 @@ if(grepl('testthat', wd)) {
     dataDir <- file.path('tests', 'testthat', 'data')
 }
 
+context("Testing IO from and to JSON and list ")
 testfiles <- c('specimen.json', 'specimen-2.json')
 
 for (file in testfiles) {
@@ -57,7 +58,18 @@ for (file in testfiles) {
         spec <- Specimen$new()
         spec$fromJSONString(jsonString)
         l <- spec$toList()
-        expect_true(class(l)=='list')
+        expect_is(l, 'list')
+    })
+
+    ## In the NBA java model class, there is a field "AssociatedMultimediaObjects"
+    ## which however is not exported to the API. Here we check that this
+    ## property was not present in the swagger definition file and therefore
+    ## the Specimen object in R does not have this property
+    test_that('No AssociatedMultimediaObjects', {
+        spec <- Specimen$new()
+        spec$fromJSONString(jsonString)
+        expect_null(spec$associatedMultiMediaObjects)
     })
     
 }
+

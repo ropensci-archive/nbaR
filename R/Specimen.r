@@ -39,7 +39,6 @@
 #' @field identifications 
 #' @field associatedMultiMediaUris 
 #' @field theme 
-#' @field associatedMultiMediaObjects 
 #'
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
@@ -77,8 +76,7 @@ Specimen <- R6::R6Class(
     `identifications` = NULL,
     `associatedMultiMediaUris` = NULL,
     `theme` = NULL,
-    `associatedMultiMediaObjects` = NULL,
-    initialize = function(`sourceSystem`, `sourceSystemId`, `recordURI`, `id`, `unitID`, `unitGUID`, `collectorsFieldNumber`, `assemblageID`, `sourceInstitutionID`, `sourceID`, `owner`, `licenseType`, `license`, `recordBasis`, `kindOfUnit`, `collectionType`, `sex`, `phaseOrStage`, `title`, `notes`, `preparationType`, `numberOfSpecimen`, `fromCaptivity`, `objectPublic`, `multiMediaPublic`, `acquiredFrom`, `gatheringEvent`, `identifications`, `associatedMultiMediaUris`, `theme`, `associatedMultiMediaObjects`){
+    initialize = function(`sourceSystem`, `sourceSystemId`, `recordURI`, `id`, `unitID`, `unitGUID`, `collectorsFieldNumber`, `assemblageID`, `sourceInstitutionID`, `sourceID`, `owner`, `licenseType`, `license`, `recordBasis`, `kindOfUnit`, `collectionType`, `sex`, `phaseOrStage`, `title`, `notes`, `preparationType`, `numberOfSpecimen`, `fromCaptivity`, `objectPublic`, `multiMediaPublic`, `acquiredFrom`, `gatheringEvent`, `identifications`, `associatedMultiMediaUris`, `theme`){
       if (!missing(`sourceSystem`)) {
         stopifnot(R6::is.R6(`sourceSystem`))
         self[['sourceSystem']] <- `sourceSystem`
@@ -199,11 +197,6 @@ Specimen <- R6::R6Class(
         lapply(`theme`, function(x) stopifnot(is.character(x)))
         self[['theme']] <- `theme`
       }
-      if (!missing(`associatedMultiMediaObjects`)) {
-        stopifnot(is.list(`associatedMultiMediaObjects`), length(`associatedMultiMediaObjects`) != 0)
-        lapply(`associatedMultiMediaObjects`, function(x) stopifnot(R6::is.R6(x)))
-        self[['associatedMultiMediaObjects']] <- `associatedMultiMediaObjects`
-      }
     },
 
     toList = function() {
@@ -297,9 +290,6 @@ Specimen <- R6::R6Class(
       }
         if (!is.null(self[['theme']])) {
         SpecimenList[['theme']] <- self[['theme']]
-      }
-        if (!is.null(self[['associatedMultiMediaObjects']])) {
-        SpecimenList[['associatedMultiMediaObjects']] <- lapply(self[['associatedMultiMediaObjects']], function(x) x$toList())
       }
       ## omit empty nested lists in returned list
       SpecimenList[sapply(SpecimenList, length) > 0]
@@ -400,11 +390,6 @@ Specimen <- R6::R6Class(
       if (!is.null(SpecimenList[['theme']])) {      
           self[['theme']] <- SpecimenList[['theme']]
       }
-      if (!is.null(SpecimenList[['associatedMultiMediaObjects']])) {      
-          self[['associatedMultiMediaObjects']] <- lapply(SpecimenList[['associatedMultiMediaObjects']], function(x) {
-             MultiMediaObject$new()$fromList(x)            
-          })
-      }
       return(self)
     },
 
@@ -447,7 +432,6 @@ Specimen <- R6::R6Class(
       self[['identifications']] <- lapply(SpecimenObject[['identifications']], function(x) SpecimenIdentification$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
       self[['associatedMultiMediaUris']] <- lapply(SpecimenObject[['associatedMultiMediaUris']], function(x) ServiceAccessPoint$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
       self[['theme']] <- SpecimenObject[['theme']]
-      self[['associatedMultiMediaObjects']] <- lapply(SpecimenObject[['associatedMultiMediaObjects']], function(x) MultiMediaObject$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
       invisible(self)
     }
   )
