@@ -1,0 +1,4403 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Access to the digitised Natural History collection at the Naturalis Biodiversity Center",
+    "version": "v2",
+    "title": "Netherlands Biodiversity Api",
+    "contact": {
+      "name": "Naturalis Biodiversity Center",
+      "url": "https://www.naturalis.nl/nl/",
+      "email": "support@naturalis.nl"
+    },
+    "license": {
+      "name": "GPL",
+      "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html"
+    }
+  },
+  "basePath": "/v2",
+  "tags": [
+    {
+      "name": "specimen",
+      "description": "Access specimens present in the collection"
+    },
+    {
+      "name": "taxon",
+      "description": "Access taxon information from taxonimic catalogues"
+    },
+    {
+      "name": "geo",
+      "description": "Access polygons of geographical areas"
+    },
+    {
+      "name": "multimedia",
+      "description": "Access multimedia objects associated with specimens"
+    },
+    {
+      "name": "metadata",
+      "description": "Miscellaneous information"
+    }
+  ],
+  "paths": {
+    "/geo/metadata/isOperatorAllowed/{field}/{operator}": {
+      "get": {
+        "tags": [
+          "geo"
+        ],
+        "summary": "Checks if a given operator is allowed for a given field",
+        "description": "See also metadata/getFieldInfo",
+        "operationId": "isOperatorAllowed",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "field",
+            "in": "path",
+            "description": "Field in geo area document",
+            "required": true,
+            "type": "string",
+            "default": "locality"
+          },
+          {
+            "name": "operator",
+            "in": "path",
+            "description": "operator",
+            "required": true,
+            "type": "string",
+            "default": "EQUALS"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/geo/metadata/getSetting/{name}": {
+      "get": {
+        "tags": [
+          "geo"
+        ],
+        "summary": "Get the value of an NBA setting",
+        "description": "All settings can be queried with /metadata/getSettings",
+        "operationId": "getSettings",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "name of setting",
+            "required": true,
+            "type": "string",
+            "default": "index.max_result_window"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/geo/metadata/getSettings": {
+      "get": {
+        "tags": [
+          "geo"
+        ],
+        "summary": "List all publicly available configuration settings for the NBA",
+        "description": "The value of a specific setting can be queried with metadata/getSetting/{name}",
+        "operationId": "getSettings_1",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/geo/metadata/getFieldInfo": {
+      "get": {
+        "tags": [
+          "geo"
+        ],
+        "summary": "Returns extended information for each field of a specimen document",
+        "description": "Info consists of whether the fields is indexed, the ElasticSearch datatype and a list of allowed operators",
+        "operationId": "getFieldInfo",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/geo/metadata/getPaths": {
+      "get": {
+        "tags": [
+          "geo"
+        ],
+        "summary": "Returns the full path of all fields within a document",
+        "description": "See also metadata/getFieldInfo for all allowed operators per field",
+        "operationId": "getPaths",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/geo/findByIds/{ids}": {
+      "get": {
+        "tags": [
+          "geo"
+        ],
+        "summary": "Find geo areas by ids",
+        "description": "Given multiple ids, returns a list of geo area objects",
+        "operationId": "findByIds_1",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "path",
+            "description": "ids of multiple geo areas, separated by comma",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "default": "1003937@GEO,1004048@GEO"
+            },
+            "collectionFormat": "csv"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GeoArea"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/geo/query": {
+      "get": {
+        "tags": [
+          "geo"
+        ],
+        "summary": "Query for geo areas",
+        "description": "Query on searchable fields to retrieve matching geo areas",
+        "operationId": "queryHttpGet",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "locality",
+            "in": "query",
+            "description": "Example query param",
+            "required": false,
+            "type": "string",
+            "default": "Belgium"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/QueryResult"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "geo"
+        ],
+        "summary": "Query for geo areas",
+        "description": "Query on searchable fields to retrieve matching geo areas",
+        "operationId": "queryHttpPostJson",
+        "consumes": [
+          "application/json;charset=UTF-8"
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "querySpec",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/QuerySpec"
+            }
+          },
+          {
+            "name": "locality",
+            "in": "query",
+            "description": "Example query param",
+            "required": false,
+            "type": "string",
+            "default": "Belgium"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/QueryResult"
+            }
+          }
+        }
+      }
+    },
+    "/geo/count": {
+      "get": {
+        "tags": [
+          "geo"
+        ],
+        "summary": "Get the number of geo areas matching a condition",
+        "description": "Conditions given as query string",
+        "operationId": "countHttpGet",
+        "produces": [
+          "text/plain;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "areaType",
+            "in": "query",
+            "description": "Example query param",
+            "required": false,
+            "type": "string",
+            "default": "Country"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "geo"
+        ],
+        "summary": "Get the number of geo areas matching a condition",
+        "description": "Conditions given as querySpec JSON",
+        "operationId": "countHttpPostJson",
+        "consumes": [
+          "application/json;charset=UTF-8"
+        ],
+        "produces": [
+          "text/plain;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "querySpec JSON",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/QuerySpec"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      }
+    },
+    "/geo/getDistinctValues/{field}": {
+      "get": {
+        "tags": [
+          "geo"
+        ],
+        "summary": "Get all different values that exist for a field",
+        "description": "A list of all fields for geo area documents can be retrieved with /metadata/getFieldInfo",
+        "operationId": "getDistinctValuesHttpGet",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "field",
+            "in": "path",
+            "description": "name of field in geo area object",
+            "required": true,
+            "type": "string",
+            "default": "locality"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "geo"
+        ],
+        "summary": "Get all different values that exist for a field",
+        "description": "A list of all fields for geo area documents can be retrieved with /metadata/getFieldInfo",
+        "operationId": "getDistinctValuesHttpPostJson",
+        "consumes": [
+          "application/json;charset=UTF-8"
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "field",
+            "in": "path",
+            "description": "name of field in a geo area object",
+            "required": true,
+            "type": "string",
+            "default": "locality"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "querySpec JSON",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/QuerySpec"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/geo/getGeoJsonForLocality/{locality}": {
+      "get": {
+        "tags": [
+          "geo"
+        ],
+        "summary": "Retrieve a GeoJson object for a given locality",
+        "description": "Returns a GeoJson polygon",
+        "operationId": "getGeoJsonForLocality",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "locality",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/GeoArea"
+            }
+          },
+          "404": {
+            "description": "locality not found"
+          }
+        }
+      }
+    },
+    "/geo/find/{id}": {
+      "get": {
+        "tags": [
+          "geo"
+        ],
+        "summary": "Find a GEO area by id",
+        "description": "Returns a GEO object containing a GEO json polygon",
+        "operationId": "find_1",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of geo area",
+            "required": true,
+            "type": "string",
+            "default": "1003937@GEO"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/GeoArea"
+            }
+          },
+          "404": {
+            "description": "id not found"
+          }
+        }
+      }
+    },
+    "/multimedia/metadata/isOperatorAllowed/{field}/{operator}": {
+      "get": {
+        "tags": [
+          "multimedia"
+        ],
+        "summary": "Checks if a given operator is allowed for a given field",
+        "description": "See also metadata/getFieldInfo",
+        "operationId": "isOperatorAllowed_1",
+        "produces": [
+          "text/plain;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "field",
+            "in": "path",
+            "description": "multimedia document field",
+            "required": true,
+            "type": "string",
+            "default": "unitID"
+          },
+          {
+            "name": "operator",
+            "in": "path",
+            "description": "operator",
+            "required": true,
+            "type": "string",
+            "default": "EQUALS"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/multimedia/metadata/getSetting/{name}": {
+      "get": {
+        "tags": [
+          "multimedia"
+        ],
+        "summary": "Get the value of an NBA setting",
+        "description": "All settings can be queried with /metadata/getSettings",
+        "operationId": "getSettings_2",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "name of setting",
+            "required": true,
+            "type": "string",
+            "default": "index.max_result_window"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/multimedia/metadata/getSettings": {
+      "get": {
+        "tags": [
+          "multimedia"
+        ],
+        "summary": "List all publicly available configuration settings for the NBA",
+        "description": "The value of a specific setting can be queried with metadata/getSetting/{name}",
+        "operationId": "getSettings_3",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/multimedia/metadata/getFieldInfo": {
+      "get": {
+        "tags": [
+          "multimedia"
+        ],
+        "summary": "Returns extended information for each field of a multimedia document",
+        "description": "Info consists of whether the fields is indexed, the ElasticSearch datatype and a list of allowed operators",
+        "operationId": "getFieldInfo_1",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/multimedia/metadata/getPaths": {
+      "get": {
+        "tags": [
+          "multimedia"
+        ],
+        "summary": "Returns the full path of all fields within a document",
+        "description": "See also metadata/getFieldInfo for all allowed operators per field",
+        "operationId": "getPaths_1",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/multimedia/findByIds/{ids}": {
+      "get": {
+        "tags": [
+          "multimedia"
+        ],
+        "summary": "Find multimedia document by ids",
+        "description": "Given multiple ids, returns a list of multimedia documents",
+        "operationId": "findByIds_2",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "path",
+            "description": "ids of multiple multimedia documents, separated by comma",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "default": "U.1475914_2059926060@BRAHMS,L.2454256_0837498402@BRAHMS"
+            },
+            "collectionFormat": "csv"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MultiMediaObject"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/multimedia/query": {
+      "get": {
+        "tags": [
+          "multimedia"
+        ],
+        "summary": "Query for multimedia documents",
+        "description": "Search for multimedia documents with query parameters or QuerySpec JSON string",
+        "operationId": "queryHttpGet_1",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "license",
+            "in": "query",
+            "description": "Example query param",
+            "required": false,
+            "type": "string",
+            "default": "CC0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/QueryResult"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "multimedia"
+        ],
+        "summary": "Query for multimedia documents",
+        "description": "Search for multimedia documents with query parameters or QuerySpec JSON string",
+        "operationId": "queryHttpPostJson_1",
+        "consumes": [
+          "application/json;charset=UTF-8"
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "querySpec",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/QuerySpec"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/QueryResult"
+            }
+          }
+        }
+      }
+    },
+    "/multimedia/count": {
+      "get": {
+        "tags": [
+          "multimedia"
+        ],
+        "summary": "Get the number of multimedia documents matching a condition",
+        "description": "Conditions given as query parameters or QuerySpec JSON",
+        "operationId": "countHttpGet_1",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "sourceSystem.code",
+            "in": "query",
+            "description": "Example query param",
+            "required": false,
+            "type": "string",
+            "default": "BRAHMS"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "multimedia"
+        ],
+        "summary": "Get the number of multimedia documents matching a condition",
+        "description": "Conditions given as query parameters or QuerySpec JSON",
+        "operationId": "countHttpPostJson_1",
+        "consumes": [
+          "application/json;charset=UTF-8"
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "querySpec JSON",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/QuerySpec"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      }
+    },
+    "/multimedia/getDistinctValues/{field}": {
+      "get": {
+        "tags": [
+          "multimedia"
+        ],
+        "summary": "Get all different values that can be found for one field",
+        "description": "A list of all fields for multimedia documents can be retrieved with /metadata/getFieldInfo",
+        "operationId": "getDistinctValuesHttpGet_1",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "field",
+            "in": "path",
+            "description": "field",
+            "required": true,
+            "type": "string",
+            "default": "gatheringEvents.worldRegion"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "multimedia"
+        ],
+        "summary": "Get all different values that exist for a field",
+        "description": "A list of all fields for multimedia documents can be retrieved with /metadata/getFieldInfo",
+        "operationId": "getDistinctValuesHttpPostJson_1",
+        "consumes": [
+          "application/json;charset=UTF-8"
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "field",
+            "in": "path",
+            "description": "name of field in a multimedia object",
+            "required": true,
+            "type": "string",
+            "default": "gatheringEvents.worldRegion"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "querySpec JSON",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/QuerySpec"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/multimedia/find/{id}": {
+      "get": {
+        "tags": [
+          "multimedia"
+        ],
+        "summary": "Find a multimedia document by id",
+        "description": "If found, returns a single multimedia document",
+        "operationId": "find_2",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of multimedia document",
+            "required": true,
+            "type": "string",
+            "default": "L.4169766_1307658521@BRAHMS"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/MultiMediaObject"
+            }
+          }
+        }
+      }
+    },
+    "/metadata/getSetting/{name}": {
+      "get": {
+        "tags": [
+          "metadata"
+        ],
+        "summary": "Get the value of an NBA setting",
+        "description": "All settings can be queried with /metadata/getSettings",
+        "operationId": "getSetting",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "name of setting",
+            "required": true,
+            "type": "string",
+            "default": "operator.CONTAINS.min_term_length"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/metadata/getControlledLists": {
+      "get": {
+        "tags": [
+          "metadata"
+        ],
+        "summary": "Get the names of fields for which a controlled vocabulary exists",
+        "description": "Possible values for fields with controlled vocabularies can be queried with metadata/getControlledList/{field}",
+        "operationId": "getControlledLists",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metadata/getControlledList/Sex": {
+      "get": {
+        "tags": [
+          "metadata"
+        ],
+        "summary": "Get allowed values for the field 'Sex' in a specimen document",
+        "description": "",
+        "operationId": "getControlledListSex",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MALE",
+                  "FEMALE",
+                  "MIXED",
+                  "HERMAPHRODITE"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metadata/getControlledList/PhaseOrStage": {
+      "get": {
+        "tags": [
+          "metadata"
+        ],
+        "summary": "Get allowed values for the field 'PhaseOrStage' in a specimen document",
+        "description": "",
+        "operationId": "getControlledListPhaseOrStage",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ADULT",
+                  "SUBADULT",
+                  "EGG",
+                  "EMBRYO",
+                  "IMMATURE",
+                  "JUVENILE",
+                  "LARVA",
+                  "PUPA",
+                  "NYMPH"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metadata/getControlledList/TaxonomicStatus": {
+      "get": {
+        "tags": [
+          "metadata"
+        ],
+        "summary": "Get allowed values for the field 'TaxonomicStatus' in specimen and taxon documents",
+        "description": "",
+        "operationId": "getControlledListTaxonomicStatus",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ACCEPTED_NAME",
+                  "SYNONYM",
+                  "BASIONYM",
+                  "HOMONYM",
+                  "AMBIGUOUS_SYNONYM",
+                  "MISAPPLIED_NAME",
+                  "MISSPELLED_NAME",
+                  "PROVISIONALLY_ACCEPTED"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metadata/getControlledList/SpecimenTypeStatus": {
+      "get": {
+        "tags": [
+          "metadata"
+        ],
+        "summary": "Get allowed values for the field 'SpecimenTypeStatus' in a specimen document",
+        "description": "",
+        "operationId": "getControlledListSpecimenTypeStatus",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ALLOTYPE",
+                  "EPITYPE",
+                  "HAPANTOTYPE",
+                  "HOLOTYPE",
+                  "ISOEPITYPE",
+                  "ISOLECTOTYPE",
+                  "ISONEOTYPE",
+                  "ISOSYNTYPE",
+                  "ISOTYPE",
+                  "LECTOTYPE",
+                  "NEOTYPE",
+                  "PARATYPE",
+                  "PARALECTOTYPE",
+                  "SYNTYPE",
+                  "TOPOTYPE",
+                  "TYPE"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metadata/getAllowedDateFormats": {
+      "get": {
+        "tags": [
+          "metadata"
+        ],
+        "summary": "Get allowed values for dates in queries",
+        "description": "Queries with other formatted dates will result in a query error",
+        "operationId": "getAllowedDateFormats",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metadata/getRestServices": {
+      "get": {
+        "tags": [
+          "metadata"
+        ],
+        "summary": "List all available REST services and their parameters",
+        "description": "lists end point name, http method, response type, and URL",
+        "operationId": "getRestServices",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RestService"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metadata/getSourceSystems": {
+      "get": {
+        "tags": [
+          "metadata"
+        ],
+        "summary": "Get the data sources from which the data was retrieved",
+        "description": "Returns code and name of all source systems",
+        "operationId": "getSourceSystems",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SourceSystem"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metadata/getSettings": {
+      "get": {
+        "tags": [
+          "metadata"
+        ],
+        "summary": "List all publicly available configuration settings for the NBA",
+        "description": "The value of a specific setting can be queried with metadata/getSetting/{name}",
+        "operationId": "getSettings",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/specimen/metadata/isOperatorAllowed/{field}/{operator}": {
+      "get": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "Checks if a given operator is allowed for a given field",
+        "description": "See also metadata/getFieldInfo",
+        "operationId": "isOperatorAllowed_2",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "field",
+            "in": "path",
+            "description": "specimen document field",
+            "required": true,
+            "type": "string",
+            "default": "unitID"
+          },
+          {
+            "name": "operator",
+            "in": "path",
+            "description": "operator",
+            "required": true,
+            "type": "string",
+            "default": "EQUALS"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/specimen/metadata/getSetting/{name}": {
+      "get": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "Get the value of an NBA setting",
+        "description": "All settings can be queried with /metadata/getSettings",
+        "operationId": "getSettings_4",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "name of setting",
+            "required": true,
+            "type": "string",
+            "default": "index.max_result_window"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/specimen/metadata/getSettings": {
+      "get": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "List all publicly available configuration settings for the NBA",
+        "description": "The value of a specific setting can be queried with metadata/getSetting/{name}",
+        "operationId": "getSettings_5",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/specimen/metadata/getFieldInfo": {
+      "get": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "Returns extended information for each field of a specimen document",
+        "description": "Info consists of whether the fields is indexed, the ElasticSearch datatype and a list of allowed operators",
+        "operationId": "getFieldInfo_2",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/specimen/metadata/getPaths": {
+      "get": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "Returns the full path of all fields within a document",
+        "description": "See also metadata/getFieldInfo for all allowed operators per field",
+        "operationId": "getPaths_2",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/specimen/findByUnitID/{unitID}": {
+      "get": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "Find a specimen by unitID",
+        "description": "Get a specimen by its unitID. Returns a list of specimens since unitIDs are not strictly unique",
+        "operationId": "findByUnitID",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "unitID",
+            "in": "path",
+            "description": "the unitID of the specimen to query",
+            "required": true,
+            "type": "string",
+            "default": "RMNH.MAM.17209.B"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Specimen"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/specimen/dwca/query": {
+      "get": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "Dynamic download service: Query for specimens and return result as Darwin Core Archive File",
+        "description": "Query with query parameters or querySpec JSON. Response saved to nba-specimens.dwca.zip",
+        "operationId": "dwcaQueryHttpGet",
+        "produces": [
+          "application/zip"
+        ],
+        "parameters": [
+          {
+            "name": "collectionType",
+            "in": "query",
+            "description": "Example query param",
+            "required": false,
+            "type": "string",
+            "default": "Crustacea"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "Dynamic download service: Query for specimens and return result as Darwin Core Archive File",
+        "description": "Query with query parameters or querySpec JSON. Response saved to nba-specimens.dwca.zip",
+        "operationId": "dwcaQueryHttpPostJson",
+        "consumes": [
+          "application/json;charset=UTF-8"
+        ],
+        "produces": [
+          "application/zip"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "querySpec",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/QuerySpec"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/specimen/dwca/getDataSet/{dataset}": {
+      "get": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "Download dataset as Darwin Core Archive File",
+        "description": "Available datasets can be queried with /specimen/dwca/getDataSetNames. Response saved to <datasetname>-<yyyymmdd>.dwca.zip",
+        "operationId": "dwcaGetDataSet",
+        "produces": [
+          "application/zip"
+        ],
+        "parameters": [
+          {
+            "name": "dataset",
+            "in": "path",
+            "description": "name of dataset",
+            "required": true,
+            "type": "string",
+            "default": "amphibia-and-reptilia"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/specimen/dwca/getDataSetNames": {
+      "get": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "Retrieve the names of all available datasets",
+        "description": "Individual datasets can then be downloaded with /dwca/getDataSet/{dataset}",
+        "operationId": "dwcaGetDataSetNames",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/specimen/getNamedCollections": {
+      "get": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "Retrieve the names of all 'special collections' of specimens",
+        "description": "",
+        "operationId": "getNamedCollections",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/specimen/getIdsInCollection/{name}": {
+      "get": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "Retrieve all ids within a 'special collection' of specimens",
+        "description": "Available collections can be queried with /getNamedCollections",
+        "operationId": "getIdsInCollection",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "name of dataset",
+            "required": true,
+            "type": "string",
+            "default": "siebold"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/specimen/groupByScientificName": {
+      "get": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "Aggregates Taxon and Specimen documents according to their scientific names",
+        "description": "Returns a list with ScientificNameGroups, which contain Taxon and Specimen documents that share a scientific name",
+        "operationId": "groupByScientificNameHttpGet",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "collectionType",
+            "in": "query",
+            "description": "Example query param",
+            "required": false,
+            "type": "string",
+            "default": "Crustacea"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/QueryResult"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "Aggregates Taxon and Specimen documents according to their scientific names",
+        "description": "Returns a list with ScientificNameGroups, which contain Taxon and Specimen documents that share a scientific name",
+        "operationId": "groupByScientificNameHttpPostJson",
+        "consumes": [
+          "application/json;charset=UTF-8"
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "querySpec JSON",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/GroupByScientificNameQuerySpec"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/QueryResult"
+            }
+          }
+        }
+      }
+    },
+    "/specimen/findByIds/{ids}": {
+      "get": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "Find specimens by ids",
+        "description": "Given multiple ids, returns a list of specimen",
+        "operationId": "findByIds_3",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "path",
+            "description": "ids of multiple specimen, separated by comma",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "default": "RMNH.MOL.326483@CRS,ZMA.MAM.4211@CRS"
+            },
+            "collectionFormat": "csv"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Specimen"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/specimen/query": {
+      "get": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "Query for specimens",
+        "description": "Search for specimens (GET) using query parameters or a querySpec JSON",
+        "operationId": "queryHttpGet_2",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "querySpec",
+            "in": "query",
+            "description": "Object of type QuerySpec or its JSON representation",
+            "required": false,
+            "type": "QuerySpec"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/QueryResult"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "Query for specimens",
+        "description": "Search for specimens (GET) using query parameters or a querySpec JSON",
+        "operationId": "queryHttpPostJson_2",
+        "consumes": [
+          "application/json;charset=UTF-8"
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "_querySpec",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/QuerySpec"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/QueryResult"
+            }
+          }
+        }
+      }
+    },
+    "/specimen/count": {
+      "get": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "Get the number of specimens matching a condition",
+        "description": "Conditions given as query parameters or a querySpec JSON",
+        "operationId": "countHttpGet_2",
+        "produces": [
+          "text/plain;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "collectionType",
+            "in": "query",
+            "description": "Example query param",
+            "required": false,
+            "type": "string",
+            "default": "Crustacea"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "Get the number of specimens matching a condition",
+        "description": "Conditions given as query parameters or a querySpec JSON",
+        "operationId": "countHttpPostJson_2",
+        "consumes": [
+          "application/json;charset=UTF-8"
+        ],
+        "produces": [
+          "text/plain;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "querySpec JSON",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/QuerySpec"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      }
+    },
+    "/specimen/getDistinctValues/{field}": {
+      "get": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "Get all different values that exist for a field",
+        "description": "A list of all fields for specimen documents can be retrieved with /metadata/getFieldInfo",
+        "operationId": "getDistinctValuesHttpGet_2",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "field",
+            "in": "path",
+            "description": "name of field in specimen object",
+            "required": true,
+            "type": "string",
+            "default": "identifications.defaultClassification.family"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "Get all different values that exist for a field",
+        "description": "A list of all fields for specimen documents can be retrieved with /metadata/getFieldInfo",
+        "operationId": "getDistinctValuesHttpPostJson_2",
+        "consumes": [
+          "application/json;charset=UTF-8"
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "field",
+            "in": "path",
+            "description": "name of field in specimen object",
+            "required": true,
+            "type": "string",
+            "default": "identifications.defaultClassification.family"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "querySpec JSON",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/QuerySpec"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/specimen/find/{id}": {
+      "get": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "Find a specimen by id",
+        "description": "If found, returns a single specimen",
+        "operationId": "find_3",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of specimen",
+            "required": true,
+            "type": "string",
+            "default": "RMNH.MAM.17209.B@CRS"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Specimen"
+            }
+          },
+          "404": {
+            "description": "id not found"
+          }
+        }
+      }
+    },
+    "/specimen/exists/{unitID}": {
+      "get": {
+        "tags": [
+          "specimen"
+        ],
+        "summary": "Returns whether or not a unitID for a specimen exists",
+        "description": "Returns either true or false",
+        "operationId": "exists",
+        "produces": [
+          "text/plain;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "unitID",
+            "in": "path",
+            "description": "the unitID of the specimen to query",
+            "required": true,
+            "type": "string",
+            "default": "RMNH.MAM.17209.B"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/taxon/metadata/isOperatorAllowed/{field}/{operator}": {
+      "get": {
+        "tags": [
+          "taxon"
+        ],
+        "summary": "Checks if a given operator is allowed for a given field",
+        "description": "See also metadata/getFieldInfo",
+        "operationId": "isOperatorAllowed_3",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "field",
+            "in": "path",
+            "description": "specimen document field",
+            "required": true,
+            "type": "string",
+            "default": "taxonRank"
+          },
+          {
+            "name": "operator",
+            "in": "path",
+            "description": "operator",
+            "required": true,
+            "type": "string",
+            "default": "EQUALS"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/taxon/metadata/getSetting/{name}": {
+      "get": {
+        "tags": [
+          "taxon"
+        ],
+        "summary": "Get the value of an NBA setting",
+        "description": "All settings can be queried with /metadata/getSettings",
+        "operationId": "getSettings_6",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "name of setting",
+            "required": true,
+            "type": "string",
+            "default": "index.max_result_window"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/taxon/metadata/getSettings": {
+      "get": {
+        "tags": [
+          "taxon"
+        ],
+        "summary": "List all publicly available configuration settings for the NBA",
+        "description": "The value of a specific setting can be queried with metadata/getSetting/{name}",
+        "operationId": "getSettings_7",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/taxon/metadata/getFieldInfo": {
+      "get": {
+        "tags": [
+          "taxon"
+        ],
+        "summary": "Returns extended information for each field of a specimen document",
+        "description": "Info consists of whether the fields is indexed, the ElasticSearch datatype and a list of allowed operators",
+        "operationId": "getFieldInfo_3",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/taxon/metadata/getPaths": {
+      "get": {
+        "tags": [
+          "taxon"
+        ],
+        "summary": "Returns the full path of all fields within a document",
+        "description": "See also metadata/getFieldInfo for all allowed operators per field",
+        "operationId": "getPaths_3",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/taxon/dwca/query": {
+      "get": {
+        "tags": [
+          "taxon"
+        ],
+        "summary": "Dynamic download service: Query for taxa and return result as Darwin Core Archive File",
+        "description": "Query with query parameters or querySpec JSON. Response saved to nba-taxa.dwca.zip",
+        "operationId": "dwcaQueryHttpGet",
+        "produces": [
+          "application/zip"
+        ],
+        "parameters": [
+          {
+            "name": "sourceSystem.code",
+            "in": "query",
+            "description": "Example query param",
+            "required": false,
+            "type": "string",
+            "default": "COL"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "taxon"
+        ],
+        "summary": "Dynamic download service: Query for taxa and return result as Darwin Core Archive File",
+        "description": "Query with query parameters or querySpec JSON. Response saved to nba-taxa.dwca.zip",
+        "operationId": "dwcaQueryHttpPostJson",
+        "consumes": [
+          "application/json;charset=UTF-8"
+        ],
+        "produces": [
+          "application/zip"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "querySpec",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/QuerySpec"
+            }
+          },
+          {
+            "name": "sourceSystem.code",
+            "in": "query",
+            "description": "Example query param",
+            "required": false,
+            "type": "string",
+            "default": "COL"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/taxon/dwca/getDataSet/{dataset}": {
+      "get": {
+        "tags": [
+          "taxon"
+        ],
+        "summary": "Download dataset as Darwin Core Archive File",
+        "description": "Available datasets can be queried with /taxon/dwca/getDataSetNames. Response saved to <datasetname>-<yyyymmdd>.dwca.zip",
+        "operationId": "dwcaGetDataSet",
+        "produces": [
+          "application/zip"
+        ],
+        "parameters": [
+          {
+            "name": "dataset",
+            "in": "path",
+            "description": "name of dataset",
+            "required": true,
+            "type": "string",
+            "default": "nsr"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/taxon/dwca/getDataSetNames": {
+      "get": {
+        "tags": [
+          "taxon"
+        ],
+        "summary": "Retrieve the names of all available datasets",
+        "description": "Individual datasets can then be downloaded with /dwca/getDataSet/{dataset}",
+        "operationId": "dwcaGetDataSetNames",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/taxon/groupByScientificName": {
+      "get": {
+        "tags": [
+          "taxon"
+        ],
+        "summary": "Aggregates Taxon and Specimen documents according to their scientific names",
+        "description": "Returns a list with ScientificNameGroups, which contain Taxon and Specimen documents that share a scientific name",
+        "operationId": "groupByScientificNameHttpGet",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "defaultClassification.family",
+            "in": "query",
+            "description": "Example query param",
+            "required": false,
+            "type": "string",
+            "default": "Fabaceae"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/QueryResult"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "taxon"
+        ],
+        "summary": "Aggregates Taxon and Specimen documents according to their scientific names",
+        "description": "Returns a list with ScientificNameGroups, which contain Taxon and Specimen documents that share a scientific name",
+        "operationId": "groupByScientificNameHttpPostJson",
+        "consumes": [
+          "application/json;charset=UTF-8"
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "querySpec JSON",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/GroupByScientificNameQuerySpec"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/QueryResult"
+            }
+          }
+        }
+      }
+    },
+    "/taxon/findByIds/{ids}": {
+      "get": {
+        "tags": [
+          "taxon"
+        ],
+        "summary": "Find taxa by ids",
+        "description": "Given multiple ids, returns a list of taxa",
+        "operationId": "findByIds_4",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "path",
+            "description": "ids of multiple taxa, separated by comma",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "default": "21941298@COL,21941294@COL"
+            },
+            "collectionFormat": "csv"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Taxon"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/taxon/query": {
+      "get": {
+        "tags": [
+          "taxon"
+        ],
+        "summary": "Query for taxa",
+        "description": "Search for taxa (GET) using query parameters or a querySpec JSON",
+        "operationId": "queryHttpGet_3",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "defaultClassification.genus",
+            "in": "query",
+            "description": "Example query param",
+            "required": false,
+            "type": "string",
+            "default": "Epinicium"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/QueryResult"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "taxon"
+        ],
+        "summary": "Query for taxa",
+        "description": "Search for taxa (POST) using query parameters or a querySpec JSON",
+        "operationId": "queryHttpPostJson_3",
+        "consumes": [
+          "application/json;charset=UTF-8"
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "querySpec",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/QuerySpec"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/QueryResult"
+            }
+          }
+        }
+      }
+    },
+    "/taxon/count": {
+      "get": {
+        "tags": [
+          "taxon"
+        ],
+        "summary": "Get the number of taxa matching a condition",
+        "description": "Conditions given as query parameters or a querySpec JSON",
+        "operationId": "countHttpGet_3",
+        "produces": [
+          "text/plain;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "sourceSystem.code",
+            "in": "query",
+            "description": "Example query param",
+            "required": false,
+            "type": "string",
+            "default": "COL"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "taxon"
+        ],
+        "summary": "Get the number of taxa matching a condition",
+        "description": "Conditions given as query parameters or a querySpec JSON",
+        "operationId": "countHttpPostJson_3",
+        "consumes": [
+          "application/json;charset=UTF-8"
+        ],
+        "produces": [
+          "text/plain;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "querySpec JSON",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/QuerySpec"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      }
+    },
+    "/taxon/getDistinctValues/{field}": {
+      "get": {
+        "tags": [
+          "taxon"
+        ],
+        "summary": "Get all different values that can be found for one field",
+        "description": "A list of all fields for taxon documents can be retrieved with /metadata/getFieldInfo",
+        "operationId": "getDistinctValuesHttpGet_3",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "field",
+            "in": "path",
+            "description": "name of field in a taxon object",
+            "required": true,
+            "type": "string",
+            "default": "defaultClassification.family"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "taxon"
+        ],
+        "summary": "Get all different values that exist for a field",
+        "description": "A list of all fields for taxon documents can be retrieved with /metadata/getFieldInfo",
+        "operationId": "getDistinctValuesHttpPostJson_3",
+        "consumes": [
+          "application/json;charset=UTF-8"
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "field",
+            "in": "path",
+            "description": "name of field in a taxon object",
+            "required": true,
+            "type": "string",
+            "default": "defaultClassification.family"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "querySpec JSON",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/QuerySpec"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/taxon/find/{id}": {
+      "get": {
+        "tags": [
+          "taxon"
+        ],
+        "summary": "Find a taxon by id",
+        "description": "If found, returns a single taxon",
+        "operationId": "find_4",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of taxon",
+            "required": true,
+            "type": "string",
+            "default": "21941298@COL"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Taxon"
+            }
+          },
+          "404": {
+            "description": "id not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Crs": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "name",
+            "link"
+          ]
+        },
+        "properties": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "Feature": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/GeoJsonObject"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            },
+            "geometry": {
+              "$ref": "#/definitions/GeoJsonObject"
+            },
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "FeatureCollection": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/GeoJsonObject"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "features": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Feature"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "GeoArea": {
+      "type": "object",
+      "properties": {
+        "sourceSystem": {
+          "$ref": "#/definitions/SourceSystem"
+        },
+        "sourceSystemId": {
+          "type": "string"
+        },
+        "recordURI": {
+          "type": "string",
+          "format": "uri"
+        },
+        "id": {
+          "type": "string"
+        },
+        "areaType": {
+          "type": "string"
+        },
+        "locality": {
+          "type": "string"
+        },
+        "shape": {
+          "$ref": "#/definitions/GeoJsonObject"
+        },
+        "source": {
+          "type": "string"
+        },
+        "isoCode": {
+          "type": "string"
+        },
+        "countryNL": {
+          "type": "string"
+        }
+      }
+    },
+    "GeoJsonObject": {
+      "type": "object",
+      "discriminator": "type",
+      "properties": {
+        "crs": {
+          "$ref": "#/definitions/Crs"
+        },
+        "bbox": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      }
+    },
+    "GeometryCollection": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/GeoJsonObject"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "geometries": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GeoJsonObject"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "LineString": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/GeoJsonObject"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "coordinates": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LngLatAlt"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "LngLatAlt": {
+      "type": "object",
+      "properties": {
+        "longitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "latitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "altitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "additionalElements": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      }
+    },
+    "MultiLineString": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/GeoJsonObject"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "coordinates": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/LngLatAlt"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "MultiPoint": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/GeoJsonObject"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "coordinates": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LngLatAlt"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "MultiPolygon": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/GeoJsonObject"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "coordinates": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/LngLatAlt"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Point": {
+      "type": "object",
+      "properties": {
+        "crs": {
+          "$ref": "#/definitions/Crs"
+        },
+        "bbox": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "coordinates": {
+          "$ref": "#/definitions/LngLatAlt"
+        }
+      }
+    },
+    "Polygon": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/GeoJsonObject"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "coordinates": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/LngLatAlt"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "SourceSystem": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "QueryResult": {
+      "type": "object",
+      "properties": {
+        "totalSize": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "resultSet": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/QueryResultItemObject"
+          }
+        }
+      }
+    },
+    "QueryResultItem": {
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "number",
+          "format": "float"
+        },
+        "item": {
+          "type": "object",
+          "readOnly": true
+        }
+      }
+    },
+    "QueryResultItemObject": {
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "number",
+          "format": "float"
+        },
+        "item": {
+          "type": "object",
+          "readOnly": true
+        }
+      }
+    },
+    "Path": {
+      "type": "object",
+      "properties": {
+        "purePath": {
+          "$ref": "#/definitions/Path"
+        }
+      }
+    },
+    "QueryCondition": {
+      "type": "object",
+      "properties": {
+        "not": {
+          "type": "string",
+          "enum": [
+            "NOT"
+          ]
+        },
+        "field": {
+          "type": "string"
+        },
+        "operator": {
+          "type": "string",
+          "enum": [
+            "EQUALS",
+            "NOT_EQUALS",
+            "EQUALS_IC",
+            "NOT_EQUALS_IC",
+            "CONTAINS",
+            "NOT_CONTAINS",
+            "LT",
+            "LTE",
+            "GT",
+            "GTE",
+            "BETWEEN",
+            "NOT_BETWEEN",
+            "IN",
+            "NOT_IN",
+            "MATCHES",
+            "NOT_MATCHES",
+            "STARTS_WITH",
+            "NOT_STARTS_WITH",
+            "STARTS_WITH_IC",
+            "NOT_STARTS_WITH_IC"
+          ]
+        },
+        "value": {
+          "type": "string"
+        },
+        "and": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/QueryCondition"
+          }
+        },
+        "or": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/QueryCondition"
+          }
+        },
+        "constantScore": {
+          "type": "boolean"
+        },
+        "boost": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "QuerySpec": {
+      "type": "object",
+      "properties": {
+        "constantScore": {
+          "type": "boolean"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Path"
+          }
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/QueryCondition"
+          }
+        },
+        "logicalOperator": {
+          "type": "string",
+          "enum": [
+            "AND",
+            "OR"
+          ]
+        },
+        "sortFields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SortField"
+          }
+        },
+        "from": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "SortField": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "readOnly": true,
+          "$ref": "#/definitions/Path"
+        },
+        "sortOrder": {
+          "type": "string",
+          "readOnly": true,
+          "enum": [
+            "ASC",
+            "DESC"
+          ]
+        },
+        "ascending": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Agent": {
+      "type": "object",
+      "properties": {
+        "agentText": {
+          "type": "string"
+        }
+      }
+    },
+    "BioStratigraphy": {
+      "type": "object",
+      "properties": {
+        "youngBioDatingQualifier": {
+          "type": "string"
+        },
+        "youngBioName": {
+          "type": "string"
+        },
+        "youngFossilZone": {
+          "type": "string"
+        },
+        "youngFossilSubZone": {
+          "type": "string"
+        },
+        "youngBioCertainty": {
+          "type": "string"
+        },
+        "youngStratType": {
+          "type": "string"
+        },
+        "bioDatingQualifier": {
+          "type": "string"
+        },
+        "bioPreferredFlag": {
+          "type": "boolean"
+        },
+        "rangePosition": {
+          "type": "string"
+        },
+        "oldBioName": {
+          "type": "string"
+        },
+        "bioIdentifier": {
+          "type": "string"
+        },
+        "oldFossilzone": {
+          "type": "string"
+        },
+        "oldFossilSubzone": {
+          "type": "string"
+        },
+        "oldBioCertainty": {
+          "type": "string"
+        },
+        "oldBioStratType": {
+          "type": "string"
+        }
+      }
+    },
+    "ChronoStratigraphy": {
+      "type": "object",
+      "properties": {
+        "youngRegionalSubstage": {
+          "type": "string"
+        },
+        "youngRegionalStage": {
+          "type": "string"
+        },
+        "youngRegionalSeries": {
+          "type": "string"
+        },
+        "youngDatingQualifier": {
+          "type": "string"
+        },
+        "youngInternSystem": {
+          "type": "string"
+        },
+        "youngInternSubstage": {
+          "type": "string"
+        },
+        "youngInternStage": {
+          "type": "string"
+        },
+        "youngInternSeries": {
+          "type": "string"
+        },
+        "youngInternErathem": {
+          "type": "string"
+        },
+        "youngInternEonothem": {
+          "type": "string"
+        },
+        "youngChronoName": {
+          "type": "string"
+        },
+        "youngCertainty": {
+          "type": "string"
+        },
+        "oldDatingQualifier": {
+          "type": "string"
+        },
+        "chronoPreferredFlag": {
+          "type": "boolean"
+        },
+        "oldRegionalSubstage": {
+          "type": "string"
+        },
+        "oldRegionalStage": {
+          "type": "string"
+        },
+        "oldRegionalSeries": {
+          "type": "string"
+        },
+        "oldInternSystem": {
+          "type": "string"
+        },
+        "oldInternSubstage": {
+          "type": "string"
+        },
+        "oldInternStage": {
+          "type": "string"
+        },
+        "oldInternSeries": {
+          "type": "string"
+        },
+        "oldInternErathem": {
+          "type": "string"
+        },
+        "oldInternEonothem": {
+          "type": "string"
+        },
+        "oldChronoName": {
+          "type": "string"
+        },
+        "chronoIdentifier": {
+          "type": "string"
+        },
+        "oldCertainty": {
+          "type": "string"
+        }
+      }
+    },
+    "DefaultClassification": {
+      "type": "object",
+      "properties": {
+        "kingdom": {
+          "type": "string"
+        },
+        "phylum": {
+          "type": "string"
+        },
+        "className": {
+          "type": "string"
+        },
+        "order": {
+          "type": "string"
+        },
+        "superFamily": {
+          "type": "string"
+        },
+        "family": {
+          "type": "string"
+        },
+        "genus": {
+          "type": "string"
+        },
+        "subgenus": {
+          "type": "string"
+        },
+        "specificEpithet": {
+          "type": "string"
+        },
+        "infraspecificEpithet": {
+          "type": "string"
+        },
+        "infraspecificRank": {
+          "type": "string"
+        }
+      }
+    },
+    "GatheringEvent": {
+      "type": "object",
+      "properties": {
+        "projectTitle": {
+          "type": "string"
+        },
+        "worldRegion": {
+          "type": "string"
+        },
+        "continent": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "iso3166Code": {
+          "type": "string"
+        },
+        "provinceState": {
+          "type": "string"
+        },
+        "island": {
+          "type": "string"
+        },
+        "locality": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "sublocality": {
+          "type": "string"
+        },
+        "localityText": {
+          "type": "string"
+        },
+        "dateTimeBegin": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "dateTimeEnd": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "method": {
+          "type": "string"
+        },
+        "altitude": {
+          "type": "string"
+        },
+        "altitudeUnifOfMeasurement": {
+          "type": "string"
+        },
+        "depth": {
+          "type": "string"
+        },
+        "depthUnitOfMeasurement": {
+          "type": "string"
+        },
+        "gatheringPersons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Person"
+          }
+        },
+        "gatheringOrganizations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Organization"
+          }
+        },
+        "siteCoordinates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GatheringSiteCoordinates"
+          }
+        },
+        "chronoStratigraphy": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChronoStratigraphy"
+          }
+        },
+        "lithoStratigraphy": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LithoStratigraphy"
+          }
+        },
+        "bioStratigraphic": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BioStratigraphy"
+          }
+        }
+      }
+    },
+    "GatheringSiteCoordinates": {
+      "type": "object",
+      "properties": {
+        "longitudeDecimal": {
+          "type": "number",
+          "format": "double"
+        },
+        "latitudeDecimal": {
+          "type": "number",
+          "format": "double"
+        },
+        "gridCellSystem": {
+          "type": "string"
+        },
+        "gridLatitudeDecimal": {
+          "type": "number",
+          "format": "double"
+        },
+        "gridLongitudeDecimal": {
+          "type": "number",
+          "format": "double"
+        },
+        "gridCellCode": {
+          "type": "string"
+        },
+        "gridQualifier": {
+          "type": "string"
+        },
+        "geoShape": {
+          "readOnly": true,
+          "$ref": "#/definitions/Point"
+        }
+      }
+    },
+    "Iptc4xmpExt": {
+      "type": "object",
+      "properties": {
+        "locationShown": {
+          "type": "string"
+        },
+        "worldRegion": {
+          "type": "string"
+        },
+        "countryCode": {
+          "type": "string"
+        },
+        "countryName": {
+          "type": "string"
+        },
+        "provinceState": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "sublocation": {
+          "type": "string"
+        }
+      }
+    },
+    "LithoStratigraphy": {
+      "type": "object",
+      "properties": {
+        "qualifier": {
+          "type": "string"
+        },
+        "preferredFlag": {
+          "type": "boolean"
+        },
+        "member2": {
+          "type": "string"
+        },
+        "member": {
+          "type": "string"
+        },
+        "informalName2": {
+          "type": "string"
+        },
+        "informalName": {
+          "type": "string"
+        },
+        "importedName2": {
+          "type": "string"
+        },
+        "importedName1": {
+          "type": "string"
+        },
+        "lithoIdentifier": {
+          "type": "string"
+        },
+        "formation2": {
+          "type": "string"
+        },
+        "formationGroup2": {
+          "type": "string"
+        },
+        "formationGroup": {
+          "type": "string"
+        },
+        "formation": {
+          "type": "string"
+        },
+        "certainty2": {
+          "type": "string"
+        },
+        "certainty": {
+          "type": "string"
+        },
+        "bed2": {
+          "type": "string"
+        },
+        "bed": {
+          "type": "string"
+        }
+      }
+    },
+    "Monomial": {
+      "type": "object",
+      "properties": {
+        "rank": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "MultiMediaContentIdentification": {
+      "type": "object",
+      "properties": {
+        "taxonRank": {
+          "type": "string"
+        },
+        "scientificName": {
+          "$ref": "#/definitions/ScientificName"
+        },
+        "typeStatus": {
+          "type": "string",
+          "enum": [
+            "ALLOTYPE",
+            "EPITYPE",
+            "HAPANTOTYPE",
+            "HOLOTYPE",
+            "ISOEPITYPE",
+            "ISOLECTOTYPE",
+            "ISONEOTYPE",
+            "ISOSYNTYPE",
+            "ISOTYPE",
+            "LECTOTYPE",
+            "NEOTYPE",
+            "PARATYPE",
+            "PARALECTOTYPE",
+            "SYNTYPE",
+            "TOPOTYPE",
+            "TYPE"
+          ]
+        },
+        "dateIdentified": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "defaultClassification": {
+          "$ref": "#/definitions/DefaultClassification"
+        },
+        "systemClassification": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Monomial"
+          }
+        },
+        "vernacularNames": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VernacularName"
+          }
+        },
+        "identificationQualifiers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "identifiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Agent"
+          }
+        },
+        "taxonomicEnrichments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaxonomicEnrichment"
+          }
+        }
+      }
+    },
+    "MultiMediaGatheringEvent": {
+      "type": "object",
+      "properties": {
+        "projectTitle": {
+          "type": "string"
+        },
+        "worldRegion": {
+          "type": "string"
+        },
+        "continent": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "iso3166Code": {
+          "type": "string"
+        },
+        "provinceState": {
+          "type": "string"
+        },
+        "island": {
+          "type": "string"
+        },
+        "locality": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "sublocality": {
+          "type": "string"
+        },
+        "localityText": {
+          "type": "string"
+        },
+        "dateTimeBegin": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "dateTimeEnd": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "method": {
+          "type": "string"
+        },
+        "altitude": {
+          "type": "string"
+        },
+        "altitudeUnifOfMeasurement": {
+          "type": "string"
+        },
+        "depth": {
+          "type": "string"
+        },
+        "depthUnitOfMeasurement": {
+          "type": "string"
+        },
+        "gatheringPersons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Person"
+          }
+        },
+        "gatheringOrganizations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Organization"
+          }
+        },
+        "siteCoordinates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GatheringSiteCoordinates"
+          }
+        },
+        "chronoStratigraphy": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChronoStratigraphy"
+          }
+        },
+        "lithoStratigraphy": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LithoStratigraphy"
+          }
+        },
+        "iptc": {
+          "$ref": "#/definitions/Iptc4xmpExt"
+        },
+        "bioStratigraphic": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BioStratigraphy"
+          }
+        }
+      }
+    },
+    "MultiMediaObject": {
+      "type": "object",
+      "properties": {
+        "sourceSystem": {
+          "$ref": "#/definitions/SourceSystem"
+        },
+        "sourceSystemId": {
+          "type": "string"
+        },
+        "recordURI": {
+          "type": "string",
+          "format": "uri"
+        },
+        "id": {
+          "type": "string"
+        },
+        "sourceInstitutionID": {
+          "type": "string"
+        },
+        "sourceID": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "licenseType": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string"
+        },
+        "unitID": {
+          "type": "string"
+        },
+        "collectionType": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "caption": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "serviceAccessPoints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServiceAccessPoint"
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "COLLECTION",
+            "STILL_IMAGE",
+            "SOUND",
+            "MOVING_IMAGE",
+            "INTERACTIVE_RESOURCE",
+            "TEXT",
+            "OTHER"
+          ]
+        },
+        "taxonCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "copyrightText": {
+          "type": "string"
+        },
+        "associatedSpecimenReference": {
+          "type": "string"
+        },
+        "associatedTaxonReference": {
+          "type": "string"
+        },
+        "multiMediaPublic": {
+          "type": "boolean"
+        },
+        "subjectParts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "subjectOrientations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "phasesOrStages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sexes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "gatheringEvents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MultiMediaGatheringEvent"
+          }
+        },
+        "identifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MultiMediaContentIdentification"
+          }
+        },
+        "theme": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "associatedSpecimen": {
+          "$ref": "#/definitions/Specimen"
+        },
+        "associatedTaxon": {
+          "$ref": "#/definitions/Taxon"
+        }
+      }
+    },
+    "Organization": {
+      "type": "object",
+      "properties": {
+        "agentText": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Person": {
+      "type": "object",
+      "properties": {
+        "agentText": {
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string",
+          "example": "Koornneef, J"
+        },
+        "organization": {
+          "$ref": "#/definitions/Organization"
+        }
+      }
+    },
+    "Reference": {
+      "type": "object",
+      "properties": {
+        "titleCitation": {
+          "type": "string"
+        },
+        "citationDetail": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        },
+        "author": {
+          "$ref": "#/definitions/Person"
+        },
+        "publicationDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "ScientificName": {
+      "type": "object",
+      "properties": {
+        "fullScientificName": {
+          "type": "string"
+        },
+        "taxonomicStatus": {
+          "type": "string",
+          "enum": [
+            "ACCEPTED_NAME",
+            "SYNONYM",
+            "BASIONYM",
+            "HOMONYM",
+            "AMBIGUOUS_SYNONYM",
+            "MISAPPLIED_NAME",
+            "MISSPELLED_NAME",
+            "PROVISIONALLY_ACCEPTED"
+          ]
+        },
+        "genusOrMonomial": {
+          "type": "string"
+        },
+        "subgenus": {
+          "type": "string"
+        },
+        "specificEpithet": {
+          "type": "string"
+        },
+        "infraspecificEpithet": {
+          "type": "string"
+        },
+        "infraspecificMarker": {
+          "type": "string"
+        },
+        "nameAddendum": {
+          "type": "string"
+        },
+        "authorshipVerbatim": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "year": {
+          "type": "string"
+        },
+        "scientificNameGroup": {
+          "type": "string"
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Reference"
+          }
+        },
+        "experts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Person"
+          }
+        }
+      }
+    },
+    "ServiceAccessPoint": {
+      "type": "object",
+      "properties": {
+        "accessUri": {
+          "type": "string",
+          "format": "uri"
+        },
+        "format": {
+          "type": "string"
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "THUMBNAIL",
+            "TRAILER",
+            "LOWER_QUALITY",
+            "MEDIUM_QUALITY",
+            "GOOD_QUALITY",
+            "BEST_QUALITY",
+            "OFFLINE"
+          ]
+        }
+      }
+    },
+    "Specimen": {
+      "type": "object",
+      "properties": {
+        "sourceSystem": {
+          "$ref": "#/definitions/SourceSystem"
+        },
+        "sourceSystemId": {
+          "type": "string"
+        },
+        "recordURI": {
+          "type": "string",
+          "format": "uri"
+        },
+        "id": {
+          "type": "string"
+        },
+        "unitID": {
+          "type": "string"
+        },
+        "unitGUID": {
+          "type": "string"
+        },
+        "collectorsFieldNumber": {
+          "type": "string"
+        },
+        "assemblageID": {
+          "type": "string"
+        },
+        "sourceInstitutionID": {
+          "type": "string"
+        },
+        "sourceID": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "licenseType": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string"
+        },
+        "recordBasis": {
+          "type": "string"
+        },
+        "kindOfUnit": {
+          "type": "string"
+        },
+        "collectionType": {
+          "type": "string"
+        },
+        "sex": {
+          "type": "string",
+          "enum": [
+            "MALE",
+            "FEMALE",
+            "MIXED",
+            "HERMAPHRODITE"
+          ]
+        },
+        "phaseOrStage": {
+          "type": "string",
+          "enum": [
+            "ADULT",
+            "SUBADULT",
+            "EGG",
+            "EMBRYO",
+            "IMMATURE",
+            "JUVENILE",
+            "LARVA",
+            "PUPA",
+            "NYMPH"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "preparationType": {
+          "type": "string"
+        },
+        "numberOfSpecimen": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "fromCaptivity": {
+          "type": "boolean"
+        },
+        "objectPublic": {
+          "type": "boolean"
+        },
+        "multiMediaPublic": {
+          "type": "boolean"
+        },
+        "acquiredFrom": {
+          "$ref": "#/definitions/Agent"
+        },
+        "gatheringEvent": {
+          "$ref": "#/definitions/GatheringEvent"
+        },
+        "identifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SpecimenIdentification"
+          }
+        },
+        "associatedMultiMediaUris": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServiceAccessPoint"
+          }
+        },
+        "theme": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "associatedMultiMediaObjects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MultiMediaObject"
+          }
+        }
+      }
+    },
+    "SpecimenIdentification": {
+      "type": "object",
+      "properties": {
+        "taxonRank": {
+          "type": "string"
+        },
+        "scientificName": {
+          "$ref": "#/definitions/ScientificName"
+        },
+        "typeStatus": {
+          "type": "string",
+          "enum": [
+            "ALLOTYPE",
+            "EPITYPE",
+            "HAPANTOTYPE",
+            "HOLOTYPE",
+            "ISOEPITYPE",
+            "ISOLECTOTYPE",
+            "ISONEOTYPE",
+            "ISOSYNTYPE",
+            "ISOTYPE",
+            "LECTOTYPE",
+            "NEOTYPE",
+            "PARATYPE",
+            "PARALECTOTYPE",
+            "SYNTYPE",
+            "TOPOTYPE",
+            "TYPE"
+          ]
+        },
+        "dateIdentified": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "defaultClassification": {
+          "$ref": "#/definitions/DefaultClassification"
+        },
+        "systemClassification": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Monomial"
+          }
+        },
+        "vernacularNames": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VernacularName"
+          }
+        },
+        "identificationQualifiers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "identifiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Agent"
+          }
+        },
+        "taxonomicEnrichments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaxonomicEnrichment"
+          }
+        },
+        "preferred": {
+          "type": "boolean"
+        },
+        "verificationStatus": {
+          "type": "string"
+        },
+        "rockType": {
+          "type": "string"
+        },
+        "associatedFossilAssemblage": {
+          "type": "string"
+        },
+        "rockMineralUsage": {
+          "type": "string"
+        },
+        "associatedMineralName": {
+          "type": "string"
+        },
+        "remarks": {
+          "type": "string"
+        }
+      }
+    },
+    "SummaryScientificName": {
+      "type": "object",
+      "properties": {
+        "fullScientificName": {
+          "type": "string"
+        },
+        "taxonomicStatus": {
+          "type": "string",
+          "enum": [
+            "ACCEPTED_NAME",
+            "SYNONYM",
+            "BASIONYM",
+            "HOMONYM",
+            "AMBIGUOUS_SYNONYM",
+            "MISAPPLIED_NAME",
+            "MISSPELLED_NAME",
+            "PROVISIONALLY_ACCEPTED"
+          ]
+        },
+        "genusOrMonomial": {
+          "type": "string"
+        },
+        "subgenus": {
+          "type": "string"
+        },
+        "specificEpithet": {
+          "type": "string"
+        },
+        "infraspecificEpithet": {
+          "type": "string"
+        },
+        "authorshipVerbatim": {
+          "type": "string"
+        }
+      }
+    },
+    "SummarySourceSystem": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "SummaryVernacularName": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        }
+      }
+    },
+    "Taxon": {
+      "type": "object",
+      "properties": {
+        "sourceSystem": {
+          "$ref": "#/definitions/SourceSystem"
+        },
+        "sourceSystemId": {
+          "type": "string"
+        },
+        "recordURI": {
+          "type": "string",
+          "format": "uri"
+        },
+        "id": {
+          "type": "string"
+        },
+        "sourceSystemParentId": {
+          "type": "string"
+        },
+        "taxonRank": {
+          "type": "string"
+        },
+        "taxonRemarks": {
+          "type": "string"
+        },
+        "occurrenceStatusVerbatim": {
+          "type": "string"
+        },
+        "acceptedName": {
+          "$ref": "#/definitions/ScientificName"
+        },
+        "defaultClassification": {
+          "$ref": "#/definitions/DefaultClassification"
+        },
+        "systemClassification": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Monomial"
+          }
+        },
+        "synonyms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ScientificName"
+          }
+        },
+        "vernacularNames": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VernacularName"
+          }
+        },
+        "descriptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaxonDescription"
+          }
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Reference"
+          }
+        },
+        "experts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Person"
+          }
+        },
+        "validName": {
+          "$ref": "#/definitions/ScientificName"
+        }
+      }
+    },
+    "TaxonDescription": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        }
+      }
+    },
+    "TaxonomicEnrichment": {
+      "type": "object",
+      "properties": {
+        "vernacularNames": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SummaryVernacularName"
+          }
+        },
+        "synonyms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SummaryScientificName"
+          }
+        },
+        "sourceSystem": {
+          "$ref": "#/definitions/SummarySourceSystem"
+        },
+        "taxonId": {
+          "type": "string"
+        }
+      }
+    },
+    "VernacularName": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "preferred": {
+          "type": "boolean"
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Reference"
+          }
+        },
+        "experts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Person"
+          }
+        }
+      }
+    },
+    "RestService": {
+      "type": "object",
+      "properties": {
+        "endPoint": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "consumes": {
+          "type": "string"
+        },
+        "produces": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "Filter": {
+      "type": "object",
+      "properties": {
+        "acceptRegexp": {
+          "type": "string"
+        },
+        "rejectRegexp": {
+          "type": "string"
+        },
+        "acceptValues": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rejectValues": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "GroupByScientificNameQuerySpec": {
+      "type": "object",
+      "properties": {
+        "constantScore": {
+          "type": "boolean"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Path"
+          }
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/QueryCondition"
+          }
+        },
+        "logicalOperator": {
+          "type": "string",
+          "enum": [
+            "AND",
+            "OR"
+          ]
+        },
+        "sortFields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SortField"
+          }
+        },
+        "from": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "groupSort": {
+          "type": "string",
+          "enum": [
+            "TOP_HIT_SCORE",
+            "COUNT_DESC",
+            "COUNT_ASC",
+            "NAME_ASC",
+            "NAME_DESC"
+          ]
+        },
+        "groupFilter": {
+          "$ref": "#/definitions/Filter"
+        },
+        "specimensFrom": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "specimensSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "specimensSortFields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SortField"
+          }
+        },
+        "noTaxa": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Documentation and examples",
+    "url": "http://docs.biodiversitydata.nl"
+  }
+}
