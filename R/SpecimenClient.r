@@ -67,12 +67,40 @@ SpecimenClient <- R6::R6Class(
             returnObject <- QueryResult$new()
             result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
             Response$new(returnObject, resp)
-        } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-            Response$new("API client error", resp)
-        } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-            Response$new("API server error", resp)
-        }
+        } else  {
+        self$handleError(resp)  
+      }
+
+    },
+
+    find = function(id, ...){
+      args <- list(...)
+      queryParams <- list()
+      headerParams <- character()
+
+      urlPath <- "/specimen/find/{id}"
+      if (!missing(`id`)) {
+        urlPath <- gsub(paste0("\\{", "id", "\\}"), `id`, urlPath)
+      }
+
+      resp <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = queryParams,
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+      
+      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
+        # response ok
+        returnObject <- Specimen$new()
+        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
+        Response$new(returnObject, resp)
+      } else  {
+        self$handleError(resp)  
+      }
+
     }
+    
   )
 )
 
