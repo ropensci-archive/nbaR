@@ -66,6 +66,28 @@ ApiClient  <- R6::R6Class(
         else {
             stop("http method must be `GET`, `HEAD`, `OPTIONS`, `POST`, `PATCH`, `PUT` or `DELETE`.")
         }
+    },
+    handleError = function(response) {
+        warningMessage <- ""
+        responseMessage <- ""
+
+        if (typeof(httr::content(response)) == "list") {
+            # handle (server) errors with stack trace etc
+            c <- httr::content(response)
+            warningMessage <- paste0("Status code:", httr::status_code(response),
+                                     "\n", c$httpStatus$message,                       
+                                     "\nException: ", c$exception$message,
+                                     "\nException type: ", c$exception$type,
+                                     "\nFull stack trace stored in response object")
+            responseMessage <- c$httpStatus$message                                     
+        } else {
+            # handle errors in which httr only returns a string
+            warningMessage <- httr::content(response)  
+            responseMessage <- httr::content(response)  
+        }
+        warning(warningMessage)
+        Response$new(responseMessage, response)
     }
+        
   )
 )
