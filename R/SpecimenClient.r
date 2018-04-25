@@ -116,6 +116,31 @@ SpecimenClient <- R6::R6Class(
 
       returnObject <- Specimen$new()
       self$processResponse(resp, returnObject)
+    },
+      # '@name find_by_unit_id
+      # '@title Find a specimen by unitID
+      # '@description Get a specimen by its unitID. Returns a list of specimens since unitIDs are not strictly unique
+      # '@return \code{ Specimen }
+      # '@param ...; additional parameters passed to httr::GET or httr::POST
+      find_by_unit_id = function(unit_id, ...){
+      args <- list(...)
+      queryParams <- list()
+      headerParams <- character()
+
+      urlPath <- "/specimen/findByUnitID/{unitID}"
+      if (!missing(`unit_id`)) {
+        urlPath <- gsub(paste0("\\{", "unitID", "\\}"), `unit_id`, urlPath)
+      }
+
+      resp <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = queryParams,
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)      
+
+      returnObject <- Specimen$new()
+      self$processResponse(resp, returnObject)
     }
 
   )
