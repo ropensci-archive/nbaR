@@ -65,7 +65,7 @@ ApiClient  <- R6::R6Class(
         responseMessage <- ""
 
         if (typeof(httr::content(response)) == "list") {
-            # handle (server) errors with stack trace etc
+            ## handle (server) errors with stack trace etc
             c <- httr::content(response)
             warningMessage <- paste0("Status code:", httr::status_code(response),
                                      "\n", c$httpStatus$message,                       
@@ -74,31 +74,12 @@ ApiClient  <- R6::R6Class(
                                      "\nFull stack trace stored in response object")
             responseMessage <- c$httpStatus$message                                     
         } else {
-            # handle errors in which httr only returns a string
+            ## handle errors in which httr only returns a string
             warningMessage <- httr::content(response)  
             responseMessage <- httr::content(response)  
         }
         warning(warningMessage)
         Response$new(responseMessage, response)
-    },
-    processResponse = function(response, returnObject) {
-
-      if (httr::status_code(response) >= 200 && httr::status_code(response) <= 299) {
-          # response ok
-          # check if we get back list or single object
-          contentStr <- httr::content(response, type='text', encoding='UTF-8')
-          if  (substr(contentStr, 1, 1) == '[' & substr(contentStr, nchar(contentStr), nchar(contentStr)) == ']') {
-              # get list of result objects
-              result <- lapply(httr::content(response), function(x)returnObject$fromList(x))              
-          } else {
-              # get single result object
-              result <- returnObject$fromList(httr::content(response))
-          }
-          Response$new(result, response)
-      } else {
-              self$handleError(response)
-      }      
-    }              
-
+    }
   )
 )
