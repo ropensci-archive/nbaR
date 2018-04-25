@@ -63,17 +63,16 @@ SpecimenClient <- R6::R6Class(
                              ## body = body,
                              ...)
 
-        if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-            returnObject <- QueryResult$new()
-            result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-            Response$new(returnObject, resp)
-        } else  {
-        self$handleError(resp)  
-      }
-
+        returnObject <- QueryResult$new()
+        self$processResponse(resp, returnObject)        
     },
 
-    find = function(id, ...){
+      # '@name find
+      # '@title Find a specimen by id
+      # '@description If found, returns a single specimen
+      # '@return \code{ Specimen }
+      # '@param ...; additional parameters passed to httr::GET or httr::POST
+      find = function(id, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- character()
@@ -88,19 +87,37 @@ SpecimenClient <- R6::R6Class(
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
-                                 ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        # response ok
-        returnObject <- Specimen$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else  {
-        self$handleError(resp)  
+                                 ...)      
+
+      returnObject <- Specimen$new()
+      self$processResponse(resp, returnObject)
+    },
+      # '@name find_by_ids
+      # '@title Find specimens by ids
+      # '@description Given multiple ids, returns a list of specimen
+      # '@return \code{ Specimen }
+      # '@param ...; additional parameters passed to httr::GET or httr::POST
+      find_by_ids = function(ids, ...){
+      args <- list(...)
+      queryParams <- list()
+      headerParams <- character()
+
+      urlPath <- "/specimen/findByIds/{ids}"
+      if (!missing(`ids`)) {
+        urlPath <- gsub(paste0("\\{", "ids", "\\}"), `ids`, urlPath)
       }
 
+      resp <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = queryParams,
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)      
+
+      returnObject <- Specimen$new()
+      self$processResponse(resp, returnObject)
     }
-    
+
   )
 )
 

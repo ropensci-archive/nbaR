@@ -82,7 +82,7 @@ public class RClientCodegen extends DefaultCodegen implements CodegenConfig {
         typeMapping.put("DateTime", "character");
         typeMapping.put("password", "character");
         typeMapping.put("file", "TODO_FILE_MAPPING");
-		typeMapping.put("array", "xxxxxxxxxxxxxxx");
+		typeMapping.put("array", "list");
         // map binary to string as a workaround
         // the correct solution is to use []byte
         typeMapping.put("binary", "character");

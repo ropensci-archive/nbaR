@@ -28,12 +28,6 @@
     },
 
     {{#operation}} 
-      {{#tags}}
-        Has Tags
-      {{/tags}}
-      {{^tags}}
-        Has no tags
-      {{/tags}}
       # '@name {{operationId}}
       # '@title {{summary}}
       # '@description {{notes}}
@@ -103,22 +97,15 @@
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
-                                 ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        # response ok
-        {{#returnType}}
-        returnObject <- {{returnType}}$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-        {{/returnType}}
-        {{^returnType}}
-        # void response, no need to return anything
-        {{/returnType}}
-      } else  {
-            self$handleError(resp)  
-      }
+                                 ...)      
 
+      {{#returnType}}
+      returnObject <- {{returnType}}$new()
+      self$processResponse(resp, returnObject)
+      {{/returnType}}
+      {{^returnType}}
+      # void response, no need to return anything
+      {{/returnType}}
     }{{#hasMore}},{{/hasMore}}
     {{/operation}}
   )
