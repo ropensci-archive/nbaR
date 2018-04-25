@@ -19,93 +19,109 @@
 #'
 #' @export
 {{classname}} <- R6::R6Class(
-  '{{classname}}',
-  inherit=ApiClient,
-  public = list(
-    userAgent = "{{#httpUserAgent}}{{{.}}}{{/httpUserAgent}}{{^httpUserAgent}}Swagger-Codegen/{{{packageVersion}}}/r{{/httpUserAgent}}",
-    initialize = function(basePath){
-      super$initialize(basePath)
+    '{{classname}}',
+    inherit=ApiClient,
+    public = list(
+        userAgent = "{{#httpUserAgent}}{{{.}}}{{/httpUserAgent}}{{^httpUserAgent}}Swagger-Codegen/{{{packageVersion}}}/r{{/httpUserAgent}}",
+        initialize = function(basePath){
+        super$initialize(basePath)
     },
 
     {{#operation}} 
-      # '@name {{operationId}}
-      # '@title {{summary}}
-      # '@description {{notes}}
-      # '@return \code{ {{returnType}} }
-      {{#hasQueryParams}}
-      {{#queryParams}}
-      # '@param {{paramName}}: {{dataType}}; {{description}}
-      {{/queryParams}}
-      {{/hasQueryParams}}        
-      # '@param ...; additional parameters passed to httr::GET or httr::POST
-      {{operationId}} = function({{#allParams}}{{paramName}}, {{/allParams}}...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
+    # '@name {{operationId}}
+    # '@title {{summary}}
+    # '@description {{notes}}
+    # '@return \code{ {{returnType}} }
+    {{#hasQueryParams}}
+    {{#queryParams}}
+    # '@param {{paramName}}: {{dataType}}; {{description}}
+    {{/queryParams}}
+    {{/hasQueryParams}}        
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    {{operationId}} = function({{#allParams}}{{paramName}}, {{/allParams}}...){
+        args <- list(...)
+        queryParams <- list()
+        headerParams <- character()
 
-      {{#hasHeaderParams}}
-      {{#headerParams}}
-      if (!missing(`{{paramName}}`)) {
-        headerParams['{{baseName}}'] <- `{{paramName}}`
-      }
+        {{#hasHeaderParams}}
+          {{#headerParams}}
+            if (!missing(`{{paramName}}`)) {
+            headerParams['{{baseName}}'] <- `{{paramName}}`
+            }
 
-      {{/headerParams}}
-      {{/hasHeaderParams}}
-      {{#hasQueryParams}}
-      {{#queryParams}}
-      if (!missing(`{{paramName}}`)) {
-        param <- ifelse(typeof(`{{paramName}}`) == "environment", `{{paramName}}`$toJSONString(), `{{paramName}}`)    
-        queryParams['{{baseName}}'] <- param
-      }
+          {{/headerParams}}
+        {{/hasHeaderParams}}
+        {{#hasQueryParams}}
+          {{#queryParams}}
+            if (!missing(`{{paramName}}`)) {
+                param <- ifelse(typeof(`{{paramName}}`) == "environment", `{{paramName}}`$toJSONString(), `{{paramName}}`)    
+                queryParams['{{baseName}}'] <- param
+            }
 
-      {{/queryParams}}
-      {{/hasQueryParams}}
-      {{#hasFormParams}}
-      body <- list(
-        {{#formParams}}
-          {{^isFile}}
-          "{{baseName}}" = {{paramName}}{{#hasMore}},{{/hasMore}}
-          {{/isFile}}
-          {{#isFile}}
-          "{{baseName}}" = httr::upload_file({{paramName}}){{#hasMore}},{{/hasMore}}
-          {{/isFile}}
-        {{/formParams}}
-      )
+          {{/queryParams}}
+        {{/hasQueryParams}}
+        {{#hasFormParams}}
+          body <- list(
+          {{#formParams}}
+            {{^isFile}}
+              "{{baseName}}" = {{paramName}}{{#hasMore}},{{/hasMore}}
+              {{/isFile}}
+              {{#isFile}}
+              "{{baseName}}" = httr::upload_file({{paramName}}){{#hasMore}},{{/hasMore}}
+              {{/isFile}}
+          {{/formParams}}
+          )
 
-      {{/hasFormParams}}
-      {{#hasBodyParam}}
-      {{#bodyParams}}
-      if (!missing(`{{paramName}}`)) {
-        body <- `{{paramName}}`$toJSONString()
-      } else {
-        body <- NULL
-      }
+        {{/hasFormParams}}
+        {{#hasBodyParam}}
+          {{#bodyParams}}
+            if (!missing(`{{paramName}}`)) {
+                body <- `{{paramName}}`$toJSONString()
+            } else {
+                body <- NULL
+            }
 
-      {{/bodyParams}}
-      {{/hasBodyParam}}
-      urlPath <- "{{path}}"
-      {{#hasPathParams}}
-      {{#pathParams}}
-      if (!missing(`{{paramName}}`)) {
-        urlPath <- gsub(paste0("\\{", "{{baseName}}", "\\}"), `{{paramName}}`, urlPath)
-      }
+          {{/bodyParams}}
+        {{/hasBodyParam}}
+        urlPath <- "{{path}}"
+        {{#hasPathParams}}
+          {{#pathParams}}
+        if (!missing(`{{paramName}}`)) {
+            urlPath <- gsub(paste0("\\{", "{{baseName}}", "\\}"), `{{paramName}}`, urlPath)
+        }
 
-      {{/pathParams}}
-      {{/hasPathParams}}
-      resp <- self$callApi(url = paste0(self$basePath, urlPath),
+          {{/pathParams}}
+        {{/hasPathParams}}
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "{{httpMethod}}",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)      
 
-      {{#returnType}}
-      returnObject <- {{returnType}}$new()
-      self$processResponse(resp, returnObject)
-      {{/returnType}}
-      {{^returnType}}
-      # void response, no need to return anything
-      {{/returnType}}
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+        {{#returnType}}
+          {{#returnTypeIsPrimitive}}
+            ## return vector or single value
+            result <- unlist(httr::content(response))
+          {{/returnTypeIsPrimitive}}
+          {{^returnTypeIsPrimitive}}
+            returnObject <- {{returnType}}$new()
+            {{#isListContainer}}
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x))
+            {{/isListContainer}}
+            {{^isListContainer}}
+            result <- returnObject$fromList(httr::content(response))
+            {{/isListContainer}}
+          {{/returnTypeIsPrimitive}}
+            Response$new(result, response)
+          {{/returnType}}
+          {{^returnType}}        
+            ## void response, no need to return anything
+          {{/returnType}}           
+        }        
     }{{#hasMore}},{{/hasMore}}
     {{/operation}}
   )

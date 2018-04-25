@@ -30,8 +30,7 @@ SpecimenClient <- R6::R6Class(
         userAgent = "Swagger-Codegen/0.0.0/r",
         initialize = function(basePath){
         super$initialize(basePath)
-    },
-        
+    },    
       # '@name query
       # '@title Query for specimens
       # '@description Search for specimens (GET) using query parameters or a querySpec JSON
@@ -66,83 +65,123 @@ SpecimenClient <- R6::R6Class(
         returnObject <- QueryResult$new()
         self$processResponse(resp, returnObject)        
     },
+    # '@name dwca_get_data_set_names
+    # '@title Retrieve the names of all available datasets
+    # '@description Individual datasets can then be downloaded with /dwca/getDataSet/{dataset}
+    # '@return \code{ character }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    dwca_get_data_set_names = function(...){
+        args <- list(...)
+        queryParams <- list()
+        headerParams <- character()
 
-      # '@name find
-      # '@title Find a specimen by id
-      # '@description If found, returns a single specimen
-      # '@return \code{ Specimen }
-      # '@param ...; additional parameters passed to httr::GET or httr::POST
-      find = function(id, ...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
-
-      urlPath <- "/specimen/find/{id}"
-      if (!missing(`id`)) {
-        urlPath <- gsub(paste0("\\{", "id", "\\}"), `id`, urlPath)
-      }
-
-      resp <- self$callApi(url = paste0(self$basePath, urlPath),
+        urlPath <- "/specimen/dwca/getDataSetNames"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)      
 
-      returnObject <- Specimen$new()
-      self$processResponse(resp, returnObject)
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## return vector or single value
+            result <- unlist(httr::content(response))
+            Response$new(result, response)
+        }        
+    },    
+    # '@name find
+    # '@title Find a specimen by id
+    # '@description If found, returns a single specimen
+    # '@return \code{ Specimen }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    find = function(id, ...){
+        args <- list(...)
+        queryParams <- list()
+        headerParams <- character()
+
+        urlPath <- "/specimen/find/{id}"
+        if (!missing(`id`)) {
+            urlPath <- gsub(paste0("\\{", "id", "\\}"), `id`, urlPath)
+        }
+
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = queryParams,
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)      
+
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            returnObject <- Specimen$new()
+            result <- returnObject$fromList(httr::content(response))
+            Response$new(result, response)
+        }        
     },
-      # '@name find_by_ids
-      # '@title Find specimens by ids
-      # '@description Given multiple ids, returns a list of specimen
-      # '@return \code{ Specimen }
-      # '@param ...; additional parameters passed to httr::GET or httr::POST
-      find_by_ids = function(ids, ...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
+    # '@name find_by_ids
+    # '@title Find specimens by ids
+    # '@description Given multiple ids, returns a list of specimen
+    # '@return \code{ Specimen }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    find_by_ids = function(ids, ...){
+        args <- list(...)
+        queryParams <- list()
+        headerParams <- character()
 
-      urlPath <- "/specimen/findByIds/{ids}"
-      if (!missing(`ids`)) {
-        urlPath <- gsub(paste0("\\{", "ids", "\\}"), `ids`, urlPath)
-      }
+        urlPath <- "/specimen/findByIds/{ids}"
+        if (!missing(`ids`)) {
+            urlPath <- gsub(paste0("\\{", "ids", "\\}"), `ids`, urlPath)
+        }
 
-      resp <- self$callApi(url = paste0(self$basePath, urlPath),
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)      
 
-      returnObject <- Specimen$new()
-      self$processResponse(resp, returnObject)
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            returnObject <- Specimen$new()
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x))
+            Response$new(result, response)
+        }        
     },
-      # '@name find_by_unit_id
-      # '@title Find a specimen by unitID
-      # '@description Get a specimen by its unitID. Returns a list of specimens since unitIDs are not strictly unique
-      # '@return \code{ Specimen }
-      # '@param ...; additional parameters passed to httr::GET or httr::POST
-      find_by_unit_id = function(unit_id, ...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
+    # '@name find_by_unit_id
+    # '@title Find a specimen by unitID
+    # '@description Get a specimen by its unitID. Returns a list of specimens since unitIDs are not strictly unique
+    # '@return \code{ Specimen }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    find_by_unit_id = function(unit_id, ...){
+        args <- list(...)
+        queryParams <- list()
+        headerParams <- character()
 
-      urlPath <- "/specimen/findByUnitID/{unitID}"
-      if (!missing(`unit_id`)) {
-        urlPath <- gsub(paste0("\\{", "unitID", "\\}"), `unit_id`, urlPath)
-      }
+        urlPath <- "/specimen/findByUnitID/{unitID}"
+        if (!missing(`unit_id`)) {
+            urlPath <- gsub(paste0("\\{", "unitID", "\\}"), `unit_id`, urlPath)
+        }
 
-      resp <- self$callApi(url = paste0(self$basePath, urlPath),
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)      
 
-      returnObject <- Specimen$new()
-      self$processResponse(resp, returnObject)
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            returnObject <- Specimen$new()
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x))
+            Response$new(result, response)
+        }        
     }
-
+    
   )
 )
 
