@@ -38,36 +38,44 @@
     {{/queryParams}}
     {{/hasQueryParams}}        
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    {{operationId}} = function({{#allParams}}{{paramName}}, {{/allParams}}...){
-        args <- list(...)
-        queryParams <- list()
+    {{operationId}} = function({{#allParams}}{{baseName}}=NULL, {{/allParams}}{{#hasQueryParams}}queryParams=list(), {{/hasQueryParams}}{{#isResponseFile}}filename=format(Sys.time(), "download-%Y-%m-%dT%H:%m.zip"), {{/isResponseFile}}...){
         headerParams <- character()
+      {{#hasHeaderParams}}
+        {{#headerParams}}
 
-        {{#hasHeaderParams}}
-          {{#headerParams}}
-            if (!missing(`{{paramName}}`)) {
+         if (!missing(`{{paramName}}`)) {
             headerParams['{{baseName}}'] <- `{{paramName}}`
-            }
 
+         }
           {{/headerParams}}
         {{/hasHeaderParams}}
-        {{#hasQueryParams}}
-          {{#queryParams}}
-            if (!missing(`{{paramName}}`)) {
-                param <- ifelse(typeof(`{{paramName}}`) == "environment", `{{paramName}}`$toJSONString(), `{{paramName}}`)    
-                queryParams['{{baseName}}'] <- param
-            }
+      {{#hasQueryParams}}
+        if (!is.null(querySpec) & length(queryParams) > 0) {
+            stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
+        }
+          {{#queryParams}}            
+            
+        if (!missing(`{{baseName}}`)) {
+          ## querySpec can be either JSON string or object of type QuerySpec. 
+          param <- ifelse(typeof(`{{baseName}}`) == "environment", `{{baseName}}`$toJSONString(), `{{baseName}}`)    
+          queryParams['{{baseName}}'] <- param
+        }
+        ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
+        names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))
 
           {{/queryParams}}
-        {{/hasQueryParams}}
+      {{/hasQueryParams}}
+      {{^hasQueryParams}}
+        queryParams <- list()
+      {{/hasQueryParams}}
         {{#hasFormParams}}
-          body <- list(
+        body <- list(
           {{#formParams}}
             {{^isFile}}
-              "{{baseName}}" = {{paramName}}{{#hasMore}},{{/hasMore}}
+            "{{baseName}}" = {{paramName}}{{#hasMore}},{{/hasMore}}
               {{/isFile}}
               {{#isFile}}
-              "{{baseName}}" = httr::upload_file({{paramName}}){{#hasMore}},{{/hasMore}}
+            "{{baseName}}" = httr::upload_file({{paramName}}){{#hasMore}},{{/hasMore}}
               {{/isFile}}
           {{/formParams}}
           )
@@ -75,19 +83,19 @@
         {{/hasFormParams}}
         {{#hasBodyParam}}
           {{#bodyParams}}
-            if (!missing(`{{paramName}}`)) {
-                body <- `{{paramName}}`$toJSONString()
-            } else {
-                body <- NULL
-            }
+        if (!missing(`{{baseName}}`)) {
+            body <- `{{baseName}}`$toJSONString()
+        } else {
+            body <- NULL
+        }
 
           {{/bodyParams}}
         {{/hasBodyParam}}
         urlPath <- "{{path}}"
         {{#hasPathParams}}
           {{#pathParams}}
-        if (!missing(`{{paramName}}`)) {
-            urlPath <- gsub(paste0("\\{", "{{baseName}}", "\\}"), `{{paramName}}`, urlPath)
+        if (!missing(`{{baseName}}`)) {
+            urlPath <- gsub(paste0("\\{", "{{baseName}}", "\\}"), `{{baseName}}`, urlPath)
         }
 
           {{/pathParams}}
@@ -97,7 +105,11 @@
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
-                                 ...)      
+                                 {{#isResponseFile}}
+                                 httr::write_disk(filename),
+                                 httr::progress(),  
+                                 {{/isResponseFile}}
+                                 ...)
 
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
@@ -105,7 +117,7 @@
         {{#returnType}}
           {{#returnTypeIsPrimitive}}
             ## return vector or single value
-            result <- unlist(httr::content(response))
+            result <- as.{{returnType}}(unlist(httr::content(response)))
           {{/returnTypeIsPrimitive}}
           {{^returnTypeIsPrimitive}}
             returnObject <- {{returnType}}$new()
@@ -119,7 +131,8 @@
             Response$new(result, response)
           {{/returnType}}
           {{^returnType}}        
-            ## void response, no need to return anything
+            ## return reponse object with empty content
+            Response$new(NULL, response)
           {{/returnType}}           
         }        
     }{{#hasMore}},{{/hasMore}}
