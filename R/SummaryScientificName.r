@@ -88,7 +88,7 @@ SummaryScientificName <- R6::R6Class(
       SummaryScientificNameList[sapply(SummaryScientificNameList, length) > 0]
       },
 
-    fromList = function(SummaryScientificNameList) {
+    fromList = function(SummaryScientificNameList, typeObject=NULL) {
       if (!is.null(SummaryScientificNameList[['fullScientificName']])) {      
           self[['fullScientificName']] <- SummaryScientificNameList[['fullScientificName']]
       }
@@ -117,15 +117,15 @@ SummaryScientificName <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(SummaryScientificNameJson) {
-      SummaryScientificNameObject <- jsonlite::fromJSON(SummaryScientificNameJson, simplifyVector=F)
-      self[['fullScientificName']] <- SummaryScientificNameObject[['fullScientificName']]
-      self[['taxonomicStatus']] <- SummaryScientificNameObject[['taxonomicStatus']]
-      self[['genusOrMonomial']] <- SummaryScientificNameObject[['genusOrMonomial']]
-      self[['subgenus']] <- SummaryScientificNameObject[['subgenus']]
-      self[['specificEpithet']] <- SummaryScientificNameObject[['specificEpithet']]
-      self[['infraspecificEpithet']] <- SummaryScientificNameObject[['infraspecificEpithet']]
-      self[['authorshipVerbatim']] <- SummaryScientificNameObject[['authorshipVerbatim']]
+    fromJSONString = function(SummaryScientificNameJson, typeObject=NULL) {
+      SummaryScientificNameList <- jsonlite::fromJSON(SummaryScientificNameJson, simplifyVector=F)
+      self[['fullScientificName']] <- SummaryScientificNameList[['fullScientificName']]
+      self[['taxonomicStatus']] <- SummaryScientificNameList[['taxonomicStatus']]
+      self[['genusOrMonomial']] <- SummaryScientificNameList[['genusOrMonomial']]
+      self[['subgenus']] <- SummaryScientificNameList[['subgenus']]
+      self[['specificEpithet']] <- SummaryScientificNameList[['specificEpithet']]
+      self[['infraspecificEpithet']] <- SummaryScientificNameList[['infraspecificEpithet']]
+      self[['authorshipVerbatim']] <- SummaryScientificNameList[['authorshipVerbatim']]
       invisible(self)
     }
   )

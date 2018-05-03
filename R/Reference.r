@@ -70,7 +70,7 @@ Reference <- R6::R6Class(
       ReferenceList[sapply(ReferenceList, length) > 0]
       },
 
-    fromList = function(ReferenceList) {
+    fromList = function(ReferenceList, typeObject=NULL) {
       if (!is.null(ReferenceList[['titleCitation']])) {      
           self[['titleCitation']] <- ReferenceList[['titleCitation']]
       }
@@ -81,7 +81,11 @@ Reference <- R6::R6Class(
           self[['uri']] <- ReferenceList[['uri']]
       }
       if (!is.null(ReferenceList[['author']])) {      
-          self[['author']] <- Person$new()$fromList(ReferenceList[['author']])
+          if (is.null(typeObject)) {
+              self[['author']] <- Person$new()$fromList(ReferenceList[['author']])
+          } else {
+              self[['author']] <- typeObject$fromList(ReferenceList[['author']])
+          }
       }
       if (!is.null(ReferenceList[['publicationDate']])) {      
           self[['publicationDate']] <- ReferenceList[['publicationDate']]
@@ -93,14 +97,17 @@ Reference <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(ReferenceJson) {
-      ReferenceObject <- jsonlite::fromJSON(ReferenceJson, simplifyVector=F)
-      self[['titleCitation']] <- ReferenceObject[['titleCitation']]
-      self[['citationDetail']] <- ReferenceObject[['citationDetail']]
-      self[['uri']] <- ReferenceObject[['uri']]
-      PersonObject <- Person$new()
-      self[['author']] <- PersonObject$fromJSONString(jsonlite::toJSON(ReferenceObject[['author']], auto_unbox = TRUE))
-      self[['publicationDate']] <- ReferenceObject[['publicationDate']]
+    fromJSONString = function(ReferenceJson, typeObject=NULL) {
+      ReferenceList <- jsonlite::fromJSON(ReferenceJson, simplifyVector=F)
+      self[['titleCitation']] <- ReferenceList[['titleCitation']]
+      self[['citationDetail']] <- ReferenceList[['citationDetail']]
+      self[['uri']] <- ReferenceList[['uri']]
+      if (is.null(typeObject)) {
+          self[['author']] <- Person$new()$fromJSONString(jsonlite::toJSON(ReferenceList[['author']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['author']] <- typeObject$fromJSONString(jsonlite::toJSON(ReferenceList[['author']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      self[['publicationDate']] <- ReferenceList[['publicationDate']]
       invisible(self)
     }
   )

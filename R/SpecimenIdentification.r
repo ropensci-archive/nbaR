@@ -182,12 +182,16 @@ SpecimenIdentification <- R6::R6Class(
       SpecimenIdentificationList[sapply(SpecimenIdentificationList, length) > 0]
       },
 
-    fromList = function(SpecimenIdentificationList) {
+    fromList = function(SpecimenIdentificationList, typeObject=NULL) {
       if (!is.null(SpecimenIdentificationList[['taxonRank']])) {      
           self[['taxonRank']] <- SpecimenIdentificationList[['taxonRank']]
       }
       if (!is.null(SpecimenIdentificationList[['scientificName']])) {      
-          self[['scientificName']] <- ScientificName$new()$fromList(SpecimenIdentificationList[['scientificName']])
+          if (is.null(typeObject)) {
+              self[['scientificName']] <- ScientificName$new()$fromList(SpecimenIdentificationList[['scientificName']])
+          } else {
+              self[['scientificName']] <- typeObject$fromList(SpecimenIdentificationList[['scientificName']])
+          }
       }
       if (!is.null(SpecimenIdentificationList[['typeStatus']])) {      
           self[['typeStatus']] <- SpecimenIdentificationList[['typeStatus']]
@@ -196,16 +200,20 @@ SpecimenIdentification <- R6::R6Class(
           self[['dateIdentified']] <- SpecimenIdentificationList[['dateIdentified']]
       }
       if (!is.null(SpecimenIdentificationList[['defaultClassification']])) {      
-          self[['defaultClassification']] <- DefaultClassification$new()$fromList(SpecimenIdentificationList[['defaultClassification']])
+          if (is.null(typeObject)) {
+              self[['defaultClassification']] <- DefaultClassification$new()$fromList(SpecimenIdentificationList[['defaultClassification']])
+          } else {
+              self[['defaultClassification']] <- typeObject$fromList(SpecimenIdentificationList[['defaultClassification']])
+          }
       }
       if (!is.null(SpecimenIdentificationList[['systemClassification']])) {      
           self[['systemClassification']] <- lapply(SpecimenIdentificationList[['systemClassification']], function(x) {
-             Monomial$new()$fromList(x)            
+             Monomial$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(SpecimenIdentificationList[['vernacularNames']])) {      
           self[['vernacularNames']] <- lapply(SpecimenIdentificationList[['vernacularNames']], function(x) {
-             VernacularName$new()$fromList(x)            
+             VernacularName$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(SpecimenIdentificationList[['identificationQualifiers']])) {      
@@ -213,12 +221,12 @@ SpecimenIdentification <- R6::R6Class(
       }
       if (!is.null(SpecimenIdentificationList[['identifiers']])) {      
           self[['identifiers']] <- lapply(SpecimenIdentificationList[['identifiers']], function(x) {
-             Agent$new()$fromList(x)            
+             Agent$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(SpecimenIdentificationList[['taxonomicEnrichments']])) {      
           self[['taxonomicEnrichments']] <- lapply(SpecimenIdentificationList[['taxonomicEnrichments']], function(x) {
-             TaxonomicEnrichment$new()$fromList(x)            
+             TaxonomicEnrichment$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(SpecimenIdentificationList[['preferred']])) {      
@@ -249,27 +257,37 @@ SpecimenIdentification <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(SpecimenIdentificationJson) {
-      SpecimenIdentificationObject <- jsonlite::fromJSON(SpecimenIdentificationJson, simplifyVector=F)
-      self[['taxonRank']] <- SpecimenIdentificationObject[['taxonRank']]
-      ScientificNameObject <- ScientificName$new()
-      self[['scientificName']] <- ScientificNameObject$fromJSONString(jsonlite::toJSON(SpecimenIdentificationObject[['scientificName']], auto_unbox = TRUE))
-      self[['typeStatus']] <- SpecimenIdentificationObject[['typeStatus']]
-      self[['dateIdentified']] <- SpecimenIdentificationObject[['dateIdentified']]
-      DefaultClassificationObject <- DefaultClassification$new()
-      self[['defaultClassification']] <- DefaultClassificationObject$fromJSONString(jsonlite::toJSON(SpecimenIdentificationObject[['defaultClassification']], auto_unbox = TRUE))
-      self[['systemClassification']] <- lapply(SpecimenIdentificationObject[['systemClassification']], function(x) Monomial$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['vernacularNames']] <- lapply(SpecimenIdentificationObject[['vernacularNames']], function(x) VernacularName$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['identificationQualifiers']] <- SpecimenIdentificationObject[['identificationQualifiers']]
-      self[['identifiers']] <- lapply(SpecimenIdentificationObject[['identifiers']], function(x) Agent$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['taxonomicEnrichments']] <- lapply(SpecimenIdentificationObject[['taxonomicEnrichments']], function(x) TaxonomicEnrichment$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['preferred']] <- SpecimenIdentificationObject[['preferred']]
-      self[['verificationStatus']] <- SpecimenIdentificationObject[['verificationStatus']]
-      self[['rockType']] <- SpecimenIdentificationObject[['rockType']]
-      self[['associatedFossilAssemblage']] <- SpecimenIdentificationObject[['associatedFossilAssemblage']]
-      self[['rockMineralUsage']] <- SpecimenIdentificationObject[['rockMineralUsage']]
-      self[['associatedMineralName']] <- SpecimenIdentificationObject[['associatedMineralName']]
-      self[['remarks']] <- SpecimenIdentificationObject[['remarks']]
+    fromJSONString = function(SpecimenIdentificationJson, typeObject=NULL) {
+      SpecimenIdentificationList <- jsonlite::fromJSON(SpecimenIdentificationJson, simplifyVector=F)
+      self[['taxonRank']] <- SpecimenIdentificationList[['taxonRank']]
+      if (is.null(typeObject)) {
+          self[['scientificName']] <- ScientificName$new()$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['scientificName']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['scientificName']] <- typeObject$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['scientificName']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      self[['typeStatus']] <- SpecimenIdentificationList[['typeStatus']]
+      self[['dateIdentified']] <- SpecimenIdentificationList[['dateIdentified']]
+      if (is.null(typeObject)) {
+          self[['defaultClassification']] <- DefaultClassification$new()$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['defaultClassification']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['defaultClassification']] <- typeObject$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['defaultClassification']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      self[['systemClassification']] <- lapply(SpecimenIdentificationList[['systemClassification']],
+                                        function(x) Monomial$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['vernacularNames']] <- lapply(SpecimenIdentificationList[['vernacularNames']],
+                                        function(x) VernacularName$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['identificationQualifiers']] <- SpecimenIdentificationList[['identificationQualifiers']]
+      self[['identifiers']] <- lapply(SpecimenIdentificationList[['identifiers']],
+                                        function(x) Agent$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['taxonomicEnrichments']] <- lapply(SpecimenIdentificationList[['taxonomicEnrichments']],
+                                        function(x) TaxonomicEnrichment$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['preferred']] <- SpecimenIdentificationList[['preferred']]
+      self[['verificationStatus']] <- SpecimenIdentificationList[['verificationStatus']]
+      self[['rockType']] <- SpecimenIdentificationList[['rockType']]
+      self[['associatedFossilAssemblage']] <- SpecimenIdentificationList[['associatedFossilAssemblage']]
+      self[['rockMineralUsage']] <- SpecimenIdentificationList[['rockMineralUsage']]
+      self[['associatedMineralName']] <- SpecimenIdentificationList[['associatedMineralName']]
+      self[['remarks']] <- SpecimenIdentificationList[['remarks']]
       invisible(self)
     }
   )

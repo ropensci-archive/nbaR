@@ -87,6 +87,14 @@ ApiClient  <- R6::R6Class(
         }
         warning(warningMessage)
         Response$new(responseMessage, response)
-    }
+    },
+    getTypeObject = function() {
+        switch(class(self)[1],
+             "SpecimenClient" = Specimen$new(),
+             "TaxonClient" = Taxon$new(),
+             "MultimediaClient" = Multimedia$new(),
+             "MetadataClient" = Metadata$new(),
+             "GeoClient" = Geo$new())  
+    }    
   )
 )

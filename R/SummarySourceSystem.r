@@ -34,7 +34,7 @@ SummarySourceSystem <- R6::R6Class(
       SummarySourceSystemList[sapply(SummarySourceSystemList, length) > 0]
       },
 
-    fromList = function(SummarySourceSystemList) {
+    fromList = function(SummarySourceSystemList, typeObject=NULL) {
       if (!is.null(SummarySourceSystemList[['code']])) {      
           self[['code']] <- SummarySourceSystemList[['code']]
       }
@@ -45,9 +45,9 @@ SummarySourceSystem <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(SummarySourceSystemJson) {
-      SummarySourceSystemObject <- jsonlite::fromJSON(SummarySourceSystemJson, simplifyVector=F)
-      self[['code']] <- SummarySourceSystemObject[['code']]
+    fromJSONString = function(SummarySourceSystemJson, typeObject=NULL) {
+      SummarySourceSystemList <- jsonlite::fromJSON(SummarySourceSystemJson, simplifyVector=F)
+      self[['code']] <- SummarySourceSystemList[['code']]
       invisible(self)
     }
   )

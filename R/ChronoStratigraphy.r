@@ -258,7 +258,7 @@ ChronoStratigraphy <- R6::R6Class(
       ChronoStratigraphyList[sapply(ChronoStratigraphyList, length) > 0]
       },
 
-    fromList = function(ChronoStratigraphyList) {
+    fromList = function(ChronoStratigraphyList, typeObject=NULL) {
       if (!is.null(ChronoStratigraphyList[['youngRegionalSubstage']])) {      
           self[['youngRegionalSubstage']] <- ChronoStratigraphyList[['youngRegionalSubstage']]
       }
@@ -344,34 +344,34 @@ ChronoStratigraphy <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(ChronoStratigraphyJson) {
-      ChronoStratigraphyObject <- jsonlite::fromJSON(ChronoStratigraphyJson, simplifyVector=F)
-      self[['youngRegionalSubstage']] <- ChronoStratigraphyObject[['youngRegionalSubstage']]
-      self[['youngRegionalStage']] <- ChronoStratigraphyObject[['youngRegionalStage']]
-      self[['youngRegionalSeries']] <- ChronoStratigraphyObject[['youngRegionalSeries']]
-      self[['youngDatingQualifier']] <- ChronoStratigraphyObject[['youngDatingQualifier']]
-      self[['youngInternSystem']] <- ChronoStratigraphyObject[['youngInternSystem']]
-      self[['youngInternSubstage']] <- ChronoStratigraphyObject[['youngInternSubstage']]
-      self[['youngInternStage']] <- ChronoStratigraphyObject[['youngInternStage']]
-      self[['youngInternSeries']] <- ChronoStratigraphyObject[['youngInternSeries']]
-      self[['youngInternErathem']] <- ChronoStratigraphyObject[['youngInternErathem']]
-      self[['youngInternEonothem']] <- ChronoStratigraphyObject[['youngInternEonothem']]
-      self[['youngChronoName']] <- ChronoStratigraphyObject[['youngChronoName']]
-      self[['youngCertainty']] <- ChronoStratigraphyObject[['youngCertainty']]
-      self[['oldDatingQualifier']] <- ChronoStratigraphyObject[['oldDatingQualifier']]
-      self[['chronoPreferredFlag']] <- ChronoStratigraphyObject[['chronoPreferredFlag']]
-      self[['oldRegionalSubstage']] <- ChronoStratigraphyObject[['oldRegionalSubstage']]
-      self[['oldRegionalStage']] <- ChronoStratigraphyObject[['oldRegionalStage']]
-      self[['oldRegionalSeries']] <- ChronoStratigraphyObject[['oldRegionalSeries']]
-      self[['oldInternSystem']] <- ChronoStratigraphyObject[['oldInternSystem']]
-      self[['oldInternSubstage']] <- ChronoStratigraphyObject[['oldInternSubstage']]
-      self[['oldInternStage']] <- ChronoStratigraphyObject[['oldInternStage']]
-      self[['oldInternSeries']] <- ChronoStratigraphyObject[['oldInternSeries']]
-      self[['oldInternErathem']] <- ChronoStratigraphyObject[['oldInternErathem']]
-      self[['oldInternEonothem']] <- ChronoStratigraphyObject[['oldInternEonothem']]
-      self[['oldChronoName']] <- ChronoStratigraphyObject[['oldChronoName']]
-      self[['chronoIdentifier']] <- ChronoStratigraphyObject[['chronoIdentifier']]
-      self[['oldCertainty']] <- ChronoStratigraphyObject[['oldCertainty']]
+    fromJSONString = function(ChronoStratigraphyJson, typeObject=NULL) {
+      ChronoStratigraphyList <- jsonlite::fromJSON(ChronoStratigraphyJson, simplifyVector=F)
+      self[['youngRegionalSubstage']] <- ChronoStratigraphyList[['youngRegionalSubstage']]
+      self[['youngRegionalStage']] <- ChronoStratigraphyList[['youngRegionalStage']]
+      self[['youngRegionalSeries']] <- ChronoStratigraphyList[['youngRegionalSeries']]
+      self[['youngDatingQualifier']] <- ChronoStratigraphyList[['youngDatingQualifier']]
+      self[['youngInternSystem']] <- ChronoStratigraphyList[['youngInternSystem']]
+      self[['youngInternSubstage']] <- ChronoStratigraphyList[['youngInternSubstage']]
+      self[['youngInternStage']] <- ChronoStratigraphyList[['youngInternStage']]
+      self[['youngInternSeries']] <- ChronoStratigraphyList[['youngInternSeries']]
+      self[['youngInternErathem']] <- ChronoStratigraphyList[['youngInternErathem']]
+      self[['youngInternEonothem']] <- ChronoStratigraphyList[['youngInternEonothem']]
+      self[['youngChronoName']] <- ChronoStratigraphyList[['youngChronoName']]
+      self[['youngCertainty']] <- ChronoStratigraphyList[['youngCertainty']]
+      self[['oldDatingQualifier']] <- ChronoStratigraphyList[['oldDatingQualifier']]
+      self[['chronoPreferredFlag']] <- ChronoStratigraphyList[['chronoPreferredFlag']]
+      self[['oldRegionalSubstage']] <- ChronoStratigraphyList[['oldRegionalSubstage']]
+      self[['oldRegionalStage']] <- ChronoStratigraphyList[['oldRegionalStage']]
+      self[['oldRegionalSeries']] <- ChronoStratigraphyList[['oldRegionalSeries']]
+      self[['oldInternSystem']] <- ChronoStratigraphyList[['oldInternSystem']]
+      self[['oldInternSubstage']] <- ChronoStratigraphyList[['oldInternSubstage']]
+      self[['oldInternStage']] <- ChronoStratigraphyList[['oldInternStage']]
+      self[['oldInternSeries']] <- ChronoStratigraphyList[['oldInternSeries']]
+      self[['oldInternErathem']] <- ChronoStratigraphyList[['oldInternErathem']]
+      self[['oldInternEonothem']] <- ChronoStratigraphyList[['oldInternEonothem']]
+      self[['oldChronoName']] <- ChronoStratigraphyList[['oldChronoName']]
+      self[['chronoIdentifier']] <- ChronoStratigraphyList[['chronoIdentifier']]
+      self[['oldCertainty']] <- ChronoStratigraphyList[['oldCertainty']]
       invisible(self)
     }
   )

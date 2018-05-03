@@ -34,7 +34,7 @@ Agent <- R6::R6Class(
       AgentList[sapply(AgentList, length) > 0]
       },
 
-    fromList = function(AgentList) {
+    fromList = function(AgentList, typeObject=NULL) {
       if (!is.null(AgentList[['agentText']])) {      
           self[['agentText']] <- AgentList[['agentText']]
       }
@@ -45,9 +45,9 @@ Agent <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(AgentJson) {
-      AgentObject <- jsonlite::fromJSON(AgentJson, simplifyVector=F)
-      self[['agentText']] <- AgentObject[['agentText']]
+    fromJSONString = function(AgentJson, typeObject=NULL) {
+      AgentList <- jsonlite::fromJSON(AgentJson, simplifyVector=F)
+      self[['agentText']] <- AgentList[['agentText']]
       invisible(self)
     }
   )

@@ -62,7 +62,7 @@ LngLatAlt <- R6::R6Class(
       LngLatAltList[sapply(LngLatAltList, length) > 0]
       },
 
-    fromList = function(LngLatAltList) {
+    fromList = function(LngLatAltList, typeObject=NULL) {
       if (!is.null(LngLatAltList[['longitude']])) {      
           self[['longitude']] <- LngLatAltList[['longitude']]
       }
@@ -82,12 +82,12 @@ LngLatAlt <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(LngLatAltJson) {
-      LngLatAltObject <- jsonlite::fromJSON(LngLatAltJson, simplifyVector=F)
-      self[['longitude']] <- LngLatAltObject[['longitude']]
-      self[['latitude']] <- LngLatAltObject[['latitude']]
-      self[['altitude']] <- LngLatAltObject[['altitude']]
-      self[['additionalElements']] <- LngLatAltObject[['additionalElements']]
+    fromJSONString = function(LngLatAltJson, typeObject=NULL) {
+      LngLatAltList <- jsonlite::fromJSON(LngLatAltJson, simplifyVector=F)
+      self[['longitude']] <- LngLatAltList[['longitude']]
+      self[['latitude']] <- LngLatAltList[['latitude']]
+      self[['altitude']] <- LngLatAltList[['altitude']]
+      self[['additionalElements']] <- LngLatAltList[['additionalElements']]
       invisible(self)
     }
   )

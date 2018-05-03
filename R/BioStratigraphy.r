@@ -159,7 +159,7 @@ BioStratigraphy <- R6::R6Class(
       BioStratigraphyList[sapply(BioStratigraphyList, length) > 0]
       },
 
-    fromList = function(BioStratigraphyList) {
+    fromList = function(BioStratigraphyList, typeObject=NULL) {
       if (!is.null(BioStratigraphyList[['youngBioDatingQualifier']])) {      
           self[['youngBioDatingQualifier']] <- BioStratigraphyList[['youngBioDatingQualifier']]
       }
@@ -212,23 +212,23 @@ BioStratigraphy <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(BioStratigraphyJson) {
-      BioStratigraphyObject <- jsonlite::fromJSON(BioStratigraphyJson, simplifyVector=F)
-      self[['youngBioDatingQualifier']] <- BioStratigraphyObject[['youngBioDatingQualifier']]
-      self[['youngBioName']] <- BioStratigraphyObject[['youngBioName']]
-      self[['youngFossilZone']] <- BioStratigraphyObject[['youngFossilZone']]
-      self[['youngFossilSubZone']] <- BioStratigraphyObject[['youngFossilSubZone']]
-      self[['youngBioCertainty']] <- BioStratigraphyObject[['youngBioCertainty']]
-      self[['youngStratType']] <- BioStratigraphyObject[['youngStratType']]
-      self[['bioDatingQualifier']] <- BioStratigraphyObject[['bioDatingQualifier']]
-      self[['bioPreferredFlag']] <- BioStratigraphyObject[['bioPreferredFlag']]
-      self[['rangePosition']] <- BioStratigraphyObject[['rangePosition']]
-      self[['oldBioName']] <- BioStratigraphyObject[['oldBioName']]
-      self[['bioIdentifier']] <- BioStratigraphyObject[['bioIdentifier']]
-      self[['oldFossilzone']] <- BioStratigraphyObject[['oldFossilzone']]
-      self[['oldFossilSubzone']] <- BioStratigraphyObject[['oldFossilSubzone']]
-      self[['oldBioCertainty']] <- BioStratigraphyObject[['oldBioCertainty']]
-      self[['oldBioStratType']] <- BioStratigraphyObject[['oldBioStratType']]
+    fromJSONString = function(BioStratigraphyJson, typeObject=NULL) {
+      BioStratigraphyList <- jsonlite::fromJSON(BioStratigraphyJson, simplifyVector=F)
+      self[['youngBioDatingQualifier']] <- BioStratigraphyList[['youngBioDatingQualifier']]
+      self[['youngBioName']] <- BioStratigraphyList[['youngBioName']]
+      self[['youngFossilZone']] <- BioStratigraphyList[['youngFossilZone']]
+      self[['youngFossilSubZone']] <- BioStratigraphyList[['youngFossilSubZone']]
+      self[['youngBioCertainty']] <- BioStratigraphyList[['youngBioCertainty']]
+      self[['youngStratType']] <- BioStratigraphyList[['youngStratType']]
+      self[['bioDatingQualifier']] <- BioStratigraphyList[['bioDatingQualifier']]
+      self[['bioPreferredFlag']] <- BioStratigraphyList[['bioPreferredFlag']]
+      self[['rangePosition']] <- BioStratigraphyList[['rangePosition']]
+      self[['oldBioName']] <- BioStratigraphyList[['oldBioName']]
+      self[['bioIdentifier']] <- BioStratigraphyList[['bioIdentifier']]
+      self[['oldFossilzone']] <- BioStratigraphyList[['oldFossilzone']]
+      self[['oldFossilSubzone']] <- BioStratigraphyList[['oldFossilSubzone']]
+      self[['oldBioCertainty']] <- BioStratigraphyList[['oldBioCertainty']]
+      self[['oldBioStratType']] <- BioStratigraphyList[['oldBioStratType']]
       invisible(self)
     }
   )

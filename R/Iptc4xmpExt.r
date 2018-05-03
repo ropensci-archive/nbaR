@@ -88,7 +88,7 @@ Iptc4xmpExt <- R6::R6Class(
       Iptc4xmpExtList[sapply(Iptc4xmpExtList, length) > 0]
       },
 
-    fromList = function(Iptc4xmpExtList) {
+    fromList = function(Iptc4xmpExtList, typeObject=NULL) {
       if (!is.null(Iptc4xmpExtList[['locationShown']])) {      
           self[['locationShown']] <- Iptc4xmpExtList[['locationShown']]
       }
@@ -117,15 +117,15 @@ Iptc4xmpExt <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(Iptc4xmpExtJson) {
-      Iptc4xmpExtObject <- jsonlite::fromJSON(Iptc4xmpExtJson, simplifyVector=F)
-      self[['locationShown']] <- Iptc4xmpExtObject[['locationShown']]
-      self[['worldRegion']] <- Iptc4xmpExtObject[['worldRegion']]
-      self[['countryCode']] <- Iptc4xmpExtObject[['countryCode']]
-      self[['countryName']] <- Iptc4xmpExtObject[['countryName']]
-      self[['provinceState']] <- Iptc4xmpExtObject[['provinceState']]
-      self[['city']] <- Iptc4xmpExtObject[['city']]
-      self[['sublocation']] <- Iptc4xmpExtObject[['sublocation']]
+    fromJSONString = function(Iptc4xmpExtJson, typeObject=NULL) {
+      Iptc4xmpExtList <- jsonlite::fromJSON(Iptc4xmpExtJson, simplifyVector=F)
+      self[['locationShown']] <- Iptc4xmpExtList[['locationShown']]
+      self[['worldRegion']] <- Iptc4xmpExtList[['worldRegion']]
+      self[['countryCode']] <- Iptc4xmpExtList[['countryCode']]
+      self[['countryName']] <- Iptc4xmpExtList[['countryName']]
+      self[['provinceState']] <- Iptc4xmpExtList[['provinceState']]
+      self[['city']] <- Iptc4xmpExtList[['city']]
+      self[['sublocation']] <- Iptc4xmpExtList[['sublocation']]
       invisible(self)
     }
   )

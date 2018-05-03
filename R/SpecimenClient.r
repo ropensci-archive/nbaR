@@ -17,7 +17,7 @@
 #' @section Methods:
 #' \describe{
 #'
-#' count_http_get2 Get the number of specimens matching a condition
+#' count Get the number of specimens matching a condition
 #'
 #'
 #' count_http_post_json2 Get the number of specimens matching a condition
@@ -83,7 +83,7 @@
 #' query Query for specimens
 #'
 #'
-#' query_http_post_json2 Query for specimens
+#' query_http_post_json1 Query for specimens
 #'
 #' }
 #'
@@ -97,22 +97,22 @@ SpecimenClient <- R6::R6Class(
         super$initialize(basePath)
     },
 
-    # '@name count_http_get2
+    # '@name count
     # '@title Get the number of specimens matching a condition
     # '@description Conditions given as query parameters or a querySpec JSON
     # '@return \code{ integer }
-    # '@param collection_type: character; Example query param
+    # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    count_http_get2 = function(collectionType=NULL, queryParams=list(), ...){
+    count = function(querySpec=NULL, queryParams=list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
         }
             
-        if (!missing(`collectionType`)) {
+        if (!missing(`querySpec`)) {
           ## querySpec can be either JSON string or object of type QuerySpec. 
-          param <- ifelse(typeof(`collectionType`) == "environment", `collectionType`$toJSONString(), `collectionType`)    
-          queryParams['collectionType'] <- param
+          param <- ifelse(typeof(`querySpec`) == "environment", `querySpec`$toJSONString(), `querySpec`)    
+          queryParams['querySpec'] <- param
         }
         ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
         names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))
@@ -332,7 +332,7 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response))
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
             Response$new(result, response)
         }        
     },
@@ -360,7 +360,7 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- Specimen$new()
-            result <- lapply(httr::content(response), function(x)returnObject$fromList(x))
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeObject=self$getTypeObject()))
             Response$new(result, response)
         }        
     },
@@ -388,7 +388,7 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- Specimen$new()
-            result <- lapply(httr::content(response), function(x)returnObject$fromList(x))
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeObject=self$getTypeObject()))
             Response$new(result, response)
         }        
     },
@@ -416,7 +416,7 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response))
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
             Response$new(result, response)
         }        
     },
@@ -450,7 +450,7 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response))
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
             Response$new(result, response)
         }        
     },
@@ -474,7 +474,7 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response))
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
             Response$new(result, response)
         }        
     },
@@ -574,7 +574,7 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response))
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
             Response$new(result, response)
         }        
     },
@@ -602,7 +602,7 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response))
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
             Response$new(result, response)
         }        
     },
@@ -638,7 +638,7 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- QueryResult$new()
-            result <- returnObject$fromList(httr::content(response))
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
             Response$new(result, response)
         }        
     },
@@ -668,7 +668,7 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- QueryResult$new()
-            result <- returnObject$fromList(httr::content(response))
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
             Response$new(result, response)
         }        
     },
@@ -700,7 +700,7 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response))
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
             Response$new(result, response)
         }        
     },
@@ -736,16 +736,16 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- QueryResult$new()
-            result <- returnObject$fromList(httr::content(response))
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
             Response$new(result, response)
         }        
     },
-    # '@name query_http_post_json2
+    # '@name query_http_post_json1
     # '@title Query for specimens
     # '@description Search for specimens (GET) using query parameters or a querySpec JSON
     # '@return \code{ QueryResult }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    query_http_post_json2 = function(body=NULL, ...){
+    query_http_post_json1 = function(body=NULL, ...){
         headerParams <- character()
         queryParams <- list()
         if (!missing(`body`)) {
@@ -766,7 +766,7 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- QueryResult$new()
-            result <- returnObject$fromList(httr::content(response))
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
             Response$new(result, response)
         }        
     }

@@ -52,7 +52,7 @@ TaxonDescription <- R6::R6Class(
       TaxonDescriptionList[sapply(TaxonDescriptionList, length) > 0]
       },
 
-    fromList = function(TaxonDescriptionList) {
+    fromList = function(TaxonDescriptionList, typeObject=NULL) {
       if (!is.null(TaxonDescriptionList[['category']])) {      
           self[['category']] <- TaxonDescriptionList[['category']]
       }
@@ -69,11 +69,11 @@ TaxonDescription <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(TaxonDescriptionJson) {
-      TaxonDescriptionObject <- jsonlite::fromJSON(TaxonDescriptionJson, simplifyVector=F)
-      self[['category']] <- TaxonDescriptionObject[['category']]
-      self[['description']] <- TaxonDescriptionObject[['description']]
-      self[['language']] <- TaxonDescriptionObject[['language']]
+    fromJSONString = function(TaxonDescriptionJson, typeObject=NULL) {
+      TaxonDescriptionList <- jsonlite::fromJSON(TaxonDescriptionJson, simplifyVector=F)
+      self[['category']] <- TaxonDescriptionList[['category']]
+      self[['description']] <- TaxonDescriptionList[['description']]
+      self[['language']] <- TaxonDescriptionList[['language']]
       invisible(self)
     }
   )

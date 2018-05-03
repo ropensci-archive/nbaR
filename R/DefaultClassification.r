@@ -124,7 +124,7 @@ DefaultClassification <- R6::R6Class(
       DefaultClassificationList[sapply(DefaultClassificationList, length) > 0]
       },
 
-    fromList = function(DefaultClassificationList) {
+    fromList = function(DefaultClassificationList, typeObject=NULL) {
       if (!is.null(DefaultClassificationList[['kingdom']])) {      
           self[['kingdom']] <- DefaultClassificationList[['kingdom']]
       }
@@ -165,19 +165,19 @@ DefaultClassification <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(DefaultClassificationJson) {
-      DefaultClassificationObject <- jsonlite::fromJSON(DefaultClassificationJson, simplifyVector=F)
-      self[['kingdom']] <- DefaultClassificationObject[['kingdom']]
-      self[['phylum']] <- DefaultClassificationObject[['phylum']]
-      self[['className']] <- DefaultClassificationObject[['className']]
-      self[['order']] <- DefaultClassificationObject[['order']]
-      self[['superFamily']] <- DefaultClassificationObject[['superFamily']]
-      self[['family']] <- DefaultClassificationObject[['family']]
-      self[['genus']] <- DefaultClassificationObject[['genus']]
-      self[['subgenus']] <- DefaultClassificationObject[['subgenus']]
-      self[['specificEpithet']] <- DefaultClassificationObject[['specificEpithet']]
-      self[['infraspecificEpithet']] <- DefaultClassificationObject[['infraspecificEpithet']]
-      self[['infraspecificRank']] <- DefaultClassificationObject[['infraspecificRank']]
+    fromJSONString = function(DefaultClassificationJson, typeObject=NULL) {
+      DefaultClassificationList <- jsonlite::fromJSON(DefaultClassificationJson, simplifyVector=F)
+      self[['kingdom']] <- DefaultClassificationList[['kingdom']]
+      self[['phylum']] <- DefaultClassificationList[['phylum']]
+      self[['className']] <- DefaultClassificationList[['className']]
+      self[['order']] <- DefaultClassificationList[['order']]
+      self[['superFamily']] <- DefaultClassificationList[['superFamily']]
+      self[['family']] <- DefaultClassificationList[['family']]
+      self[['genus']] <- DefaultClassificationList[['genus']]
+      self[['subgenus']] <- DefaultClassificationList[['subgenus']]
+      self[['specificEpithet']] <- DefaultClassificationList[['specificEpithet']]
+      self[['infraspecificEpithet']] <- DefaultClassificationList[['infraspecificEpithet']]
+      self[['infraspecificRank']] <- DefaultClassificationList[['infraspecificRank']]
       invisible(self)
     }
   )

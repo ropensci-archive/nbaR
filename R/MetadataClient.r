@@ -10,7 +10,6 @@
 #' @description nbaR.Metadata
 #'
 #' @field path Stores url path of the request.
-#' @field apiClient Handles the client-server communication.
 #' @field userAgent Set the user agent of the request.
 #'
 #' @importFrom R6 R6Class
@@ -51,302 +50,257 @@
 #'
 #' @export
 MetadataClient <- R6::R6Class(
-  'MetadataClient',
-  public = list(
-    userAgent = "Swagger-Codegen/0.0.0/r",
-    apiClient = NULL,
-    initialize = function(apiClient){
-      if (!missing(apiClient)) {
-        self$apiClient <- apiClient
-      }
-      else {
-        self$apiClient <- ApiClient$new()
-      }
+    'MetadataClient',
+    inherit=ApiClient,
+    public = list(
+        userAgent = "Swagger-Codegen/0.0.0/r",
+        initialize = function(basePath){
+        super$initialize(basePath)
     },
 
-      # '@name get_allowed_date_formats
-      # '@title Get allowed values for dates in queries
-      # '@description Queries with other formatted dates will result in a query error
-      # '@return \code{ character }
-      get_allowed_date_formats = function(...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
-
-      urlPath <- "/metadata/getAllowedDateFormats"
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+    # '@name get_allowed_date_formats
+    # '@title Get allowed values for dates in queries
+    # '@description Queries with other formatted dates will result in a query error
+    # '@return \code{ character }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    get_allowed_date_formats = function(...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getAllowedDateFormats"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- character$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## return vector or single value
+            result <- as.character(unlist(httr::content(response)))
+            Response$new(result, response)
+        }        
     },
-      # '@name get_controlled_list_phase_or_stage
-      # '@title Get allowed values for the field &#39;PhaseOrStage&#39; in a specimen document
-      # '@description 
-      # '@return \code{ character }
-      get_controlled_list_phase_or_stage = function(...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
-
-      urlPath <- "/metadata/getControlledList/PhaseOrStage"
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+    # '@name get_controlled_list_phase_or_stage
+    # '@title Get allowed values for the field &#39;PhaseOrStage&#39; in a specimen document
+    # '@description 
+    # '@return \code{ character }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    get_controlled_list_phase_or_stage = function(...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getControlledList/PhaseOrStage"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- character$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## return vector or single value
+            result <- as.character(unlist(httr::content(response)))
+            Response$new(result, response)
+        }        
     },
-      # '@name get_controlled_list_sex
-      # '@title Get allowed values for the field &#39;Sex&#39; in a specimen document
-      # '@description 
-      # '@return \code{ character }
-      get_controlled_list_sex = function(...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
-
-      urlPath <- "/metadata/getControlledList/Sex"
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+    # '@name get_controlled_list_sex
+    # '@title Get allowed values for the field &#39;Sex&#39; in a specimen document
+    # '@description 
+    # '@return \code{ character }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    get_controlled_list_sex = function(...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getControlledList/Sex"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- character$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## return vector or single value
+            result <- as.character(unlist(httr::content(response)))
+            Response$new(result, response)
+        }        
     },
-      # '@name get_controlled_list_specimen_type_status
-      # '@title Get allowed values for the field &#39;SpecimenTypeStatus&#39; in a specimen document
-      # '@description 
-      # '@return \code{ character }
-      get_controlled_list_specimen_type_status = function(...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
-
-      urlPath <- "/metadata/getControlledList/SpecimenTypeStatus"
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+    # '@name get_controlled_list_specimen_type_status
+    # '@title Get allowed values for the field &#39;SpecimenTypeStatus&#39; in a specimen document
+    # '@description 
+    # '@return \code{ character }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    get_controlled_list_specimen_type_status = function(...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getControlledList/SpecimenTypeStatus"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- character$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## return vector or single value
+            result <- as.character(unlist(httr::content(response)))
+            Response$new(result, response)
+        }        
     },
-      # '@name get_controlled_list_taxonomic_status
-      # '@title Get allowed values for the field &#39;TaxonomicStatus&#39; in specimen and taxon documents
-      # '@description 
-      # '@return \code{ character }
-      get_controlled_list_taxonomic_status = function(...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
-
-      urlPath <- "/metadata/getControlledList/TaxonomicStatus"
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+    # '@name get_controlled_list_taxonomic_status
+    # '@title Get allowed values for the field &#39;TaxonomicStatus&#39; in specimen and taxon documents
+    # '@description 
+    # '@return \code{ character }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    get_controlled_list_taxonomic_status = function(...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getControlledList/TaxonomicStatus"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- character$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## return vector or single value
+            result <- as.character(unlist(httr::content(response)))
+            Response$new(result, response)
+        }        
     },
-      # '@name get_controlled_lists
-      # '@title Get the names of fields for which a controlled vocabulary exists
-      # '@description Possible values for fields with controlled vocabularies can be queried with metadata/getControlledList/{field}
-      # '@return \code{ character }
-      get_controlled_lists = function(...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
-
-      urlPath <- "/metadata/getControlledLists"
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+    # '@name get_controlled_lists
+    # '@title Get the names of fields for which a controlled vocabulary exists
+    # '@description Possible values for fields with controlled vocabularies can be queried with metadata/getControlledList/{field}
+    # '@return \code{ character }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    get_controlled_lists = function(...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getControlledLists"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- character$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## return vector or single value
+            result <- as.character(unlist(httr::content(response)))
+            Response$new(result, response)
+        }        
     },
-      # '@name get_rest_services
-      # '@title List all available REST services and their parameters
-      # '@description lists end point name, http method, response type, and URL
-      # '@return \code{ RestService }
-      get_rest_services = function(...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
-
-      urlPath <- "/metadata/getRestServices"
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+    # '@name get_rest_services
+    # '@title List all available REST services and their parameters
+    # '@description lists end point name, http method, response type, and URL
+    # '@return \code{ RestService }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    get_rest_services = function(...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getRestServices"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- RestService$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            returnObject <- RestService$new()
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeObject=self$getTypeObject()))
+            Response$new(result, response)
+        }        
     },
-      # '@name get_setting
-      # '@title Get the value of an NBA setting
-      # '@description All settings can be queried with /metadata/getSettings
-      # '@return \code{ Specimen }
-      get_setting = function(name, ...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
+    # '@name get_setting
+    # '@title Get the value of an NBA setting
+    # '@description All settings can be queried with /metadata/getSettings
+    # '@return \code{ Specimen }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    get_setting = function(name=NULL, ...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getSetting/{name}"
+        if (!missing(`name`)) {
+            urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
+        }
 
-      urlPath <- "/metadata/getSetting/{name}"
-      if (!missing(`name`)) {
-        urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
-      }
-
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- Specimen$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            returnObject <- Specimen$new()
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            Response$new(result, response)
+        }        
     },
-      # '@name get_settings
-      # '@title List all publicly available configuration settings for the NBA
-      # '@description The value of a specific setting can be queried with metadata/getSetting/{name}
-      # '@return \code{ Specimen }
-      get_settings = function(...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
-
-      urlPath <- "/metadata/getSettings"
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+    # '@name get_settings
+    # '@title List all publicly available configuration settings for the NBA
+    # '@description The value of a specific setting can be queried with metadata/getSetting/{name}
+    # '@return \code{ Specimen }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    get_settings = function(...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getSettings"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- Specimen$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            returnObject <- Specimen$new()
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            Response$new(result, response)
+        }        
     },
-      # '@name get_source_systems
-      # '@title Get the data sources from which the data was retrieved
-      # '@description Returns code and name of all source systems
-      # '@return \code{ SourceSystem }
-      get_source_systems = function(...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
-
-      urlPath <- "/metadata/getSourceSystems"
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+    # '@name get_source_systems
+    # '@title Get the data sources from which the data was retrieved
+    # '@description Returns code and name of all source systems
+    # '@return \code{ SourceSystem }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    get_source_systems = function(...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getSourceSystems"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- SourceSystem$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            returnObject <- SourceSystem$new()
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeObject=self$getTypeObject()))
+            Response$new(result, response)
+        }        
     }
   )
 )

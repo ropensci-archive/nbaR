@@ -153,7 +153,7 @@ ScientificName <- R6::R6Class(
       ScientificNameList[sapply(ScientificNameList, length) > 0]
       },
 
-    fromList = function(ScientificNameList) {
+    fromList = function(ScientificNameList, typeObject=NULL) {
       if (!is.null(ScientificNameList[['fullScientificName']])) {      
           self[['fullScientificName']] <- ScientificNameList[['fullScientificName']]
       }
@@ -192,12 +192,12 @@ ScientificName <- R6::R6Class(
       }
       if (!is.null(ScientificNameList[['references']])) {      
           self[['references']] <- lapply(ScientificNameList[['references']], function(x) {
-             Reference$new()$fromList(x)            
+             Reference$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(ScientificNameList[['experts']])) {      
           self[['experts']] <- lapply(ScientificNameList[['experts']], function(x) {
-             Person$new()$fromList(x)            
+             Person$new()$fromList(x, typeObject=typeObject)            
           })
       }
       return(self)
@@ -207,22 +207,24 @@ ScientificName <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(ScientificNameJson) {
-      ScientificNameObject <- jsonlite::fromJSON(ScientificNameJson, simplifyVector=F)
-      self[['fullScientificName']] <- ScientificNameObject[['fullScientificName']]
-      self[['taxonomicStatus']] <- ScientificNameObject[['taxonomicStatus']]
-      self[['genusOrMonomial']] <- ScientificNameObject[['genusOrMonomial']]
-      self[['subgenus']] <- ScientificNameObject[['subgenus']]
-      self[['specificEpithet']] <- ScientificNameObject[['specificEpithet']]
-      self[['infraspecificEpithet']] <- ScientificNameObject[['infraspecificEpithet']]
-      self[['infraspecificMarker']] <- ScientificNameObject[['infraspecificMarker']]
-      self[['nameAddendum']] <- ScientificNameObject[['nameAddendum']]
-      self[['authorshipVerbatim']] <- ScientificNameObject[['authorshipVerbatim']]
-      self[['author']] <- ScientificNameObject[['author']]
-      self[['year']] <- ScientificNameObject[['year']]
-      self[['scientificNameGroup']] <- ScientificNameObject[['scientificNameGroup']]
-      self[['references']] <- lapply(ScientificNameObject[['references']], function(x) Reference$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['experts']] <- lapply(ScientificNameObject[['experts']], function(x) Person$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
+    fromJSONString = function(ScientificNameJson, typeObject=NULL) {
+      ScientificNameList <- jsonlite::fromJSON(ScientificNameJson, simplifyVector=F)
+      self[['fullScientificName']] <- ScientificNameList[['fullScientificName']]
+      self[['taxonomicStatus']] <- ScientificNameList[['taxonomicStatus']]
+      self[['genusOrMonomial']] <- ScientificNameList[['genusOrMonomial']]
+      self[['subgenus']] <- ScientificNameList[['subgenus']]
+      self[['specificEpithet']] <- ScientificNameList[['specificEpithet']]
+      self[['infraspecificEpithet']] <- ScientificNameList[['infraspecificEpithet']]
+      self[['infraspecificMarker']] <- ScientificNameList[['infraspecificMarker']]
+      self[['nameAddendum']] <- ScientificNameList[['nameAddendum']]
+      self[['authorshipVerbatim']] <- ScientificNameList[['authorshipVerbatim']]
+      self[['author']] <- ScientificNameList[['author']]
+      self[['year']] <- ScientificNameList[['year']]
+      self[['scientificNameGroup']] <- ScientificNameList[['scientificNameGroup']]
+      self[['references']] <- lapply(ScientificNameList[['references']],
+                                        function(x) Reference$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['experts']] <- lapply(ScientificNameList[['experts']],
+                                        function(x) Person$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
       invisible(self)
     }
   )

@@ -63,19 +63,23 @@ TaxonomicEnrichment <- R6::R6Class(
       TaxonomicEnrichmentList[sapply(TaxonomicEnrichmentList, length) > 0]
       },
 
-    fromList = function(TaxonomicEnrichmentList) {
+    fromList = function(TaxonomicEnrichmentList, typeObject=NULL) {
       if (!is.null(TaxonomicEnrichmentList[['vernacularNames']])) {      
           self[['vernacularNames']] <- lapply(TaxonomicEnrichmentList[['vernacularNames']], function(x) {
-             SummaryVernacularName$new()$fromList(x)            
+             SummaryVernacularName$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(TaxonomicEnrichmentList[['synonyms']])) {      
           self[['synonyms']] <- lapply(TaxonomicEnrichmentList[['synonyms']], function(x) {
-             SummaryScientificName$new()$fromList(x)            
+             SummaryScientificName$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(TaxonomicEnrichmentList[['sourceSystem']])) {      
-          self[['sourceSystem']] <- SummarySourceSystem$new()$fromList(TaxonomicEnrichmentList[['sourceSystem']])
+          if (is.null(typeObject)) {
+              self[['sourceSystem']] <- SummarySourceSystem$new()$fromList(TaxonomicEnrichmentList[['sourceSystem']])
+          } else {
+              self[['sourceSystem']] <- typeObject$fromList(TaxonomicEnrichmentList[['sourceSystem']])
+          }
       }
       if (!is.null(TaxonomicEnrichmentList[['taxonId']])) {      
           self[['taxonId']] <- TaxonomicEnrichmentList[['taxonId']]
@@ -87,13 +91,18 @@ TaxonomicEnrichment <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(TaxonomicEnrichmentJson) {
-      TaxonomicEnrichmentObject <- jsonlite::fromJSON(TaxonomicEnrichmentJson, simplifyVector=F)
-      self[['vernacularNames']] <- lapply(TaxonomicEnrichmentObject[['vernacularNames']], function(x) SummaryVernacularName$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['synonyms']] <- lapply(TaxonomicEnrichmentObject[['synonyms']], function(x) SummaryScientificName$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      SummarySourceSystemObject <- SummarySourceSystem$new()
-      self[['sourceSystem']] <- SummarySourceSystemObject$fromJSONString(jsonlite::toJSON(TaxonomicEnrichmentObject[['sourceSystem']], auto_unbox = TRUE))
-      self[['taxonId']] <- TaxonomicEnrichmentObject[['taxonId']]
+    fromJSONString = function(TaxonomicEnrichmentJson, typeObject=NULL) {
+      TaxonomicEnrichmentList <- jsonlite::fromJSON(TaxonomicEnrichmentJson, simplifyVector=F)
+      self[['vernacularNames']] <- lapply(TaxonomicEnrichmentList[['vernacularNames']],
+                                        function(x) SummaryVernacularName$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['synonyms']] <- lapply(TaxonomicEnrichmentList[['synonyms']],
+                                        function(x) SummaryScientificName$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      if (is.null(typeObject)) {
+          self[['sourceSystem']] <- SummarySourceSystem$new()$fromJSONString(jsonlite::toJSON(TaxonomicEnrichmentList[['sourceSystem']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['sourceSystem']] <- typeObject$fromJSONString(jsonlite::toJSON(TaxonomicEnrichmentList[['sourceSystem']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      self[['taxonId']] <- TaxonomicEnrichmentList[['taxonId']]
       invisible(self)
     }
   )

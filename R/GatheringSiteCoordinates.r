@@ -97,7 +97,7 @@ GatheringSiteCoordinates <- R6::R6Class(
       GatheringSiteCoordinatesList[sapply(GatheringSiteCoordinatesList, length) > 0]
       },
 
-    fromList = function(GatheringSiteCoordinatesList) {
+    fromList = function(GatheringSiteCoordinatesList, typeObject=NULL) {
       if (!is.null(GatheringSiteCoordinatesList[['longitudeDecimal']])) {      
           self[['longitudeDecimal']] <- GatheringSiteCoordinatesList[['longitudeDecimal']]
       }
@@ -120,7 +120,11 @@ GatheringSiteCoordinates <- R6::R6Class(
           self[['gridQualifier']] <- GatheringSiteCoordinatesList[['gridQualifier']]
       }
       if (!is.null(GatheringSiteCoordinatesList[['geoShape']])) {      
-          self[['geoShape']] <- Point$new()$fromList(GatheringSiteCoordinatesList[['geoShape']])
+          if (is.null(typeObject)) {
+              self[['geoShape']] <- Point$new()$fromList(GatheringSiteCoordinatesList[['geoShape']])
+          } else {
+              self[['geoShape']] <- typeObject$fromList(GatheringSiteCoordinatesList[['geoShape']])
+          }
       }
       return(self)
     },
@@ -129,17 +133,20 @@ GatheringSiteCoordinates <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(GatheringSiteCoordinatesJson) {
-      GatheringSiteCoordinatesObject <- jsonlite::fromJSON(GatheringSiteCoordinatesJson, simplifyVector=F)
-      self[['longitudeDecimal']] <- GatheringSiteCoordinatesObject[['longitudeDecimal']]
-      self[['latitudeDecimal']] <- GatheringSiteCoordinatesObject[['latitudeDecimal']]
-      self[['gridCellSystem']] <- GatheringSiteCoordinatesObject[['gridCellSystem']]
-      self[['gridLatitudeDecimal']] <- GatheringSiteCoordinatesObject[['gridLatitudeDecimal']]
-      self[['gridLongitudeDecimal']] <- GatheringSiteCoordinatesObject[['gridLongitudeDecimal']]
-      self[['gridCellCode']] <- GatheringSiteCoordinatesObject[['gridCellCode']]
-      self[['gridQualifier']] <- GatheringSiteCoordinatesObject[['gridQualifier']]
-      PointObject <- Point$new()
-      self[['geoShape']] <- PointObject$fromJSONString(jsonlite::toJSON(GatheringSiteCoordinatesObject[['geoShape']], auto_unbox = TRUE))
+    fromJSONString = function(GatheringSiteCoordinatesJson, typeObject=NULL) {
+      GatheringSiteCoordinatesList <- jsonlite::fromJSON(GatheringSiteCoordinatesJson, simplifyVector=F)
+      self[['longitudeDecimal']] <- GatheringSiteCoordinatesList[['longitudeDecimal']]
+      self[['latitudeDecimal']] <- GatheringSiteCoordinatesList[['latitudeDecimal']]
+      self[['gridCellSystem']] <- GatheringSiteCoordinatesList[['gridCellSystem']]
+      self[['gridLatitudeDecimal']] <- GatheringSiteCoordinatesList[['gridLatitudeDecimal']]
+      self[['gridLongitudeDecimal']] <- GatheringSiteCoordinatesList[['gridLongitudeDecimal']]
+      self[['gridCellCode']] <- GatheringSiteCoordinatesList[['gridCellCode']]
+      self[['gridQualifier']] <- GatheringSiteCoordinatesList[['gridQualifier']]
+      if (is.null(typeObject)) {
+          self[['geoShape']] <- Point$new()$fromJSONString(jsonlite::toJSON(GatheringSiteCoordinatesList[['geoShape']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['geoShape']] <- typeObject$fromJSONString(jsonlite::toJSON(GatheringSiteCoordinatesList[['geoShape']], auto_unbox = TRUE), typeObject=typeObject)
+      }
       invisible(self)
     }
   )

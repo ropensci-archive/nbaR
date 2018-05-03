@@ -10,7 +10,6 @@
 #' @description nbaR.Taxon
 #'
 #' @field path Stores url path of the request.
-#' @field apiClient Handles the client-server communication.
 #' @field userAgent Set the user agent of the request.
 #'
 #' @importFrom R6 R6Class
@@ -18,7 +17,7 @@
 #' @section Methods:
 #' \describe{
 #'
-#' count_http_get3 Get the number of taxa matching a condition
+#' count_http_get2 Get the number of taxa matching a condition
 #'
 #'
 #' count_http_post_json3 Get the number of taxa matching a condition
@@ -54,10 +53,10 @@
 #' get_paths3 Returns the full path of all fields within a document
 #'
 #'
-#' get_settings6 Get the value of an NBA setting
+#' get_settings6 List all publicly available configuration settings for the NBA
 #'
 #'
-#' get_settings7 List all publicly available configuration settings for the NBA
+#' get_settings7 Get the value of an NBA setting
 #'
 #'
 #' group_by_scientific_name_http_get Aggregates Taxon and Specimen documents according to their scientific names
@@ -69,645 +68,597 @@
 #' is_operator_allowed3 Checks if a given operator is allowed for a given field
 #'
 #'
-#' query_http_get3 Query for taxa
+#' query Query for taxa
 #'
 #'
-#' query_http_post_json3 Query for taxa
+#' query_http_post_json2 Query for taxa
 #'
 #' }
 #'
 #' @export
 TaxonClient <- R6::R6Class(
-  'TaxonClient',
-  public = list(
-    userAgent = "Swagger-Codegen/0.0.0/r",
-    apiClient = NULL,
-    initialize = function(apiClient){
-      if (!missing(apiClient)) {
-        self$apiClient <- apiClient
-      }
-      else {
-        self$apiClient <- ApiClient$new()
-      }
+    'TaxonClient',
+    inherit=ApiClient,
+    public = list(
+        userAgent = "Swagger-Codegen/0.0.0/r",
+        initialize = function(basePath){
+        super$initialize(basePath)
     },
 
-      # '@name count_http_get3
-      # '@title Get the number of taxa matching a condition
-      # '@description Conditions given as query parameters or a querySpec JSON
-      # '@return \code{ integer }
-      # '@param source_system_code: character; Example query param
-      count_http_get3 = function(source_system_code, ...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
+    # '@name count_http_get2
+    # '@title Get the number of taxa matching a condition
+    # '@description Conditions given as query parameters or a querySpec JSON
+    # '@return \code{ integer }
+    # '@param source_system_code: character; Example query param
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    count_http_get2 = function(sourceSystem.code=NULL, queryParams=list(), ...){
+        headerParams <- character()
+        if (!is.null(querySpec) & length(queryParams) > 0) {
+            stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
+        }
+            
+        if (!missing(`sourceSystem.code`)) {
+          ## querySpec can be either JSON string or object of type QuerySpec. 
+          param <- ifelse(typeof(`sourceSystem.code`) == "environment", `sourceSystem.code`$toJSONString(), `sourceSystem.code`)    
+          queryParams['sourceSystem.code'] <- param
+        }
+        ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
+        names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))
 
-      if (!missing(`source_system_code`)) {
-        param <- ifelse(typeof(`source_system_code`) == "environment", `source_system_code`$toJSONString(), `source_system_code`)    
-        queryParams['sourceSystem.code'] <- param
-      }
-
-      urlPath <- "/taxon/count"
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+        urlPath <- "/taxon/count"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- integer$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## return vector or single value
+            result <- as.integer(unlist(httr::content(response)))
+            Response$new(result, response)
+        }        
     },
-      # '@name count_http_post_json3
-      # '@title Get the number of taxa matching a condition
-      # '@description Conditions given as query parameters or a querySpec JSON
-      # '@return \code{ integer }
-      count_http_post_json3 = function(body, ...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
+    # '@name count_http_post_json3
+    # '@title Get the number of taxa matching a condition
+    # '@description Conditions given as query parameters or a querySpec JSON
+    # '@return \code{ integer }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    count_http_post_json3 = function(body=NULL, ...){
+        headerParams <- character()
+        queryParams <- list()
+        if (!missing(`body`)) {
+            body <- `body`$toJSONString()
+        } else {
+            body <- NULL
+        }
 
-      if (!missing(`body`)) {
-        body <- `body`$toJSONString()
-      } else {
-        body <- NULL
-      }
-
-      urlPath <- "/taxon/count"
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+        urlPath <- "/taxon/count"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "POST",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- integer$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## return vector or single value
+            result <- as.integer(unlist(httr::content(response)))
+            Response$new(result, response)
+        }        
     },
-      # '@name dwca_get_data_set
-      # '@title Download dataset as Darwin Core Archive File
-      # '@description Available datasets can be queried with /taxon/dwca/getDataSetNames. Response saved to &lt;datasetname&gt;-&lt;yyyymmdd&gt;.dwca.zip
-      # '@return \code{  }
-      dwca_get_data_set = function(dataset, ...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
+    # '@name dwca_get_data_set
+    # '@title Download dataset as Darwin Core Archive File
+    # '@description Available datasets can be queried with /taxon/dwca/getDataSetNames. Response saved to &lt;datasetname&gt;-&lt;yyyymmdd&gt;.dwca.zip
+    # '@return \code{  }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    dwca_get_data_set = function(dataset=NULL, ...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/taxon/dwca/getDataSet/{dataset}"
+        if (!missing(`dataset`)) {
+            urlPath <- gsub(paste0("\\{", "dataset", "\\}"), `dataset`, urlPath)
+        }
 
-      urlPath <- "/taxon/dwca/getDataSet/{dataset}"
-      if (!missing(`dataset`)) {
-        urlPath <- gsub(paste0("\\{", "dataset", "\\}"), `dataset`, urlPath)
-      }
-
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        # void response, no need to return anything
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## return reponse object with empty content
+            Response$new(NULL, response)
+        }        
     },
-      # '@name dwca_get_data_set_names
-      # '@title Retrieve the names of all available datasets
-      # '@description Individual datasets can then be downloaded with /dwca/getDataSet/{dataset}
-      # '@return \code{ character }
-      dwca_get_data_set_names = function(...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
-
-      urlPath <- "/taxon/dwca/getDataSetNames"
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+    # '@name dwca_get_data_set_names
+    # '@title Retrieve the names of all available datasets
+    # '@description Individual datasets can then be downloaded with /dwca/getDataSet/{dataset}
+    # '@return \code{ character }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    dwca_get_data_set_names = function(...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/taxon/dwca/getDataSetNames"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- character$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## return vector or single value
+            result <- as.character(unlist(httr::content(response)))
+            Response$new(result, response)
+        }        
     },
-      # '@name dwca_query_http_get
-      # '@title Dynamic download service: Query for taxa and return result as Darwin Core Archive File
-      # '@description Query with query parameters or querySpec JSON. Response saved to nba-taxa.dwca.zip
-      # '@return \code{  }
-      # '@param source_system_code: character; Example query param
-      dwca_query_http_get = function(source_system_code, ...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
+    # '@name dwca_query_http_get
+    # '@title Dynamic download service: Query for taxa and return result as Darwin Core Archive File
+    # '@description Query with query parameters or querySpec JSON. Response saved to nba-taxa.dwca.zip
+    # '@return \code{  }
+    # '@param source_system_code: character; Example query param
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    dwca_query_http_get = function(sourceSystem.code=NULL, queryParams=list(), ...){
+        headerParams <- character()
+        if (!is.null(querySpec) & length(queryParams) > 0) {
+            stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
+        }
+            
+        if (!missing(`sourceSystem.code`)) {
+          ## querySpec can be either JSON string or object of type QuerySpec. 
+          param <- ifelse(typeof(`sourceSystem.code`) == "environment", `sourceSystem.code`$toJSONString(), `sourceSystem.code`)    
+          queryParams['sourceSystem.code'] <- param
+        }
+        ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
+        names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))
 
-      if (!missing(`source_system_code`)) {
-        param <- ifelse(typeof(`source_system_code`) == "environment", `source_system_code`$toJSONString(), `source_system_code`)    
-        queryParams['sourceSystem.code'] <- param
-      }
-
-      urlPath <- "/taxon/dwca/query"
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+        urlPath <- "/taxon/dwca/query"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        # void response, no need to return anything
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## return reponse object with empty content
+            Response$new(NULL, response)
+        }        
     },
-      # '@name dwca_query_http_post_json
-      # '@title Dynamic download service: Query for taxa and return result as Darwin Core Archive File
-      # '@description Query with query parameters or querySpec JSON. Response saved to nba-taxa.dwca.zip
-      # '@return \code{  }
-      # '@param source_system_code: character; Example query param
-      dwca_query_http_post_json = function(body, source_system_code, ...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
+    # '@name dwca_query_http_post_json
+    # '@title Dynamic download service: Query for taxa and return result as Darwin Core Archive File
+    # '@description Query with query parameters or querySpec JSON. Response saved to nba-taxa.dwca.zip
+    # '@return \code{  }
+    # '@param source_system_code: character; Example query param
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    dwca_query_http_post_json = function(body=NULL, sourceSystem.code=NULL, queryParams=list(), ...){
+        headerParams <- character()
+        if (!is.null(querySpec) & length(queryParams) > 0) {
+            stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
+        }
+            
+        if (!missing(`sourceSystem.code`)) {
+          ## querySpec can be either JSON string or object of type QuerySpec. 
+          param <- ifelse(typeof(`sourceSystem.code`) == "environment", `sourceSystem.code`$toJSONString(), `sourceSystem.code`)    
+          queryParams['sourceSystem.code'] <- param
+        }
+        ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
+        names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))
 
-      if (!missing(`source_system_code`)) {
-        param <- ifelse(typeof(`source_system_code`) == "environment", `source_system_code`$toJSONString(), `source_system_code`)    
-        queryParams['sourceSystem.code'] <- param
-      }
+        if (!missing(`body`)) {
+            body <- `body`$toJSONString()
+        } else {
+            body <- NULL
+        }
 
-      if (!missing(`body`)) {
-        body <- `body`$toJSONString()
-      } else {
-        body <- NULL
-      }
-
-      urlPath <- "/taxon/dwca/query"
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+        urlPath <- "/taxon/dwca/query"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "POST",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        # void response, no need to return anything
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## return reponse object with empty content
+            Response$new(NULL, response)
+        }        
     },
-      # '@name find4
-      # '@title Find a taxon by id
-      # '@description If found, returns a single taxon
-      # '@return \code{ Taxon }
-      find4 = function(id, ...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
+    # '@name find4
+    # '@title Find a taxon by id
+    # '@description If found, returns a single taxon
+    # '@return \code{ Taxon }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    find4 = function(id=NULL, ...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/taxon/find/{id}"
+        if (!missing(`id`)) {
+            urlPath <- gsub(paste0("\\{", "id", "\\}"), `id`, urlPath)
+        }
 
-      urlPath <- "/taxon/find/{id}"
-      if (!missing(`id`)) {
-        urlPath <- gsub(paste0("\\{", "id", "\\}"), `id`, urlPath)
-      }
-
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- Taxon$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            returnObject <- Taxon$new()
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            Response$new(result, response)
+        }        
     },
-      # '@name find_by_ids4
-      # '@title Find taxa by ids
-      # '@description Given multiple ids, returns a list of taxa
-      # '@return \code{ Taxon }
-      find_by_ids4 = function(ids, ...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
+    # '@name find_by_ids4
+    # '@title Find taxa by ids
+    # '@description Given multiple ids, returns a list of taxa
+    # '@return \code{ Taxon }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    find_by_ids4 = function(ids=NULL, ...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/taxon/findByIds/{ids}"
+        if (!missing(`ids`)) {
+            urlPath <- gsub(paste0("\\{", "ids", "\\}"), `ids`, urlPath)
+        }
 
-      urlPath <- "/taxon/findByIds/{ids}"
-      if (!missing(`ids`)) {
-        urlPath <- gsub(paste0("\\{", "ids", "\\}"), `ids`, urlPath)
-      }
-
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- Taxon$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            returnObject <- Taxon$new()
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeObject=self$getTypeObject()))
+            Response$new(result, response)
+        }        
     },
-      # '@name get_distinct_values_http_get3
-      # '@title Get all different values that can be found for one field
-      # '@description A list of all fields for taxon documents can be retrieved with /metadata/getFieldInfo
-      # '@return \code{ Specimen }
-      get_distinct_values_http_get3 = function(field, ...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
+    # '@name get_distinct_values_http_get3
+    # '@title Get all different values that can be found for one field
+    # '@description A list of all fields for taxon documents can be retrieved with /metadata/getFieldInfo
+    # '@return \code{ Specimen }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    get_distinct_values_http_get3 = function(field=NULL, ...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/taxon/getDistinctValues/{field}"
+        if (!missing(`field`)) {
+            urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
+        }
 
-      urlPath <- "/taxon/getDistinctValues/{field}"
-      if (!missing(`field`)) {
-        urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
-      }
-
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- Specimen$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            returnObject <- Specimen$new()
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            Response$new(result, response)
+        }        
     },
-      # '@name get_distinct_values_http_post_json3
-      # '@title Get all different values that exist for a field
-      # '@description A list of all fields for taxon documents can be retrieved with /metadata/getFieldInfo
-      # '@return \code{ Specimen }
-      get_distinct_values_http_post_json3 = function(field, body, ...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
+    # '@name get_distinct_values_http_post_json3
+    # '@title Get all different values that exist for a field
+    # '@description A list of all fields for taxon documents can be retrieved with /metadata/getFieldInfo
+    # '@return \code{ Specimen }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    get_distinct_values_http_post_json3 = function(field=NULL, body=NULL, ...){
+        headerParams <- character()
+        queryParams <- list()
+        if (!missing(`body`)) {
+            body <- `body`$toJSONString()
+        } else {
+            body <- NULL
+        }
 
-      if (!missing(`body`)) {
-        body <- `body`$toJSONString()
-      } else {
-        body <- NULL
-      }
+        urlPath <- "/taxon/getDistinctValues/{field}"
+        if (!missing(`field`)) {
+            urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
+        }
 
-      urlPath <- "/taxon/getDistinctValues/{field}"
-      if (!missing(`field`)) {
-        urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
-      }
-
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "POST",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- Specimen$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            returnObject <- Specimen$new()
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            Response$new(result, response)
+        }        
     },
-      # '@name get_field_info3
-      # '@title Returns extended information for each field of a specimen document
-      # '@description Info consists of whether the fields is indexed, the ElasticSearch datatype and a list of allowed operators
-      # '@return \code{ Specimen }
-      get_field_info3 = function(...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
-
-      urlPath <- "/taxon/metadata/getFieldInfo"
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+    # '@name get_field_info3
+    # '@title Returns extended information for each field of a specimen document
+    # '@description Info consists of whether the fields is indexed, the ElasticSearch datatype and a list of allowed operators
+    # '@return \code{ Specimen }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    get_field_info3 = function(...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/taxon/metadata/getFieldInfo"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- Specimen$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            returnObject <- Specimen$new()
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            Response$new(result, response)
+        }        
     },
-      # '@name get_paths3
-      # '@title Returns the full path of all fields within a document
-      # '@description See also metadata/getFieldInfo for all allowed operators per field
-      # '@return \code{ character }
-      get_paths3 = function(...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
-
-      urlPath <- "/taxon/metadata/getPaths"
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+    # '@name get_paths3
+    # '@title Returns the full path of all fields within a document
+    # '@description See also metadata/getFieldInfo for all allowed operators per field
+    # '@return \code{ character }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    get_paths3 = function(...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/taxon/metadata/getPaths"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- character$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## return vector or single value
+            result <- as.character(unlist(httr::content(response)))
+            Response$new(result, response)
+        }        
     },
-      # '@name get_settings6
-      # '@title Get the value of an NBA setting
-      # '@description All settings can be queried with /metadata/getSettings
-      # '@return \code{ Specimen }
-      get_settings6 = function(name, ...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
-
-      urlPath <- "/taxon/metadata/getSetting/{name}"
-      if (!missing(`name`)) {
-        urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
-      }
-
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+    # '@name get_settings6
+    # '@title List all publicly available configuration settings for the NBA
+    # '@description The value of a specific setting can be queried with metadata/getSetting/{name}
+    # '@return \code{ Specimen }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    get_settings6 = function(...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/taxon/metadata/getSettings"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- Specimen$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            returnObject <- Specimen$new()
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            Response$new(result, response)
+        }        
     },
-      # '@name get_settings7
-      # '@title List all publicly available configuration settings for the NBA
-      # '@description The value of a specific setting can be queried with metadata/getSetting/{name}
-      # '@return \code{ Specimen }
-      get_settings7 = function(...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
+    # '@name get_settings7
+    # '@title Get the value of an NBA setting
+    # '@description All settings can be queried with /metadata/getSettings
+    # '@return \code{ Specimen }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    get_settings7 = function(name=NULL, ...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/taxon/metadata/getSetting/{name}"
+        if (!missing(`name`)) {
+            urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
+        }
 
-      urlPath <- "/taxon/metadata/getSettings"
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- Specimen$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            returnObject <- Specimen$new()
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            Response$new(result, response)
+        }        
     },
-      # '@name group_by_scientific_name_http_get
-      # '@title Aggregates Taxon and Specimen documents according to their scientific names
-      # '@description Returns a list with ScientificNameGroups, which contain Taxon and Specimen documents that share a scientific name
-      # '@return \code{ QueryResult }
-      # '@param default_classification_family: character; Example query param
-      group_by_scientific_name_http_get = function(default_classification_family, ...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
+    # '@name group_by_scientific_name_http_get
+    # '@title Aggregates Taxon and Specimen documents according to their scientific names
+    # '@description Returns a list with ScientificNameGroups, which contain Taxon and Specimen documents that share a scientific name
+    # '@return \code{ QueryResult }
+    # '@param default_classification_family: character; Example query param
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    group_by_scientific_name_http_get = function(defaultClassification.family=NULL, queryParams=list(), ...){
+        headerParams <- character()
+        if (!is.null(querySpec) & length(queryParams) > 0) {
+            stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
+        }
+            
+        if (!missing(`defaultClassification.family`)) {
+          ## querySpec can be either JSON string or object of type QuerySpec. 
+          param <- ifelse(typeof(`defaultClassification.family`) == "environment", `defaultClassification.family`$toJSONString(), `defaultClassification.family`)    
+          queryParams['defaultClassification.family'] <- param
+        }
+        ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
+        names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))
 
-      if (!missing(`default_classification_family`)) {
-        param <- ifelse(typeof(`default_classification_family`) == "environment", `default_classification_family`$toJSONString(), `default_classification_family`)    
-        queryParams['defaultClassification.family'] <- param
-      }
-
-      urlPath <- "/taxon/groupByScientificName"
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+        urlPath <- "/taxon/groupByScientificName"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- QueryResult$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            returnObject <- QueryResult$new()
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            Response$new(result, response)
+        }        
     },
-      # '@name group_by_scientific_name_http_post_json
-      # '@title Aggregates Taxon and Specimen documents according to their scientific names
-      # '@description Returns a list with ScientificNameGroups, which contain Taxon and Specimen documents that share a scientific name
-      # '@return \code{ QueryResult }
-      group_by_scientific_name_http_post_json = function(body, ...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
+    # '@name group_by_scientific_name_http_post_json
+    # '@title Aggregates Taxon and Specimen documents according to their scientific names
+    # '@description Returns a list with ScientificNameGroups, which contain Taxon and Specimen documents that share a scientific name
+    # '@return \code{ QueryResult }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    group_by_scientific_name_http_post_json = function(body=NULL, ...){
+        headerParams <- character()
+        queryParams <- list()
+        if (!missing(`body`)) {
+            body <- `body`$toJSONString()
+        } else {
+            body <- NULL
+        }
 
-      if (!missing(`body`)) {
-        body <- `body`$toJSONString()
-      } else {
-        body <- NULL
-      }
-
-      urlPath <- "/taxon/groupByScientificName"
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+        urlPath <- "/taxon/groupByScientificName"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "POST",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- QueryResult$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            returnObject <- QueryResult$new()
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            Response$new(result, response)
+        }        
     },
-      # '@name is_operator_allowed3
-      # '@title Checks if a given operator is allowed for a given field
-      # '@description See also metadata/getFieldInfo
-      # '@return \code{ Specimen }
-      is_operator_allowed3 = function(field, operator, ...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
+    # '@name is_operator_allowed3
+    # '@title Checks if a given operator is allowed for a given field
+    # '@description See also metadata/getFieldInfo
+    # '@return \code{ Specimen }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    is_operator_allowed3 = function(field=NULL, operator=NULL, ...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/taxon/metadata/isOperatorAllowed/{field}/{operator}"
+        if (!missing(`field`)) {
+            urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
+        }
 
-      urlPath <- "/taxon/metadata/isOperatorAllowed/{field}/{operator}"
-      if (!missing(`field`)) {
-        urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
-      }
+        if (!missing(`operator`)) {
+            urlPath <- gsub(paste0("\\{", "operator", "\\}"), `operator`, urlPath)
+        }
 
-      if (!missing(`operator`)) {
-        urlPath <- gsub(paste0("\\{", "operator", "\\}"), `operator`, urlPath)
-      }
-
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- Specimen$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            returnObject <- Specimen$new()
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            Response$new(result, response)
+        }        
     },
-      # '@name query_http_get3
-      # '@title Query for taxa
-      # '@description Search for taxa (GET) using query parameters or a querySpec JSON
-      # '@return \code{ QueryResult }
-      # '@param default_classification_genus: character; Example query param
-      query_http_get3 = function(default_classification_genus, ...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
+    # '@name query
+    # '@title Query for taxa
+    # '@description Search for taxa (GET) using query parameters or a querySpec JSON
+    # '@return \code{ QueryResult }
+    # '@param query_spec: ; Object of type QuerySpec or its JSON representation
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    query = function(querySpec=NULL, queryParams=list(), ...){
+        headerParams <- character()
+        if (!is.null(querySpec) & length(queryParams) > 0) {
+            stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
+        }
+            
+        if (!missing(`querySpec`)) {
+          ## querySpec can be either JSON string or object of type QuerySpec. 
+          param <- ifelse(typeof(`querySpec`) == "environment", `querySpec`$toJSONString(), `querySpec`)    
+          queryParams['querySpec'] <- param
+        }
+        ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
+        names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))
 
-      if (!missing(`default_classification_genus`)) {
-        param <- ifelse(typeof(`default_classification_genus`) == "environment", `default_classification_genus`$toJSONString(), `default_classification_genus`)    
-        queryParams['defaultClassification.genus'] <- param
-      }
-
-      urlPath <- "/taxon/query"
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+        urlPath <- "/taxon/query"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- QueryResult$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            returnObject <- QueryResult$new()
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            Response$new(result, response)
+        }        
     },
-      # '@name query_http_post_json3
-      # '@title Query for taxa
-      # '@description Search for taxa (POST) using query parameters or a querySpec JSON
-      # '@return \code{ QueryResult }
-      query_http_post_json3 = function(body, ...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
+    # '@name query_http_post_json2
+    # '@title Query for taxa
+    # '@description Search for taxa (POST) using query parameters or a querySpec JSON
+    # '@return \code{ QueryResult }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    query_http_post_json2 = function(body=NULL, ...){
+        headerParams <- character()
+        queryParams <- list()
+        if (!missing(`body`)) {
+            body <- `body`$toJSONString()
+        } else {
+            body <- NULL
+        }
 
-      if (!missing(`body`)) {
-        body <- `body`$toJSONString()
-      } else {
-        body <- NULL
-      }
-
-      urlPath <- "/taxon/query"
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
+        urlPath <- "/taxon/query"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "POST",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
                                  ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- QueryResult$new()
-        result <- returnObject$fromJSONString(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
 
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            returnObject <- QueryResult$new()
+            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            Response$new(result, response)
+        }        
     }
   )
 )

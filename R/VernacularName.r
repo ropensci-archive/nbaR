@@ -71,7 +71,7 @@ VernacularName <- R6::R6Class(
       VernacularNameList[sapply(VernacularNameList, length) > 0]
       },
 
-    fromList = function(VernacularNameList) {
+    fromList = function(VernacularNameList, typeObject=NULL) {
       if (!is.null(VernacularNameList[['name']])) {      
           self[['name']] <- VernacularNameList[['name']]
       }
@@ -83,12 +83,12 @@ VernacularName <- R6::R6Class(
       }
       if (!is.null(VernacularNameList[['references']])) {      
           self[['references']] <- lapply(VernacularNameList[['references']], function(x) {
-             Reference$new()$fromList(x)            
+             Reference$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(VernacularNameList[['experts']])) {      
           self[['experts']] <- lapply(VernacularNameList[['experts']], function(x) {
-             Person$new()$fromList(x)            
+             Person$new()$fromList(x, typeObject=typeObject)            
           })
       }
       return(self)
@@ -98,13 +98,15 @@ VernacularName <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(VernacularNameJson) {
-      VernacularNameObject <- jsonlite::fromJSON(VernacularNameJson, simplifyVector=F)
-      self[['name']] <- VernacularNameObject[['name']]
-      self[['language']] <- VernacularNameObject[['language']]
-      self[['preferred']] <- VernacularNameObject[['preferred']]
-      self[['references']] <- lapply(VernacularNameObject[['references']], function(x) Reference$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['experts']] <- lapply(VernacularNameObject[['experts']], function(x) Person$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
+    fromJSONString = function(VernacularNameJson, typeObject=NULL) {
+      VernacularNameList <- jsonlite::fromJSON(VernacularNameJson, simplifyVector=F)
+      self[['name']] <- VernacularNameList[['name']]
+      self[['language']] <- VernacularNameList[['language']]
+      self[['preferred']] <- VernacularNameList[['preferred']]
+      self[['references']] <- lapply(VernacularNameList[['references']],
+                                        function(x) Reference$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['experts']] <- lapply(VernacularNameList[['experts']],
+                                        function(x) Person$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
       invisible(self)
     }
   )

@@ -54,16 +54,20 @@ MultiPoint <- R6::R6Class(
       MultiPointList[sapply(MultiPointList, length) > 0]
       },
 
-    fromList = function(MultiPointList) {
+    fromList = function(MultiPointList, typeObject=NULL) {
       if (!is.null(MultiPointList[['crs']])) {      
-          self[['crs']] <- Crs$new()$fromList(MultiPointList[['crs']])
+          if (is.null(typeObject)) {
+              self[['crs']] <- Crs$new()$fromList(MultiPointList[['crs']])
+          } else {
+              self[['crs']] <- typeObject$fromList(MultiPointList[['crs']])
+          }
       }
       if (!is.null(MultiPointList[['bbox']])) {      
           self[['bbox']] <- MultiPointList[['bbox']]
       }
       if (!is.null(MultiPointList[['coordinates']])) {      
           self[['coordinates']] <- lapply(MultiPointList[['coordinates']], function(x) {
-             LngLatAlt$new()$fromList(x)            
+             LngLatAlt$new()$fromList(x, typeObject=typeObject)            
           })
       }
       return(self)
@@ -73,12 +77,16 @@ MultiPoint <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(MultiPointJson) {
-      MultiPointObject <- jsonlite::fromJSON(MultiPointJson, simplifyVector=F)
-      CrsObject <- Crs$new()
-      self[['crs']] <- CrsObject$fromJSONString(jsonlite::toJSON(MultiPointObject[['crs']], auto_unbox = TRUE))
-      self[['bbox']] <- MultiPointObject[['bbox']]
-      self[['coordinates']] <- lapply(MultiPointObject[['coordinates']], function(x) LngLatAlt$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
+    fromJSONString = function(MultiPointJson, typeObject=NULL) {
+      MultiPointList <- jsonlite::fromJSON(MultiPointJson, simplifyVector=F)
+      if (is.null(typeObject)) {
+          self[['crs']] <- Crs$new()$fromJSONString(jsonlite::toJSON(MultiPointList[['crs']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['crs']] <- typeObject$fromJSONString(jsonlite::toJSON(MultiPointList[['crs']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      self[['bbox']] <- MultiPointList[['bbox']]
+      self[['coordinates']] <- lapply(MultiPointList[['coordinates']],
+                                        function(x) LngLatAlt$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
       invisible(self)
     }
   )

@@ -184,9 +184,13 @@ Taxon <- R6::R6Class(
       TaxonList[sapply(TaxonList, length) > 0]
       },
 
-    fromList = function(TaxonList) {
+    fromList = function(TaxonList, typeObject=NULL) {
       if (!is.null(TaxonList[['sourceSystem']])) {      
-          self[['sourceSystem']] <- SourceSystem$new()$fromList(TaxonList[['sourceSystem']])
+          if (is.null(typeObject)) {
+              self[['sourceSystem']] <- SourceSystem$new()$fromList(TaxonList[['sourceSystem']])
+          } else {
+              self[['sourceSystem']] <- typeObject$fromList(TaxonList[['sourceSystem']])
+          }
       }
       if (!is.null(TaxonList[['sourceSystemId']])) {      
           self[['sourceSystemId']] <- TaxonList[['sourceSystemId']]
@@ -210,43 +214,55 @@ Taxon <- R6::R6Class(
           self[['occurrenceStatusVerbatim']] <- TaxonList[['occurrenceStatusVerbatim']]
       }
       if (!is.null(TaxonList[['acceptedName']])) {      
-          self[['acceptedName']] <- ScientificName$new()$fromList(TaxonList[['acceptedName']])
+          if (is.null(typeObject)) {
+              self[['acceptedName']] <- ScientificName$new()$fromList(TaxonList[['acceptedName']])
+          } else {
+              self[['acceptedName']] <- typeObject$fromList(TaxonList[['acceptedName']])
+          }
       }
       if (!is.null(TaxonList[['defaultClassification']])) {      
-          self[['defaultClassification']] <- DefaultClassification$new()$fromList(TaxonList[['defaultClassification']])
+          if (is.null(typeObject)) {
+              self[['defaultClassification']] <- DefaultClassification$new()$fromList(TaxonList[['defaultClassification']])
+          } else {
+              self[['defaultClassification']] <- typeObject$fromList(TaxonList[['defaultClassification']])
+          }
       }
       if (!is.null(TaxonList[['systemClassification']])) {      
           self[['systemClassification']] <- lapply(TaxonList[['systemClassification']], function(x) {
-             Monomial$new()$fromList(x)            
+             Monomial$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(TaxonList[['synonyms']])) {      
           self[['synonyms']] <- lapply(TaxonList[['synonyms']], function(x) {
-             ScientificName$new()$fromList(x)            
+             ScientificName$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(TaxonList[['vernacularNames']])) {      
           self[['vernacularNames']] <- lapply(TaxonList[['vernacularNames']], function(x) {
-             VernacularName$new()$fromList(x)            
+             VernacularName$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(TaxonList[['descriptions']])) {      
           self[['descriptions']] <- lapply(TaxonList[['descriptions']], function(x) {
-             TaxonDescription$new()$fromList(x)            
+             TaxonDescription$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(TaxonList[['references']])) {      
           self[['references']] <- lapply(TaxonList[['references']], function(x) {
-             Reference$new()$fromList(x)            
+             Reference$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(TaxonList[['experts']])) {      
           self[['experts']] <- lapply(TaxonList[['experts']], function(x) {
-             Person$new()$fromList(x)            
+             Person$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(TaxonList[['validName']])) {      
-          self[['validName']] <- ScientificName$new()$fromList(TaxonList[['validName']])
+          if (is.null(typeObject)) {
+              self[['validName']] <- ScientificName$new()$fromList(TaxonList[['validName']])
+          } else {
+              self[['validName']] <- typeObject$fromList(TaxonList[['validName']])
+          }
       }
       return(self)
     },
@@ -255,29 +271,47 @@ Taxon <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(TaxonJson) {
-      TaxonObject <- jsonlite::fromJSON(TaxonJson, simplifyVector=F)
-      SourceSystemObject <- SourceSystem$new()
-      self[['sourceSystem']] <- SourceSystemObject$fromJSONString(jsonlite::toJSON(TaxonObject[['sourceSystem']], auto_unbox = TRUE))
-      self[['sourceSystemId']] <- TaxonObject[['sourceSystemId']]
-      self[['recordURI']] <- TaxonObject[['recordURI']]
-      self[['id']] <- TaxonObject[['id']]
-      self[['sourceSystemParentId']] <- TaxonObject[['sourceSystemParentId']]
-      self[['taxonRank']] <- TaxonObject[['taxonRank']]
-      self[['taxonRemarks']] <- TaxonObject[['taxonRemarks']]
-      self[['occurrenceStatusVerbatim']] <- TaxonObject[['occurrenceStatusVerbatim']]
-      ScientificNameObject <- ScientificName$new()
-      self[['acceptedName']] <- ScientificNameObject$fromJSONString(jsonlite::toJSON(TaxonObject[['acceptedName']], auto_unbox = TRUE))
-      DefaultClassificationObject <- DefaultClassification$new()
-      self[['defaultClassification']] <- DefaultClassificationObject$fromJSONString(jsonlite::toJSON(TaxonObject[['defaultClassification']], auto_unbox = TRUE))
-      self[['systemClassification']] <- lapply(TaxonObject[['systemClassification']], function(x) Monomial$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['synonyms']] <- lapply(TaxonObject[['synonyms']], function(x) ScientificName$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['vernacularNames']] <- lapply(TaxonObject[['vernacularNames']], function(x) VernacularName$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['descriptions']] <- lapply(TaxonObject[['descriptions']], function(x) TaxonDescription$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['references']] <- lapply(TaxonObject[['references']], function(x) Reference$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['experts']] <- lapply(TaxonObject[['experts']], function(x) Person$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      ScientificNameObject <- ScientificName$new()
-      self[['validName']] <- ScientificNameObject$fromJSONString(jsonlite::toJSON(TaxonObject[['validName']], auto_unbox = TRUE))
+    fromJSONString = function(TaxonJson, typeObject=NULL) {
+      TaxonList <- jsonlite::fromJSON(TaxonJson, simplifyVector=F)
+      if (is.null(typeObject)) {
+          self[['sourceSystem']] <- SourceSystem$new()$fromJSONString(jsonlite::toJSON(TaxonList[['sourceSystem']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['sourceSystem']] <- typeObject$fromJSONString(jsonlite::toJSON(TaxonList[['sourceSystem']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      self[['sourceSystemId']] <- TaxonList[['sourceSystemId']]
+      self[['recordURI']] <- TaxonList[['recordURI']]
+      self[['id']] <- TaxonList[['id']]
+      self[['sourceSystemParentId']] <- TaxonList[['sourceSystemParentId']]
+      self[['taxonRank']] <- TaxonList[['taxonRank']]
+      self[['taxonRemarks']] <- TaxonList[['taxonRemarks']]
+      self[['occurrenceStatusVerbatim']] <- TaxonList[['occurrenceStatusVerbatim']]
+      if (is.null(typeObject)) {
+          self[['acceptedName']] <- ScientificName$new()$fromJSONString(jsonlite::toJSON(TaxonList[['acceptedName']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['acceptedName']] <- typeObject$fromJSONString(jsonlite::toJSON(TaxonList[['acceptedName']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      if (is.null(typeObject)) {
+          self[['defaultClassification']] <- DefaultClassification$new()$fromJSONString(jsonlite::toJSON(TaxonList[['defaultClassification']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['defaultClassification']] <- typeObject$fromJSONString(jsonlite::toJSON(TaxonList[['defaultClassification']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      self[['systemClassification']] <- lapply(TaxonList[['systemClassification']],
+                                        function(x) Monomial$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['synonyms']] <- lapply(TaxonList[['synonyms']],
+                                        function(x) ScientificName$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['vernacularNames']] <- lapply(TaxonList[['vernacularNames']],
+                                        function(x) VernacularName$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['descriptions']] <- lapply(TaxonList[['descriptions']],
+                                        function(x) TaxonDescription$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['references']] <- lapply(TaxonList[['references']],
+                                        function(x) Reference$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['experts']] <- lapply(TaxonList[['experts']],
+                                        function(x) Person$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      if (is.null(typeObject)) {
+          self[['validName']] <- ScientificName$new()$fromJSONString(jsonlite::toJSON(TaxonList[['validName']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['validName']] <- typeObject$fromJSONString(jsonlite::toJSON(TaxonList[['validName']], auto_unbox = TRUE), typeObject=typeObject)
+      }
       invisible(self)
     }
   )

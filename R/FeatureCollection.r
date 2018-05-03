@@ -54,16 +54,20 @@ FeatureCollection <- R6::R6Class(
       FeatureCollectionList[sapply(FeatureCollectionList, length) > 0]
       },
 
-    fromList = function(FeatureCollectionList) {
+    fromList = function(FeatureCollectionList, typeObject=NULL) {
       if (!is.null(FeatureCollectionList[['crs']])) {      
-          self[['crs']] <- Crs$new()$fromList(FeatureCollectionList[['crs']])
+          if (is.null(typeObject)) {
+              self[['crs']] <- Crs$new()$fromList(FeatureCollectionList[['crs']])
+          } else {
+              self[['crs']] <- typeObject$fromList(FeatureCollectionList[['crs']])
+          }
       }
       if (!is.null(FeatureCollectionList[['bbox']])) {      
           self[['bbox']] <- FeatureCollectionList[['bbox']]
       }
       if (!is.null(FeatureCollectionList[['features']])) {      
           self[['features']] <- lapply(FeatureCollectionList[['features']], function(x) {
-             Feature$new()$fromList(x)            
+             Feature$new()$fromList(x, typeObject=typeObject)            
           })
       }
       return(self)
@@ -73,12 +77,16 @@ FeatureCollection <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(FeatureCollectionJson) {
-      FeatureCollectionObject <- jsonlite::fromJSON(FeatureCollectionJson, simplifyVector=F)
-      CrsObject <- Crs$new()
-      self[['crs']] <- CrsObject$fromJSONString(jsonlite::toJSON(FeatureCollectionObject[['crs']], auto_unbox = TRUE))
-      self[['bbox']] <- FeatureCollectionObject[['bbox']]
-      self[['features']] <- lapply(FeatureCollectionObject[['features']], function(x) Feature$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
+    fromJSONString = function(FeatureCollectionJson, typeObject=NULL) {
+      FeatureCollectionList <- jsonlite::fromJSON(FeatureCollectionJson, simplifyVector=F)
+      if (is.null(typeObject)) {
+          self[['crs']] <- Crs$new()$fromJSONString(jsonlite::toJSON(FeatureCollectionList[['crs']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['crs']] <- typeObject$fromJSONString(jsonlite::toJSON(FeatureCollectionList[['crs']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      self[['bbox']] <- FeatureCollectionList[['bbox']]
+      self[['features']] <- lapply(FeatureCollectionList[['features']],
+                                        function(x) Feature$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
       invisible(self)
     }
   )

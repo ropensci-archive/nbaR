@@ -54,16 +54,20 @@ GeometryCollection <- R6::R6Class(
       GeometryCollectionList[sapply(GeometryCollectionList, length) > 0]
       },
 
-    fromList = function(GeometryCollectionList) {
+    fromList = function(GeometryCollectionList, typeObject=NULL) {
       if (!is.null(GeometryCollectionList[['crs']])) {      
-          self[['crs']] <- Crs$new()$fromList(GeometryCollectionList[['crs']])
+          if (is.null(typeObject)) {
+              self[['crs']] <- Crs$new()$fromList(GeometryCollectionList[['crs']])
+          } else {
+              self[['crs']] <- typeObject$fromList(GeometryCollectionList[['crs']])
+          }
       }
       if (!is.null(GeometryCollectionList[['bbox']])) {      
           self[['bbox']] <- GeometryCollectionList[['bbox']]
       }
       if (!is.null(GeometryCollectionList[['geometries']])) {      
           self[['geometries']] <- lapply(GeometryCollectionList[['geometries']], function(x) {
-             GeoJsonObject$new()$fromList(x)            
+             GeoJsonObject$new()$fromList(x, typeObject=typeObject)            
           })
       }
       return(self)
@@ -73,12 +77,16 @@ GeometryCollection <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(GeometryCollectionJson) {
-      GeometryCollectionObject <- jsonlite::fromJSON(GeometryCollectionJson, simplifyVector=F)
-      CrsObject <- Crs$new()
-      self[['crs']] <- CrsObject$fromJSONString(jsonlite::toJSON(GeometryCollectionObject[['crs']], auto_unbox = TRUE))
-      self[['bbox']] <- GeometryCollectionObject[['bbox']]
-      self[['geometries']] <- lapply(GeometryCollectionObject[['geometries']], function(x) GeoJsonObject$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
+    fromJSONString = function(GeometryCollectionJson, typeObject=NULL) {
+      GeometryCollectionList <- jsonlite::fromJSON(GeometryCollectionJson, simplifyVector=F)
+      if (is.null(typeObject)) {
+          self[['crs']] <- Crs$new()$fromJSONString(jsonlite::toJSON(GeometryCollectionList[['crs']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['crs']] <- typeObject$fromJSONString(jsonlite::toJSON(GeometryCollectionList[['crs']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      self[['bbox']] <- GeometryCollectionList[['bbox']]
+      self[['geometries']] <- lapply(GeometryCollectionList[['geometries']],
+                                        function(x) GeoJsonObject$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
       invisible(self)
     }
   )

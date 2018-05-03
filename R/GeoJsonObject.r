@@ -44,9 +44,13 @@ GeoJsonObject <- R6::R6Class(
       GeoJsonObjectList[sapply(GeoJsonObjectList, length) > 0]
       },
 
-    fromList = function(GeoJsonObjectList) {
+    fromList = function(GeoJsonObjectList, typeObject=NULL) {
       if (!is.null(GeoJsonObjectList[['crs']])) {      
-          self[['crs']] <- Crs$new()$fromList(GeoJsonObjectList[['crs']])
+          if (is.null(typeObject)) {
+              self[['crs']] <- Crs$new()$fromList(GeoJsonObjectList[['crs']])
+          } else {
+              self[['crs']] <- typeObject$fromList(GeoJsonObjectList[['crs']])
+          }
       }
       if (!is.null(GeoJsonObjectList[['bbox']])) {      
           self[['bbox']] <- GeoJsonObjectList[['bbox']]
@@ -58,11 +62,14 @@ GeoJsonObject <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(GeoJsonObjectJson) {
-      GeoJsonObjectObject <- jsonlite::fromJSON(GeoJsonObjectJson, simplifyVector=F)
-      CrsObject <- Crs$new()
-      self[['crs']] <- CrsObject$fromJSONString(jsonlite::toJSON(GeoJsonObjectObject[['crs']], auto_unbox = TRUE))
-      self[['bbox']] <- GeoJsonObjectObject[['bbox']]
+    fromJSONString = function(GeoJsonObjectJson, typeObject=NULL) {
+      GeoJsonObjectList <- jsonlite::fromJSON(GeoJsonObjectJson, simplifyVector=F)
+      if (is.null(typeObject)) {
+          self[['crs']] <- Crs$new()$fromJSONString(jsonlite::toJSON(GeoJsonObjectList[['crs']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['crs']] <- typeObject$fromJSONString(jsonlite::toJSON(GeoJsonObjectList[['crs']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      self[['bbox']] <- GeoJsonObjectList[['bbox']]
       invisible(self)
     }
   )

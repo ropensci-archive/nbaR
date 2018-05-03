@@ -43,7 +43,7 @@ SourceSystem <- R6::R6Class(
       SourceSystemList[sapply(SourceSystemList, length) > 0]
       },
 
-    fromList = function(SourceSystemList) {
+    fromList = function(SourceSystemList, typeObject=NULL) {
       if (!is.null(SourceSystemList[['code']])) {      
           self[['code']] <- SourceSystemList[['code']]
       }
@@ -57,10 +57,10 @@ SourceSystem <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(SourceSystemJson) {
-      SourceSystemObject <- jsonlite::fromJSON(SourceSystemJson, simplifyVector=F)
-      self[['code']] <- SourceSystemObject[['code']]
-      self[['name']] <- SourceSystemObject[['name']]
+    fromJSONString = function(SourceSystemJson, typeObject=NULL) {
+      SourceSystemList <- jsonlite::fromJSON(SourceSystemJson, simplifyVector=F)
+      self[['code']] <- SourceSystemList[['code']]
+      self[['name']] <- SourceSystemList[['name']]
       invisible(self)
     }
   )

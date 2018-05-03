@@ -295,9 +295,13 @@ Specimen <- R6::R6Class(
       SpecimenList[sapply(SpecimenList, length) > 0]
       },
 
-    fromList = function(SpecimenList) {
+    fromList = function(SpecimenList, typeObject=NULL) {
       if (!is.null(SpecimenList[['sourceSystem']])) {      
-          self[['sourceSystem']] <- SourceSystem$new()$fromList(SpecimenList[['sourceSystem']])
+          if (is.null(typeObject)) {
+              self[['sourceSystem']] <- SourceSystem$new()$fromList(SpecimenList[['sourceSystem']])
+          } else {
+              self[['sourceSystem']] <- typeObject$fromList(SpecimenList[['sourceSystem']])
+          }
       }
       if (!is.null(SpecimenList[['sourceSystemId']])) {      
           self[['sourceSystemId']] <- SpecimenList[['sourceSystemId']]
@@ -372,19 +376,27 @@ Specimen <- R6::R6Class(
           self[['multiMediaPublic']] <- SpecimenList[['multiMediaPublic']]
       }
       if (!is.null(SpecimenList[['acquiredFrom']])) {      
-          self[['acquiredFrom']] <- Agent$new()$fromList(SpecimenList[['acquiredFrom']])
+          if (is.null(typeObject)) {
+              self[['acquiredFrom']] <- Agent$new()$fromList(SpecimenList[['acquiredFrom']])
+          } else {
+              self[['acquiredFrom']] <- typeObject$fromList(SpecimenList[['acquiredFrom']])
+          }
       }
       if (!is.null(SpecimenList[['gatheringEvent']])) {      
-          self[['gatheringEvent']] <- GatheringEvent$new()$fromList(SpecimenList[['gatheringEvent']])
+          if (is.null(typeObject)) {
+              self[['gatheringEvent']] <- GatheringEvent$new()$fromList(SpecimenList[['gatheringEvent']])
+          } else {
+              self[['gatheringEvent']] <- typeObject$fromList(SpecimenList[['gatheringEvent']])
+          }
       }
       if (!is.null(SpecimenList[['identifications']])) {      
           self[['identifications']] <- lapply(SpecimenList[['identifications']], function(x) {
-             SpecimenIdentification$new()$fromList(x)            
+             SpecimenIdentification$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(SpecimenList[['associatedMultiMediaUris']])) {      
           self[['associatedMultiMediaUris']] <- lapply(SpecimenList[['associatedMultiMediaUris']], function(x) {
-             ServiceAccessPoint$new()$fromList(x)            
+             ServiceAccessPoint$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(SpecimenList[['theme']])) {      
@@ -397,41 +409,52 @@ Specimen <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(SpecimenJson) {
-      SpecimenObject <- jsonlite::fromJSON(SpecimenJson, simplifyVector=F)
-      SourceSystemObject <- SourceSystem$new()
-      self[['sourceSystem']] <- SourceSystemObject$fromJSONString(jsonlite::toJSON(SpecimenObject[['sourceSystem']], auto_unbox = TRUE))
-      self[['sourceSystemId']] <- SpecimenObject[['sourceSystemId']]
-      self[['recordURI']] <- SpecimenObject[['recordURI']]
-      self[['id']] <- SpecimenObject[['id']]
-      self[['unitID']] <- SpecimenObject[['unitID']]
-      self[['unitGUID']] <- SpecimenObject[['unitGUID']]
-      self[['collectorsFieldNumber']] <- SpecimenObject[['collectorsFieldNumber']]
-      self[['assemblageID']] <- SpecimenObject[['assemblageID']]
-      self[['sourceInstitutionID']] <- SpecimenObject[['sourceInstitutionID']]
-      self[['sourceID']] <- SpecimenObject[['sourceID']]
-      self[['owner']] <- SpecimenObject[['owner']]
-      self[['licenseType']] <- SpecimenObject[['licenseType']]
-      self[['license']] <- SpecimenObject[['license']]
-      self[['recordBasis']] <- SpecimenObject[['recordBasis']]
-      self[['kindOfUnit']] <- SpecimenObject[['kindOfUnit']]
-      self[['collectionType']] <- SpecimenObject[['collectionType']]
-      self[['sex']] <- SpecimenObject[['sex']]
-      self[['phaseOrStage']] <- SpecimenObject[['phaseOrStage']]
-      self[['title']] <- SpecimenObject[['title']]
-      self[['notes']] <- SpecimenObject[['notes']]
-      self[['preparationType']] <- SpecimenObject[['preparationType']]
-      self[['numberOfSpecimen']] <- SpecimenObject[['numberOfSpecimen']]
-      self[['fromCaptivity']] <- SpecimenObject[['fromCaptivity']]
-      self[['objectPublic']] <- SpecimenObject[['objectPublic']]
-      self[['multiMediaPublic']] <- SpecimenObject[['multiMediaPublic']]
-      AgentObject <- Agent$new()
-      self[['acquiredFrom']] <- AgentObject$fromJSONString(jsonlite::toJSON(SpecimenObject[['acquiredFrom']], auto_unbox = TRUE))
-      GatheringEventObject <- GatheringEvent$new()
-      self[['gatheringEvent']] <- GatheringEventObject$fromJSONString(jsonlite::toJSON(SpecimenObject[['gatheringEvent']], auto_unbox = TRUE))
-      self[['identifications']] <- lapply(SpecimenObject[['identifications']], function(x) SpecimenIdentification$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['associatedMultiMediaUris']] <- lapply(SpecimenObject[['associatedMultiMediaUris']], function(x) ServiceAccessPoint$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['theme']] <- SpecimenObject[['theme']]
+    fromJSONString = function(SpecimenJson, typeObject=NULL) {
+      SpecimenList <- jsonlite::fromJSON(SpecimenJson, simplifyVector=F)
+      if (is.null(typeObject)) {
+          self[['sourceSystem']] <- SourceSystem$new()$fromJSONString(jsonlite::toJSON(SpecimenList[['sourceSystem']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['sourceSystem']] <- typeObject$fromJSONString(jsonlite::toJSON(SpecimenList[['sourceSystem']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      self[['sourceSystemId']] <- SpecimenList[['sourceSystemId']]
+      self[['recordURI']] <- SpecimenList[['recordURI']]
+      self[['id']] <- SpecimenList[['id']]
+      self[['unitID']] <- SpecimenList[['unitID']]
+      self[['unitGUID']] <- SpecimenList[['unitGUID']]
+      self[['collectorsFieldNumber']] <- SpecimenList[['collectorsFieldNumber']]
+      self[['assemblageID']] <- SpecimenList[['assemblageID']]
+      self[['sourceInstitutionID']] <- SpecimenList[['sourceInstitutionID']]
+      self[['sourceID']] <- SpecimenList[['sourceID']]
+      self[['owner']] <- SpecimenList[['owner']]
+      self[['licenseType']] <- SpecimenList[['licenseType']]
+      self[['license']] <- SpecimenList[['license']]
+      self[['recordBasis']] <- SpecimenList[['recordBasis']]
+      self[['kindOfUnit']] <- SpecimenList[['kindOfUnit']]
+      self[['collectionType']] <- SpecimenList[['collectionType']]
+      self[['sex']] <- SpecimenList[['sex']]
+      self[['phaseOrStage']] <- SpecimenList[['phaseOrStage']]
+      self[['title']] <- SpecimenList[['title']]
+      self[['notes']] <- SpecimenList[['notes']]
+      self[['preparationType']] <- SpecimenList[['preparationType']]
+      self[['numberOfSpecimen']] <- SpecimenList[['numberOfSpecimen']]
+      self[['fromCaptivity']] <- SpecimenList[['fromCaptivity']]
+      self[['objectPublic']] <- SpecimenList[['objectPublic']]
+      self[['multiMediaPublic']] <- SpecimenList[['multiMediaPublic']]
+      if (is.null(typeObject)) {
+          self[['acquiredFrom']] <- Agent$new()$fromJSONString(jsonlite::toJSON(SpecimenList[['acquiredFrom']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['acquiredFrom']] <- typeObject$fromJSONString(jsonlite::toJSON(SpecimenList[['acquiredFrom']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      if (is.null(typeObject)) {
+          self[['gatheringEvent']] <- GatheringEvent$new()$fromJSONString(jsonlite::toJSON(SpecimenList[['gatheringEvent']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['gatheringEvent']] <- typeObject$fromJSONString(jsonlite::toJSON(SpecimenList[['gatheringEvent']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      self[['identifications']] <- lapply(SpecimenList[['identifications']],
+                                        function(x) SpecimenIdentification$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['associatedMultiMediaUris']] <- lapply(SpecimenList[['associatedMultiMediaUris']],
+                                        function(x) ServiceAccessPoint$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['theme']] <- SpecimenList[['theme']]
       invisible(self)
     }
   )

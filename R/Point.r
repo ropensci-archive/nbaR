@@ -53,15 +53,23 @@ Point <- R6::R6Class(
       PointList[sapply(PointList, length) > 0]
       },
 
-    fromList = function(PointList) {
+    fromList = function(PointList, typeObject=NULL) {
       if (!is.null(PointList[['crs']])) {      
-          self[['crs']] <- Crs$new()$fromList(PointList[['crs']])
+          if (is.null(typeObject)) {
+              self[['crs']] <- Crs$new()$fromList(PointList[['crs']])
+          } else {
+              self[['crs']] <- typeObject$fromList(PointList[['crs']])
+          }
       }
       if (!is.null(PointList[['bbox']])) {      
           self[['bbox']] <- PointList[['bbox']]
       }
       if (!is.null(PointList[['coordinates']])) {      
-          self[['coordinates']] <- LngLatAlt$new()$fromList(PointList[['coordinates']])
+          if (is.null(typeObject)) {
+              self[['coordinates']] <- LngLatAlt$new()$fromList(PointList[['coordinates']])
+          } else {
+              self[['coordinates']] <- typeObject$fromList(PointList[['coordinates']])
+          }
       }
       return(self)
     },
@@ -70,13 +78,19 @@ Point <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(PointJson) {
-      PointObject <- jsonlite::fromJSON(PointJson, simplifyVector=F)
-      CrsObject <- Crs$new()
-      self[['crs']] <- CrsObject$fromJSONString(jsonlite::toJSON(PointObject[['crs']], auto_unbox = TRUE))
-      self[['bbox']] <- PointObject[['bbox']]
-      LngLatAltObject <- LngLatAlt$new()
-      self[['coordinates']] <- LngLatAltObject$fromJSONString(jsonlite::toJSON(PointObject[['coordinates']], auto_unbox = TRUE))
+    fromJSONString = function(PointJson, typeObject=NULL) {
+      PointList <- jsonlite::fromJSON(PointJson, simplifyVector=F)
+      if (is.null(typeObject)) {
+          self[['crs']] <- Crs$new()$fromJSONString(jsonlite::toJSON(PointList[['crs']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['crs']] <- typeObject$fromJSONString(jsonlite::toJSON(PointList[['crs']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      self[['bbox']] <- PointList[['bbox']]
+      if (is.null(typeObject)) {
+          self[['coordinates']] <- LngLatAlt$new()$fromJSONString(jsonlite::toJSON(PointList[['coordinates']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['coordinates']] <- typeObject$fromJSONString(jsonlite::toJSON(PointList[['coordinates']], auto_unbox = TRUE), typeObject=typeObject)
+      }
       invisible(self)
     }
   )

@@ -43,12 +43,16 @@ QueryResultItem <- R6::R6Class(
       QueryResultItemList[sapply(QueryResultItemList, length) > 0]
       },
 
-    fromList = function(QueryResultItemList) {
+    fromList = function(QueryResultItemList, typeObject=NULL) {
       if (!is.null(QueryResultItemList[['score']])) {      
           self[['score']] <- QueryResultItemList[['score']]
       }
       if (!is.null(QueryResultItemList[['item']])) {      
-          self[['item']] <- Specimen$new()$fromList(QueryResultItemList[['item']])
+          if (is.null(typeObject)) {
+              self[['item']] <- Specimen$new()$fromList(QueryResultItemList[['item']])
+          } else {
+              self[['item']] <- typeObject$fromList(QueryResultItemList[['item']])
+          }
       }
       return(self)
     },
@@ -57,11 +61,14 @@ QueryResultItem <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(QueryResultItemJson) {
-      QueryResultItemObject <- jsonlite::fromJSON(QueryResultItemJson, simplifyVector=F)
-      self[['score']] <- QueryResultItemObject[['score']]
-      SpecimenObject <- Specimen$new()
-      self[['item']] <- SpecimenObject$fromJSONString(jsonlite::toJSON(QueryResultItemObject[['item']], auto_unbox = TRUE))
+    fromJSONString = function(QueryResultItemJson, typeObject=NULL) {
+      QueryResultItemList <- jsonlite::fromJSON(QueryResultItemJson, simplifyVector=F)
+      self[['score']] <- QueryResultItemList[['score']]
+      if (is.null(typeObject)) {
+          self[['item']] <- Specimen$new()$fromJSONString(jsonlite::toJSON(QueryResultItemList[['item']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['item']] <- typeObject$fromJSONString(jsonlite::toJSON(QueryResultItemList[['item']], auto_unbox = TRUE), typeObject=typeObject)
+      }
       invisible(self)
     }
   )

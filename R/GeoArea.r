@@ -115,9 +115,13 @@ GeoArea <- R6::R6Class(
       GeoAreaList[sapply(GeoAreaList, length) > 0]
       },
 
-    fromList = function(GeoAreaList) {
+    fromList = function(GeoAreaList, typeObject=NULL) {
       if (!is.null(GeoAreaList[['sourceSystem']])) {      
-          self[['sourceSystem']] <- SourceSystem$new()$fromList(GeoAreaList[['sourceSystem']])
+          if (is.null(typeObject)) {
+              self[['sourceSystem']] <- SourceSystem$new()$fromList(GeoAreaList[['sourceSystem']])
+          } else {
+              self[['sourceSystem']] <- typeObject$fromList(GeoAreaList[['sourceSystem']])
+          }
       }
       if (!is.null(GeoAreaList[['sourceSystemId']])) {      
           self[['sourceSystemId']] <- GeoAreaList[['sourceSystemId']]
@@ -135,7 +139,11 @@ GeoArea <- R6::R6Class(
           self[['locality']] <- GeoAreaList[['locality']]
       }
       if (!is.null(GeoAreaList[['shape']])) {      
-          self[['shape']] <- GeoJsonObject$new()$fromList(GeoAreaList[['shape']])
+          if (is.null(typeObject)) {
+              self[['shape']] <- GeoJsonObject$new()$fromList(GeoAreaList[['shape']])
+          } else {
+              self[['shape']] <- typeObject$fromList(GeoAreaList[['shape']])
+          }
       }
       if (!is.null(GeoAreaList[['source']])) {      
           self[['source']] <- GeoAreaList[['source']]
@@ -153,20 +161,26 @@ GeoArea <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(GeoAreaJson) {
-      GeoAreaObject <- jsonlite::fromJSON(GeoAreaJson, simplifyVector=F)
-      SourceSystemObject <- SourceSystem$new()
-      self[['sourceSystem']] <- SourceSystemObject$fromJSONString(jsonlite::toJSON(GeoAreaObject[['sourceSystem']], auto_unbox = TRUE))
-      self[['sourceSystemId']] <- GeoAreaObject[['sourceSystemId']]
-      self[['recordURI']] <- GeoAreaObject[['recordURI']]
-      self[['id']] <- GeoAreaObject[['id']]
-      self[['areaType']] <- GeoAreaObject[['areaType']]
-      self[['locality']] <- GeoAreaObject[['locality']]
-      GeoJsonObjectObject <- GeoJsonObject$new()
-      self[['shape']] <- GeoJsonObjectObject$fromJSONString(jsonlite::toJSON(GeoAreaObject[['shape']], auto_unbox = TRUE))
-      self[['source']] <- GeoAreaObject[['source']]
-      self[['isoCode']] <- GeoAreaObject[['isoCode']]
-      self[['countryNL']] <- GeoAreaObject[['countryNL']]
+    fromJSONString = function(GeoAreaJson, typeObject=NULL) {
+      GeoAreaList <- jsonlite::fromJSON(GeoAreaJson, simplifyVector=F)
+      if (is.null(typeObject)) {
+          self[['sourceSystem']] <- SourceSystem$new()$fromJSONString(jsonlite::toJSON(GeoAreaList[['sourceSystem']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['sourceSystem']] <- typeObject$fromJSONString(jsonlite::toJSON(GeoAreaList[['sourceSystem']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      self[['sourceSystemId']] <- GeoAreaList[['sourceSystemId']]
+      self[['recordURI']] <- GeoAreaList[['recordURI']]
+      self[['id']] <- GeoAreaList[['id']]
+      self[['areaType']] <- GeoAreaList[['areaType']]
+      self[['locality']] <- GeoAreaList[['locality']]
+      if (is.null(typeObject)) {
+          self[['shape']] <- GeoJsonObject$new()$fromJSONString(jsonlite::toJSON(GeoAreaList[['shape']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['shape']] <- typeObject$fromJSONString(jsonlite::toJSON(GeoAreaList[['shape']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      self[['source']] <- GeoAreaList[['source']]
+      self[['isoCode']] <- GeoAreaList[['isoCode']]
+      self[['countryNL']] <- GeoAreaList[['countryNL']]
       invisible(self)
     }
   )

@@ -72,7 +72,7 @@
       {{classname}}List[sapply({{classname}}List, length) > 0]
       },
 
-    fromList = function({{classname}}List) {
+    fromList = function({{classname}}List, typeObject=NULL) {
     {{#vars}}      
       if (!is.null({{classname}}List[['{{baseName}}']])) {      
       {{#isListContainer}}
@@ -81,7 +81,7 @@
         {{/isPrimitiveType}}
         {{^isPrimitiveType}}
           self[['{{baseName}}']] <- lapply({{classname}}List[['{{baseName}}']], function(x) {
-             {{datatype}}$new()$fromList(x)            
+             {{datatype}}$new()$fromList(x, typeObject=typeObject)            
           })
         {{/isPrimitiveType}}
       {{/isListContainer}}
@@ -90,7 +90,11 @@
           self[['{{baseName}}']] <- {{classname}}List[['{{baseName}}']]
         {{/isPrimitiveType}}
         {{^isPrimitiveType}}
-          self[['{{baseName}}']] <- {{datatype}}$new()$fromList({{classname}}List[['{{baseName}}']])
+          if (is.null(typeObject)) {
+              self[['{{baseName}}']] <- {{datatype}}$new()$fromList({{classname}}List[['{{baseName}}']])
+          } else {
+              self[['{{baseName}}']] <- typeObject$fromList({{classname}}List[['{{baseName}}']])
+          }
         {{/isPrimitiveType}}        
       {{/isListContainer}}
       }
@@ -102,19 +106,23 @@
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function({{classname}}Json) {
-      {{classname}}Object <- jsonlite::fromJSON({{classname}}Json, simplifyVector=F)
+    fromJSONString = function({{classname}}Json, typeObject=NULL) {
+      {{classname}}List <- jsonlite::fromJSON({{classname}}Json, simplifyVector=F)
       {{#vars}}
       {{#isPrimitiveType}}
-      self[['{{baseName}}']] <- {{classname}}Object[['{{baseName}}']]
+      self[['{{baseName}}']] <- {{classname}}List[['{{baseName}}']]
       {{/isPrimitiveType}}
       {{^isPrimitiveType}}
       {{#isListContainer}}
-      self[['{{baseName}}']] <- lapply({{classname}}Object[['{{baseName}}']], function(x) {{datatype}}$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
+      self[['{{baseName}}']] <- lapply({{classname}}List[['{{baseName}}']],
+                                        function(x) {{datatype}}$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
       {{/isListContainer}}
       {{^isListContainer}}
-      {{datatype}}Object <- {{datatype}}$new()
-      self[['{{baseName}}']] <- {{datatype}}Object$fromJSONString(jsonlite::toJSON({{classname}}Object[['{{baseName}}']], auto_unbox = TRUE))
+      if (is.null(typeObject)) {
+          self[['{{baseName}}']] <- {{datatype}}$new()$fromJSONString(jsonlite::toJSON({{classname}}List[['{{baseName}}']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['{{baseName}}']] <- typeObject$fromJSONString(jsonlite::toJSON({{classname}}List[['{{baseName}}']], auto_unbox = TRUE), typeObject=typeObject)
+      }
       {{/isListContainer}}
       {{/isPrimitiveType}}
       {{/vars}}

@@ -52,7 +52,7 @@ ServiceAccessPoint <- R6::R6Class(
       ServiceAccessPointList[sapply(ServiceAccessPointList, length) > 0]
       },
 
-    fromList = function(ServiceAccessPointList) {
+    fromList = function(ServiceAccessPointList, typeObject=NULL) {
       if (!is.null(ServiceAccessPointList[['accessUri']])) {      
           self[['accessUri']] <- ServiceAccessPointList[['accessUri']]
       }
@@ -69,11 +69,11 @@ ServiceAccessPoint <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(ServiceAccessPointJson) {
-      ServiceAccessPointObject <- jsonlite::fromJSON(ServiceAccessPointJson, simplifyVector=F)
-      self[['accessUri']] <- ServiceAccessPointObject[['accessUri']]
-      self[['format']] <- ServiceAccessPointObject[['format']]
-      self[['variant']] <- ServiceAccessPointObject[['variant']]
+    fromJSONString = function(ServiceAccessPointJson, typeObject=NULL) {
+      ServiceAccessPointList <- jsonlite::fromJSON(ServiceAccessPointJson, simplifyVector=F)
+      self[['accessUri']] <- ServiceAccessPointList[['accessUri']]
+      self[['format']] <- ServiceAccessPointList[['format']]
+      self[['variant']] <- ServiceAccessPointList[['variant']]
       invisible(self)
     }
   )

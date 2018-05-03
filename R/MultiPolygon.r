@@ -54,16 +54,20 @@ MultiPolygon <- R6::R6Class(
       MultiPolygonList[sapply(MultiPolygonList, length) > 0]
       },
 
-    fromList = function(MultiPolygonList) {
+    fromList = function(MultiPolygonList, typeObject=NULL) {
       if (!is.null(MultiPolygonList[['crs']])) {      
-          self[['crs']] <- Crs$new()$fromList(MultiPolygonList[['crs']])
+          if (is.null(typeObject)) {
+              self[['crs']] <- Crs$new()$fromList(MultiPolygonList[['crs']])
+          } else {
+              self[['crs']] <- typeObject$fromList(MultiPolygonList[['crs']])
+          }
       }
       if (!is.null(MultiPolygonList[['bbox']])) {      
           self[['bbox']] <- MultiPolygonList[['bbox']]
       }
       if (!is.null(MultiPolygonList[['coordinates']])) {      
           self[['coordinates']] <- lapply(MultiPolygonList[['coordinates']], function(x) {
-             LngLatAlt$new()$fromList(x)            
+             LngLatAlt$new()$fromList(x, typeObject=typeObject)            
           })
       }
       return(self)
@@ -73,12 +77,16 @@ MultiPolygon <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(MultiPolygonJson) {
-      MultiPolygonObject <- jsonlite::fromJSON(MultiPolygonJson, simplifyVector=F)
-      CrsObject <- Crs$new()
-      self[['crs']] <- CrsObject$fromJSONString(jsonlite::toJSON(MultiPolygonObject[['crs']], auto_unbox = TRUE))
-      self[['bbox']] <- MultiPolygonObject[['bbox']]
-      self[['coordinates']] <- lapply(MultiPolygonObject[['coordinates']], function(x) LngLatAlt$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
+    fromJSONString = function(MultiPolygonJson, typeObject=NULL) {
+      MultiPolygonList <- jsonlite::fromJSON(MultiPolygonJson, simplifyVector=F)
+      if (is.null(typeObject)) {
+          self[['crs']] <- Crs$new()$fromJSONString(jsonlite::toJSON(MultiPolygonList[['crs']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['crs']] <- typeObject$fromJSONString(jsonlite::toJSON(MultiPolygonList[['crs']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      self[['bbox']] <- MultiPolygonList[['bbox']]
+      self[['coordinates']] <- lapply(MultiPolygonList[['coordinates']],
+                                        function(x) LngLatAlt$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
       invisible(self)
     }
   )

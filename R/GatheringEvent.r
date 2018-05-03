@@ -247,7 +247,7 @@ GatheringEvent <- R6::R6Class(
       GatheringEventList[sapply(GatheringEventList, length) > 0]
       },
 
-    fromList = function(GatheringEventList) {
+    fromList = function(GatheringEventList, typeObject=NULL) {
       if (!is.null(GatheringEventList[['projectTitle']])) {      
           self[['projectTitle']] <- GatheringEventList[['projectTitle']]
       }
@@ -304,32 +304,32 @@ GatheringEvent <- R6::R6Class(
       }
       if (!is.null(GatheringEventList[['gatheringPersons']])) {      
           self[['gatheringPersons']] <- lapply(GatheringEventList[['gatheringPersons']], function(x) {
-             Person$new()$fromList(x)            
+             Person$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(GatheringEventList[['gatheringOrganizations']])) {      
           self[['gatheringOrganizations']] <- lapply(GatheringEventList[['gatheringOrganizations']], function(x) {
-             Organization$new()$fromList(x)            
+             Organization$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(GatheringEventList[['siteCoordinates']])) {      
           self[['siteCoordinates']] <- lapply(GatheringEventList[['siteCoordinates']], function(x) {
-             GatheringSiteCoordinates$new()$fromList(x)            
+             GatheringSiteCoordinates$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(GatheringEventList[['chronoStratigraphy']])) {      
           self[['chronoStratigraphy']] <- lapply(GatheringEventList[['chronoStratigraphy']], function(x) {
-             ChronoStratigraphy$new()$fromList(x)            
+             ChronoStratigraphy$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(GatheringEventList[['lithoStratigraphy']])) {      
           self[['lithoStratigraphy']] <- lapply(GatheringEventList[['lithoStratigraphy']], function(x) {
-             LithoStratigraphy$new()$fromList(x)            
+             LithoStratigraphy$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(GatheringEventList[['bioStratigraphic']])) {      
           self[['bioStratigraphic']] <- lapply(GatheringEventList[['bioStratigraphic']], function(x) {
-             BioStratigraphy$new()$fromList(x)            
+             BioStratigraphy$new()$fromList(x, typeObject=typeObject)            
           })
       }
       return(self)
@@ -339,32 +339,38 @@ GatheringEvent <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(GatheringEventJson) {
-      GatheringEventObject <- jsonlite::fromJSON(GatheringEventJson, simplifyVector=F)
-      self[['projectTitle']] <- GatheringEventObject[['projectTitle']]
-      self[['worldRegion']] <- GatheringEventObject[['worldRegion']]
-      self[['continent']] <- GatheringEventObject[['continent']]
-      self[['country']] <- GatheringEventObject[['country']]
-      self[['iso3166Code']] <- GatheringEventObject[['iso3166Code']]
-      self[['provinceState']] <- GatheringEventObject[['provinceState']]
-      self[['island']] <- GatheringEventObject[['island']]
-      self[['locality']] <- GatheringEventObject[['locality']]
-      self[['city']] <- GatheringEventObject[['city']]
-      self[['sublocality']] <- GatheringEventObject[['sublocality']]
-      self[['localityText']] <- GatheringEventObject[['localityText']]
-      self[['dateTimeBegin']] <- GatheringEventObject[['dateTimeBegin']]
-      self[['dateTimeEnd']] <- GatheringEventObject[['dateTimeEnd']]
-      self[['method']] <- GatheringEventObject[['method']]
-      self[['altitude']] <- GatheringEventObject[['altitude']]
-      self[['altitudeUnifOfMeasurement']] <- GatheringEventObject[['altitudeUnifOfMeasurement']]
-      self[['depth']] <- GatheringEventObject[['depth']]
-      self[['depthUnitOfMeasurement']] <- GatheringEventObject[['depthUnitOfMeasurement']]
-      self[['gatheringPersons']] <- lapply(GatheringEventObject[['gatheringPersons']], function(x) Person$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['gatheringOrganizations']] <- lapply(GatheringEventObject[['gatheringOrganizations']], function(x) Organization$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['siteCoordinates']] <- lapply(GatheringEventObject[['siteCoordinates']], function(x) GatheringSiteCoordinates$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['chronoStratigraphy']] <- lapply(GatheringEventObject[['chronoStratigraphy']], function(x) ChronoStratigraphy$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['lithoStratigraphy']] <- lapply(GatheringEventObject[['lithoStratigraphy']], function(x) LithoStratigraphy$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['bioStratigraphic']] <- lapply(GatheringEventObject[['bioStratigraphic']], function(x) BioStratigraphy$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
+    fromJSONString = function(GatheringEventJson, typeObject=NULL) {
+      GatheringEventList <- jsonlite::fromJSON(GatheringEventJson, simplifyVector=F)
+      self[['projectTitle']] <- GatheringEventList[['projectTitle']]
+      self[['worldRegion']] <- GatheringEventList[['worldRegion']]
+      self[['continent']] <- GatheringEventList[['continent']]
+      self[['country']] <- GatheringEventList[['country']]
+      self[['iso3166Code']] <- GatheringEventList[['iso3166Code']]
+      self[['provinceState']] <- GatheringEventList[['provinceState']]
+      self[['island']] <- GatheringEventList[['island']]
+      self[['locality']] <- GatheringEventList[['locality']]
+      self[['city']] <- GatheringEventList[['city']]
+      self[['sublocality']] <- GatheringEventList[['sublocality']]
+      self[['localityText']] <- GatheringEventList[['localityText']]
+      self[['dateTimeBegin']] <- GatheringEventList[['dateTimeBegin']]
+      self[['dateTimeEnd']] <- GatheringEventList[['dateTimeEnd']]
+      self[['method']] <- GatheringEventList[['method']]
+      self[['altitude']] <- GatheringEventList[['altitude']]
+      self[['altitudeUnifOfMeasurement']] <- GatheringEventList[['altitudeUnifOfMeasurement']]
+      self[['depth']] <- GatheringEventList[['depth']]
+      self[['depthUnitOfMeasurement']] <- GatheringEventList[['depthUnitOfMeasurement']]
+      self[['gatheringPersons']] <- lapply(GatheringEventList[['gatheringPersons']],
+                                        function(x) Person$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['gatheringOrganizations']] <- lapply(GatheringEventList[['gatheringOrganizations']],
+                                        function(x) Organization$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['siteCoordinates']] <- lapply(GatheringEventList[['siteCoordinates']],
+                                        function(x) GatheringSiteCoordinates$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['chronoStratigraphy']] <- lapply(GatheringEventList[['chronoStratigraphy']],
+                                        function(x) ChronoStratigraphy$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['lithoStratigraphy']] <- lapply(GatheringEventList[['lithoStratigraphy']],
+                                        function(x) LithoStratigraphy$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['bioStratigraphic']] <- lapply(GatheringEventList[['bioStratigraphic']],
+                                        function(x) BioStratigraphy$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
       invisible(self)
     }
   )

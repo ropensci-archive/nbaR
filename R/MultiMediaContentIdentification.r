@@ -120,12 +120,16 @@ MultiMediaContentIdentification <- R6::R6Class(
       MultiMediaContentIdentificationList[sapply(MultiMediaContentIdentificationList, length) > 0]
       },
 
-    fromList = function(MultiMediaContentIdentificationList) {
+    fromList = function(MultiMediaContentIdentificationList, typeObject=NULL) {
       if (!is.null(MultiMediaContentIdentificationList[['taxonRank']])) {      
           self[['taxonRank']] <- MultiMediaContentIdentificationList[['taxonRank']]
       }
       if (!is.null(MultiMediaContentIdentificationList[['scientificName']])) {      
-          self[['scientificName']] <- ScientificName$new()$fromList(MultiMediaContentIdentificationList[['scientificName']])
+          if (is.null(typeObject)) {
+              self[['scientificName']] <- ScientificName$new()$fromList(MultiMediaContentIdentificationList[['scientificName']])
+          } else {
+              self[['scientificName']] <- typeObject$fromList(MultiMediaContentIdentificationList[['scientificName']])
+          }
       }
       if (!is.null(MultiMediaContentIdentificationList[['typeStatus']])) {      
           self[['typeStatus']] <- MultiMediaContentIdentificationList[['typeStatus']]
@@ -134,16 +138,20 @@ MultiMediaContentIdentification <- R6::R6Class(
           self[['dateIdentified']] <- MultiMediaContentIdentificationList[['dateIdentified']]
       }
       if (!is.null(MultiMediaContentIdentificationList[['defaultClassification']])) {      
-          self[['defaultClassification']] <- DefaultClassification$new()$fromList(MultiMediaContentIdentificationList[['defaultClassification']])
+          if (is.null(typeObject)) {
+              self[['defaultClassification']] <- DefaultClassification$new()$fromList(MultiMediaContentIdentificationList[['defaultClassification']])
+          } else {
+              self[['defaultClassification']] <- typeObject$fromList(MultiMediaContentIdentificationList[['defaultClassification']])
+          }
       }
       if (!is.null(MultiMediaContentIdentificationList[['systemClassification']])) {      
           self[['systemClassification']] <- lapply(MultiMediaContentIdentificationList[['systemClassification']], function(x) {
-             Monomial$new()$fromList(x)            
+             Monomial$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(MultiMediaContentIdentificationList[['vernacularNames']])) {      
           self[['vernacularNames']] <- lapply(MultiMediaContentIdentificationList[['vernacularNames']], function(x) {
-             VernacularName$new()$fromList(x)            
+             VernacularName$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(MultiMediaContentIdentificationList[['identificationQualifiers']])) {      
@@ -151,12 +159,12 @@ MultiMediaContentIdentification <- R6::R6Class(
       }
       if (!is.null(MultiMediaContentIdentificationList[['identifiers']])) {      
           self[['identifiers']] <- lapply(MultiMediaContentIdentificationList[['identifiers']], function(x) {
-             Agent$new()$fromList(x)            
+             Agent$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(MultiMediaContentIdentificationList[['taxonomicEnrichments']])) {      
           self[['taxonomicEnrichments']] <- lapply(MultiMediaContentIdentificationList[['taxonomicEnrichments']], function(x) {
-             TaxonomicEnrichment$new()$fromList(x)            
+             TaxonomicEnrichment$new()$fromList(x, typeObject=typeObject)            
           })
       }
       return(self)
@@ -166,20 +174,30 @@ MultiMediaContentIdentification <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(MultiMediaContentIdentificationJson) {
-      MultiMediaContentIdentificationObject <- jsonlite::fromJSON(MultiMediaContentIdentificationJson, simplifyVector=F)
-      self[['taxonRank']] <- MultiMediaContentIdentificationObject[['taxonRank']]
-      ScientificNameObject <- ScientificName$new()
-      self[['scientificName']] <- ScientificNameObject$fromJSONString(jsonlite::toJSON(MultiMediaContentIdentificationObject[['scientificName']], auto_unbox = TRUE))
-      self[['typeStatus']] <- MultiMediaContentIdentificationObject[['typeStatus']]
-      self[['dateIdentified']] <- MultiMediaContentIdentificationObject[['dateIdentified']]
-      DefaultClassificationObject <- DefaultClassification$new()
-      self[['defaultClassification']] <- DefaultClassificationObject$fromJSONString(jsonlite::toJSON(MultiMediaContentIdentificationObject[['defaultClassification']], auto_unbox = TRUE))
-      self[['systemClassification']] <- lapply(MultiMediaContentIdentificationObject[['systemClassification']], function(x) Monomial$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['vernacularNames']] <- lapply(MultiMediaContentIdentificationObject[['vernacularNames']], function(x) VernacularName$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['identificationQualifiers']] <- MultiMediaContentIdentificationObject[['identificationQualifiers']]
-      self[['identifiers']] <- lapply(MultiMediaContentIdentificationObject[['identifiers']], function(x) Agent$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['taxonomicEnrichments']] <- lapply(MultiMediaContentIdentificationObject[['taxonomicEnrichments']], function(x) TaxonomicEnrichment$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
+    fromJSONString = function(MultiMediaContentIdentificationJson, typeObject=NULL) {
+      MultiMediaContentIdentificationList <- jsonlite::fromJSON(MultiMediaContentIdentificationJson, simplifyVector=F)
+      self[['taxonRank']] <- MultiMediaContentIdentificationList[['taxonRank']]
+      if (is.null(typeObject)) {
+          self[['scientificName']] <- ScientificName$new()$fromJSONString(jsonlite::toJSON(MultiMediaContentIdentificationList[['scientificName']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['scientificName']] <- typeObject$fromJSONString(jsonlite::toJSON(MultiMediaContentIdentificationList[['scientificName']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      self[['typeStatus']] <- MultiMediaContentIdentificationList[['typeStatus']]
+      self[['dateIdentified']] <- MultiMediaContentIdentificationList[['dateIdentified']]
+      if (is.null(typeObject)) {
+          self[['defaultClassification']] <- DefaultClassification$new()$fromJSONString(jsonlite::toJSON(MultiMediaContentIdentificationList[['defaultClassification']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['defaultClassification']] <- typeObject$fromJSONString(jsonlite::toJSON(MultiMediaContentIdentificationList[['defaultClassification']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      self[['systemClassification']] <- lapply(MultiMediaContentIdentificationList[['systemClassification']],
+                                        function(x) Monomial$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['vernacularNames']] <- lapply(MultiMediaContentIdentificationList[['vernacularNames']],
+                                        function(x) VernacularName$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['identificationQualifiers']] <- MultiMediaContentIdentificationList[['identificationQualifiers']]
+      self[['identifiers']] <- lapply(MultiMediaContentIdentificationList[['identifiers']],
+                                        function(x) Agent$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['taxonomicEnrichments']] <- lapply(MultiMediaContentIdentificationList[['taxonomicEnrichments']],
+                                        function(x) TaxonomicEnrichment$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
       invisible(self)
     }
   )

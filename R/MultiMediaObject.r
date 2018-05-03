@@ -311,9 +311,13 @@ MultiMediaObject <- R6::R6Class(
       MultiMediaObjectList[sapply(MultiMediaObjectList, length) > 0]
       },
 
-    fromList = function(MultiMediaObjectList) {
+    fromList = function(MultiMediaObjectList, typeObject=NULL) {
       if (!is.null(MultiMediaObjectList[['sourceSystem']])) {      
-          self[['sourceSystem']] <- SourceSystem$new()$fromList(MultiMediaObjectList[['sourceSystem']])
+          if (is.null(typeObject)) {
+              self[['sourceSystem']] <- SourceSystem$new()$fromList(MultiMediaObjectList[['sourceSystem']])
+          } else {
+              self[['sourceSystem']] <- typeObject$fromList(MultiMediaObjectList[['sourceSystem']])
+          }
       }
       if (!is.null(MultiMediaObjectList[['sourceSystemId']])) {      
           self[['sourceSystemId']] <- MultiMediaObjectList[['sourceSystemId']]
@@ -356,7 +360,7 @@ MultiMediaObject <- R6::R6Class(
       }
       if (!is.null(MultiMediaObjectList[['serviceAccessPoints']])) {      
           self[['serviceAccessPoints']] <- lapply(MultiMediaObjectList[['serviceAccessPoints']], function(x) {
-             ServiceAccessPoint$new()$fromList(x)            
+             ServiceAccessPoint$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(MultiMediaObjectList[['type']])) {      
@@ -394,22 +398,30 @@ MultiMediaObject <- R6::R6Class(
       }
       if (!is.null(MultiMediaObjectList[['gatheringEvents']])) {      
           self[['gatheringEvents']] <- lapply(MultiMediaObjectList[['gatheringEvents']], function(x) {
-             MultiMediaGatheringEvent$new()$fromList(x)            
+             MultiMediaGatheringEvent$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(MultiMediaObjectList[['identifications']])) {      
           self[['identifications']] <- lapply(MultiMediaObjectList[['identifications']], function(x) {
-             MultiMediaContentIdentification$new()$fromList(x)            
+             MultiMediaContentIdentification$new()$fromList(x, typeObject=typeObject)            
           })
       }
       if (!is.null(MultiMediaObjectList[['theme']])) {      
           self[['theme']] <- MultiMediaObjectList[['theme']]
       }
       if (!is.null(MultiMediaObjectList[['associatedSpecimen']])) {      
-          self[['associatedSpecimen']] <- Specimen$new()$fromList(MultiMediaObjectList[['associatedSpecimen']])
+          if (is.null(typeObject)) {
+              self[['associatedSpecimen']] <- Specimen$new()$fromList(MultiMediaObjectList[['associatedSpecimen']])
+          } else {
+              self[['associatedSpecimen']] <- typeObject$fromList(MultiMediaObjectList[['associatedSpecimen']])
+          }
       }
       if (!is.null(MultiMediaObjectList[['associatedTaxon']])) {      
-          self[['associatedTaxon']] <- Taxon$new()$fromList(MultiMediaObjectList[['associatedTaxon']])
+          if (is.null(typeObject)) {
+              self[['associatedTaxon']] <- Taxon$new()$fromList(MultiMediaObjectList[['associatedTaxon']])
+          } else {
+              self[['associatedTaxon']] <- typeObject$fromList(MultiMediaObjectList[['associatedTaxon']])
+          }
       }
       return(self)
     },
@@ -418,42 +430,54 @@ MultiMediaObject <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(MultiMediaObjectJson) {
-      MultiMediaObjectObject <- jsonlite::fromJSON(MultiMediaObjectJson, simplifyVector=F)
-      SourceSystemObject <- SourceSystem$new()
-      self[['sourceSystem']] <- SourceSystemObject$fromJSONString(jsonlite::toJSON(MultiMediaObjectObject[['sourceSystem']], auto_unbox = TRUE))
-      self[['sourceSystemId']] <- MultiMediaObjectObject[['sourceSystemId']]
-      self[['recordURI']] <- MultiMediaObjectObject[['recordURI']]
-      self[['id']] <- MultiMediaObjectObject[['id']]
-      self[['sourceInstitutionID']] <- MultiMediaObjectObject[['sourceInstitutionID']]
-      self[['sourceID']] <- MultiMediaObjectObject[['sourceID']]
-      self[['owner']] <- MultiMediaObjectObject[['owner']]
-      self[['licenseType']] <- MultiMediaObjectObject[['licenseType']]
-      self[['license']] <- MultiMediaObjectObject[['license']]
-      self[['unitID']] <- MultiMediaObjectObject[['unitID']]
-      self[['collectionType']] <- MultiMediaObjectObject[['collectionType']]
-      self[['title']] <- MultiMediaObjectObject[['title']]
-      self[['caption']] <- MultiMediaObjectObject[['caption']]
-      self[['description']] <- MultiMediaObjectObject[['description']]
-      self[['serviceAccessPoints']] <- lapply(MultiMediaObjectObject[['serviceAccessPoints']], function(x) ServiceAccessPoint$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['type']] <- MultiMediaObjectObject[['type']]
-      self[['taxonCount']] <- MultiMediaObjectObject[['taxonCount']]
-      self[['creator']] <- MultiMediaObjectObject[['creator']]
-      self[['copyrightText']] <- MultiMediaObjectObject[['copyrightText']]
-      self[['associatedSpecimenReference']] <- MultiMediaObjectObject[['associatedSpecimenReference']]
-      self[['associatedTaxonReference']] <- MultiMediaObjectObject[['associatedTaxonReference']]
-      self[['multiMediaPublic']] <- MultiMediaObjectObject[['multiMediaPublic']]
-      self[['subjectParts']] <- MultiMediaObjectObject[['subjectParts']]
-      self[['subjectOrientations']] <- MultiMediaObjectObject[['subjectOrientations']]
-      self[['phasesOrStages']] <- MultiMediaObjectObject[['phasesOrStages']]
-      self[['sexes']] <- MultiMediaObjectObject[['sexes']]
-      self[['gatheringEvents']] <- lapply(MultiMediaObjectObject[['gatheringEvents']], function(x) MultiMediaGatheringEvent$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['identifications']] <- lapply(MultiMediaObjectObject[['identifications']], function(x) MultiMediaContentIdentification$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self[['theme']] <- MultiMediaObjectObject[['theme']]
-      SpecimenObject <- Specimen$new()
-      self[['associatedSpecimen']] <- SpecimenObject$fromJSONString(jsonlite::toJSON(MultiMediaObjectObject[['associatedSpecimen']], auto_unbox = TRUE))
-      TaxonObject <- Taxon$new()
-      self[['associatedTaxon']] <- TaxonObject$fromJSONString(jsonlite::toJSON(MultiMediaObjectObject[['associatedTaxon']], auto_unbox = TRUE))
+    fromJSONString = function(MultiMediaObjectJson, typeObject=NULL) {
+      MultiMediaObjectList <- jsonlite::fromJSON(MultiMediaObjectJson, simplifyVector=F)
+      if (is.null(typeObject)) {
+          self[['sourceSystem']] <- SourceSystem$new()$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['sourceSystem']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['sourceSystem']] <- typeObject$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['sourceSystem']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      self[['sourceSystemId']] <- MultiMediaObjectList[['sourceSystemId']]
+      self[['recordURI']] <- MultiMediaObjectList[['recordURI']]
+      self[['id']] <- MultiMediaObjectList[['id']]
+      self[['sourceInstitutionID']] <- MultiMediaObjectList[['sourceInstitutionID']]
+      self[['sourceID']] <- MultiMediaObjectList[['sourceID']]
+      self[['owner']] <- MultiMediaObjectList[['owner']]
+      self[['licenseType']] <- MultiMediaObjectList[['licenseType']]
+      self[['license']] <- MultiMediaObjectList[['license']]
+      self[['unitID']] <- MultiMediaObjectList[['unitID']]
+      self[['collectionType']] <- MultiMediaObjectList[['collectionType']]
+      self[['title']] <- MultiMediaObjectList[['title']]
+      self[['caption']] <- MultiMediaObjectList[['caption']]
+      self[['description']] <- MultiMediaObjectList[['description']]
+      self[['serviceAccessPoints']] <- lapply(MultiMediaObjectList[['serviceAccessPoints']],
+                                        function(x) ServiceAccessPoint$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['type']] <- MultiMediaObjectList[['type']]
+      self[['taxonCount']] <- MultiMediaObjectList[['taxonCount']]
+      self[['creator']] <- MultiMediaObjectList[['creator']]
+      self[['copyrightText']] <- MultiMediaObjectList[['copyrightText']]
+      self[['associatedSpecimenReference']] <- MultiMediaObjectList[['associatedSpecimenReference']]
+      self[['associatedTaxonReference']] <- MultiMediaObjectList[['associatedTaxonReference']]
+      self[['multiMediaPublic']] <- MultiMediaObjectList[['multiMediaPublic']]
+      self[['subjectParts']] <- MultiMediaObjectList[['subjectParts']]
+      self[['subjectOrientations']] <- MultiMediaObjectList[['subjectOrientations']]
+      self[['phasesOrStages']] <- MultiMediaObjectList[['phasesOrStages']]
+      self[['sexes']] <- MultiMediaObjectList[['sexes']]
+      self[['gatheringEvents']] <- lapply(MultiMediaObjectList[['gatheringEvents']],
+                                        function(x) MultiMediaGatheringEvent$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['identifications']] <- lapply(MultiMediaObjectList[['identifications']],
+                                        function(x) MultiMediaContentIdentification$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+      self[['theme']] <- MultiMediaObjectList[['theme']]
+      if (is.null(typeObject)) {
+          self[['associatedSpecimen']] <- Specimen$new()$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['associatedSpecimen']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['associatedSpecimen']] <- typeObject$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['associatedSpecimen']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      if (is.null(typeObject)) {
+          self[['associatedTaxon']] <- Taxon$new()$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['associatedTaxon']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['associatedTaxon']] <- typeObject$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['associatedTaxon']], auto_unbox = TRUE), typeObject=typeObject)
+      }
       invisible(self)
     }
   )

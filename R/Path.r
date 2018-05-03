@@ -20,7 +20,6 @@ Path <- R6::R6Class(
     `purePath` = NULL,
     initialize = function(`purePath`){
       if (!missing(`purePath`)) {
-        stopifnot(R6::is.R6(`purePath`))
         self[['purePath']] <- `purePath`
       }
     },
@@ -28,15 +27,15 @@ Path <- R6::R6Class(
     toList = function() {
       PathList <- list()
         if (!is.null(self[['purePath']])) {
-        PathList[['purePath']] <- self[['purePath']]$toList()
+        PathList[['purePath']] <- self[['purePath']]
       }
       ## omit empty nested lists in returned list
       PathList[sapply(PathList, length) > 0]
       },
 
-    fromList = function(PathList) {
+    fromList = function(PathList, typeObject=NULL) {
       if (!is.null(PathList[['purePath']])) {      
-          self[['purePath']] <- Path$new()$fromList(PathList[['purePath']])
+          self[['purePath']] <- PathList[['purePath']]
       }
       return(self)
     },
@@ -45,10 +44,9 @@ Path <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(PathJson) {
-      PathObject <- jsonlite::fromJSON(PathJson, simplifyVector=F)
-      PathObject <- Path$new()
-      self[['purePath']] <- PathObject$fromJSONString(jsonlite::toJSON(PathObject[['purePath']], auto_unbox = TRUE))
+    fromJSONString = function(PathJson, typeObject=NULL) {
+      PathList <- jsonlite::fromJSON(PathJson, simplifyVector=F)
+      self[['purePath']] <- PathList[['purePath']]
       invisible(self)
     }
   )

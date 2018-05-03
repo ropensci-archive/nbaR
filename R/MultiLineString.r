@@ -54,16 +54,20 @@ MultiLineString <- R6::R6Class(
       MultiLineStringList[sapply(MultiLineStringList, length) > 0]
       },
 
-    fromList = function(MultiLineStringList) {
+    fromList = function(MultiLineStringList, typeObject=NULL) {
       if (!is.null(MultiLineStringList[['crs']])) {      
-          self[['crs']] <- Crs$new()$fromList(MultiLineStringList[['crs']])
+          if (is.null(typeObject)) {
+              self[['crs']] <- Crs$new()$fromList(MultiLineStringList[['crs']])
+          } else {
+              self[['crs']] <- typeObject$fromList(MultiLineStringList[['crs']])
+          }
       }
       if (!is.null(MultiLineStringList[['bbox']])) {      
           self[['bbox']] <- MultiLineStringList[['bbox']]
       }
       if (!is.null(MultiLineStringList[['coordinates']])) {      
           self[['coordinates']] <- lapply(MultiLineStringList[['coordinates']], function(x) {
-             LngLatAlt$new()$fromList(x)            
+             LngLatAlt$new()$fromList(x, typeObject=typeObject)            
           })
       }
       return(self)
@@ -73,12 +77,16 @@ MultiLineString <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(MultiLineStringJson) {
-      MultiLineStringObject <- jsonlite::fromJSON(MultiLineStringJson, simplifyVector=F)
-      CrsObject <- Crs$new()
-      self[['crs']] <- CrsObject$fromJSONString(jsonlite::toJSON(MultiLineStringObject[['crs']], auto_unbox = TRUE))
-      self[['bbox']] <- MultiLineStringObject[['bbox']]
-      self[['coordinates']] <- lapply(MultiLineStringObject[['coordinates']], function(x) LngLatAlt$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE)))
+    fromJSONString = function(MultiLineStringJson, typeObject=NULL) {
+      MultiLineStringList <- jsonlite::fromJSON(MultiLineStringJson, simplifyVector=F)
+      if (is.null(typeObject)) {
+          self[['crs']] <- Crs$new()$fromJSONString(jsonlite::toJSON(MultiLineStringList[['crs']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['crs']] <- typeObject$fromJSONString(jsonlite::toJSON(MultiLineStringList[['crs']], auto_unbox = TRUE), typeObject=typeObject)
+      }
+      self[['bbox']] <- MultiLineStringList[['bbox']]
+      self[['coordinates']] <- lapply(MultiLineStringList[['coordinates']],
+                                        function(x) LngLatAlt$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
       invisible(self)
     }
   )

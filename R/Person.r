@@ -52,7 +52,7 @@ Person <- R6::R6Class(
       PersonList[sapply(PersonList, length) > 0]
       },
 
-    fromList = function(PersonList) {
+    fromList = function(PersonList, typeObject=NULL) {
       if (!is.null(PersonList[['agentText']])) {      
           self[['agentText']] <- PersonList[['agentText']]
       }
@@ -60,7 +60,11 @@ Person <- R6::R6Class(
           self[['fullName']] <- PersonList[['fullName']]
       }
       if (!is.null(PersonList[['organization']])) {      
-          self[['organization']] <- Organization$new()$fromList(PersonList[['organization']])
+          if (is.null(typeObject)) {
+              self[['organization']] <- Organization$new()$fromList(PersonList[['organization']])
+          } else {
+              self[['organization']] <- typeObject$fromList(PersonList[['organization']])
+          }
       }
       return(self)
     },
@@ -69,12 +73,15 @@ Person <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(PersonJson) {
-      PersonObject <- jsonlite::fromJSON(PersonJson, simplifyVector=F)
-      self[['agentText']] <- PersonObject[['agentText']]
-      self[['fullName']] <- PersonObject[['fullName']]
-      OrganizationObject <- Organization$new()
-      self[['organization']] <- OrganizationObject$fromJSONString(jsonlite::toJSON(PersonObject[['organization']], auto_unbox = TRUE))
+    fromJSONString = function(PersonJson, typeObject=NULL) {
+      PersonList <- jsonlite::fromJSON(PersonJson, simplifyVector=F)
+      self[['agentText']] <- PersonList[['agentText']]
+      self[['fullName']] <- PersonList[['fullName']]
+      if (is.null(typeObject)) {
+          self[['organization']] <- Organization$new()$fromJSONString(jsonlite::toJSON(PersonList[['organization']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['organization']] <- typeObject$fromJSONString(jsonlite::toJSON(PersonList[['organization']], auto_unbox = TRUE), typeObject=typeObject)
+      }
       invisible(self)
     }
   )

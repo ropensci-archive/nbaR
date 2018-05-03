@@ -43,12 +43,16 @@ Crs <- R6::R6Class(
       CrsList[sapply(CrsList, length) > 0]
       },
 
-    fromList = function(CrsList) {
+    fromList = function(CrsList, typeObject=NULL) {
       if (!is.null(CrsList[['type']])) {      
           self[['type']] <- CrsList[['type']]
       }
       if (!is.null(CrsList[['properties']])) {      
-          self[['properties']] <- Specimen$new()$fromList(CrsList[['properties']])
+          if (is.null(typeObject)) {
+              self[['properties']] <- Specimen$new()$fromList(CrsList[['properties']])
+          } else {
+              self[['properties']] <- typeObject$fromList(CrsList[['properties']])
+          }
       }
       return(self)
     },
@@ -57,11 +61,14 @@ Crs <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(CrsJson) {
-      CrsObject <- jsonlite::fromJSON(CrsJson, simplifyVector=F)
-      self[['type']] <- CrsObject[['type']]
-      SpecimenObject <- Specimen$new()
-      self[['properties']] <- SpecimenObject$fromJSONString(jsonlite::toJSON(CrsObject[['properties']], auto_unbox = TRUE))
+    fromJSONString = function(CrsJson, typeObject=NULL) {
+      CrsList <- jsonlite::fromJSON(CrsJson, simplifyVector=F)
+      self[['type']] <- CrsList[['type']]
+      if (is.null(typeObject)) {
+          self[['properties']] <- Specimen$new()$fromJSONString(jsonlite::toJSON(CrsList[['properties']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['properties']] <- typeObject$fromJSONString(jsonlite::toJSON(CrsList[['properties']], auto_unbox = TRUE), typeObject=typeObject)
+      }
       invisible(self)
     }
   )

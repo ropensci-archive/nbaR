@@ -43,12 +43,16 @@ QueryResultItemObject <- R6::R6Class(
       QueryResultItemObjectList[sapply(QueryResultItemObjectList, length) > 0]
       },
 
-    fromList = function(QueryResultItemObjectList) {
+    fromList = function(QueryResultItemObjectList, typeObject=NULL) {
       if (!is.null(QueryResultItemObjectList[['score']])) {      
           self[['score']] <- QueryResultItemObjectList[['score']]
       }
       if (!is.null(QueryResultItemObjectList[['item']])) {      
-          self[['item']] <- Specimen$new()$fromList(QueryResultItemObjectList[['item']])
+          if (is.null(typeObject)) {
+              self[['item']] <- Specimen$new()$fromList(QueryResultItemObjectList[['item']])
+          } else {
+              self[['item']] <- typeObject$fromList(QueryResultItemObjectList[['item']])
+          }
       }
       return(self)
     },
@@ -57,11 +61,14 @@ QueryResultItemObject <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(QueryResultItemObjectJson) {
-      QueryResultItemObjectObject <- jsonlite::fromJSON(QueryResultItemObjectJson, simplifyVector=F)
-      self[['score']] <- QueryResultItemObjectObject[['score']]
-      SpecimenObject <- Specimen$new()
-      self[['item']] <- SpecimenObject$fromJSONString(jsonlite::toJSON(QueryResultItemObjectObject[['item']], auto_unbox = TRUE))
+    fromJSONString = function(QueryResultItemObjectJson, typeObject=NULL) {
+      QueryResultItemObjectList <- jsonlite::fromJSON(QueryResultItemObjectJson, simplifyVector=F)
+      self[['score']] <- QueryResultItemObjectList[['score']]
+      if (is.null(typeObject)) {
+          self[['item']] <- Specimen$new()$fromJSONString(jsonlite::toJSON(QueryResultItemObjectList[['item']], auto_unbox = TRUE), typeObject=typeObject) 
+      } else {
+          self[['item']] <- typeObject$fromJSONString(jsonlite::toJSON(QueryResultItemObjectList[['item']], auto_unbox = TRUE), typeObject=typeObject)
+      }
       invisible(self)
     }
   )
