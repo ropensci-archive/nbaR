@@ -41,16 +41,16 @@
 #' find_by_ids4 Find taxa by ids
 #'
 #'
-#' get_distinct_values_http_get3 Get all different values that can be found for one field
+#' get_distinct_values Get all different values that can be found for one field
 #'
 #'
 #' get_distinct_values_http_post_json3 Get all different values that exist for a field
 #'
 #'
-#' get_field_info3 Returns extended information for each field of a specimen document
+#' get_field_info Returns extended information for each field of a specimen document
 #'
 #'
-#' get_paths3 Returns the full path of all fields within a document
+#' get_paths Returns the full path of all fields within a document
 #'
 #'
 #' get_settings6 List all publicly available configuration settings for the NBA
@@ -116,7 +116,7 @@ TaxonClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## return vector or single value
+            ## API call result is 'primitive type', return vector or single value
             result <- as.integer(unlist(httr::content(response)))
             Response$new(result, response)
         }        
@@ -146,7 +146,7 @@ TaxonClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## return vector or single value
+            ## API call result is 'primitive type', return vector or single value
             result <- as.integer(unlist(httr::content(response)))
             Response$new(result, response)
         }        
@@ -197,7 +197,7 @@ TaxonClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## return vector or single value
+            ## API call result is 'primitive type', return vector or single value
             result <- as.character(unlist(httr::content(response)))
             Response$new(result, response)
         }        
@@ -301,7 +301,9 @@ TaxonClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
+            ## API call result is object is model class
             returnObject <- Taxon$new()
+            ## API call result is QueryResult, list items must be mapped to model class
             result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
             Response$new(result, response)
         }        
@@ -329,17 +331,19 @@ TaxonClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
+            ## API call result is object is model class
             returnObject <- Taxon$new()
+            ## API call result is 'list container'
             result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=self$getBaseDataType())))
             Response$new(result, response)
         }        
     },
-    # '@name get_distinct_values_http_get3
+    # '@name get_distinct_values
     # '@title Get all different values that can be found for one field
     # '@description A list of all fields for taxon documents can be retrieved with /metadata/getFieldInfo
     # '@return \code{ Specimen }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_distinct_values_http_get3 = function(field=NULL, ...){
+    get_distinct_values = function(field=NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/taxon/getDistinctValues/{field}"
@@ -357,8 +361,8 @@ TaxonClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
+            ## API call result is a 'map container' and will be parsed to list 
+            result <- httr::content(response, simplifyVector=T)
             Response$new(result, response)
         }        
     },
@@ -391,17 +395,17 @@ TaxonClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
+            ## API call result is a 'map container' and will be parsed to list 
+            result <- httr::content(response, simplifyVector=T)
             Response$new(result, response)
         }        
     },
-    # '@name get_field_info3
+    # '@name get_field_info
     # '@title Returns extended information for each field of a specimen document
     # '@description Info consists of whether the fields is indexed, the ElasticSearch datatype and a list of allowed operators
     # '@return \code{ Specimen }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_field_info3 = function(...){
+    get_field_info = function(...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/taxon/metadata/getFieldInfo"
@@ -415,17 +419,17 @@ TaxonClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
+            ## API call result is a 'map container' and will be parsed to list 
+            result <- httr::content(response, simplifyVector=T)
             Response$new(result, response)
         }        
     },
-    # '@name get_paths3
+    # '@name get_paths
     # '@title Returns the full path of all fields within a document
     # '@description See also metadata/getFieldInfo for all allowed operators per field
     # '@return \code{ character }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_paths3 = function(...){
+    get_paths = function(...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/taxon/metadata/getPaths"
@@ -439,7 +443,7 @@ TaxonClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## return vector or single value
+            ## API call result is 'primitive type', return vector or single value
             result <- as.character(unlist(httr::content(response)))
             Response$new(result, response)
         }        
@@ -463,8 +467,8 @@ TaxonClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
+            ## API call result is a 'map container' and will be parsed to list 
+            result <- httr::content(response, simplifyVector=T)
             Response$new(result, response)
         }        
     },
@@ -491,7 +495,9 @@ TaxonClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
+            ## API call result is object is model class
             returnObject <- Specimen$new()
+            ## API call result is QueryResult, list items must be mapped to model class
             result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
             Response$new(result, response)
         }        
@@ -527,7 +533,9 @@ TaxonClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
+            ## API call result is object is model class
             returnObject <- QueryResult$new()
+            ## API call result is QueryResult, list items must be mapped to model class
             result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
             Response$new(result, response)
         }        
@@ -557,7 +565,9 @@ TaxonClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
+            ## API call result is object is model class
             returnObject <- QueryResult$new()
+            ## API call result is QueryResult, list items must be mapped to model class
             result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
             Response$new(result, response)
         }        
@@ -589,8 +599,8 @@ TaxonClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
+            ## API call result is a 'map container' and will be parsed to list 
+            result <- httr::content(response, simplifyVector=T)
             Response$new(result, response)
         }        
     },
@@ -625,7 +635,9 @@ TaxonClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
+            ## API call result is object is model class
             returnObject <- QueryResult$new()
+            ## API call result is QueryResult, list items must be mapped to model class
             result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
             Response$new(result, response)
         }        
@@ -655,7 +667,9 @@ TaxonClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
+            ## API call result is object is model class
             returnObject <- QueryResult$new()
+            ## API call result is QueryResult, list items must be mapped to model class
             result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
             Response$new(result, response)
         }        

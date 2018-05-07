@@ -98,7 +98,7 @@ MultimediaClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## return vector or single value
+            ## API call result is 'primitive type', return vector or single value
             result <- as.integer(unlist(httr::content(response)))
             Response$new(result, response)
         }        
@@ -128,7 +128,7 @@ MultimediaClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## return vector or single value
+            ## API call result is 'primitive type', return vector or single value
             result <- as.integer(unlist(httr::content(response)))
             Response$new(result, response)
         }        
@@ -156,7 +156,9 @@ MultimediaClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
+            ## API call result is object is model class
             returnObject <- MultiMediaObject$new()
+            ## API call result is QueryResult, list items must be mapped to model class
             result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
             Response$new(result, response)
         }        
@@ -184,7 +186,9 @@ MultimediaClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
+            ## API call result is object is model class
             returnObject <- MultiMediaObject$new()
+            ## API call result is 'list container'
             result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=self$getBaseDataType())))
             Response$new(result, response)
         }        
@@ -212,8 +216,8 @@ MultimediaClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
+            ## API call result is a 'map container' and will be parsed to list 
+            result <- httr::content(response, simplifyVector=T)
             Response$new(result, response)
         }        
     },
@@ -246,8 +250,8 @@ MultimediaClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
+            ## API call result is a 'map container' and will be parsed to list 
+            result <- httr::content(response, simplifyVector=T)
             Response$new(result, response)
         }        
     },
@@ -270,8 +274,8 @@ MultimediaClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
+            ## API call result is a 'map container' and will be parsed to list 
+            result <- httr::content(response, simplifyVector=T)
             Response$new(result, response)
         }        
     },
@@ -294,7 +298,7 @@ MultimediaClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## return vector or single value
+            ## API call result is 'primitive type', return vector or single value
             result <- as.character(unlist(httr::content(response)))
             Response$new(result, response)
         }        
@@ -318,8 +322,8 @@ MultimediaClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
+            ## API call result is a 'map container' and will be parsed to list 
+            result <- httr::content(response, simplifyVector=T)
             Response$new(result, response)
         }        
     },
@@ -346,7 +350,9 @@ MultimediaClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
+            ## API call result is object is model class
             returnObject <- Specimen$new()
+            ## API call result is QueryResult, list items must be mapped to model class
             result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
             Response$new(result, response)
         }        
@@ -378,8 +384,8 @@ MultimediaClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
+            ## API call result is a 'map container' and will be parsed to list 
+            result <- httr::content(response, simplifyVector=T)
             Response$new(result, response)
         }        
     },
@@ -414,7 +420,9 @@ MultimediaClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
+            ## API call result is object is model class
             returnObject <- QueryResult$new()
+            ## API call result is QueryResult, list items must be mapped to model class
             result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
             Response$new(result, response)
         }        
@@ -444,7 +452,9 @@ MultimediaClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
+            ## API call result is object is model class
             returnObject <- QueryResult$new()
+            ## API call result is QueryResult, list items must be mapped to model class
             result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
             Response$new(result, response)
         }        

@@ -116,17 +116,26 @@
         } else {
         {{#returnType}}
           {{#returnTypeIsPrimitive}}
-            ## return vector or single value
+            ## API call result is 'primitive type', return vector or single value
             result <- as.{{returnType}}(unlist(httr::content(response)))
           {{/returnTypeIsPrimitive}}
           {{^returnTypeIsPrimitive}}
+            {{#isMapContainer}}
+            ## API call result is a 'map container' and will be parsed to list 
+            result <- httr::content(response, simplifyVector=T)
+            {{/isMapContainer}}            
+            {{^isMapContainer}}
+            ## API call result is object is model class
             returnObject <- {{returnType}}$new()
             {{#isListContainer}}
+            ## API call result is 'list container'
             result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=self$getBaseDataType())))
             {{/isListContainer}}
             {{^isListContainer}}
+            ## API call result is QueryResult, list items must be mapped to model class
             result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
-            {{/isListContainer}}
+            {{/isListContainer}}            
+            {{/isMapContainer}}
           {{/returnTypeIsPrimitive}}
             Response$new(result, response)
           {{/returnType}}
