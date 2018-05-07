@@ -124,7 +124,7 @@ DefaultClassification <- R6::R6Class(
       DefaultClassificationList[sapply(DefaultClassificationList, length) > 0]
       },
 
-    fromList = function(DefaultClassificationList, typeObject=NULL) {
+    fromList = function(DefaultClassificationList, typeMapping=NULL) {
       if (!is.null(DefaultClassificationList[['kingdom']])) {      
           self[['kingdom']] <- DefaultClassificationList[['kingdom']]
       }
@@ -165,7 +165,7 @@ DefaultClassification <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(DefaultClassificationJson, typeObject=NULL) {
+    fromJSONString = function(DefaultClassificationJson, typeMapping=NULL) {
       DefaultClassificationList <- jsonlite::fromJSON(DefaultClassificationJson, simplifyVector=F)
       self[['kingdom']] <- DefaultClassificationList[['kingdom']]
       self[['phylum']] <- DefaultClassificationList[['phylum']]

@@ -122,10 +122,10 @@
           {{^returnTypeIsPrimitive}}
             returnObject <- {{returnType}}$new()
             {{#isListContainer}}
-            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeObject=self$getTypeObject()))
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=self$getBaseDataType())))
             {{/isListContainer}}
             {{^isListContainer}}
-            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
             {{/isListContainer}}
           {{/returnTypeIsPrimitive}}
             Response$new(result, response)

@@ -97,7 +97,7 @@ GatheringSiteCoordinates <- R6::R6Class(
       GatheringSiteCoordinatesList[sapply(GatheringSiteCoordinatesList, length) > 0]
       },
 
-    fromList = function(GatheringSiteCoordinatesList, typeObject=NULL) {
+    fromList = function(GatheringSiteCoordinatesList, typeMapping=NULL) {
       if (!is.null(GatheringSiteCoordinatesList[['longitudeDecimal']])) {      
           self[['longitudeDecimal']] <- GatheringSiteCoordinatesList[['longitudeDecimal']]
       }
@@ -120,10 +120,12 @@ GatheringSiteCoordinates <- R6::R6Class(
           self[['gridQualifier']] <- GatheringSiteCoordinatesList[['gridQualifier']]
       }
       if (!is.null(GatheringSiteCoordinatesList[['geoShape']])) {      
-          if (is.null(typeObject)) {
-              self[['geoShape']] <- Point$new()$fromList(GatheringSiteCoordinatesList[['geoShape']])
+          if (is.null(typeMapping[['geoShape']])) {
+             self[['geoShape']] <- Point$new()$fromList(GatheringSiteCoordinatesList[['geoShape']])
           } else {
-              self[['geoShape']] <- typeObject$fromList(GatheringSiteCoordinatesList[['geoShape']])
+              ## make object of type specified by type mapping
+              obj <- eval(parse(text=paste0(typeMapping[['geoShape']], "$new()")))
+              self[['geoShape']] <- obj$fromList(GatheringSiteCoordinatesList[['geoShape']])
           }
       }
       return(self)
@@ -133,7 +135,7 @@ GatheringSiteCoordinates <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(GatheringSiteCoordinatesJson, typeObject=NULL) {
+    fromJSONString = function(GatheringSiteCoordinatesJson, typeMapping=NULL) {
       GatheringSiteCoordinatesList <- jsonlite::fromJSON(GatheringSiteCoordinatesJson, simplifyVector=F)
       self[['longitudeDecimal']] <- GatheringSiteCoordinatesList[['longitudeDecimal']]
       self[['latitudeDecimal']] <- GatheringSiteCoordinatesList[['latitudeDecimal']]
@@ -142,10 +144,11 @@ GatheringSiteCoordinates <- R6::R6Class(
       self[['gridLongitudeDecimal']] <- GatheringSiteCoordinatesList[['gridLongitudeDecimal']]
       self[['gridCellCode']] <- GatheringSiteCoordinatesList[['gridCellCode']]
       self[['gridQualifier']] <- GatheringSiteCoordinatesList[['gridQualifier']]
-      if (is.null(typeObject)) {
-          self[['geoShape']] <- Point$new()$fromJSONString(jsonlite::toJSON(GatheringSiteCoordinatesList[['geoShape']], auto_unbox = TRUE), typeObject=typeObject) 
+      if (is.null(typeMapping[['geoShape']])) {
+          self[['geoShape']] <- Point$new()$fromJSONString(jsonlite::toJSON(GatheringSiteCoordinatesList[['geoShape']], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          self[['geoShape']] <- typeObject$fromJSONString(jsonlite::toJSON(GatheringSiteCoordinatesList[['geoShape']], auto_unbox = TRUE), typeObject=typeObject)
+          obj <- eval(parse(text=paste0(typeMapping[['geoShape']], "$new()")))
+          self[['geoShape']] <- obj$fromJSONString(jsonlite::toJSON(GatheringSiteCoordinatesList[['geoShape']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       invisible(self)
     }

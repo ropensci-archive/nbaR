@@ -88,7 +88,7 @@ SummaryScientificName <- R6::R6Class(
       SummaryScientificNameList[sapply(SummaryScientificNameList, length) > 0]
       },
 
-    fromList = function(SummaryScientificNameList, typeObject=NULL) {
+    fromList = function(SummaryScientificNameList, typeMapping=NULL) {
       if (!is.null(SummaryScientificNameList[['fullScientificName']])) {      
           self[['fullScientificName']] <- SummaryScientificNameList[['fullScientificName']]
       }
@@ -117,7 +117,7 @@ SummaryScientificName <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(SummaryScientificNameJson, typeObject=NULL) {
+    fromJSONString = function(SummaryScientificNameJson, typeMapping=NULL) {
       SummaryScientificNameList <- jsonlite::fromJSON(SummaryScientificNameJson, simplifyVector=F)
       self[['fullScientificName']] <- SummaryScientificNameList[['fullScientificName']]
       self[['taxonomicStatus']] <- SummaryScientificNameList[['taxonomicStatus']]

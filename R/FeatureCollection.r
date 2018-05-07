@@ -54,12 +54,14 @@ FeatureCollection <- R6::R6Class(
       FeatureCollectionList[sapply(FeatureCollectionList, length) > 0]
       },
 
-    fromList = function(FeatureCollectionList, typeObject=NULL) {
+    fromList = function(FeatureCollectionList, typeMapping=NULL) {
       if (!is.null(FeatureCollectionList[['crs']])) {      
-          if (is.null(typeObject)) {
-              self[['crs']] <- Crs$new()$fromList(FeatureCollectionList[['crs']])
+          if (is.null(typeMapping[['crs']])) {
+             self[['crs']] <- Crs$new()$fromList(FeatureCollectionList[['crs']])
           } else {
-              self[['crs']] <- typeObject$fromList(FeatureCollectionList[['crs']])
+              ## make object of type specified by type mapping
+              obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
+              self[['crs']] <- obj$fromList(FeatureCollectionList[['crs']])
           }
       }
       if (!is.null(FeatureCollectionList[['bbox']])) {      
@@ -67,7 +69,7 @@ FeatureCollection <- R6::R6Class(
       }
       if (!is.null(FeatureCollectionList[['features']])) {      
           self[['features']] <- lapply(FeatureCollectionList[['features']], function(x) {
-             Feature$new()$fromList(x, typeObject=typeObject)            
+             Feature$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       return(self)
@@ -77,16 +79,17 @@ FeatureCollection <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(FeatureCollectionJson, typeObject=NULL) {
+    fromJSONString = function(FeatureCollectionJson, typeMapping=NULL) {
       FeatureCollectionList <- jsonlite::fromJSON(FeatureCollectionJson, simplifyVector=F)
-      if (is.null(typeObject)) {
-          self[['crs']] <- Crs$new()$fromJSONString(jsonlite::toJSON(FeatureCollectionList[['crs']], auto_unbox = TRUE), typeObject=typeObject) 
+      if (is.null(typeMapping[['crs']])) {
+          self[['crs']] <- Crs$new()$fromJSONString(jsonlite::toJSON(FeatureCollectionList[['crs']], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          self[['crs']] <- typeObject$fromJSONString(jsonlite::toJSON(FeatureCollectionList[['crs']], auto_unbox = TRUE), typeObject=typeObject)
+          obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
+          self[['crs']] <- obj$fromJSONString(jsonlite::toJSON(FeatureCollectionList[['crs']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       self[['bbox']] <- FeatureCollectionList[['bbox']]
       self[['features']] <- lapply(FeatureCollectionList[['features']],
-                                        function(x) Feature$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) Feature$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       invisible(self)
     }
   )

@@ -33,7 +33,7 @@ Path <- R6::R6Class(
       PathList[sapply(PathList, length) > 0]
       },
 
-    fromList = function(PathList, typeObject=NULL) {
+    fromList = function(PathList, typeMapping=NULL) {
       if (!is.null(PathList[['purePath']])) {      
           self[['purePath']] <- PathList[['purePath']]
       }
@@ -44,7 +44,7 @@ Path <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(PathJson, typeObject=NULL) {
+    fromJSONString = function(PathJson, typeMapping=NULL) {
       PathList <- jsonlite::fromJSON(PathJson, simplifyVector=F)
       self[['purePath']] <- PathList[['purePath']]
       invisible(self)

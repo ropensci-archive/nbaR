@@ -43,7 +43,7 @@ Organization <- R6::R6Class(
       OrganizationList[sapply(OrganizationList, length) > 0]
       },
 
-    fromList = function(OrganizationList, typeObject=NULL) {
+    fromList = function(OrganizationList, typeMapping=NULL) {
       if (!is.null(OrganizationList[['agentText']])) {      
           self[['agentText']] <- OrganizationList[['agentText']]
       }
@@ -57,7 +57,7 @@ Organization <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(OrganizationJson, typeObject=NULL) {
+    fromJSONString = function(OrganizationJson, typeMapping=NULL) {
       OrganizationList <- jsonlite::fromJSON(OrganizationJson, simplifyVector=F)
       self[['agentText']] <- OrganizationList[['agentText']]
       self[['name']] <- OrganizationList[['name']]

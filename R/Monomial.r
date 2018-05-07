@@ -43,7 +43,7 @@ Monomial <- R6::R6Class(
       MonomialList[sapply(MonomialList, length) > 0]
       },
 
-    fromList = function(MonomialList, typeObject=NULL) {
+    fromList = function(MonomialList, typeMapping=NULL) {
       if (!is.null(MonomialList[['rank']])) {      
           self[['rank']] <- MonomialList[['rank']]
       }
@@ -57,7 +57,7 @@ Monomial <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(MonomialJson, typeObject=NULL) {
+    fromJSONString = function(MonomialJson, typeMapping=NULL) {
       MonomialList <- jsonlite::fromJSON(MonomialJson, simplifyVector=F)
       self[['rank']] <- MonomialList[['rank']]
       self[['name']] <- MonomialList[['name']]

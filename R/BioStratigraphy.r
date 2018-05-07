@@ -159,7 +159,7 @@ BioStratigraphy <- R6::R6Class(
       BioStratigraphyList[sapply(BioStratigraphyList, length) > 0]
       },
 
-    fromList = function(BioStratigraphyList, typeObject=NULL) {
+    fromList = function(BioStratigraphyList, typeMapping=NULL) {
       if (!is.null(BioStratigraphyList[['youngBioDatingQualifier']])) {      
           self[['youngBioDatingQualifier']] <- BioStratigraphyList[['youngBioDatingQualifier']]
       }
@@ -212,7 +212,7 @@ BioStratigraphy <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(BioStratigraphyJson, typeObject=NULL) {
+    fromJSONString = function(BioStratigraphyJson, typeMapping=NULL) {
       BioStratigraphyList <- jsonlite::fromJSON(BioStratigraphyJson, simplifyVector=F)
       self[['youngBioDatingQualifier']] <- BioStratigraphyList[['youngBioDatingQualifier']]
       self[['youngBioName']] <- BioStratigraphyList[['youngBioName']]

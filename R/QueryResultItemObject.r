@@ -43,15 +43,17 @@ QueryResultItemObject <- R6::R6Class(
       QueryResultItemObjectList[sapply(QueryResultItemObjectList, length) > 0]
       },
 
-    fromList = function(QueryResultItemObjectList, typeObject=NULL) {
+    fromList = function(QueryResultItemObjectList, typeMapping=NULL) {
       if (!is.null(QueryResultItemObjectList[['score']])) {      
           self[['score']] <- QueryResultItemObjectList[['score']]
       }
       if (!is.null(QueryResultItemObjectList[['item']])) {      
-          if (is.null(typeObject)) {
-              self[['item']] <- Specimen$new()$fromList(QueryResultItemObjectList[['item']])
+          if (is.null(typeMapping[['item']])) {
+             self[['item']] <- Specimen$new()$fromList(QueryResultItemObjectList[['item']])
           } else {
-              self[['item']] <- typeObject$fromList(QueryResultItemObjectList[['item']])
+              ## make object of type specified by type mapping
+              obj <- eval(parse(text=paste0(typeMapping[['item']], "$new()")))
+              self[['item']] <- obj$fromList(QueryResultItemObjectList[['item']])
           }
       }
       return(self)
@@ -61,13 +63,14 @@ QueryResultItemObject <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(QueryResultItemObjectJson, typeObject=NULL) {
+    fromJSONString = function(QueryResultItemObjectJson, typeMapping=NULL) {
       QueryResultItemObjectList <- jsonlite::fromJSON(QueryResultItemObjectJson, simplifyVector=F)
       self[['score']] <- QueryResultItemObjectList[['score']]
-      if (is.null(typeObject)) {
-          self[['item']] <- Specimen$new()$fromJSONString(jsonlite::toJSON(QueryResultItemObjectList[['item']], auto_unbox = TRUE), typeObject=typeObject) 
+      if (is.null(typeMapping[['item']])) {
+          self[['item']] <- Specimen$new()$fromJSONString(jsonlite::toJSON(QueryResultItemObjectList[['item']], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          self[['item']] <- typeObject$fromJSONString(jsonlite::toJSON(QueryResultItemObjectList[['item']], auto_unbox = TRUE), typeObject=typeObject)
+          obj <- eval(parse(text=paste0(typeMapping[['item']], "$new()")))
+          self[['item']] <- obj$fromJSONString(jsonlite::toJSON(QueryResultItemObjectList[['item']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       invisible(self)
     }

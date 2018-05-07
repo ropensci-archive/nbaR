@@ -43,15 +43,17 @@ Crs <- R6::R6Class(
       CrsList[sapply(CrsList, length) > 0]
       },
 
-    fromList = function(CrsList, typeObject=NULL) {
+    fromList = function(CrsList, typeMapping=NULL) {
       if (!is.null(CrsList[['type']])) {      
           self[['type']] <- CrsList[['type']]
       }
       if (!is.null(CrsList[['properties']])) {      
-          if (is.null(typeObject)) {
-              self[['properties']] <- Specimen$new()$fromList(CrsList[['properties']])
+          if (is.null(typeMapping[['properties']])) {
+             self[['properties']] <- Specimen$new()$fromList(CrsList[['properties']])
           } else {
-              self[['properties']] <- typeObject$fromList(CrsList[['properties']])
+              ## make object of type specified by type mapping
+              obj <- eval(parse(text=paste0(typeMapping[['properties']], "$new()")))
+              self[['properties']] <- obj$fromList(CrsList[['properties']])
           }
       }
       return(self)
@@ -61,13 +63,14 @@ Crs <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(CrsJson, typeObject=NULL) {
+    fromJSONString = function(CrsJson, typeMapping=NULL) {
       CrsList <- jsonlite::fromJSON(CrsJson, simplifyVector=F)
       self[['type']] <- CrsList[['type']]
-      if (is.null(typeObject)) {
-          self[['properties']] <- Specimen$new()$fromJSONString(jsonlite::toJSON(CrsList[['properties']], auto_unbox = TRUE), typeObject=typeObject) 
+      if (is.null(typeMapping[['properties']])) {
+          self[['properties']] <- Specimen$new()$fromJSONString(jsonlite::toJSON(CrsList[['properties']], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          self[['properties']] <- typeObject$fromJSONString(jsonlite::toJSON(CrsList[['properties']], auto_unbox = TRUE), typeObject=typeObject)
+          obj <- eval(parse(text=paste0(typeMapping[['properties']], "$new()")))
+          self[['properties']] <- obj$fromJSONString(jsonlite::toJSON(CrsList[['properties']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       invisible(self)
     }

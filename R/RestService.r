@@ -70,7 +70,7 @@ RestService <- R6::R6Class(
       RestServiceList[sapply(RestServiceList, length) > 0]
       },
 
-    fromList = function(RestServiceList, typeObject=NULL) {
+    fromList = function(RestServiceList, typeMapping=NULL) {
       if (!is.null(RestServiceList[['endPoint']])) {      
           self[['endPoint']] <- RestServiceList[['endPoint']]
       }
@@ -93,7 +93,7 @@ RestService <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(RestServiceJson, typeObject=NULL) {
+    fromJSONString = function(RestServiceJson, typeMapping=NULL) {
       RestServiceList <- jsonlite::fromJSON(RestServiceJson, simplifyVector=F)
       self[['endPoint']] <- RestServiceList[['endPoint']]
       self[['method']] <- RestServiceList[['method']]

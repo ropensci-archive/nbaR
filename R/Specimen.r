@@ -295,12 +295,14 @@ Specimen <- R6::R6Class(
       SpecimenList[sapply(SpecimenList, length) > 0]
       },
 
-    fromList = function(SpecimenList, typeObject=NULL) {
+    fromList = function(SpecimenList, typeMapping=NULL) {
       if (!is.null(SpecimenList[['sourceSystem']])) {      
-          if (is.null(typeObject)) {
-              self[['sourceSystem']] <- SourceSystem$new()$fromList(SpecimenList[['sourceSystem']])
+          if (is.null(typeMapping[['sourceSystem']])) {
+             self[['sourceSystem']] <- SourceSystem$new()$fromList(SpecimenList[['sourceSystem']])
           } else {
-              self[['sourceSystem']] <- typeObject$fromList(SpecimenList[['sourceSystem']])
+              ## make object of type specified by type mapping
+              obj <- eval(parse(text=paste0(typeMapping[['sourceSystem']], "$new()")))
+              self[['sourceSystem']] <- obj$fromList(SpecimenList[['sourceSystem']])
           }
       }
       if (!is.null(SpecimenList[['sourceSystemId']])) {      
@@ -376,27 +378,31 @@ Specimen <- R6::R6Class(
           self[['multiMediaPublic']] <- SpecimenList[['multiMediaPublic']]
       }
       if (!is.null(SpecimenList[['acquiredFrom']])) {      
-          if (is.null(typeObject)) {
-              self[['acquiredFrom']] <- Agent$new()$fromList(SpecimenList[['acquiredFrom']])
+          if (is.null(typeMapping[['acquiredFrom']])) {
+             self[['acquiredFrom']] <- Agent$new()$fromList(SpecimenList[['acquiredFrom']])
           } else {
-              self[['acquiredFrom']] <- typeObject$fromList(SpecimenList[['acquiredFrom']])
+              ## make object of type specified by type mapping
+              obj <- eval(parse(text=paste0(typeMapping[['acquiredFrom']], "$new()")))
+              self[['acquiredFrom']] <- obj$fromList(SpecimenList[['acquiredFrom']])
           }
       }
       if (!is.null(SpecimenList[['gatheringEvent']])) {      
-          if (is.null(typeObject)) {
-              self[['gatheringEvent']] <- GatheringEvent$new()$fromList(SpecimenList[['gatheringEvent']])
+          if (is.null(typeMapping[['gatheringEvent']])) {
+             self[['gatheringEvent']] <- GatheringEvent$new()$fromList(SpecimenList[['gatheringEvent']])
           } else {
-              self[['gatheringEvent']] <- typeObject$fromList(SpecimenList[['gatheringEvent']])
+              ## make object of type specified by type mapping
+              obj <- eval(parse(text=paste0(typeMapping[['gatheringEvent']], "$new()")))
+              self[['gatheringEvent']] <- obj$fromList(SpecimenList[['gatheringEvent']])
           }
       }
       if (!is.null(SpecimenList[['identifications']])) {      
           self[['identifications']] <- lapply(SpecimenList[['identifications']], function(x) {
-             SpecimenIdentification$new()$fromList(x, typeObject=typeObject)            
+             SpecimenIdentification$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(SpecimenList[['associatedMultiMediaUris']])) {      
           self[['associatedMultiMediaUris']] <- lapply(SpecimenList[['associatedMultiMediaUris']], function(x) {
-             ServiceAccessPoint$new()$fromList(x, typeObject=typeObject)            
+             ServiceAccessPoint$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(SpecimenList[['theme']])) {      
@@ -409,12 +415,13 @@ Specimen <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(SpecimenJson, typeObject=NULL) {
+    fromJSONString = function(SpecimenJson, typeMapping=NULL) {
       SpecimenList <- jsonlite::fromJSON(SpecimenJson, simplifyVector=F)
-      if (is.null(typeObject)) {
-          self[['sourceSystem']] <- SourceSystem$new()$fromJSONString(jsonlite::toJSON(SpecimenList[['sourceSystem']], auto_unbox = TRUE), typeObject=typeObject) 
+      if (is.null(typeMapping[['sourceSystem']])) {
+          self[['sourceSystem']] <- SourceSystem$new()$fromJSONString(jsonlite::toJSON(SpecimenList[['sourceSystem']], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          self[['sourceSystem']] <- typeObject$fromJSONString(jsonlite::toJSON(SpecimenList[['sourceSystem']], auto_unbox = TRUE), typeObject=typeObject)
+          obj <- eval(parse(text=paste0(typeMapping[['sourceSystem']], "$new()")))
+          self[['sourceSystem']] <- obj$fromJSONString(jsonlite::toJSON(SpecimenList[['sourceSystem']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       self[['sourceSystemId']] <- SpecimenList[['sourceSystemId']]
       self[['recordURI']] <- SpecimenList[['recordURI']]
@@ -440,20 +447,22 @@ Specimen <- R6::R6Class(
       self[['fromCaptivity']] <- SpecimenList[['fromCaptivity']]
       self[['objectPublic']] <- SpecimenList[['objectPublic']]
       self[['multiMediaPublic']] <- SpecimenList[['multiMediaPublic']]
-      if (is.null(typeObject)) {
-          self[['acquiredFrom']] <- Agent$new()$fromJSONString(jsonlite::toJSON(SpecimenList[['acquiredFrom']], auto_unbox = TRUE), typeObject=typeObject) 
+      if (is.null(typeMapping[['acquiredFrom']])) {
+          self[['acquiredFrom']] <- Agent$new()$fromJSONString(jsonlite::toJSON(SpecimenList[['acquiredFrom']], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          self[['acquiredFrom']] <- typeObject$fromJSONString(jsonlite::toJSON(SpecimenList[['acquiredFrom']], auto_unbox = TRUE), typeObject=typeObject)
+          obj <- eval(parse(text=paste0(typeMapping[['acquiredFrom']], "$new()")))
+          self[['acquiredFrom']] <- obj$fromJSONString(jsonlite::toJSON(SpecimenList[['acquiredFrom']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeObject)) {
-          self[['gatheringEvent']] <- GatheringEvent$new()$fromJSONString(jsonlite::toJSON(SpecimenList[['gatheringEvent']], auto_unbox = TRUE), typeObject=typeObject) 
+      if (is.null(typeMapping[['gatheringEvent']])) {
+          self[['gatheringEvent']] <- GatheringEvent$new()$fromJSONString(jsonlite::toJSON(SpecimenList[['gatheringEvent']], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          self[['gatheringEvent']] <- typeObject$fromJSONString(jsonlite::toJSON(SpecimenList[['gatheringEvent']], auto_unbox = TRUE), typeObject=typeObject)
+          obj <- eval(parse(text=paste0(typeMapping[['gatheringEvent']], "$new()")))
+          self[['gatheringEvent']] <- obj$fromJSONString(jsonlite::toJSON(SpecimenList[['gatheringEvent']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       self[['identifications']] <- lapply(SpecimenList[['identifications']],
-                                        function(x) SpecimenIdentification$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) SpecimenIdentification$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['associatedMultiMediaUris']] <- lapply(SpecimenList[['associatedMultiMediaUris']],
-                                        function(x) ServiceAccessPoint$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) ServiceAccessPoint$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['theme']] <- SpecimenList[['theme']]
       invisible(self)
     }

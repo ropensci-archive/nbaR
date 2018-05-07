@@ -98,7 +98,7 @@ QueryCondition <- R6::R6Class(
       QueryConditionList[sapply(QueryConditionList, length) > 0]
       },
 
-    fromList = function(QueryConditionList, typeObject=NULL) {
+    fromList = function(QueryConditionList, typeMapping=NULL) {
       if (!is.null(QueryConditionList[['not']])) {      
           self[['not']] <- QueryConditionList[['not']]
       }
@@ -113,12 +113,12 @@ QueryCondition <- R6::R6Class(
       }
       if (!is.null(QueryConditionList[['and']])) {      
           self[['and']] <- lapply(QueryConditionList[['and']], function(x) {
-             QueryCondition$new()$fromList(x, typeObject=typeObject)            
+             QueryCondition$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(QueryConditionList[['or']])) {      
           self[['or']] <- lapply(QueryConditionList[['or']], function(x) {
-             QueryCondition$new()$fromList(x, typeObject=typeObject)            
+             QueryCondition$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(QueryConditionList[['constantScore']])) {      
@@ -134,16 +134,16 @@ QueryCondition <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(QueryConditionJson, typeObject=NULL) {
+    fromJSONString = function(QueryConditionJson, typeMapping=NULL) {
       QueryConditionList <- jsonlite::fromJSON(QueryConditionJson, simplifyVector=F)
       self[['not']] <- QueryConditionList[['not']]
       self[['field']] <- QueryConditionList[['field']]
       self[['operator']] <- QueryConditionList[['operator']]
       self[['value']] <- QueryConditionList[['value']]
       self[['and']] <- lapply(QueryConditionList[['and']],
-                                        function(x) QueryCondition$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) QueryCondition$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['or']] <- lapply(QueryConditionList[['or']],
-                                        function(x) QueryCondition$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) QueryCondition$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['constantScore']] <- QueryConditionList[['constantScore']]
       self[['boost']] <- QueryConditionList[['boost']]
       invisible(self)

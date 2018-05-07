@@ -88,7 +88,7 @@ Iptc4xmpExt <- R6::R6Class(
       Iptc4xmpExtList[sapply(Iptc4xmpExtList, length) > 0]
       },
 
-    fromList = function(Iptc4xmpExtList, typeObject=NULL) {
+    fromList = function(Iptc4xmpExtList, typeMapping=NULL) {
       if (!is.null(Iptc4xmpExtList[['locationShown']])) {      
           self[['locationShown']] <- Iptc4xmpExtList[['locationShown']]
       }
@@ -117,7 +117,7 @@ Iptc4xmpExt <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(Iptc4xmpExtJson, typeObject=NULL) {
+    fromJSONString = function(Iptc4xmpExtJson, typeMapping=NULL) {
       Iptc4xmpExtList <- jsonlite::fromJSON(Iptc4xmpExtJson, simplifyVector=F)
       self[['locationShown']] <- Iptc4xmpExtList[['locationShown']]
       self[['worldRegion']] <- Iptc4xmpExtList[['worldRegion']]

@@ -63,22 +63,24 @@ TaxonomicEnrichment <- R6::R6Class(
       TaxonomicEnrichmentList[sapply(TaxonomicEnrichmentList, length) > 0]
       },
 
-    fromList = function(TaxonomicEnrichmentList, typeObject=NULL) {
+    fromList = function(TaxonomicEnrichmentList, typeMapping=NULL) {
       if (!is.null(TaxonomicEnrichmentList[['vernacularNames']])) {      
           self[['vernacularNames']] <- lapply(TaxonomicEnrichmentList[['vernacularNames']], function(x) {
-             SummaryVernacularName$new()$fromList(x, typeObject=typeObject)            
+             SummaryVernacularName$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(TaxonomicEnrichmentList[['synonyms']])) {      
           self[['synonyms']] <- lapply(TaxonomicEnrichmentList[['synonyms']], function(x) {
-             SummaryScientificName$new()$fromList(x, typeObject=typeObject)            
+             SummaryScientificName$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(TaxonomicEnrichmentList[['sourceSystem']])) {      
-          if (is.null(typeObject)) {
-              self[['sourceSystem']] <- SummarySourceSystem$new()$fromList(TaxonomicEnrichmentList[['sourceSystem']])
+          if (is.null(typeMapping[['sourceSystem']])) {
+             self[['sourceSystem']] <- SummarySourceSystem$new()$fromList(TaxonomicEnrichmentList[['sourceSystem']])
           } else {
-              self[['sourceSystem']] <- typeObject$fromList(TaxonomicEnrichmentList[['sourceSystem']])
+              ## make object of type specified by type mapping
+              obj <- eval(parse(text=paste0(typeMapping[['sourceSystem']], "$new()")))
+              self[['sourceSystem']] <- obj$fromList(TaxonomicEnrichmentList[['sourceSystem']])
           }
       }
       if (!is.null(TaxonomicEnrichmentList[['taxonId']])) {      
@@ -91,16 +93,17 @@ TaxonomicEnrichment <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(TaxonomicEnrichmentJson, typeObject=NULL) {
+    fromJSONString = function(TaxonomicEnrichmentJson, typeMapping=NULL) {
       TaxonomicEnrichmentList <- jsonlite::fromJSON(TaxonomicEnrichmentJson, simplifyVector=F)
       self[['vernacularNames']] <- lapply(TaxonomicEnrichmentList[['vernacularNames']],
-                                        function(x) SummaryVernacularName$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) SummaryVernacularName$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['synonyms']] <- lapply(TaxonomicEnrichmentList[['synonyms']],
-                                        function(x) SummaryScientificName$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
-      if (is.null(typeObject)) {
-          self[['sourceSystem']] <- SummarySourceSystem$new()$fromJSONString(jsonlite::toJSON(TaxonomicEnrichmentList[['sourceSystem']], auto_unbox = TRUE), typeObject=typeObject) 
+                                        function(x) SummaryScientificName$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
+      if (is.null(typeMapping[['sourceSystem']])) {
+          self[['sourceSystem']] <- SummarySourceSystem$new()$fromJSONString(jsonlite::toJSON(TaxonomicEnrichmentList[['sourceSystem']], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          self[['sourceSystem']] <- typeObject$fromJSONString(jsonlite::toJSON(TaxonomicEnrichmentList[['sourceSystem']], auto_unbox = TRUE), typeObject=typeObject)
+          obj <- eval(parse(text=paste0(typeMapping[['sourceSystem']], "$new()")))
+          self[['sourceSystem']] <- obj$fromJSONString(jsonlite::toJSON(TaxonomicEnrichmentList[['sourceSystem']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       self[['taxonId']] <- TaxonomicEnrichmentList[['taxonId']]
       invisible(self)

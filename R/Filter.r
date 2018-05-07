@@ -63,7 +63,7 @@ Filter <- R6::R6Class(
       FilterList[sapply(FilterList, length) > 0]
       },
 
-    fromList = function(FilterList, typeObject=NULL) {
+    fromList = function(FilterList, typeMapping=NULL) {
       if (!is.null(FilterList[['acceptRegexp']])) {      
           self[['acceptRegexp']] <- FilterList[['acceptRegexp']]
       }
@@ -83,7 +83,7 @@ Filter <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(FilterJson, typeObject=NULL) {
+    fromJSONString = function(FilterJson, typeMapping=NULL) {
       FilterList <- jsonlite::fromJSON(FilterJson, simplifyVector=F)
       self[['acceptRegexp']] <- FilterList[['acceptRegexp']]
       self[['rejectRegexp']] <- FilterList[['rejectRegexp']]

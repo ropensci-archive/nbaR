@@ -182,15 +182,17 @@ SpecimenIdentification <- R6::R6Class(
       SpecimenIdentificationList[sapply(SpecimenIdentificationList, length) > 0]
       },
 
-    fromList = function(SpecimenIdentificationList, typeObject=NULL) {
+    fromList = function(SpecimenIdentificationList, typeMapping=NULL) {
       if (!is.null(SpecimenIdentificationList[['taxonRank']])) {      
           self[['taxonRank']] <- SpecimenIdentificationList[['taxonRank']]
       }
       if (!is.null(SpecimenIdentificationList[['scientificName']])) {      
-          if (is.null(typeObject)) {
-              self[['scientificName']] <- ScientificName$new()$fromList(SpecimenIdentificationList[['scientificName']])
+          if (is.null(typeMapping[['scientificName']])) {
+             self[['scientificName']] <- ScientificName$new()$fromList(SpecimenIdentificationList[['scientificName']])
           } else {
-              self[['scientificName']] <- typeObject$fromList(SpecimenIdentificationList[['scientificName']])
+              ## make object of type specified by type mapping
+              obj <- eval(parse(text=paste0(typeMapping[['scientificName']], "$new()")))
+              self[['scientificName']] <- obj$fromList(SpecimenIdentificationList[['scientificName']])
           }
       }
       if (!is.null(SpecimenIdentificationList[['typeStatus']])) {      
@@ -200,20 +202,22 @@ SpecimenIdentification <- R6::R6Class(
           self[['dateIdentified']] <- SpecimenIdentificationList[['dateIdentified']]
       }
       if (!is.null(SpecimenIdentificationList[['defaultClassification']])) {      
-          if (is.null(typeObject)) {
-              self[['defaultClassification']] <- DefaultClassification$new()$fromList(SpecimenIdentificationList[['defaultClassification']])
+          if (is.null(typeMapping[['defaultClassification']])) {
+             self[['defaultClassification']] <- DefaultClassification$new()$fromList(SpecimenIdentificationList[['defaultClassification']])
           } else {
-              self[['defaultClassification']] <- typeObject$fromList(SpecimenIdentificationList[['defaultClassification']])
+              ## make object of type specified by type mapping
+              obj <- eval(parse(text=paste0(typeMapping[['defaultClassification']], "$new()")))
+              self[['defaultClassification']] <- obj$fromList(SpecimenIdentificationList[['defaultClassification']])
           }
       }
       if (!is.null(SpecimenIdentificationList[['systemClassification']])) {      
           self[['systemClassification']] <- lapply(SpecimenIdentificationList[['systemClassification']], function(x) {
-             Monomial$new()$fromList(x, typeObject=typeObject)            
+             Monomial$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(SpecimenIdentificationList[['vernacularNames']])) {      
           self[['vernacularNames']] <- lapply(SpecimenIdentificationList[['vernacularNames']], function(x) {
-             VernacularName$new()$fromList(x, typeObject=typeObject)            
+             VernacularName$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(SpecimenIdentificationList[['identificationQualifiers']])) {      
@@ -221,12 +225,12 @@ SpecimenIdentification <- R6::R6Class(
       }
       if (!is.null(SpecimenIdentificationList[['identifiers']])) {      
           self[['identifiers']] <- lapply(SpecimenIdentificationList[['identifiers']], function(x) {
-             Agent$new()$fromList(x, typeObject=typeObject)            
+             Agent$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(SpecimenIdentificationList[['taxonomicEnrichments']])) {      
           self[['taxonomicEnrichments']] <- lapply(SpecimenIdentificationList[['taxonomicEnrichments']], function(x) {
-             TaxonomicEnrichment$new()$fromList(x, typeObject=typeObject)            
+             TaxonomicEnrichment$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(SpecimenIdentificationList[['preferred']])) {      
@@ -257,30 +261,32 @@ SpecimenIdentification <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(SpecimenIdentificationJson, typeObject=NULL) {
+    fromJSONString = function(SpecimenIdentificationJson, typeMapping=NULL) {
       SpecimenIdentificationList <- jsonlite::fromJSON(SpecimenIdentificationJson, simplifyVector=F)
       self[['taxonRank']] <- SpecimenIdentificationList[['taxonRank']]
-      if (is.null(typeObject)) {
-          self[['scientificName']] <- ScientificName$new()$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['scientificName']], auto_unbox = TRUE), typeObject=typeObject) 
+      if (is.null(typeMapping[['scientificName']])) {
+          self[['scientificName']] <- ScientificName$new()$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['scientificName']], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          self[['scientificName']] <- typeObject$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['scientificName']], auto_unbox = TRUE), typeObject=typeObject)
+          obj <- eval(parse(text=paste0(typeMapping[['scientificName']], "$new()")))
+          self[['scientificName']] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['scientificName']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       self[['typeStatus']] <- SpecimenIdentificationList[['typeStatus']]
       self[['dateIdentified']] <- SpecimenIdentificationList[['dateIdentified']]
-      if (is.null(typeObject)) {
-          self[['defaultClassification']] <- DefaultClassification$new()$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['defaultClassification']], auto_unbox = TRUE), typeObject=typeObject) 
+      if (is.null(typeMapping[['defaultClassification']])) {
+          self[['defaultClassification']] <- DefaultClassification$new()$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['defaultClassification']], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          self[['defaultClassification']] <- typeObject$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['defaultClassification']], auto_unbox = TRUE), typeObject=typeObject)
+          obj <- eval(parse(text=paste0(typeMapping[['defaultClassification']], "$new()")))
+          self[['defaultClassification']] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['defaultClassification']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       self[['systemClassification']] <- lapply(SpecimenIdentificationList[['systemClassification']],
-                                        function(x) Monomial$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) Monomial$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['vernacularNames']] <- lapply(SpecimenIdentificationList[['vernacularNames']],
-                                        function(x) VernacularName$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) VernacularName$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['identificationQualifiers']] <- SpecimenIdentificationList[['identificationQualifiers']]
       self[['identifiers']] <- lapply(SpecimenIdentificationList[['identifiers']],
-                                        function(x) Agent$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) Agent$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['taxonomicEnrichments']] <- lapply(SpecimenIdentificationList[['taxonomicEnrichments']],
-                                        function(x) TaxonomicEnrichment$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) TaxonomicEnrichment$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['preferred']] <- SpecimenIdentificationList[['preferred']]
       self[['verificationStatus']] <- SpecimenIdentificationList[['verificationStatus']]
       self[['rockType']] <- SpecimenIdentificationList[['rockType']]

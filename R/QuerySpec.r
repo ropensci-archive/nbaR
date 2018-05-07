@@ -90,7 +90,7 @@ QuerySpec <- R6::R6Class(
       QuerySpecList[sapply(QuerySpecList, length) > 0]
       },
 
-    fromList = function(QuerySpecList, typeObject=NULL) {
+    fromList = function(QuerySpecList, typeMapping=NULL) {
       if (!is.null(QuerySpecList[['constantScore']])) {      
           self[['constantScore']] <- QuerySpecList[['constantScore']]
       }
@@ -99,7 +99,7 @@ QuerySpec <- R6::R6Class(
       }
       if (!is.null(QuerySpecList[['conditions']])) {      
           self[['conditions']] <- lapply(QuerySpecList[['conditions']], function(x) {
-             QueryCondition$new()$fromList(x, typeObject=typeObject)            
+             QueryCondition$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(QuerySpecList[['logicalOperator']])) {      
@@ -107,7 +107,7 @@ QuerySpec <- R6::R6Class(
       }
       if (!is.null(QuerySpecList[['sortFields']])) {      
           self[['sortFields']] <- lapply(QuerySpecList[['sortFields']], function(x) {
-             SortField$new()$fromList(x, typeObject=typeObject)            
+             SortField$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(QuerySpecList[['from']])) {      
@@ -123,15 +123,15 @@ QuerySpec <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(QuerySpecJson, typeObject=NULL) {
+    fromJSONString = function(QuerySpecJson, typeMapping=NULL) {
       QuerySpecList <- jsonlite::fromJSON(QuerySpecJson, simplifyVector=F)
       self[['constantScore']] <- QuerySpecList[['constantScore']]
       self[['fields']] <- QuerySpecList[['fields']]
       self[['conditions']] <- lapply(QuerySpecList[['conditions']],
-                                        function(x) QueryCondition$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) QueryCondition$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['logicalOperator']] <- QuerySpecList[['logicalOperator']]
       self[['sortFields']] <- lapply(QuerySpecList[['sortFields']],
-                                        function(x) SortField$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) SortField$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['from']] <- QuerySpecList[['from']]
       self[['size']] <- QuerySpecList[['size']]
       invisible(self)

@@ -153,7 +153,7 @@ ScientificName <- R6::R6Class(
       ScientificNameList[sapply(ScientificNameList, length) > 0]
       },
 
-    fromList = function(ScientificNameList, typeObject=NULL) {
+    fromList = function(ScientificNameList, typeMapping=NULL) {
       if (!is.null(ScientificNameList[['fullScientificName']])) {      
           self[['fullScientificName']] <- ScientificNameList[['fullScientificName']]
       }
@@ -192,12 +192,12 @@ ScientificName <- R6::R6Class(
       }
       if (!is.null(ScientificNameList[['references']])) {      
           self[['references']] <- lapply(ScientificNameList[['references']], function(x) {
-             Reference$new()$fromList(x, typeObject=typeObject)            
+             Reference$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(ScientificNameList[['experts']])) {      
           self[['experts']] <- lapply(ScientificNameList[['experts']], function(x) {
-             Person$new()$fromList(x, typeObject=typeObject)            
+             Person$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       return(self)
@@ -207,7 +207,7 @@ ScientificName <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(ScientificNameJson, typeObject=NULL) {
+    fromJSONString = function(ScientificNameJson, typeMapping=NULL) {
       ScientificNameList <- jsonlite::fromJSON(ScientificNameJson, simplifyVector=F)
       self[['fullScientificName']] <- ScientificNameList[['fullScientificName']]
       self[['taxonomicStatus']] <- ScientificNameList[['taxonomicStatus']]
@@ -222,9 +222,9 @@ ScientificName <- R6::R6Class(
       self[['year']] <- ScientificNameList[['year']]
       self[['scientificNameGroup']] <- ScientificNameList[['scientificNameGroup']]
       self[['references']] <- lapply(ScientificNameList[['references']],
-                                        function(x) Reference$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) Reference$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['experts']] <- lapply(ScientificNameList[['experts']],
-                                        function(x) Person$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) Person$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       invisible(self)
     }
   )

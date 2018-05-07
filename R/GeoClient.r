@@ -160,7 +160,7 @@ GeoClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- GeoArea$new()
-            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
             Response$new(result, response)
         }        
     },
@@ -188,7 +188,7 @@ GeoClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- GeoArea$new()
-            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeObject=self$getTypeObject()))
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=self$getBaseDataType())))
             Response$new(result, response)
         }        
     },
@@ -216,7 +216,7 @@ GeoClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
             Response$new(result, response)
         }        
     },
@@ -250,7 +250,7 @@ GeoClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
             Response$new(result, response)
         }        
     },
@@ -274,7 +274,7 @@ GeoClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
             Response$new(result, response)
         }        
     },
@@ -302,7 +302,7 @@ GeoClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- GeoArea$new()
-            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
             Response$new(result, response)
         }        
     },
@@ -350,7 +350,7 @@ GeoClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
             Response$new(result, response)
         }        
     },
@@ -378,7 +378,7 @@ GeoClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
             Response$new(result, response)
         }        
     },
@@ -410,7 +410,7 @@ GeoClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- Specimen$new()
-            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
             Response$new(result, response)
         }        
     },
@@ -446,7 +446,7 @@ GeoClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- QueryResult$new()
-            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
             Response$new(result, response)
         }        
     },
@@ -482,7 +482,7 @@ GeoClient <- R6::R6Class(
             self$handleError(response)
         } else {
             returnObject <- QueryResult$new()
-            result <- returnObject$fromList(httr::content(response), typeObject=self$getTypeObject())
+            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
             Response$new(result, response)
         }        
     }

@@ -120,15 +120,17 @@ MultiMediaContentIdentification <- R6::R6Class(
       MultiMediaContentIdentificationList[sapply(MultiMediaContentIdentificationList, length) > 0]
       },
 
-    fromList = function(MultiMediaContentIdentificationList, typeObject=NULL) {
+    fromList = function(MultiMediaContentIdentificationList, typeMapping=NULL) {
       if (!is.null(MultiMediaContentIdentificationList[['taxonRank']])) {      
           self[['taxonRank']] <- MultiMediaContentIdentificationList[['taxonRank']]
       }
       if (!is.null(MultiMediaContentIdentificationList[['scientificName']])) {      
-          if (is.null(typeObject)) {
-              self[['scientificName']] <- ScientificName$new()$fromList(MultiMediaContentIdentificationList[['scientificName']])
+          if (is.null(typeMapping[['scientificName']])) {
+             self[['scientificName']] <- ScientificName$new()$fromList(MultiMediaContentIdentificationList[['scientificName']])
           } else {
-              self[['scientificName']] <- typeObject$fromList(MultiMediaContentIdentificationList[['scientificName']])
+              ## make object of type specified by type mapping
+              obj <- eval(parse(text=paste0(typeMapping[['scientificName']], "$new()")))
+              self[['scientificName']] <- obj$fromList(MultiMediaContentIdentificationList[['scientificName']])
           }
       }
       if (!is.null(MultiMediaContentIdentificationList[['typeStatus']])) {      
@@ -138,20 +140,22 @@ MultiMediaContentIdentification <- R6::R6Class(
           self[['dateIdentified']] <- MultiMediaContentIdentificationList[['dateIdentified']]
       }
       if (!is.null(MultiMediaContentIdentificationList[['defaultClassification']])) {      
-          if (is.null(typeObject)) {
-              self[['defaultClassification']] <- DefaultClassification$new()$fromList(MultiMediaContentIdentificationList[['defaultClassification']])
+          if (is.null(typeMapping[['defaultClassification']])) {
+             self[['defaultClassification']] <- DefaultClassification$new()$fromList(MultiMediaContentIdentificationList[['defaultClassification']])
           } else {
-              self[['defaultClassification']] <- typeObject$fromList(MultiMediaContentIdentificationList[['defaultClassification']])
+              ## make object of type specified by type mapping
+              obj <- eval(parse(text=paste0(typeMapping[['defaultClassification']], "$new()")))
+              self[['defaultClassification']] <- obj$fromList(MultiMediaContentIdentificationList[['defaultClassification']])
           }
       }
       if (!is.null(MultiMediaContentIdentificationList[['systemClassification']])) {      
           self[['systemClassification']] <- lapply(MultiMediaContentIdentificationList[['systemClassification']], function(x) {
-             Monomial$new()$fromList(x, typeObject=typeObject)            
+             Monomial$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(MultiMediaContentIdentificationList[['vernacularNames']])) {      
           self[['vernacularNames']] <- lapply(MultiMediaContentIdentificationList[['vernacularNames']], function(x) {
-             VernacularName$new()$fromList(x, typeObject=typeObject)            
+             VernacularName$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(MultiMediaContentIdentificationList[['identificationQualifiers']])) {      
@@ -159,12 +163,12 @@ MultiMediaContentIdentification <- R6::R6Class(
       }
       if (!is.null(MultiMediaContentIdentificationList[['identifiers']])) {      
           self[['identifiers']] <- lapply(MultiMediaContentIdentificationList[['identifiers']], function(x) {
-             Agent$new()$fromList(x, typeObject=typeObject)            
+             Agent$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(MultiMediaContentIdentificationList[['taxonomicEnrichments']])) {      
           self[['taxonomicEnrichments']] <- lapply(MultiMediaContentIdentificationList[['taxonomicEnrichments']], function(x) {
-             TaxonomicEnrichment$new()$fromList(x, typeObject=typeObject)            
+             TaxonomicEnrichment$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       return(self)
@@ -174,30 +178,32 @@ MultiMediaContentIdentification <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(MultiMediaContentIdentificationJson, typeObject=NULL) {
+    fromJSONString = function(MultiMediaContentIdentificationJson, typeMapping=NULL) {
       MultiMediaContentIdentificationList <- jsonlite::fromJSON(MultiMediaContentIdentificationJson, simplifyVector=F)
       self[['taxonRank']] <- MultiMediaContentIdentificationList[['taxonRank']]
-      if (is.null(typeObject)) {
-          self[['scientificName']] <- ScientificName$new()$fromJSONString(jsonlite::toJSON(MultiMediaContentIdentificationList[['scientificName']], auto_unbox = TRUE), typeObject=typeObject) 
+      if (is.null(typeMapping[['scientificName']])) {
+          self[['scientificName']] <- ScientificName$new()$fromJSONString(jsonlite::toJSON(MultiMediaContentIdentificationList[['scientificName']], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          self[['scientificName']] <- typeObject$fromJSONString(jsonlite::toJSON(MultiMediaContentIdentificationList[['scientificName']], auto_unbox = TRUE), typeObject=typeObject)
+          obj <- eval(parse(text=paste0(typeMapping[['scientificName']], "$new()")))
+          self[['scientificName']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaContentIdentificationList[['scientificName']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       self[['typeStatus']] <- MultiMediaContentIdentificationList[['typeStatus']]
       self[['dateIdentified']] <- MultiMediaContentIdentificationList[['dateIdentified']]
-      if (is.null(typeObject)) {
-          self[['defaultClassification']] <- DefaultClassification$new()$fromJSONString(jsonlite::toJSON(MultiMediaContentIdentificationList[['defaultClassification']], auto_unbox = TRUE), typeObject=typeObject) 
+      if (is.null(typeMapping[['defaultClassification']])) {
+          self[['defaultClassification']] <- DefaultClassification$new()$fromJSONString(jsonlite::toJSON(MultiMediaContentIdentificationList[['defaultClassification']], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          self[['defaultClassification']] <- typeObject$fromJSONString(jsonlite::toJSON(MultiMediaContentIdentificationList[['defaultClassification']], auto_unbox = TRUE), typeObject=typeObject)
+          obj <- eval(parse(text=paste0(typeMapping[['defaultClassification']], "$new()")))
+          self[['defaultClassification']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaContentIdentificationList[['defaultClassification']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       self[['systemClassification']] <- lapply(MultiMediaContentIdentificationList[['systemClassification']],
-                                        function(x) Monomial$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) Monomial$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['vernacularNames']] <- lapply(MultiMediaContentIdentificationList[['vernacularNames']],
-                                        function(x) VernacularName$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) VernacularName$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['identificationQualifiers']] <- MultiMediaContentIdentificationList[['identificationQualifiers']]
       self[['identifiers']] <- lapply(MultiMediaContentIdentificationList[['identifiers']],
-                                        function(x) Agent$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) Agent$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['taxonomicEnrichments']] <- lapply(MultiMediaContentIdentificationList[['taxonomicEnrichments']],
-                                        function(x) TaxonomicEnrichment$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) TaxonomicEnrichment$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       invisible(self)
     }
   )

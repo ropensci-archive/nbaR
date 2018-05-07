@@ -144,7 +144,7 @@ GroupByScientificNameQuerySpec <- R6::R6Class(
       GroupByScientificNameQuerySpecList[sapply(GroupByScientificNameQuerySpecList, length) > 0]
       },
 
-    fromList = function(GroupByScientificNameQuerySpecList, typeObject=NULL) {
+    fromList = function(GroupByScientificNameQuerySpecList, typeMapping=NULL) {
       if (!is.null(GroupByScientificNameQuerySpecList[['constantScore']])) {      
           self[['constantScore']] <- GroupByScientificNameQuerySpecList[['constantScore']]
       }
@@ -153,7 +153,7 @@ GroupByScientificNameQuerySpec <- R6::R6Class(
       }
       if (!is.null(GroupByScientificNameQuerySpecList[['conditions']])) {      
           self[['conditions']] <- lapply(GroupByScientificNameQuerySpecList[['conditions']], function(x) {
-             QueryCondition$new()$fromList(x, typeObject=typeObject)            
+             QueryCondition$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(GroupByScientificNameQuerySpecList[['logicalOperator']])) {      
@@ -161,7 +161,7 @@ GroupByScientificNameQuerySpec <- R6::R6Class(
       }
       if (!is.null(GroupByScientificNameQuerySpecList[['sortFields']])) {      
           self[['sortFields']] <- lapply(GroupByScientificNameQuerySpecList[['sortFields']], function(x) {
-             SortField$new()$fromList(x, typeObject=typeObject)            
+             SortField$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(GroupByScientificNameQuerySpecList[['from']])) {      
@@ -174,10 +174,12 @@ GroupByScientificNameQuerySpec <- R6::R6Class(
           self[['groupSort']] <- GroupByScientificNameQuerySpecList[['groupSort']]
       }
       if (!is.null(GroupByScientificNameQuerySpecList[['groupFilter']])) {      
-          if (is.null(typeObject)) {
-              self[['groupFilter']] <- Filter$new()$fromList(GroupByScientificNameQuerySpecList[['groupFilter']])
+          if (is.null(typeMapping[['groupFilter']])) {
+             self[['groupFilter']] <- Filter$new()$fromList(GroupByScientificNameQuerySpecList[['groupFilter']])
           } else {
-              self[['groupFilter']] <- typeObject$fromList(GroupByScientificNameQuerySpecList[['groupFilter']])
+              ## make object of type specified by type mapping
+              obj <- eval(parse(text=paste0(typeMapping[['groupFilter']], "$new()")))
+              self[['groupFilter']] <- obj$fromList(GroupByScientificNameQuerySpecList[['groupFilter']])
           }
       }
       if (!is.null(GroupByScientificNameQuerySpecList[['specimensFrom']])) {      
@@ -188,7 +190,7 @@ GroupByScientificNameQuerySpec <- R6::R6Class(
       }
       if (!is.null(GroupByScientificNameQuerySpecList[['specimensSortFields']])) {      
           self[['specimensSortFields']] <- lapply(GroupByScientificNameQuerySpecList[['specimensSortFields']], function(x) {
-             SortField$new()$fromList(x, typeObject=typeObject)            
+             SortField$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(GroupByScientificNameQuerySpecList[['noTaxa']])) {      
@@ -201,27 +203,28 @@ GroupByScientificNameQuerySpec <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(GroupByScientificNameQuerySpecJson, typeObject=NULL) {
+    fromJSONString = function(GroupByScientificNameQuerySpecJson, typeMapping=NULL) {
       GroupByScientificNameQuerySpecList <- jsonlite::fromJSON(GroupByScientificNameQuerySpecJson, simplifyVector=F)
       self[['constantScore']] <- GroupByScientificNameQuerySpecList[['constantScore']]
       self[['fields']] <- GroupByScientificNameQuerySpecList[['fields']]
       self[['conditions']] <- lapply(GroupByScientificNameQuerySpecList[['conditions']],
-                                        function(x) QueryCondition$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) QueryCondition$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['logicalOperator']] <- GroupByScientificNameQuerySpecList[['logicalOperator']]
       self[['sortFields']] <- lapply(GroupByScientificNameQuerySpecList[['sortFields']],
-                                        function(x) SortField$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) SortField$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['from']] <- GroupByScientificNameQuerySpecList[['from']]
       self[['size']] <- GroupByScientificNameQuerySpecList[['size']]
       self[['groupSort']] <- GroupByScientificNameQuerySpecList[['groupSort']]
-      if (is.null(typeObject)) {
-          self[['groupFilter']] <- Filter$new()$fromJSONString(jsonlite::toJSON(GroupByScientificNameQuerySpecList[['groupFilter']], auto_unbox = TRUE), typeObject=typeObject) 
+      if (is.null(typeMapping[['groupFilter']])) {
+          self[['groupFilter']] <- Filter$new()$fromJSONString(jsonlite::toJSON(GroupByScientificNameQuerySpecList[['groupFilter']], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          self[['groupFilter']] <- typeObject$fromJSONString(jsonlite::toJSON(GroupByScientificNameQuerySpecList[['groupFilter']], auto_unbox = TRUE), typeObject=typeObject)
+          obj <- eval(parse(text=paste0(typeMapping[['groupFilter']], "$new()")))
+          self[['groupFilter']] <- obj$fromJSONString(jsonlite::toJSON(GroupByScientificNameQuerySpecList[['groupFilter']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       self[['specimensFrom']] <- GroupByScientificNameQuerySpecList[['specimensFrom']]
       self[['specimensSize']] <- GroupByScientificNameQuerySpecList[['specimensSize']]
       self[['specimensSortFields']] <- lapply(GroupByScientificNameQuerySpecList[['specimensSortFields']],
-                                        function(x) SortField$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) SortField$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['noTaxa']] <- GroupByScientificNameQuerySpecList[['noTaxa']]
       invisible(self)
     }

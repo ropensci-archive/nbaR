@@ -115,12 +115,14 @@ GeoArea <- R6::R6Class(
       GeoAreaList[sapply(GeoAreaList, length) > 0]
       },
 
-    fromList = function(GeoAreaList, typeObject=NULL) {
+    fromList = function(GeoAreaList, typeMapping=NULL) {
       if (!is.null(GeoAreaList[['sourceSystem']])) {      
-          if (is.null(typeObject)) {
-              self[['sourceSystem']] <- SourceSystem$new()$fromList(GeoAreaList[['sourceSystem']])
+          if (is.null(typeMapping[['sourceSystem']])) {
+             self[['sourceSystem']] <- SourceSystem$new()$fromList(GeoAreaList[['sourceSystem']])
           } else {
-              self[['sourceSystem']] <- typeObject$fromList(GeoAreaList[['sourceSystem']])
+              ## make object of type specified by type mapping
+              obj <- eval(parse(text=paste0(typeMapping[['sourceSystem']], "$new()")))
+              self[['sourceSystem']] <- obj$fromList(GeoAreaList[['sourceSystem']])
           }
       }
       if (!is.null(GeoAreaList[['sourceSystemId']])) {      
@@ -139,10 +141,12 @@ GeoArea <- R6::R6Class(
           self[['locality']] <- GeoAreaList[['locality']]
       }
       if (!is.null(GeoAreaList[['shape']])) {      
-          if (is.null(typeObject)) {
-              self[['shape']] <- GeoJsonObject$new()$fromList(GeoAreaList[['shape']])
+          if (is.null(typeMapping[['shape']])) {
+             self[['shape']] <- GeoJsonObject$new()$fromList(GeoAreaList[['shape']])
           } else {
-              self[['shape']] <- typeObject$fromList(GeoAreaList[['shape']])
+              ## make object of type specified by type mapping
+              obj <- eval(parse(text=paste0(typeMapping[['shape']], "$new()")))
+              self[['shape']] <- obj$fromList(GeoAreaList[['shape']])
           }
       }
       if (!is.null(GeoAreaList[['source']])) {      
@@ -161,22 +165,24 @@ GeoArea <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(GeoAreaJson, typeObject=NULL) {
+    fromJSONString = function(GeoAreaJson, typeMapping=NULL) {
       GeoAreaList <- jsonlite::fromJSON(GeoAreaJson, simplifyVector=F)
-      if (is.null(typeObject)) {
-          self[['sourceSystem']] <- SourceSystem$new()$fromJSONString(jsonlite::toJSON(GeoAreaList[['sourceSystem']], auto_unbox = TRUE), typeObject=typeObject) 
+      if (is.null(typeMapping[['sourceSystem']])) {
+          self[['sourceSystem']] <- SourceSystem$new()$fromJSONString(jsonlite::toJSON(GeoAreaList[['sourceSystem']], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          self[['sourceSystem']] <- typeObject$fromJSONString(jsonlite::toJSON(GeoAreaList[['sourceSystem']], auto_unbox = TRUE), typeObject=typeObject)
+          obj <- eval(parse(text=paste0(typeMapping[['sourceSystem']], "$new()")))
+          self[['sourceSystem']] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[['sourceSystem']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       self[['sourceSystemId']] <- GeoAreaList[['sourceSystemId']]
       self[['recordURI']] <- GeoAreaList[['recordURI']]
       self[['id']] <- GeoAreaList[['id']]
       self[['areaType']] <- GeoAreaList[['areaType']]
       self[['locality']] <- GeoAreaList[['locality']]
-      if (is.null(typeObject)) {
-          self[['shape']] <- GeoJsonObject$new()$fromJSONString(jsonlite::toJSON(GeoAreaList[['shape']], auto_unbox = TRUE), typeObject=typeObject) 
+      if (is.null(typeMapping[['shape']])) {
+          self[['shape']] <- GeoJsonObject$new()$fromJSONString(jsonlite::toJSON(GeoAreaList[['shape']], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          self[['shape']] <- typeObject$fromJSONString(jsonlite::toJSON(GeoAreaList[['shape']], auto_unbox = TRUE), typeObject=typeObject)
+          obj <- eval(parse(text=paste0(typeMapping[['shape']], "$new()")))
+          self[['shape']] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[['shape']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       self[['source']] <- GeoAreaList[['source']]
       self[['isoCode']] <- GeoAreaList[['isoCode']]

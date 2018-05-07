@@ -43,7 +43,7 @@ SummaryVernacularName <- R6::R6Class(
       SummaryVernacularNameList[sapply(SummaryVernacularNameList, length) > 0]
       },
 
-    fromList = function(SummaryVernacularNameList, typeObject=NULL) {
+    fromList = function(SummaryVernacularNameList, typeMapping=NULL) {
       if (!is.null(SummaryVernacularNameList[['name']])) {      
           self[['name']] <- SummaryVernacularNameList[['name']]
       }
@@ -57,7 +57,7 @@ SummaryVernacularName <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(SummaryVernacularNameJson, typeObject=NULL) {
+    fromJSONString = function(SummaryVernacularNameJson, typeMapping=NULL) {
       SummaryVernacularNameList <- jsonlite::fromJSON(SummaryVernacularNameJson, simplifyVector=F)
       self[['name']] <- SummaryVernacularNameList[['name']]
       self[['language']] <- SummaryVernacularNameList[['language']]

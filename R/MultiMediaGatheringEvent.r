@@ -256,7 +256,7 @@ MultiMediaGatheringEvent <- R6::R6Class(
       MultiMediaGatheringEventList[sapply(MultiMediaGatheringEventList, length) > 0]
       },
 
-    fromList = function(MultiMediaGatheringEventList, typeObject=NULL) {
+    fromList = function(MultiMediaGatheringEventList, typeMapping=NULL) {
       if (!is.null(MultiMediaGatheringEventList[['projectTitle']])) {      
           self[['projectTitle']] <- MultiMediaGatheringEventList[['projectTitle']]
       }
@@ -313,39 +313,41 @@ MultiMediaGatheringEvent <- R6::R6Class(
       }
       if (!is.null(MultiMediaGatheringEventList[['gatheringPersons']])) {      
           self[['gatheringPersons']] <- lapply(MultiMediaGatheringEventList[['gatheringPersons']], function(x) {
-             Person$new()$fromList(x, typeObject=typeObject)            
+             Person$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(MultiMediaGatheringEventList[['gatheringOrganizations']])) {      
           self[['gatheringOrganizations']] <- lapply(MultiMediaGatheringEventList[['gatheringOrganizations']], function(x) {
-             Organization$new()$fromList(x, typeObject=typeObject)            
+             Organization$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(MultiMediaGatheringEventList[['siteCoordinates']])) {      
           self[['siteCoordinates']] <- lapply(MultiMediaGatheringEventList[['siteCoordinates']], function(x) {
-             GatheringSiteCoordinates$new()$fromList(x, typeObject=typeObject)            
+             GatheringSiteCoordinates$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(MultiMediaGatheringEventList[['chronoStratigraphy']])) {      
           self[['chronoStratigraphy']] <- lapply(MultiMediaGatheringEventList[['chronoStratigraphy']], function(x) {
-             ChronoStratigraphy$new()$fromList(x, typeObject=typeObject)            
+             ChronoStratigraphy$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(MultiMediaGatheringEventList[['lithoStratigraphy']])) {      
           self[['lithoStratigraphy']] <- lapply(MultiMediaGatheringEventList[['lithoStratigraphy']], function(x) {
-             LithoStratigraphy$new()$fromList(x, typeObject=typeObject)            
+             LithoStratigraphy$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       if (!is.null(MultiMediaGatheringEventList[['iptc']])) {      
-          if (is.null(typeObject)) {
-              self[['iptc']] <- Iptc4xmpExt$new()$fromList(MultiMediaGatheringEventList[['iptc']])
+          if (is.null(typeMapping[['iptc']])) {
+             self[['iptc']] <- Iptc4xmpExt$new()$fromList(MultiMediaGatheringEventList[['iptc']])
           } else {
-              self[['iptc']] <- typeObject$fromList(MultiMediaGatheringEventList[['iptc']])
+              ## make object of type specified by type mapping
+              obj <- eval(parse(text=paste0(typeMapping[['iptc']], "$new()")))
+              self[['iptc']] <- obj$fromList(MultiMediaGatheringEventList[['iptc']])
           }
       }
       if (!is.null(MultiMediaGatheringEventList[['bioStratigraphic']])) {      
           self[['bioStratigraphic']] <- lapply(MultiMediaGatheringEventList[['bioStratigraphic']], function(x) {
-             BioStratigraphy$new()$fromList(x, typeObject=typeObject)            
+             BioStratigraphy$new()$fromList(x, typeMapping=typeMapping)            
           })
       }
       return(self)
@@ -355,7 +357,7 @@ MultiMediaGatheringEvent <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(MultiMediaGatheringEventJson, typeObject=NULL) {
+    fromJSONString = function(MultiMediaGatheringEventJson, typeMapping=NULL) {
       MultiMediaGatheringEventList <- jsonlite::fromJSON(MultiMediaGatheringEventJson, simplifyVector=F)
       self[['projectTitle']] <- MultiMediaGatheringEventList[['projectTitle']]
       self[['worldRegion']] <- MultiMediaGatheringEventList[['worldRegion']]
@@ -376,22 +378,23 @@ MultiMediaGatheringEvent <- R6::R6Class(
       self[['depth']] <- MultiMediaGatheringEventList[['depth']]
       self[['depthUnitOfMeasurement']] <- MultiMediaGatheringEventList[['depthUnitOfMeasurement']]
       self[['gatheringPersons']] <- lapply(MultiMediaGatheringEventList[['gatheringPersons']],
-                                        function(x) Person$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) Person$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['gatheringOrganizations']] <- lapply(MultiMediaGatheringEventList[['gatheringOrganizations']],
-                                        function(x) Organization$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) Organization$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['siteCoordinates']] <- lapply(MultiMediaGatheringEventList[['siteCoordinates']],
-                                        function(x) GatheringSiteCoordinates$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) GatheringSiteCoordinates$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['chronoStratigraphy']] <- lapply(MultiMediaGatheringEventList[['chronoStratigraphy']],
-                                        function(x) ChronoStratigraphy$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) ChronoStratigraphy$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['lithoStratigraphy']] <- lapply(MultiMediaGatheringEventList[['lithoStratigraphy']],
-                                        function(x) LithoStratigraphy$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
-      if (is.null(typeObject)) {
-          self[['iptc']] <- Iptc4xmpExt$new()$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['iptc']], auto_unbox = TRUE), typeObject=typeObject) 
+                                        function(x) LithoStratigraphy$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
+      if (is.null(typeMapping[['iptc']])) {
+          self[['iptc']] <- Iptc4xmpExt$new()$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['iptc']], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          self[['iptc']] <- typeObject$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['iptc']], auto_unbox = TRUE), typeObject=typeObject)
+          obj <- eval(parse(text=paste0(typeMapping[['iptc']], "$new()")))
+          self[['iptc']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['iptc']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       self[['bioStratigraphic']] <- lapply(MultiMediaGatheringEventList[['bioStratigraphic']],
-                                        function(x) BioStratigraphy$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeObject=typeObject))
+                                        function(x) BioStratigraphy$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       invisible(self)
     }
   )

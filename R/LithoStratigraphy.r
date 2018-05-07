@@ -177,7 +177,7 @@ LithoStratigraphy <- R6::R6Class(
       LithoStratigraphyList[sapply(LithoStratigraphyList, length) > 0]
       },
 
-    fromList = function(LithoStratigraphyList, typeObject=NULL) {
+    fromList = function(LithoStratigraphyList, typeMapping=NULL) {
       if (!is.null(LithoStratigraphyList[['qualifier']])) {      
           self[['qualifier']] <- LithoStratigraphyList[['qualifier']]
       }
@@ -236,7 +236,7 @@ LithoStratigraphy <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(LithoStratigraphyJson, typeObject=NULL) {
+    fromJSONString = function(LithoStratigraphyJson, typeMapping=NULL) {
       LithoStratigraphyList <- jsonlite::fromJSON(LithoStratigraphyJson, simplifyVector=F)
       self[['qualifier']] <- LithoStratigraphyList[['qualifier']]
       self[['preferredFlag']] <- LithoStratigraphyList[['preferredFlag']]

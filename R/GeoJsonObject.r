@@ -44,12 +44,14 @@ GeoJsonObject <- R6::R6Class(
       GeoJsonObjectList[sapply(GeoJsonObjectList, length) > 0]
       },
 
-    fromList = function(GeoJsonObjectList, typeObject=NULL) {
+    fromList = function(GeoJsonObjectList, typeMapping=NULL) {
       if (!is.null(GeoJsonObjectList[['crs']])) {      
-          if (is.null(typeObject)) {
-              self[['crs']] <- Crs$new()$fromList(GeoJsonObjectList[['crs']])
+          if (is.null(typeMapping[['crs']])) {
+             self[['crs']] <- Crs$new()$fromList(GeoJsonObjectList[['crs']])
           } else {
-              self[['crs']] <- typeObject$fromList(GeoJsonObjectList[['crs']])
+              ## make object of type specified by type mapping
+              obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
+              self[['crs']] <- obj$fromList(GeoJsonObjectList[['crs']])
           }
       }
       if (!is.null(GeoJsonObjectList[['bbox']])) {      
@@ -62,12 +64,13 @@ GeoJsonObject <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(GeoJsonObjectJson, typeObject=NULL) {
+    fromJSONString = function(GeoJsonObjectJson, typeMapping=NULL) {
       GeoJsonObjectList <- jsonlite::fromJSON(GeoJsonObjectJson, simplifyVector=F)
-      if (is.null(typeObject)) {
-          self[['crs']] <- Crs$new()$fromJSONString(jsonlite::toJSON(GeoJsonObjectList[['crs']], auto_unbox = TRUE), typeObject=typeObject) 
+      if (is.null(typeMapping[['crs']])) {
+          self[['crs']] <- Crs$new()$fromJSONString(jsonlite::toJSON(GeoJsonObjectList[['crs']], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          self[['crs']] <- typeObject$fromJSONString(jsonlite::toJSON(GeoJsonObjectList[['crs']], auto_unbox = TRUE), typeObject=typeObject)
+          obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
+          self[['crs']] <- obj$fromJSONString(jsonlite::toJSON(GeoJsonObjectList[['crs']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       self[['bbox']] <- GeoJsonObjectList[['bbox']]
       invisible(self)

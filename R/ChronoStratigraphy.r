@@ -258,7 +258,7 @@ ChronoStratigraphy <- R6::R6Class(
       ChronoStratigraphyList[sapply(ChronoStratigraphyList, length) > 0]
       },
 
-    fromList = function(ChronoStratigraphyList, typeObject=NULL) {
+    fromList = function(ChronoStratigraphyList, typeMapping=NULL) {
       if (!is.null(ChronoStratigraphyList[['youngRegionalSubstage']])) {      
           self[['youngRegionalSubstage']] <- ChronoStratigraphyList[['youngRegionalSubstage']]
       }
@@ -344,7 +344,7 @@ ChronoStratigraphy <- R6::R6Class(
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
-    fromJSONString = function(ChronoStratigraphyJson, typeObject=NULL) {
+    fromJSONString = function(ChronoStratigraphyJson, typeMapping=NULL) {
       ChronoStratigraphyList <- jsonlite::fromJSON(ChronoStratigraphyJson, simplifyVector=F)
       self[['youngRegionalSubstage']] <- ChronoStratigraphyList[['youngRegionalSubstage']]
       self[['youngRegionalStage']] <- ChronoStratigraphyList[['youngRegionalStage']]
