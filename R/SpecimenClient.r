@@ -29,7 +29,7 @@
 #' dwca_get_data_set_names Retrieve the names of all available datasets
 #'
 #'
-#' dwca_query_http_get Dynamic download service: Query for specimens and return result as Darwin Core Archive File
+#' dwca_query Dynamic download service: Query for specimens and return result as Darwin Core Archive File
 #'
 #'
 #' dwca_query_http_post_json Dynamic download service: Query for specimens and return result as Darwin Core Archive File
@@ -216,22 +216,22 @@ SpecimenClient <- R6::R6Class(
             Response$new(result, response)
         }        
     },
-    # '@name dwca_query_http_get
+    # '@name dwca_query
     # '@title Dynamic download service: Query for specimens and return result as Darwin Core Archive File
     # '@description Query with query parameters or querySpec JSON. Response saved to nba-specimens.dwca.zip
     # '@return \code{  }
-    # '@param collection_type: character; Example query param
+    # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    dwca_query_http_get = function(collectionType=NULL, queryParams=list(), ...){
+    dwca_query = function(querySpec=NULL, queryParams=list(), filename=format(Sys.time(), "download-%Y-%m-%dT%H:%m.zip"), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
         }
             
-        if (!missing(`collectionType`)) {
+        if (!missing(`querySpec`)) {
           ## querySpec can be either JSON string or object of type QuerySpec. 
-          param <- ifelse(typeof(`collectionType`) == "environment", `collectionType`$toJSONString(), `collectionType`)    
-          queryParams['collectionType'] <- param
+          param <- ifelse(typeof(`querySpec`) == "environment", `querySpec`$toJSONString(), `querySpec`)    
+          queryParams['querySpec'] <- param
         }
         ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
         names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))
@@ -242,6 +242,8 @@ SpecimenClient <- R6::R6Class(
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
+                                 httr::write_disk(filename),
+                                 httr::progress(),  
                                  ...)
 
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
