@@ -25,7 +25,6 @@ test_that("exists() function works", {
     expect_false(res$content)        
 })
 
-
 test_that("count() function works", {
     qs <- QuerySpec$new(
         conditions=list(QueryCondition$new(
@@ -42,4 +41,33 @@ test_that("count() function works", {
     res <- sc$count(queryParams=list(sourceSystem.code = "XXX"))    
     expect_true(is.numeric(res$content))
     expect_equal(res$content, 0)
+})
+
+test_that("getPaths works", {
+    res <- sc$get_paths()
+    expect_is(res$content, "character")
+    expect_true(length(res$content) > 0)    
+})
+
+test_that("getFieldInfo works", {
+    res <- sc$get_field_info()
+    list <- res$content
+    expect_is(list, "list")
+    ## The list should be named by the paths of the different fields, compare them
+    paths <- sc$get_paths()$content
+    expect_equal(sort(paths), sort(names(list)))
+})
+
+test_that("getDistinctValues works", {
+    ## check for all paths
+    paths <- sc$get_paths()$content
+    ## fielddata not supported for geoShape, remove it
+    paths <- paths[paths != "gatheringEvent.siteCoordinates.geoShape"]
+    for (p in paths) {
+        res <- sc$get_distinct_values(p)
+        ## check if we get list back
+        expect_is(res$content, "list")        
+    }    
+    ## method should give a warning if field is not found
+    expect_warning(sc$get_distinct_values("XX"))    
 })

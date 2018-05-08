@@ -29,16 +29,16 @@
 #' find_by_ids2 Find multimedia document by ids
 #'
 #'
-#' get_distinct_values_http_get1 Get all different values that can be found for one field
+#' get_distinct_values Get all different values that can be found for one field
 #'
 #'
 #' get_distinct_values_http_post_json1 Get all different values that exist for a field
 #'
 #'
-#' get_field_info1 Returns extended information for each field of a multimedia document
+#' get_field_info Returns extended information for each field of a multimedia document
 #'
 #'
-#' get_paths1 Returns the full path of all fields within a document
+#' get_paths Returns the full path of all fields within a document
 #'
 #'
 #' get_settings2 List all publicly available configuration settings for the NBA
@@ -193,12 +193,12 @@ MultimediaClient <- R6::R6Class(
             Response$new(result, response)
         }        
     },
-    # '@name get_distinct_values_http_get1
+    # '@name get_distinct_values
     # '@title Get all different values that can be found for one field
     # '@description A list of all fields for multimedia documents can be retrieved with /metadata/getFieldInfo
     # '@return \code{ Specimen }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_distinct_values_http_get1 = function(field=NULL, ...){
+    get_distinct_values = function(field=NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/multimedia/getDistinctValues/{field}"
@@ -255,12 +255,12 @@ MultimediaClient <- R6::R6Class(
             Response$new(result, response)
         }        
     },
-    # '@name get_field_info1
+    # '@name get_field_info
     # '@title Returns extended information for each field of a multimedia document
     # '@description Info consists of whether the fields is indexed, the ElasticSearch datatype and a list of allowed operators
     # '@return \code{ Specimen }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_field_info1 = function(...){
+    get_field_info = function(...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/multimedia/metadata/getFieldInfo"
@@ -279,12 +279,12 @@ MultimediaClient <- R6::R6Class(
             Response$new(result, response)
         }        
     },
-    # '@name get_paths1
+    # '@name get_paths
     # '@title Returns the full path of all fields within a document
     # '@description See also metadata/getFieldInfo for all allowed operators per field
     # '@return \code{ character }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_paths1 = function(...){
+    get_paths = function(...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/multimedia/metadata/getPaths"

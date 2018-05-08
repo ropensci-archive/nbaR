@@ -47,13 +47,13 @@
 #' find_by_unit_id Find a specimen by unitID
 #'
 #'
-#' get_distinct_values_http_get2 Get all different values that exist for a field
+#' get_distinct_values Get all different values that exist for a field
 #'
 #'
 #' get_distinct_values_http_post_json2 Get all different values that exist for a field
 #'
 #'
-#' get_field_info2 Returns extended information for each field of a specimen document
+#' get_field_info Returns extended information for each field of a specimen document
 #'
 #'
 #' get_ids_in_collection Retrieve all ids within a &#39;special collection&#39; of specimens
@@ -62,7 +62,7 @@
 #' get_named_collections Retrieve the names of all &#39;special collections&#39; of specimens
 #'
 #'
-#' get_paths2 Returns the full path of all fields within a document
+#' get_paths Returns the full path of all fields within a document
 #'
 #'
 #' get_settings4 List all publicly available configuration settings for the NBA
@@ -398,12 +398,12 @@ SpecimenClient <- R6::R6Class(
             Response$new(result, response)
         }        
     },
-    # '@name get_distinct_values_http_get2
+    # '@name get_distinct_values
     # '@title Get all different values that exist for a field
     # '@description A list of all fields for specimen documents can be retrieved with /metadata/getFieldInfo
     # '@return \code{ Specimen }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_distinct_values_http_get2 = function(field=NULL, ...){
+    get_distinct_values = function(field=NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/specimen/getDistinctValues/{field}"
@@ -460,12 +460,12 @@ SpecimenClient <- R6::R6Class(
             Response$new(result, response)
         }        
     },
-    # '@name get_field_info2
+    # '@name get_field_info
     # '@title Returns extended information for each field of a specimen document
     # '@description Info consists of whether the fields is indexed, the ElasticSearch datatype and a list of allowed operators
     # '@return \code{ Specimen }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_field_info2 = function(...){
+    get_field_info = function(...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/specimen/metadata/getFieldInfo"
@@ -536,12 +536,12 @@ SpecimenClient <- R6::R6Class(
             Response$new(result, response)
         }        
     },
-    # '@name get_paths2
+    # '@name get_paths
     # '@title Returns the full path of all fields within a document
     # '@description See also metadata/getFieldInfo for all allowed operators per field
     # '@return \code{ character }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_paths2 = function(...){
+    get_paths = function(...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/specimen/metadata/getPaths"
