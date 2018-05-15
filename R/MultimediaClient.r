@@ -17,7 +17,7 @@
 #' @section Methods:
 #' \describe{
 #'
-#' count_http_get1 Get the number of multimedia documents matching a condition
+#' count_http_get Get the number of multimedia documents matching a condition
 #'
 #'
 #' count_http_post_json1 Get the number of multimedia documents matching a condition
@@ -50,10 +50,10 @@
 #' is_operator_allowed1 Checks if a given operator is allowed for a given field
 #'
 #'
-#' query_http_get1 Query for multimedia documents
+#' query Query for multimedia documents
 #'
 #'
-#' query_http_post_json Query for multimedia documents
+#' query_http_post_json1 Query for multimedia documents
 #'
 #' }
 #'
@@ -67,13 +67,13 @@ MultimediaClient <- R6::R6Class(
         super$initialize(basePath)
     },
 
-    # '@name count_http_get1
+    # '@name count_http_get
     # '@title Get the number of multimedia documents matching a condition
     # '@description Conditions given as query parameters or QuerySpec JSON
     # '@return \code{ integer }
     # '@param source_system_code: character; Example query param
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    count_http_get1 = function(sourceSystem.code=NULL, queryParams=list(), ...){
+    count_http_get = function(sourceSystem.code=NULL, queryParams=list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -389,22 +389,22 @@ MultimediaClient <- R6::R6Class(
             Response$new(result, response)
         }        
     },
-    # '@name query_http_get1
+    # '@name query
     # '@title Query for multimedia documents
     # '@description Search for multimedia documents with query parameters or QuerySpec JSON string
     # '@return \code{ QueryResult }
-    # '@param license: character; Example query param
+    # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    query_http_get1 = function(license=NULL, queryParams=list(), ...){
+    query = function(querySpec=NULL, queryParams=list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
         }
             
-        if (!missing(`license`)) {
+        if (!missing(`querySpec`)) {
           ## querySpec can be either JSON string or object of type QuerySpec. 
-          param <- ifelse(typeof(`license`) == "environment", `license`$toJSONString(), `license`)    
-          queryParams['license'] <- param
+          param <- ifelse(typeof(`querySpec`) == "environment", `querySpec`$toJSONString(), `querySpec`)    
+          queryParams['querySpec'] <- param
         }
         ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
         names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))
@@ -427,12 +427,12 @@ MultimediaClient <- R6::R6Class(
             Response$new(result, response)
         }        
     },
-    # '@name query_http_post_json
+    # '@name query_http_post_json1
     # '@title Query for multimedia documents
     # '@description Search for multimedia documents with query parameters or QuerySpec JSON string
     # '@return \code{ QueryResult }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    query_http_post_json = function(body=NULL, ...){
+    query_http_post_json1 = function(body=NULL, ...){
         headerParams <- character()
         queryParams <- list()
         if (!missing(`body`)) {

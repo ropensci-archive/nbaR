@@ -83,7 +83,7 @@
 #' query Query for specimens
 #'
 #'
-#' query_http_post_json1 Query for specimens
+#' query_http_post_json2 Query for specimens
 #'
 #' }
 #'
@@ -756,12 +756,12 @@ SpecimenClient <- R6::R6Class(
             Response$new(result, response)
         }        
     },
-    # '@name query_http_post_json1
+    # '@name query_http_post_json2
     # '@title Query for specimens
     # '@description Search for specimens (GET) using query parameters or a querySpec JSON
     # '@return \code{ QueryResult }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    query_http_post_json1 = function(body=NULL, ...){
+    query_http_post_json2 = function(body=NULL, ...){
         headerParams <- character()
         queryParams <- list()
         if (!missing(`body`)) {

@@ -17,19 +17,19 @@
 #' @section Methods:
 #' \describe{
 #'
-#' count_http_get Get the number of geo areas matching a condition
+#' count Get the number of geo areas matching a condition
 #'
 #'
 #' count_http_post_json Get the number of geo areas matching a condition
 #'
 #'
-#' find1 Find a GEO area by id
+#' find Find a GEO area by id
 #'
 #'
-#' find_by_ids1 Find geo areas by ids
+#' find_by_ids Find geo areas by ids
 #'
 #'
-#' get_distinct_values_http_get Get all different values that exist for a field
+#' get_distinct_values Get all different values that exist for a field
 #'
 #'
 #' get_distinct_values_http_post_json Get all different values that exist for a field
@@ -53,10 +53,10 @@
 #' is_operator_allowed Checks if a given operator is allowed for a given field
 #'
 #'
-#' query_http_get Query for geo areas
+#' query Query for geo areas
 #'
 #'
-#' query_http_post_form Query for geo areas
+#' query_http_post_json Query for geo areas
 #'
 #' }
 #'
@@ -70,13 +70,13 @@ GeoClient <- R6::R6Class(
         super$initialize(basePath)
     },
 
-    # '@name count_http_get
+    # '@name count
     # '@title Get the number of geo areas matching a condition
     # '@description Conditions given as query string
     # '@return \code{ integer }
     # '@param area_type: character; Example query param
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    count_http_get = function(areaType=NULL, queryParams=list(), ...){
+    count = function(areaType=NULL, queryParams=list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -136,12 +136,12 @@ GeoClient <- R6::R6Class(
             Response$new(result, response)
         }        
     },
-    # '@name find1
+    # '@name find
     # '@title Find a GEO area by id
     # '@description Returns a GEO object containing a GEO json polygon
     # '@return \code{ GeoArea }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    find1 = function(id=NULL, ...){
+    find = function(id=NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/geo/find/{id}"
@@ -166,12 +166,12 @@ GeoClient <- R6::R6Class(
             Response$new(result, response)
         }        
     },
-    # '@name find_by_ids1
+    # '@name find_by_ids
     # '@title Find geo areas by ids
     # '@description Given multiple ids, returns a list of geo area objects
     # '@return \code{ GeoArea }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    find_by_ids1 = function(ids=NULL, ...){
+    find_by_ids = function(ids=NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/geo/findByIds/{ids}"
@@ -196,12 +196,12 @@ GeoClient <- R6::R6Class(
             Response$new(result, response)
         }        
     },
-    # '@name get_distinct_values_http_get
+    # '@name get_distinct_values
     # '@title Get all different values that exist for a field
     # '@description A list of all fields for geo area documents can be retrieved with /metadata/getFieldInfo
     # '@return \code{ Specimen }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_distinct_values_http_get = function(field=NULL, ...){
+    get_distinct_values = function(field=NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/geo/getDistinctValues/{field}"
@@ -422,13 +422,13 @@ GeoClient <- R6::R6Class(
             Response$new(result, response)
         }        
     },
-    # '@name query_http_get
+    # '@name query
     # '@title Query for geo areas
     # '@description Query on searchable fields to retrieve matching geo areas
     # '@return \code{ QueryResult }
     # '@param locality: character; Example query param
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    query_http_get = function(locality=NULL, queryParams=list(), ...){
+    query = function(locality=NULL, queryParams=list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -460,13 +460,13 @@ GeoClient <- R6::R6Class(
             Response$new(result, response)
         }        
     },
-    # '@name query_http_post_form
+    # '@name query_http_post_json
     # '@title Query for geo areas
     # '@description Query on searchable fields to retrieve matching geo areas
     # '@return \code{ QueryResult }
     # '@param locality: character; Example query param
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    query_http_post_form = function(locality=NULL, queryParams=list(), ...){
+    query_http_post_json = function(body=NULL, locality=NULL, queryParams=list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -479,6 +479,12 @@ GeoClient <- R6::R6Class(
         }
         ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
         names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))
+
+        if (!missing(`body`)) {
+            body <- `body`$toJSONString()
+        } else {
+            body <- NULL
+        }
 
         urlPath <- "/geo/query"
         response <- self$callApi(url = paste0(self$basePath, urlPath),

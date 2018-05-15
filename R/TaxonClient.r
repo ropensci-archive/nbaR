@@ -17,7 +17,7 @@
 #' @section Methods:
 #' \describe{
 #'
-#' count_http_get2 Get the number of taxa matching a condition
+#' count_http_get1 Get the number of taxa matching a condition
 #'
 #'
 #' count_http_post_json3 Get the number of taxa matching a condition
@@ -35,10 +35,10 @@
 #' dwca_query_http_post_json Dynamic download service: Query for taxa and return result as Darwin Core Archive File
 #'
 #'
-#' find4 Find a taxon by id
+#' find3 Find a taxon by id
 #'
 #'
-#' find_by_ids4 Find taxa by ids
+#' find_by_ids3 Find taxa by ids
 #'
 #'
 #' get_distinct_values Get all different values that can be found for one field
@@ -71,7 +71,7 @@
 #' query Query for taxa
 #'
 #'
-#' query_http_post_json2 Query for taxa
+#' query_http_post_json3 Query for taxa
 #'
 #' }
 #'
@@ -85,13 +85,13 @@ TaxonClient <- R6::R6Class(
         super$initialize(basePath)
     },
 
-    # '@name count_http_get2
+    # '@name count_http_get1
     # '@title Get the number of taxa matching a condition
     # '@description Conditions given as query parameters or a querySpec JSON
     # '@return \code{ integer }
     # '@param source_system_code: character; Example query param
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    count_http_get2 = function(sourceSystem.code=NULL, queryParams=list(), ...){
+    count_http_get1 = function(sourceSystem.code=NULL, queryParams=list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -278,12 +278,12 @@ TaxonClient <- R6::R6Class(
             Response$new(NULL, response)
         }        
     },
-    # '@name find4
+    # '@name find3
     # '@title Find a taxon by id
     # '@description If found, returns a single taxon
     # '@return \code{ Taxon }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    find4 = function(id=NULL, ...){
+    find3 = function(id=NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/taxon/find/{id}"
@@ -308,12 +308,12 @@ TaxonClient <- R6::R6Class(
             Response$new(result, response)
         }        
     },
-    # '@name find_by_ids4
+    # '@name find_by_ids3
     # '@title Find taxa by ids
     # '@description Given multiple ids, returns a list of taxa
     # '@return \code{ Taxon }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    find_by_ids4 = function(ids=NULL, ...){
+    find_by_ids3 = function(ids=NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/taxon/findByIds/{ids}"
@@ -642,12 +642,12 @@ TaxonClient <- R6::R6Class(
             Response$new(result, response)
         }        
     },
-    # '@name query_http_post_json2
+    # '@name query_http_post_json3
     # '@title Query for taxa
     # '@description Search for taxa (POST) using query parameters or a querySpec JSON
     # '@return \code{ QueryResult }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    query_http_post_json2 = function(body=NULL, ...){
+    query_http_post_json3 = function(body=NULL, ...){
         headerParams <- character()
         queryParams <- list()
         if (!missing(`body`)) {
