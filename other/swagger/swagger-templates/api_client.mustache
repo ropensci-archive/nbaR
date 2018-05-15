@@ -98,10 +98,12 @@ ApiClient  <- R6::R6Class(
         }
         warning(warningMessage)
         Response$new(responseMessage, response)
-    },
+    }        
+  ),
+  private = list(
     getBaseDataType = function() {
-        gsub("Client", "", class(self)[1])
+        result <- gsub("Client", "", class(self)[1])
         gsub("Multimedia", "MultiMediaObject", result)
-    }    
+    }
   )
 )

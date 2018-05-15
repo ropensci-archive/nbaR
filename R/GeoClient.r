@@ -162,7 +162,7 @@ GeoClient <- R6::R6Class(
             ## API call result is object is model class
             returnObject <- GeoArea$new()
             ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
+            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
             Response$new(result, response)
         }        
     },
@@ -192,7 +192,7 @@ GeoClient <- R6::R6Class(
             ## API call result is object is model class
             returnObject <- GeoArea$new()
             ## API call result is 'list container'
-            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=self$getBaseDataType())))
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=private$getBaseDataType())))
             Response$new(result, response)
         }        
     },
@@ -308,7 +308,7 @@ GeoClient <- R6::R6Class(
             ## API call result is object is model class
             returnObject <- GeoArea$new()
             ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
+            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
             Response$new(result, response)
         }        
     },
@@ -386,7 +386,7 @@ GeoClient <- R6::R6Class(
             ## API call result is object is model class
             returnObject <- Specimen$new()
             ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
+            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
             Response$new(result, response)
         }        
     },
@@ -456,7 +456,7 @@ GeoClient <- R6::R6Class(
             ## API call result is object is model class
             returnObject <- QueryResult$new()
             ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
+            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
             Response$new(result, response)
         }        
     },
@@ -500,7 +500,7 @@ GeoClient <- R6::R6Class(
             ## API call result is object is model class
             returnObject <- QueryResult$new()
             ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=self$getBaseDataType()))
+            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
             Response$new(result, response)
         }        
     }

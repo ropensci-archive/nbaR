@@ -73,8 +73,6 @@ Specimen Class
 \item{\code{associatedMultiMediaUris}}{}
 
 \item{\code{theme}}{}
-
-\item{\code{associatedMultiMediaObjects}}{}
 }}
 
 \keyword{datasets}
