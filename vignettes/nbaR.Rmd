@@ -2,16 +2,25 @@
 title: "nbaR: R access to the Netherlands Biodiversity API"
 author: "Hannes Hettling"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: 
+  html_document:
+    highlight: zenburn
+    code_folding: show
+    theme: sandstone
+    toc: true
+    toc_depth: 2
+    toc_float:
+      collapsed: false
+      
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{nbaR: R access to the Netherlands Biodiversity API}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-## Background
+# Background
 
-### The Netherlands Biodiversity API
+## The Netherlands Biodiversity API
 The Netherlands Biodiversity API
 (NBA) facilitates access to the Natural History Collection at the
 Naturalis Biodiversity Center. Next to than museum specimen records
@@ -29,13 +38,13 @@ for browsing biodiversity data that is served by the NBA.  For more
 information about the NBA, please see our
 [detailed documentation](http://docs.biodiversitydata.nl/).
 
-### R access
+## R access
 The R programming language is established as a common tool in scientific resarch.
 To ease the access to the NBA for researchers, we developed this R client.
 
-## Getting started
+# Getting started
 
-### Main data types and classes
+## Main data types and classes
 The data served by the NBA consists of four main data types:
 
 * Specimen
@@ -47,18 +56,15 @@ Additionally, the data type *Metadata* stores miscellaneous
 information about NBA settings. Each of the data types is modelled
 as an `R6` class and therefore has its own members such as fields
 and methods. Documentation about a specific class can be retrieved
-in the standard manner:
-
-```r
-?Specimen
-```
-
+in the standard manner, e.g. `?Specimen`
 Each class of the data model can be instanciated and has a `toJSONString` and `toList` method returning
 the object's JSON representation and the object's data as a list datatype, respectively.
 
+```{r}
+# load nbaR
+library('nbaR')                                        
 
-```r
-# instanciate specimen opject
+# instanciate specimen object
 spec <- Specimen$new()
 
 # represent data as JSON or list
@@ -66,9 +72,7 @@ spec$toJSONString()
 spec$toList()
 ```
 
-TODO: many other classes are there
-
-### API Client classes
+## API Client classes
 The interaction with the API is accomplished by the API client classes:
 
 * SpecimenClient
@@ -78,7 +82,8 @@ The interaction with the API is accomplished by the API client classes:
 * MetadataClient
 
 
-```r
+```{r}
+
 # initialize client
 client <- SpecimenClient$new()
 ```
@@ -86,13 +91,13 @@ client <- SpecimenClient$new()
 The client class is by default initialized to connect to the base URL http://api.biodiversitydata.nl/v2.
 For testing purposes, this can be set to a different URL, see `?SpecimenClient` for details.
 
-### Queries
+## Queries
 
-#### Concept
+### Concept
 
 With the SpecimentClient created above, the `query` endpoint for specimens can now be reached via the `query` function.
 
-```r
+```{r}
 # retrieve results of empty query.
 res <- client$query()
 ```
@@ -100,7 +105,7 @@ res <- client$query()
 The `query` function then returns an object of class `Response`, which, in turn, has a field `content`
 of class `QueryResult`. From the `QueryResult`, the single result items can be accessed as follows:
 
-```r
+```{r}
 # get first element of results
 spec <- res$content$resultSet[[1]]$item
 
@@ -109,12 +114,12 @@ class(spec)
 
 ```
 
-#### Passing query parameters as list
+### Passing query parameters as list
 Query parameters can be specified as a list with named parameters.
 To query for instance for specimen records that have the type status holotype and a female sex,
 one can pass a named list as the `queryParams` parameter to the `query` function:
 
-```r
+```{r}
 # specify two query conditions
 l <- list(identifications.typeStatus="holotype", sex="female")
 
@@ -128,9 +133,10 @@ basic [*human readable* queries](http://docs.biodiversitydata.nl/en/latest/quick
 For more advanced queries, containing different logical operators or nested subqueries, 
 the user can specify tha query in a `QuerySpec` object.
 
+# Advanced queries
 
-#### Using the QuerySpec object
-```r
+## Using the QuerySpec object
+```{r}
 # specify search in QueryCondition object
 qc <- QueryCondition$new(field="unitID", operator="EQUALS", value="L.4304195")
 
@@ -142,7 +148,7 @@ res <- client$query(querySpec=qs)
 ```
 
 
-```r
+```{r}
 # specify multiple conditions
 q1 <- QueryCondition$new(field = "sex", operator="EQUALS",
                          value="female")
@@ -165,7 +171,7 @@ res <-client$query(querySpec=qs)
 ```
 
 
-```r
+```{r}
 # get 1000 specimen items from plant order 'Gentianales'
 qc <- QueryCondition$new(field = "identifications.defaultClassification.order",
                          operator="EQUALS",
@@ -182,4 +188,36 @@ barplot(table(families), horiz=T,
         las=2, xlab="frequency", cex.names=0.5)
 ```
 
+# Datatype specific services {.tabset}
 
+## Specimen occurrence services {.tabset}
+Specimen records constitute the core of
+data served by the NBA. Museum specimens can represent a whole variety
+of different objects such as plants, animals or single parts thereof,
+DNA samples, fossils, rocks or meteorites. For detailed information of the
+data model, please refer to the [official documentation in the NBA](http://docs.biodiversitydata.nl/en/latest/doc-spec-services/specimen/).
+
+All specimen occurrence services are accessible using the methods within the `SpecimenClient` class. 
+For a list of available endpoints, please refer to the class documentation (`?Specimen`). Below, 
+we will give details about all services, grouped by category.
+
+### Query services
+
+
+
+### Data access services
+
+### Specimen metadata services
+
+### Download services
+
+
+
+
+
+## Taxonomic data services
+aa
+## Geographic data services
+aa
+## Multimedia services
+aa
