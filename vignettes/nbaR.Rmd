@@ -4,7 +4,7 @@ author: "Hannes Hettling"
 date: "`r Sys.Date()`"
 output: 
   html_document:
-    highlight: zenburn
+    highlight: tango
     code_folding: show
     theme: sandstone
     toc: true
@@ -66,7 +66,8 @@ library('nbaR')
 
 # instanciate specimen object
 spec <- Specimen$new()
-
+```
+```r
 # represent data as JSON or list
 spec$toJSONString()
 spec$toList()
@@ -136,10 +137,28 @@ the user can specify tha query in a `QuerySpec` object.
 # Advanced queries
 
 ## Using the QuerySpec object
+Advanced queries with different operators than `AND` or nested query conditions 
+can not be accomplished by simply passing the query parameters as a list. 
+Instead, a query is modeled as a `QuerySpec` obejct which
+captures the relationships between multiple query terms. Please also refer to the 
+[NBA QuerySpec documentation](http://docs.biodiversitydata.nl/en/latest/advanced-queries/#queryspec) for more information.
+
+A `QuerySpec` object usually consists of one or more `QueryCondition` objects, specifying 
+query terms. A `QueryCondition` object usually contains the fields `field`, `operator`, and `value `(see also `?QueryCondition`).
+These fields can be specified in the constructor. If, for example, we want to query for records with a unitID equal to
+*L.4304195*, a `QueryCondition` would look as follows:
+
 ```{r}
 # specify search in QueryCondition object
 qc <- QueryCondition$new(field="unitID", operator="EQUALS", value="L.4304195")
+```
 
+Note: The function `getFieldInfo` on a certain field lists which operators 
+are allowed for that field (e.g. ```sc$get_field_info()$content$unitID$allowedOperators```).
+
+Now, a `QuerySpec` object can be assembled with the `QueryCondition`(s) passed as a list:
+
+```{r}
 # build QuerySpec using above conditions
 qs <- QuerySpec$new(conditions=list(qc))
 
@@ -147,6 +166,8 @@ qs <- QuerySpec$new(conditions=list(qc))
 res <- client$query(querySpec=qs)
 ```
 
+Below, we show an example of how to nest multiple query conditions. The query conditions below define to query for 
+specimens of sex ** female* and family *Equidae* and of rank *Species*. 
 
 ```{r}
 # specify multiple conditions
@@ -157,7 +178,12 @@ q2 <- QueryCondition$new(field="identifications.defaultClassification.family",
                          value="Equidae")
 q3 <- QueryCondition$new(field="identifications.taxonRank",
                          operator="EQUALS", value="species")
+```
 
+Extending the constraint to also inclu specimens of rank *Subspecies*,  
+we can combine the latter condition with an additional one using the method `or`:
+ 
+```{r}
 # logical conjunction using 'or' method
 q3$or<- list(QueryCondition$new(field = "identifications.taxonRank",
                                 operator="EQUALS",
@@ -190,7 +216,7 @@ barplot(table(families), horiz=T,
 
 # Datatype specific services {.tabset}
 
-## Specimen occurrence services {.tabset}
+## Specimen occurrence services
 Specimen records constitute the core of
 data served by the NBA. Museum specimens can represent a whole variety
 of different objects such as plants, animals or single parts thereof,
@@ -202,12 +228,73 @@ For a list of available endpoints, please refer to the class documentation (`?Sp
 we will give details about all services, grouped by category.
 
 ### Query services
+Querying for specimens is accomplished with the `query` method in the class `SpecimenClient`. For simple queries, 
+query parameters of type `list` can be passed via the parameter `queryParams`, for example we 
+can query specimens of the Family *Ebenaceae* that were collected in Europe:
 
+```{r}
+# instantiate specimen client
+sc <- SpecimenClient$new()
 
+# specify query params in named list
+qp <- list(identifications.defaultClassification.family="Ebenaceae", gatheringEvent.continent="Europe")
+
+# query
+res <- sc$query(queryParams=qp)
+```
+
+If we now want to know all the countries that the specimens were collected in, we can access the `Specimen` objects in ```res$content$resultSet```
+as follows:
+
+```{r}
+sapply(res$content$resultSet, function(x)x$item$gatheringEvent$country)
+```
+
+Note that passing query parameters as a named list only allows forl limited queries; the locical conjunction between 
+parameters is for example always `AND`. More complex queries can be accomplished using the `QuerySpec` object.
 
 ### Data access services
+Several access methods offer the convenient retrieval of specimens matching a certain 
+identifier or being part of a certain collection. Currently implemented data access services for Specimen records are:
+
+* **exists**: check if a record exists, based on its *unitID*:
+```{r}
+# use SpecimenClient instantiated above
+res <- sc$exists('ZMA.INS.1255440')                                        
+
+# content is boolean
+res$content
+```
+
+* **find**: return a single specimen given its identifier (Note: the identifier of a specimen is different 
+from the unitID, see also [here](http://docs.biodiversitydata.nl/en/latest/doc-spec-services/specimen/#specids)):
+```{r}
+id <- "RMNH.MAM.17209.B@CRS"
+res <- sc$find(id)
+
+# content is single specimen object
+res$content
+```
+
+* **findByIds**: Same as `find`, but takes multiple IDs:
+```{r}
+ids <- "RMNH.INS.657083@CRS,L.1589244@BRAHMS"
+res <- sc$find_by_ids(ids)
+```
+
+* **findByUnitID**: Find a specimen by its `unitID`:
+```{r}
+unitID <- "RMNH.MAM.1513"
+res <- sc$find_by_unit_id(unitID)
+```
+
+### Aggregation services
+Aggregation services summarize available data according to different criteria. 
+
 
 ### Specimen metadata services
+
+
 
 ### Download services
 
