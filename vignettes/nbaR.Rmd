@@ -1,14 +1,14 @@
 ---
 title: "nbaR: R access to the Netherlands Biodiversity API"
 author: "Hannes Hettling"
-date: "`r Sys.Date()`"
+date: "`r format(Sys.time(), '%b %d, %Y')`"
 output: 
   html_document:
     highlight: tango
     code_folding: show
     theme: sandstone
     toc: true
-    toc_depth: 2
+    toc_depth: 3
     toc_float:
       collapsed: false
       
@@ -214,9 +214,9 @@ barplot(table(families), horiz=T,
         las=2, xlab="frequency", cex.names=0.5)
 ```
 
-# Datatype specific services {.tabset}
+# Datatype specific services
 
-## Specimen occurrence services
+## Specimen occurrence services {.tabset}
 Specimen records constitute the core of
 data served by the NBA. Museum specimens can represent a whole variety
 of different objects such as plants, animals or single parts thereof,
@@ -228,6 +228,7 @@ For a list of available endpoints, please refer to the class documentation (`?Sp
 we will give details about all services, grouped by category.
 
 ### Query services
+#### query
 Querying for specimens is accomplished with the `query` method in the class `SpecimenClient`. For simple queries, 
 query parameters of type `list` can be passed via the parameter `queryParams`, for example we 
 can query specimens of the Family *Ebenaceae* that were collected in Europe:
@@ -257,7 +258,9 @@ parameters is for example always `AND`. More complex queries can be accomplished
 Several access methods offer the convenient retrieval of specimens matching a certain 
 identifier or being part of a certain collection. Currently implemented data access services for Specimen records are:
 
-* **exists**: check if a record exists, based on its *unitID*:
+#### exists 
+Check if a record exists, based on its *unitID*:
+
 ```{r}
 # use SpecimenClient instantiated above
 res <- sc$exists('ZMA.INS.1255440')                                        
@@ -266,8 +269,10 @@ res <- sc$exists('ZMA.INS.1255440')
 res$content
 ```
 
-* **find**: return a single specimen given its identifier (Note: the identifier of a specimen is different 
+#### find 
+Return a single specimen given its identifier (Note: the identifier of a specimen is different 
 from the unitID, see also [here](http://docs.biodiversitydata.nl/en/latest/doc-spec-services/specimen/#specids)):
+
 ```{r}
 id <- "RMNH.MAM.17209.B@CRS"
 res <- sc$find(id)
@@ -276,27 +281,38 @@ res <- sc$find(id)
 res$content
 ```
 
-* **findByIds**: Same as `find`, but takes multiple IDs:
+#### find_by_ids
+Same as `find`, but takes multiple IDs:
+
 ```{r}
 ids <- "RMNH.INS.657083@CRS,L.1589244@BRAHMS"
 res <- sc$find_by_ids(ids)
 ```
 
-* **findByUnitID**: Find a specimen by its `unitID`:
+#### find_by_unit_id
+Find a specimen by its `unitID`:
 ```{r}
 unitID <- "RMNH.MAM.1513"
 res <- sc$find_by_unit_id(unitID)
 ```
 
-### Aggregation services
+#### Aggregation services
 Aggregation services summarize available data according to different criteria. 
 
+#### get_distinct_values
+This method takes a specific field as an argument and returns all possible values and the frequency for that 
+field in thy data. Below we get all possible values for the country in which a specimen was collected. 
+**Note**: By default, `get_distinct_values` lists only the first 10 hits.
+This number can be increased with e.g. setting the `size` parameter in a `QuerySpec` object passed to the method:
 
-### Specimen metadata services
+```r
+sc$get_distinct_values("gatheringEvent.country", QuerySpec$new(size=10000))
+```
 
 
+#### Specimen metadata services
 
-### Download services
+#### Download services
 
 
 
