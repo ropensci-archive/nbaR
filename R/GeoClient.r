@@ -426,18 +426,18 @@ GeoClient <- R6::R6Class(
     # '@title Query for geo areas
     # '@description Query on searchable fields to retrieve matching geo areas
     # '@return \code{ QueryResult }
-    # '@param locality: character; Example query param
+    # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    query = function(locality=NULL, queryParams=list(), ...){
+    query = function(querySpec=NULL, queryParams=list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
         }
             
-        if (!missing(`locality`)) {
+        if (!missing(`querySpec`)) {
           ## querySpec can be either JSON string or object of type QuerySpec. 
-          param <- ifelse(typeof(`locality`) == "environment", `locality`$toJSONString(), `locality`)    
-          queryParams['locality'] <- param
+          param <- ifelse(typeof(`querySpec`) == "environment", `querySpec`$toJSONString(), `querySpec`)    
+          queryParams['querySpec'] <- param
         }
         ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
         names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))

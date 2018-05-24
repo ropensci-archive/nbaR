@@ -404,10 +404,22 @@ SpecimenClient <- R6::R6Class(
     # '@title Get all different values that exist for a field
     # '@description A list of all fields for specimen documents can be retrieved with /metadata/getFieldInfo
     # '@return \code{ Specimen }
+    # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_distinct_values = function(field=NULL, ...){
+    get_distinct_values = function(field=NULL, querySpec=NULL, queryParams=list(), ...){
         headerParams <- character()
-        queryParams <- list()
+        if (!is.null(querySpec) & length(queryParams) > 0) {
+            stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
+        }
+            
+        if (!missing(`querySpec`)) {
+          ## querySpec can be either JSON string or object of type QuerySpec. 
+          param <- ifelse(typeof(`querySpec`) == "environment", `querySpec`$toJSONString(), `querySpec`)    
+          queryParams['querySpec'] <- param
+        }
+        ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
+        names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))
+
         urlPath <- "/specimen/getDistinctValues/{field}"
         if (!missing(`field`)) {
             urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
