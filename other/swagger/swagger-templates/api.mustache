@@ -27,7 +27,7 @@
         super$initialize(basePath)
     },
 
-    {{#operation}} 
+    {{#operation}}
     # '@name {{operationId}}
     # '@title {{summary}}
     # '@description {{notes}}
@@ -114,18 +114,21 @@
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
+        {{#isResponseFile}}
+            cat("Query result written to ", filename, "\n")
+        {{/isResponseFile}}
         {{#returnType}}
-          {{#returnTypeIsPrimitive}}
-            ## API call result is 'primitive type', return vector or single value
-            result <- as.{{returnType}}(unlist(httr::content(response)))
-          {{/returnTypeIsPrimitive}}
-          {{^returnTypeIsPrimitive}}
             {{#isMapContainer}}
             ## API call result is a 'map container' and will be parsed to list 
             result <- httr::content(response, simplifyVector=T)
             {{/isMapContainer}}            
             {{^isMapContainer}}
-            ## API call result is object is model class
+            {{#returnTypeIsPrimitive}}
+            ## API call result is 'primitive type', return vector or single value
+            result <- as.{{returnType}}(unlist(httr::content(response)))
+            {{/returnTypeIsPrimitive}}
+            {{^returnTypeIsPrimitive}}
+            ## API call result is object of model class
             returnObject <- {{returnType}}$new()
             {{#isListContainer}}
             ## API call result is 'list container'
@@ -135,18 +138,17 @@
             ## API call result is QueryResult, list items must be mapped to model class
             result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
             {{/isListContainer}}            
-            {{/isMapContainer}}
-          {{/returnTypeIsPrimitive}}
+            {{/returnTypeIsPrimitive}}
+            {{/isMapContainer}}            
+        {{/returnType}}
+        {{^returnType}}        
+            ## empty response, e.g. when file is downloaded
+            result <- NULL
+            {{/returnType}}
             Response$new(result, response)
-          {{/returnType}}
-          {{^returnType}}        
-            ## return reponse object with empty content
-            Response$new(NULL, response)
-          {{/returnType}}           
         }        
     }{{#hasMore}},{{/hasMore}}
     {{/operation}}
   )
 )
 {{/operations}}
-

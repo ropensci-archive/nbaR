@@ -73,37 +73,33 @@
       },
 
     fromList = function({{classname}}List, typeMapping=NULL) {
-    {{#vars}}      
-      if (!is.null({{classname}}List[['{{baseName}}']])) {      
-      {{#isListContainer}}
-        {{#isPrimitiveType}}
+      {{#vars}}
+      {{#isPrimitiveType}}
+      if (is.null(typeMapping[['{{baseName}}']])) {
           self[['{{baseName}}']] <- {{classname}}List[['{{baseName}}']]
-        {{/isPrimitiveType}}
-        {{^isPrimitiveType}}          
-          self[['{{baseName}}']] <- lapply({{classname}}List[['{{baseName}}']], function(x) {
-             {{datatype}}$new()$fromList(x, typeMapping=typeMapping)            
-          })
-        {{/isPrimitiveType}}
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['{{baseName}}']], "$new()")))
+          self[['{{baseName}}']] <- obj$fromList({{classname}}List[['{{baseName}}']], typeMapping=typeMapping)
+      }
+      {{/isPrimitiveType}}
+      {{^isPrimitiveType}}
+      {{#isListContainer}}
+      self[['{{baseName}}']] <- lapply({{classname}}List[['{{baseName}}']],
+                                       function(x) {{datatype}}$new()$fromList(x, typeMapping=typeMapping))
       {{/isListContainer}}
       {{^isListContainer}}
-        {{#isPrimitiveType}}
-          self[['{{baseName}}']] <- {{classname}}List[['{{baseName}}']]
-        {{/isPrimitiveType}}
-        {{^isPrimitiveType}}
-          if (is.null(typeMapping[['{{baseName}}']])) {
-             self[['{{baseName}}']] <- {{datatype}}$new()$fromList({{classname}}List[['{{baseName}}']])
-          } else {
-              ## make object of type specified by type mapping
-              obj <- eval(parse(text=paste0(typeMapping[['{{baseName}}']], "$new()")))
-              self[['{{baseName}}']] <- obj$fromList({{classname}}List[['{{baseName}}']])
-          }
-        {{/isPrimitiveType}}        
-      {{/isListContainer}}
+      if (is.null(typeMapping[['{{baseName}}']])) {
+          self[['{{baseName}}']] <- {{datatype}}$new()$fromList({{classname}}List[['{{baseName}}']], typeMapping=typeMapping) 
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['{{baseName}}']], "$new()")))
+          self[['{{baseName}}']] <- obj$fromList({{classname}}List[['{{baseName}}']], typeMapping=typeMapping)
       }
-    {{/vars}}        
-      return(self)
+      {{/isListContainer}}
+      {{/isPrimitiveType}}
+      {{/vars}}
+      invisible(self)
     },
-
+    
     toJSONString = function(pretty=T) {
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
@@ -112,7 +108,12 @@
       {{classname}}List <- jsonlite::fromJSON({{classname}}Json, simplifyVector=F)
       {{#vars}}
       {{#isPrimitiveType}}
-      self[['{{baseName}}']] <- {{classname}}List[['{{baseName}}']]
+      if (is.null(typeMapping[['{{baseName}}']])) {
+          self[['{{baseName}}']] <- {{classname}}List[['{{baseName}}']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['{{baseName}}']], "$new()")))
+          self[['{{baseName}}']] <- obj$fromJSONString(jsonlite::toJSON({{classname}}List[['{{baseName}}']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       {{/isPrimitiveType}}
       {{^isPrimitiveType}}
       {{#isListContainer}}
