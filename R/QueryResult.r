@@ -45,24 +45,29 @@ QueryResult <- R6::R6Class(
       },
 
     fromList = function(QueryResultList, typeMapping=NULL) {
-      if (!is.null(QueryResultList[['totalSize']])) {      
+      if (is.null(typeMapping[['totalSize']])) {
           self[['totalSize']] <- QueryResultList[['totalSize']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['totalSize']], "$new()")))
+          self[['totalSize']] <- obj$fromList(QueryResultList[['totalSize']], typeMapping=typeMapping)
       }
-      if (!is.null(QueryResultList[['resultSet']])) {      
-          self[['resultSet']] <- lapply(QueryResultList[['resultSet']], function(x) {
-             QueryResultItemObject$new()$fromList(x, typeMapping=typeMapping)            
-          })
-      }
-      return(self)
+      self[['resultSet']] <- lapply(QueryResultList[['resultSet']],
+                                       function(x) QueryResultItemObject$new()$fromList(x, typeMapping=typeMapping))
+      invisible(self)
     },
-
+    
     toJSONString = function(pretty=T) {
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
     fromJSONString = function(QueryResultJson, typeMapping=NULL) {
       QueryResultList <- jsonlite::fromJSON(QueryResultJson, simplifyVector=F)
-      self[['totalSize']] <- QueryResultList[['totalSize']]
+      if (is.null(typeMapping[['totalSize']])) {
+          self[['totalSize']] <- QueryResultList[['totalSize']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['totalSize']], "$new()")))
+          self[['totalSize']] <- obj$fromJSONString(jsonlite::toJSON(QueryResultList[['totalSize']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       self[['resultSet']] <- lapply(QueryResultList[['resultSet']],
                                         function(x) QueryResultItemObject$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       invisible(self)

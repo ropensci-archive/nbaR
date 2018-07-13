@@ -25,11 +25,14 @@
 #' @field method 
 #' @field altitude 
 #' @field altitudeUnifOfMeasurement 
+#' @field biotopeText 
 #' @field depth 
 #' @field depthUnitOfMeasurement 
 #' @field gatheringPersons 
 #' @field gatheringOrganizations 
 #' @field siteCoordinates 
+#' @field namedAreas 
+#' @field associatedTaxa 
 #' @field chronoStratigraphy 
 #' @field lithoStratigraphy 
 #' @field iptc 
@@ -57,16 +60,19 @@ MultiMediaGatheringEvent <- R6::R6Class(
     `method` = NULL,
     `altitude` = NULL,
     `altitudeUnifOfMeasurement` = NULL,
+    `biotopeText` = NULL,
     `depth` = NULL,
     `depthUnitOfMeasurement` = NULL,
     `gatheringPersons` = NULL,
     `gatheringOrganizations` = NULL,
     `siteCoordinates` = NULL,
+    `namedAreas` = NULL,
+    `associatedTaxa` = NULL,
     `chronoStratigraphy` = NULL,
     `lithoStratigraphy` = NULL,
     `iptc` = NULL,
     `bioStratigraphic` = NULL,
-    initialize = function(`projectTitle`, `worldRegion`, `continent`, `country`, `iso3166Code`, `provinceState`, `island`, `locality`, `city`, `sublocality`, `localityText`, `dateTimeBegin`, `dateTimeEnd`, `method`, `altitude`, `altitudeUnifOfMeasurement`, `depth`, `depthUnitOfMeasurement`, `gatheringPersons`, `gatheringOrganizations`, `siteCoordinates`, `chronoStratigraphy`, `lithoStratigraphy`, `iptc`, `bioStratigraphic`){
+    initialize = function(`projectTitle`, `worldRegion`, `continent`, `country`, `iso3166Code`, `provinceState`, `island`, `locality`, `city`, `sublocality`, `localityText`, `dateTimeBegin`, `dateTimeEnd`, `method`, `altitude`, `altitudeUnifOfMeasurement`, `biotopeText`, `depth`, `depthUnitOfMeasurement`, `gatheringPersons`, `gatheringOrganizations`, `siteCoordinates`, `namedAreas`, `associatedTaxa`, `chronoStratigraphy`, `lithoStratigraphy`, `iptc`, `bioStratigraphic`){
       if (!missing(`projectTitle`)) {
         stopifnot(is.character(`projectTitle`), length(`projectTitle`) == 1)
         self[['projectTitle']] <- `projectTitle`
@@ -131,6 +137,10 @@ MultiMediaGatheringEvent <- R6::R6Class(
         stopifnot(is.character(`altitudeUnifOfMeasurement`), length(`altitudeUnifOfMeasurement`) == 1)
         self[['altitudeUnifOfMeasurement']] <- `altitudeUnifOfMeasurement`
       }
+      if (!missing(`biotopeText`)) {
+        stopifnot(is.character(`biotopeText`), length(`biotopeText`) == 1)
+        self[['biotopeText']] <- `biotopeText`
+      }
       if (!missing(`depth`)) {
         stopifnot(is.character(`depth`), length(`depth`) == 1)
         self[['depth']] <- `depth`
@@ -153,6 +163,16 @@ MultiMediaGatheringEvent <- R6::R6Class(
         stopifnot(is.list(`siteCoordinates`), length(`siteCoordinates`) != 0)
         lapply(`siteCoordinates`, function(x) stopifnot(R6::is.R6(x)))
         self[['siteCoordinates']] <- `siteCoordinates`
+      }
+      if (!missing(`namedAreas`)) {
+        stopifnot(is.list(`namedAreas`), length(`namedAreas`) != 0)
+        lapply(`namedAreas`, function(x) stopifnot(R6::is.R6(x)))
+        self[['namedAreas']] <- `namedAreas`
+      }
+      if (!missing(`associatedTaxa`)) {
+        stopifnot(is.list(`associatedTaxa`), length(`associatedTaxa`) != 0)
+        lapply(`associatedTaxa`, function(x) stopifnot(R6::is.R6(x)))
+        self[['associatedTaxa']] <- `associatedTaxa`
       }
       if (!missing(`chronoStratigraphy`)) {
         stopifnot(is.list(`chronoStratigraphy`), length(`chronoStratigraphy`) != 0)
@@ -225,6 +245,9 @@ MultiMediaGatheringEvent <- R6::R6Class(
         if (!is.null(self[['altitudeUnifOfMeasurement']])) {
         MultiMediaGatheringEventList[['altitudeUnifOfMeasurement']] <- self[['altitudeUnifOfMeasurement']]
       }
+        if (!is.null(self[['biotopeText']])) {
+        MultiMediaGatheringEventList[['biotopeText']] <- self[['biotopeText']]
+      }
         if (!is.null(self[['depth']])) {
         MultiMediaGatheringEventList[['depth']] <- self[['depth']]
       }
@@ -239,6 +262,12 @@ MultiMediaGatheringEvent <- R6::R6Class(
       }
         if (!is.null(self[['siteCoordinates']])) {
         MultiMediaGatheringEventList[['siteCoordinates']] <- lapply(self[['siteCoordinates']], function(x) x$toList())
+      }
+        if (!is.null(self[['namedAreas']])) {
+        MultiMediaGatheringEventList[['namedAreas']] <- lapply(self[['namedAreas']], function(x) x$toList())
+      }
+        if (!is.null(self[['associatedTaxa']])) {
+        MultiMediaGatheringEventList[['associatedTaxa']] <- lapply(self[['associatedTaxa']], function(x) x$toList())
       }
         if (!is.null(self[['chronoStratigraphy']])) {
         MultiMediaGatheringEventList[['chronoStratigraphy']] <- lapply(self[['chronoStratigraphy']], function(x) x$toList())
@@ -257,132 +286,275 @@ MultiMediaGatheringEvent <- R6::R6Class(
       },
 
     fromList = function(MultiMediaGatheringEventList, typeMapping=NULL) {
-      if (!is.null(MultiMediaGatheringEventList[['projectTitle']])) {      
+      if (is.null(typeMapping[['projectTitle']])) {
           self[['projectTitle']] <- MultiMediaGatheringEventList[['projectTitle']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['projectTitle']], "$new()")))
+          self[['projectTitle']] <- obj$fromList(MultiMediaGatheringEventList[['projectTitle']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiMediaGatheringEventList[['worldRegion']])) {      
+      if (is.null(typeMapping[['worldRegion']])) {
           self[['worldRegion']] <- MultiMediaGatheringEventList[['worldRegion']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['worldRegion']], "$new()")))
+          self[['worldRegion']] <- obj$fromList(MultiMediaGatheringEventList[['worldRegion']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiMediaGatheringEventList[['continent']])) {      
+      if (is.null(typeMapping[['continent']])) {
           self[['continent']] <- MultiMediaGatheringEventList[['continent']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['continent']], "$new()")))
+          self[['continent']] <- obj$fromList(MultiMediaGatheringEventList[['continent']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiMediaGatheringEventList[['country']])) {      
+      if (is.null(typeMapping[['country']])) {
           self[['country']] <- MultiMediaGatheringEventList[['country']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['country']], "$new()")))
+          self[['country']] <- obj$fromList(MultiMediaGatheringEventList[['country']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiMediaGatheringEventList[['iso3166Code']])) {      
+      if (is.null(typeMapping[['iso3166Code']])) {
           self[['iso3166Code']] <- MultiMediaGatheringEventList[['iso3166Code']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['iso3166Code']], "$new()")))
+          self[['iso3166Code']] <- obj$fromList(MultiMediaGatheringEventList[['iso3166Code']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiMediaGatheringEventList[['provinceState']])) {      
+      if (is.null(typeMapping[['provinceState']])) {
           self[['provinceState']] <- MultiMediaGatheringEventList[['provinceState']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['provinceState']], "$new()")))
+          self[['provinceState']] <- obj$fromList(MultiMediaGatheringEventList[['provinceState']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiMediaGatheringEventList[['island']])) {      
+      if (is.null(typeMapping[['island']])) {
           self[['island']] <- MultiMediaGatheringEventList[['island']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['island']], "$new()")))
+          self[['island']] <- obj$fromList(MultiMediaGatheringEventList[['island']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiMediaGatheringEventList[['locality']])) {      
+      if (is.null(typeMapping[['locality']])) {
           self[['locality']] <- MultiMediaGatheringEventList[['locality']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['locality']], "$new()")))
+          self[['locality']] <- obj$fromList(MultiMediaGatheringEventList[['locality']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiMediaGatheringEventList[['city']])) {      
+      if (is.null(typeMapping[['city']])) {
           self[['city']] <- MultiMediaGatheringEventList[['city']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['city']], "$new()")))
+          self[['city']] <- obj$fromList(MultiMediaGatheringEventList[['city']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiMediaGatheringEventList[['sublocality']])) {      
+      if (is.null(typeMapping[['sublocality']])) {
           self[['sublocality']] <- MultiMediaGatheringEventList[['sublocality']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['sublocality']], "$new()")))
+          self[['sublocality']] <- obj$fromList(MultiMediaGatheringEventList[['sublocality']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiMediaGatheringEventList[['localityText']])) {      
+      if (is.null(typeMapping[['localityText']])) {
           self[['localityText']] <- MultiMediaGatheringEventList[['localityText']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['localityText']], "$new()")))
+          self[['localityText']] <- obj$fromList(MultiMediaGatheringEventList[['localityText']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiMediaGatheringEventList[['dateTimeBegin']])) {      
+      if (is.null(typeMapping[['dateTimeBegin']])) {
           self[['dateTimeBegin']] <- MultiMediaGatheringEventList[['dateTimeBegin']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['dateTimeBegin']], "$new()")))
+          self[['dateTimeBegin']] <- obj$fromList(MultiMediaGatheringEventList[['dateTimeBegin']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiMediaGatheringEventList[['dateTimeEnd']])) {      
+      if (is.null(typeMapping[['dateTimeEnd']])) {
           self[['dateTimeEnd']] <- MultiMediaGatheringEventList[['dateTimeEnd']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['dateTimeEnd']], "$new()")))
+          self[['dateTimeEnd']] <- obj$fromList(MultiMediaGatheringEventList[['dateTimeEnd']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiMediaGatheringEventList[['method']])) {      
+      if (is.null(typeMapping[['method']])) {
           self[['method']] <- MultiMediaGatheringEventList[['method']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['method']], "$new()")))
+          self[['method']] <- obj$fromList(MultiMediaGatheringEventList[['method']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiMediaGatheringEventList[['altitude']])) {      
+      if (is.null(typeMapping[['altitude']])) {
           self[['altitude']] <- MultiMediaGatheringEventList[['altitude']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['altitude']], "$new()")))
+          self[['altitude']] <- obj$fromList(MultiMediaGatheringEventList[['altitude']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiMediaGatheringEventList[['altitudeUnifOfMeasurement']])) {      
+      if (is.null(typeMapping[['altitudeUnifOfMeasurement']])) {
           self[['altitudeUnifOfMeasurement']] <- MultiMediaGatheringEventList[['altitudeUnifOfMeasurement']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['altitudeUnifOfMeasurement']], "$new()")))
+          self[['altitudeUnifOfMeasurement']] <- obj$fromList(MultiMediaGatheringEventList[['altitudeUnifOfMeasurement']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiMediaGatheringEventList[['depth']])) {      
+      if (is.null(typeMapping[['biotopeText']])) {
+          self[['biotopeText']] <- MultiMediaGatheringEventList[['biotopeText']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['biotopeText']], "$new()")))
+          self[['biotopeText']] <- obj$fromList(MultiMediaGatheringEventList[['biotopeText']], typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['depth']])) {
           self[['depth']] <- MultiMediaGatheringEventList[['depth']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['depth']], "$new()")))
+          self[['depth']] <- obj$fromList(MultiMediaGatheringEventList[['depth']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiMediaGatheringEventList[['depthUnitOfMeasurement']])) {      
+      if (is.null(typeMapping[['depthUnitOfMeasurement']])) {
           self[['depthUnitOfMeasurement']] <- MultiMediaGatheringEventList[['depthUnitOfMeasurement']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['depthUnitOfMeasurement']], "$new()")))
+          self[['depthUnitOfMeasurement']] <- obj$fromList(MultiMediaGatheringEventList[['depthUnitOfMeasurement']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiMediaGatheringEventList[['gatheringPersons']])) {      
-          self[['gatheringPersons']] <- lapply(MultiMediaGatheringEventList[['gatheringPersons']], function(x) {
-             Person$new()$fromList(x, typeMapping=typeMapping)            
-          })
+      self[['gatheringPersons']] <- lapply(MultiMediaGatheringEventList[['gatheringPersons']],
+                                       function(x) Person$new()$fromList(x, typeMapping=typeMapping))
+      self[['gatheringOrganizations']] <- lapply(MultiMediaGatheringEventList[['gatheringOrganizations']],
+                                       function(x) Organization$new()$fromList(x, typeMapping=typeMapping))
+      self[['siteCoordinates']] <- lapply(MultiMediaGatheringEventList[['siteCoordinates']],
+                                       function(x) GatheringSiteCoordinates$new()$fromList(x, typeMapping=typeMapping))
+      self[['namedAreas']] <- lapply(MultiMediaGatheringEventList[['namedAreas']],
+                                       function(x) NamedArea$new()$fromList(x, typeMapping=typeMapping))
+      self[['associatedTaxa']] <- lapply(MultiMediaGatheringEventList[['associatedTaxa']],
+                                       function(x) AssociatedTaxon$new()$fromList(x, typeMapping=typeMapping))
+      self[['chronoStratigraphy']] <- lapply(MultiMediaGatheringEventList[['chronoStratigraphy']],
+                                       function(x) ChronoStratigraphy$new()$fromList(x, typeMapping=typeMapping))
+      self[['lithoStratigraphy']] <- lapply(MultiMediaGatheringEventList[['lithoStratigraphy']],
+                                       function(x) LithoStratigraphy$new()$fromList(x, typeMapping=typeMapping))
+      if (is.null(typeMapping[['iptc']])) {
+          self[['iptc']] <- Iptc4xmpExt$new()$fromList(MultiMediaGatheringEventList[['iptc']], typeMapping=typeMapping) 
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['iptc']], "$new()")))
+          self[['iptc']] <- obj$fromList(MultiMediaGatheringEventList[['iptc']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiMediaGatheringEventList[['gatheringOrganizations']])) {      
-          self[['gatheringOrganizations']] <- lapply(MultiMediaGatheringEventList[['gatheringOrganizations']], function(x) {
-             Organization$new()$fromList(x, typeMapping=typeMapping)            
-          })
-      }
-      if (!is.null(MultiMediaGatheringEventList[['siteCoordinates']])) {      
-          self[['siteCoordinates']] <- lapply(MultiMediaGatheringEventList[['siteCoordinates']], function(x) {
-             GatheringSiteCoordinates$new()$fromList(x, typeMapping=typeMapping)            
-          })
-      }
-      if (!is.null(MultiMediaGatheringEventList[['chronoStratigraphy']])) {      
-          self[['chronoStratigraphy']] <- lapply(MultiMediaGatheringEventList[['chronoStratigraphy']], function(x) {
-             ChronoStratigraphy$new()$fromList(x, typeMapping=typeMapping)            
-          })
-      }
-      if (!is.null(MultiMediaGatheringEventList[['lithoStratigraphy']])) {      
-          self[['lithoStratigraphy']] <- lapply(MultiMediaGatheringEventList[['lithoStratigraphy']], function(x) {
-             LithoStratigraphy$new()$fromList(x, typeMapping=typeMapping)            
-          })
-      }
-      if (!is.null(MultiMediaGatheringEventList[['iptc']])) {      
-          if (is.null(typeMapping[['iptc']])) {
-             self[['iptc']] <- Iptc4xmpExt$new()$fromList(MultiMediaGatheringEventList[['iptc']])
-          } else {
-              ## make object of type specified by type mapping
-              obj <- eval(parse(text=paste0(typeMapping[['iptc']], "$new()")))
-              self[['iptc']] <- obj$fromList(MultiMediaGatheringEventList[['iptc']])
-          }
-      }
-      if (!is.null(MultiMediaGatheringEventList[['bioStratigraphic']])) {      
-          self[['bioStratigraphic']] <- lapply(MultiMediaGatheringEventList[['bioStratigraphic']], function(x) {
-             BioStratigraphy$new()$fromList(x, typeMapping=typeMapping)            
-          })
-      }
-      return(self)
+      self[['bioStratigraphic']] <- lapply(MultiMediaGatheringEventList[['bioStratigraphic']],
+                                       function(x) BioStratigraphy$new()$fromList(x, typeMapping=typeMapping))
+      invisible(self)
     },
-
+    
     toJSONString = function(pretty=T) {
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
     fromJSONString = function(MultiMediaGatheringEventJson, typeMapping=NULL) {
       MultiMediaGatheringEventList <- jsonlite::fromJSON(MultiMediaGatheringEventJson, simplifyVector=F)
-      self[['projectTitle']] <- MultiMediaGatheringEventList[['projectTitle']]
-      self[['worldRegion']] <- MultiMediaGatheringEventList[['worldRegion']]
-      self[['continent']] <- MultiMediaGatheringEventList[['continent']]
-      self[['country']] <- MultiMediaGatheringEventList[['country']]
-      self[['iso3166Code']] <- MultiMediaGatheringEventList[['iso3166Code']]
-      self[['provinceState']] <- MultiMediaGatheringEventList[['provinceState']]
-      self[['island']] <- MultiMediaGatheringEventList[['island']]
-      self[['locality']] <- MultiMediaGatheringEventList[['locality']]
-      self[['city']] <- MultiMediaGatheringEventList[['city']]
-      self[['sublocality']] <- MultiMediaGatheringEventList[['sublocality']]
-      self[['localityText']] <- MultiMediaGatheringEventList[['localityText']]
-      self[['dateTimeBegin']] <- MultiMediaGatheringEventList[['dateTimeBegin']]
-      self[['dateTimeEnd']] <- MultiMediaGatheringEventList[['dateTimeEnd']]
-      self[['method']] <- MultiMediaGatheringEventList[['method']]
-      self[['altitude']] <- MultiMediaGatheringEventList[['altitude']]
-      self[['altitudeUnifOfMeasurement']] <- MultiMediaGatheringEventList[['altitudeUnifOfMeasurement']]
-      self[['depth']] <- MultiMediaGatheringEventList[['depth']]
-      self[['depthUnitOfMeasurement']] <- MultiMediaGatheringEventList[['depthUnitOfMeasurement']]
+      if (is.null(typeMapping[['projectTitle']])) {
+          self[['projectTitle']] <- MultiMediaGatheringEventList[['projectTitle']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['projectTitle']], "$new()")))
+          self[['projectTitle']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['projectTitle']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['worldRegion']])) {
+          self[['worldRegion']] <- MultiMediaGatheringEventList[['worldRegion']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['worldRegion']], "$new()")))
+          self[['worldRegion']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['worldRegion']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['continent']])) {
+          self[['continent']] <- MultiMediaGatheringEventList[['continent']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['continent']], "$new()")))
+          self[['continent']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['continent']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['country']])) {
+          self[['country']] <- MultiMediaGatheringEventList[['country']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['country']], "$new()")))
+          self[['country']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['country']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['iso3166Code']])) {
+          self[['iso3166Code']] <- MultiMediaGatheringEventList[['iso3166Code']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['iso3166Code']], "$new()")))
+          self[['iso3166Code']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['iso3166Code']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['provinceState']])) {
+          self[['provinceState']] <- MultiMediaGatheringEventList[['provinceState']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['provinceState']], "$new()")))
+          self[['provinceState']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['provinceState']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['island']])) {
+          self[['island']] <- MultiMediaGatheringEventList[['island']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['island']], "$new()")))
+          self[['island']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['island']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['locality']])) {
+          self[['locality']] <- MultiMediaGatheringEventList[['locality']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['locality']], "$new()")))
+          self[['locality']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['locality']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['city']])) {
+          self[['city']] <- MultiMediaGatheringEventList[['city']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['city']], "$new()")))
+          self[['city']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['city']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['sublocality']])) {
+          self[['sublocality']] <- MultiMediaGatheringEventList[['sublocality']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['sublocality']], "$new()")))
+          self[['sublocality']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['sublocality']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['localityText']])) {
+          self[['localityText']] <- MultiMediaGatheringEventList[['localityText']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['localityText']], "$new()")))
+          self[['localityText']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['localityText']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['dateTimeBegin']])) {
+          self[['dateTimeBegin']] <- MultiMediaGatheringEventList[['dateTimeBegin']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['dateTimeBegin']], "$new()")))
+          self[['dateTimeBegin']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['dateTimeBegin']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['dateTimeEnd']])) {
+          self[['dateTimeEnd']] <- MultiMediaGatheringEventList[['dateTimeEnd']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['dateTimeEnd']], "$new()")))
+          self[['dateTimeEnd']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['dateTimeEnd']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['method']])) {
+          self[['method']] <- MultiMediaGatheringEventList[['method']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['method']], "$new()")))
+          self[['method']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['method']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['altitude']])) {
+          self[['altitude']] <- MultiMediaGatheringEventList[['altitude']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['altitude']], "$new()")))
+          self[['altitude']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['altitude']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['altitudeUnifOfMeasurement']])) {
+          self[['altitudeUnifOfMeasurement']] <- MultiMediaGatheringEventList[['altitudeUnifOfMeasurement']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['altitudeUnifOfMeasurement']], "$new()")))
+          self[['altitudeUnifOfMeasurement']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['altitudeUnifOfMeasurement']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['biotopeText']])) {
+          self[['biotopeText']] <- MultiMediaGatheringEventList[['biotopeText']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['biotopeText']], "$new()")))
+          self[['biotopeText']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['biotopeText']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['depth']])) {
+          self[['depth']] <- MultiMediaGatheringEventList[['depth']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['depth']], "$new()")))
+          self[['depth']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['depth']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['depthUnitOfMeasurement']])) {
+          self[['depthUnitOfMeasurement']] <- MultiMediaGatheringEventList[['depthUnitOfMeasurement']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['depthUnitOfMeasurement']], "$new()")))
+          self[['depthUnitOfMeasurement']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaGatheringEventList[['depthUnitOfMeasurement']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       self[['gatheringPersons']] <- lapply(MultiMediaGatheringEventList[['gatheringPersons']],
                                         function(x) Person$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['gatheringOrganizations']] <- lapply(MultiMediaGatheringEventList[['gatheringOrganizations']],
                                         function(x) Organization$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['siteCoordinates']] <- lapply(MultiMediaGatheringEventList[['siteCoordinates']],
                                         function(x) GatheringSiteCoordinates$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
+      self[['namedAreas']] <- lapply(MultiMediaGatheringEventList[['namedAreas']],
+                                        function(x) NamedArea$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
+      self[['associatedTaxa']] <- lapply(MultiMediaGatheringEventList[['associatedTaxa']],
+                                        function(x) AssociatedTaxon$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['chronoStratigraphy']] <- lapply(MultiMediaGatheringEventList[['chronoStratigraphy']],
                                         function(x) ChronoStratigraphy$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       self[['lithoStratigraphy']] <- lapply(MultiMediaGatheringEventList[['lithoStratigraphy']],

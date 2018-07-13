@@ -91,49 +91,83 @@ QuerySpec <- R6::R6Class(
       },
 
     fromList = function(QuerySpecList, typeMapping=NULL) {
-      if (!is.null(QuerySpecList[['constantScore']])) {      
+      if (is.null(typeMapping[['constantScore']])) {
           self[['constantScore']] <- QuerySpecList[['constantScore']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['constantScore']], "$new()")))
+          self[['constantScore']] <- obj$fromList(QuerySpecList[['constantScore']], typeMapping=typeMapping)
       }
-      if (!is.null(QuerySpecList[['fields']])) {      
+      if (is.null(typeMapping[['fields']])) {
           self[['fields']] <- QuerySpecList[['fields']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['fields']], "$new()")))
+          self[['fields']] <- obj$fromList(QuerySpecList[['fields']], typeMapping=typeMapping)
       }
-      if (!is.null(QuerySpecList[['conditions']])) {      
-          self[['conditions']] <- lapply(QuerySpecList[['conditions']], function(x) {
-             QueryCondition$new()$fromList(x, typeMapping=typeMapping)            
-          })
-      }
-      if (!is.null(QuerySpecList[['logicalOperator']])) {      
+      self[['conditions']] <- lapply(QuerySpecList[['conditions']],
+                                       function(x) QueryCondition$new()$fromList(x, typeMapping=typeMapping))
+      if (is.null(typeMapping[['logicalOperator']])) {
           self[['logicalOperator']] <- QuerySpecList[['logicalOperator']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['logicalOperator']], "$new()")))
+          self[['logicalOperator']] <- obj$fromList(QuerySpecList[['logicalOperator']], typeMapping=typeMapping)
       }
-      if (!is.null(QuerySpecList[['sortFields']])) {      
-          self[['sortFields']] <- lapply(QuerySpecList[['sortFields']], function(x) {
-             SortField$new()$fromList(x, typeMapping=typeMapping)            
-          })
-      }
-      if (!is.null(QuerySpecList[['from']])) {      
+      self[['sortFields']] <- lapply(QuerySpecList[['sortFields']],
+                                       function(x) SortField$new()$fromList(x, typeMapping=typeMapping))
+      if (is.null(typeMapping[['from']])) {
           self[['from']] <- QuerySpecList[['from']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['from']], "$new()")))
+          self[['from']] <- obj$fromList(QuerySpecList[['from']], typeMapping=typeMapping)
       }
-      if (!is.null(QuerySpecList[['size']])) {      
+      if (is.null(typeMapping[['size']])) {
           self[['size']] <- QuerySpecList[['size']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['size']], "$new()")))
+          self[['size']] <- obj$fromList(QuerySpecList[['size']], typeMapping=typeMapping)
       }
-      return(self)
+      invisible(self)
     },
-
+    
     toJSONString = function(pretty=T) {
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
     fromJSONString = function(QuerySpecJson, typeMapping=NULL) {
       QuerySpecList <- jsonlite::fromJSON(QuerySpecJson, simplifyVector=F)
-      self[['constantScore']] <- QuerySpecList[['constantScore']]
-      self[['fields']] <- QuerySpecList[['fields']]
+      if (is.null(typeMapping[['constantScore']])) {
+          self[['constantScore']] <- QuerySpecList[['constantScore']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['constantScore']], "$new()")))
+          self[['constantScore']] <- obj$fromJSONString(jsonlite::toJSON(QuerySpecList[['constantScore']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['fields']])) {
+          self[['fields']] <- QuerySpecList[['fields']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['fields']], "$new()")))
+          self[['fields']] <- obj$fromJSONString(jsonlite::toJSON(QuerySpecList[['fields']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       self[['conditions']] <- lapply(QuerySpecList[['conditions']],
                                         function(x) QueryCondition$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
-      self[['logicalOperator']] <- QuerySpecList[['logicalOperator']]
+      if (is.null(typeMapping[['logicalOperator']])) {
+          self[['logicalOperator']] <- QuerySpecList[['logicalOperator']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['logicalOperator']], "$new()")))
+          self[['logicalOperator']] <- obj$fromJSONString(jsonlite::toJSON(QuerySpecList[['logicalOperator']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       self[['sortFields']] <- lapply(QuerySpecList[['sortFields']],
                                         function(x) SortField$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
-      self[['from']] <- QuerySpecList[['from']]
-      self[['size']] <- QuerySpecList[['size']]
+      if (is.null(typeMapping[['from']])) {
+          self[['from']] <- QuerySpecList[['from']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['from']], "$new()")))
+          self[['from']] <- obj$fromJSONString(jsonlite::toJSON(QuerySpecList[['from']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['size']])) {
+          self[['size']] <- QuerySpecList[['size']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['size']], "$new()")))
+          self[['size']] <- obj$fromJSONString(jsonlite::toJSON(QuerySpecList[['size']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       invisible(self)
     }
   )

@@ -89,43 +89,99 @@ SummaryScientificName <- R6::R6Class(
       },
 
     fromList = function(SummaryScientificNameList, typeMapping=NULL) {
-      if (!is.null(SummaryScientificNameList[['fullScientificName']])) {      
+      if (is.null(typeMapping[['fullScientificName']])) {
           self[['fullScientificName']] <- SummaryScientificNameList[['fullScientificName']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['fullScientificName']], "$new()")))
+          self[['fullScientificName']] <- obj$fromList(SummaryScientificNameList[['fullScientificName']], typeMapping=typeMapping)
       }
-      if (!is.null(SummaryScientificNameList[['taxonomicStatus']])) {      
+      if (is.null(typeMapping[['taxonomicStatus']])) {
           self[['taxonomicStatus']] <- SummaryScientificNameList[['taxonomicStatus']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['taxonomicStatus']], "$new()")))
+          self[['taxonomicStatus']] <- obj$fromList(SummaryScientificNameList[['taxonomicStatus']], typeMapping=typeMapping)
       }
-      if (!is.null(SummaryScientificNameList[['genusOrMonomial']])) {      
+      if (is.null(typeMapping[['genusOrMonomial']])) {
           self[['genusOrMonomial']] <- SummaryScientificNameList[['genusOrMonomial']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['genusOrMonomial']], "$new()")))
+          self[['genusOrMonomial']] <- obj$fromList(SummaryScientificNameList[['genusOrMonomial']], typeMapping=typeMapping)
       }
-      if (!is.null(SummaryScientificNameList[['subgenus']])) {      
+      if (is.null(typeMapping[['subgenus']])) {
           self[['subgenus']] <- SummaryScientificNameList[['subgenus']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['subgenus']], "$new()")))
+          self[['subgenus']] <- obj$fromList(SummaryScientificNameList[['subgenus']], typeMapping=typeMapping)
       }
-      if (!is.null(SummaryScientificNameList[['specificEpithet']])) {      
+      if (is.null(typeMapping[['specificEpithet']])) {
           self[['specificEpithet']] <- SummaryScientificNameList[['specificEpithet']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['specificEpithet']], "$new()")))
+          self[['specificEpithet']] <- obj$fromList(SummaryScientificNameList[['specificEpithet']], typeMapping=typeMapping)
       }
-      if (!is.null(SummaryScientificNameList[['infraspecificEpithet']])) {      
+      if (is.null(typeMapping[['infraspecificEpithet']])) {
           self[['infraspecificEpithet']] <- SummaryScientificNameList[['infraspecificEpithet']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['infraspecificEpithet']], "$new()")))
+          self[['infraspecificEpithet']] <- obj$fromList(SummaryScientificNameList[['infraspecificEpithet']], typeMapping=typeMapping)
       }
-      if (!is.null(SummaryScientificNameList[['authorshipVerbatim']])) {      
+      if (is.null(typeMapping[['authorshipVerbatim']])) {
           self[['authorshipVerbatim']] <- SummaryScientificNameList[['authorshipVerbatim']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['authorshipVerbatim']], "$new()")))
+          self[['authorshipVerbatim']] <- obj$fromList(SummaryScientificNameList[['authorshipVerbatim']], typeMapping=typeMapping)
       }
-      return(self)
+      invisible(self)
     },
-
+    
     toJSONString = function(pretty=T) {
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
     fromJSONString = function(SummaryScientificNameJson, typeMapping=NULL) {
       SummaryScientificNameList <- jsonlite::fromJSON(SummaryScientificNameJson, simplifyVector=F)
-      self[['fullScientificName']] <- SummaryScientificNameList[['fullScientificName']]
-      self[['taxonomicStatus']] <- SummaryScientificNameList[['taxonomicStatus']]
-      self[['genusOrMonomial']] <- SummaryScientificNameList[['genusOrMonomial']]
-      self[['subgenus']] <- SummaryScientificNameList[['subgenus']]
-      self[['specificEpithet']] <- SummaryScientificNameList[['specificEpithet']]
-      self[['infraspecificEpithet']] <- SummaryScientificNameList[['infraspecificEpithet']]
-      self[['authorshipVerbatim']] <- SummaryScientificNameList[['authorshipVerbatim']]
+      if (is.null(typeMapping[['fullScientificName']])) {
+          self[['fullScientificName']] <- SummaryScientificNameList[['fullScientificName']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['fullScientificName']], "$new()")))
+          self[['fullScientificName']] <- obj$fromJSONString(jsonlite::toJSON(SummaryScientificNameList[['fullScientificName']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['taxonomicStatus']])) {
+          self[['taxonomicStatus']] <- SummaryScientificNameList[['taxonomicStatus']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['taxonomicStatus']], "$new()")))
+          self[['taxonomicStatus']] <- obj$fromJSONString(jsonlite::toJSON(SummaryScientificNameList[['taxonomicStatus']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['genusOrMonomial']])) {
+          self[['genusOrMonomial']] <- SummaryScientificNameList[['genusOrMonomial']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['genusOrMonomial']], "$new()")))
+          self[['genusOrMonomial']] <- obj$fromJSONString(jsonlite::toJSON(SummaryScientificNameList[['genusOrMonomial']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['subgenus']])) {
+          self[['subgenus']] <- SummaryScientificNameList[['subgenus']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['subgenus']], "$new()")))
+          self[['subgenus']] <- obj$fromJSONString(jsonlite::toJSON(SummaryScientificNameList[['subgenus']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['specificEpithet']])) {
+          self[['specificEpithet']] <- SummaryScientificNameList[['specificEpithet']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['specificEpithet']], "$new()")))
+          self[['specificEpithet']] <- obj$fromJSONString(jsonlite::toJSON(SummaryScientificNameList[['specificEpithet']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['infraspecificEpithet']])) {
+          self[['infraspecificEpithet']] <- SummaryScientificNameList[['infraspecificEpithet']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['infraspecificEpithet']], "$new()")))
+          self[['infraspecificEpithet']] <- obj$fromJSONString(jsonlite::toJSON(SummaryScientificNameList[['infraspecificEpithet']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['authorshipVerbatim']])) {
+          self[['authorshipVerbatim']] <- SummaryScientificNameList[['authorshipVerbatim']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['authorshipVerbatim']], "$new()")))
+          self[['authorshipVerbatim']] <- obj$fromJSONString(jsonlite::toJSON(SummaryScientificNameList[['authorshipVerbatim']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       invisible(self)
     }
   )

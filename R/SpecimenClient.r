@@ -17,10 +17,16 @@
 #' @section Methods:
 #' \describe{
 #'
-#' count Get the number of specimens matching a condition
+#' count Get the number of specimens matching a given condition
 #'
 #'
-#' count_http_post_json2 Get the number of specimens matching a condition
+#' count_distinct_values Count the distinct number of values that exist for a given field
+#'
+#'
+#' count_distinct_values_per_group Count the distinct number of field values that exist per the given field to group by
+#'
+#'
+#' download_query Dynamic download service: Query for specimens and return result as a stream ...
 #'
 #'
 #' dwca_get_data_set Download dataset as Darwin Core Archive File
@@ -30,9 +36,6 @@
 #'
 #'
 #' dwca_query Dynamic download service: Query for specimens and return result as Darwin Core Archive File
-#'
-#'
-#' dwca_query_http_post_json Dynamic download service: Query for specimens and return result as Darwin Core Archive File
 #'
 #'
 #' exists Returns whether or not a unitID for a specimen exists
@@ -50,7 +53,7 @@
 #' get_distinct_values Get all different values that exist for a field
 #'
 #'
-#' get_distinct_values_http_post_json2 Get all different values that exist for a field
+#' get_distinct_values_per_group Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by
 #'
 #'
 #' get_field_info Returns extended information for each field of a specimen document
@@ -65,25 +68,19 @@
 #' get_paths Returns the full path of all fields within a document
 #'
 #'
-#' get_settings4 List all publicly available configuration settings for the NBA
+#' get_setting Get the value of an NBA setting
 #'
 #'
-#' get_settings5 Get the value of an NBA setting
+#' get_settings List all publicly available configuration settings for the NBA
 #'
 #'
-#' group_by_scientific_name_http_get Aggregates Taxon and Specimen documents according to their scientific names
+#' group_by_scientific_name Aggregates Taxon and Specimen documents according to their scientific names
 #'
 #'
-#' group_by_scientific_name_http_post_json Aggregates Taxon and Specimen documents according to their scientific names
-#'
-#'
-#' is_operator_allowed2 Checks if a given operator is allowed for a given field
+#' is_operator_allowed Checks if a given operator is allowed for a given field
 #'
 #'
 #' query Query for specimens
-#'
-#'
-#' query_http_post_json2 Query for specimens
 #'
 #' }
 #'
@@ -98,7 +95,7 @@ SpecimenClient <- R6::R6Class(
     },
 
     # '@name count
-    # '@title Get the number of specimens matching a condition
+    # '@title Get the number of specimens matching a given condition
     # '@description Conditions given as query parameters or a querySpec JSON
     # '@return \code{ integer }
     # '@param query_spec: ; Object of type QuerySpec or its JSON representation
@@ -129,27 +126,25 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is 'primitive type', return vector or single value
-            result <- as.integer(unlist(httr::content(response)))
+            result <- as.integer(httr::content(response))
             Response$new(result, response)
         }        
     },
-    # '@name count_http_post_json2
-    # '@title Get the number of specimens matching a condition
-    # '@description Conditions given as query parameters or a querySpec JSON
+    # '@name count_distinct_values
+    # '@title Count the distinct number of values that exist for a given field
+    # '@description 
     # '@return \code{ integer }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    count_http_post_json2 = function(body=NULL, ...){
+    count_distinct_values = function(field=NULL, ...){
         headerParams <- character()
         queryParams <- list()
-        if (!missing(`body`)) {
-            body <- `body`$toJSONString()
-        } else {
-            body <- NULL
+        urlPath <- "/specimen/countDistinctValues/{field}"
+        if (!missing(`field`)) {
+            urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
         }
 
-        urlPath <- "/specimen/count"
         response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "POST",
+                                 method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
@@ -159,7 +154,77 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is 'primitive type', return vector or single value
-            result <- as.integer(unlist(httr::content(response)))
+            result <- as.integer(httr::content(response))
+            Response$new(result, response)
+        }        
+    },
+    # '@name count_distinct_values_per_group
+    # '@title Count the distinct number of field values that exist per the given field to group by
+    # '@description 
+    # '@return \code{ list }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    count_distinct_values_per_group = function(group=NULL, field=NULL, ...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/specimen/countDistinctValuesPerGroup/{group}/{field}"
+        if (!missing(`group`)) {
+            urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
+        }
+
+        if (!missing(`field`)) {
+            urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
+        }
+
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = queryParams,
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is 'primitive type', return vector or single value
+            result <- as.list(httr::content(response))
+            Response$new(result, response)
+        }        
+    },
+    # '@name download_query
+    # '@title Dynamic download service: Query for specimens and return result as a stream ...
+    # '@description Query with query parameters or querySpec JSON. ...
+    # '@return \code{ Specimen }
+    # '@param query_spec: ; Object of type QuerySpec or its JSON representation
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    download_query = function(querySpec=NULL, queryParams=list(), ...){
+        headerParams <- character()
+        if (!is.null(querySpec) & length(queryParams) > 0) {
+            stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
+        }
+            
+        if (!missing(`querySpec`)) {
+          ## querySpec can be either JSON string or object of type QuerySpec. 
+          param <- ifelse(typeof(`querySpec`) == "environment", `querySpec`$toJSONString(), `querySpec`)    
+          queryParams['querySpec'] <- param
+        }
+        ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
+        names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))
+
+        urlPath <- "/specimen/download"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = queryParams,
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is object of model class
+            returnObject <- Specimen$new()
+            ## API call result is 'list container'
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=private$getBaseDataType())))
             Response$new(result, response)
         }        
     },
@@ -188,8 +253,10 @@ SpecimenClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## return reponse object with empty content
-            Response$new(NULL, response)
+            cat("Query result written to ", filename, "\n")
+            ## empty response, e.g. when file is downloaded
+            result <- NULL
+            Response$new(result, response)
         }        
     },
     # '@name dwca_get_data_set_names
@@ -212,7 +279,7 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is 'primitive type', return vector or single value
-            result <- as.character(unlist(httr::content(response)))
+            result <- as.character(httr::content(response))
             Response$new(result, response)
         }        
     },
@@ -249,37 +316,10 @@ SpecimenClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## return reponse object with empty content
-            Response$new(NULL, response)
-        }        
-    },
-    # '@name dwca_query_http_post_json
-    # '@title Dynamic download service: Query for specimens and return result as Darwin Core Archive File
-    # '@description Query with query parameters or querySpec JSON. Response saved to nba-specimens.dwca.zip
-    # '@return \code{  }
-    # '@param ...; additional parameters passed to httr::GET or httr::POST
-    dwca_query_http_post_json = function(body=NULL, ...){
-        headerParams <- character()
-        queryParams <- list()
-        if (!missing(`body`)) {
-            body <- `body`$toJSONString()
-        } else {
-            body <- NULL
-        }
-
-        urlPath <- "/specimen/dwca/query"
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "POST",
-                                 queryParams = queryParams,
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
-
-        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## return reponse object with empty content
-            Response$new(NULL, response)
+            cat("Query result written to ", filename, "\n")
+            ## empty response, e.g. when file is downloaded
+            result <- NULL
+            Response$new(result, response)
         }        
     },
     # '@name exists
@@ -306,7 +346,7 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is 'primitive type', return vector or single value
-            result <- as.logical(unlist(httr::content(response)))
+            result <- as.logical(httr::content(response))
             Response$new(result, response)
         }        
     },
@@ -333,10 +373,10 @@ SpecimenClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is object is model class
+            ## API call result is object of model class
             returnObject <- Specimen$new()
-            ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
+            ## API call result is 'list container'
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=private$getBaseDataType())))
             Response$new(result, response)
         }        
     },
@@ -363,7 +403,7 @@ SpecimenClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is object is model class
+            ## API call result is object of model class
             returnObject <- Specimen$new()
             ## API call result is 'list container'
             result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=private$getBaseDataType())))
@@ -393,7 +433,7 @@ SpecimenClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is object is model class
+            ## API call result is object of model class
             returnObject <- Specimen$new()
             ## API call result is 'list container'
             result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=private$getBaseDataType())))
@@ -403,23 +443,11 @@ SpecimenClient <- R6::R6Class(
     # '@name get_distinct_values
     # '@title Get all different values that exist for a field
     # '@description A list of all fields for specimen documents can be retrieved with /metadata/getFieldInfo
-    # '@return \code{ Specimen }
-    # '@param query_spec: ; Object of type QuerySpec or its JSON representation
+    # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_distinct_values = function(field=NULL, querySpec=NULL, queryParams=list(), ...){
+    get_distinct_values = function(field=NULL, ...){
         headerParams <- character()
-        if (!is.null(querySpec) & length(queryParams) > 0) {
-            stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
-        }
-            
-        if (!missing(`querySpec`)) {
-          ## querySpec can be either JSON string or object of type QuerySpec. 
-          param <- ifelse(typeof(`querySpec`) == "environment", `querySpec`$toJSONString(), `querySpec`)    
-          queryParams['querySpec'] <- param
-        }
-        ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
-        names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))
-
+        queryParams <- list()
         urlPath <- "/specimen/getDistinctValues/{field}"
         if (!missing(`field`)) {
             urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
@@ -440,27 +468,25 @@ SpecimenClient <- R6::R6Class(
             Response$new(result, response)
         }        
     },
-    # '@name get_distinct_values_http_post_json2
-    # '@title Get all different values that exist for a field
-    # '@description A list of all fields for specimen documents can be retrieved with /metadata/getFieldInfo
-    # '@return \code{ Specimen }
+    # '@name get_distinct_values_per_group
+    # '@title Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by
+    # '@description 
+    # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_distinct_values_http_post_json2 = function(field=NULL, body=NULL, ...){
+    get_distinct_values_per_group = function(group=NULL, field=NULL, ...){
         headerParams <- character()
         queryParams <- list()
-        if (!missing(`body`)) {
-            body <- `body`$toJSONString()
-        } else {
-            body <- NULL
+        urlPath <- "/specimen/getDistinctValuesPerGroup/{group}/{field}"
+        if (!missing(`group`)) {
+            urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
         }
 
-        urlPath <- "/specimen/getDistinctValues/{field}"
         if (!missing(`field`)) {
             urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
         }
 
         response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "POST",
+                                 method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
@@ -469,15 +495,15 @@ SpecimenClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is a 'map container' and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            ## API call result is 'primitive type', return vector or single value
+            result <- as.list(httr::content(response))
             Response$new(result, response)
         }        
     },
     # '@name get_field_info
     # '@title Returns extended information for each field of a specimen document
     # '@description Info consists of whether the fields is indexed, the ElasticSearch datatype and a list of allowed operators
-    # '@return \code{ Specimen }
+    # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
     get_field_info = function(...){
         headerParams <- character()
@@ -522,7 +548,7 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is 'primitive type', return vector or single value
-            result <- as.character(unlist(httr::content(response)))
+            result <- as.character(httr::content(response))
             Response$new(result, response)
         }        
     },
@@ -546,7 +572,7 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is 'primitive type', return vector or single value
-            result <- as.character(unlist(httr::content(response)))
+            result <- as.character(httr::content(response))
             Response$new(result, response)
         }        
     },
@@ -570,16 +596,44 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is 'primitive type', return vector or single value
-            result <- as.character(unlist(httr::content(response)))
+            result <- as.character(httr::content(response))
             Response$new(result, response)
         }        
     },
-    # '@name get_settings4
+    # '@name get_setting
+    # '@title Get the value of an NBA setting
+    # '@description All settings can be queried with /metadata/getSettings
+    # '@return \code{ list }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    get_setting = function(name=NULL, ...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/specimen/metadata/getSetting/{name}"
+        if (!missing(`name`)) {
+            urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
+        }
+
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = queryParams,
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is 'primitive type', return vector or single value
+            result <- as.list(httr::content(response))
+            Response$new(result, response)
+        }        
+    },
+    # '@name get_settings
     # '@title List all publicly available configuration settings for the NBA
     # '@description The value of a specific setting can be queried with metadata/getSetting/{name}
-    # '@return \code{ Specimen }
+    # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_settings4 = function(...){
+    get_settings = function(...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/specimen/metadata/getSettings"
@@ -598,52 +652,22 @@ SpecimenClient <- R6::R6Class(
             Response$new(result, response)
         }        
     },
-    # '@name get_settings5
-    # '@title Get the value of an NBA setting
-    # '@description All settings can be queried with /metadata/getSettings
-    # '@return \code{ Specimen }
-    # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_settings5 = function(name=NULL, ...){
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/specimen/metadata/getSetting/{name}"
-        if (!missing(`name`)) {
-            urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
-        }
-
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = queryParams,
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
-
-        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is object is model class
-            returnObject <- Specimen$new()
-            ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
-            Response$new(result, response)
-        }        
-    },
-    # '@name group_by_scientific_name_http_get
+    # '@name group_by_scientific_name
     # '@title Aggregates Taxon and Specimen documents according to their scientific names
     # '@description Returns a list with ScientificNameGroups, which contain Taxon and Specimen documents that share a scientific name
     # '@return \code{ QueryResult }
-    # '@param collection_type: character; Example query param
+    # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    group_by_scientific_name_http_get = function(collectionType=NULL, queryParams=list(), ...){
+    group_by_scientific_name = function(querySpec=NULL, queryParams=list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
         }
             
-        if (!missing(`collectionType`)) {
+        if (!missing(`querySpec`)) {
           ## querySpec can be either JSON string or object of type QuerySpec. 
-          param <- ifelse(typeof(`collectionType`) == "environment", `collectionType`$toJSONString(), `collectionType`)    
-          queryParams['collectionType'] <- param
+          param <- ifelse(typeof(`querySpec`) == "environment", `querySpec`$toJSONString(), `querySpec`)    
+          queryParams['querySpec'] <- param
         }
         ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
         names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))
@@ -659,51 +683,19 @@ SpecimenClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is object is model class
+            ## API call result is object of model class
             returnObject <- QueryResult$new()
             ## API call result is QueryResult, list items must be mapped to model class
             result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
             Response$new(result, response)
         }        
     },
-    # '@name group_by_scientific_name_http_post_json
-    # '@title Aggregates Taxon and Specimen documents according to their scientific names
-    # '@description Returns a list with ScientificNameGroups, which contain Taxon and Specimen documents that share a scientific name
-    # '@return \code{ QueryResult }
-    # '@param ...; additional parameters passed to httr::GET or httr::POST
-    group_by_scientific_name_http_post_json = function(body=NULL, ...){
-        headerParams <- character()
-        queryParams <- list()
-        if (!missing(`body`)) {
-            body <- `body`$toJSONString()
-        } else {
-            body <- NULL
-        }
-
-        urlPath <- "/specimen/groupByScientificName"
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "POST",
-                                 queryParams = queryParams,
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
-
-        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is object is model class
-            returnObject <- QueryResult$new()
-            ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
-            Response$new(result, response)
-        }        
-    },
-    # '@name is_operator_allowed2
+    # '@name is_operator_allowed
     # '@title Checks if a given operator is allowed for a given field
     # '@description See also metadata/getFieldInfo
-    # '@return \code{ Specimen }
+    # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    is_operator_allowed2 = function(field=NULL, operator=NULL, ...){
+    is_operator_allowed = function(field=NULL, operator=NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/specimen/metadata/isOperatorAllowed/{field}/{operator}"
@@ -761,39 +753,7 @@ SpecimenClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is object is model class
-            returnObject <- QueryResult$new()
-            ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
-            Response$new(result, response)
-        }        
-    },
-    # '@name query_http_post_json2
-    # '@title Query for specimens
-    # '@description Search for specimens (GET) using query parameters or a querySpec JSON
-    # '@return \code{ QueryResult }
-    # '@param ...; additional parameters passed to httr::GET or httr::POST
-    query_http_post_json2 = function(body=NULL, ...){
-        headerParams <- character()
-        queryParams <- list()
-        if (!missing(`body`)) {
-            body <- `body`$toJSONString()
-        } else {
-            body <- NULL
-        }
-
-        urlPath <- "/specimen/query"
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "POST",
-                                 queryParams = queryParams,
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
-
-        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is object is model class
+            ## API call result is object of model class
             returnObject <- QueryResult$new()
             ## API call result is QueryResult, list items must be mapped to model class
             result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
@@ -802,4 +762,3 @@ SpecimenClient <- R6::R6Class(
     }
   )
 )
-

@@ -78,7 +78,7 @@ MetadataClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is 'primitive type', return vector or single value
-            result <- as.character(unlist(httr::content(response)))
+            result <- as.character(httr::content(response))
             Response$new(result, response)
         }        
     },
@@ -102,7 +102,7 @@ MetadataClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is 'primitive type', return vector or single value
-            result <- as.character(unlist(httr::content(response)))
+            result <- as.character(httr::content(response))
             Response$new(result, response)
         }        
     },
@@ -126,7 +126,7 @@ MetadataClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is 'primitive type', return vector or single value
-            result <- as.character(unlist(httr::content(response)))
+            result <- as.character(httr::content(response))
             Response$new(result, response)
         }        
     },
@@ -150,7 +150,7 @@ MetadataClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is 'primitive type', return vector or single value
-            result <- as.character(unlist(httr::content(response)))
+            result <- as.character(httr::content(response))
             Response$new(result, response)
         }        
     },
@@ -174,7 +174,7 @@ MetadataClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is 'primitive type', return vector or single value
-            result <- as.character(unlist(httr::content(response)))
+            result <- as.character(httr::content(response))
             Response$new(result, response)
         }        
     },
@@ -198,13 +198,13 @@ MetadataClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is 'primitive type', return vector or single value
-            result <- as.character(unlist(httr::content(response)))
+            result <- as.character(httr::content(response))
             Response$new(result, response)
         }        
     },
     # '@name get_rest_services
     # '@title List all available REST services and their parameters
-    # '@description lists end point name, http method, response type, and URL
+    # '@description Lists end point name, http method, response type, and URL
     # '@return \code{ RestService }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
     get_rest_services = function(...){
@@ -221,7 +221,7 @@ MetadataClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is object is model class
+            ## API call result is object of model class
             returnObject <- RestService$new()
             ## API call result is 'list container'
             result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=private$getBaseDataType())))
@@ -231,7 +231,7 @@ MetadataClient <- R6::R6Class(
     # '@name get_setting
     # '@title Get the value of an NBA setting
     # '@description All settings can be queried with /metadata/getSettings
-    # '@return \code{ Specimen }
+    # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
     get_setting = function(name=NULL, ...){
         headerParams <- character()
@@ -251,17 +251,15 @@ MetadataClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is object is model class
-            returnObject <- Specimen$new()
-            ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
+            ## API call result is 'primitive type', return vector or single value
+            result <- as.list(httr::content(response))
             Response$new(result, response)
         }        
     },
     # '@name get_settings
     # '@title List all publicly available configuration settings for the NBA
     # '@description The value of a specific setting can be queried with metadata/getSetting/{name}
-    # '@return \code{ Specimen }
+    # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
     get_settings = function(...){
         headerParams <- character()
@@ -301,7 +299,7 @@ MetadataClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is object is model class
+            ## API call result is object of model class
             returnObject <- SourceSystem$new()
             ## API call result is 'list container'
             result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=private$getBaseDataType())))
@@ -310,4 +308,3 @@ MetadataClient <- R6::R6Class(
     }
   )
 )
-

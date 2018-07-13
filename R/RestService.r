@@ -71,35 +71,75 @@ RestService <- R6::R6Class(
       },
 
     fromList = function(RestServiceList, typeMapping=NULL) {
-      if (!is.null(RestServiceList[['endPoint']])) {      
+      if (is.null(typeMapping[['endPoint']])) {
           self[['endPoint']] <- RestServiceList[['endPoint']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['endPoint']], "$new()")))
+          self[['endPoint']] <- obj$fromList(RestServiceList[['endPoint']], typeMapping=typeMapping)
       }
-      if (!is.null(RestServiceList[['method']])) {      
+      if (is.null(typeMapping[['method']])) {
           self[['method']] <- RestServiceList[['method']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['method']], "$new()")))
+          self[['method']] <- obj$fromList(RestServiceList[['method']], typeMapping=typeMapping)
       }
-      if (!is.null(RestServiceList[['consumes']])) {      
+      if (is.null(typeMapping[['consumes']])) {
           self[['consumes']] <- RestServiceList[['consumes']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['consumes']], "$new()")))
+          self[['consumes']] <- obj$fromList(RestServiceList[['consumes']], typeMapping=typeMapping)
       }
-      if (!is.null(RestServiceList[['produces']])) {      
+      if (is.null(typeMapping[['produces']])) {
           self[['produces']] <- RestServiceList[['produces']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['produces']], "$new()")))
+          self[['produces']] <- obj$fromList(RestServiceList[['produces']], typeMapping=typeMapping)
       }
-      if (!is.null(RestServiceList[['url']])) {      
+      if (is.null(typeMapping[['url']])) {
           self[['url']] <- RestServiceList[['url']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['url']], "$new()")))
+          self[['url']] <- obj$fromList(RestServiceList[['url']], typeMapping=typeMapping)
       }
-      return(self)
+      invisible(self)
     },
-
+    
     toJSONString = function(pretty=T) {
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
     fromJSONString = function(RestServiceJson, typeMapping=NULL) {
       RestServiceList <- jsonlite::fromJSON(RestServiceJson, simplifyVector=F)
-      self[['endPoint']] <- RestServiceList[['endPoint']]
-      self[['method']] <- RestServiceList[['method']]
-      self[['consumes']] <- RestServiceList[['consumes']]
-      self[['produces']] <- RestServiceList[['produces']]
-      self[['url']] <- RestServiceList[['url']]
+      if (is.null(typeMapping[['endPoint']])) {
+          self[['endPoint']] <- RestServiceList[['endPoint']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['endPoint']], "$new()")))
+          self[['endPoint']] <- obj$fromJSONString(jsonlite::toJSON(RestServiceList[['endPoint']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['method']])) {
+          self[['method']] <- RestServiceList[['method']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['method']], "$new()")))
+          self[['method']] <- obj$fromJSONString(jsonlite::toJSON(RestServiceList[['method']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['consumes']])) {
+          self[['consumes']] <- RestServiceList[['consumes']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['consumes']], "$new()")))
+          self[['consumes']] <- obj$fromJSONString(jsonlite::toJSON(RestServiceList[['consumes']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['produces']])) {
+          self[['produces']] <- RestServiceList[['produces']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['produces']], "$new()")))
+          self[['produces']] <- obj$fromJSONString(jsonlite::toJSON(RestServiceList[['produces']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['url']])) {
+          self[['url']] <- RestServiceList[['url']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['url']], "$new()")))
+          self[['url']] <- obj$fromJSONString(jsonlite::toJSON(RestServiceList[['url']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       invisible(self)
     }
   )

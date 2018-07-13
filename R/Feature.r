@@ -37,7 +37,6 @@ Feature <- R6::R6Class(
         self[['bbox']] <- `bbox`
       }
       if (!missing(`properties`)) {
-        stopifnot(R6::is.R6(`properties`))
         self[['properties']] <- `properties`
       }
       if (!missing(`geometry`)) {
@@ -59,7 +58,7 @@ Feature <- R6::R6Class(
         FeatureList[['bbox']] <- self[['bbox']]
       }
         if (!is.null(self[['properties']])) {
-        FeatureList[['properties']] <- self[['properties']]$toList()
+        FeatureList[['properties']] <- self[['properties']]
       }
         if (!is.null(self[['geometry']])) {
         FeatureList[['geometry']] <- self[['geometry']]$toList()
@@ -72,42 +71,39 @@ Feature <- R6::R6Class(
       },
 
     fromList = function(FeatureList, typeMapping=NULL) {
-      if (!is.null(FeatureList[['crs']])) {      
-          if (is.null(typeMapping[['crs']])) {
-             self[['crs']] <- Crs$new()$fromList(FeatureList[['crs']])
-          } else {
-              ## make object of type specified by type mapping
-              obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
-              self[['crs']] <- obj$fromList(FeatureList[['crs']])
-          }
+      if (is.null(typeMapping[['crs']])) {
+          self[['crs']] <- Crs$new()$fromList(FeatureList[['crs']], typeMapping=typeMapping) 
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
+          self[['crs']] <- obj$fromList(FeatureList[['crs']], typeMapping=typeMapping)
       }
-      if (!is.null(FeatureList[['bbox']])) {      
+      if (is.null(typeMapping[['bbox']])) {
           self[['bbox']] <- FeatureList[['bbox']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['bbox']], "$new()")))
+          self[['bbox']] <- obj$fromList(FeatureList[['bbox']], typeMapping=typeMapping)
       }
-      if (!is.null(FeatureList[['properties']])) {      
-          if (is.null(typeMapping[['properties']])) {
-             self[['properties']] <- Specimen$new()$fromList(FeatureList[['properties']])
-          } else {
-              ## make object of type specified by type mapping
-              obj <- eval(parse(text=paste0(typeMapping[['properties']], "$new()")))
-              self[['properties']] <- obj$fromList(FeatureList[['properties']])
-          }
+      if (is.null(typeMapping[['properties']])) {
+          self[['properties']] <- FeatureList[['properties']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['properties']], "$new()")))
+          self[['properties']] <- obj$fromList(FeatureList[['properties']], typeMapping=typeMapping)
       }
-      if (!is.null(FeatureList[['geometry']])) {      
-          if (is.null(typeMapping[['geometry']])) {
-             self[['geometry']] <- GeoJsonObject$new()$fromList(FeatureList[['geometry']])
-          } else {
-              ## make object of type specified by type mapping
-              obj <- eval(parse(text=paste0(typeMapping[['geometry']], "$new()")))
-              self[['geometry']] <- obj$fromList(FeatureList[['geometry']])
-          }
+      if (is.null(typeMapping[['geometry']])) {
+          self[['geometry']] <- GeoJsonObject$new()$fromList(FeatureList[['geometry']], typeMapping=typeMapping) 
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['geometry']], "$new()")))
+          self[['geometry']] <- obj$fromList(FeatureList[['geometry']], typeMapping=typeMapping)
       }
-      if (!is.null(FeatureList[['id']])) {      
+      if (is.null(typeMapping[['id']])) {
           self[['id']] <- FeatureList[['id']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['id']], "$new()")))
+          self[['id']] <- obj$fromList(FeatureList[['id']], typeMapping=typeMapping)
       }
-      return(self)
+      invisible(self)
     },
-
+    
     toJSONString = function(pretty=T) {
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
@@ -120,9 +116,14 @@ Feature <- R6::R6Class(
           obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
           self[['crs']] <- obj$fromJSONString(jsonlite::toJSON(FeatureList[['crs']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      self[['bbox']] <- FeatureList[['bbox']]
+      if (is.null(typeMapping[['bbox']])) {
+          self[['bbox']] <- FeatureList[['bbox']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['bbox']], "$new()")))
+          self[['bbox']] <- obj$fromJSONString(jsonlite::toJSON(FeatureList[['bbox']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       if (is.null(typeMapping[['properties']])) {
-          self[['properties']] <- Specimen$new()$fromJSONString(jsonlite::toJSON(FeatureList[['properties']], auto_unbox = TRUE), typeMapping=typeMapping) 
+          self[['properties']] <- FeatureList[['properties']]
       } else {
           obj <- eval(parse(text=paste0(typeMapping[['properties']], "$new()")))
           self[['properties']] <- obj$fromJSONString(jsonlite::toJSON(FeatureList[['properties']], auto_unbox = TRUE), typeMapping=typeMapping)
@@ -133,7 +134,12 @@ Feature <- R6::R6Class(
           obj <- eval(parse(text=paste0(typeMapping[['geometry']], "$new()")))
           self[['geometry']] <- obj$fromJSONString(jsonlite::toJSON(FeatureList[['geometry']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      self[['id']] <- FeatureList[['id']]
+      if (is.null(typeMapping[['id']])) {
+          self[['id']] <- FeatureList[['id']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['id']], "$new()")))
+          self[['id']] <- obj$fromJSONString(jsonlite::toJSON(FeatureList[['id']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       invisible(self)
     }
   )

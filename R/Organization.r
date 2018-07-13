@@ -44,23 +44,39 @@ Organization <- R6::R6Class(
       },
 
     fromList = function(OrganizationList, typeMapping=NULL) {
-      if (!is.null(OrganizationList[['agentText']])) {      
+      if (is.null(typeMapping[['agentText']])) {
           self[['agentText']] <- OrganizationList[['agentText']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['agentText']], "$new()")))
+          self[['agentText']] <- obj$fromList(OrganizationList[['agentText']], typeMapping=typeMapping)
       }
-      if (!is.null(OrganizationList[['name']])) {      
+      if (is.null(typeMapping[['name']])) {
           self[['name']] <- OrganizationList[['name']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['name']], "$new()")))
+          self[['name']] <- obj$fromList(OrganizationList[['name']], typeMapping=typeMapping)
       }
-      return(self)
+      invisible(self)
     },
-
+    
     toJSONString = function(pretty=T) {
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
     fromJSONString = function(OrganizationJson, typeMapping=NULL) {
       OrganizationList <- jsonlite::fromJSON(OrganizationJson, simplifyVector=F)
-      self[['agentText']] <- OrganizationList[['agentText']]
-      self[['name']] <- OrganizationList[['name']]
+      if (is.null(typeMapping[['agentText']])) {
+          self[['agentText']] <- OrganizationList[['agentText']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['agentText']], "$new()")))
+          self[['agentText']] <- obj$fromJSONString(jsonlite::toJSON(OrganizationList[['agentText']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['name']])) {
+          self[['name']] <- OrganizationList[['name']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['name']], "$new()")))
+          self[['name']] <- obj$fromJSONString(jsonlite::toJSON(OrganizationList[['name']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       invisible(self)
     }
   )

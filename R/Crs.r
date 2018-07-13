@@ -26,7 +26,6 @@ Crs <- R6::R6Class(
         self[['type']] <- `type`
       }
       if (!missing(`properties`)) {
-        stopifnot(R6::is.R6(`properties`))
         self[['properties']] <- `properties`
       }
     },
@@ -37,37 +36,42 @@ Crs <- R6::R6Class(
         CrsList[['type']] <- self[['type']]
       }
         if (!is.null(self[['properties']])) {
-        CrsList[['properties']] <- self[['properties']]$toList()
+        CrsList[['properties']] <- self[['properties']]
       }
       ## omit empty nested lists in returned list
       CrsList[sapply(CrsList, length) > 0]
       },
 
     fromList = function(CrsList, typeMapping=NULL) {
-      if (!is.null(CrsList[['type']])) {      
+      if (is.null(typeMapping[['type']])) {
           self[['type']] <- CrsList[['type']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['type']], "$new()")))
+          self[['type']] <- obj$fromList(CrsList[['type']], typeMapping=typeMapping)
       }
-      if (!is.null(CrsList[['properties']])) {      
-          if (is.null(typeMapping[['properties']])) {
-             self[['properties']] <- Specimen$new()$fromList(CrsList[['properties']])
-          } else {
-              ## make object of type specified by type mapping
-              obj <- eval(parse(text=paste0(typeMapping[['properties']], "$new()")))
-              self[['properties']] <- obj$fromList(CrsList[['properties']])
-          }
+      if (is.null(typeMapping[['properties']])) {
+          self[['properties']] <- CrsList[['properties']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['properties']], "$new()")))
+          self[['properties']] <- obj$fromList(CrsList[['properties']], typeMapping=typeMapping)
       }
-      return(self)
+      invisible(self)
     },
-
+    
     toJSONString = function(pretty=T) {
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
     fromJSONString = function(CrsJson, typeMapping=NULL) {
       CrsList <- jsonlite::fromJSON(CrsJson, simplifyVector=F)
-      self[['type']] <- CrsList[['type']]
+      if (is.null(typeMapping[['type']])) {
+          self[['type']] <- CrsList[['type']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['type']], "$new()")))
+          self[['type']] <- obj$fromJSONString(jsonlite::toJSON(CrsList[['type']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       if (is.null(typeMapping[['properties']])) {
-          self[['properties']] <- Specimen$new()$fromJSONString(jsonlite::toJSON(CrsList[['properties']], auto_unbox = TRUE), typeMapping=typeMapping) 
+          self[['properties']] <- CrsList[['properties']]
       } else {
           obj <- eval(parse(text=paste0(typeMapping[['properties']], "$new()")))
           self[['properties']] <- obj$fromJSONString(jsonlite::toJSON(CrsList[['properties']], auto_unbox = TRUE), typeMapping=typeMapping)

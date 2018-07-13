@@ -45,21 +45,21 @@ GeoJsonObject <- R6::R6Class(
       },
 
     fromList = function(GeoJsonObjectList, typeMapping=NULL) {
-      if (!is.null(GeoJsonObjectList[['crs']])) {      
-          if (is.null(typeMapping[['crs']])) {
-             self[['crs']] <- Crs$new()$fromList(GeoJsonObjectList[['crs']])
-          } else {
-              ## make object of type specified by type mapping
-              obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
-              self[['crs']] <- obj$fromList(GeoJsonObjectList[['crs']])
-          }
+      if (is.null(typeMapping[['crs']])) {
+          self[['crs']] <- Crs$new()$fromList(GeoJsonObjectList[['crs']], typeMapping=typeMapping) 
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
+          self[['crs']] <- obj$fromList(GeoJsonObjectList[['crs']], typeMapping=typeMapping)
       }
-      if (!is.null(GeoJsonObjectList[['bbox']])) {      
+      if (is.null(typeMapping[['bbox']])) {
           self[['bbox']] <- GeoJsonObjectList[['bbox']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['bbox']], "$new()")))
+          self[['bbox']] <- obj$fromList(GeoJsonObjectList[['bbox']], typeMapping=typeMapping)
       }
-      return(self)
+      invisible(self)
     },
-
+    
     toJSONString = function(pretty=T) {
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
@@ -72,7 +72,12 @@ GeoJsonObject <- R6::R6Class(
           obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
           self[['crs']] <- obj$fromJSONString(jsonlite::toJSON(GeoJsonObjectList[['crs']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      self[['bbox']] <- GeoJsonObjectList[['bbox']]
+      if (is.null(typeMapping[['bbox']])) {
+          self[['bbox']] <- GeoJsonObjectList[['bbox']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['bbox']], "$new()")))
+          self[['bbox']] <- obj$fromJSONString(jsonlite::toJSON(GeoJsonObjectList[['bbox']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       invisible(self)
     }
   )

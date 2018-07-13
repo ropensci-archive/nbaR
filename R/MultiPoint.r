@@ -55,26 +55,23 @@ MultiPoint <- R6::R6Class(
       },
 
     fromList = function(MultiPointList, typeMapping=NULL) {
-      if (!is.null(MultiPointList[['crs']])) {      
-          if (is.null(typeMapping[['crs']])) {
-             self[['crs']] <- Crs$new()$fromList(MultiPointList[['crs']])
-          } else {
-              ## make object of type specified by type mapping
-              obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
-              self[['crs']] <- obj$fromList(MultiPointList[['crs']])
-          }
+      if (is.null(typeMapping[['crs']])) {
+          self[['crs']] <- Crs$new()$fromList(MultiPointList[['crs']], typeMapping=typeMapping) 
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
+          self[['crs']] <- obj$fromList(MultiPointList[['crs']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiPointList[['bbox']])) {      
+      if (is.null(typeMapping[['bbox']])) {
           self[['bbox']] <- MultiPointList[['bbox']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['bbox']], "$new()")))
+          self[['bbox']] <- obj$fromList(MultiPointList[['bbox']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiPointList[['coordinates']])) {      
-          self[['coordinates']] <- lapply(MultiPointList[['coordinates']], function(x) {
-             LngLatAlt$new()$fromList(x, typeMapping=typeMapping)            
-          })
-      }
-      return(self)
+      self[['coordinates']] <- lapply(MultiPointList[['coordinates']],
+                                       function(x) LngLatAlt$new()$fromList(x, typeMapping=typeMapping))
+      invisible(self)
     },
-
+    
     toJSONString = function(pretty=T) {
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
@@ -87,7 +84,12 @@ MultiPoint <- R6::R6Class(
           obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
           self[['crs']] <- obj$fromJSONString(jsonlite::toJSON(MultiPointList[['crs']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      self[['bbox']] <- MultiPointList[['bbox']]
+      if (is.null(typeMapping[['bbox']])) {
+          self[['bbox']] <- MultiPointList[['bbox']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['bbox']], "$new()")))
+          self[['bbox']] <- obj$fromJSONString(jsonlite::toJSON(MultiPointList[['bbox']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       self[['coordinates']] <- lapply(MultiPointList[['coordinates']],
                                         function(x) LngLatAlt$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       invisible(self)

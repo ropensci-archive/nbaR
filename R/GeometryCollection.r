@@ -55,26 +55,23 @@ GeometryCollection <- R6::R6Class(
       },
 
     fromList = function(GeometryCollectionList, typeMapping=NULL) {
-      if (!is.null(GeometryCollectionList[['crs']])) {      
-          if (is.null(typeMapping[['crs']])) {
-             self[['crs']] <- Crs$new()$fromList(GeometryCollectionList[['crs']])
-          } else {
-              ## make object of type specified by type mapping
-              obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
-              self[['crs']] <- obj$fromList(GeometryCollectionList[['crs']])
-          }
+      if (is.null(typeMapping[['crs']])) {
+          self[['crs']] <- Crs$new()$fromList(GeometryCollectionList[['crs']], typeMapping=typeMapping) 
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
+          self[['crs']] <- obj$fromList(GeometryCollectionList[['crs']], typeMapping=typeMapping)
       }
-      if (!is.null(GeometryCollectionList[['bbox']])) {      
+      if (is.null(typeMapping[['bbox']])) {
           self[['bbox']] <- GeometryCollectionList[['bbox']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['bbox']], "$new()")))
+          self[['bbox']] <- obj$fromList(GeometryCollectionList[['bbox']], typeMapping=typeMapping)
       }
-      if (!is.null(GeometryCollectionList[['geometries']])) {      
-          self[['geometries']] <- lapply(GeometryCollectionList[['geometries']], function(x) {
-             GeoJsonObject$new()$fromList(x, typeMapping=typeMapping)            
-          })
-      }
-      return(self)
+      self[['geometries']] <- lapply(GeometryCollectionList[['geometries']],
+                                       function(x) GeoJsonObject$new()$fromList(x, typeMapping=typeMapping))
+      invisible(self)
     },
-
+    
     toJSONString = function(pretty=T) {
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
@@ -87,7 +84,12 @@ GeometryCollection <- R6::R6Class(
           obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
           self[['crs']] <- obj$fromJSONString(jsonlite::toJSON(GeometryCollectionList[['crs']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      self[['bbox']] <- GeometryCollectionList[['bbox']]
+      if (is.null(typeMapping[['bbox']])) {
+          self[['bbox']] <- GeometryCollectionList[['bbox']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['bbox']], "$new()")))
+          self[['bbox']] <- obj$fromJSONString(jsonlite::toJSON(GeometryCollectionList[['bbox']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       self[['geometries']] <- lapply(GeometryCollectionList[['geometries']],
                                         function(x) GeoJsonObject$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
       invisible(self)

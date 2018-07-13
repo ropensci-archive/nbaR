@@ -53,27 +53,51 @@ TaxonDescription <- R6::R6Class(
       },
 
     fromList = function(TaxonDescriptionList, typeMapping=NULL) {
-      if (!is.null(TaxonDescriptionList[['category']])) {      
+      if (is.null(typeMapping[['category']])) {
           self[['category']] <- TaxonDescriptionList[['category']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['category']], "$new()")))
+          self[['category']] <- obj$fromList(TaxonDescriptionList[['category']], typeMapping=typeMapping)
       }
-      if (!is.null(TaxonDescriptionList[['description']])) {      
+      if (is.null(typeMapping[['description']])) {
           self[['description']] <- TaxonDescriptionList[['description']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['description']], "$new()")))
+          self[['description']] <- obj$fromList(TaxonDescriptionList[['description']], typeMapping=typeMapping)
       }
-      if (!is.null(TaxonDescriptionList[['language']])) {      
+      if (is.null(typeMapping[['language']])) {
           self[['language']] <- TaxonDescriptionList[['language']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['language']], "$new()")))
+          self[['language']] <- obj$fromList(TaxonDescriptionList[['language']], typeMapping=typeMapping)
       }
-      return(self)
+      invisible(self)
     },
-
+    
     toJSONString = function(pretty=T) {
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
     fromJSONString = function(TaxonDescriptionJson, typeMapping=NULL) {
       TaxonDescriptionList <- jsonlite::fromJSON(TaxonDescriptionJson, simplifyVector=F)
-      self[['category']] <- TaxonDescriptionList[['category']]
-      self[['description']] <- TaxonDescriptionList[['description']]
-      self[['language']] <- TaxonDescriptionList[['language']]
+      if (is.null(typeMapping[['category']])) {
+          self[['category']] <- TaxonDescriptionList[['category']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['category']], "$new()")))
+          self[['category']] <- obj$fromJSONString(jsonlite::toJSON(TaxonDescriptionList[['category']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['description']])) {
+          self[['description']] <- TaxonDescriptionList[['description']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['description']], "$new()")))
+          self[['description']] <- obj$fromJSONString(jsonlite::toJSON(TaxonDescriptionList[['description']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['language']])) {
+          self[['language']] <- TaxonDescriptionList[['language']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['language']], "$new()")))
+          self[['language']] <- obj$fromJSONString(jsonlite::toJSON(TaxonDescriptionList[['language']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       invisible(self)
     }
   )

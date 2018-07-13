@@ -34,7 +34,7 @@ Polygon <- R6::R6Class(
       }
       if (!missing(`coordinates`)) {
         stopifnot(is.list(`coordinates`), length(`coordinates`) != 0)
-        lapply(`coordinates`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(`coordinates`, function(x) stopifnot(is.character(x)))
         self[['coordinates']] <- `coordinates`
       }
     },
@@ -48,33 +48,34 @@ Polygon <- R6::R6Class(
         PolygonList[['bbox']] <- self[['bbox']]
       }
         if (!is.null(self[['coordinates']])) {
-        PolygonList[['coordinates']] <- lapply(self[['coordinates']], function(x) x$toList())
+        PolygonList[['coordinates']] <- self[['coordinates']]
       }
       ## omit empty nested lists in returned list
       PolygonList[sapply(PolygonList, length) > 0]
       },
 
     fromList = function(PolygonList, typeMapping=NULL) {
-      if (!is.null(PolygonList[['crs']])) {      
-          if (is.null(typeMapping[['crs']])) {
-             self[['crs']] <- Crs$new()$fromList(PolygonList[['crs']])
-          } else {
-              ## make object of type specified by type mapping
-              obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
-              self[['crs']] <- obj$fromList(PolygonList[['crs']])
-          }
+      if (is.null(typeMapping[['crs']])) {
+          self[['crs']] <- Crs$new()$fromList(PolygonList[['crs']], typeMapping=typeMapping) 
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
+          self[['crs']] <- obj$fromList(PolygonList[['crs']], typeMapping=typeMapping)
       }
-      if (!is.null(PolygonList[['bbox']])) {      
+      if (is.null(typeMapping[['bbox']])) {
           self[['bbox']] <- PolygonList[['bbox']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['bbox']], "$new()")))
+          self[['bbox']] <- obj$fromList(PolygonList[['bbox']], typeMapping=typeMapping)
       }
-      if (!is.null(PolygonList[['coordinates']])) {      
-          self[['coordinates']] <- lapply(PolygonList[['coordinates']], function(x) {
-             LngLatAlt$new()$fromList(x, typeMapping=typeMapping)            
-          })
+      if (is.null(typeMapping[['coordinates']])) {
+          self[['coordinates']] <- PolygonList[['coordinates']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['coordinates']], "$new()")))
+          self[['coordinates']] <- obj$fromList(PolygonList[['coordinates']], typeMapping=typeMapping)
       }
-      return(self)
+      invisible(self)
     },
-
+    
     toJSONString = function(pretty=T) {
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
@@ -87,9 +88,18 @@ Polygon <- R6::R6Class(
           obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
           self[['crs']] <- obj$fromJSONString(jsonlite::toJSON(PolygonList[['crs']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      self[['bbox']] <- PolygonList[['bbox']]
-      self[['coordinates']] <- lapply(PolygonList[['coordinates']],
-                                        function(x) LngLatAlt$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
+      if (is.null(typeMapping[['bbox']])) {
+          self[['bbox']] <- PolygonList[['bbox']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['bbox']], "$new()")))
+          self[['bbox']] <- obj$fromJSONString(jsonlite::toJSON(PolygonList[['bbox']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['coordinates']])) {
+          self[['coordinates']] <- PolygonList[['coordinates']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['coordinates']], "$new()")))
+          self[['coordinates']] <- obj$fromJSONString(jsonlite::toJSON(PolygonList[['coordinates']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       invisible(self)
     }
   )

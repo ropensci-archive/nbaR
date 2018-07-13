@@ -71,46 +71,75 @@ Reference <- R6::R6Class(
       },
 
     fromList = function(ReferenceList, typeMapping=NULL) {
-      if (!is.null(ReferenceList[['titleCitation']])) {      
+      if (is.null(typeMapping[['titleCitation']])) {
           self[['titleCitation']] <- ReferenceList[['titleCitation']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['titleCitation']], "$new()")))
+          self[['titleCitation']] <- obj$fromList(ReferenceList[['titleCitation']], typeMapping=typeMapping)
       }
-      if (!is.null(ReferenceList[['citationDetail']])) {      
+      if (is.null(typeMapping[['citationDetail']])) {
           self[['citationDetail']] <- ReferenceList[['citationDetail']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['citationDetail']], "$new()")))
+          self[['citationDetail']] <- obj$fromList(ReferenceList[['citationDetail']], typeMapping=typeMapping)
       }
-      if (!is.null(ReferenceList[['uri']])) {      
+      if (is.null(typeMapping[['uri']])) {
           self[['uri']] <- ReferenceList[['uri']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['uri']], "$new()")))
+          self[['uri']] <- obj$fromList(ReferenceList[['uri']], typeMapping=typeMapping)
       }
-      if (!is.null(ReferenceList[['author']])) {      
-          if (is.null(typeMapping[['author']])) {
-             self[['author']] <- Person$new()$fromList(ReferenceList[['author']])
-          } else {
-              ## make object of type specified by type mapping
-              obj <- eval(parse(text=paste0(typeMapping[['author']], "$new()")))
-              self[['author']] <- obj$fromList(ReferenceList[['author']])
-          }
+      if (is.null(typeMapping[['author']])) {
+          self[['author']] <- Person$new()$fromList(ReferenceList[['author']], typeMapping=typeMapping) 
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['author']], "$new()")))
+          self[['author']] <- obj$fromList(ReferenceList[['author']], typeMapping=typeMapping)
       }
-      if (!is.null(ReferenceList[['publicationDate']])) {      
+      if (is.null(typeMapping[['publicationDate']])) {
           self[['publicationDate']] <- ReferenceList[['publicationDate']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['publicationDate']], "$new()")))
+          self[['publicationDate']] <- obj$fromList(ReferenceList[['publicationDate']], typeMapping=typeMapping)
       }
-      return(self)
+      invisible(self)
     },
-
+    
     toJSONString = function(pretty=T) {
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
     fromJSONString = function(ReferenceJson, typeMapping=NULL) {
       ReferenceList <- jsonlite::fromJSON(ReferenceJson, simplifyVector=F)
-      self[['titleCitation']] <- ReferenceList[['titleCitation']]
-      self[['citationDetail']] <- ReferenceList[['citationDetail']]
-      self[['uri']] <- ReferenceList[['uri']]
+      if (is.null(typeMapping[['titleCitation']])) {
+          self[['titleCitation']] <- ReferenceList[['titleCitation']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['titleCitation']], "$new()")))
+          self[['titleCitation']] <- obj$fromJSONString(jsonlite::toJSON(ReferenceList[['titleCitation']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['citationDetail']])) {
+          self[['citationDetail']] <- ReferenceList[['citationDetail']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['citationDetail']], "$new()")))
+          self[['citationDetail']] <- obj$fromJSONString(jsonlite::toJSON(ReferenceList[['citationDetail']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['uri']])) {
+          self[['uri']] <- ReferenceList[['uri']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['uri']], "$new()")))
+          self[['uri']] <- obj$fromJSONString(jsonlite::toJSON(ReferenceList[['uri']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       if (is.null(typeMapping[['author']])) {
           self[['author']] <- Person$new()$fromJSONString(jsonlite::toJSON(ReferenceList[['author']], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
           obj <- eval(parse(text=paste0(typeMapping[['author']], "$new()")))
           self[['author']] <- obj$fromJSONString(jsonlite::toJSON(ReferenceList[['author']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      self[['publicationDate']] <- ReferenceList[['publicationDate']]
+      if (is.null(typeMapping[['publicationDate']])) {
+          self[['publicationDate']] <- ReferenceList[['publicationDate']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['publicationDate']], "$new()")))
+          self[['publicationDate']] <- obj$fromJSONString(jsonlite::toJSON(ReferenceList[['publicationDate']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       invisible(self)
     }
   )

@@ -44,23 +44,39 @@ Monomial <- R6::R6Class(
       },
 
     fromList = function(MonomialList, typeMapping=NULL) {
-      if (!is.null(MonomialList[['rank']])) {      
+      if (is.null(typeMapping[['rank']])) {
           self[['rank']] <- MonomialList[['rank']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['rank']], "$new()")))
+          self[['rank']] <- obj$fromList(MonomialList[['rank']], typeMapping=typeMapping)
       }
-      if (!is.null(MonomialList[['name']])) {      
+      if (is.null(typeMapping[['name']])) {
           self[['name']] <- MonomialList[['name']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['name']], "$new()")))
+          self[['name']] <- obj$fromList(MonomialList[['name']], typeMapping=typeMapping)
       }
-      return(self)
+      invisible(self)
     },
-
+    
     toJSONString = function(pretty=T) {
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
     fromJSONString = function(MonomialJson, typeMapping=NULL) {
       MonomialList <- jsonlite::fromJSON(MonomialJson, simplifyVector=F)
-      self[['rank']] <- MonomialList[['rank']]
-      self[['name']] <- MonomialList[['name']]
+      if (is.null(typeMapping[['rank']])) {
+          self[['rank']] <- MonomialList[['rank']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['rank']], "$new()")))
+          self[['rank']] <- obj$fromJSONString(jsonlite::toJSON(MonomialList[['rank']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['name']])) {
+          self[['name']] <- MonomialList[['name']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['name']], "$new()")))
+          self[['name']] <- obj$fromJSONString(jsonlite::toJSON(MonomialList[['name']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       invisible(self)
     }
   )

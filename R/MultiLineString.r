@@ -34,7 +34,7 @@ MultiLineString <- R6::R6Class(
       }
       if (!missing(`coordinates`)) {
         stopifnot(is.list(`coordinates`), length(`coordinates`) != 0)
-        lapply(`coordinates`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(`coordinates`, function(x) stopifnot(is.character(x)))
         self[['coordinates']] <- `coordinates`
       }
     },
@@ -48,33 +48,34 @@ MultiLineString <- R6::R6Class(
         MultiLineStringList[['bbox']] <- self[['bbox']]
       }
         if (!is.null(self[['coordinates']])) {
-        MultiLineStringList[['coordinates']] <- lapply(self[['coordinates']], function(x) x$toList())
+        MultiLineStringList[['coordinates']] <- self[['coordinates']]
       }
       ## omit empty nested lists in returned list
       MultiLineStringList[sapply(MultiLineStringList, length) > 0]
       },
 
     fromList = function(MultiLineStringList, typeMapping=NULL) {
-      if (!is.null(MultiLineStringList[['crs']])) {      
-          if (is.null(typeMapping[['crs']])) {
-             self[['crs']] <- Crs$new()$fromList(MultiLineStringList[['crs']])
-          } else {
-              ## make object of type specified by type mapping
-              obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
-              self[['crs']] <- obj$fromList(MultiLineStringList[['crs']])
-          }
+      if (is.null(typeMapping[['crs']])) {
+          self[['crs']] <- Crs$new()$fromList(MultiLineStringList[['crs']], typeMapping=typeMapping) 
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
+          self[['crs']] <- obj$fromList(MultiLineStringList[['crs']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiLineStringList[['bbox']])) {      
+      if (is.null(typeMapping[['bbox']])) {
           self[['bbox']] <- MultiLineStringList[['bbox']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['bbox']], "$new()")))
+          self[['bbox']] <- obj$fromList(MultiLineStringList[['bbox']], typeMapping=typeMapping)
       }
-      if (!is.null(MultiLineStringList[['coordinates']])) {      
-          self[['coordinates']] <- lapply(MultiLineStringList[['coordinates']], function(x) {
-             LngLatAlt$new()$fromList(x, typeMapping=typeMapping)            
-          })
+      if (is.null(typeMapping[['coordinates']])) {
+          self[['coordinates']] <- MultiLineStringList[['coordinates']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['coordinates']], "$new()")))
+          self[['coordinates']] <- obj$fromList(MultiLineStringList[['coordinates']], typeMapping=typeMapping)
       }
-      return(self)
+      invisible(self)
     },
-
+    
     toJSONString = function(pretty=T) {
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
@@ -87,9 +88,18 @@ MultiLineString <- R6::R6Class(
           obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
           self[['crs']] <- obj$fromJSONString(jsonlite::toJSON(MultiLineStringList[['crs']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      self[['bbox']] <- MultiLineStringList[['bbox']]
-      self[['coordinates']] <- lapply(MultiLineStringList[['coordinates']],
-                                        function(x) LngLatAlt$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
+      if (is.null(typeMapping[['bbox']])) {
+          self[['bbox']] <- MultiLineStringList[['bbox']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['bbox']], "$new()")))
+          self[['bbox']] <- obj$fromJSONString(jsonlite::toJSON(MultiLineStringList[['bbox']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
+      if (is.null(typeMapping[['coordinates']])) {
+          self[['coordinates']] <- MultiLineStringList[['coordinates']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['coordinates']], "$new()")))
+          self[['coordinates']] <- obj$fromJSONString(jsonlite::toJSON(MultiLineStringList[['coordinates']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       invisible(self)
     }
   )

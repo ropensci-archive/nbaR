@@ -35,19 +35,27 @@ Agent <- R6::R6Class(
       },
 
     fromList = function(AgentList, typeMapping=NULL) {
-      if (!is.null(AgentList[['agentText']])) {      
+      if (is.null(typeMapping[['agentText']])) {
           self[['agentText']] <- AgentList[['agentText']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['agentText']], "$new()")))
+          self[['agentText']] <- obj$fromList(AgentList[['agentText']], typeMapping=typeMapping)
       }
-      return(self)
+      invisible(self)
     },
-
+    
     toJSONString = function(pretty=T) {
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
     fromJSONString = function(AgentJson, typeMapping=NULL) {
       AgentList <- jsonlite::fromJSON(AgentJson, simplifyVector=F)
-      self[['agentText']] <- AgentList[['agentText']]
+      if (is.null(typeMapping[['agentText']])) {
+          self[['agentText']] <- AgentList[['agentText']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['agentText']], "$new()")))
+          self[['agentText']] <- obj$fromJSONString(jsonlite::toJSON(AgentList[['agentText']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       invisible(self)
     }
   )

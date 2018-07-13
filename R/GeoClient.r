@@ -17,10 +17,13 @@
 #' @section Methods:
 #' \describe{
 #'
-#' count Get the number of geo areas matching a condition
+#' count Get the number of geo areas matching a given condition
 #'
 #'
-#' count_http_post_json Get the number of geo areas matching a condition
+#' count_distinct_values Count the distinct number of values that exist for a given field
+#'
+#'
+#' count_distinct_values_per_group Count the distinct number of field values that exist per the given field to group by
 #'
 #'
 #' find Find a GEO area by id
@@ -32,7 +35,7 @@
 #' get_distinct_values Get all different values that exist for a field
 #'
 #'
-#' get_distinct_values_http_post_json Get all different values that exist for a field
+#' get_distinct_values_per_group Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by
 #'
 #'
 #' get_field_info Returns extended information for each field of a specimen document
@@ -44,19 +47,16 @@
 #' get_paths Returns the full path of all fields within a document
 #'
 #'
+#' get_setting Get the value of an NBA setting
+#'
+#'
 #' get_settings List all publicly available configuration settings for the NBA
-#'
-#'
-#' get_settings1 Get the value of an NBA setting
 #'
 #'
 #' is_operator_allowed Checks if a given operator is allowed for a given field
 #'
 #'
 #' query Query for geo areas
-#'
-#'
-#' query_http_post_json Query for geo areas
 #'
 #' }
 #'
@@ -71,7 +71,7 @@ GeoClient <- R6::R6Class(
     },
 
     # '@name count
-    # '@title Get the number of geo areas matching a condition
+    # '@title Get the number of geo areas matching a given condition
     # '@description Conditions given as query string
     # '@return \code{ integer }
     # '@param area_type: character; Example query param
@@ -102,27 +102,25 @@ GeoClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is 'primitive type', return vector or single value
-            result <- as.integer(unlist(httr::content(response)))
+            result <- as.integer(httr::content(response))
             Response$new(result, response)
         }        
     },
-    # '@name count_http_post_json
-    # '@title Get the number of geo areas matching a condition
-    # '@description Conditions given as querySpec JSON
-    # '@return \code{ integer }
+    # '@name count_distinct_values
+    # '@title Count the distinct number of values that exist for a given field
+    # '@description 
+    # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    count_http_post_json = function(body=NULL, ...){
+    count_distinct_values = function(field=NULL, ...){
         headerParams <- character()
         queryParams <- list()
-        if (!missing(`body`)) {
-            body <- `body`$toJSONString()
-        } else {
-            body <- NULL
+        urlPath <- "/geo/countDistinctValues/{field}"
+        if (!missing(`field`)) {
+            urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
         }
 
-        urlPath <- "/geo/count"
         response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "POST",
+                                 method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
@@ -131,8 +129,40 @@ GeoClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is 'primitive type', return vector or single value
-            result <- as.integer(unlist(httr::content(response)))
+            ## API call result is a 'map container' and will be parsed to list 
+            result <- httr::content(response, simplifyVector=T)
+            Response$new(result, response)
+        }        
+    },
+    # '@name count_distinct_values_per_group
+    # '@title Count the distinct number of field values that exist per the given field to group by
+    # '@description 
+    # '@return \code{ list }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    count_distinct_values_per_group = function(group=NULL, field=NULL, ...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/geo/countDistinctValuesPerGroup/{group}/{field}"
+        if (!missing(`group`)) {
+            urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
+        }
+
+        if (!missing(`field`)) {
+            urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
+        }
+
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = queryParams,
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is a 'map container' and will be parsed to list 
+            result <- httr::content(response, simplifyVector=T)
             Response$new(result, response)
         }        
     },
@@ -159,7 +189,7 @@ GeoClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is object is model class
+            ## API call result is object of model class
             returnObject <- GeoArea$new()
             ## API call result is QueryResult, list items must be mapped to model class
             result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
@@ -189,7 +219,7 @@ GeoClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is object is model class
+            ## API call result is object of model class
             returnObject <- GeoArea$new()
             ## API call result is 'list container'
             result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=private$getBaseDataType())))
@@ -199,7 +229,7 @@ GeoClient <- R6::R6Class(
     # '@name get_distinct_values
     # '@title Get all different values that exist for a field
     # '@description A list of all fields for geo area documents can be retrieved with /metadata/getFieldInfo
-    # '@return \code{ Specimen }
+    # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
     get_distinct_values = function(field=NULL, ...){
         headerParams <- character()
@@ -224,27 +254,25 @@ GeoClient <- R6::R6Class(
             Response$new(result, response)
         }        
     },
-    # '@name get_distinct_values_http_post_json
-    # '@title Get all different values that exist for a field
-    # '@description A list of all fields for geo area documents can be retrieved with /metadata/getFieldInfo
-    # '@return \code{ Specimen }
+    # '@name get_distinct_values_per_group
+    # '@title Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by
+    # '@description 
+    # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_distinct_values_http_post_json = function(field=NULL, body=NULL, ...){
+    get_distinct_values_per_group = function(group=NULL, field=NULL, ...){
         headerParams <- character()
         queryParams <- list()
-        if (!missing(`body`)) {
-            body <- `body`$toJSONString()
-        } else {
-            body <- NULL
+        urlPath <- "/geo/getDistinctValuesPerGroup/{group}/{field}"
+        if (!missing(`group`)) {
+            urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
         }
 
-        urlPath <- "/geo/getDistinctValues/{field}"
         if (!missing(`field`)) {
             urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
         }
 
         response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "POST",
+                                 method = "GET",
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
@@ -253,15 +281,15 @@ GeoClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is a 'map container' and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            ## API call result is 'primitive type', return vector or single value
+            result <- as.list(httr::content(response))
             Response$new(result, response)
         }        
     },
     # '@name get_field_info
     # '@title Returns extended information for each field of a specimen document
     # '@description Info consists of whether the fields is indexed, the ElasticSearch datatype and a list of allowed operators
-    # '@return \code{ Specimen }
+    # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
     get_field_info = function(...){
         headerParams <- character()
@@ -305,7 +333,7 @@ GeoClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is object is model class
+            ## API call result is object of model class
             returnObject <- GeoArea$new()
             ## API call result is QueryResult, list items must be mapped to model class
             result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
@@ -332,14 +360,42 @@ GeoClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is 'primitive type', return vector or single value
-            result <- as.character(unlist(httr::content(response)))
+            result <- as.character(httr::content(response))
+            Response$new(result, response)
+        }        
+    },
+    # '@name get_setting
+    # '@title Get the value of an NBA setting
+    # '@description All settings can be queried with /metadata/getSettings
+    # '@return \code{ list }
+    # '@param ...; additional parameters passed to httr::GET or httr::POST
+    get_setting = function(name=NULL, ...){
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/geo/metadata/getSetting/{name}"
+        if (!missing(`name`)) {
+            urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
+        }
+
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = queryParams,
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is 'primitive type', return vector or single value
+            result <- as.list(httr::content(response))
             Response$new(result, response)
         }        
     },
     # '@name get_settings
     # '@title List all publicly available configuration settings for the NBA
     # '@description The value of a specific setting can be queried with metadata/getSetting/{name}
-    # '@return \code{ Specimen }
+    # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
     get_settings = function(...){
         headerParams <- character()
@@ -360,40 +416,10 @@ GeoClient <- R6::R6Class(
             Response$new(result, response)
         }        
     },
-    # '@name get_settings1
-    # '@title Get the value of an NBA setting
-    # '@description All settings can be queried with /metadata/getSettings
-    # '@return \code{ Specimen }
-    # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_settings1 = function(name=NULL, ...){
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/geo/metadata/getSetting/{name}"
-        if (!missing(`name`)) {
-            urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
-        }
-
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = queryParams,
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
-
-        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is object is model class
-            returnObject <- Specimen$new()
-            ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
-            Response$new(result, response)
-        }        
-    },
     # '@name is_operator_allowed
     # '@title Checks if a given operator is allowed for a given field
     # '@description See also metadata/getFieldInfo
-    # '@return \code{ Specimen }
+    # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
     is_operator_allowed = function(field=NULL, operator=NULL, ...){
         headerParams <- character()
@@ -426,18 +452,18 @@ GeoClient <- R6::R6Class(
     # '@title Query for geo areas
     # '@description Query on searchable fields to retrieve matching geo areas
     # '@return \code{ QueryResult }
-    # '@param query_spec: ; Object of type QuerySpec or its JSON representation
+    # '@param locality: character; Example query param
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    query = function(querySpec=NULL, queryParams=list(), ...){
+    query = function(locality=NULL, queryParams=list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
         }
             
-        if (!missing(`querySpec`)) {
+        if (!missing(`locality`)) {
           ## querySpec can be either JSON string or object of type QuerySpec. 
-          param <- ifelse(typeof(`querySpec`) == "environment", `querySpec`$toJSONString(), `querySpec`)    
-          queryParams['querySpec'] <- param
+          param <- ifelse(typeof(`locality`) == "environment", `locality`$toJSONString(), `locality`)    
+          queryParams['locality'] <- param
         }
         ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
         names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))
@@ -453,51 +479,7 @@ GeoClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is object is model class
-            returnObject <- QueryResult$new()
-            ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
-            Response$new(result, response)
-        }        
-    },
-    # '@name query_http_post_json
-    # '@title Query for geo areas
-    # '@description Query on searchable fields to retrieve matching geo areas
-    # '@return \code{ QueryResult }
-    # '@param locality: character; Example query param
-    # '@param ...; additional parameters passed to httr::GET or httr::POST
-    query_http_post_json = function(body=NULL, locality=NULL, queryParams=list(), ...){
-        headerParams <- character()
-        if (!is.null(querySpec) & length(queryParams) > 0) {
-            stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
-        }
-            
-        if (!missing(`locality`)) {
-          ## querySpec can be either JSON string or object of type QuerySpec. 
-          param <- ifelse(typeof(`locality`) == "environment", `locality`$toJSONString(), `locality`)    
-          queryParams['locality'] <- param
-        }
-        ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
-        names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))
-
-        if (!missing(`body`)) {
-            body <- `body`$toJSONString()
-        } else {
-            body <- NULL
-        }
-
-        urlPath <- "/geo/query"
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "POST",
-                                 queryParams = queryParams,
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
-
-        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is object is model class
+            ## API call result is object of model class
             returnObject <- QueryResult$new()
             ## API call result is QueryResult, list items must be mapped to model class
             result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
@@ -506,4 +488,3 @@ GeoClient <- R6::R6Class(
     }
   )
 )
-

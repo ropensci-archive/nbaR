@@ -35,19 +35,27 @@ SummarySourceSystem <- R6::R6Class(
       },
 
     fromList = function(SummarySourceSystemList, typeMapping=NULL) {
-      if (!is.null(SummarySourceSystemList[['code']])) {      
+      if (is.null(typeMapping[['code']])) {
           self[['code']] <- SummarySourceSystemList[['code']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['code']], "$new()")))
+          self[['code']] <- obj$fromList(SummarySourceSystemList[['code']], typeMapping=typeMapping)
       }
-      return(self)
+      invisible(self)
     },
-
+    
     toJSONString = function(pretty=T) {
       jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
     },
 
     fromJSONString = function(SummarySourceSystemJson, typeMapping=NULL) {
       SummarySourceSystemList <- jsonlite::fromJSON(SummarySourceSystemJson, simplifyVector=F)
-      self[['code']] <- SummarySourceSystemList[['code']]
+      if (is.null(typeMapping[['code']])) {
+          self[['code']] <- SummarySourceSystemList[['code']]
+      } else {
+          obj <- eval(parse(text=paste0(typeMapping[['code']], "$new()")))
+          self[['code']] <- obj$fromJSONString(jsonlite::toJSON(SummarySourceSystemList[['code']], auto_unbox = TRUE), typeMapping=typeMapping)
+      }
       invisible(self)
     }
   )
