@@ -458,18 +458,18 @@ MultimediaClient <- R6::R6Class(
     # '@title Query for multimedia documents
     # '@description Search for multimedia documents with query parameters or QuerySpec JSON string
     # '@return \code{ QueryResult }
-    # '@param license: character; Example query param
+    # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    query = function(license=NULL, queryParams=list(), ...){
+    query = function(querySpec=NULL, queryParams=list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
         }
             
-        if (!missing(`license`)) {
+        if (!missing(`querySpec`)) {
           ## querySpec can be either JSON string or object of type QuerySpec. 
-          param <- ifelse(typeof(`license`) == "environment", `license`$toJSONString(), `license`)    
-          queryParams['license'] <- param
+          param <- ifelse(typeof(`querySpec`) == "environment", `querySpec`$toJSONString(), `querySpec`)    
+          queryParams['querySpec'] <- param
         }
         ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
         names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))
