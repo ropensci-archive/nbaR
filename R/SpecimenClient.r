@@ -375,8 +375,8 @@ SpecimenClient <- R6::R6Class(
         } else {
             ## API call result is object of model class
             returnObject <- Specimen$new()
-            ## API call result is 'list container'
-            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=private$getBaseDataType())))
+            ## API call result is QueryResult, list items must be mapped to model class
+            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
             Response$new(result, response)
         }        
     },
