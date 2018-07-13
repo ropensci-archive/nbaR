@@ -25,7 +25,7 @@ test_that("getSetting works", {
     ## XXX should a numeric be returned? Right now it is a list, and
     ## with getSettings, one might not know the datatype of the setting!
     ## expect_true(is.numeric(res$content))
-    expect_true(res$content != NULL)
+    expect_true(! is.null(res$content))
 })
 
 test_that("getPaths works", {
