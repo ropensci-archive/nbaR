@@ -125,7 +125,7 @@
             {{^isMapContainer}}
             {{#returnTypeIsPrimitive}}
             ## API call result is 'primitive type', return vector or single value
-            result <- as.{{returnType}}(unlist(httr::content(response)))
+            result <- as.{{returnType}}(httr::content(response))
             {{/returnTypeIsPrimitive}}
             {{^returnTypeIsPrimitive}}
             ## API call result is object of model class
