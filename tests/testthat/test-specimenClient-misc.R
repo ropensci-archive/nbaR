@@ -13,7 +13,7 @@ sc <- SpecimenClient$new()
 
 context("Testing miscellaneous specimen endpoints")
 
-test_that("exists() function works", {
+test_that("exists works", {
     ## test for existing specimen
     res <- sc$exists("L.4191428")
     expect_is(res$content, "logical")
@@ -25,12 +25,12 @@ test_that("exists() function works", {
     expect_false(res$content)        
 })
 
-test_that("count() function works", {
+test_that("count works", {
     qs <- QuerySpec$new(
         conditions=list(QueryCondition$new(
-            field="identifications.defaultClassification.genus",
-            operator="EQUALS",
-            value="Passiflora"
+                            field="identifications.defaultClassification.genus",
+                            operator="EQUALS",
+                            value="Passiflora"
         )))
     res <- sc$count(querySpec=qs)
     expect_true(is.numeric(res$content))
@@ -43,19 +43,9 @@ test_that("count() function works", {
     expect_equal(res$content, 0)
 })
 
-test_that("getPaths works", {
-    res <- sc$get_paths()
-    expect_is(res$content, "character")
-    expect_true(length(res$content) > 0)    
-})
-
-test_that("getFieldInfo works", {
-    res <- sc$get_field_info()
-    list <- res$content
-    expect_is(list, "list")
-    ## The list should be named by the paths of the different fields, compare them
-    paths <- sc$get_paths()$content
-    expect_equal(sort(paths), sort(names(list)))
+test_that("countDistinctValues works", {
+    res <- sc$count_distinct_values("gatheringEvent.country")    
+    expect_true(res$content > 0)
 })
 
 test_that("getDistinctValues works", {
@@ -70,4 +60,50 @@ test_that("getDistinctValues works", {
     }    
     ## method should give a warning if field is not found
     expect_warning(sc$get_distinct_values("XX"))    
+})
+
+test_that("download endpoint works", {    
+    qs <- QuerySpec$new(
+        conditions=list(QueryCondition$new(
+                            field="identifications.defaultClassification.genus",
+                            operator="EQUALS",
+                            value="Passiflora"                            
+                        )), size=100)
+    res <- sc$download_query(querySpec=qs)
+    expect_length(res$content, 100)
+
+    ## check if we got specimen documents back
+    for (s in res$content) {
+        expect_is(s, "Specimen")
+    }
+})
+
+test_that("getDistinctValuesPerGroup works", {
+    res <- sc$get_distinct_values_per_group(group="sourceSystem.code", field="recordBasis")
+    ## Result should be a list with two entries, for BRAHMS and CRS
+    expect_is(res$content, 'list')
+    expect_length(res$content, 2)
+})
+
+test_that("getIdsInCollection works", {
+    res <- sc$get_ids_in_collection("siebold")
+    expect_is(res$content, 'character')
+    expect_true(length(res$content) > 0)
+})
+
+test_that("getNamedCollections works", {
+    res <- sc$get_named_collections()
+    expect_is(res$content, 'character')
+    expect_true(length(res$content) > 0)
+})
+
+test_that("groupByScientificName works", {
+    qc <- QueryCondition$new(field="identifications.defaultClassification.genus", operator="EQUALS", value="Passiflora")
+    qs <- QuerySpec$new(conditions=list(qc))
+    res <- sc$query(qs)
+
+    ## check if we get specimen documents
+    for (hit in res$content$resultSet) {
+        expect_is(hit$item, "Specimen")
+    }        
 })
