@@ -99,11 +99,37 @@ test_that("getNamedCollections works", {
 
 test_that("groupByScientificName works", {
     qc <- QueryCondition$new(field="identifications.defaultClassification.genus", operator="EQUALS", value="Passiflora")
+
+    ## check with generic QuerySpec
     qs <- QuerySpec$new(conditions=list(qc))
-    res <- sc$query(qs)
+    res <- sc$group_by_scientific_name(qs)
 
     ## check if we get specimen documents
     for (hit in res$content$resultSet) {
         expect_is(hit$item, "Specimen")
+    }
+
+    ## check if it works with a GroupByScientificNameQuerySpec
+    qs <- GroupByScientificNameQuerySpec$new(conditions=list(qc), groupSort="NAME_ASC")
+    res <- sc$group_by_scientific_name(qs)
+    
+    ## check if we get specimen documents
+    for (hit in res$content$resultSet) {
+        expect_is(hit$item, "Specimen")
+    }
+})
+
+test_that("countDistinctValuesPerGroup works", {
+    group <- "collectionType"
+    field <- "identifications.defaultClassification.family"
+    res <- sc$count_distinct_values_per_group(group, field)
+    
+    ## we should get a list of lists
+    expect_is(res$content, 'list')
+    for (r in res$content) {
+        expect_is(r, 'list')
+        ## names in list should be the same as input
+        expect_true(all(names(r) %in% c(group, field)))
     }        
 })
+
