@@ -263,6 +263,19 @@ qs <- QuerySpec$new(conditions=list(qc))
 res <- sc$query(qs)
 ```
 
+#### query_download
+The `query` function is limited to retrieve 50000 specimen at once (this is determined
+in the parameter `index.max_result_window`, the value is retrievable using the `getSettings` method
+in the metadata section). In order to provide access for a larger amount of data, 
+the `query_download` takes the same arguments as `query`, but download the data as a gzip stream under the hood. 
+Unlike `query`, `query_download` returns a list of specimen objects instead of a `ResultSet`.
+Example:
+
+```{r eval=FALSE}
+## get the first 100000 specimen objects (not possible with query method)
+res <- sc$download_query(QuerySpec$new(size=100000))
+```
+
 ### Data access services
 Several access methods offer the convenient retrieval of specimens matching a certain 
 identifier or being part of a certain collection. Currently implemented data access services for Specimen records are:
