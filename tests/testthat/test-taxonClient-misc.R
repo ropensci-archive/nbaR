@@ -20,7 +20,7 @@ test_that("count works", {
 })
 
 test_that("countDistinctValues works", {
-    res <- sc$count_distinct_values("acceptedName.author")    
+    res <- tc$count_distinct_values("acceptedName.author")    
     expect_true(res$content > 0)
 })
 
