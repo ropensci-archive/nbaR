@@ -13,6 +13,17 @@ tc <- TaxonClient$new(basePath="http://api.biodiversitydata.nl/v2")
 
 context("Testing miscellaneous TaxonClient endpoints")
 
+test_that("count works", {
+    res <- tc$count()
+    expect_is(res$content, 'numeric')
+    expect_true(res$content > 0)
+})
+
+test_that("countDistinctValues works", {
+    res <- sc$count_distinct_values("acceptedName.author")    
+    expect_true(res$content > 0)
+})
+
 test_that("getPaths works", {
     res <- tc$get_paths()
     expect_is(res$content, "character")
