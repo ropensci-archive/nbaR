@@ -254,11 +254,35 @@ sapply(res$content$resultSet, function(x)x$item$gatheringEvent$country)
 ```
 
 Note that passing query parameters as a named list only allows forl limited queries; the locical conjunction between 
-parameters is for example always `AND`. More complex queries can be accomplished using the `QuerySpec` object.
+parameters is for example always `AND`. More complex queries can be accomplished using the `QuerySpec` object:
+
+```{r}
+# get all specimens with genus name starting with 'Hydro'
+qc <- QueryCondition$new(field="identifications.defaultClassification.genus", operator="STARTS_WITH", value="Hydro")
+qs <- QuerySpec$new(conditions=list(qc))
+res <- sc$query(qs)
+```
 
 ### Data access services
 Several access methods offer the convenient retrieval of specimens matching a certain 
 identifier or being part of a certain collection. Currently implemented data access services for Specimen records are:
+
+#### count
+For any given query (with `QuerySpec` or not), returns the count of matches instead of specimen objects:
+
+```{r}
+# Example with QuerySpec:
+# how many specimens are there in the 'Botany' collection?
+qc <- QueryCondition$new(field='collectionType', operator='EQUALS', value='Botany')
+qs <- QuerySpec$new(conditions=list(qc))
+
+# get the number of specimens
+sc$count(qs)$content
+
+```
+
+Note that the count of matches for a given query is also returned by the `query` function. However, `count` is more 
+lightweight as it returns an `integer` instead of a `ResultSet` containing `Specimen` objects. 
 
 #### exists 
 Check if a record exists, based on its *unitID*:
@@ -298,31 +322,93 @@ unitID <- "RMNH.MAM.1513"
 res <- sc$find_by_unit_id(unitID)
 ```
 
-#### Aggregation services
-Aggregation services summarize available data according to different criteria. 
+### Aggregation services
+Aggregation services group available data according to different criteria. 
 
 #### get_distinct_values
 This method takes a specific field as an argument and returns all possible values and the frequency for that 
 field in thy data. Below we get all possible values for the country in which a specimen was collected. 
-**Note**: By default, `get_distinct_values` lists only the first 10 hits.
-This number can be increased with e.g. setting the `size` parameter in a `QuerySpec` object passed to the method:
 
-```r
-sc$get_distinct_values("gatheringEvent.country", QuerySpec$new(size=10000))
+```{r results='hide'}
+sc$get_distinct_values("gatheringEvent.country")
+```
+
+**Note**: By default, `get_distinct_values` lists only the first 10 hits. The above query thus does not reflect the 
+distinct values in the hole dataset.
+This number can be increased with e.g. setting the `size` parameter in a `QuerySpec` object passed to the method.
+
+```{r results='hide'}
+sc$get_distinct_values("gatheringEvent.country", querySpec=QuerySpec$new(size=10000))
+```	
+
+#### count_distinct_values
+Instead of returning all different values for a given field, this method does a mere count:
+
+```{r results='hide'}
+sc$count_distinct_values("gatheringEvent.country")
+```
+
+#### get_distinct_values_per_group
+Suppose you want to add another filter to the above query of retreiving all distinct values 
+for a given field, such as splitting the results by their respective source system:
+
+```{r results='hide'}
+sc$get_distinct_values_per_group("sourceSystem.name", "gatheringEvent.country")
+```
+
+#### count_distinct_values_per_group
+If no return of the actual values is needed, a simple count per group is done as follows:
+
+```{r results='hide'}
+sc$count_distinct_values_per_group("sourceSystem.name", "gatheringEvent.country")$content
 ```
 
 
-#### Specimen metadata services
+### Metadata services
 
-#### Download services
-
-
+### Download services
 
 
 
-## Taxonomic data services
+## Taxonomic data services {.tabset}
+
+### Query Services
+
+#### query
+Query for taxon document with given search criteria. Example:
+
+```{r results='hide'}
+# query for taxa of genus 'Sedum' that are in the Netherlands Soortenregister (NSR)
+tc <- TaxonClient$new()
+qc <- QueryCondition$new(field="acceptedName.genusOrMonomial", operator="EQUALS", value="Sedum")
+qc2 <- QueryCondition$new(field="sourceSystem.code", operator="EQUALS", value="NSR")
+qs <- QuerySpec$new(conditions=list(qc, qc2))
+tc$query(qs)
+```
+
+### Data access services
+
+#### count
+For a given query, do not return `Taxon` objects but the mere count. Example
+
+```{r}
+# get counts for taxa of genus 'Sedum' that are in the Netherlands Soortenregister (NSR)
+qc <- QueryCondition$new(field="acceptedName.genusOrMonomial", operator="EQUALS", value="Sedum")
+qc2 <- QueryCondition$new(field="sourceSystem.code", operator="EQUALS", value="NSR")
+qs <- QuerySpec$new(conditions=list(qc, qc2))
+tc$count(qs)
+```
+
+
+### Aggregation services
+
+### Metadata services
+
+### Download services
+
+
+
+## Geographic data services {.tabset}
 aa
-## Geographic data services
-aa
-## Multimedia services
+## Multimedia services {.tabset}
 aa
