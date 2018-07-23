@@ -15,7 +15,7 @@ context("Testing miscellaneous TaxonClient endpoints")
 
 test_that("count works", {
     res <- tc$count()
-    expect_is(res$content, 'numeric')
+    expect_is(res$content, 'integer')
     expect_true(res$content > 0)
 })
 
