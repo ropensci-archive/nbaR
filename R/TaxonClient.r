@@ -181,7 +181,7 @@ TaxonClient <- R6::R6Class(
     # '@name download_query
     # '@title Dynamic download service: Query for taxa and return result as a stream ...
     # '@description Query with query parameters or querySpec JSON. ...
-    # '@return \code{  }
+    # '@return \code{ Taxon }
     # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
     download_query = function(querySpec=NULL, queryParams=list(), ...){
@@ -209,8 +209,10 @@ TaxonClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## empty response, e.g. when file is downloaded
-            result <- NULL
+            ## API call result is object of model class
+            returnObject <- Taxon$new()
+            ## API call result is 'list container'
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=private$getBaseDataType())))
             Response$new(result, response)
         }        
     },

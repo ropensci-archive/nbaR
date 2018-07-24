@@ -40,7 +40,6 @@ Feature <- R6::R6Class(
         self[['properties']] <- `properties`
       }
       if (!missing(`geometry`)) {
-        stopifnot(R6::is.R6(`geometry`))
         self[['geometry']] <- `geometry`
       }
       if (!missing(`id`)) {
@@ -61,7 +60,7 @@ Feature <- R6::R6Class(
         FeatureList[['properties']] <- self[['properties']]
       }
         if (!is.null(self[['geometry']])) {
-        FeatureList[['geometry']] <- self[['geometry']]$toList()
+        FeatureList[['geometry']] <- self[['geometry']]
       }
         if (!is.null(self[['id']])) {
         FeatureList[['id']] <- self[['id']]
@@ -90,7 +89,7 @@ Feature <- R6::R6Class(
           self[['properties']] <- obj$fromList(FeatureList[['properties']], typeMapping=typeMapping)
       }
       if (is.null(typeMapping[['geometry']])) {
-          self[['geometry']] <- GeoJsonObject$new()$fromList(FeatureList[['geometry']], typeMapping=typeMapping) 
+          self[['geometry']] <- FeatureList[['geometry']]
       } else {
           obj <- eval(parse(text=paste0(typeMapping[['geometry']], "$new()")))
           self[['geometry']] <- obj$fromList(FeatureList[['geometry']], typeMapping=typeMapping)
@@ -129,7 +128,7 @@ Feature <- R6::R6Class(
           self[['properties']] <- obj$fromJSONString(jsonlite::toJSON(FeatureList[['properties']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       if (is.null(typeMapping[['geometry']])) {
-          self[['geometry']] <- GeoJsonObject$new()$fromJSONString(jsonlite::toJSON(FeatureList[['geometry']], auto_unbox = TRUE), typeMapping=typeMapping) 
+          self[['geometry']] <- FeatureList[['geometry']]
       } else {
           obj <- eval(parse(text=paste0(typeMapping[['geometry']], "$new()")))
           self[['geometry']] <- obj$fromJSONString(jsonlite::toJSON(FeatureList[['geometry']], auto_unbox = TRUE), typeMapping=typeMapping)

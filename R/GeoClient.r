@@ -74,18 +74,18 @@ GeoClient <- R6::R6Class(
     # '@title Get the number of geo areas matching a given condition
     # '@description Conditions given as query string
     # '@return \code{ integer }
-    # '@param area_type: character; Example query param
+    # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    count = function(areaType=NULL, queryParams=list(), ...){
+    count = function(querySpec=NULL, queryParams=list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
         }
             
-        if (!missing(`areaType`)) {
+        if (!missing(`querySpec`)) {
           ## querySpec can be either JSON string or object of type QuerySpec. 
-          param <- ifelse(typeof(`areaType`) == "environment", `areaType`$toJSONString(), `areaType`)    
-          queryParams['areaType'] <- param
+          param <- ifelse(typeof(`querySpec`) == "environment", `querySpec`$toJSONString(), `querySpec`)    
+          queryParams['querySpec'] <- param
         }
         ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
         names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))
@@ -313,7 +313,7 @@ GeoClient <- R6::R6Class(
     # '@name get_geo_json_for_locality
     # '@title Retrieve a GeoJson object for a given locality
     # '@description Returns a GeoJson polygon
-    # '@return \code{ GeoArea }
+    # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
     get_geo_json_for_locality = function(locality=NULL, ...){
         headerParams <- character()
@@ -333,10 +333,8 @@ GeoClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is object of model class
-            returnObject <- GeoArea$new()
-            ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
+            ## API call result is 'primitive type', return vector or single value
+            result <- as.list(httr::content(response))
             Response$new(result, response)
         }        
     },

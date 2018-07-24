@@ -62,7 +62,6 @@ GeoArea <- R6::R6Class(
         self[['locality']] <- `locality`
       }
       if (!missing(`shape`)) {
-        stopifnot(R6::is.R6(`shape`))
         self[['shape']] <- `shape`
       }
       if (!missing(`source`)) {
@@ -100,7 +99,7 @@ GeoArea <- R6::R6Class(
         GeoAreaList[['locality']] <- self[['locality']]
       }
         if (!is.null(self[['shape']])) {
-        GeoAreaList[['shape']] <- self[['shape']]$toList()
+        GeoAreaList[['shape']] <- self[['shape']]
       }
         if (!is.null(self[['source']])) {
         GeoAreaList[['source']] <- self[['source']]
@@ -153,7 +152,7 @@ GeoArea <- R6::R6Class(
           self[['locality']] <- obj$fromList(GeoAreaList[['locality']], typeMapping=typeMapping)
       }
       if (is.null(typeMapping[['shape']])) {
-          self[['shape']] <- GeoJsonObject$new()$fromList(GeoAreaList[['shape']], typeMapping=typeMapping) 
+          self[['shape']] <- GeoAreaList[['shape']]
       } else {
           obj <- eval(parse(text=paste0(typeMapping[['shape']], "$new()")))
           self[['shape']] <- obj$fromList(GeoAreaList[['shape']], typeMapping=typeMapping)
@@ -222,7 +221,7 @@ GeoArea <- R6::R6Class(
           self[['locality']] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[['locality']], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       if (is.null(typeMapping[['shape']])) {
-          self[['shape']] <- GeoJsonObject$new()$fromJSONString(jsonlite::toJSON(GeoAreaList[['shape']], auto_unbox = TRUE), typeMapping=typeMapping) 
+          self[['shape']] <- GeoAreaList[['shape']]
       } else {
           obj <- eval(parse(text=paste0(typeMapping[['shape']], "$new()")))
           self[['shape']] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[['shape']], auto_unbox = TRUE), typeMapping=typeMapping)
