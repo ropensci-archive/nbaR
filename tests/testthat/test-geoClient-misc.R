@@ -13,6 +13,12 @@ gc <- GeoClient$new(basePath="http://api.biodiversitydata.nl/v2")
 
 context("Testing miscellaneous GeoClient endpoints")
 
+test_that("count works", {    
+    res <- gc$count()
+    expect_is(res$content, "integer")
+    expect_true(res$content > 0)
+})
+
 test_that("getPaths works", {
     res <- gc$get_paths()
     expect_is(res$content, "character")
@@ -42,3 +48,8 @@ test_that("getDistinctValues works", {
     expect_warning(gc$get_distinct_values("XX"))    
 })
 
+test_that("getGeoJsonForLocality works", {
+    loc <- "Netherlands"
+    res <- gc$get_geo_json_for_locality(loc)
+    expect_is(res$content, "list")        
+})
