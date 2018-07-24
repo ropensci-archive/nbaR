@@ -520,7 +520,7 @@ mc <- MultimediaClient$new()
 
 ### Data access services
 
-#### Count
+#### count
 As for the other data types, a `count` function returns counts
 instead of the actual objects:
 
@@ -539,9 +539,36 @@ all different liceses and their counts"
 mc$get_distinct_values("license")$content
 ```
 
-
-
 ### Metadata services
+
+#### Available paths and fields
+
+All fields can be retrieved with `get_paths` and specific information 
+on the fields, such as allowed operators etc. with `get_field_info`
+
+```{r results='hide'}
+mc$get_paths()$content
+mc$get_field_info()$content
+```
+
+#### Settings
+Multimedia-specific settings can be retrieved with `get_settings` and a specific setting
+with `get_setting`:
+
+```{r}
+mc$get_settings()$content
+mc$get_setting("index.max_result_window")$content
+```
+
+#### Operators
+To test if a certain operator can be used for a mutimedia query:
+
+```{r}
+mc$is_operator_allowed("identifications.scientificName.fullScientificName", "STARTS_WITH")$content
+```
+
+## Metadata services {.tabset}
+
 Metadata services provide miscellaneous information about the data available via the NBA. Note that 
 there is also type-specific metadata for each data type (e.g. `Specimen`) which can be retrieved 
 with the specific client of that class. Here we show the available methods for

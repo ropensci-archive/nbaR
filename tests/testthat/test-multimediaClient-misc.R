@@ -45,3 +45,13 @@ test_that("count works", {
     expect_true(is.numeric(res$content))
     expect_true(res$content > 0)    
 })
+
+test_that("Settings work", {
+    settings <- mc$get_settings()$content
+    expect_true(length(settings) > 1)
+
+    for (s in settings) {
+        ss <- mc$get_setting(s)$content
+        expect_true(! is.null(ss))
+    }    
+})
