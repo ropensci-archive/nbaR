@@ -216,7 +216,7 @@ barplot(table(families), horiz=T,
         las=2, xlab="frequency", cex.names=0.5)
 ```
 
-# Datatype specific services
+# Services examples
 
 ## Specimen occurrence services {.tabset}
 Specimen records constitute the core of
@@ -509,11 +509,37 @@ gc$is_operator_allowed("locality", "STARTS_WITH")$content
 
 ## Multimedia services {.tabset}
 
+Multimedia services are accessible with a `MultimediaClient`, instantiated
+as follows:
+
+```{r}
+mc <- MultimediaClient$new()
+```
+
 ### Query Services
 
 ### Data access services
 
+#### Count
+As for the other data types, a `count` function returns counts
+instead of the actual objects:
+
+```{r}
+# count all multimedia documents
+mc$count()$content
+```
+
 ### Aggregation services
+
+#### get_distinct_values
+This function returns all values present for a certain field, and their counts. Example: retreive
+all different liceses and their counts"
+
+```{r}
+mc$get_distinct_values("license")$content
+```
+
+
 
 ### Metadata services
 Metadata services provide miscellaneous information about the data available via the NBA. Note that 
