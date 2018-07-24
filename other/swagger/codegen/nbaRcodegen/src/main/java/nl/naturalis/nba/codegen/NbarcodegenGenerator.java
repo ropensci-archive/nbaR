@@ -97,6 +97,7 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 	        typeMapping.put("binary", "character");
 	        typeMapping.put("ByteArray", "character");
 		typeMapping.put("Path", "character");
+		typeMapping.put("GeoJsonObject", "list");
 		
 		
 		//typeMapping.put("object", "Character");
