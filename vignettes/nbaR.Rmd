@@ -429,9 +429,23 @@ tc$count(qs)
 ## Geographic data services {.tabset}
 
 ### Query Services
+
+The GeoArea query service allows for detailed search within the 
+fields of a GeoArea object. As for the other data types, query parameters
+can be either given as a `list` or as a `QuerySpec` object.
+Below, we make a simple query to get the `GeoArea` object for the Netherlands:
+
 ```{r}
+# instanciate client for geo areas
 gc <- GeoClient$new()
-                                        
+
+# query for GeoArea of the Netherlands
+qc <- QueryCondition$new(field="locality", operator="EQUALS", value="Netherlands")
+qs <- QuerySpec$new(conditions=list(qc))
+res <- gc$query(qs)
+
+# get item
+res$content$resultSet[[1]]$item
 ```
 
 ### Data access services
@@ -489,6 +503,8 @@ gc$get_settings()
 # get specific setting
 gc$get_setting("index.max_result_window")$content
 
+# check if operator is allowed
+gc$is_operator_allowed("locality", "STARTS_WITH")$content
 ```
 
 ## Multimedia services {.tabset}
@@ -500,3 +516,66 @@ gc$get_setting("index.max_result_window")$content
 ### Aggregation services
 
 ### Metadata services
+Metadata services provide miscellaneous information about the data available via the NBA. Note that 
+there is also type-specific metadata for each data type (e.g. `Specimen`) which can be retrieved 
+with the specific client of that class. Here we show the available methods for
+the `MetadataClient` which gives general, non-type specific metadata.
+The client is instantiated in the standard way:
+
+```{r}
+mc <- MetadataClient$new()
+```
+
+
+#### Controlled vocabularies
+The vocabularies for some fields are controlled by 
+dictionaries with allowed values. For the sex of a museum specimen, for instance, only the
+terms *male*, *female*, *mixed* and *hermaphrodite* are allowed to be assigned to the specimen.
+The fields for which controlled lists are available can be retreived as follows:
+
+```{r}
+mc$get_controlled_lists()$content
+```
+
+and for each field that has a controlled vocabulary, there is a separate function to retreive the
+allowed values:
+
+```{r}
+mc$get_controlled_list_taxonomic_status()$content
+mc$get_controlled_list_specimen_type_status()$content
+mc$get_controlled_list_sex()$content
+mc$get_controlled_list_phase_or_stage()$content
+```
+
+#### Miscellaneous
+
+##### Dates
+To maintain data integrity, dates have to be coded in specific formats
+in our systems. For instance, *yyyy-MM-dd* is a valid format.
+Allowed formats can be retrieved as follows:
+
+```{r}
+mc$get_allowed_date_formats()$content
+```
+
+##### Services list
+The method `get_rest_services` returns a list of all services
+in the NBA as objets of type `RestService`.
+
+```{r}
+# get the endPoint of the first rest service in the services list
+mc$get_rest_services()$content[[1]]
+```
+
+##### Settings
+Similar to the document-specific metadata services, we can get general settings with 
+the `MetaDataClient`:
+
+```{r}
+#get all settings
+mc$get_settings()$content
+
+# get value for specific setting
+mc$get_setting("operator.contains.min_term_length")$content
+```
+
