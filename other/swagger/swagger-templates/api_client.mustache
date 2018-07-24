@@ -104,6 +104,7 @@ ApiClient  <- R6::R6Class(
     getBaseDataType = function() {
         result <- gsub("Client", "", class(self)[1])
         gsub("Multimedia", "MultiMediaObject", result)
+        gsub("Geo", "GeoArea", result)
     }
   )
 )
