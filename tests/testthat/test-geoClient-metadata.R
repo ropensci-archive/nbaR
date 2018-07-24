@@ -43,33 +43,3 @@ test_that("isOperatorAllowed works", {
     expect_true(gc$is_operator_allowed("locality", "STARTS_WITH")$content)
 })
 
-test_that("Controlled lists work", {    
-    expect_true(length(mc$get_controlled_lists()$content) > 0)
-    expect_true(length(mc$get_controlled_list_taxonomic_status()$content) > 0)
-    expect_true(length(mc$get_controlled_list_specimen_type_status()$content) > 0)
-    expect_true(length(mc$get_controlled_list_sex()$content) > 0)
-    expect_true(length(mc$get_controlled_list_phase_or_stage()$content) > 0)
-})
-
-
-test_that("GetAllowedDateFormats works", {
-    expect_true(length(mc$get_allowed_date_formats()$content) > 0)
-})
-
-test_that("GetRestServices works", {
-    res <- mc$get_rest_services()
-    for (it in res$content$resultSet) {
-        service <- it$item()
-        expect_is(item, "RestService")
-    }   
-})
-
-test_that("Settings work", {
-    settings <- mc$get_settings()$content
-    expect_true(length(settings) > 1)
-
-    for (s in settings) {
-        ss <- mc$get_setting(ss)$content
-        expect_true(! is.null(ss))
-    }    
-})
