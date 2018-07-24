@@ -263,7 +263,7 @@ qs <- QuerySpec$new(conditions=list(qc))
 res <- sc$query(qs)
 ```
 
-#### query_download
+#### download_query
 The `query` function is limited to retrieve 50000 specimen at once (this is determined
 in the parameter `index.max_result_window`, the value is retrievable using the `getSettings` method
 in the metadata section). In order to provide access for a larger amount of data, 
@@ -399,6 +399,13 @@ qs <- QuerySpec$new(conditions=list(qc, qc2))
 tc$query(qs)
 ```
 
+#### download_query
+The `query` function is limited to retrieve 50000 taxa at once (this is determined
+in the parameter `index.max_result_window`, the value is retrievable using the `getSettings` method
+in the metadata section). In order to provide access for a larger amount of data, 
+the `query_download` takes the same arguments as `query`, but download the data as a gzip stream under the hood. 
+Unlike `query`, `query_download` returns a list of taxon objects instead of a `ResultSet`.
+
 ### Data access services
 
 #### count
@@ -412,7 +419,6 @@ qs <- QuerySpec$new(conditions=list(qc, qc2))
 tc$count(qs)
 ```
 
-
 ### Aggregation services
 
 ### Metadata services
@@ -420,8 +426,77 @@ tc$count(qs)
 ### Download services
 
 
-
 ## Geographic data services {.tabset}
-aa
+
+### Query Services
+```{r}
+gc <- GeoClient$new()
+                                        
+```
+
+### Data access services
+
+#### get_geo_json_for_locality
+This is a convenience function to directly extract the a GeoJSON object for a 
+specific locality. [GeoJSON](https://en.wikipedia.org/wiki/GeoJSON) is a 
+popular format for storing geographical point- and polygon data. 
+To e.g. extract the GeoJSON polygon representation for the Netherlands:
+
+```{r results='hide'}
+loc <- "Netherlands"
+res <- gc$get_geo_json_for_locality(loc)
+```
+
+Results are returned as a `list` by default, but can be easily converted to 
+a JSON string, e.g.
+
+```{r results='hide'}
+jsonlite::toJSON(res$content)
+```
+
+#### count
+For any given query (with `QuerySpec` or not), returns the count of matches instead of `GeoArea` objects:
+
+```{r}
+# return count of all GeoAreas
+res <- gc$count()
+res$content
+```
+
+### Aggregation services
+
+#### get_distinct_values
+This function returns all values present for a certain field, and their counts:
+
+```{r}
+gc$get_distinct_values("areaType")$content
+```
+
+### Metadata services
+Geo Metadata services include the same standard metadata services as for the
+other data types:
+
+```{r}
+# get all paths for the GeoArea datatype 
+gc$get_paths()$content
+
+# get info e.g. for field 'areaType'
+gc$get_field_info()$content$areaType
+
+# get all settings
+gc$get_settings()
+
+# get specific setting
+gc$get_setting("index.max_result_window")$content
+
+```
+
 ## Multimedia services {.tabset}
-aa
+
+### Query Services
+
+### Data access services
+
+### Aggregation services
+
+### Metadata services
