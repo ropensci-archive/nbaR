@@ -74,18 +74,18 @@ MultimediaClient <- R6::R6Class(
     # '@title Get the number of multimedia documents matching a given condition
     # '@description Conditions given as query parameters or QuerySpec JSON
     # '@return \code{ integer }
-    # '@param source_system_code: character; Example query param
+    # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    count = function(sourceSystem.code=NULL, queryParams=list(), ...){
+    count = function(querySpec=NULL, queryParams=list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
         }
             
-        if (!missing(`sourceSystem.code`)) {
+        if (!missing(`querySpec`)) {
           ## querySpec can be either JSON string or object of type QuerySpec. 
-          param <- ifelse(typeof(`sourceSystem.code`) == "environment", `sourceSystem.code`$toJSONString(), `sourceSystem.code`)    
-          queryParams['sourceSystem.code'] <- param
+          param <- ifelse(typeof(`querySpec`) == "environment", `querySpec`$toJSONString(), `querySpec`)    
+          queryParams['querySpec'] <- param
         }
         ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
         names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))

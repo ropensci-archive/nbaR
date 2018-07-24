@@ -39,3 +39,9 @@ test_that("getDistinctValues works", {
     ## method should give a warning if field is not found
     expect_warning(mc$get_distinct_values("XX"))    
 })
+
+test_that("count works", {
+    res <- mc$count()
+    expect_true(is.numeric(res$content))
+    expect_true(res$content > 0)    
+})
