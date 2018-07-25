@@ -48,7 +48,7 @@ test_that("count works", {
 
 test_that("Settings work", {
     settings <- mc$get_settings()$content
-    expect_true(length(settings) > 1)
+    expect_true(length(settings) > 0)
 
     for (s in settings) {
         ss <- mc$get_setting(s)$content
