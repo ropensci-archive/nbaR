@@ -518,6 +518,24 @@ mc <- MultimediaClient$new()
 
 ### Query Services
 
+As for the other data types, the `query` method enables simple and complex queries
+using a list or a `QuerySpec` object to specify query parameters. 
+
+```{r}
+# example of multimedia query passing parameters as a list
+mc$query(queryParams=list(collectionType='Cnidaria'))$content
+
+# example of multimedia query using QuerySpec: get the first 100
+# multimedia items associated with a specimen with name starting with "Ba"
+qc <- QueryCondition$new(field="identifications.scientificName.fullScientificName", operator="STARTS_WITH", value="Qu")
+qs <- QuerySpec$new(conditions=list(qc), size=100)
+res <- mc$query(qs)
+
+# check if scientific names indeed start with 'Qu'
+sapply(res$content$resultSet, function(x)x$item$identifications[[1]]$scientificName$fullScientificName)
+```
+
+
 ### Data access services
 
 #### count
