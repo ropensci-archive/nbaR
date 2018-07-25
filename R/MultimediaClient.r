@@ -425,7 +425,7 @@ MultimediaClient <- R6::R6Class(
     # '@name is_operator_allowed
     # '@title Checks if a given operator is allowed for a given field
     # '@description See also metadata/getFieldInfo
-    # '@return \code{ list }
+    # '@return \code{ logical }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
     is_operator_allowed = function(field=NULL, operator=NULL, ...){
         headerParams <- character()
@@ -449,8 +449,8 @@ MultimediaClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is a 'map container' and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            ## API call result is 'primitive type', return vector or single value
+            result <- as.logical(httr::content(response))
             Response$new(result, response)
         }        
     },
