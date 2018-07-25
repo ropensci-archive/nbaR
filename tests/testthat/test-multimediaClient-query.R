@@ -20,7 +20,6 @@ test_that("Query with MultiMediaClient returns multimedia objects", {
     for (hit in res$content$resultSet) {
         expect_is(hit$item, "MultiMediaObject")
     }
-
 })
 
 test_that("Query with QuerySpec works", {

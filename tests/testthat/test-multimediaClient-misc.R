@@ -11,19 +11,12 @@ if(grepl('testthat', wd)) {
 
 mc <- MultimediaClient$new(basePath="http://api.biodiversitydata.nl/v2")
 
-test_that("getPaths works", {
-    res <- mc$get_paths()
-    expect_is(res$content, "character")
-    expect_true(length(res$content) > 0)    
-})
+context("Testing miscellaneous multimedia endpoints")
 
-test_that("getFieldInfo works", {
-    res <- mc$get_field_info()
-    list <- res$content
-    expect_is(list, "list")
-    ## The list should be named by the paths of the different fields, compare them
-    paths <- mc$get_paths()$content
-    expect_equal(sort(paths), sort(names(list)))
+test_that("count works", {
+    res <- mc$count()
+    expect_true(is.numeric(res$content))
+    expect_true(res$content > 0)    
 })
 
 test_that("getDistinctValues works", {
@@ -38,20 +31,4 @@ test_that("getDistinctValues works", {
     }    
     ## method should give a warning if field is not found
     expect_warning(mc$get_distinct_values("XX"))    
-})
-
-test_that("count works", {
-    res <- mc$count()
-    expect_true(is.numeric(res$content))
-    expect_true(res$content > 0)    
-})
-
-test_that("Settings work", {
-    settings <- mc$get_settings()$content
-    expect_true(length(settings) > 0)
-
-    for (s in settings) {
-        ss <- mc$get_setting(s)$content
-        expect_true(! is.null(ss))
-    }    
 })
