@@ -221,7 +221,7 @@ TaxonClient <- R6::R6Class(
     # '@description Available datasets can be queried with /taxon/dwca/getDataSetNames. Response saved to &lt;datasetname&gt;-&lt;yyyymmdd&gt;.dwca.zip
     # '@return \code{  }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    dwca_get_data_set = function(dataset=NULL, ...){
+    dwca_get_data_set = function(dataset=NULL, filename=format(Sys.time(), "download-%Y-%m-%dT%H:%m.zip"), ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/taxon/dwca/getDataSet/{dataset}"
@@ -234,11 +234,14 @@ TaxonClient <- R6::R6Class(
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
+                                 httr::write_disk(filename),
+                                 httr::progress(),  
                                  ...)
 
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
+            cat("Query result written to ", filename, "\n")
             ## empty response, e.g. when file is downloaded
             result <- NULL
             Response$new(result, response)
@@ -274,7 +277,7 @@ TaxonClient <- R6::R6Class(
     # '@return \code{  }
     # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    dwca_query = function(querySpec=NULL, queryParams=list(), ...){
+    dwca_query = function(querySpec=NULL, queryParams=list(), filename=format(Sys.time(), "download-%Y-%m-%dT%H:%m.zip"), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -294,11 +297,14 @@ TaxonClient <- R6::R6Class(
                                  queryParams = queryParams,
                                  headerParams = headerParams,
                                  body = body,
+                                 httr::write_disk(filename),
+                                 httr::progress(),  
                                  ...)
 
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
+            cat("Query result written to ", filename, "\n")
             ## empty response, e.g. when file is downloaded
             result <- NULL
             Response$new(result, response)
