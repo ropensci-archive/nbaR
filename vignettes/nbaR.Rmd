@@ -278,7 +278,18 @@ res <- sc$download_query(QuerySpec$new(size=100000))
 
 ### Data access services
 Several access methods offer the convenient retrieval of specimens matching a certain 
-identifier or being part of a certain collection. Currently implemented data access services for Specimen records are:
+identifier or being part of a certain collection. Below we give examples of how to use the 
+currently implemented data access services for specimen records:
+
+#### Access to collections
+Some of the specimens available via the NBA are categorised thematically into special collections, such as the Siebold-, Dubois- or Jongmans collection.
+The function `get_named_collection` lists all available special collections and the identifiers of the specimens within a collection can be
+queries with `get_ids_in_collection`
+
+```{r}
+sc$get_named_collections()$content
+sc$get_ids_in_collection("siebold")$content
+```
 
 #### count
 For any given query (with `QuerySpec` or not), returns the count of matches instead of specimen objects:
@@ -376,11 +387,69 @@ If no return of the actual values is needed, a simple count per group is done as
 sc$count_distinct_values_per_group("sourceSystem.name", "gatheringEvent.country")$content
 ```
 
-
 ### Metadata services
 
-### Download services
+#### Available paths and fields
 
+All fields can be retrieved with `get_paths` and specific information 
+on the fields, such as allowed operators etc. with `get_field_info`
+
+```{r results='hide'}
+sc$get_paths()$content
+sc$get_field_info()$content
+```
+
+#### Settings
+Multimedia-specific settings can be retrieved with `get_settings` and a specific setting
+with `get_setting`:
+
+```{r}
+sc$get_settings()$content
+sc$get_setting("index.max_result_window")$content
+```
+
+#### Operators
+To test if a certain operator can be used for a mutimedia query:
+
+```{r}
+sc$is_operator_allowed("identifications.defaultClassification.genus", "STARTS_WITH")$content
+```
+
+### DwCA download services
+In addition to query services that return JSON formatted data, the NBA also offers
+the export of [Darwin Core Archive (DwCA)](https://en.wikipedia.org/wiki/Darwin_Core_Archive) files.
+These files are by default zip archives, please refer to 
+our [official API documentation](https://en.wikipedia.org/wiki/Darwin_Core_Archive)
+for more information. 
+
+#### Static download 
+Static download services offer the download of predefined datasets.
+The sets that are available for download can be queried with 
+`dwca_get_data_set_names`:
+
+```{r}
+sc$dwca_get_data_set_names()$content
+```
+
+A dataset can then be downloaded using `dwca_get_data_set`. A filename can be given as argument, 
+if none is given, the DwCA archive is written to *download-YYYY-MM-DDThh:mm.zip* in the current working directory.
+
+```{r}
+# download dataset 'porifera' to temporary file
+filename <- tempfile(fileext=".zip")
+sc$dwca_get_data_set('porifera', filename=filename)                                                                               
+```
+
+#### Dynamic download
+The dynamic download function `dwca_query` allows for download of arbitrary sets, defined by the user's query.
+The arguments to this methods are similar to `query`, plus the filename:
+
+```{r}
+# download all specimen of genus 'Hydrochoerus'
+filename <- tempfile(fileext=".zip")
+qs <- QuerySpec$new(conditions=list(QueryCondition$new(field="identifications.defaultClassification.genus", operator="EQUALS", value="Hydrochoerus")))
+sc$dwca_query(querySpec=qs, filename=filename)
+```
 
 
 ## Taxonomic data services {.tabset}
@@ -423,7 +492,63 @@ tc$count(qs)
 
 ### Metadata services
 
-### Download services
+#### Available paths and fields
+
+All fields can be retrieved with `get_paths` and specific information 
+on the fields, such as allowed operators etc. with `get_field_info`
+
+```{r results='hide'}
+tc$get_paths()$content
+tc$get_field_info()$content
+```
+
+#### Settings
+Multimedia-specific settings can be retrieved with `get_settings` and a specific setting
+with `get_setting`:
+
+```{r}
+tc$get_settings()$content
+tc$get_setting("index.max_result_window")$content
+```
+
+#### Operators
+To test if a certain operator can be used for a mutimedia query:
+
+```{r}
+tc$is_operator_allowed("identifications.defaultClassification.genus", "STARTS_WITH")$content
+```
+
+### DwCA download services
+The taxonomic information in the NBA is also available as Darwin-Core archive files.
+
+#### Static download 
+Static download services offer the download of predefined datasets.
+The sets that are available for download can be queried with 
+`dwca_get_data_set_names`:
+
+```{r}
+tc$dwca_get_data_set_names()$content
+```
+
+A dataset can then be downloaded using `dwca_get_data_set`. A filename can be given as argument, 
+if none is given, the DwCA archive is written to *download-YYYY-MM-DDThh:mm.zip* in the current working directory.
+
+```{r}
+# download dataset 'nsr' to temporary file
+filename <- tempfile(fileext=".zip")
+tc$dwca_get_data_set('nsr', filename=filename)                                                                               
+```
+
+#### Dynamic download
+The dynamic download function `dwca_query` allows for download of arbitrary sets, defined by the user's query.
+The arguments to this methods are similar to `query`, plus the filename:
+
+```{r}
+# download all taxa for genus 'Clematis'
+filename <- tempfile(fileext=".zip")
+qs <- QuerySpec$new(conditions=list(QueryCondition$new(field="defaultClassification.genus", operator="EQUALS", value="Clematis")))
+tc$dwca_query(querySpec=qs, filename=filename)
+```
 
 
 ## Geographic data services {.tabset}
