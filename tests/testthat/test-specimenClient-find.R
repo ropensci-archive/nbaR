@@ -11,7 +11,7 @@ if(grepl('testthat', wd)) {
 
 sc <- SpecimenClient$new(basePath="http://api.biodiversitydata.nl/v2")
 
-context("Testing find function")
+context("Testing specimen find functions")
 
 test_that("find() function works", {    
     id <- "RMNH.MAM.17209.B@CRS"

@@ -24,21 +24,6 @@ test_that("countDistinctValues works", {
     expect_true(res$content > 0)
 })
 
-test_that("getPaths works", {
-    res <- tc$get_paths()
-    expect_is(res$content, "character")
-    expect_true(length(res$content) > 0)    
-})
-
-test_that("getFieldInfo works", {
-    res <- tc$get_field_info()
-    list <- res$content
-    expect_is(list, "list")
-    ## The list should be named by the paths of the different fields, compare them
-    paths <- tc$get_paths()$content
-    expect_equal(sort(paths), sort(names(list)))
-})
-
 test_that("getDistinctValues works", {
     ## check for all paths
     paths <- tc$get_paths()$content
@@ -50,3 +35,4 @@ test_that("getDistinctValues works", {
     ## method should give a warning if field is not found
     expect_warning(tc$get_distinct_values("XX"))    
 })
+
