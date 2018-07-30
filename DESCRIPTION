@@ -1,7 +1,7 @@
 Package: nbaR
-Title: R Package Client for Netherlands Biodiversity Api
+Title: R Package Client for the Netherlands Biodiversity Api
 Version: 0.0.0
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
+Authors@R: person("Hannes", "Hettling", email = "hannes.hettling@naturalis.nl", role = c("aut", "cre"))
 Description: Access to the digitised Natural History collection at the Naturalis Biodiversity Center
 Depends: R (>= 3.3.3)
 Encoding: UTF-8
