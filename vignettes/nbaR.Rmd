@@ -389,6 +389,27 @@ sc$count_distinct_values_per_group("sourceSystem.name", "gatheringEvent.country"
 
 ### Metadata services
 
+Specimen Metadata services include the same standard metadata services as for the
+other data types:
+
+```{r}
+# get all paths for the Specimen datatype 
+sc$get_paths()$content
+
+# get info e.g. for field collectionType
+sc$get_field_info()$content$collectionType
+
+# get all settings
+sc$get_settings()
+
+# get specific setting
+sc$get_setting("index.max_result_window")$content
+
+# check if operator is allowed
+sc$is_operator_allowed("gatheringEvent.continent", "STARTS_WITH")$content
+```
+
+
 #### Available paths and fields
 
 All fields can be retrieved with `get_paths` and specific information 
@@ -451,7 +472,6 @@ qs <- QuerySpec$new(conditions=list(QueryCondition$new(field="identifications.de
 sc$dwca_query(querySpec=qs, filename=filename)
 ```
 
-
 ## Taxonomic data services {.tabset}
 
 ### Query Services
@@ -488,9 +508,52 @@ qs <- QuerySpec$new(conditions=list(qc, qc2))
 tc$count(qs)
 ```
 
+#### find
+Returns a taxon object given its identifier:
+
+```{r}
+tc$find("27706109@COL")$content
+```
+
+#### find_by_ids
+Given a string with comma-sparated identifiers, returns a list of taxon objects:
+
+```{r}
+    ids <- "27706109@COL,27704140@COL,27706110@COL,27706111@COL,27706108@COL"
+    res <- tc$find_by_ids(ids)
+```		
+
 ### Aggregation services
 
+#### get_distinct_values
+This method takes a specific field as an argument and returns all possible values and the frequency for that 
+field in thy data. Example: get all data source systems for taxon objects: 
+
+```{r}
+tc$get_distinct_values("sourceSystem.name")$content
+```
+
 ### Metadata services
+
+Taxon Metadata services include the same standard metadata services as for the
+other data types:
+
+```{r}
+# get all paths for the Taxon datatype 
+tc$get_paths()$content
+
+# get info e.g. for field collectionType
+tc$get_field_info()$content$synonyms.author
+
+# get all settings
+tc$get_settings()
+
+# get specific setting
+tc$get_setting("index.max_result_window")$content
+
+# check if operator is allowed
+tc$is_operator_allowed("synonyms.author", "EQUALS")$content
+```
 
 #### Available paths and fields
 
