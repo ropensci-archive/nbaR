@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/naturalis/nbaR.svg?branch=master)](https://travis-ci.org/naturalis/nbaR)
 [![Coverage Status](https://coveralls.io/repos/github/naturalis/nbaR/badge.svg?branch=master)](https://coveralls.io/github/naturalis/nbaR?branch=master)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+
 
 # R client for the Netherlands Biodiversity API
 
