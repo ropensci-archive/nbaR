@@ -1,16 +1,16 @@
-library(nbaR)
-library(testthat)
+library("nbaR")
+library("testthat")
 
 
 wd <- getwd()
-if(grepl("testthat", wd)) {
-    dataDir <- file.path("data")
+if(grepl(""testthat"", wd)) {
+    data_dir <- file.path("data")
 } else {
     ## for running test at package level
-    dataDir <- file.path("tests", "testthat", "data")
+    data_dir <- file.path("tests", ""testthat"", "data")
 }
 
-testRecord <- file.path(dataDir, "person.json")
+testRecord <- file.path(data_dir, "person.json")
 
 test_that("fromJSONString works", {
 #    jsonString <- readChar(testRecord, file.info(testRecord)$size)

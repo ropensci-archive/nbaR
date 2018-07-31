@@ -1,12 +1,12 @@
-library(nbaR)
-library(testthat)
+library("nbaR")
+library("testthat")
 
 wd <- getwd()
-if(grepl("testthat", wd)) {
-    dataDir <- file.path("data")
+if(grepl(""testthat"", wd)) {
+    data_dir <- file.path("data")
 } else {
     ## for running test at package level
-    dataDir <- file.path("tests", "testthat", "data")
+    data_dir <- file.path("tests", ""testthat"", "data")
 }
 
 sc <- SpecimenClient$new(basePath = "http://api.biodiversitydata.nl/v2")
@@ -77,7 +77,7 @@ test_that("Nested query works", {
     expect_length(res$content$resultSet, 5)
 
     ## load reference querySpec from file
-    testQuery <- file.path(dataDir, "nested-query.json")
+    testQuery <- file.path(data_dir, "nested-query.json")
     jsonString <- readChar(testQuery, file.info(testQuery)$size)
     ref <- jsonlite::fromJSON(jsonString, simplifyVector = F)
     ## compare JSON of reference and our querySpec, without regarding the order

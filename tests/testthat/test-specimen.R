@@ -1,20 +1,20 @@
-library(nbaR)
-library(testthat)
+library("nbaR")
+library("testthat")
 
 
 wd <- getwd()
-if(grepl("testthat", wd)) {
-    dataDir <- file.path("data")
+if(grepl(""testthat"", wd)) {
+    data_dir <- file.path("data")
 } else {
     ## for running test at package level
-    dataDir <- file.path("tests", "testthat", "data")
+    data_dir <- file.path("tests", ""testthat"", "data")
 }
 
 context("Testing IO from and to JSON and list ")
 testfiles <- c("specimen.json", "specimen-2.json")
 
 for (file in testfiles) {
-    testRecord <- file.path(dataDir, file)
+    testRecord <- file.path(data_dir, file)
     jsonString <- readChar(testRecord, file.info(testRecord)$size)
     
     
