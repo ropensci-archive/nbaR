@@ -21,81 +21,83 @@
 #' Do not edit the class manually.
 #'
 #' @export
-ApiClient  <- R6::R6Class(
+ApiClient <- R6::R6Class(
   "ApiClient",
   public = list(
     basePath = "http://api.biodiversitydata.nl/v2",
     configuration = NULL,
     userAgent = NULL,
     defaultHeaders = NULL,
-    initialize = function(basePath, configuration, defaultHeaders){
-        if (!missing(basePath)) {
-            self$basePath <- basePath
-        }
+    initialize = function(basePath, configuration, defaultHeaders) {
+      if (!missing(basePath)) {
+        self$basePath <- basePath
+      }
 
-        if (!missing(configuration)) {
-            self$configuration <- configuration
-        }
+      if (!missing(configuration)) {
+        self$configuration <- configuration
+      }
 
-        if (!missing(defaultHeaders)) {
-            self$defaultHeaders <- defaultHeaders
-        }
+      if (!missing(defaultHeaders)) {
+        self$defaultHeaders <- defaultHeaders
+      }
 
-        self$`userAgent` <- "Swagger-Codegen/0.0.0/r"
+      self$`userAgent` <- "Swagger-Codegen/0.0.0/r"
     },
-    callApi = function(url, method, queryParams, headerParams, body, ...){
-        headers <- httr::add_headers(headerParams)
+    callApi = function(url, method, queryParams, headerParams, body, ...) {
+      headers <- httr::add_headers(headerParams)
 
-        if (method == "GET") {
-            httr::GET(url, query = queryParams, headers = headers, ...)
-        }
-        else if (method == "POST") {
-            httr::POST(url, query = queryParams, headers = headers, body = body, ...)
-        }
-        else if (method == "PUT") {
-            httr::PUT(url, query = queryParams, headers = headers, body = body, ...)
-        }
-        else if (method == "PATCH") {
-            httr::PATCH(url, query = queryParams, headers = headers, body = body, ...)
-        }
-        else if (method == "HEAD") {
-            httr::HEAD(url, query = queryParams, headers = headers, ...)
-        }
-        else if (method == "DELETE") {
-            httr::DELETE(url, query = queryParams, headers = headers, ...)
-        }
-        else {
-            stop("http method must be `GET`, `HEAD`, `OPTIONS`, `POST`, `PATCH`, `PUT` or `DELETE`.")
-        }
+      if (method == "GET") {
+        httr::GET(url, query = queryParams, headers = headers, ...)
+      }
+      else if (method == "POST") {
+        httr::POST(url, query = queryParams, headers = headers, body = body, ...)
+      }
+      else if (method == "PUT") {
+        httr::PUT(url, query = queryParams, headers = headers, body = body, ...)
+      }
+      else if (method == "PATCH") {
+        httr::PATCH(url, query = queryParams, headers = headers, body = body, ...)
+      }
+      else if (method == "HEAD") {
+        httr::HEAD(url, query = queryParams, headers = headers, ...)
+      }
+      else if (method == "DELETE") {
+        httr::DELETE(url, query = queryParams, headers = headers, ...)
+      }
+      else {
+        stop("http method must be `GET`, `HEAD`, `OPTIONS`, `POST`, `PATCH`, `PUT` or `DELETE`.")
+      }
     },
     handleError = function(response) {
-        warningMessage <- ""
-        responseMessage <- ""
+      warningMessage <- ""
+      responseMessage <- ""
 
-        if (typeof(httr::content(response)) == "list") {
-            ## handle (server) errors with stack trace etc
-            c <- httr::content(response)
-            warningMessage <- paste0("Status code:", httr::status_code(response),
-                                     "\n", c$httpStatus$message,                       
-                                     "\nException: ", c$exception$message,
-                                     "\nException type: ", c$exception$type,
-                                     "\nFull stack trace stored in response object")
-            responseMessage <- c$httpStatus$message                                     
-        } else {
-            ## handle errors in which httr only returns a string
-            warningMessage <- httr::content(response)  
-            responseMessage <- httr::content(response)  
-        }
-        warning(warningMessage)
-        Response$new(responseMessage, response)
-    }        
+      if (typeof(httr::content(response)) == "list") {
+        ## handle (server) errors with stack trace etc
+        c <- httr::content(response)
+        warningMessage <- paste0(
+          "Status code:", httr::status_code(response),
+          "\n", c$httpStatus$message,
+          "\nException: ", c$exception$message,
+          "\nException type: ", c$exception$type,
+          "\nFull stack trace stored in response object"
+        )
+        responseMessage <- c$httpStatus$message
+      } else {
+        ## handle errors in which httr only returns a string
+        warningMessage <- httr::content(response)
+        responseMessage <- httr::content(response)
+      }
+      warning(warningMessage)
+      Response$new(responseMessage, response)
+    }
   ),
   private = list(
     getBaseDataType = function() {
-        result <- gsub("Client", "", class(self)[1])
-        result <- gsub("Multimedia", "MultiMediaObject", result)
-        result <- gsub("Geo", "GeoArea", result)
-        result
+      result <- gsub("Client", "", class(self)[1])
+      result <- gsub("Multimedia", "MultiMediaObject", result)
+      result <- gsub("Geo", "GeoArea", result)
+      result
     }
   )
 )

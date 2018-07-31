@@ -2,12 +2,12 @@
 #'
 #' Element Class
 #' @export
-Element  <- R6::R6Class(
-  'Element',
+Element <- R6::R6Class(
+  "Element",
   public = list(
     id = NULL,
     name = NULL,
-    initialize = function(id,name){
+    initialize = function(id, name) {
       if (!missing(id)) {
         stopifnot(is.numeric(id), length(id) == 1)
         self$id <- id
@@ -18,7 +18,7 @@ Element  <- R6::R6Class(
       }
     },
     toJSON = function() {
-       sprintf('{"id":%d,"name":"%s"}', self$id, self$name)
+      sprintf('{"id":%d,"name":"%s"}', self$id, self$name)
     }
   )
 )

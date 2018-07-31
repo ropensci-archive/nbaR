@@ -9,24 +9,24 @@
 
 #' VernacularName Class
 #'
-#' @field name 
-#' @field language 
-#' @field preferred 
-#' @field references 
-#' @field experts 
+#' @field name
+#' @field language
+#' @field preferred
+#' @field references
+#' @field experts
 #'
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
 VernacularName <- R6::R6Class(
-  'VernacularName',
+  "VernacularName",
   public = list(
     `name` = NULL,
     `language` = NULL,
     `preferred` = NULL,
     `references` = NULL,
     `experts` = NULL,
-    initialize = function(`name`, `language`, `preferred`, `references`, `experts`){
+    initialize = function(`name`, `language`, `preferred`, `references`, `experts`) {
       if (!missing(`name`)) {
         stopifnot(is.character(`name`), length(`name`) == 1)
         self[["name"]] <- `name`
@@ -52,51 +52,55 @@ VernacularName <- R6::R6Class(
 
     toList = function() {
       VernacularNameList <- list()
-        if (!is.null(self[["name"]])) {
+      if (!is.null(self[["name"]])) {
         VernacularNameList[["name"]] <- self[["name"]]
       }
-        if (!is.null(self[["language"]])) {
+      if (!is.null(self[["language"]])) {
         VernacularNameList[["language"]] <- self[["language"]]
       }
-        if (!is.null(self[["preferred"]])) {
+      if (!is.null(self[["preferred"]])) {
         VernacularNameList[["preferred"]] <- self[["preferred"]]
       }
-        if (!is.null(self[["references"]])) {
+      if (!is.null(self[["references"]])) {
         VernacularNameList[["references"]] <- lapply(self[["references"]], function(x) x$toList())
       }
-        if (!is.null(self[["experts"]])) {
+      if (!is.null(self[["experts"]])) {
         VernacularNameList[["experts"]] <- lapply(self[["experts"]], function(x) x$toList())
       }
       ## omit empty nested lists in returned list
       VernacularNameList[sapply(VernacularNameList, length) > 0]
-      },
+    },
 
     fromList = function(VernacularNameList, typeMapping = NULL) {
       if (is.null(typeMapping[["name"]])) {
-          self[["name"]] <- VernacularNameList[["name"]]
+        self[["name"]] <- VernacularNameList[["name"]]
       } else {
-          obj <- eval(parse(text = paste0(typeMapping[["name"]], "$new()")))
-          self[["name"]] <- obj$fromList(VernacularNameList[["name"]], typeMapping = typeMapping)
+        obj <- eval(parse(text = paste0(typeMapping[["name"]], "$new()")))
+        self[["name"]] <- obj$fromList(VernacularNameList[["name"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["language"]])) {
-          self[["language"]] <- VernacularNameList[["language"]]
+        self[["language"]] <- VernacularNameList[["language"]]
       } else {
-          obj <- eval(parse(text = paste0(typeMapping[["language"]], "$new()")))
-          self[["language"]] <- obj$fromList(VernacularNameList[["language"]], typeMapping = typeMapping)
+        obj <- eval(parse(text = paste0(typeMapping[["language"]], "$new()")))
+        self[["language"]] <- obj$fromList(VernacularNameList[["language"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["preferred"]])) {
-          self[["preferred"]] <- VernacularNameList[["preferred"]]
+        self[["preferred"]] <- VernacularNameList[["preferred"]]
       } else {
-          obj <- eval(parse(text = paste0(typeMapping[["preferred"]], "$new()")))
-          self[["preferred"]] <- obj$fromList(VernacularNameList[["preferred"]], typeMapping = typeMapping)
+        obj <- eval(parse(text = paste0(typeMapping[["preferred"]], "$new()")))
+        self[["preferred"]] <- obj$fromList(VernacularNameList[["preferred"]], typeMapping = typeMapping)
       }
-      self[["references"]] <- lapply(VernacularNameList[["references"]],
-                                       function(x) Reference$new()$fromList(x, typeMapping = typeMapping))
-      self[["experts"]] <- lapply(VernacularNameList[["experts"]],
-                                       function(x) Expert$new()$fromList(x, typeMapping = typeMapping))
+      self[["references"]] <- lapply(
+        VernacularNameList[["references"]],
+        function(x) Reference$new()$fromList(x, typeMapping = typeMapping)
+      )
+      self[["experts"]] <- lapply(
+        VernacularNameList[["experts"]],
+        function(x) Expert$new()$fromList(x, typeMapping = typeMapping)
+      )
       invisible(self)
     },
-    
+
     toJSONString = function(pretty = T) {
       jsonlite::toJSON(self$toList(), simplifyVector = T, auto_unbox = T, pretty = pretty)
     },
@@ -104,27 +108,31 @@ VernacularName <- R6::R6Class(
     fromJSONString = function(VernacularNameJson, typeMapping = NULL) {
       VernacularNameList <- jsonlite::fromJSON(VernacularNameJson, simplifyVector = F)
       if (is.null(typeMapping[["name"]])) {
-          self[["name"]] <- VernacularNameList[["name"]]
+        self[["name"]] <- VernacularNameList[["name"]]
       } else {
-          obj <- eval(parse(text = paste0(typeMapping[["name"]], "$new()")))
-          self[["name"]] <- obj$fromJSONString(jsonlite::toJSON(VernacularNameList[["name"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(text = paste0(typeMapping[["name"]], "$new()")))
+        self[["name"]] <- obj$fromJSONString(jsonlite::toJSON(VernacularNameList[["name"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["language"]])) {
-          self[["language"]] <- VernacularNameList[["language"]]
+        self[["language"]] <- VernacularNameList[["language"]]
       } else {
-          obj <- eval(parse(text = paste0(typeMapping[["language"]], "$new()")))
-          self[["language"]] <- obj$fromJSONString(jsonlite::toJSON(VernacularNameList[["language"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(text = paste0(typeMapping[["language"]], "$new()")))
+        self[["language"]] <- obj$fromJSONString(jsonlite::toJSON(VernacularNameList[["language"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["preferred"]])) {
-          self[["preferred"]] <- VernacularNameList[["preferred"]]
+        self[["preferred"]] <- VernacularNameList[["preferred"]]
       } else {
-          obj <- eval(parse(text = paste0(typeMapping[["preferred"]], "$new()")))
-          self[["preferred"]] <- obj$fromJSONString(jsonlite::toJSON(VernacularNameList[["preferred"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(text = paste0(typeMapping[["preferred"]], "$new()")))
+        self[["preferred"]] <- obj$fromJSONString(jsonlite::toJSON(VernacularNameList[["preferred"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
-      self[["references"]] <- lapply(VernacularNameList[["references"]],
-                                        function(x) Reference$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping = typeMapping))
-      self[["experts"]] <- lapply(VernacularNameList[["experts"]],
-                                        function(x) Expert$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping = typeMapping))
+      self[["references"]] <- lapply(
+        VernacularNameList[["references"]],
+        function(x) Reference$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping = typeMapping)
+      )
+      self[["experts"]] <- lapply(
+        VernacularNameList[["experts"]],
+        function(x) Expert$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping = typeMapping)
+      )
       invisible(self)
     }
   )

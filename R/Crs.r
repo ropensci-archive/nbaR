@@ -9,18 +9,18 @@
 
 #' Crs Class
 #'
-#' @field type 
-#' @field properties 
+#' @field type
+#' @field properties
 #'
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
 Crs <- R6::R6Class(
-  'Crs',
+  "Crs",
   public = list(
     `type` = NULL,
     `properties` = NULL,
-    initialize = function(`type`, `properties`){
+    initialize = function(`type`, `properties`) {
       if (!missing(`type`)) {
         stopifnot(is.character(`type`), length(`type`) == 1)
         self[["type"]] <- `type`
@@ -32,32 +32,32 @@ Crs <- R6::R6Class(
 
     toList = function() {
       CrsList <- list()
-        if (!is.null(self[["type"]])) {
+      if (!is.null(self[["type"]])) {
         CrsList[["type"]] <- self[["type"]]
       }
-        if (!is.null(self[["properties"]])) {
+      if (!is.null(self[["properties"]])) {
         CrsList[["properties"]] <- self[["properties"]]
       }
       ## omit empty nested lists in returned list
       CrsList[sapply(CrsList, length) > 0]
-      },
+    },
 
     fromList = function(CrsList, typeMapping = NULL) {
       if (is.null(typeMapping[["type"]])) {
-          self[["type"]] <- CrsList[["type"]]
+        self[["type"]] <- CrsList[["type"]]
       } else {
-          obj <- eval(parse(text = paste0(typeMapping[["type"]], "$new()")))
-          self[["type"]] <- obj$fromList(CrsList[["type"]], typeMapping = typeMapping)
+        obj <- eval(parse(text = paste0(typeMapping[["type"]], "$new()")))
+        self[["type"]] <- obj$fromList(CrsList[["type"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["properties"]])) {
-          self[["properties"]] <- CrsList[["properties"]]
+        self[["properties"]] <- CrsList[["properties"]]
       } else {
-          obj <- eval(parse(text = paste0(typeMapping[["properties"]], "$new()")))
-          self[["properties"]] <- obj$fromList(CrsList[["properties"]], typeMapping = typeMapping)
+        obj <- eval(parse(text = paste0(typeMapping[["properties"]], "$new()")))
+        self[["properties"]] <- obj$fromList(CrsList[["properties"]], typeMapping = typeMapping)
       }
       invisible(self)
     },
-    
+
     toJSONString = function(pretty = T) {
       jsonlite::toJSON(self$toList(), simplifyVector = T, auto_unbox = T, pretty = pretty)
     },
@@ -65,16 +65,16 @@ Crs <- R6::R6Class(
     fromJSONString = function(CrsJson, typeMapping = NULL) {
       CrsList <- jsonlite::fromJSON(CrsJson, simplifyVector = F)
       if (is.null(typeMapping[["type"]])) {
-          self[["type"]] <- CrsList[["type"]]
+        self[["type"]] <- CrsList[["type"]]
       } else {
-          obj <- eval(parse(text = paste0(typeMapping[["type"]], "$new()")))
-          self[["type"]] <- obj$fromJSONString(jsonlite::toJSON(CrsList[["type"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(text = paste0(typeMapping[["type"]], "$new()")))
+        self[["type"]] <- obj$fromJSONString(jsonlite::toJSON(CrsList[["type"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["properties"]])) {
-          self[["properties"]] <- CrsList[["properties"]]
+        self[["properties"]] <- CrsList[["properties"]]
       } else {
-          obj <- eval(parse(text = paste0(typeMapping[["properties"]], "$new()")))
-          self[["properties"]] <- obj$fromJSONString(jsonlite::toJSON(CrsList[["properties"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(text = paste0(typeMapping[["properties"]], "$new()")))
+        self[["properties"]] <- obj$fromJSONString(jsonlite::toJSON(CrsList[["properties"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       invisible(self)
     }

@@ -50,12 +50,12 @@
 #'
 #' @export
 MetadataClient <- R6::R6Class(
-    "MetadataClient",
-    inherit = ApiClient,
-    public = list(
-        userAgent = "Swagger-Codegen/0.0.0/r",
-        initialize = function(basePath){
-        super$initialize(basePath)
+  "MetadataClient",
+  inherit = ApiClient,
+  public = list(
+    userAgent = "Swagger-Codegen/0.0.0/r",
+    initialize = function(basePath) {
+      super$initialize(basePath)
     },
 
     # '@name get_allowed_date_formats
@@ -63,248 +63,268 @@ MetadataClient <- R6::R6Class(
     # '@description Queries with other formatted dates will result in a query error
     # '@return \code{ character }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_allowed_date_formats = function(...){
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/metadata/getAllowedDateFormats"
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = queryParams,
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+    get_allowed_date_formats = function(...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/metadata/getAllowedDateFormats"
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = queryParams,
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
 
-        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is "primitive type", return vector or single value
-            result <- as.character(httr::content(response))
-            Response$new(result, response)
-        }        
+      if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+        self$handleError(response)
+      } else {
+        ## API call result is "primitive type", return vector or single value
+        result <- as.character(httr::content(response))
+        Response$new(result, response)
+      }
     },
     # '@name get_controlled_list_phase_or_stage
     # '@title Get allowed values for the field &#39;PhaseOrStage&#39; in a specimen document
-    # '@description 
+    # '@description
     # '@return \code{ character }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_controlled_list_phase_or_stage = function(...){
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/metadata/getControlledList/PhaseOrStage"
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = queryParams,
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+    get_controlled_list_phase_or_stage = function(...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/metadata/getControlledList/PhaseOrStage"
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = queryParams,
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
 
-        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is "primitive type", return vector or single value
-            result <- as.character(httr::content(response))
-            Response$new(result, response)
-        }        
+      if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+        self$handleError(response)
+      } else {
+        ## API call result is "primitive type", return vector or single value
+        result <- as.character(httr::content(response))
+        Response$new(result, response)
+      }
     },
     # '@name get_controlled_list_sex
     # '@title Get allowed values for the field &#39;Sex&#39; in a specimen document
-    # '@description 
+    # '@description
     # '@return \code{ character }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_controlled_list_sex = function(...){
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/metadata/getControlledList/Sex"
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = queryParams,
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+    get_controlled_list_sex = function(...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/metadata/getControlledList/Sex"
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = queryParams,
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
 
-        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is "primitive type", return vector or single value
-            result <- as.character(httr::content(response))
-            Response$new(result, response)
-        }        
+      if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+        self$handleError(response)
+      } else {
+        ## API call result is "primitive type", return vector or single value
+        result <- as.character(httr::content(response))
+        Response$new(result, response)
+      }
     },
     # '@name get_controlled_list_specimen_type_status
     # '@title Get allowed values for the field &#39;SpecimenTypeStatus&#39; in a specimen document
-    # '@description 
+    # '@description
     # '@return \code{ character }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_controlled_list_specimen_type_status = function(...){
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/metadata/getControlledList/SpecimenTypeStatus"
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = queryParams,
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+    get_controlled_list_specimen_type_status = function(...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/metadata/getControlledList/SpecimenTypeStatus"
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = queryParams,
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
 
-        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is "primitive type", return vector or single value
-            result <- as.character(httr::content(response))
-            Response$new(result, response)
-        }        
+      if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+        self$handleError(response)
+      } else {
+        ## API call result is "primitive type", return vector or single value
+        result <- as.character(httr::content(response))
+        Response$new(result, response)
+      }
     },
     # '@name get_controlled_list_taxonomic_status
     # '@title Get allowed values for the field &#39;TaxonomicStatus&#39; in specimen and taxon documents
-    # '@description 
+    # '@description
     # '@return \code{ character }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_controlled_list_taxonomic_status = function(...){
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/metadata/getControlledList/TaxonomicStatus"
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = queryParams,
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+    get_controlled_list_taxonomic_status = function(...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/metadata/getControlledList/TaxonomicStatus"
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = queryParams,
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
 
-        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is "primitive type", return vector or single value
-            result <- as.character(httr::content(response))
-            Response$new(result, response)
-        }        
+      if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+        self$handleError(response)
+      } else {
+        ## API call result is "primitive type", return vector or single value
+        result <- as.character(httr::content(response))
+        Response$new(result, response)
+      }
     },
     # '@name get_controlled_lists
     # '@title Get the names of fields for which a controlled vocabulary exists
     # '@description Possible values for fields with controlled vocabularies can be queried with metadata/getControlledList/{field}
     # '@return \code{ character }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_controlled_lists = function(...){
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/metadata/getControlledLists"
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = queryParams,
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+    get_controlled_lists = function(...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/metadata/getControlledLists"
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = queryParams,
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
 
-        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is "primitive type", return vector or single value
-            result <- as.character(httr::content(response))
-            Response$new(result, response)
-        }        
+      if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+        self$handleError(response)
+      } else {
+        ## API call result is "primitive type", return vector or single value
+        result <- as.character(httr::content(response))
+        Response$new(result, response)
+      }
     },
     # '@name get_rest_services
     # '@title List all available REST services and their parameters
     # '@description Lists end point name, http method, response type, and URL
     # '@return \code{ RestService }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_rest_services = function(...){
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/metadata/getRestServices"
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = queryParams,
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+    get_rest_services = function(...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/metadata/getRestServices"
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = queryParams,
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
 
-        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is object of model class
-            returnObject <- RestService$new()
-            ## API call result is "list container"
-            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping = list(item = private$getBaseDataType())))
-            Response$new(result, response)
-        }        
+      if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+        self$handleError(response)
+      } else {
+        ## API call result is object of model class
+        returnObject <- RestService$new()
+        ## API call result is "list container"
+        result <- lapply(httr::content(response), function(x) returnObject$fromList(x, typeMapping = list(item = private$getBaseDataType())))
+        Response$new(result, response)
+      }
     },
     # '@name get_setting
     # '@title Get the value of an NBA setting
     # '@description All settings can be queried with /metadata/getSettings
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_setting = function(name = NULL, ...){
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/metadata/getSetting/{name}"
-        if (!missing(`name`)) {
-            urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
-        }
+    get_setting = function(name = NULL, ...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/metadata/getSetting/{name}"
+      if (!missing(`name`)) {
+        urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
+      }
 
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = queryParams,
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = queryParams,
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
 
-        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is "primitive type", return vector or single value
-            result <- as.list(httr::content(response))
-            Response$new(result, response)
-        }        
+      if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+        self$handleError(response)
+      } else {
+        ## API call result is "primitive type", return vector or single value
+        result <- as.list(httr::content(response))
+        Response$new(result, response)
+      }
     },
     # '@name get_settings
     # '@title List all publicly available configuration settings for the NBA
     # '@description The value of a specific setting can be queried with metadata/getSetting/{name}
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_settings = function(...){
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/metadata/getSettings"
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = queryParams,
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+    get_settings = function(...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/metadata/getSettings"
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = queryParams,
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
 
-        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector = T)
-            Response$new(result, response)
-        }        
+      if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+        self$handleError(response)
+      } else {
+        ## API call result is a "map container" and will be parsed to list
+        result <- httr::content(response, simplifyVector = T)
+        Response$new(result, response)
+      }
     },
     # '@name get_source_systems
     # '@title Get the data sources from which the data was retrieved
     # '@description Returns code and name of all source systems
     # '@return \code{ SourceSystem }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_source_systems = function(...){
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/metadata/getSourceSystems"
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = queryParams,
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+    get_source_systems = function(...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/metadata/getSourceSystems"
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = queryParams,
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
 
-        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is object of model class
-            returnObject <- SourceSystem$new()
-            ## API call result is "list container"
-            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping = list(item = private$getBaseDataType())))
-            Response$new(result, response)
-        }        
+      if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+        self$handleError(response)
+      } else {
+        ## API call result is object of model class
+        returnObject <- SourceSystem$new()
+        ## API call result is "list container"
+        result <- lapply(httr::content(response), function(x) returnObject$fromList(x, typeMapping = list(item = private$getBaseDataType())))
+        Response$new(result, response)
+      }
     }
   )
 )

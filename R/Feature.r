@@ -9,24 +9,24 @@
 
 #' Feature Class
 #'
-#' @field crs 
-#' @field bbox 
-#' @field properties 
-#' @field geometry 
-#' @field id 
+#' @field crs
+#' @field bbox
+#' @field properties
+#' @field geometry
+#' @field id
 #'
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
 Feature <- R6::R6Class(
-  'Feature',
+  "Feature",
   public = list(
     `crs` = NULL,
     `bbox` = NULL,
     `properties` = NULL,
     `geometry` = NULL,
     `id` = NULL,
-    initialize = function(`crs`, `bbox`, `properties`, `geometry`, `id`){
+    initialize = function(`crs`, `bbox`, `properties`, `geometry`, `id`) {
       if (!missing(`crs`)) {
         stopifnot(R6::is.R6(`crs`))
         self[["crs"]] <- `crs`
@@ -50,59 +50,59 @@ Feature <- R6::R6Class(
 
     toList = function() {
       FeatureList <- list()
-        if (!is.null(self[["crs"]])) {
+      if (!is.null(self[["crs"]])) {
         FeatureList[["crs"]] <- self[["crs"]]$toList()
       }
-        if (!is.null(self[["bbox"]])) {
+      if (!is.null(self[["bbox"]])) {
         FeatureList[["bbox"]] <- self[["bbox"]]
       }
-        if (!is.null(self[["properties"]])) {
+      if (!is.null(self[["properties"]])) {
         FeatureList[["properties"]] <- self[["properties"]]
       }
-        if (!is.null(self[["geometry"]])) {
+      if (!is.null(self[["geometry"]])) {
         FeatureList[["geometry"]] <- self[["geometry"]]
       }
-        if (!is.null(self[["id"]])) {
+      if (!is.null(self[["id"]])) {
         FeatureList[["id"]] <- self[["id"]]
       }
       ## omit empty nested lists in returned list
       FeatureList[sapply(FeatureList, length) > 0]
-      },
+    },
 
     fromList = function(FeatureList, typeMapping = NULL) {
       if (is.null(typeMapping[["crs"]])) {
-          self[["crs"]] <- Crs$new()$fromList(FeatureList[["crs"]], typeMapping = typeMapping) 
+        self[["crs"]] <- Crs$new()$fromList(FeatureList[["crs"]], typeMapping = typeMapping)
       } else {
-          obj <- eval(parse(text = paste0(typeMapping[["crs"]], "$new()")))
-          self[["crs"]] <- obj$fromList(FeatureList[["crs"]], typeMapping = typeMapping)
+        obj <- eval(parse(text = paste0(typeMapping[["crs"]], "$new()")))
+        self[["crs"]] <- obj$fromList(FeatureList[["crs"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["bbox"]])) {
-          self[["bbox"]] <- FeatureList[["bbox"]]
+        self[["bbox"]] <- FeatureList[["bbox"]]
       } else {
-          obj <- eval(parse(text = paste0(typeMapping[["bbox"]], "$new()")))
-          self[["bbox"]] <- obj$fromList(FeatureList[["bbox"]], typeMapping = typeMapping)
+        obj <- eval(parse(text = paste0(typeMapping[["bbox"]], "$new()")))
+        self[["bbox"]] <- obj$fromList(FeatureList[["bbox"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["properties"]])) {
-          self[["properties"]] <- FeatureList[["properties"]]
+        self[["properties"]] <- FeatureList[["properties"]]
       } else {
-          obj <- eval(parse(text = paste0(typeMapping[["properties"]], "$new()")))
-          self[["properties"]] <- obj$fromList(FeatureList[["properties"]], typeMapping = typeMapping)
+        obj <- eval(parse(text = paste0(typeMapping[["properties"]], "$new()")))
+        self[["properties"]] <- obj$fromList(FeatureList[["properties"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["geometry"]])) {
-          self[["geometry"]] <- FeatureList[["geometry"]]
+        self[["geometry"]] <- FeatureList[["geometry"]]
       } else {
-          obj <- eval(parse(text = paste0(typeMapping[["geometry"]], "$new()")))
-          self[["geometry"]] <- obj$fromList(FeatureList[["geometry"]], typeMapping = typeMapping)
+        obj <- eval(parse(text = paste0(typeMapping[["geometry"]], "$new()")))
+        self[["geometry"]] <- obj$fromList(FeatureList[["geometry"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["id"]])) {
-          self[["id"]] <- FeatureList[["id"]]
+        self[["id"]] <- FeatureList[["id"]]
       } else {
-          obj <- eval(parse(text = paste0(typeMapping[["id"]], "$new()")))
-          self[["id"]] <- obj$fromList(FeatureList[["id"]], typeMapping = typeMapping)
+        obj <- eval(parse(text = paste0(typeMapping[["id"]], "$new()")))
+        self[["id"]] <- obj$fromList(FeatureList[["id"]], typeMapping = typeMapping)
       }
       invisible(self)
     },
-    
+
     toJSONString = function(pretty = T) {
       jsonlite::toJSON(self$toList(), simplifyVector = T, auto_unbox = T, pretty = pretty)
     },
@@ -110,34 +110,34 @@ Feature <- R6::R6Class(
     fromJSONString = function(FeatureJson, typeMapping = NULL) {
       FeatureList <- jsonlite::fromJSON(FeatureJson, simplifyVector = F)
       if (is.null(typeMapping[["crs"]])) {
-          self[["crs"]] <- Crs$new()$fromJSONString(jsonlite::toJSON(FeatureList[["crs"]], auto_unbox = TRUE), typeMapping = typeMapping) 
+        self[["crs"]] <- Crs$new()$fromJSONString(jsonlite::toJSON(FeatureList[["crs"]], auto_unbox = TRUE), typeMapping = typeMapping)
       } else {
-          obj <- eval(parse(text = paste0(typeMapping[["crs"]], "$new()")))
-          self[["crs"]] <- obj$fromJSONString(jsonlite::toJSON(FeatureList[["crs"]], auto_unbox = TRUE), typeMapping=typeMapping)
+        obj <- eval(parse(text = paste0(typeMapping[["crs"]], "$new()")))
+        self[["crs"]] <- obj$fromJSONString(jsonlite::toJSON(FeatureList[["crs"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["bbox"]])) {
-          self[["bbox"]] <- FeatureList[["bbox"]]
+        self[["bbox"]] <- FeatureList[["bbox"]]
       } else {
-          obj <- eval(parse(text = paste0(typeMapping[["bbox"]], "$new()")))
-          self[["bbox"]] <- obj$fromJSONString(jsonlite::toJSON(FeatureList[["bbox"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(text = paste0(typeMapping[["bbox"]], "$new()")))
+        self[["bbox"]] <- obj$fromJSONString(jsonlite::toJSON(FeatureList[["bbox"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["properties"]])) {
-          self[["properties"]] <- FeatureList[["properties"]]
+        self[["properties"]] <- FeatureList[["properties"]]
       } else {
-          obj <- eval(parse(text = paste0(typeMapping[["properties"]], "$new()")))
-          self[["properties"]] <- obj$fromJSONString(jsonlite::toJSON(FeatureList[["properties"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(text = paste0(typeMapping[["properties"]], "$new()")))
+        self[["properties"]] <- obj$fromJSONString(jsonlite::toJSON(FeatureList[["properties"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["geometry"]])) {
-          self[["geometry"]] <- FeatureList[["geometry"]]
+        self[["geometry"]] <- FeatureList[["geometry"]]
       } else {
-          obj <- eval(parse(text = paste0(typeMapping[["geometry"]], "$new()")))
-          self[["geometry"]] <- obj$fromJSONString(jsonlite::toJSON(FeatureList[["geometry"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(text = paste0(typeMapping[["geometry"]], "$new()")))
+        self[["geometry"]] <- obj$fromJSONString(jsonlite::toJSON(FeatureList[["geometry"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["id"]])) {
-          self[["id"]] <- FeatureList[["id"]]
+        self[["id"]] <- FeatureList[["id"]]
       } else {
-          obj <- eval(parse(text = paste0(typeMapping[["id"]], "$new()")))
-          self[["id"]] <- obj$fromJSONString(jsonlite::toJSON(FeatureList[["id"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(text = paste0(typeMapping[["id"]], "$new()")))
+        self[["id"]] <- obj$fromJSONString(jsonlite::toJSON(FeatureList[["id"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       invisible(self)
     }
