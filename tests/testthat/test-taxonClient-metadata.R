@@ -2,11 +2,11 @@ library(nbaR)
 library(testthat)
 
 wd <- getwd()
-if(grepl('testthat', wd)) {
-    dataDir <- file.path('data')
+if(grepl("testthat", wd)) {
+    dataDir <- file.path("data")
 } else {
     ## for running test at package level
-    dataDir <- file.path('tests', 'testthat', 'data')
+    dataDir <- file.path("tests", "testthat", "data")
 }
 
 tc <- TaxonClient$new(basePath="http://api.biodiversitydata.nl/v2")
@@ -30,7 +30,7 @@ test_that("getFieldInfo works", {
 
 test_that("getSettings works", {
     res <- tc$get_settings()
-    expect_is(res$content, 'list')
+    expect_is(res$content, "list")
     expect_true(length(res$content) > 0)
 })
 
@@ -42,11 +42,11 @@ test_that("getSetting works", {
 test_that("isOperatorAllowed works", {
     ## test operator that should be allowed
     res <- tc$is_operator_allowed("synonyms.author", "EQUALS")
-    expect_is(res$content, 'logical')
+    expect_is(res$content, "logical")
     expect_true(res$content)
     ## test operator that should not be allowed
     res <- tc$is_operator_allowed("synonyms.author", "LT")
-    expect_is(res$content, 'logical')
+    expect_is(res$content, "logical")
     expect_true(! res$content)
 })
 

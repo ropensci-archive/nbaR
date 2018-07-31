@@ -2,11 +2,11 @@ library(nbaR)
 library(testthat)
 
 wd <- getwd()
-if(grepl('testthat', wd)) {
-    dataDir <- file.path('data')
+if(grepl("testthat", wd)) {
+    dataDir <- file.path("data")
 } else {
     ## for running test at package level
-    dataDir <- file.path('tests', 'testthat', 'data')
+    dataDir <- file.path("tests", "testthat", "data")
 }
 
 sc <- SpecimenClient$new()
@@ -81,19 +81,19 @@ test_that("download endpoint works", {
 test_that("getDistinctValuesPerGroup works", {
     res <- sc$get_distinct_values_per_group(group="sourceSystem.code", field="recordBasis")
     ## Result should be a list with two entries, for BRAHMS and CRS
-    expect_is(res$content, 'list')
+    expect_is(res$content, "list")
     expect_length(res$content, 2)
 })
 
 test_that("getIdsInCollection works", {
     res <- sc$get_ids_in_collection("siebold")
-    expect_is(res$content, 'character')
+    expect_is(res$content, "character")
     expect_true(length(res$content) > 0)
 })
 
 test_that("getNamedCollections works", {
     res <- sc$get_named_collections()
-    expect_is(res$content, 'character')
+    expect_is(res$content, "character")
     expect_true(length(res$content) > 0)
 })
 
@@ -125,9 +125,9 @@ test_that("countDistinctValuesPerGroup works", {
     res <- sc$count_distinct_values_per_group(group, field)
     
     ## we should get a list of lists
-    expect_is(res$content, 'list')
+    expect_is(res$content, "list")
     for (r in res$content) {
-        expect_is(r, 'list')
+        expect_is(r, "list")
         ## names in list should be the same as input
         expect_true(all(names(r) %in% c(group, field)))
     }        

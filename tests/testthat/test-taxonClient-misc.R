@@ -2,11 +2,11 @@ library(nbaR)
 library(testthat)
 
 wd <- getwd()
-if(grepl('testthat', wd)) {
-    dataDir <- file.path('data')
+if(grepl("testthat", wd)) {
+    dataDir <- file.path("data")
 } else {
     ## for running test at package level
-    dataDir <- file.path('tests', 'testthat', 'data')
+    dataDir <- file.path("tests", "testthat", "data")
 }
 
 tc <- TaxonClient$new(basePath="http://api.biodiversitydata.nl/v2")
@@ -15,7 +15,7 @@ context("Testing miscellaneous TaxonClient endpoints")
 
 test_that("count works", {
     res <- tc$count()
-    expect_is(res$content, 'integer')
+    expect_is(res$content, "integer")
     expect_true(res$content > 0)
 })
 
