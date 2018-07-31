@@ -11,7 +11,7 @@ if(grepl("testthat", wd)) {
 
 sc <- SpecimenClient$new(basePath = "http://api.biodiversitydata.nl/v2")
 qc <- QueryCondition$new(field = "unitID", operator = "EQUALS", value = "L.4304195")
-qs <- QuerySpec$new(conditions=list(qc))
+qs <- QuerySpec$new(conditions = list(qc))
 
 context("Testing query function")
 
@@ -34,7 +34,7 @@ test_that("Query with QuerySpec works", {
 
 test_that("Operators other than EQUALS work", {
     qc <- QueryCondition$new(field = "identifications.defaultClassification.genus", operator = "STARTS_WITH", value = "Hydro")
-    qs <- QuerySpec$new(conditions=list(qc))
+    qs <- QuerySpec$new(conditions = list(qc))
     res <- sc$query(qs)
 
     for (hit in res$content$resultSet) {
@@ -44,14 +44,14 @@ test_that("Operators other than EQUALS work", {
 
 test_that("Query with query params works", {
     qp <- list("_size" = 100)
-    res <- sc$query(queryParams=qp)
+    res <- sc$query(queryParams = qp)
     expect_length(res$content$resultSet, 100)
 
     ## test for other query if we get the same result with QuerySpec
     qp <- list("identifications.defaultClassification.genus" = "Passiflora")    
     qc <- QueryCondition$new(field = "identifications.defaultClassification.genus", operator = "EQUALS", value = "Passiflora")
-    qs <- QuerySpec$new(conditions=list(qc))
-    res1 <- sc$query(queryParams=qp)
+    qs <- QuerySpec$new(conditions = list(qc))
+    res1 <- sc$query(queryParams = qp)
     res2 <- sc$query(querySpec = qs)
     expect_equivalent(res1$content$resultSet, res2$content$resultSet)    
 })
@@ -64,7 +64,7 @@ test_that("Nested query works", {
     q2 <- QueryCondition$new(field = "kindOfUnit", operator = "EQUALS_IC", value = "EGG")
     q3 <- QueryCondition$new(field = "identifications.taxonRank", operator = "EQUALS_IC", value = "species")
     q3$and <- list(QueryCondition$new(field = "identifications.scientificName.genusOrMonomial", operator = "EQUALS_IC", value = "corvus"))
-    qs <- QuerySpec$new(conditions=list(q1, q2, q3),
+    qs <- QuerySpec$new(conditions = list(q1, q2, q3),
                         fields=list("gatheringEvent.dateTimeBegin",
                                     "gatheringEvent.locality",
                                     "identifications.scientificName",
@@ -94,9 +94,9 @@ test_that("Errors and warnings work", {
     q1 <- QueryCondition$new(field = "associatedMultiMediaUris.accessUri", operator = "EQUALS", value = "some value")
 
     ## should give a warning
-    expect_warning(sc$query(querySpec = QuerySpec$new(conditions=list(q1))))
+    expect_warning(sc$query(querySpec = QuerySpec$new(conditions = list(q1))))
 
     ## look at http error code
-    res <- sc$query(querySpec = QuerySpec$new(conditions=list(q1)))
+    res <- sc$query(querySpec = QuerySpec$new(conditions = list(q1)))
     expect_equal(res$response$status_code, 500)
 })

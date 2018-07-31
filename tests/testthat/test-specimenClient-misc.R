@@ -27,7 +27,7 @@ test_that("exists works", {
 
 test_that("count works", {
     qs <- QuerySpec$new(
-        conditions=list(QueryCondition$new(
+        conditions = list(QueryCondition$new(
                             field = "identifications.defaultClassification.genus",
                             operator = "EQUALS",
                             value = "Passiflora"
@@ -38,7 +38,7 @@ test_that("count works", {
 
     ## test with queryParams instead of querySpec
     ## test also for empty result
-    res <- sc$count(queryParams=list(sourceSystem.code  =  "XXX"))    
+    res <- sc$count(queryParams = list(sourceSystem.code  =  "XXX"))    
     expect_true(is.numeric(res$content))
     expect_equal(res$content, 0)
 })
@@ -64,7 +64,7 @@ test_that("getDistinctValues works", {
 
 test_that("download endpoint works", {    
     qs <- QuerySpec$new(
-        conditions=list(QueryCondition$new(
+        conditions = list(QueryCondition$new(
                             field = "identifications.defaultClassification.genus",
                             operator = "EQUALS",
                             value = "Passiflora"                            
@@ -101,7 +101,7 @@ test_that("groupByScientificName works", {
     qc <- QueryCondition$new(field = "identifications.defaultClassification.genus", operator = "EQUALS", value = "Passiflora")
 
     ## check with generic QuerySpec
-    qs <- QuerySpec$new(conditions=list(qc))
+    qs <- QuerySpec$new(conditions = list(qc))
     res <- sc$group_by_scientific_name(qs)
 
     ## check if we get specimen documents
@@ -110,7 +110,7 @@ test_that("groupByScientificName works", {
     }
 
     ## check if it works with a GroupByScientificNameQuerySpec
-    qs <- GroupByScientificNameQuerySpec$new(conditions=list(qc), groupSort = "NAME_ASC")
+    qs <- GroupByScientificNameQuerySpec$new(conditions = list(qc), groupSort = "NAME_ASC")
     res <- sc$group_by_scientific_name(qs)
     
     ## check if we get specimen documents
