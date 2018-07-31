@@ -32,7 +32,7 @@
 #'
 #' @export
 ApiClient  <- R6::R6Class(
-  'ApiClient',
+  "ApiClient",
   public = list(
     basePath = "http://api.biodiversitydata.nl/v2",
     configuration = NULL,
@@ -51,7 +51,7 @@ ApiClient  <- R6::R6Class(
             self$defaultHeaders <- defaultHeaders
         }
 
-        self$`userAgent` <- '{{#httpUserAgent}}{{{.}}}{{/httpUserAgent}}{{^httpUserAgent}}Swagger-Codegen/{{{packageVersion}}}/r{{/httpUserAgent}}'
+        self$`userAgent` <- "{{#httpUserAgent}}{{{.}}}{{/httpUserAgent}}{{^httpUserAgent}}Swagger-Codegen/{{{packageVersion}}}/r{{/httpUserAgent}}"
     },
     callApi = function(url, method, queryParams, headerParams, body, ...){
         headers <- httr::add_headers(headerParams)
