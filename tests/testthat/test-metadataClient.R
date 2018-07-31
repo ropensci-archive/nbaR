@@ -2,11 +2,11 @@ library("nbaR")
 library("testthat")
 
 wd <- getwd()
-if(grepl(""testthat"", wd)) {
+if(grepl("testthat", wd)) {
     data_dir <- file.path("data")
 } else {
     ## for running test at package level
-    data_dir <- file.path("tests", ""testthat"", "data")
+    data_dir <- file.path("tests", "testthat", "data")
 }
 
 mc <- MetadataClient$new(basePath = "http://api.biodiversitydata.nl/v2")
