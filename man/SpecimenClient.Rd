@@ -23,10 +23,16 @@ nbaR.Specimen
 
 \describe{
 
-count Get the number of specimens matching a condition
+count Get the number of specimens matching a given condition
 
 
-count_http_post_json2 Get the number of specimens matching a condition
+count_distinct_values Count the distinct number of values that exist for a given field
+
+
+count_distinct_values_per_group Count the distinct number of field values that exist per the given field to group by
+
+
+download_query Dynamic download service: Query for specimens and return result as a stream ...
 
 
 dwca_get_data_set Download dataset as Darwin Core Archive File
@@ -36,9 +42,6 @@ dwca_get_data_set_names Retrieve the names of all available datasets
 
 
 dwca_query Dynamic download service: Query for specimens and return result as Darwin Core Archive File
-
-
-dwca_query_http_post_json Dynamic download service: Query for specimens and return result as Darwin Core Archive File
 
 
 exists Returns whether or not a unitID for a specimen exists
@@ -56,7 +59,7 @@ find_by_unit_id Find a specimen by unitID
 get_distinct_values Get all different values that exist for a field
 
 
-get_distinct_values_http_post_json2 Get all different values that exist for a field
+get_distinct_values_per_group Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by
 
 
 get_field_info Returns extended information for each field of a specimen document
@@ -71,25 +74,19 @@ get_named_collections Retrieve the names of all &#39;special collections&#39; of
 get_paths Returns the full path of all fields within a document
 
 
-get_settings4 List all publicly available configuration settings for the NBA
+get_setting Get the value of an NBA setting
 
 
-get_settings5 Get the value of an NBA setting
+get_settings List all publicly available configuration settings for the NBA
 
 
-group_by_scientific_name_http_get Aggregates Taxon and Specimen documents according to their scientific names
+group_by_scientific_name Aggregates Taxon and Specimen documents according to their scientific names
 
 
-group_by_scientific_name_http_post_json Aggregates Taxon and Specimen documents according to their scientific names
-
-
-is_operator_allowed2 Checks if a given operator is allowed for a given field
+is_operator_allowed Checks if a given operator is allowed for a given field
 
 
 query Query for specimens
-
-
-query_http_post_json2 Query for specimens
 
 }
 }

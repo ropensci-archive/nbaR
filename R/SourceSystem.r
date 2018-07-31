@@ -43,39 +43,39 @@ SourceSystem <- R6::R6Class(
       SourceSystemList[sapply(SourceSystemList, length) > 0]
       },
 
-    fromList = function(SourceSystemList, typeMapping=NULL) {
+    fromList = function(SourceSystemList, typeMapping = NULL) {
       if (is.null(typeMapping[["code"]])) {
           self[["code"]] <- SourceSystemList[["code"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["code"]], "$new()")))
-          self[["code"]] <- obj$fromList(SourceSystemList[["code"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["code"]], "$new()")))
+          self[["code"]] <- obj$fromList(SourceSystemList[["code"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["name"]])) {
           self[["name"]] <- SourceSystemList[["name"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["name"]], "$new()")))
-          self[["name"]] <- obj$fromList(SourceSystemList[["name"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["name"]], "$new()")))
+          self[["name"]] <- obj$fromList(SourceSystemList[["name"]], typeMapping = typeMapping)
       }
       invisible(self)
     },
     
-    toJSONString = function(pretty=T) {
-      jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
+    toJSONString = function(pretty = T) {
+      jsonlite::toJSON(self$toList(), simplifyVector = T, auto_unbox = T, pretty = pretty)
     },
 
-    fromJSONString = function(SourceSystemJson, typeMapping=NULL) {
-      SourceSystemList <- jsonlite::fromJSON(SourceSystemJson, simplifyVector=F)
+    fromJSONString = function(SourceSystemJson, typeMapping = NULL) {
+      SourceSystemList <- jsonlite::fromJSON(SourceSystemJson, simplifyVector = F)
       if (is.null(typeMapping[["code"]])) {
           self[["code"]] <- SourceSystemList[["code"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["code"]], "$new()")))
-          self[["code"]] <- obj$fromJSONString(jsonlite::toJSON(SourceSystemList[["code"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["code"]], "$new()")))
+          self[["code"]] <- obj$fromJSONString(jsonlite::toJSON(SourceSystemList[["code"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["name"]])) {
           self[["name"]] <- SourceSystemList[["name"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["name"]], "$new()")))
-          self[["name"]] <- obj$fromJSONString(jsonlite::toJSON(SourceSystemList[["name"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["name"]], "$new()")))
+          self[["name"]] <- obj$fromJSONString(jsonlite::toJSON(SourceSystemList[["name"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       invisible(self)
     }

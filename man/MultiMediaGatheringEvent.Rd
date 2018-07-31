@@ -46,6 +46,8 @@ MultiMediaGatheringEvent Class
 
 \item{\code{altitudeUnifOfMeasurement}}{}
 
+\item{\code{biotopeText}}{}
+
 \item{\code{depth}}{}
 
 \item{\code{depthUnitOfMeasurement}}{}
@@ -55,6 +57,10 @@ MultiMediaGatheringEvent Class
 \item{\code{gatheringOrganizations}}{}
 
 \item{\code{siteCoordinates}}{}
+
+\item{\code{namedAreas}}{}
+
+\item{\code{associatedTaxa}}{}
 
 \item{\code{chronoStratigraphy}}{}
 

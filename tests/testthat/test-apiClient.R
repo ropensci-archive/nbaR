@@ -13,7 +13,7 @@ test_that("Constructor works", {
     ## constructor with default base path
     ac <- ApiClient$new()
     ## test with other basePath
-    ac <- ApiClient$new(basePath="http://localhost:8080/v2")        
+    ac <- ApiClient$new(basePath = "http://localhost:8080/v2")        
 })
 
 test_that("CallApi function works", {

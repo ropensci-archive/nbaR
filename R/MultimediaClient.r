@@ -63,7 +63,7 @@
 #' @export
 MultimediaClient <- R6::R6Class(
     "MultimediaClient",
-    inherit=ApiClient,
+    inherit = ApiClient,
     public = list(
         userAgent = "Swagger-Codegen/0.0.0/r",
         initialize = function(basePath){
@@ -76,7 +76,7 @@ MultimediaClient <- R6::R6Class(
     # '@return \code{ integer }
     # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    count = function(querySpec=NULL, queryParams=list(), ...){
+    count = function(querySpec = NULL, queryParams = list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -111,7 +111,7 @@ MultimediaClient <- R6::R6Class(
     # '@description 
     # '@return \code{ integer }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    count_distinct_values = function(field=NULL, ...){
+    count_distinct_values = function(field = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/multimedia/countDistinctValues/{field}"
@@ -139,7 +139,7 @@ MultimediaClient <- R6::R6Class(
     # '@description 
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    count_distinct_values_per_group = function(group=NULL, field=NULL, ...){
+    count_distinct_values_per_group = function(group = NULL, field = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/multimedia/countDistinctValuesPerGroup/{group}/{field}"
@@ -162,7 +162,7 @@ MultimediaClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            result <- httr::content(response, simplifyVector = T)
             Response$new(result, response)
         }        
     },
@@ -172,7 +172,7 @@ MultimediaClient <- R6::R6Class(
     # '@return \code{  }
     # '@param collection_type: character; Example query param
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    download_query = function(collectionType=NULL, queryParams=list(), ...){
+    download_query = function(collectionType = NULL, queryParams = list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -207,7 +207,7 @@ MultimediaClient <- R6::R6Class(
     # '@description If found, returns a single multimedia document
     # '@return \code{ MultiMediaObject }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    find = function(id=NULL, ...){
+    find = function(id = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/multimedia/find/{id}"
@@ -228,7 +228,7 @@ MultimediaClient <- R6::R6Class(
             ## API call result is object of model class
             returnObject <- MultiMediaObject$new()
             ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
+            result <- returnObject$fromList(httr::content(response), typeMapping = list(item = private$getBaseDataType()))
             Response$new(result, response)
         }        
     },
@@ -237,7 +237,7 @@ MultimediaClient <- R6::R6Class(
     # '@description Given multiple ids, returns a list of multimedia documents
     # '@return \code{ MultiMediaObject }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    find_by_ids = function(ids=NULL, ...){
+    find_by_ids = function(ids = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/multimedia/findByIds/{ids}"
@@ -258,7 +258,7 @@ MultimediaClient <- R6::R6Class(
             ## API call result is object of model class
             returnObject <- MultiMediaObject$new()
             ## API call result is "list container"
-            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=private$getBaseDataType())))
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping = list(item = private$getBaseDataType())))
             Response$new(result, response)
         }        
     },
@@ -267,7 +267,7 @@ MultimediaClient <- R6::R6Class(
     # '@description A list of all fields for multimedia documents can be retrieved with /metadata/getFieldInfo
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_distinct_values = function(field=NULL, ...){
+    get_distinct_values = function(field = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/multimedia/getDistinctValues/{field}"
@@ -286,7 +286,7 @@ MultimediaClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            result <- httr::content(response, simplifyVector = T)
             Response$new(result, response)
         }        
     },
@@ -295,7 +295,7 @@ MultimediaClient <- R6::R6Class(
     # '@description 
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_distinct_values_per_group = function(group=NULL, field=NULL, ...){
+    get_distinct_values_per_group = function(group = NULL, field = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/multimedia/getDistinctValuesPerGroup/{group}/{field}"
@@ -342,7 +342,7 @@ MultimediaClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            result <- httr::content(response, simplifyVector = T)
             Response$new(result, response)
         }        
     },
@@ -375,7 +375,7 @@ MultimediaClient <- R6::R6Class(
     # '@description All settings can be queried with /metadata/getSettings
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_setting = function(name=NULL, ...){
+    get_setting = function(name = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/multimedia/metadata/getSetting/{name}"
@@ -418,7 +418,7 @@ MultimediaClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            result <- httr::content(response, simplifyVector = T)
             Response$new(result, response)
         }        
     },
@@ -427,7 +427,7 @@ MultimediaClient <- R6::R6Class(
     # '@description See also metadata/getFieldInfo
     # '@return \code{ logical }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    is_operator_allowed = function(field=NULL, operator=NULL, ...){
+    is_operator_allowed = function(field = NULL, operator = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/multimedia/metadata/isOperatorAllowed/{field}/{operator}"
@@ -460,7 +460,7 @@ MultimediaClient <- R6::R6Class(
     # '@return \code{ QueryResult }
     # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    query = function(querySpec=NULL, queryParams=list(), ...){
+    query = function(querySpec = NULL, queryParams = list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -488,7 +488,7 @@ MultimediaClient <- R6::R6Class(
             ## API call result is object of model class
             returnObject <- QueryResult$new()
             ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
+            result <- returnObject$fromList(httr::content(response), typeMapping = list(item = private$getBaseDataType()))
             Response$new(result, response)
         }        
     }

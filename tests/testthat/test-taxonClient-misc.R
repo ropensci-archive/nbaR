@@ -9,7 +9,7 @@ if(grepl("testthat", wd)) {
     dataDir <- file.path("tests", "testthat", "data")
 }
 
-tc <- TaxonClient$new(basePath="http://api.biodiversitydata.nl/v2")
+tc <- TaxonClient$new(basePath = "http://api.biodiversitydata.nl/v2")
 
 context("Testing miscellaneous TaxonClient endpoints")
 

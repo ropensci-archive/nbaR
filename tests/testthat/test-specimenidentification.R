@@ -41,6 +41,6 @@ for (file in testfiles) {
         si <- SpecimenIdentification$new()
         si$fromJSONString(jsonString)
         l <- si$toList()
-        expect_true(class(l)=="list")
+        expect_true(class(l) == "list")
     })
 }

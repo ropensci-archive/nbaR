@@ -87,7 +87,7 @@
 #' @export
 SpecimenClient <- R6::R6Class(
     "SpecimenClient",
-    inherit=ApiClient,
+    inherit = ApiClient,
     public = list(
         userAgent = "Swagger-Codegen/0.0.0/r",
         initialize = function(basePath){
@@ -100,7 +100,7 @@ SpecimenClient <- R6::R6Class(
     # '@return \code{ integer }
     # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    count = function(querySpec=NULL, queryParams=list(), ...){
+    count = function(querySpec = NULL, queryParams = list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -136,7 +136,7 @@ SpecimenClient <- R6::R6Class(
     # '@return \code{ integer }
     # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    count_distinct_values = function(field=NULL, querySpec=NULL, queryParams=list(), ...){
+    count_distinct_values = function(field = NULL, querySpec = NULL, queryParams = list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -175,7 +175,7 @@ SpecimenClient <- R6::R6Class(
     # '@description 
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    count_distinct_values_per_group = function(group=NULL, field=NULL, ...){
+    count_distinct_values_per_group = function(group = NULL, field = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/specimen/countDistinctValuesPerGroup/{group}/{field}"
@@ -208,7 +208,7 @@ SpecimenClient <- R6::R6Class(
     # '@return \code{ Specimen }
     # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    download_query = function(querySpec=NULL, queryParams=list(), ...){
+    download_query = function(querySpec = NULL, queryParams = list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -236,7 +236,7 @@ SpecimenClient <- R6::R6Class(
             ## API call result is object of model class
             returnObject <- Specimen$new()
             ## API call result is "list container"
-            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=private$getBaseDataType())))
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping = list(item = private$getBaseDataType())))
             Response$new(result, response)
         }        
     },
@@ -245,7 +245,7 @@ SpecimenClient <- R6::R6Class(
     # '@description Available datasets can be queried with /specimen/dwca/getDataSetNames. Response saved to &lt;datasetname&gt;-&lt;yyyymmdd&gt;.dwca.zip
     # '@return \code{  }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    dwca_get_data_set = function(dataset=NULL, filename=format(Sys.time(), "download-%Y-%m-%dT%H:%m.zip"), ...){
+    dwca_get_data_set = function(dataset = NULL, filename = format(Sys.time(), "download-%Y-%m-%dT%H:%m.zip"), ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/specimen/dwca/getDataSet/{dataset}"
@@ -301,7 +301,7 @@ SpecimenClient <- R6::R6Class(
     # '@return \code{  }
     # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    dwca_query = function(querySpec=NULL, queryParams=list(), filename=format(Sys.time(), "download-%Y-%m-%dT%H:%m.zip"), ...){
+    dwca_query = function(querySpec = NULL, queryParams = list(), filename = format(Sys.time(), "download-%Y-%m-%dT%H:%m.zip"), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -339,7 +339,7 @@ SpecimenClient <- R6::R6Class(
     # '@description Returns either true or false
     # '@return \code{ logical }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    exists = function(unitID=NULL, ...){
+    exists = function(unitID = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/specimen/exists/{unitID}"
@@ -367,7 +367,7 @@ SpecimenClient <- R6::R6Class(
     # '@description If found, returns a single specimen
     # '@return \code{ Specimen }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    find = function(id=NULL, ...){
+    find = function(id = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/specimen/find/{id}"
@@ -388,7 +388,7 @@ SpecimenClient <- R6::R6Class(
             ## API call result is object of model class
             returnObject <- Specimen$new()
             ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
+            result <- returnObject$fromList(httr::content(response), typeMapping = list(item = private$getBaseDataType()))
             Response$new(result, response)
         }        
     },
@@ -397,7 +397,7 @@ SpecimenClient <- R6::R6Class(
     # '@description Given multiple ids, returns a list of specimen
     # '@return \code{ Specimen }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    find_by_ids = function(ids=NULL, ...){
+    find_by_ids = function(ids = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/specimen/findByIds/{ids}"
@@ -418,7 +418,7 @@ SpecimenClient <- R6::R6Class(
             ## API call result is object of model class
             returnObject <- Specimen$new()
             ## API call result is "list container"
-            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=private$getBaseDataType())))
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping = list(item = private$getBaseDataType())))
             Response$new(result, response)
         }        
     },
@@ -427,7 +427,7 @@ SpecimenClient <- R6::R6Class(
     # '@description Get a specimen by its unitID. Returns a list of specimens since unitIDs are not strictly unique
     # '@return \code{ Specimen }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    find_by_unit_id = function(unitID=NULL, ...){
+    find_by_unit_id = function(unitID = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/specimen/findByUnitID/{unitID}"
@@ -448,7 +448,7 @@ SpecimenClient <- R6::R6Class(
             ## API call result is object of model class
             returnObject <- Specimen$new()
             ## API call result is "list container"
-            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=private$getBaseDataType())))
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping = list(item = private$getBaseDataType())))
             Response$new(result, response)
         }        
     },
@@ -458,7 +458,7 @@ SpecimenClient <- R6::R6Class(
     # '@return \code{ list }
     # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_distinct_values = function(field=NULL, querySpec=NULL, queryParams=list(), ...){
+    get_distinct_values = function(field = NULL, querySpec = NULL, queryParams = list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -488,7 +488,7 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            result <- httr::content(response, simplifyVector = T)
             Response$new(result, response)
         }        
     },
@@ -497,7 +497,7 @@ SpecimenClient <- R6::R6Class(
     # '@description 
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_distinct_values_per_group = function(group=NULL, field=NULL, ...){
+    get_distinct_values_per_group = function(group = NULL, field = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/specimen/getDistinctValuesPerGroup/{group}/{field}"
@@ -544,7 +544,7 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            result <- httr::content(response, simplifyVector = T)
             Response$new(result, response)
         }        
     },
@@ -553,7 +553,7 @@ SpecimenClient <- R6::R6Class(
     # '@description Available collections can be queried with /getNamedCollections
     # '@return \code{ character }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_ids_in_collection = function(name=NULL, ...){
+    get_ids_in_collection = function(name = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/specimen/getIdsInCollection/{name}"
@@ -629,7 +629,7 @@ SpecimenClient <- R6::R6Class(
     # '@description All settings can be queried with /metadata/getSettings
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_setting = function(name=NULL, ...){
+    get_setting = function(name = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/specimen/metadata/getSetting/{name}"
@@ -672,7 +672,7 @@ SpecimenClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            result <- httr::content(response, simplifyVector = T)
             Response$new(result, response)
         }        
     },
@@ -682,7 +682,7 @@ SpecimenClient <- R6::R6Class(
     # '@return \code{ QueryResult }
     # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    group_by_scientific_name = function(querySpec=NULL, queryParams=list(), ...){
+    group_by_scientific_name = function(querySpec = NULL, queryParams = list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -710,7 +710,7 @@ SpecimenClient <- R6::R6Class(
             ## API call result is object of model class
             returnObject <- QueryResult$new()
             ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
+            result <- returnObject$fromList(httr::content(response), typeMapping = list(item = private$getBaseDataType()))
             Response$new(result, response)
         }        
     },
@@ -719,7 +719,7 @@ SpecimenClient <- R6::R6Class(
     # '@description See also metadata/getFieldInfo
     # '@return \code{ logical }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    is_operator_allowed = function(field=NULL, operator=NULL, ...){
+    is_operator_allowed = function(field = NULL, operator = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/specimen/metadata/isOperatorAllowed/{field}/{operator}"
@@ -752,7 +752,7 @@ SpecimenClient <- R6::R6Class(
     # '@return \code{ QueryResult }
     # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    query = function(querySpec=NULL, queryParams=list(), ...){
+    query = function(querySpec = NULL, queryParams = list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -780,7 +780,7 @@ SpecimenClient <- R6::R6Class(
             ## API call result is object of model class
             returnObject <- QueryResult$new()
             ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
+            result <- returnObject$fromList(httr::content(response), typeMapping = list(item = private$getBaseDataType()))
             Response$new(result, response)
         }        
     }

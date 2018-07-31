@@ -23,10 +23,16 @@ nbaR.Taxon
 
 \describe{
 
-count_http_get1 Get the number of taxa matching a condition
+count Get the number of taxa matching a given condition
 
 
-count_http_post_json3 Get the number of taxa matching a condition
+count_distinct_values Count the distinct number of values that exist for a given field
+
+
+count_distinct_values_per_group Count the distinct number of field values that exist per the given field to group by
+
+
+download_query Dynamic download service: Query for taxa and return result as a stream ...
 
 
 dwca_get_data_set Download dataset as Darwin Core Archive File
@@ -35,22 +41,19 @@ dwca_get_data_set Download dataset as Darwin Core Archive File
 dwca_get_data_set_names Retrieve the names of all available datasets
 
 
-dwca_query_http_get Dynamic download service: Query for taxa and return result as Darwin Core Archive File
+dwca_query Dynamic download service: Query for taxa and return result as Darwin Core Archive File
 
 
-dwca_query_http_post_json Dynamic download service: Query for taxa and return result as Darwin Core Archive File
+find Find a taxon by id
 
 
-find3 Find a taxon by id
-
-
-find_by_ids3 Find taxa by ids
+find_by_ids Find taxa by ids
 
 
 get_distinct_values Get all different values that can be found for one field
 
 
-get_distinct_values_http_post_json3 Get all different values that exist for a field
+get_distinct_values_per_group Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by
 
 
 get_field_info Returns extended information for each field of a specimen document
@@ -59,25 +62,19 @@ get_field_info Returns extended information for each field of a specimen documen
 get_paths Returns the full path of all fields within a document
 
 
-get_settings6 List all publicly available configuration settings for the NBA
+get_setting Get the value of an NBA setting
 
 
-get_settings7 Get the value of an NBA setting
+get_settings List all publicly available configuration settings for the NBA
 
 
-group_by_scientific_name_http_get Aggregates Taxon and Specimen documents according to their scientific names
+group_by_scientific_name Aggregates Taxon and Specimen documents according to their scientific names
 
 
-group_by_scientific_name_http_post_json Aggregates Taxon and Specimen documents according to their scientific names
-
-
-is_operator_allowed3 Checks if a given operator is allowed for a given field
+is_operator_allowed Checks if a given operator is allowed for a given field
 
 
 query Query for taxa
-
-
-query_http_post_json3 Query for taxa
 
 }
 }

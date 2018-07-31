@@ -75,7 +75,7 @@
 #' @export
 TaxonClient <- R6::R6Class(
     "TaxonClient",
-    inherit=ApiClient,
+    inherit = ApiClient,
     public = list(
         userAgent = "Swagger-Codegen/0.0.0/r",
         initialize = function(basePath){
@@ -88,7 +88,7 @@ TaxonClient <- R6::R6Class(
     # '@return \code{ integer }
     # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    count = function(querySpec=NULL, queryParams=list(), ...){
+    count = function(querySpec = NULL, queryParams = list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -123,7 +123,7 @@ TaxonClient <- R6::R6Class(
     # '@description 
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    count_distinct_values = function(field=NULL, ...){
+    count_distinct_values = function(field = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/taxon/countDistinctValues/{field}"
@@ -142,7 +142,7 @@ TaxonClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            result <- httr::content(response, simplifyVector = T)
             Response$new(result, response)
         }        
     },
@@ -151,7 +151,7 @@ TaxonClient <- R6::R6Class(
     # '@description 
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    count_distinct_values_per_group = function(group=NULL, field=NULL, ...){
+    count_distinct_values_per_group = function(group = NULL, field = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/taxon/countDistinctValuesPerGroup/{group}/{field}"
@@ -174,7 +174,7 @@ TaxonClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            result <- httr::content(response, simplifyVector = T)
             Response$new(result, response)
         }        
     },
@@ -184,7 +184,7 @@ TaxonClient <- R6::R6Class(
     # '@return \code{ Taxon }
     # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    download_query = function(querySpec=NULL, queryParams=list(), ...){
+    download_query = function(querySpec = NULL, queryParams = list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -212,7 +212,7 @@ TaxonClient <- R6::R6Class(
             ## API call result is object of model class
             returnObject <- Taxon$new()
             ## API call result is "list container"
-            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=private$getBaseDataType())))
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping = list(item = private$getBaseDataType())))
             Response$new(result, response)
         }        
     },
@@ -221,7 +221,7 @@ TaxonClient <- R6::R6Class(
     # '@description Available datasets can be queried with /taxon/dwca/getDataSetNames. Response saved to &lt;datasetname&gt;-&lt;yyyymmdd&gt;.dwca.zip
     # '@return \code{  }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    dwca_get_data_set = function(dataset=NULL, filename=format(Sys.time(), "download-%Y-%m-%dT%H:%m.zip"), ...){
+    dwca_get_data_set = function(dataset = NULL, filename = format(Sys.time(), "download-%Y-%m-%dT%H:%m.zip"), ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/taxon/dwca/getDataSet/{dataset}"
@@ -277,7 +277,7 @@ TaxonClient <- R6::R6Class(
     # '@return \code{  }
     # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    dwca_query = function(querySpec=NULL, queryParams=list(), filename=format(Sys.time(), "download-%Y-%m-%dT%H:%m.zip"), ...){
+    dwca_query = function(querySpec = NULL, queryParams = list(), filename = format(Sys.time(), "download-%Y-%m-%dT%H:%m.zip"), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -315,7 +315,7 @@ TaxonClient <- R6::R6Class(
     # '@description If found, returns a single taxon
     # '@return \code{ Taxon }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    find = function(id=NULL, ...){
+    find = function(id = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/taxon/find/{id}"
@@ -336,7 +336,7 @@ TaxonClient <- R6::R6Class(
             ## API call result is object of model class
             returnObject <- Taxon$new()
             ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
+            result <- returnObject$fromList(httr::content(response), typeMapping = list(item = private$getBaseDataType()))
             Response$new(result, response)
         }        
     },
@@ -345,7 +345,7 @@ TaxonClient <- R6::R6Class(
     # '@description Given multiple ids, returns a list of taxa
     # '@return \code{ Taxon }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    find_by_ids = function(ids=NULL, ...){
+    find_by_ids = function(ids = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/taxon/findByIds/{ids}"
@@ -366,7 +366,7 @@ TaxonClient <- R6::R6Class(
             ## API call result is object of model class
             returnObject <- Taxon$new()
             ## API call result is "list container"
-            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=private$getBaseDataType())))
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping = list(item = private$getBaseDataType())))
             Response$new(result, response)
         }        
     },
@@ -375,7 +375,7 @@ TaxonClient <- R6::R6Class(
     # '@description A list of all fields for taxon documents can be retrieved with /metadata/getFieldInfo
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_distinct_values = function(field=NULL, ...){
+    get_distinct_values = function(field = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/taxon/getDistinctValues/{field}"
@@ -394,7 +394,7 @@ TaxonClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            result <- httr::content(response, simplifyVector = T)
             Response$new(result, response)
         }        
     },
@@ -403,7 +403,7 @@ TaxonClient <- R6::R6Class(
     # '@description 
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_distinct_values_per_group = function(group=NULL, field=NULL, ...){
+    get_distinct_values_per_group = function(group = NULL, field = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/taxon/getDistinctValuesPerGroup/{group}/{field}"
@@ -450,7 +450,7 @@ TaxonClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            result <- httr::content(response, simplifyVector = T)
             Response$new(result, response)
         }        
     },
@@ -483,7 +483,7 @@ TaxonClient <- R6::R6Class(
     # '@description All settings can be queried with /metadata/getSettings
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_setting = function(name=NULL, ...){
+    get_setting = function(name = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/taxon/metadata/getSetting/{name}"
@@ -526,7 +526,7 @@ TaxonClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            result <- httr::content(response, simplifyVector = T)
             Response$new(result, response)
         }        
     },
@@ -536,7 +536,7 @@ TaxonClient <- R6::R6Class(
     # '@return \code{ QueryResult }
     # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    group_by_scientific_name = function(querySpec=NULL, queryParams=list(), ...){
+    group_by_scientific_name = function(querySpec = NULL, queryParams = list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -564,7 +564,7 @@ TaxonClient <- R6::R6Class(
             ## API call result is object of model class
             returnObject <- QueryResult$new()
             ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
+            result <- returnObject$fromList(httr::content(response), typeMapping = list(item = private$getBaseDataType()))
             Response$new(result, response)
         }        
     },
@@ -573,7 +573,7 @@ TaxonClient <- R6::R6Class(
     # '@description See also metadata/getFieldInfo
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    is_operator_allowed = function(field=NULL, operator=NULL, ...){
+    is_operator_allowed = function(field = NULL, operator = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/taxon/metadata/isOperatorAllowed/{field}/{operator}"
@@ -596,7 +596,7 @@ TaxonClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            result <- httr::content(response, simplifyVector = T)
             Response$new(result, response)
         }        
     },
@@ -606,7 +606,7 @@ TaxonClient <- R6::R6Class(
     # '@return \code{ QueryResult }
     # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    query = function(querySpec=NULL, queryParams=list(), ...){
+    query = function(querySpec = NULL, queryParams = list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -634,7 +634,7 @@ TaxonClient <- R6::R6Class(
             ## API call result is object of model class
             returnObject <- QueryResult$new()
             ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
+            result <- returnObject$fromList(httr::content(response), typeMapping = list(item = private$getBaseDataType()))
             Response$new(result, response)
         }        
     }

@@ -23,22 +23,28 @@ nbaR.Multimedia
 
 \describe{
 
-count_http_get Get the number of multimedia documents matching a condition
+count Get the number of multimedia documents matching a given condition
 
 
-count_http_post_json1 Get the number of multimedia documents matching a condition
+count_distinct_values Count the distinct number of values that exist for a given field
 
 
-find2 Find a multimedia document by id
+count_distinct_values_per_group Count the distinct number of field values that exist per the given field to group by
 
 
-find_by_ids2 Find multimedia document by ids
+download_query Dynamic download service: Query for multimedia objects and return result as a stream ...
+
+
+find Find a multimedia document by id
+
+
+find_by_ids Find multimedia document by ids
 
 
 get_distinct_values Get all different values that can be found for one field
 
 
-get_distinct_values_http_post_json1 Get all different values that exist for a field
+get_distinct_values_per_group Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by
 
 
 get_field_info Returns extended information for each field of a multimedia document
@@ -47,19 +53,16 @@ get_field_info Returns extended information for each field of a multimedia docum
 get_paths Returns the full path of all fields within a document
 
 
-get_settings2 List all publicly available configuration settings for the NBA
+get_setting Get the value of an NBA setting
 
 
-get_settings3 Get the value of an NBA setting
+get_settings List all publicly available configuration settings for the NBA
 
 
-is_operator_allowed1 Checks if a given operator is allowed for a given field
+is_operator_allowed Checks if a given operator is allowed for a given field
 
 
 query Query for multimedia documents
-
-
-query_http_post_json1 Query for multimedia documents
 
 }
 }

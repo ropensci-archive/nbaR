@@ -44,39 +44,39 @@ GeoJsonObject <- R6::R6Class(
       GeoJsonObjectList[sapply(GeoJsonObjectList, length) > 0]
       },
 
-    fromList = function(GeoJsonObjectList, typeMapping=NULL) {
+    fromList = function(GeoJsonObjectList, typeMapping = NULL) {
       if (is.null(typeMapping[["crs"]])) {
-          self[["crs"]] <- Crs$new()$fromList(GeoJsonObjectList[["crs"]], typeMapping=typeMapping) 
+          self[["crs"]] <- Crs$new()$fromList(GeoJsonObjectList[["crs"]], typeMapping = typeMapping) 
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["crs"]], "$new()")))
-          self[["crs"]] <- obj$fromList(GeoJsonObjectList[["crs"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["crs"]], "$new()")))
+          self[["crs"]] <- obj$fromList(GeoJsonObjectList[["crs"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["bbox"]])) {
           self[["bbox"]] <- GeoJsonObjectList[["bbox"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["bbox"]], "$new()")))
-          self[["bbox"]] <- obj$fromList(GeoJsonObjectList[["bbox"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["bbox"]], "$new()")))
+          self[["bbox"]] <- obj$fromList(GeoJsonObjectList[["bbox"]], typeMapping = typeMapping)
       }
       invisible(self)
     },
     
-    toJSONString = function(pretty=T) {
-      jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
+    toJSONString = function(pretty = T) {
+      jsonlite::toJSON(self$toList(), simplifyVector = T, auto_unbox = T, pretty = pretty)
     },
 
-    fromJSONString = function(GeoJsonObjectJson, typeMapping=NULL) {
-      GeoJsonObjectList <- jsonlite::fromJSON(GeoJsonObjectJson, simplifyVector=F)
+    fromJSONString = function(GeoJsonObjectJson, typeMapping = NULL) {
+      GeoJsonObjectList <- jsonlite::fromJSON(GeoJsonObjectJson, simplifyVector = F)
       if (is.null(typeMapping[["crs"]])) {
-          self[["crs"]] <- Crs$new()$fromJSONString(jsonlite::toJSON(GeoJsonObjectList[["crs"]], auto_unbox = TRUE), typeMapping=typeMapping) 
+          self[["crs"]] <- Crs$new()$fromJSONString(jsonlite::toJSON(GeoJsonObjectList[["crs"]], auto_unbox = TRUE), typeMapping = typeMapping) 
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["crs"]], "$new()")))
+          obj <- eval(parse(text = paste0(typeMapping[["crs"]], "$new()")))
           self[["crs"]] <- obj$fromJSONString(jsonlite::toJSON(GeoJsonObjectList[["crs"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       if (is.null(typeMapping[["bbox"]])) {
           self[["bbox"]] <- GeoJsonObjectList[["bbox"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["bbox"]], "$new()")))
-          self[["bbox"]] <- obj$fromJSONString(jsonlite::toJSON(GeoJsonObjectList[["bbox"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["bbox"]], "$new()")))
+          self[["bbox"]] <- obj$fromJSONString(jsonlite::toJSON(GeoJsonObjectList[["bbox"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       invisible(self)
     }

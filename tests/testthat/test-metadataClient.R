@@ -9,7 +9,7 @@ if(grepl("testthat", wd)) {
     dataDir <- file.path("tests", "testthat", "data")
 }
 
-mc <- MetadataClient$new(basePath="http://api.biodiversitydata.nl/v2")
+mc <- MetadataClient$new(basePath = "http://api.biodiversitydata.nl/v2")
 
 test_that("Class hierarchy correct", {
     expect_is(mc, "MetadataClient")

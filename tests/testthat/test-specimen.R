@@ -30,8 +30,8 @@ for (file in testfiles) {
         outString <- spec$toJSONString()
         
         ## compare by matching the names of list objects
-        l1 <- jsonlite::fromJSON(jsonString, simplifyVector=F)
-        l2 <- jsonlite::fromJSON(outString, simplifyVector=F)        
+        l1 <- jsonlite::fromJSON(jsonString, simplifyVector = F)
+        l2 <- jsonlite::fromJSON(outString, simplifyVector = F)        
         flattened1 <- rapply(l1, function(x)x)
         flattened2 <- rapply(l2, function(x)x)
         expect_true(all(sort(names(flattened1)) == sort(names(flattened2))))
@@ -42,7 +42,7 @@ for (file in testfiles) {
     })
     
     test_that("fromList works", {
-        list <- jsonlite::fromJSON(jsonString, simplifyVector=F)
+        list <- jsonlite::fromJSON(jsonString, simplifyVector = F)
         spec <- Specimen$new()
         spec$fromList(list)
         expect_true(class(spec)[1] == "Specimen")

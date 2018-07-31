@@ -9,7 +9,7 @@ if(grepl("testthat", wd)) {
     dataDir <- file.path("tests", "testthat", "data")
 }
 
-gc <- GeoClient$new(basePath="http://api.biodiversitydata.nl/v2")
+gc <- GeoClient$new(basePath = "http://api.biodiversitydata.nl/v2")
 
 test_that("Class hierarchy correct", {
     expect_is(gc, "GeoClient")

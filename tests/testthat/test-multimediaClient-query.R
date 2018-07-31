@@ -9,7 +9,7 @@ if(grepl("testthat", wd)) {
     dataDir <- file.path("tests", "testthat", "data")
 }
 
-mc <- MultimediaClient$new(basePath="http://api.biodiversitydata.nl/v2")
+mc <- MultimediaClient$new(basePath = "http://api.biodiversitydata.nl/v2")
 
 test_that("Query with MultiMediaClient returns multimedia objects", {
     res <- mc$query()
@@ -23,9 +23,9 @@ test_that("Query with MultiMediaClient returns multimedia objects", {
 })
 
 test_that("Query with QuerySpec works", {
-    qc <- QueryCondition$new(field="identifications.defaultClassification.genus", operator="EQUALS", value="Phalacrocorax")
+    qc <- QueryCondition$new(field = "identifications.defaultClassification.genus", operator = "EQUALS", value = "Phalacrocorax")
     qs <- QuerySpec$new(conditions=list(qc))
-    res <- mc$query(querySpec=qs)
+    res <- mc$query(querySpec = qs)
     for (r in res$content$resultSet) {
         expect_is(r$item, "MultiMediaObject")
     }    

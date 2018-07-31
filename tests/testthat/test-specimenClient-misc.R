@@ -28,17 +28,17 @@ test_that("exists works", {
 test_that("count works", {
     qs <- QuerySpec$new(
         conditions=list(QueryCondition$new(
-                            field="identifications.defaultClassification.genus",
-                            operator="EQUALS",
-                            value="Passiflora"
+                            field = "identifications.defaultClassification.genus",
+                            operator = "EQUALS",
+                            value = "Passiflora"
         )))
-    res <- sc$count(querySpec=qs)
+    res <- sc$count(querySpec = qs)
     expect_true(is.numeric(res$content))
     expect_true(res$content > 0)
 
     ## test with queryParams instead of querySpec
     ## test also for empty result
-    res <- sc$count(queryParams=list(sourceSystem.code = "XXX"))    
+    res <- sc$count(queryParams=list(sourceSystem.code  =  "XXX"))    
     expect_true(is.numeric(res$content))
     expect_equal(res$content, 0)
 })
@@ -52,7 +52,7 @@ test_that("getDistinctValues works", {
     ## check for all paths
     paths <- sc$get_paths()$content
     ## fielddata not supported for geoShape, remove it
-    paths <- paths[paths != "gatheringEvent.siteCoordinates.geoShape"]
+    paths <- paths[paths !=  "gatheringEvent.siteCoordinates.geoShape"]
     for (p in paths) {
         res <- sc$get_distinct_values(p)
         ## check if we get list back
@@ -65,11 +65,11 @@ test_that("getDistinctValues works", {
 test_that("download endpoint works", {    
     qs <- QuerySpec$new(
         conditions=list(QueryCondition$new(
-                            field="identifications.defaultClassification.genus",
-                            operator="EQUALS",
-                            value="Passiflora"                            
-                        )), size=100)
-    res <- sc$download_query(querySpec=qs)
+                            field = "identifications.defaultClassification.genus",
+                            operator = "EQUALS",
+                            value = "Passiflora"                            
+                        )), size = 100)
+    res <- sc$download_query(querySpec = qs)
     expect_length(res$content, 100)
 
     ## check if we got specimen documents back
@@ -79,7 +79,7 @@ test_that("download endpoint works", {
 })
 
 test_that("getDistinctValuesPerGroup works", {
-    res <- sc$get_distinct_values_per_group(group="sourceSystem.code", field="recordBasis")
+    res <- sc$get_distinct_values_per_group(group = "sourceSystem.code", field = "recordBasis")
     ## Result should be a list with two entries, for BRAHMS and CRS
     expect_is(res$content, "list")
     expect_length(res$content, 2)
@@ -98,7 +98,7 @@ test_that("getNamedCollections works", {
 })
 
 test_that("groupByScientificName works", {
-    qc <- QueryCondition$new(field="identifications.defaultClassification.genus", operator="EQUALS", value="Passiflora")
+    qc <- QueryCondition$new(field = "identifications.defaultClassification.genus", operator = "EQUALS", value = "Passiflora")
 
     ## check with generic QuerySpec
     qs <- QuerySpec$new(conditions=list(qc))
@@ -110,7 +110,7 @@ test_that("groupByScientificName works", {
     }
 
     ## check if it works with a GroupByScientificNameQuerySpec
-    qs <- GroupByScientificNameQuerySpec$new(conditions=list(qc), groupSort="NAME_ASC")
+    qs <- GroupByScientificNameQuerySpec$new(conditions=list(qc), groupSort = "NAME_ASC")
     res <- sc$group_by_scientific_name(qs)
     
     ## check if we get specimen documents

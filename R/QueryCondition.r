@@ -96,95 +96,95 @@ QueryCondition <- R6::R6Class(
       QueryConditionList[sapply(QueryConditionList, length) > 0]
       },
 
-    fromList = function(QueryConditionList, typeMapping=NULL) {
+    fromList = function(QueryConditionList, typeMapping = NULL) {
       if (is.null(typeMapping[["not"]])) {
           self[["not"]] <- QueryConditionList[["not"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["not"]], "$new()")))
-          self[["not"]] <- obj$fromList(QueryConditionList[["not"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["not"]], "$new()")))
+          self[["not"]] <- obj$fromList(QueryConditionList[["not"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["field"]])) {
           self[["field"]] <- QueryConditionList[["field"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["field"]], "$new()")))
-          self[["field"]] <- obj$fromList(QueryConditionList[["field"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["field"]], "$new()")))
+          self[["field"]] <- obj$fromList(QueryConditionList[["field"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["operator"]])) {
           self[["operator"]] <- QueryConditionList[["operator"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["operator"]], "$new()")))
-          self[["operator"]] <- obj$fromList(QueryConditionList[["operator"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["operator"]], "$new()")))
+          self[["operator"]] <- obj$fromList(QueryConditionList[["operator"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["value"]])) {
           self[["value"]] <- QueryConditionList[["value"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["value"]], "$new()")))
-          self[["value"]] <- obj$fromList(QueryConditionList[["value"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["value"]], "$new()")))
+          self[["value"]] <- obj$fromList(QueryConditionList[["value"]], typeMapping = typeMapping)
       }
       self[["and"]] <- lapply(QueryConditionList[["and"]],
-                                       function(x) QueryCondition$new()$fromList(x, typeMapping=typeMapping))
+                                       function(x) QueryCondition$new()$fromList(x, typeMapping = typeMapping))
       self[["or"]] <- lapply(QueryConditionList[["or"]],
-                                       function(x) QueryCondition$new()$fromList(x, typeMapping=typeMapping))
+                                       function(x) QueryCondition$new()$fromList(x, typeMapping = typeMapping))
       if (is.null(typeMapping[["constantScore"]])) {
           self[["constantScore"]] <- QueryConditionList[["constantScore"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["constantScore"]], "$new()")))
-          self[["constantScore"]] <- obj$fromList(QueryConditionList[["constantScore"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["constantScore"]], "$new()")))
+          self[["constantScore"]] <- obj$fromList(QueryConditionList[["constantScore"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["boost"]])) {
           self[["boost"]] <- QueryConditionList[["boost"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["boost"]], "$new()")))
-          self[["boost"]] <- obj$fromList(QueryConditionList[["boost"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["boost"]], "$new()")))
+          self[["boost"]] <- obj$fromList(QueryConditionList[["boost"]], typeMapping = typeMapping)
       }
       invisible(self)
     },
     
-    toJSONString = function(pretty=T) {
-      jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
+    toJSONString = function(pretty = T) {
+      jsonlite::toJSON(self$toList(), simplifyVector = T, auto_unbox = T, pretty = pretty)
     },
 
-    fromJSONString = function(QueryConditionJson, typeMapping=NULL) {
-      QueryConditionList <- jsonlite::fromJSON(QueryConditionJson, simplifyVector=F)
+    fromJSONString = function(QueryConditionJson, typeMapping = NULL) {
+      QueryConditionList <- jsonlite::fromJSON(QueryConditionJson, simplifyVector = F)
       if (is.null(typeMapping[["not"]])) {
           self[["not"]] <- QueryConditionList[["not"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["not"]], "$new()")))
-          self[["not"]] <- obj$fromJSONString(jsonlite::toJSON(QueryConditionList[["not"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["not"]], "$new()")))
+          self[["not"]] <- obj$fromJSONString(jsonlite::toJSON(QueryConditionList[["not"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["field"]])) {
           self[["field"]] <- QueryConditionList[["field"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["field"]], "$new()")))
-          self[["field"]] <- obj$fromJSONString(jsonlite::toJSON(QueryConditionList[["field"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["field"]], "$new()")))
+          self[["field"]] <- obj$fromJSONString(jsonlite::toJSON(QueryConditionList[["field"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["operator"]])) {
           self[["operator"]] <- QueryConditionList[["operator"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["operator"]], "$new()")))
-          self[["operator"]] <- obj$fromJSONString(jsonlite::toJSON(QueryConditionList[["operator"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["operator"]], "$new()")))
+          self[["operator"]] <- obj$fromJSONString(jsonlite::toJSON(QueryConditionList[["operator"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["value"]])) {
           self[["value"]] <- QueryConditionList[["value"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["value"]], "$new()")))
-          self[["value"]] <- obj$fromJSONString(jsonlite::toJSON(QueryConditionList[["value"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["value"]], "$new()")))
+          self[["value"]] <- obj$fromJSONString(jsonlite::toJSON(QueryConditionList[["value"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       self[["and"]] <- lapply(QueryConditionList[["and"]],
-                                        function(x) QueryCondition$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
+                                        function(x) QueryCondition$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping = typeMapping))
       self[["or"]] <- lapply(QueryConditionList[["or"]],
-                                        function(x) QueryCondition$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
+                                        function(x) QueryCondition$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping = typeMapping))
       if (is.null(typeMapping[["constantScore"]])) {
           self[["constantScore"]] <- QueryConditionList[["constantScore"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["constantScore"]], "$new()")))
-          self[["constantScore"]] <- obj$fromJSONString(jsonlite::toJSON(QueryConditionList[["constantScore"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["constantScore"]], "$new()")))
+          self[["constantScore"]] <- obj$fromJSONString(jsonlite::toJSON(QueryConditionList[["constantScore"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["boost"]])) {
           self[["boost"]] <- QueryConditionList[["boost"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["boost"]], "$new()")))
-          self[["boost"]] <- obj$fromJSONString(jsonlite::toJSON(QueryConditionList[["boost"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["boost"]], "$new()")))
+          self[["boost"]] <- obj$fromJSONString(jsonlite::toJSON(QueryConditionList[["boost"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       invisible(self)
     }

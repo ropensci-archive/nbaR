@@ -258,327 +258,327 @@ ChronoStratigraphy <- R6::R6Class(
       ChronoStratigraphyList[sapply(ChronoStratigraphyList, length) > 0]
       },
 
-    fromList = function(ChronoStratigraphyList, typeMapping=NULL) {
+    fromList = function(ChronoStratigraphyList, typeMapping = NULL) {
       if (is.null(typeMapping[["youngRegionalSubstage"]])) {
           self[["youngRegionalSubstage"]] <- ChronoStratigraphyList[["youngRegionalSubstage"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngRegionalSubstage"]], "$new()")))
-          self[["youngRegionalSubstage"]] <- obj$fromList(ChronoStratigraphyList[["youngRegionalSubstage"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngRegionalSubstage"]], "$new()")))
+          self[["youngRegionalSubstage"]] <- obj$fromList(ChronoStratigraphyList[["youngRegionalSubstage"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["youngRegionalStage"]])) {
           self[["youngRegionalStage"]] <- ChronoStratigraphyList[["youngRegionalStage"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngRegionalStage"]], "$new()")))
-          self[["youngRegionalStage"]] <- obj$fromList(ChronoStratigraphyList[["youngRegionalStage"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngRegionalStage"]], "$new()")))
+          self[["youngRegionalStage"]] <- obj$fromList(ChronoStratigraphyList[["youngRegionalStage"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["youngRegionalSeries"]])) {
           self[["youngRegionalSeries"]] <- ChronoStratigraphyList[["youngRegionalSeries"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngRegionalSeries"]], "$new()")))
-          self[["youngRegionalSeries"]] <- obj$fromList(ChronoStratigraphyList[["youngRegionalSeries"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngRegionalSeries"]], "$new()")))
+          self[["youngRegionalSeries"]] <- obj$fromList(ChronoStratigraphyList[["youngRegionalSeries"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["youngDatingQualifier"]])) {
           self[["youngDatingQualifier"]] <- ChronoStratigraphyList[["youngDatingQualifier"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngDatingQualifier"]], "$new()")))
-          self[["youngDatingQualifier"]] <- obj$fromList(ChronoStratigraphyList[["youngDatingQualifier"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngDatingQualifier"]], "$new()")))
+          self[["youngDatingQualifier"]] <- obj$fromList(ChronoStratigraphyList[["youngDatingQualifier"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["youngInternSystem"]])) {
           self[["youngInternSystem"]] <- ChronoStratigraphyList[["youngInternSystem"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngInternSystem"]], "$new()")))
-          self[["youngInternSystem"]] <- obj$fromList(ChronoStratigraphyList[["youngInternSystem"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngInternSystem"]], "$new()")))
+          self[["youngInternSystem"]] <- obj$fromList(ChronoStratigraphyList[["youngInternSystem"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["youngInternSubstage"]])) {
           self[["youngInternSubstage"]] <- ChronoStratigraphyList[["youngInternSubstage"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngInternSubstage"]], "$new()")))
-          self[["youngInternSubstage"]] <- obj$fromList(ChronoStratigraphyList[["youngInternSubstage"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngInternSubstage"]], "$new()")))
+          self[["youngInternSubstage"]] <- obj$fromList(ChronoStratigraphyList[["youngInternSubstage"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["youngInternStage"]])) {
           self[["youngInternStage"]] <- ChronoStratigraphyList[["youngInternStage"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngInternStage"]], "$new()")))
-          self[["youngInternStage"]] <- obj$fromList(ChronoStratigraphyList[["youngInternStage"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngInternStage"]], "$new()")))
+          self[["youngInternStage"]] <- obj$fromList(ChronoStratigraphyList[["youngInternStage"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["youngInternSeries"]])) {
           self[["youngInternSeries"]] <- ChronoStratigraphyList[["youngInternSeries"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngInternSeries"]], "$new()")))
-          self[["youngInternSeries"]] <- obj$fromList(ChronoStratigraphyList[["youngInternSeries"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngInternSeries"]], "$new()")))
+          self[["youngInternSeries"]] <- obj$fromList(ChronoStratigraphyList[["youngInternSeries"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["youngInternErathem"]])) {
           self[["youngInternErathem"]] <- ChronoStratigraphyList[["youngInternErathem"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngInternErathem"]], "$new()")))
-          self[["youngInternErathem"]] <- obj$fromList(ChronoStratigraphyList[["youngInternErathem"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngInternErathem"]], "$new()")))
+          self[["youngInternErathem"]] <- obj$fromList(ChronoStratigraphyList[["youngInternErathem"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["youngInternEonothem"]])) {
           self[["youngInternEonothem"]] <- ChronoStratigraphyList[["youngInternEonothem"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngInternEonothem"]], "$new()")))
-          self[["youngInternEonothem"]] <- obj$fromList(ChronoStratigraphyList[["youngInternEonothem"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngInternEonothem"]], "$new()")))
+          self[["youngInternEonothem"]] <- obj$fromList(ChronoStratigraphyList[["youngInternEonothem"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["youngChronoName"]])) {
           self[["youngChronoName"]] <- ChronoStratigraphyList[["youngChronoName"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngChronoName"]], "$new()")))
-          self[["youngChronoName"]] <- obj$fromList(ChronoStratigraphyList[["youngChronoName"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngChronoName"]], "$new()")))
+          self[["youngChronoName"]] <- obj$fromList(ChronoStratigraphyList[["youngChronoName"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["youngCertainty"]])) {
           self[["youngCertainty"]] <- ChronoStratigraphyList[["youngCertainty"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngCertainty"]], "$new()")))
-          self[["youngCertainty"]] <- obj$fromList(ChronoStratigraphyList[["youngCertainty"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngCertainty"]], "$new()")))
+          self[["youngCertainty"]] <- obj$fromList(ChronoStratigraphyList[["youngCertainty"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldDatingQualifier"]])) {
           self[["oldDatingQualifier"]] <- ChronoStratigraphyList[["oldDatingQualifier"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldDatingQualifier"]], "$new()")))
-          self[["oldDatingQualifier"]] <- obj$fromList(ChronoStratigraphyList[["oldDatingQualifier"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldDatingQualifier"]], "$new()")))
+          self[["oldDatingQualifier"]] <- obj$fromList(ChronoStratigraphyList[["oldDatingQualifier"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["chronoPreferredFlag"]])) {
           self[["chronoPreferredFlag"]] <- ChronoStratigraphyList[["chronoPreferredFlag"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["chronoPreferredFlag"]], "$new()")))
-          self[["chronoPreferredFlag"]] <- obj$fromList(ChronoStratigraphyList[["chronoPreferredFlag"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["chronoPreferredFlag"]], "$new()")))
+          self[["chronoPreferredFlag"]] <- obj$fromList(ChronoStratigraphyList[["chronoPreferredFlag"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldRegionalSubstage"]])) {
           self[["oldRegionalSubstage"]] <- ChronoStratigraphyList[["oldRegionalSubstage"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldRegionalSubstage"]], "$new()")))
-          self[["oldRegionalSubstage"]] <- obj$fromList(ChronoStratigraphyList[["oldRegionalSubstage"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldRegionalSubstage"]], "$new()")))
+          self[["oldRegionalSubstage"]] <- obj$fromList(ChronoStratigraphyList[["oldRegionalSubstage"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldRegionalStage"]])) {
           self[["oldRegionalStage"]] <- ChronoStratigraphyList[["oldRegionalStage"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldRegionalStage"]], "$new()")))
-          self[["oldRegionalStage"]] <- obj$fromList(ChronoStratigraphyList[["oldRegionalStage"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldRegionalStage"]], "$new()")))
+          self[["oldRegionalStage"]] <- obj$fromList(ChronoStratigraphyList[["oldRegionalStage"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldRegionalSeries"]])) {
           self[["oldRegionalSeries"]] <- ChronoStratigraphyList[["oldRegionalSeries"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldRegionalSeries"]], "$new()")))
-          self[["oldRegionalSeries"]] <- obj$fromList(ChronoStratigraphyList[["oldRegionalSeries"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldRegionalSeries"]], "$new()")))
+          self[["oldRegionalSeries"]] <- obj$fromList(ChronoStratigraphyList[["oldRegionalSeries"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldInternSystem"]])) {
           self[["oldInternSystem"]] <- ChronoStratigraphyList[["oldInternSystem"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldInternSystem"]], "$new()")))
-          self[["oldInternSystem"]] <- obj$fromList(ChronoStratigraphyList[["oldInternSystem"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldInternSystem"]], "$new()")))
+          self[["oldInternSystem"]] <- obj$fromList(ChronoStratigraphyList[["oldInternSystem"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldInternSubstage"]])) {
           self[["oldInternSubstage"]] <- ChronoStratigraphyList[["oldInternSubstage"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldInternSubstage"]], "$new()")))
-          self[["oldInternSubstage"]] <- obj$fromList(ChronoStratigraphyList[["oldInternSubstage"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldInternSubstage"]], "$new()")))
+          self[["oldInternSubstage"]] <- obj$fromList(ChronoStratigraphyList[["oldInternSubstage"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldInternStage"]])) {
           self[["oldInternStage"]] <- ChronoStratigraphyList[["oldInternStage"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldInternStage"]], "$new()")))
-          self[["oldInternStage"]] <- obj$fromList(ChronoStratigraphyList[["oldInternStage"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldInternStage"]], "$new()")))
+          self[["oldInternStage"]] <- obj$fromList(ChronoStratigraphyList[["oldInternStage"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldInternSeries"]])) {
           self[["oldInternSeries"]] <- ChronoStratigraphyList[["oldInternSeries"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldInternSeries"]], "$new()")))
-          self[["oldInternSeries"]] <- obj$fromList(ChronoStratigraphyList[["oldInternSeries"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldInternSeries"]], "$new()")))
+          self[["oldInternSeries"]] <- obj$fromList(ChronoStratigraphyList[["oldInternSeries"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldInternErathem"]])) {
           self[["oldInternErathem"]] <- ChronoStratigraphyList[["oldInternErathem"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldInternErathem"]], "$new()")))
-          self[["oldInternErathem"]] <- obj$fromList(ChronoStratigraphyList[["oldInternErathem"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldInternErathem"]], "$new()")))
+          self[["oldInternErathem"]] <- obj$fromList(ChronoStratigraphyList[["oldInternErathem"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldInternEonothem"]])) {
           self[["oldInternEonothem"]] <- ChronoStratigraphyList[["oldInternEonothem"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldInternEonothem"]], "$new()")))
-          self[["oldInternEonothem"]] <- obj$fromList(ChronoStratigraphyList[["oldInternEonothem"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldInternEonothem"]], "$new()")))
+          self[["oldInternEonothem"]] <- obj$fromList(ChronoStratigraphyList[["oldInternEonothem"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldChronoName"]])) {
           self[["oldChronoName"]] <- ChronoStratigraphyList[["oldChronoName"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldChronoName"]], "$new()")))
-          self[["oldChronoName"]] <- obj$fromList(ChronoStratigraphyList[["oldChronoName"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldChronoName"]], "$new()")))
+          self[["oldChronoName"]] <- obj$fromList(ChronoStratigraphyList[["oldChronoName"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["chronoIdentifier"]])) {
           self[["chronoIdentifier"]] <- ChronoStratigraphyList[["chronoIdentifier"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["chronoIdentifier"]], "$new()")))
-          self[["chronoIdentifier"]] <- obj$fromList(ChronoStratigraphyList[["chronoIdentifier"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["chronoIdentifier"]], "$new()")))
+          self[["chronoIdentifier"]] <- obj$fromList(ChronoStratigraphyList[["chronoIdentifier"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldCertainty"]])) {
           self[["oldCertainty"]] <- ChronoStratigraphyList[["oldCertainty"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldCertainty"]], "$new()")))
-          self[["oldCertainty"]] <- obj$fromList(ChronoStratigraphyList[["oldCertainty"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldCertainty"]], "$new()")))
+          self[["oldCertainty"]] <- obj$fromList(ChronoStratigraphyList[["oldCertainty"]], typeMapping = typeMapping)
       }
       invisible(self)
     },
     
-    toJSONString = function(pretty=T) {
-      jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
+    toJSONString = function(pretty = T) {
+      jsonlite::toJSON(self$toList(), simplifyVector = T, auto_unbox = T, pretty = pretty)
     },
 
-    fromJSONString = function(ChronoStratigraphyJson, typeMapping=NULL) {
-      ChronoStratigraphyList <- jsonlite::fromJSON(ChronoStratigraphyJson, simplifyVector=F)
+    fromJSONString = function(ChronoStratigraphyJson, typeMapping = NULL) {
+      ChronoStratigraphyList <- jsonlite::fromJSON(ChronoStratigraphyJson, simplifyVector = F)
       if (is.null(typeMapping[["youngRegionalSubstage"]])) {
           self[["youngRegionalSubstage"]] <- ChronoStratigraphyList[["youngRegionalSubstage"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngRegionalSubstage"]], "$new()")))
-          self[["youngRegionalSubstage"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngRegionalSubstage"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngRegionalSubstage"]], "$new()")))
+          self[["youngRegionalSubstage"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngRegionalSubstage"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["youngRegionalStage"]])) {
           self[["youngRegionalStage"]] <- ChronoStratigraphyList[["youngRegionalStage"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngRegionalStage"]], "$new()")))
-          self[["youngRegionalStage"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngRegionalStage"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngRegionalStage"]], "$new()")))
+          self[["youngRegionalStage"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngRegionalStage"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["youngRegionalSeries"]])) {
           self[["youngRegionalSeries"]] <- ChronoStratigraphyList[["youngRegionalSeries"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngRegionalSeries"]], "$new()")))
-          self[["youngRegionalSeries"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngRegionalSeries"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngRegionalSeries"]], "$new()")))
+          self[["youngRegionalSeries"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngRegionalSeries"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["youngDatingQualifier"]])) {
           self[["youngDatingQualifier"]] <- ChronoStratigraphyList[["youngDatingQualifier"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngDatingQualifier"]], "$new()")))
-          self[["youngDatingQualifier"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngDatingQualifier"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngDatingQualifier"]], "$new()")))
+          self[["youngDatingQualifier"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngDatingQualifier"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["youngInternSystem"]])) {
           self[["youngInternSystem"]] <- ChronoStratigraphyList[["youngInternSystem"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngInternSystem"]], "$new()")))
-          self[["youngInternSystem"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngInternSystem"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngInternSystem"]], "$new()")))
+          self[["youngInternSystem"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngInternSystem"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["youngInternSubstage"]])) {
           self[["youngInternSubstage"]] <- ChronoStratigraphyList[["youngInternSubstage"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngInternSubstage"]], "$new()")))
-          self[["youngInternSubstage"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngInternSubstage"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngInternSubstage"]], "$new()")))
+          self[["youngInternSubstage"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngInternSubstage"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["youngInternStage"]])) {
           self[["youngInternStage"]] <- ChronoStratigraphyList[["youngInternStage"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngInternStage"]], "$new()")))
-          self[["youngInternStage"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngInternStage"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngInternStage"]], "$new()")))
+          self[["youngInternStage"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngInternStage"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["youngInternSeries"]])) {
           self[["youngInternSeries"]] <- ChronoStratigraphyList[["youngInternSeries"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngInternSeries"]], "$new()")))
-          self[["youngInternSeries"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngInternSeries"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngInternSeries"]], "$new()")))
+          self[["youngInternSeries"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngInternSeries"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["youngInternErathem"]])) {
           self[["youngInternErathem"]] <- ChronoStratigraphyList[["youngInternErathem"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngInternErathem"]], "$new()")))
-          self[["youngInternErathem"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngInternErathem"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngInternErathem"]], "$new()")))
+          self[["youngInternErathem"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngInternErathem"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["youngInternEonothem"]])) {
           self[["youngInternEonothem"]] <- ChronoStratigraphyList[["youngInternEonothem"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngInternEonothem"]], "$new()")))
-          self[["youngInternEonothem"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngInternEonothem"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngInternEonothem"]], "$new()")))
+          self[["youngInternEonothem"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngInternEonothem"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["youngChronoName"]])) {
           self[["youngChronoName"]] <- ChronoStratigraphyList[["youngChronoName"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngChronoName"]], "$new()")))
-          self[["youngChronoName"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngChronoName"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngChronoName"]], "$new()")))
+          self[["youngChronoName"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngChronoName"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["youngCertainty"]])) {
           self[["youngCertainty"]] <- ChronoStratigraphyList[["youngCertainty"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["youngCertainty"]], "$new()")))
-          self[["youngCertainty"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngCertainty"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["youngCertainty"]], "$new()")))
+          self[["youngCertainty"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["youngCertainty"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldDatingQualifier"]])) {
           self[["oldDatingQualifier"]] <- ChronoStratigraphyList[["oldDatingQualifier"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldDatingQualifier"]], "$new()")))
-          self[["oldDatingQualifier"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldDatingQualifier"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldDatingQualifier"]], "$new()")))
+          self[["oldDatingQualifier"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldDatingQualifier"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["chronoPreferredFlag"]])) {
           self[["chronoPreferredFlag"]] <- ChronoStratigraphyList[["chronoPreferredFlag"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["chronoPreferredFlag"]], "$new()")))
-          self[["chronoPreferredFlag"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["chronoPreferredFlag"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["chronoPreferredFlag"]], "$new()")))
+          self[["chronoPreferredFlag"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["chronoPreferredFlag"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldRegionalSubstage"]])) {
           self[["oldRegionalSubstage"]] <- ChronoStratigraphyList[["oldRegionalSubstage"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldRegionalSubstage"]], "$new()")))
-          self[["oldRegionalSubstage"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldRegionalSubstage"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldRegionalSubstage"]], "$new()")))
+          self[["oldRegionalSubstage"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldRegionalSubstage"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldRegionalStage"]])) {
           self[["oldRegionalStage"]] <- ChronoStratigraphyList[["oldRegionalStage"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldRegionalStage"]], "$new()")))
-          self[["oldRegionalStage"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldRegionalStage"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldRegionalStage"]], "$new()")))
+          self[["oldRegionalStage"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldRegionalStage"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldRegionalSeries"]])) {
           self[["oldRegionalSeries"]] <- ChronoStratigraphyList[["oldRegionalSeries"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldRegionalSeries"]], "$new()")))
-          self[["oldRegionalSeries"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldRegionalSeries"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldRegionalSeries"]], "$new()")))
+          self[["oldRegionalSeries"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldRegionalSeries"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldInternSystem"]])) {
           self[["oldInternSystem"]] <- ChronoStratigraphyList[["oldInternSystem"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldInternSystem"]], "$new()")))
-          self[["oldInternSystem"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldInternSystem"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldInternSystem"]], "$new()")))
+          self[["oldInternSystem"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldInternSystem"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldInternSubstage"]])) {
           self[["oldInternSubstage"]] <- ChronoStratigraphyList[["oldInternSubstage"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldInternSubstage"]], "$new()")))
-          self[["oldInternSubstage"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldInternSubstage"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldInternSubstage"]], "$new()")))
+          self[["oldInternSubstage"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldInternSubstage"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldInternStage"]])) {
           self[["oldInternStage"]] <- ChronoStratigraphyList[["oldInternStage"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldInternStage"]], "$new()")))
-          self[["oldInternStage"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldInternStage"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldInternStage"]], "$new()")))
+          self[["oldInternStage"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldInternStage"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldInternSeries"]])) {
           self[["oldInternSeries"]] <- ChronoStratigraphyList[["oldInternSeries"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldInternSeries"]], "$new()")))
-          self[["oldInternSeries"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldInternSeries"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldInternSeries"]], "$new()")))
+          self[["oldInternSeries"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldInternSeries"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldInternErathem"]])) {
           self[["oldInternErathem"]] <- ChronoStratigraphyList[["oldInternErathem"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldInternErathem"]], "$new()")))
-          self[["oldInternErathem"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldInternErathem"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldInternErathem"]], "$new()")))
+          self[["oldInternErathem"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldInternErathem"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldInternEonothem"]])) {
           self[["oldInternEonothem"]] <- ChronoStratigraphyList[["oldInternEonothem"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldInternEonothem"]], "$new()")))
-          self[["oldInternEonothem"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldInternEonothem"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldInternEonothem"]], "$new()")))
+          self[["oldInternEonothem"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldInternEonothem"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldChronoName"]])) {
           self[["oldChronoName"]] <- ChronoStratigraphyList[["oldChronoName"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldChronoName"]], "$new()")))
-          self[["oldChronoName"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldChronoName"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldChronoName"]], "$new()")))
+          self[["oldChronoName"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldChronoName"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["chronoIdentifier"]])) {
           self[["chronoIdentifier"]] <- ChronoStratigraphyList[["chronoIdentifier"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["chronoIdentifier"]], "$new()")))
-          self[["chronoIdentifier"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["chronoIdentifier"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["chronoIdentifier"]], "$new()")))
+          self[["chronoIdentifier"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["chronoIdentifier"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["oldCertainty"]])) {
           self[["oldCertainty"]] <- ChronoStratigraphyList[["oldCertainty"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["oldCertainty"]], "$new()")))
-          self[["oldCertainty"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldCertainty"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["oldCertainty"]], "$new()")))
+          self[["oldCertainty"]] <- obj$fromJSONString(jsonlite::toJSON(ChronoStratigraphyList[["oldCertainty"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       invisible(self)
     }

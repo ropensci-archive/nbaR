@@ -51,7 +51,7 @@
 #' @export
 MetadataClient <- R6::R6Class(
     "MetadataClient",
-    inherit=ApiClient,
+    inherit = ApiClient,
     public = list(
         userAgent = "Swagger-Codegen/0.0.0/r",
         initialize = function(basePath){
@@ -224,7 +224,7 @@ MetadataClient <- R6::R6Class(
             ## API call result is object of model class
             returnObject <- RestService$new()
             ## API call result is "list container"
-            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=private$getBaseDataType())))
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping = list(item = private$getBaseDataType())))
             Response$new(result, response)
         }        
     },
@@ -233,7 +233,7 @@ MetadataClient <- R6::R6Class(
     # '@description All settings can be queried with /metadata/getSettings
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_setting = function(name=NULL, ...){
+    get_setting = function(name = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/metadata/getSetting/{name}"
@@ -276,7 +276,7 @@ MetadataClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            result <- httr::content(response, simplifyVector = T)
             Response$new(result, response)
         }        
     },
@@ -302,7 +302,7 @@ MetadataClient <- R6::R6Class(
             ## API call result is object of model class
             returnObject <- SourceSystem$new()
             ## API call result is "list container"
-            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=private$getBaseDataType())))
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping = list(item = private$getBaseDataType())))
             Response$new(result, response)
         }        
     }

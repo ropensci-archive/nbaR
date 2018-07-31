@@ -52,50 +52,50 @@ Expert <- R6::R6Class(
       ExpertList[sapply(ExpertList, length) > 0]
       },
 
-    fromList = function(ExpertList, typeMapping=NULL) {
+    fromList = function(ExpertList, typeMapping = NULL) {
       if (is.null(typeMapping[["agentText"]])) {
           self[["agentText"]] <- ExpertList[["agentText"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["agentText"]], "$new()")))
-          self[["agentText"]] <- obj$fromList(ExpertList[["agentText"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["agentText"]], "$new()")))
+          self[["agentText"]] <- obj$fromList(ExpertList[["agentText"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["fullName"]])) {
           self[["fullName"]] <- ExpertList[["fullName"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["fullName"]], "$new()")))
-          self[["fullName"]] <- obj$fromList(ExpertList[["fullName"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["fullName"]], "$new()")))
+          self[["fullName"]] <- obj$fromList(ExpertList[["fullName"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["organization"]])) {
-          self[["organization"]] <- Organization$new()$fromList(ExpertList[["organization"]], typeMapping=typeMapping) 
+          self[["organization"]] <- Organization$new()$fromList(ExpertList[["organization"]], typeMapping = typeMapping) 
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["organization"]], "$new()")))
-          self[["organization"]] <- obj$fromList(ExpertList[["organization"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["organization"]], "$new()")))
+          self[["organization"]] <- obj$fromList(ExpertList[["organization"]], typeMapping = typeMapping)
       }
       invisible(self)
     },
     
-    toJSONString = function(pretty=T) {
-      jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
+    toJSONString = function(pretty = T) {
+      jsonlite::toJSON(self$toList(), simplifyVector = T, auto_unbox = T, pretty = pretty)
     },
 
-    fromJSONString = function(ExpertJson, typeMapping=NULL) {
-      ExpertList <- jsonlite::fromJSON(ExpertJson, simplifyVector=F)
+    fromJSONString = function(ExpertJson, typeMapping = NULL) {
+      ExpertList <- jsonlite::fromJSON(ExpertJson, simplifyVector = F)
       if (is.null(typeMapping[["agentText"]])) {
           self[["agentText"]] <- ExpertList[["agentText"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["agentText"]], "$new()")))
-          self[["agentText"]] <- obj$fromJSONString(jsonlite::toJSON(ExpertList[["agentText"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["agentText"]], "$new()")))
+          self[["agentText"]] <- obj$fromJSONString(jsonlite::toJSON(ExpertList[["agentText"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["fullName"]])) {
           self[["fullName"]] <- ExpertList[["fullName"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["fullName"]], "$new()")))
-          self[["fullName"]] <- obj$fromJSONString(jsonlite::toJSON(ExpertList[["fullName"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["fullName"]], "$new()")))
+          self[["fullName"]] <- obj$fromJSONString(jsonlite::toJSON(ExpertList[["fullName"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["organization"]])) {
-          self[["organization"]] <- Organization$new()$fromJSONString(jsonlite::toJSON(ExpertList[["organization"]], auto_unbox = TRUE), typeMapping=typeMapping) 
+          self[["organization"]] <- Organization$new()$fromJSONString(jsonlite::toJSON(ExpertList[["organization"]], auto_unbox = TRUE), typeMapping = typeMapping) 
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["organization"]], "$new()")))
+          obj <- eval(parse(text = paste0(typeMapping[["organization"]], "$new()")))
           self[["organization"]] <- obj$fromJSONString(jsonlite::toJSON(ExpertList[["organization"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       invisible(self)

@@ -63,7 +63,7 @@
 #' @export
 GeoClient <- R6::R6Class(
     "GeoClient",
-    inherit=ApiClient,
+    inherit = ApiClient,
     public = list(
         userAgent = "Swagger-Codegen/0.0.0/r",
         initialize = function(basePath){
@@ -76,7 +76,7 @@ GeoClient <- R6::R6Class(
     # '@return \code{ integer }
     # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    count = function(querySpec=NULL, queryParams=list(), ...){
+    count = function(querySpec = NULL, queryParams = list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -111,7 +111,7 @@ GeoClient <- R6::R6Class(
     # '@description 
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    count_distinct_values = function(field=NULL, ...){
+    count_distinct_values = function(field = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/geo/countDistinctValues/{field}"
@@ -130,7 +130,7 @@ GeoClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            result <- httr::content(response, simplifyVector = T)
             Response$new(result, response)
         }        
     },
@@ -139,7 +139,7 @@ GeoClient <- R6::R6Class(
     # '@description 
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    count_distinct_values_per_group = function(group=NULL, field=NULL, ...){
+    count_distinct_values_per_group = function(group = NULL, field = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/geo/countDistinctValuesPerGroup/{group}/{field}"
@@ -162,7 +162,7 @@ GeoClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            result <- httr::content(response, simplifyVector = T)
             Response$new(result, response)
         }        
     },
@@ -171,7 +171,7 @@ GeoClient <- R6::R6Class(
     # '@description Returns a GEO object containing a GEO json polygon
     # '@return \code{ GeoArea }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    find = function(id=NULL, ...){
+    find = function(id = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/geo/find/{id}"
@@ -192,7 +192,7 @@ GeoClient <- R6::R6Class(
             ## API call result is object of model class
             returnObject <- GeoArea$new()
             ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
+            result <- returnObject$fromList(httr::content(response), typeMapping = list(item = private$getBaseDataType()))
             Response$new(result, response)
         }        
     },
@@ -201,7 +201,7 @@ GeoClient <- R6::R6Class(
     # '@description Given multiple ids, returns a list of geo area objects
     # '@return \code{ GeoArea }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    find_by_ids = function(ids=NULL, ...){
+    find_by_ids = function(ids = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/geo/findByIds/{ids}"
@@ -222,7 +222,7 @@ GeoClient <- R6::R6Class(
             ## API call result is object of model class
             returnObject <- GeoArea$new()
             ## API call result is "list container"
-            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=private$getBaseDataType())))
+            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping = list(item = private$getBaseDataType())))
             Response$new(result, response)
         }        
     },
@@ -231,7 +231,7 @@ GeoClient <- R6::R6Class(
     # '@description A list of all fields for geo area documents can be retrieved with /metadata/getFieldInfo
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_distinct_values = function(field=NULL, ...){
+    get_distinct_values = function(field = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/geo/getDistinctValues/{field}"
@@ -250,7 +250,7 @@ GeoClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            result <- httr::content(response, simplifyVector = T)
             Response$new(result, response)
         }        
     },
@@ -259,7 +259,7 @@ GeoClient <- R6::R6Class(
     # '@description 
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_distinct_values_per_group = function(group=NULL, field=NULL, ...){
+    get_distinct_values_per_group = function(group = NULL, field = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/geo/getDistinctValuesPerGroup/{group}/{field}"
@@ -306,7 +306,7 @@ GeoClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            result <- httr::content(response, simplifyVector = T)
             Response$new(result, response)
         }        
     },
@@ -315,7 +315,7 @@ GeoClient <- R6::R6Class(
     # '@description Returns a GeoJson polygon
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_geo_json_for_locality = function(locality=NULL, ...){
+    get_geo_json_for_locality = function(locality = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/geo/getGeoJsonForLocality/{locality}"
@@ -367,7 +367,7 @@ GeoClient <- R6::R6Class(
     # '@description All settings can be queried with /metadata/getSettings
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    get_setting = function(name=NULL, ...){
+    get_setting = function(name = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/geo/metadata/getSetting/{name}"
@@ -410,7 +410,7 @@ GeoClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            result <- httr::content(response, simplifyVector = T)
             Response$new(result, response)
         }        
     },
@@ -419,7 +419,7 @@ GeoClient <- R6::R6Class(
     # '@description See also metadata/getFieldInfo
     # '@return \code{ list }
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    is_operator_allowed = function(field=NULL, operator=NULL, ...){
+    is_operator_allowed = function(field = NULL, operator = NULL, ...){
         headerParams <- character()
         queryParams <- list()
         urlPath <- "/geo/metadata/isOperatorAllowed/{field}/{operator}"
@@ -442,7 +442,7 @@ GeoClient <- R6::R6Class(
             self$handleError(response)
         } else {
             ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector=T)
+            result <- httr::content(response, simplifyVector = T)
             Response$new(result, response)
         }        
     },
@@ -452,7 +452,7 @@ GeoClient <- R6::R6Class(
     # '@return \code{ QueryResult }
     # '@param query_spec: ; Object of type QuerySpec or its JSON representation
     # '@param ...; additional parameters passed to httr::GET or httr::POST
-    query = function(querySpec=NULL, queryParams=list(), ...){
+    query = function(querySpec = NULL, queryParams = list(), ...){
         headerParams <- character()
         if (!is.null(querySpec) & length(queryParams) > 0) {
             stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
@@ -480,7 +480,7 @@ GeoClient <- R6::R6Class(
             ## API call result is object of model class
             returnObject <- QueryResult$new()
             ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping=list(item=private$getBaseDataType()))
+            result <- returnObject$fromList(httr::content(response), typeMapping = list(item = private$getBaseDataType()))
             Response$new(result, response)
         }        
     }

@@ -34,6 +34,8 @@ Specimen Class
 
 \item{\code{sourceID}}{}
 
+\item{\code{previousSourceID}}{}
+
 \item{\code{owner}}{}
 
 \item{\code{licenseType}}{}
@@ -55,6 +57,8 @@ Specimen Class
 \item{\code{notes}}{}
 
 \item{\code{preparationType}}{}
+
+\item{\code{previousUnitsText}}{}
 
 \item{\code{numberOfSpecimen}}{}
 

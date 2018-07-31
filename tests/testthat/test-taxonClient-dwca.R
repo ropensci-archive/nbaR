@@ -22,26 +22,26 @@ test_that("dwca_get_data_set_names() works", {
 test_that("dwca_get_data_set() works", {
     ## download a dataset to tmp file
     dataset <- "nsr"
-    filename <- tempfile(fileext=".zip")
-    tc$dwca_get_data_set(dataset, filename=filename)
+    filename <- tempfile(fileext = ".zip")
+    tc$dwca_get_data_set(dataset, filename = filename)
     expect_true(file.exists(filename))
     ## check for contents
-    l <- unzip(filename, list=T)
+    l <- unzip(filename, list = T)
     expect_equal(sort(l$Name), c("eml.xml", "meta.xml", "Taxa.txt", "Vernacular_Names.txt"))
     unlink(filename)
 })
 
 test_that("dwca_query() works", {
     dir <- tempdir()
-    filename <- tempfile(fileext=".zip", tmpdir=dir)
+    filename <- tempfile(fileext = ".zip", tmpdir = dir)
     ## do a query for a certain amount of documents and
     ## see if we can find the same number of rows in the
     ## dwca Taxa.txt file
     size <- 3
     qs <- QuerySpec$new(size=size)
-    tc$dwca_query(querySpec=qs, filename=filename)
-    unzip(filename, exdir=dir)
-    tab <- read.table(file.path(dir, "/Taxa.txt"), header=T, sep=",", fill=T, quote="\"")
+    tc$dwca_query(querySpec = qs, filename = filename)
+    unzip(filename, exdir = dir)
+    tab <- read.table(file.path(dir, "/Taxa.txt"), header = T, sep = ",", fill = T, quote = "\"")
     ## can have more entries than queried number because also synonyms are in there!
     expect_true(nrow(tab) >= size) 
     unlink(dir)

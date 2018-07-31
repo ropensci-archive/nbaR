@@ -114,135 +114,135 @@ GeoArea <- R6::R6Class(
       GeoAreaList[sapply(GeoAreaList, length) > 0]
       },
 
-    fromList = function(GeoAreaList, typeMapping=NULL) {
+    fromList = function(GeoAreaList, typeMapping = NULL) {
       if (is.null(typeMapping[["sourceSystem"]])) {
-          self[["sourceSystem"]] <- SourceSystem$new()$fromList(GeoAreaList[["sourceSystem"]], typeMapping=typeMapping) 
+          self[["sourceSystem"]] <- SourceSystem$new()$fromList(GeoAreaList[["sourceSystem"]], typeMapping = typeMapping) 
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["sourceSystem"]], "$new()")))
-          self[["sourceSystem"]] <- obj$fromList(GeoAreaList[["sourceSystem"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["sourceSystem"]], "$new()")))
+          self[["sourceSystem"]] <- obj$fromList(GeoAreaList[["sourceSystem"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["sourceSystemId"]])) {
           self[["sourceSystemId"]] <- GeoAreaList[["sourceSystemId"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["sourceSystemId"]], "$new()")))
-          self[["sourceSystemId"]] <- obj$fromList(GeoAreaList[["sourceSystemId"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["sourceSystemId"]], "$new()")))
+          self[["sourceSystemId"]] <- obj$fromList(GeoAreaList[["sourceSystemId"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["recordURI"]])) {
           self[["recordURI"]] <- GeoAreaList[["recordURI"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["recordURI"]], "$new()")))
-          self[["recordURI"]] <- obj$fromList(GeoAreaList[["recordURI"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["recordURI"]], "$new()")))
+          self[["recordURI"]] <- obj$fromList(GeoAreaList[["recordURI"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["id"]])) {
           self[["id"]] <- GeoAreaList[["id"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["id"]], "$new()")))
-          self[["id"]] <- obj$fromList(GeoAreaList[["id"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["id"]], "$new()")))
+          self[["id"]] <- obj$fromList(GeoAreaList[["id"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["areaType"]])) {
           self[["areaType"]] <- GeoAreaList[["areaType"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["areaType"]], "$new()")))
-          self[["areaType"]] <- obj$fromList(GeoAreaList[["areaType"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["areaType"]], "$new()")))
+          self[["areaType"]] <- obj$fromList(GeoAreaList[["areaType"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["locality"]])) {
           self[["locality"]] <- GeoAreaList[["locality"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["locality"]], "$new()")))
-          self[["locality"]] <- obj$fromList(GeoAreaList[["locality"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["locality"]], "$new()")))
+          self[["locality"]] <- obj$fromList(GeoAreaList[["locality"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["shape"]])) {
           self[["shape"]] <- GeoAreaList[["shape"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["shape"]], "$new()")))
-          self[["shape"]] <- obj$fromList(GeoAreaList[["shape"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["shape"]], "$new()")))
+          self[["shape"]] <- obj$fromList(GeoAreaList[["shape"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["source"]])) {
           self[["source"]] <- GeoAreaList[["source"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["source"]], "$new()")))
-          self[["source"]] <- obj$fromList(GeoAreaList[["source"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["source"]], "$new()")))
+          self[["source"]] <- obj$fromList(GeoAreaList[["source"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["isoCode"]])) {
           self[["isoCode"]] <- GeoAreaList[["isoCode"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["isoCode"]], "$new()")))
-          self[["isoCode"]] <- obj$fromList(GeoAreaList[["isoCode"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["isoCode"]], "$new()")))
+          self[["isoCode"]] <- obj$fromList(GeoAreaList[["isoCode"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["countryNL"]])) {
           self[["countryNL"]] <- GeoAreaList[["countryNL"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["countryNL"]], "$new()")))
-          self[["countryNL"]] <- obj$fromList(GeoAreaList[["countryNL"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["countryNL"]], "$new()")))
+          self[["countryNL"]] <- obj$fromList(GeoAreaList[["countryNL"]], typeMapping = typeMapping)
       }
       invisible(self)
     },
     
-    toJSONString = function(pretty=T) {
-      jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
+    toJSONString = function(pretty = T) {
+      jsonlite::toJSON(self$toList(), simplifyVector = T, auto_unbox = T, pretty = pretty)
     },
 
-    fromJSONString = function(GeoAreaJson, typeMapping=NULL) {
-      GeoAreaList <- jsonlite::fromJSON(GeoAreaJson, simplifyVector=F)
+    fromJSONString = function(GeoAreaJson, typeMapping = NULL) {
+      GeoAreaList <- jsonlite::fromJSON(GeoAreaJson, simplifyVector = F)
       if (is.null(typeMapping[["sourceSystem"]])) {
-          self[["sourceSystem"]] <- SourceSystem$new()$fromJSONString(jsonlite::toJSON(GeoAreaList[["sourceSystem"]], auto_unbox = TRUE), typeMapping=typeMapping) 
+          self[["sourceSystem"]] <- SourceSystem$new()$fromJSONString(jsonlite::toJSON(GeoAreaList[["sourceSystem"]], auto_unbox = TRUE), typeMapping = typeMapping) 
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["sourceSystem"]], "$new()")))
+          obj <- eval(parse(text = paste0(typeMapping[["sourceSystem"]], "$new()")))
           self[["sourceSystem"]] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[["sourceSystem"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       if (is.null(typeMapping[["sourceSystemId"]])) {
           self[["sourceSystemId"]] <- GeoAreaList[["sourceSystemId"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["sourceSystemId"]], "$new()")))
-          self[["sourceSystemId"]] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[["sourceSystemId"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["sourceSystemId"]], "$new()")))
+          self[["sourceSystemId"]] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[["sourceSystemId"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["recordURI"]])) {
           self[["recordURI"]] <- GeoAreaList[["recordURI"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["recordURI"]], "$new()")))
-          self[["recordURI"]] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[["recordURI"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["recordURI"]], "$new()")))
+          self[["recordURI"]] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[["recordURI"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["id"]])) {
           self[["id"]] <- GeoAreaList[["id"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["id"]], "$new()")))
-          self[["id"]] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[["id"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["id"]], "$new()")))
+          self[["id"]] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[["id"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["areaType"]])) {
           self[["areaType"]] <- GeoAreaList[["areaType"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["areaType"]], "$new()")))
-          self[["areaType"]] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[["areaType"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["areaType"]], "$new()")))
+          self[["areaType"]] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[["areaType"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["locality"]])) {
           self[["locality"]] <- GeoAreaList[["locality"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["locality"]], "$new()")))
-          self[["locality"]] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[["locality"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["locality"]], "$new()")))
+          self[["locality"]] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[["locality"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["shape"]])) {
           self[["shape"]] <- GeoAreaList[["shape"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["shape"]], "$new()")))
-          self[["shape"]] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[["shape"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["shape"]], "$new()")))
+          self[["shape"]] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[["shape"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["source"]])) {
           self[["source"]] <- GeoAreaList[["source"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["source"]], "$new()")))
-          self[["source"]] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[["source"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["source"]], "$new()")))
+          self[["source"]] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[["source"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["isoCode"]])) {
           self[["isoCode"]] <- GeoAreaList[["isoCode"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["isoCode"]], "$new()")))
-          self[["isoCode"]] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[["isoCode"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["isoCode"]], "$new()")))
+          self[["isoCode"]] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[["isoCode"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["countryNL"]])) {
           self[["countryNL"]] <- GeoAreaList[["countryNL"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["countryNL"]], "$new()")))
-          self[["countryNL"]] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[["countryNL"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["countryNL"]], "$new()")))
+          self[["countryNL"]] <- obj$fromJSONString(jsonlite::toJSON(GeoAreaList[["countryNL"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       invisible(self)
     }

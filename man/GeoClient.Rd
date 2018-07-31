@@ -23,10 +23,13 @@ nbaR.Geo
 
 \describe{
 
-count Get the number of geo areas matching a condition
+count Get the number of geo areas matching a given condition
 
 
-count_http_post_json Get the number of geo areas matching a condition
+count_distinct_values Count the distinct number of values that exist for a given field
+
+
+count_distinct_values_per_group Count the distinct number of field values that exist per the given field to group by
 
 
 find Find a GEO area by id
@@ -38,7 +41,7 @@ find_by_ids Find geo areas by ids
 get_distinct_values Get all different values that exist for a field
 
 
-get_distinct_values_http_post_json Get all different values that exist for a field
+get_distinct_values_per_group Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by
 
 
 get_field_info Returns extended information for each field of a specimen document
@@ -50,19 +53,16 @@ get_geo_json_for_locality Retrieve a GeoJson object for a given locality
 get_paths Returns the full path of all fields within a document
 
 
+get_setting Get the value of an NBA setting
+
+
 get_settings List all publicly available configuration settings for the NBA
-
-
-get_settings1 Get the value of an NBA setting
 
 
 is_operator_allowed Checks if a given operator is allowed for a given field
 
 
 query Query for geo areas
-
-
-query_http_post_json Query for geo areas
 
 }
 }

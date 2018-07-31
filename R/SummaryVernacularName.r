@@ -43,39 +43,39 @@ SummaryVernacularName <- R6::R6Class(
       SummaryVernacularNameList[sapply(SummaryVernacularNameList, length) > 0]
       },
 
-    fromList = function(SummaryVernacularNameList, typeMapping=NULL) {
+    fromList = function(SummaryVernacularNameList, typeMapping = NULL) {
       if (is.null(typeMapping[["name"]])) {
           self[["name"]] <- SummaryVernacularNameList[["name"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["name"]], "$new()")))
-          self[["name"]] <- obj$fromList(SummaryVernacularNameList[["name"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["name"]], "$new()")))
+          self[["name"]] <- obj$fromList(SummaryVernacularNameList[["name"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["language"]])) {
           self[["language"]] <- SummaryVernacularNameList[["language"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["language"]], "$new()")))
-          self[["language"]] <- obj$fromList(SummaryVernacularNameList[["language"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["language"]], "$new()")))
+          self[["language"]] <- obj$fromList(SummaryVernacularNameList[["language"]], typeMapping = typeMapping)
       }
       invisible(self)
     },
     
-    toJSONString = function(pretty=T) {
-      jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
+    toJSONString = function(pretty = T) {
+      jsonlite::toJSON(self$toList(), simplifyVector = T, auto_unbox = T, pretty = pretty)
     },
 
-    fromJSONString = function(SummaryVernacularNameJson, typeMapping=NULL) {
-      SummaryVernacularNameList <- jsonlite::fromJSON(SummaryVernacularNameJson, simplifyVector=F)
+    fromJSONString = function(SummaryVernacularNameJson, typeMapping = NULL) {
+      SummaryVernacularNameList <- jsonlite::fromJSON(SummaryVernacularNameJson, simplifyVector = F)
       if (is.null(typeMapping[["name"]])) {
           self[["name"]] <- SummaryVernacularNameList[["name"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["name"]], "$new()")))
-          self[["name"]] <- obj$fromJSONString(jsonlite::toJSON(SummaryVernacularNameList[["name"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["name"]], "$new()")))
+          self[["name"]] <- obj$fromJSONString(jsonlite::toJSON(SummaryVernacularNameList[["name"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["language"]])) {
           self[["language"]] <- SummaryVernacularNameList[["language"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["language"]], "$new()")))
-          self[["language"]] <- obj$fromJSONString(jsonlite::toJSON(SummaryVernacularNameList[["language"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["language"]], "$new()")))
+          self[["language"]] <- obj$fromJSONString(jsonlite::toJSON(SummaryVernacularNameList[["language"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       invisible(self)
     }

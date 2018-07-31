@@ -43,39 +43,39 @@ AssociatedTaxon <- R6::R6Class(
       AssociatedTaxonList[sapply(AssociatedTaxonList, length) > 0]
       },
 
-    fromList = function(AssociatedTaxonList, typeMapping=NULL) {
+    fromList = function(AssociatedTaxonList, typeMapping = NULL) {
       if (is.null(typeMapping[["name"]])) {
           self[["name"]] <- AssociatedTaxonList[["name"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["name"]], "$new()")))
-          self[["name"]] <- obj$fromList(AssociatedTaxonList[["name"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["name"]], "$new()")))
+          self[["name"]] <- obj$fromList(AssociatedTaxonList[["name"]], typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["relationType"]])) {
           self[["relationType"]] <- AssociatedTaxonList[["relationType"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["relationType"]], "$new()")))
-          self[["relationType"]] <- obj$fromList(AssociatedTaxonList[["relationType"]], typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["relationType"]], "$new()")))
+          self[["relationType"]] <- obj$fromList(AssociatedTaxonList[["relationType"]], typeMapping = typeMapping)
       }
       invisible(self)
     },
     
-    toJSONString = function(pretty=T) {
-      jsonlite::toJSON(self$toList(), simplifyVector=T, auto_unbox=T, pretty=pretty)
+    toJSONString = function(pretty = T) {
+      jsonlite::toJSON(self$toList(), simplifyVector = T, auto_unbox = T, pretty = pretty)
     },
 
-    fromJSONString = function(AssociatedTaxonJson, typeMapping=NULL) {
-      AssociatedTaxonList <- jsonlite::fromJSON(AssociatedTaxonJson, simplifyVector=F)
+    fromJSONString = function(AssociatedTaxonJson, typeMapping = NULL) {
+      AssociatedTaxonList <- jsonlite::fromJSON(AssociatedTaxonJson, simplifyVector = F)
       if (is.null(typeMapping[["name"]])) {
           self[["name"]] <- AssociatedTaxonList[["name"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["name"]], "$new()")))
-          self[["name"]] <- obj$fromJSONString(jsonlite::toJSON(AssociatedTaxonList[["name"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["name"]], "$new()")))
+          self[["name"]] <- obj$fromJSONString(jsonlite::toJSON(AssociatedTaxonList[["name"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       if (is.null(typeMapping[["relationType"]])) {
           self[["relationType"]] <- AssociatedTaxonList[["relationType"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[["relationType"]], "$new()")))
-          self[["relationType"]] <- obj$fromJSONString(jsonlite::toJSON(AssociatedTaxonList[["relationType"]], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text = paste0(typeMapping[["relationType"]], "$new()")))
+          self[["relationType"]] <- obj$fromJSONString(jsonlite::toJSON(AssociatedTaxonList[["relationType"]], auto_unbox = TRUE), typeMapping = typeMapping)
       }
       invisible(self)
     }

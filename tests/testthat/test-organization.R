@@ -43,6 +43,6 @@ for (file in testfiles) {
         or <- Organization$new()
         or$fromJSONString(jsonString)
         l <- or$toList()
-        expect_true(class(l)=="list")
+        expect_true(class(l) == "list")
     })
 }

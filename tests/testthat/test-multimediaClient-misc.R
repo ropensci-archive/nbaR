@@ -9,7 +9,7 @@ if(grepl("testthat", wd)) {
     dataDir <- file.path("tests", "testthat", "data")
 }
 
-mc <- MultimediaClient$new(basePath="http://api.biodiversitydata.nl/v2")
+mc <- MultimediaClient$new(basePath = "http://api.biodiversitydata.nl/v2")
 
 context("Testing miscellaneous multimedia endpoints")
 
