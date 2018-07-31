@@ -49,206 +49,206 @@ BioStratigraphy <- R6::R6Class(
     initialize = function(`youngBioDatingQualifier`, `youngBioName`, `youngFossilZone`, `youngFossilSubZone`, `youngBioCertainty`, `youngStratType`, `bioDatingQualifier`, `bioPreferredFlag`, `rangePosition`, `oldBioName`, `bioIdentifier`, `oldFossilzone`, `oldFossilSubzone`, `oldBioCertainty`, `oldBioStratType`){
       if (!missing(`youngBioDatingQualifier`)) {
         stopifnot(is.character(`youngBioDatingQualifier`), length(`youngBioDatingQualifier`) == 1)
-        self[['youngBioDatingQualifier']] <- `youngBioDatingQualifier`
+        self[["youngBioDatingQualifier"]] <- `youngBioDatingQualifier`
       }
       if (!missing(`youngBioName`)) {
         stopifnot(is.character(`youngBioName`), length(`youngBioName`) == 1)
-        self[['youngBioName']] <- `youngBioName`
+        self[["youngBioName"]] <- `youngBioName`
       }
       if (!missing(`youngFossilZone`)) {
         stopifnot(is.character(`youngFossilZone`), length(`youngFossilZone`) == 1)
-        self[['youngFossilZone']] <- `youngFossilZone`
+        self[["youngFossilZone"]] <- `youngFossilZone`
       }
       if (!missing(`youngFossilSubZone`)) {
         stopifnot(is.character(`youngFossilSubZone`), length(`youngFossilSubZone`) == 1)
-        self[['youngFossilSubZone']] <- `youngFossilSubZone`
+        self[["youngFossilSubZone"]] <- `youngFossilSubZone`
       }
       if (!missing(`youngBioCertainty`)) {
         stopifnot(is.character(`youngBioCertainty`), length(`youngBioCertainty`) == 1)
-        self[['youngBioCertainty']] <- `youngBioCertainty`
+        self[["youngBioCertainty"]] <- `youngBioCertainty`
       }
       if (!missing(`youngStratType`)) {
         stopifnot(is.character(`youngStratType`), length(`youngStratType`) == 1)
-        self[['youngStratType']] <- `youngStratType`
+        self[["youngStratType"]] <- `youngStratType`
       }
       if (!missing(`bioDatingQualifier`)) {
         stopifnot(is.character(`bioDatingQualifier`), length(`bioDatingQualifier`) == 1)
-        self[['bioDatingQualifier']] <- `bioDatingQualifier`
+        self[["bioDatingQualifier"]] <- `bioDatingQualifier`
       }
       if (!missing(`bioPreferredFlag`)) {
-        self[['bioPreferredFlag']] <- `bioPreferredFlag`
+        self[["bioPreferredFlag"]] <- `bioPreferredFlag`
       }
       if (!missing(`rangePosition`)) {
         stopifnot(is.character(`rangePosition`), length(`rangePosition`) == 1)
-        self[['rangePosition']] <- `rangePosition`
+        self[["rangePosition"]] <- `rangePosition`
       }
       if (!missing(`oldBioName`)) {
         stopifnot(is.character(`oldBioName`), length(`oldBioName`) == 1)
-        self[['oldBioName']] <- `oldBioName`
+        self[["oldBioName"]] <- `oldBioName`
       }
       if (!missing(`bioIdentifier`)) {
         stopifnot(is.character(`bioIdentifier`), length(`bioIdentifier`) == 1)
-        self[['bioIdentifier']] <- `bioIdentifier`
+        self[["bioIdentifier"]] <- `bioIdentifier`
       }
       if (!missing(`oldFossilzone`)) {
         stopifnot(is.character(`oldFossilzone`), length(`oldFossilzone`) == 1)
-        self[['oldFossilzone']] <- `oldFossilzone`
+        self[["oldFossilzone"]] <- `oldFossilzone`
       }
       if (!missing(`oldFossilSubzone`)) {
         stopifnot(is.character(`oldFossilSubzone`), length(`oldFossilSubzone`) == 1)
-        self[['oldFossilSubzone']] <- `oldFossilSubzone`
+        self[["oldFossilSubzone"]] <- `oldFossilSubzone`
       }
       if (!missing(`oldBioCertainty`)) {
         stopifnot(is.character(`oldBioCertainty`), length(`oldBioCertainty`) == 1)
-        self[['oldBioCertainty']] <- `oldBioCertainty`
+        self[["oldBioCertainty"]] <- `oldBioCertainty`
       }
       if (!missing(`oldBioStratType`)) {
         stopifnot(is.character(`oldBioStratType`), length(`oldBioStratType`) == 1)
-        self[['oldBioStratType']] <- `oldBioStratType`
+        self[["oldBioStratType"]] <- `oldBioStratType`
       }
     },
 
     toList = function() {
       BioStratigraphyList <- list()
-        if (!is.null(self[['youngBioDatingQualifier']])) {
-        BioStratigraphyList[['youngBioDatingQualifier']] <- self[['youngBioDatingQualifier']]
+        if (!is.null(self[["youngBioDatingQualifier"]])) {
+        BioStratigraphyList[["youngBioDatingQualifier"]] <- self[["youngBioDatingQualifier"]]
       }
-        if (!is.null(self[['youngBioName']])) {
-        BioStratigraphyList[['youngBioName']] <- self[['youngBioName']]
+        if (!is.null(self[["youngBioName"]])) {
+        BioStratigraphyList[["youngBioName"]] <- self[["youngBioName"]]
       }
-        if (!is.null(self[['youngFossilZone']])) {
-        BioStratigraphyList[['youngFossilZone']] <- self[['youngFossilZone']]
+        if (!is.null(self[["youngFossilZone"]])) {
+        BioStratigraphyList[["youngFossilZone"]] <- self[["youngFossilZone"]]
       }
-        if (!is.null(self[['youngFossilSubZone']])) {
-        BioStratigraphyList[['youngFossilSubZone']] <- self[['youngFossilSubZone']]
+        if (!is.null(self[["youngFossilSubZone"]])) {
+        BioStratigraphyList[["youngFossilSubZone"]] <- self[["youngFossilSubZone"]]
       }
-        if (!is.null(self[['youngBioCertainty']])) {
-        BioStratigraphyList[['youngBioCertainty']] <- self[['youngBioCertainty']]
+        if (!is.null(self[["youngBioCertainty"]])) {
+        BioStratigraphyList[["youngBioCertainty"]] <- self[["youngBioCertainty"]]
       }
-        if (!is.null(self[['youngStratType']])) {
-        BioStratigraphyList[['youngStratType']] <- self[['youngStratType']]
+        if (!is.null(self[["youngStratType"]])) {
+        BioStratigraphyList[["youngStratType"]] <- self[["youngStratType"]]
       }
-        if (!is.null(self[['bioDatingQualifier']])) {
-        BioStratigraphyList[['bioDatingQualifier']] <- self[['bioDatingQualifier']]
+        if (!is.null(self[["bioDatingQualifier"]])) {
+        BioStratigraphyList[["bioDatingQualifier"]] <- self[["bioDatingQualifier"]]
       }
-        if (!is.null(self[['bioPreferredFlag']])) {
-        BioStratigraphyList[['bioPreferredFlag']] <- self[['bioPreferredFlag']]
+        if (!is.null(self[["bioPreferredFlag"]])) {
+        BioStratigraphyList[["bioPreferredFlag"]] <- self[["bioPreferredFlag"]]
       }
-        if (!is.null(self[['rangePosition']])) {
-        BioStratigraphyList[['rangePosition']] <- self[['rangePosition']]
+        if (!is.null(self[["rangePosition"]])) {
+        BioStratigraphyList[["rangePosition"]] <- self[["rangePosition"]]
       }
-        if (!is.null(self[['oldBioName']])) {
-        BioStratigraphyList[['oldBioName']] <- self[['oldBioName']]
+        if (!is.null(self[["oldBioName"]])) {
+        BioStratigraphyList[["oldBioName"]] <- self[["oldBioName"]]
       }
-        if (!is.null(self[['bioIdentifier']])) {
-        BioStratigraphyList[['bioIdentifier']] <- self[['bioIdentifier']]
+        if (!is.null(self[["bioIdentifier"]])) {
+        BioStratigraphyList[["bioIdentifier"]] <- self[["bioIdentifier"]]
       }
-        if (!is.null(self[['oldFossilzone']])) {
-        BioStratigraphyList[['oldFossilzone']] <- self[['oldFossilzone']]
+        if (!is.null(self[["oldFossilzone"]])) {
+        BioStratigraphyList[["oldFossilzone"]] <- self[["oldFossilzone"]]
       }
-        if (!is.null(self[['oldFossilSubzone']])) {
-        BioStratigraphyList[['oldFossilSubzone']] <- self[['oldFossilSubzone']]
+        if (!is.null(self[["oldFossilSubzone"]])) {
+        BioStratigraphyList[["oldFossilSubzone"]] <- self[["oldFossilSubzone"]]
       }
-        if (!is.null(self[['oldBioCertainty']])) {
-        BioStratigraphyList[['oldBioCertainty']] <- self[['oldBioCertainty']]
+        if (!is.null(self[["oldBioCertainty"]])) {
+        BioStratigraphyList[["oldBioCertainty"]] <- self[["oldBioCertainty"]]
       }
-        if (!is.null(self[['oldBioStratType']])) {
-        BioStratigraphyList[['oldBioStratType']] <- self[['oldBioStratType']]
+        if (!is.null(self[["oldBioStratType"]])) {
+        BioStratigraphyList[["oldBioStratType"]] <- self[["oldBioStratType"]]
       }
       ## omit empty nested lists in returned list
       BioStratigraphyList[sapply(BioStratigraphyList, length) > 0]
       },
 
     fromList = function(BioStratigraphyList, typeMapping=NULL) {
-      if (is.null(typeMapping[['youngBioDatingQualifier']])) {
-          self[['youngBioDatingQualifier']] <- BioStratigraphyList[['youngBioDatingQualifier']]
+      if (is.null(typeMapping[["youngBioDatingQualifier"]])) {
+          self[["youngBioDatingQualifier"]] <- BioStratigraphyList[["youngBioDatingQualifier"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['youngBioDatingQualifier']], "$new()")))
-          self[['youngBioDatingQualifier']] <- obj$fromList(BioStratigraphyList[['youngBioDatingQualifier']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["youngBioDatingQualifier"]], "$new()")))
+          self[["youngBioDatingQualifier"]] <- obj$fromList(BioStratigraphyList[["youngBioDatingQualifier"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['youngBioName']])) {
-          self[['youngBioName']] <- BioStratigraphyList[['youngBioName']]
+      if (is.null(typeMapping[["youngBioName"]])) {
+          self[["youngBioName"]] <- BioStratigraphyList[["youngBioName"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['youngBioName']], "$new()")))
-          self[['youngBioName']] <- obj$fromList(BioStratigraphyList[['youngBioName']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["youngBioName"]], "$new()")))
+          self[["youngBioName"]] <- obj$fromList(BioStratigraphyList[["youngBioName"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['youngFossilZone']])) {
-          self[['youngFossilZone']] <- BioStratigraphyList[['youngFossilZone']]
+      if (is.null(typeMapping[["youngFossilZone"]])) {
+          self[["youngFossilZone"]] <- BioStratigraphyList[["youngFossilZone"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['youngFossilZone']], "$new()")))
-          self[['youngFossilZone']] <- obj$fromList(BioStratigraphyList[['youngFossilZone']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["youngFossilZone"]], "$new()")))
+          self[["youngFossilZone"]] <- obj$fromList(BioStratigraphyList[["youngFossilZone"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['youngFossilSubZone']])) {
-          self[['youngFossilSubZone']] <- BioStratigraphyList[['youngFossilSubZone']]
+      if (is.null(typeMapping[["youngFossilSubZone"]])) {
+          self[["youngFossilSubZone"]] <- BioStratigraphyList[["youngFossilSubZone"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['youngFossilSubZone']], "$new()")))
-          self[['youngFossilSubZone']] <- obj$fromList(BioStratigraphyList[['youngFossilSubZone']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["youngFossilSubZone"]], "$new()")))
+          self[["youngFossilSubZone"]] <- obj$fromList(BioStratigraphyList[["youngFossilSubZone"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['youngBioCertainty']])) {
-          self[['youngBioCertainty']] <- BioStratigraphyList[['youngBioCertainty']]
+      if (is.null(typeMapping[["youngBioCertainty"]])) {
+          self[["youngBioCertainty"]] <- BioStratigraphyList[["youngBioCertainty"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['youngBioCertainty']], "$new()")))
-          self[['youngBioCertainty']] <- obj$fromList(BioStratigraphyList[['youngBioCertainty']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["youngBioCertainty"]], "$new()")))
+          self[["youngBioCertainty"]] <- obj$fromList(BioStratigraphyList[["youngBioCertainty"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['youngStratType']])) {
-          self[['youngStratType']] <- BioStratigraphyList[['youngStratType']]
+      if (is.null(typeMapping[["youngStratType"]])) {
+          self[["youngStratType"]] <- BioStratigraphyList[["youngStratType"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['youngStratType']], "$new()")))
-          self[['youngStratType']] <- obj$fromList(BioStratigraphyList[['youngStratType']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["youngStratType"]], "$new()")))
+          self[["youngStratType"]] <- obj$fromList(BioStratigraphyList[["youngStratType"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['bioDatingQualifier']])) {
-          self[['bioDatingQualifier']] <- BioStratigraphyList[['bioDatingQualifier']]
+      if (is.null(typeMapping[["bioDatingQualifier"]])) {
+          self[["bioDatingQualifier"]] <- BioStratigraphyList[["bioDatingQualifier"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['bioDatingQualifier']], "$new()")))
-          self[['bioDatingQualifier']] <- obj$fromList(BioStratigraphyList[['bioDatingQualifier']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["bioDatingQualifier"]], "$new()")))
+          self[["bioDatingQualifier"]] <- obj$fromList(BioStratigraphyList[["bioDatingQualifier"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['bioPreferredFlag']])) {
-          self[['bioPreferredFlag']] <- BioStratigraphyList[['bioPreferredFlag']]
+      if (is.null(typeMapping[["bioPreferredFlag"]])) {
+          self[["bioPreferredFlag"]] <- BioStratigraphyList[["bioPreferredFlag"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['bioPreferredFlag']], "$new()")))
-          self[['bioPreferredFlag']] <- obj$fromList(BioStratigraphyList[['bioPreferredFlag']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["bioPreferredFlag"]], "$new()")))
+          self[["bioPreferredFlag"]] <- obj$fromList(BioStratigraphyList[["bioPreferredFlag"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['rangePosition']])) {
-          self[['rangePosition']] <- BioStratigraphyList[['rangePosition']]
+      if (is.null(typeMapping[["rangePosition"]])) {
+          self[["rangePosition"]] <- BioStratigraphyList[["rangePosition"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['rangePosition']], "$new()")))
-          self[['rangePosition']] <- obj$fromList(BioStratigraphyList[['rangePosition']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["rangePosition"]], "$new()")))
+          self[["rangePosition"]] <- obj$fromList(BioStratigraphyList[["rangePosition"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['oldBioName']])) {
-          self[['oldBioName']] <- BioStratigraphyList[['oldBioName']]
+      if (is.null(typeMapping[["oldBioName"]])) {
+          self[["oldBioName"]] <- BioStratigraphyList[["oldBioName"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['oldBioName']], "$new()")))
-          self[['oldBioName']] <- obj$fromList(BioStratigraphyList[['oldBioName']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["oldBioName"]], "$new()")))
+          self[["oldBioName"]] <- obj$fromList(BioStratigraphyList[["oldBioName"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['bioIdentifier']])) {
-          self[['bioIdentifier']] <- BioStratigraphyList[['bioIdentifier']]
+      if (is.null(typeMapping[["bioIdentifier"]])) {
+          self[["bioIdentifier"]] <- BioStratigraphyList[["bioIdentifier"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['bioIdentifier']], "$new()")))
-          self[['bioIdentifier']] <- obj$fromList(BioStratigraphyList[['bioIdentifier']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["bioIdentifier"]], "$new()")))
+          self[["bioIdentifier"]] <- obj$fromList(BioStratigraphyList[["bioIdentifier"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['oldFossilzone']])) {
-          self[['oldFossilzone']] <- BioStratigraphyList[['oldFossilzone']]
+      if (is.null(typeMapping[["oldFossilzone"]])) {
+          self[["oldFossilzone"]] <- BioStratigraphyList[["oldFossilzone"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['oldFossilzone']], "$new()")))
-          self[['oldFossilzone']] <- obj$fromList(BioStratigraphyList[['oldFossilzone']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["oldFossilzone"]], "$new()")))
+          self[["oldFossilzone"]] <- obj$fromList(BioStratigraphyList[["oldFossilzone"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['oldFossilSubzone']])) {
-          self[['oldFossilSubzone']] <- BioStratigraphyList[['oldFossilSubzone']]
+      if (is.null(typeMapping[["oldFossilSubzone"]])) {
+          self[["oldFossilSubzone"]] <- BioStratigraphyList[["oldFossilSubzone"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['oldFossilSubzone']], "$new()")))
-          self[['oldFossilSubzone']] <- obj$fromList(BioStratigraphyList[['oldFossilSubzone']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["oldFossilSubzone"]], "$new()")))
+          self[["oldFossilSubzone"]] <- obj$fromList(BioStratigraphyList[["oldFossilSubzone"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['oldBioCertainty']])) {
-          self[['oldBioCertainty']] <- BioStratigraphyList[['oldBioCertainty']]
+      if (is.null(typeMapping[["oldBioCertainty"]])) {
+          self[["oldBioCertainty"]] <- BioStratigraphyList[["oldBioCertainty"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['oldBioCertainty']], "$new()")))
-          self[['oldBioCertainty']] <- obj$fromList(BioStratigraphyList[['oldBioCertainty']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["oldBioCertainty"]], "$new()")))
+          self[["oldBioCertainty"]] <- obj$fromList(BioStratigraphyList[["oldBioCertainty"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['oldBioStratType']])) {
-          self[['oldBioStratType']] <- BioStratigraphyList[['oldBioStratType']]
+      if (is.null(typeMapping[["oldBioStratType"]])) {
+          self[["oldBioStratType"]] <- BioStratigraphyList[["oldBioStratType"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['oldBioStratType']], "$new()")))
-          self[['oldBioStratType']] <- obj$fromList(BioStratigraphyList[['oldBioStratType']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["oldBioStratType"]], "$new()")))
+          self[["oldBioStratType"]] <- obj$fromList(BioStratigraphyList[["oldBioStratType"]], typeMapping=typeMapping)
       }
       invisible(self)
     },
@@ -259,95 +259,95 @@ BioStratigraphy <- R6::R6Class(
 
     fromJSONString = function(BioStratigraphyJson, typeMapping=NULL) {
       BioStratigraphyList <- jsonlite::fromJSON(BioStratigraphyJson, simplifyVector=F)
-      if (is.null(typeMapping[['youngBioDatingQualifier']])) {
-          self[['youngBioDatingQualifier']] <- BioStratigraphyList[['youngBioDatingQualifier']]
+      if (is.null(typeMapping[["youngBioDatingQualifier"]])) {
+          self[["youngBioDatingQualifier"]] <- BioStratigraphyList[["youngBioDatingQualifier"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['youngBioDatingQualifier']], "$new()")))
-          self[['youngBioDatingQualifier']] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[['youngBioDatingQualifier']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["youngBioDatingQualifier"]], "$new()")))
+          self[["youngBioDatingQualifier"]] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[["youngBioDatingQualifier"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['youngBioName']])) {
-          self[['youngBioName']] <- BioStratigraphyList[['youngBioName']]
+      if (is.null(typeMapping[["youngBioName"]])) {
+          self[["youngBioName"]] <- BioStratigraphyList[["youngBioName"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['youngBioName']], "$new()")))
-          self[['youngBioName']] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[['youngBioName']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["youngBioName"]], "$new()")))
+          self[["youngBioName"]] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[["youngBioName"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['youngFossilZone']])) {
-          self[['youngFossilZone']] <- BioStratigraphyList[['youngFossilZone']]
+      if (is.null(typeMapping[["youngFossilZone"]])) {
+          self[["youngFossilZone"]] <- BioStratigraphyList[["youngFossilZone"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['youngFossilZone']], "$new()")))
-          self[['youngFossilZone']] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[['youngFossilZone']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["youngFossilZone"]], "$new()")))
+          self[["youngFossilZone"]] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[["youngFossilZone"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['youngFossilSubZone']])) {
-          self[['youngFossilSubZone']] <- BioStratigraphyList[['youngFossilSubZone']]
+      if (is.null(typeMapping[["youngFossilSubZone"]])) {
+          self[["youngFossilSubZone"]] <- BioStratigraphyList[["youngFossilSubZone"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['youngFossilSubZone']], "$new()")))
-          self[['youngFossilSubZone']] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[['youngFossilSubZone']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["youngFossilSubZone"]], "$new()")))
+          self[["youngFossilSubZone"]] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[["youngFossilSubZone"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['youngBioCertainty']])) {
-          self[['youngBioCertainty']] <- BioStratigraphyList[['youngBioCertainty']]
+      if (is.null(typeMapping[["youngBioCertainty"]])) {
+          self[["youngBioCertainty"]] <- BioStratigraphyList[["youngBioCertainty"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['youngBioCertainty']], "$new()")))
-          self[['youngBioCertainty']] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[['youngBioCertainty']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["youngBioCertainty"]], "$new()")))
+          self[["youngBioCertainty"]] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[["youngBioCertainty"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['youngStratType']])) {
-          self[['youngStratType']] <- BioStratigraphyList[['youngStratType']]
+      if (is.null(typeMapping[["youngStratType"]])) {
+          self[["youngStratType"]] <- BioStratigraphyList[["youngStratType"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['youngStratType']], "$new()")))
-          self[['youngStratType']] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[['youngStratType']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["youngStratType"]], "$new()")))
+          self[["youngStratType"]] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[["youngStratType"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['bioDatingQualifier']])) {
-          self[['bioDatingQualifier']] <- BioStratigraphyList[['bioDatingQualifier']]
+      if (is.null(typeMapping[["bioDatingQualifier"]])) {
+          self[["bioDatingQualifier"]] <- BioStratigraphyList[["bioDatingQualifier"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['bioDatingQualifier']], "$new()")))
-          self[['bioDatingQualifier']] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[['bioDatingQualifier']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["bioDatingQualifier"]], "$new()")))
+          self[["bioDatingQualifier"]] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[["bioDatingQualifier"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['bioPreferredFlag']])) {
-          self[['bioPreferredFlag']] <- BioStratigraphyList[['bioPreferredFlag']]
+      if (is.null(typeMapping[["bioPreferredFlag"]])) {
+          self[["bioPreferredFlag"]] <- BioStratigraphyList[["bioPreferredFlag"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['bioPreferredFlag']], "$new()")))
-          self[['bioPreferredFlag']] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[['bioPreferredFlag']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["bioPreferredFlag"]], "$new()")))
+          self[["bioPreferredFlag"]] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[["bioPreferredFlag"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['rangePosition']])) {
-          self[['rangePosition']] <- BioStratigraphyList[['rangePosition']]
+      if (is.null(typeMapping[["rangePosition"]])) {
+          self[["rangePosition"]] <- BioStratigraphyList[["rangePosition"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['rangePosition']], "$new()")))
-          self[['rangePosition']] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[['rangePosition']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["rangePosition"]], "$new()")))
+          self[["rangePosition"]] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[["rangePosition"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['oldBioName']])) {
-          self[['oldBioName']] <- BioStratigraphyList[['oldBioName']]
+      if (is.null(typeMapping[["oldBioName"]])) {
+          self[["oldBioName"]] <- BioStratigraphyList[["oldBioName"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['oldBioName']], "$new()")))
-          self[['oldBioName']] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[['oldBioName']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["oldBioName"]], "$new()")))
+          self[["oldBioName"]] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[["oldBioName"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['bioIdentifier']])) {
-          self[['bioIdentifier']] <- BioStratigraphyList[['bioIdentifier']]
+      if (is.null(typeMapping[["bioIdentifier"]])) {
+          self[["bioIdentifier"]] <- BioStratigraphyList[["bioIdentifier"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['bioIdentifier']], "$new()")))
-          self[['bioIdentifier']] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[['bioIdentifier']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["bioIdentifier"]], "$new()")))
+          self[["bioIdentifier"]] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[["bioIdentifier"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['oldFossilzone']])) {
-          self[['oldFossilzone']] <- BioStratigraphyList[['oldFossilzone']]
+      if (is.null(typeMapping[["oldFossilzone"]])) {
+          self[["oldFossilzone"]] <- BioStratigraphyList[["oldFossilzone"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['oldFossilzone']], "$new()")))
-          self[['oldFossilzone']] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[['oldFossilzone']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["oldFossilzone"]], "$new()")))
+          self[["oldFossilzone"]] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[["oldFossilzone"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['oldFossilSubzone']])) {
-          self[['oldFossilSubzone']] <- BioStratigraphyList[['oldFossilSubzone']]
+      if (is.null(typeMapping[["oldFossilSubzone"]])) {
+          self[["oldFossilSubzone"]] <- BioStratigraphyList[["oldFossilSubzone"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['oldFossilSubzone']], "$new()")))
-          self[['oldFossilSubzone']] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[['oldFossilSubzone']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["oldFossilSubzone"]], "$new()")))
+          self[["oldFossilSubzone"]] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[["oldFossilSubzone"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['oldBioCertainty']])) {
-          self[['oldBioCertainty']] <- BioStratigraphyList[['oldBioCertainty']]
+      if (is.null(typeMapping[["oldBioCertainty"]])) {
+          self[["oldBioCertainty"]] <- BioStratigraphyList[["oldBioCertainty"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['oldBioCertainty']], "$new()")))
-          self[['oldBioCertainty']] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[['oldBioCertainty']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["oldBioCertainty"]], "$new()")))
+          self[["oldBioCertainty"]] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[["oldBioCertainty"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['oldBioStratType']])) {
-          self[['oldBioStratType']] <- BioStratigraphyList[['oldBioStratType']]
+      if (is.null(typeMapping[["oldBioStratType"]])) {
+          self[["oldBioStratType"]] <- BioStratigraphyList[["oldBioStratType"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['oldBioStratType']], "$new()")))
-          self[['oldBioStratType']] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[['oldBioStratType']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["oldBioStratType"]], "$new()")))
+          self[["oldBioStratType"]] <- obj$fromJSONString(jsonlite::toJSON(BioStratigraphyList[["oldBioStratType"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       invisible(self)
     }

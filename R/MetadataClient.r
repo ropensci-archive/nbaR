@@ -50,7 +50,7 @@
 #'
 #' @export
 MetadataClient <- R6::R6Class(
-    'MetadataClient',
+    "MetadataClient",
     inherit=ApiClient,
     public = list(
         userAgent = "Swagger-Codegen/0.0.0/r",
@@ -77,7 +77,7 @@ MetadataClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is 'primitive type', return vector or single value
+            ## API call result is "primitive type", return vector or single value
             result <- as.character(httr::content(response))
             Response$new(result, response)
         }        
@@ -101,7 +101,7 @@ MetadataClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is 'primitive type', return vector or single value
+            ## API call result is "primitive type", return vector or single value
             result <- as.character(httr::content(response))
             Response$new(result, response)
         }        
@@ -125,7 +125,7 @@ MetadataClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is 'primitive type', return vector or single value
+            ## API call result is "primitive type", return vector or single value
             result <- as.character(httr::content(response))
             Response$new(result, response)
         }        
@@ -149,7 +149,7 @@ MetadataClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is 'primitive type', return vector or single value
+            ## API call result is "primitive type", return vector or single value
             result <- as.character(httr::content(response))
             Response$new(result, response)
         }        
@@ -173,7 +173,7 @@ MetadataClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is 'primitive type', return vector or single value
+            ## API call result is "primitive type", return vector or single value
             result <- as.character(httr::content(response))
             Response$new(result, response)
         }        
@@ -197,7 +197,7 @@ MetadataClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is 'primitive type', return vector or single value
+            ## API call result is "primitive type", return vector or single value
             result <- as.character(httr::content(response))
             Response$new(result, response)
         }        
@@ -223,7 +223,7 @@ MetadataClient <- R6::R6Class(
         } else {
             ## API call result is object of model class
             returnObject <- RestService$new()
-            ## API call result is 'list container'
+            ## API call result is "list container"
             result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=private$getBaseDataType())))
             Response$new(result, response)
         }        
@@ -251,7 +251,7 @@ MetadataClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is 'primitive type', return vector or single value
+            ## API call result is "primitive type", return vector or single value
             result <- as.list(httr::content(response))
             Response$new(result, response)
         }        
@@ -275,7 +275,7 @@ MetadataClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is a 'map container' and will be parsed to list 
+            ## API call result is a "map container" and will be parsed to list 
             result <- httr::content(response, simplifyVector=T)
             Response$new(result, response)
         }        
@@ -301,7 +301,7 @@ MetadataClient <- R6::R6Class(
         } else {
             ## API call result is object of model class
             returnObject <- SourceSystem$new()
-            ## API call result is 'list container'
+            ## API call result is "list container"
             result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=private$getBaseDataType())))
             Response$new(result, response)
         }        

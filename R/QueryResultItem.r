@@ -23,37 +23,37 @@ QueryResultItem <- R6::R6Class(
     initialize = function(`score`, `item`){
       if (!missing(`score`)) {
         stopifnot(is.numeric(`score`), length(`score`) == 1)
-        self[['score']] <- `score`
+        self[["score"]] <- `score`
       }
       if (!missing(`item`)) {
-        self[['item']] <- `item`
+        self[["item"]] <- `item`
       }
     },
 
     toList = function() {
       QueryResultItemList <- list()
-        if (!is.null(self[['score']])) {
-        QueryResultItemList[['score']] <- self[['score']]
+        if (!is.null(self[["score"]])) {
+        QueryResultItemList[["score"]] <- self[["score"]]
       }
-        if (!is.null(self[['item']])) {
-        QueryResultItemList[['item']] <- self[['item']]
+        if (!is.null(self[["item"]])) {
+        QueryResultItemList[["item"]] <- self[["item"]]
       }
       ## omit empty nested lists in returned list
       QueryResultItemList[sapply(QueryResultItemList, length) > 0]
       },
 
     fromList = function(QueryResultItemList, typeMapping=NULL) {
-      if (is.null(typeMapping[['score']])) {
-          self[['score']] <- QueryResultItemList[['score']]
+      if (is.null(typeMapping[["score"]])) {
+          self[["score"]] <- QueryResultItemList[["score"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['score']], "$new()")))
-          self[['score']] <- obj$fromList(QueryResultItemList[['score']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["score"]], "$new()")))
+          self[["score"]] <- obj$fromList(QueryResultItemList[["score"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['item']])) {
-          self[['item']] <- QueryResultItemList[['item']]
+      if (is.null(typeMapping[["item"]])) {
+          self[["item"]] <- QueryResultItemList[["item"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['item']], "$new()")))
-          self[['item']] <- obj$fromList(QueryResultItemList[['item']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["item"]], "$new()")))
+          self[["item"]] <- obj$fromList(QueryResultItemList[["item"]], typeMapping=typeMapping)
       }
       invisible(self)
     },
@@ -64,17 +64,17 @@ QueryResultItem <- R6::R6Class(
 
     fromJSONString = function(QueryResultItemJson, typeMapping=NULL) {
       QueryResultItemList <- jsonlite::fromJSON(QueryResultItemJson, simplifyVector=F)
-      if (is.null(typeMapping[['score']])) {
-          self[['score']] <- QueryResultItemList[['score']]
+      if (is.null(typeMapping[["score"]])) {
+          self[["score"]] <- QueryResultItemList[["score"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['score']], "$new()")))
-          self[['score']] <- obj$fromJSONString(jsonlite::toJSON(QueryResultItemList[['score']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["score"]], "$new()")))
+          self[["score"]] <- obj$fromJSONString(jsonlite::toJSON(QueryResultItemList[["score"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['item']])) {
-          self[['item']] <- QueryResultItemList[['item']]
+      if (is.null(typeMapping[["item"]])) {
+          self[["item"]] <- QueryResultItemList[["item"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['item']], "$new()")))
-          self[['item']] <- obj$fromJSONString(jsonlite::toJSON(QueryResultItemList[['item']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["item"]], "$new()")))
+          self[["item"]] <- obj$fromJSONString(jsonlite::toJSON(QueryResultItemList[["item"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       invisible(self)
     }

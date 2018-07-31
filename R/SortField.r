@@ -24,50 +24,50 @@ SortField <- R6::R6Class(
     `ascending` = NULL,
     initialize = function(`path`, `sortOrder`, `ascending`){
       if (!missing(`path`)) {
-        self[['path']] <- `path`
+        self[["path"]] <- `path`
       }
       if (!missing(`sortOrder`)) {
         stopifnot(is.character(`sortOrder`), length(`sortOrder`) == 1)
-        self[['sortOrder']] <- `sortOrder`
+        self[["sortOrder"]] <- `sortOrder`
       }
       if (!missing(`ascending`)) {
-        self[['ascending']] <- `ascending`
+        self[["ascending"]] <- `ascending`
       }
     },
 
     toList = function() {
       SortFieldList <- list()
-        if (!is.null(self[['path']])) {
-        SortFieldList[['path']] <- self[['path']]
+        if (!is.null(self[["path"]])) {
+        SortFieldList[["path"]] <- self[["path"]]
       }
-        if (!is.null(self[['sortOrder']])) {
-        SortFieldList[['sortOrder']] <- self[['sortOrder']]
+        if (!is.null(self[["sortOrder"]])) {
+        SortFieldList[["sortOrder"]] <- self[["sortOrder"]]
       }
-        if (!is.null(self[['ascending']])) {
-        SortFieldList[['ascending']] <- self[['ascending']]
+        if (!is.null(self[["ascending"]])) {
+        SortFieldList[["ascending"]] <- self[["ascending"]]
       }
       ## omit empty nested lists in returned list
       SortFieldList[sapply(SortFieldList, length) > 0]
       },
 
     fromList = function(SortFieldList, typeMapping=NULL) {
-      if (is.null(typeMapping[['path']])) {
-          self[['path']] <- SortFieldList[['path']]
+      if (is.null(typeMapping[["path"]])) {
+          self[["path"]] <- SortFieldList[["path"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['path']], "$new()")))
-          self[['path']] <- obj$fromList(SortFieldList[['path']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["path"]], "$new()")))
+          self[["path"]] <- obj$fromList(SortFieldList[["path"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['sortOrder']])) {
-          self[['sortOrder']] <- SortFieldList[['sortOrder']]
+      if (is.null(typeMapping[["sortOrder"]])) {
+          self[["sortOrder"]] <- SortFieldList[["sortOrder"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['sortOrder']], "$new()")))
-          self[['sortOrder']] <- obj$fromList(SortFieldList[['sortOrder']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["sortOrder"]], "$new()")))
+          self[["sortOrder"]] <- obj$fromList(SortFieldList[["sortOrder"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['ascending']])) {
-          self[['ascending']] <- SortFieldList[['ascending']]
+      if (is.null(typeMapping[["ascending"]])) {
+          self[["ascending"]] <- SortFieldList[["ascending"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['ascending']], "$new()")))
-          self[['ascending']] <- obj$fromList(SortFieldList[['ascending']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["ascending"]], "$new()")))
+          self[["ascending"]] <- obj$fromList(SortFieldList[["ascending"]], typeMapping=typeMapping)
       }
       invisible(self)
     },
@@ -78,23 +78,23 @@ SortField <- R6::R6Class(
 
     fromJSONString = function(SortFieldJson, typeMapping=NULL) {
       SortFieldList <- jsonlite::fromJSON(SortFieldJson, simplifyVector=F)
-      if (is.null(typeMapping[['path']])) {
-          self[['path']] <- SortFieldList[['path']]
+      if (is.null(typeMapping[["path"]])) {
+          self[["path"]] <- SortFieldList[["path"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['path']], "$new()")))
-          self[['path']] <- obj$fromJSONString(jsonlite::toJSON(SortFieldList[['path']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["path"]], "$new()")))
+          self[["path"]] <- obj$fromJSONString(jsonlite::toJSON(SortFieldList[["path"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['sortOrder']])) {
-          self[['sortOrder']] <- SortFieldList[['sortOrder']]
+      if (is.null(typeMapping[["sortOrder"]])) {
+          self[["sortOrder"]] <- SortFieldList[["sortOrder"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['sortOrder']], "$new()")))
-          self[['sortOrder']] <- obj$fromJSONString(jsonlite::toJSON(SortFieldList[['sortOrder']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["sortOrder"]], "$new()")))
+          self[["sortOrder"]] <- obj$fromJSONString(jsonlite::toJSON(SortFieldList[["sortOrder"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['ascending']])) {
-          self[['ascending']] <- SortFieldList[['ascending']]
+      if (is.null(typeMapping[["ascending"]])) {
+          self[["ascending"]] <- SortFieldList[["ascending"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['ascending']], "$new()")))
-          self[['ascending']] <- obj$fromJSONString(jsonlite::toJSON(SortFieldList[['ascending']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["ascending"]], "$new()")))
+          self[["ascending"]] <- obj$fromJSONString(jsonlite::toJSON(SortFieldList[["ascending"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       invisible(self)
     }

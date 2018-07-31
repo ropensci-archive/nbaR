@@ -81,410 +81,410 @@ MultiMediaObject <- R6::R6Class(
     initialize = function(`sourceSystem`, `sourceSystemId`, `recordURI`, `id`, `sourceInstitutionID`, `sourceID`, `owner`, `licenseType`, `license`, `unitID`, `collectionType`, `title`, `caption`, `description`, `serviceAccessPoints`, `type`, `taxonCount`, `creator`, `copyrightText`, `associatedSpecimenReference`, `associatedTaxonReference`, `multiMediaPublic`, `subjectParts`, `subjectOrientations`, `phasesOrStages`, `sexes`, `gatheringEvents`, `identifications`, `theme`, `associatedSpecimen`, `associatedTaxon`){
       if (!missing(`sourceSystem`)) {
         stopifnot(R6::is.R6(`sourceSystem`))
-        self[['sourceSystem']] <- `sourceSystem`
+        self[["sourceSystem"]] <- `sourceSystem`
       }
       if (!missing(`sourceSystemId`)) {
         stopifnot(is.character(`sourceSystemId`), length(`sourceSystemId`) == 1)
-        self[['sourceSystemId']] <- `sourceSystemId`
+        self[["sourceSystemId"]] <- `sourceSystemId`
       }
       if (!missing(`recordURI`)) {
         stopifnot(is.character(`recordURI`), length(`recordURI`) == 1)
-        self[['recordURI']] <- `recordURI`
+        self[["recordURI"]] <- `recordURI`
       }
       if (!missing(`id`)) {
         stopifnot(is.character(`id`), length(`id`) == 1)
-        self[['id']] <- `id`
+        self[["id"]] <- `id`
       }
       if (!missing(`sourceInstitutionID`)) {
         stopifnot(is.character(`sourceInstitutionID`), length(`sourceInstitutionID`) == 1)
-        self[['sourceInstitutionID']] <- `sourceInstitutionID`
+        self[["sourceInstitutionID"]] <- `sourceInstitutionID`
       }
       if (!missing(`sourceID`)) {
         stopifnot(is.character(`sourceID`), length(`sourceID`) == 1)
-        self[['sourceID']] <- `sourceID`
+        self[["sourceID"]] <- `sourceID`
       }
       if (!missing(`owner`)) {
         stopifnot(is.character(`owner`), length(`owner`) == 1)
-        self[['owner']] <- `owner`
+        self[["owner"]] <- `owner`
       }
       if (!missing(`licenseType`)) {
         stopifnot(is.character(`licenseType`), length(`licenseType`) == 1)
-        self[['licenseType']] <- `licenseType`
+        self[["licenseType"]] <- `licenseType`
       }
       if (!missing(`license`)) {
         stopifnot(is.character(`license`), length(`license`) == 1)
-        self[['license']] <- `license`
+        self[["license"]] <- `license`
       }
       if (!missing(`unitID`)) {
         stopifnot(is.character(`unitID`), length(`unitID`) == 1)
-        self[['unitID']] <- `unitID`
+        self[["unitID"]] <- `unitID`
       }
       if (!missing(`collectionType`)) {
         stopifnot(is.character(`collectionType`), length(`collectionType`) == 1)
-        self[['collectionType']] <- `collectionType`
+        self[["collectionType"]] <- `collectionType`
       }
       if (!missing(`title`)) {
         stopifnot(is.character(`title`), length(`title`) == 1)
-        self[['title']] <- `title`
+        self[["title"]] <- `title`
       }
       if (!missing(`caption`)) {
         stopifnot(is.character(`caption`), length(`caption`) == 1)
-        self[['caption']] <- `caption`
+        self[["caption"]] <- `caption`
       }
       if (!missing(`description`)) {
         stopifnot(is.character(`description`), length(`description`) == 1)
-        self[['description']] <- `description`
+        self[["description"]] <- `description`
       }
       if (!missing(`serviceAccessPoints`)) {
         stopifnot(is.list(`serviceAccessPoints`), length(`serviceAccessPoints`) != 0)
         lapply(`serviceAccessPoints`, function(x) stopifnot(R6::is.R6(x)))
-        self[['serviceAccessPoints']] <- `serviceAccessPoints`
+        self[["serviceAccessPoints"]] <- `serviceAccessPoints`
       }
       if (!missing(`type`)) {
         stopifnot(is.character(`type`), length(`type`) == 1)
-        self[['type']] <- `type`
+        self[["type"]] <- `type`
       }
       if (!missing(`taxonCount`)) {
         stopifnot(is.numeric(`taxonCount`), length(`taxonCount`) == 1)
-        self[['taxonCount']] <- `taxonCount`
+        self[["taxonCount"]] <- `taxonCount`
       }
       if (!missing(`creator`)) {
         stopifnot(is.character(`creator`), length(`creator`) == 1)
-        self[['creator']] <- `creator`
+        self[["creator"]] <- `creator`
       }
       if (!missing(`copyrightText`)) {
         stopifnot(is.character(`copyrightText`), length(`copyrightText`) == 1)
-        self[['copyrightText']] <- `copyrightText`
+        self[["copyrightText"]] <- `copyrightText`
       }
       if (!missing(`associatedSpecimenReference`)) {
         stopifnot(is.character(`associatedSpecimenReference`), length(`associatedSpecimenReference`) == 1)
-        self[['associatedSpecimenReference']] <- `associatedSpecimenReference`
+        self[["associatedSpecimenReference"]] <- `associatedSpecimenReference`
       }
       if (!missing(`associatedTaxonReference`)) {
         stopifnot(is.character(`associatedTaxonReference`), length(`associatedTaxonReference`) == 1)
-        self[['associatedTaxonReference']] <- `associatedTaxonReference`
+        self[["associatedTaxonReference"]] <- `associatedTaxonReference`
       }
       if (!missing(`multiMediaPublic`)) {
-        self[['multiMediaPublic']] <- `multiMediaPublic`
+        self[["multiMediaPublic"]] <- `multiMediaPublic`
       }
       if (!missing(`subjectParts`)) {
         stopifnot(is.list(`subjectParts`), length(`subjectParts`) != 0)
         lapply(`subjectParts`, function(x) stopifnot(is.character(x)))
-        self[['subjectParts']] <- `subjectParts`
+        self[["subjectParts"]] <- `subjectParts`
       }
       if (!missing(`subjectOrientations`)) {
         stopifnot(is.list(`subjectOrientations`), length(`subjectOrientations`) != 0)
         lapply(`subjectOrientations`, function(x) stopifnot(is.character(x)))
-        self[['subjectOrientations']] <- `subjectOrientations`
+        self[["subjectOrientations"]] <- `subjectOrientations`
       }
       if (!missing(`phasesOrStages`)) {
         stopifnot(is.list(`phasesOrStages`), length(`phasesOrStages`) != 0)
         lapply(`phasesOrStages`, function(x) stopifnot(is.character(x)))
-        self[['phasesOrStages']] <- `phasesOrStages`
+        self[["phasesOrStages"]] <- `phasesOrStages`
       }
       if (!missing(`sexes`)) {
         stopifnot(is.list(`sexes`), length(`sexes`) != 0)
         lapply(`sexes`, function(x) stopifnot(is.character(x)))
-        self[['sexes']] <- `sexes`
+        self[["sexes"]] <- `sexes`
       }
       if (!missing(`gatheringEvents`)) {
         stopifnot(is.list(`gatheringEvents`), length(`gatheringEvents`) != 0)
         lapply(`gatheringEvents`, function(x) stopifnot(R6::is.R6(x)))
-        self[['gatheringEvents']] <- `gatheringEvents`
+        self[["gatheringEvents"]] <- `gatheringEvents`
       }
       if (!missing(`identifications`)) {
         stopifnot(is.list(`identifications`), length(`identifications`) != 0)
         lapply(`identifications`, function(x) stopifnot(R6::is.R6(x)))
-        self[['identifications']] <- `identifications`
+        self[["identifications"]] <- `identifications`
       }
       if (!missing(`theme`)) {
         stopifnot(is.list(`theme`), length(`theme`) != 0)
         lapply(`theme`, function(x) stopifnot(is.character(x)))
-        self[['theme']] <- `theme`
+        self[["theme"]] <- `theme`
       }
       if (!missing(`associatedSpecimen`)) {
         stopifnot(R6::is.R6(`associatedSpecimen`))
-        self[['associatedSpecimen']] <- `associatedSpecimen`
+        self[["associatedSpecimen"]] <- `associatedSpecimen`
       }
       if (!missing(`associatedTaxon`)) {
         stopifnot(R6::is.R6(`associatedTaxon`))
-        self[['associatedTaxon']] <- `associatedTaxon`
+        self[["associatedTaxon"]] <- `associatedTaxon`
       }
     },
 
     toList = function() {
       MultiMediaObjectList <- list()
-        if (!is.null(self[['sourceSystem']])) {
-        MultiMediaObjectList[['sourceSystem']] <- self[['sourceSystem']]$toList()
+        if (!is.null(self[["sourceSystem"]])) {
+        MultiMediaObjectList[["sourceSystem"]] <- self[["sourceSystem"]]$toList()
       }
-        if (!is.null(self[['sourceSystemId']])) {
-        MultiMediaObjectList[['sourceSystemId']] <- self[['sourceSystemId']]
+        if (!is.null(self[["sourceSystemId"]])) {
+        MultiMediaObjectList[["sourceSystemId"]] <- self[["sourceSystemId"]]
       }
-        if (!is.null(self[['recordURI']])) {
-        MultiMediaObjectList[['recordURI']] <- self[['recordURI']]
+        if (!is.null(self[["recordURI"]])) {
+        MultiMediaObjectList[["recordURI"]] <- self[["recordURI"]]
       }
-        if (!is.null(self[['id']])) {
-        MultiMediaObjectList[['id']] <- self[['id']]
+        if (!is.null(self[["id"]])) {
+        MultiMediaObjectList[["id"]] <- self[["id"]]
       }
-        if (!is.null(self[['sourceInstitutionID']])) {
-        MultiMediaObjectList[['sourceInstitutionID']] <- self[['sourceInstitutionID']]
+        if (!is.null(self[["sourceInstitutionID"]])) {
+        MultiMediaObjectList[["sourceInstitutionID"]] <- self[["sourceInstitutionID"]]
       }
-        if (!is.null(self[['sourceID']])) {
-        MultiMediaObjectList[['sourceID']] <- self[['sourceID']]
+        if (!is.null(self[["sourceID"]])) {
+        MultiMediaObjectList[["sourceID"]] <- self[["sourceID"]]
       }
-        if (!is.null(self[['owner']])) {
-        MultiMediaObjectList[['owner']] <- self[['owner']]
+        if (!is.null(self[["owner"]])) {
+        MultiMediaObjectList[["owner"]] <- self[["owner"]]
       }
-        if (!is.null(self[['licenseType']])) {
-        MultiMediaObjectList[['licenseType']] <- self[['licenseType']]
+        if (!is.null(self[["licenseType"]])) {
+        MultiMediaObjectList[["licenseType"]] <- self[["licenseType"]]
       }
-        if (!is.null(self[['license']])) {
-        MultiMediaObjectList[['license']] <- self[['license']]
+        if (!is.null(self[["license"]])) {
+        MultiMediaObjectList[["license"]] <- self[["license"]]
       }
-        if (!is.null(self[['unitID']])) {
-        MultiMediaObjectList[['unitID']] <- self[['unitID']]
+        if (!is.null(self[["unitID"]])) {
+        MultiMediaObjectList[["unitID"]] <- self[["unitID"]]
       }
-        if (!is.null(self[['collectionType']])) {
-        MultiMediaObjectList[['collectionType']] <- self[['collectionType']]
+        if (!is.null(self[["collectionType"]])) {
+        MultiMediaObjectList[["collectionType"]] <- self[["collectionType"]]
       }
-        if (!is.null(self[['title']])) {
-        MultiMediaObjectList[['title']] <- self[['title']]
+        if (!is.null(self[["title"]])) {
+        MultiMediaObjectList[["title"]] <- self[["title"]]
       }
-        if (!is.null(self[['caption']])) {
-        MultiMediaObjectList[['caption']] <- self[['caption']]
+        if (!is.null(self[["caption"]])) {
+        MultiMediaObjectList[["caption"]] <- self[["caption"]]
       }
-        if (!is.null(self[['description']])) {
-        MultiMediaObjectList[['description']] <- self[['description']]
+        if (!is.null(self[["description"]])) {
+        MultiMediaObjectList[["description"]] <- self[["description"]]
       }
-        if (!is.null(self[['serviceAccessPoints']])) {
-        MultiMediaObjectList[['serviceAccessPoints']] <- lapply(self[['serviceAccessPoints']], function(x) x$toList())
+        if (!is.null(self[["serviceAccessPoints"]])) {
+        MultiMediaObjectList[["serviceAccessPoints"]] <- lapply(self[["serviceAccessPoints"]], function(x) x$toList())
       }
-        if (!is.null(self[['type']])) {
-        MultiMediaObjectList[['type']] <- self[['type']]
+        if (!is.null(self[["type"]])) {
+        MultiMediaObjectList[["type"]] <- self[["type"]]
       }
-        if (!is.null(self[['taxonCount']])) {
-        MultiMediaObjectList[['taxonCount']] <- self[['taxonCount']]
+        if (!is.null(self[["taxonCount"]])) {
+        MultiMediaObjectList[["taxonCount"]] <- self[["taxonCount"]]
       }
-        if (!is.null(self[['creator']])) {
-        MultiMediaObjectList[['creator']] <- self[['creator']]
+        if (!is.null(self[["creator"]])) {
+        MultiMediaObjectList[["creator"]] <- self[["creator"]]
       }
-        if (!is.null(self[['copyrightText']])) {
-        MultiMediaObjectList[['copyrightText']] <- self[['copyrightText']]
+        if (!is.null(self[["copyrightText"]])) {
+        MultiMediaObjectList[["copyrightText"]] <- self[["copyrightText"]]
       }
-        if (!is.null(self[['associatedSpecimenReference']])) {
-        MultiMediaObjectList[['associatedSpecimenReference']] <- self[['associatedSpecimenReference']]
+        if (!is.null(self[["associatedSpecimenReference"]])) {
+        MultiMediaObjectList[["associatedSpecimenReference"]] <- self[["associatedSpecimenReference"]]
       }
-        if (!is.null(self[['associatedTaxonReference']])) {
-        MultiMediaObjectList[['associatedTaxonReference']] <- self[['associatedTaxonReference']]
+        if (!is.null(self[["associatedTaxonReference"]])) {
+        MultiMediaObjectList[["associatedTaxonReference"]] <- self[["associatedTaxonReference"]]
       }
-        if (!is.null(self[['multiMediaPublic']])) {
-        MultiMediaObjectList[['multiMediaPublic']] <- self[['multiMediaPublic']]
+        if (!is.null(self[["multiMediaPublic"]])) {
+        MultiMediaObjectList[["multiMediaPublic"]] <- self[["multiMediaPublic"]]
       }
-        if (!is.null(self[['subjectParts']])) {
-        MultiMediaObjectList[['subjectParts']] <- self[['subjectParts']]
+        if (!is.null(self[["subjectParts"]])) {
+        MultiMediaObjectList[["subjectParts"]] <- self[["subjectParts"]]
       }
-        if (!is.null(self[['subjectOrientations']])) {
-        MultiMediaObjectList[['subjectOrientations']] <- self[['subjectOrientations']]
+        if (!is.null(self[["subjectOrientations"]])) {
+        MultiMediaObjectList[["subjectOrientations"]] <- self[["subjectOrientations"]]
       }
-        if (!is.null(self[['phasesOrStages']])) {
-        MultiMediaObjectList[['phasesOrStages']] <- self[['phasesOrStages']]
+        if (!is.null(self[["phasesOrStages"]])) {
+        MultiMediaObjectList[["phasesOrStages"]] <- self[["phasesOrStages"]]
       }
-        if (!is.null(self[['sexes']])) {
-        MultiMediaObjectList[['sexes']] <- self[['sexes']]
+        if (!is.null(self[["sexes"]])) {
+        MultiMediaObjectList[["sexes"]] <- self[["sexes"]]
       }
-        if (!is.null(self[['gatheringEvents']])) {
-        MultiMediaObjectList[['gatheringEvents']] <- lapply(self[['gatheringEvents']], function(x) x$toList())
+        if (!is.null(self[["gatheringEvents"]])) {
+        MultiMediaObjectList[["gatheringEvents"]] <- lapply(self[["gatheringEvents"]], function(x) x$toList())
       }
-        if (!is.null(self[['identifications']])) {
-        MultiMediaObjectList[['identifications']] <- lapply(self[['identifications']], function(x) x$toList())
+        if (!is.null(self[["identifications"]])) {
+        MultiMediaObjectList[["identifications"]] <- lapply(self[["identifications"]], function(x) x$toList())
       }
-        if (!is.null(self[['theme']])) {
-        MultiMediaObjectList[['theme']] <- self[['theme']]
+        if (!is.null(self[["theme"]])) {
+        MultiMediaObjectList[["theme"]] <- self[["theme"]]
       }
-        if (!is.null(self[['associatedSpecimen']])) {
-        MultiMediaObjectList[['associatedSpecimen']] <- self[['associatedSpecimen']]$toList()
+        if (!is.null(self[["associatedSpecimen"]])) {
+        MultiMediaObjectList[["associatedSpecimen"]] <- self[["associatedSpecimen"]]$toList()
       }
-        if (!is.null(self[['associatedTaxon']])) {
-        MultiMediaObjectList[['associatedTaxon']] <- self[['associatedTaxon']]$toList()
+        if (!is.null(self[["associatedTaxon"]])) {
+        MultiMediaObjectList[["associatedTaxon"]] <- self[["associatedTaxon"]]$toList()
       }
       ## omit empty nested lists in returned list
       MultiMediaObjectList[sapply(MultiMediaObjectList, length) > 0]
       },
 
     fromList = function(MultiMediaObjectList, typeMapping=NULL) {
-      if (is.null(typeMapping[['sourceSystem']])) {
-          self[['sourceSystem']] <- SourceSystem$new()$fromList(MultiMediaObjectList[['sourceSystem']], typeMapping=typeMapping) 
+      if (is.null(typeMapping[["sourceSystem"]])) {
+          self[["sourceSystem"]] <- SourceSystem$new()$fromList(MultiMediaObjectList[["sourceSystem"]], typeMapping=typeMapping) 
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['sourceSystem']], "$new()")))
-          self[['sourceSystem']] <- obj$fromList(MultiMediaObjectList[['sourceSystem']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["sourceSystem"]], "$new()")))
+          self[["sourceSystem"]] <- obj$fromList(MultiMediaObjectList[["sourceSystem"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['sourceSystemId']])) {
-          self[['sourceSystemId']] <- MultiMediaObjectList[['sourceSystemId']]
+      if (is.null(typeMapping[["sourceSystemId"]])) {
+          self[["sourceSystemId"]] <- MultiMediaObjectList[["sourceSystemId"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['sourceSystemId']], "$new()")))
-          self[['sourceSystemId']] <- obj$fromList(MultiMediaObjectList[['sourceSystemId']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["sourceSystemId"]], "$new()")))
+          self[["sourceSystemId"]] <- obj$fromList(MultiMediaObjectList[["sourceSystemId"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['recordURI']])) {
-          self[['recordURI']] <- MultiMediaObjectList[['recordURI']]
+      if (is.null(typeMapping[["recordURI"]])) {
+          self[["recordURI"]] <- MultiMediaObjectList[["recordURI"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['recordURI']], "$new()")))
-          self[['recordURI']] <- obj$fromList(MultiMediaObjectList[['recordURI']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["recordURI"]], "$new()")))
+          self[["recordURI"]] <- obj$fromList(MultiMediaObjectList[["recordURI"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['id']])) {
-          self[['id']] <- MultiMediaObjectList[['id']]
+      if (is.null(typeMapping[["id"]])) {
+          self[["id"]] <- MultiMediaObjectList[["id"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['id']], "$new()")))
-          self[['id']] <- obj$fromList(MultiMediaObjectList[['id']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["id"]], "$new()")))
+          self[["id"]] <- obj$fromList(MultiMediaObjectList[["id"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['sourceInstitutionID']])) {
-          self[['sourceInstitutionID']] <- MultiMediaObjectList[['sourceInstitutionID']]
+      if (is.null(typeMapping[["sourceInstitutionID"]])) {
+          self[["sourceInstitutionID"]] <- MultiMediaObjectList[["sourceInstitutionID"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['sourceInstitutionID']], "$new()")))
-          self[['sourceInstitutionID']] <- obj$fromList(MultiMediaObjectList[['sourceInstitutionID']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["sourceInstitutionID"]], "$new()")))
+          self[["sourceInstitutionID"]] <- obj$fromList(MultiMediaObjectList[["sourceInstitutionID"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['sourceID']])) {
-          self[['sourceID']] <- MultiMediaObjectList[['sourceID']]
+      if (is.null(typeMapping[["sourceID"]])) {
+          self[["sourceID"]] <- MultiMediaObjectList[["sourceID"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['sourceID']], "$new()")))
-          self[['sourceID']] <- obj$fromList(MultiMediaObjectList[['sourceID']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["sourceID"]], "$new()")))
+          self[["sourceID"]] <- obj$fromList(MultiMediaObjectList[["sourceID"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['owner']])) {
-          self[['owner']] <- MultiMediaObjectList[['owner']]
+      if (is.null(typeMapping[["owner"]])) {
+          self[["owner"]] <- MultiMediaObjectList[["owner"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['owner']], "$new()")))
-          self[['owner']] <- obj$fromList(MultiMediaObjectList[['owner']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["owner"]], "$new()")))
+          self[["owner"]] <- obj$fromList(MultiMediaObjectList[["owner"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['licenseType']])) {
-          self[['licenseType']] <- MultiMediaObjectList[['licenseType']]
+      if (is.null(typeMapping[["licenseType"]])) {
+          self[["licenseType"]] <- MultiMediaObjectList[["licenseType"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['licenseType']], "$new()")))
-          self[['licenseType']] <- obj$fromList(MultiMediaObjectList[['licenseType']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["licenseType"]], "$new()")))
+          self[["licenseType"]] <- obj$fromList(MultiMediaObjectList[["licenseType"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['license']])) {
-          self[['license']] <- MultiMediaObjectList[['license']]
+      if (is.null(typeMapping[["license"]])) {
+          self[["license"]] <- MultiMediaObjectList[["license"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['license']], "$new()")))
-          self[['license']] <- obj$fromList(MultiMediaObjectList[['license']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["license"]], "$new()")))
+          self[["license"]] <- obj$fromList(MultiMediaObjectList[["license"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['unitID']])) {
-          self[['unitID']] <- MultiMediaObjectList[['unitID']]
+      if (is.null(typeMapping[["unitID"]])) {
+          self[["unitID"]] <- MultiMediaObjectList[["unitID"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['unitID']], "$new()")))
-          self[['unitID']] <- obj$fromList(MultiMediaObjectList[['unitID']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["unitID"]], "$new()")))
+          self[["unitID"]] <- obj$fromList(MultiMediaObjectList[["unitID"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['collectionType']])) {
-          self[['collectionType']] <- MultiMediaObjectList[['collectionType']]
+      if (is.null(typeMapping[["collectionType"]])) {
+          self[["collectionType"]] <- MultiMediaObjectList[["collectionType"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['collectionType']], "$new()")))
-          self[['collectionType']] <- obj$fromList(MultiMediaObjectList[['collectionType']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["collectionType"]], "$new()")))
+          self[["collectionType"]] <- obj$fromList(MultiMediaObjectList[["collectionType"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['title']])) {
-          self[['title']] <- MultiMediaObjectList[['title']]
+      if (is.null(typeMapping[["title"]])) {
+          self[["title"]] <- MultiMediaObjectList[["title"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['title']], "$new()")))
-          self[['title']] <- obj$fromList(MultiMediaObjectList[['title']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["title"]], "$new()")))
+          self[["title"]] <- obj$fromList(MultiMediaObjectList[["title"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['caption']])) {
-          self[['caption']] <- MultiMediaObjectList[['caption']]
+      if (is.null(typeMapping[["caption"]])) {
+          self[["caption"]] <- MultiMediaObjectList[["caption"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['caption']], "$new()")))
-          self[['caption']] <- obj$fromList(MultiMediaObjectList[['caption']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["caption"]], "$new()")))
+          self[["caption"]] <- obj$fromList(MultiMediaObjectList[["caption"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['description']])) {
-          self[['description']] <- MultiMediaObjectList[['description']]
+      if (is.null(typeMapping[["description"]])) {
+          self[["description"]] <- MultiMediaObjectList[["description"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['description']], "$new()")))
-          self[['description']] <- obj$fromList(MultiMediaObjectList[['description']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["description"]], "$new()")))
+          self[["description"]] <- obj$fromList(MultiMediaObjectList[["description"]], typeMapping=typeMapping)
       }
-      self[['serviceAccessPoints']] <- lapply(MultiMediaObjectList[['serviceAccessPoints']],
+      self[["serviceAccessPoints"]] <- lapply(MultiMediaObjectList[["serviceAccessPoints"]],
                                        function(x) ServiceAccessPoint$new()$fromList(x, typeMapping=typeMapping))
-      if (is.null(typeMapping[['type']])) {
-          self[['type']] <- MultiMediaObjectList[['type']]
+      if (is.null(typeMapping[["type"]])) {
+          self[["type"]] <- MultiMediaObjectList[["type"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['type']], "$new()")))
-          self[['type']] <- obj$fromList(MultiMediaObjectList[['type']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["type"]], "$new()")))
+          self[["type"]] <- obj$fromList(MultiMediaObjectList[["type"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['taxonCount']])) {
-          self[['taxonCount']] <- MultiMediaObjectList[['taxonCount']]
+      if (is.null(typeMapping[["taxonCount"]])) {
+          self[["taxonCount"]] <- MultiMediaObjectList[["taxonCount"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['taxonCount']], "$new()")))
-          self[['taxonCount']] <- obj$fromList(MultiMediaObjectList[['taxonCount']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["taxonCount"]], "$new()")))
+          self[["taxonCount"]] <- obj$fromList(MultiMediaObjectList[["taxonCount"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['creator']])) {
-          self[['creator']] <- MultiMediaObjectList[['creator']]
+      if (is.null(typeMapping[["creator"]])) {
+          self[["creator"]] <- MultiMediaObjectList[["creator"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['creator']], "$new()")))
-          self[['creator']] <- obj$fromList(MultiMediaObjectList[['creator']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["creator"]], "$new()")))
+          self[["creator"]] <- obj$fromList(MultiMediaObjectList[["creator"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['copyrightText']])) {
-          self[['copyrightText']] <- MultiMediaObjectList[['copyrightText']]
+      if (is.null(typeMapping[["copyrightText"]])) {
+          self[["copyrightText"]] <- MultiMediaObjectList[["copyrightText"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['copyrightText']], "$new()")))
-          self[['copyrightText']] <- obj$fromList(MultiMediaObjectList[['copyrightText']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["copyrightText"]], "$new()")))
+          self[["copyrightText"]] <- obj$fromList(MultiMediaObjectList[["copyrightText"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['associatedSpecimenReference']])) {
-          self[['associatedSpecimenReference']] <- MultiMediaObjectList[['associatedSpecimenReference']]
+      if (is.null(typeMapping[["associatedSpecimenReference"]])) {
+          self[["associatedSpecimenReference"]] <- MultiMediaObjectList[["associatedSpecimenReference"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['associatedSpecimenReference']], "$new()")))
-          self[['associatedSpecimenReference']] <- obj$fromList(MultiMediaObjectList[['associatedSpecimenReference']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["associatedSpecimenReference"]], "$new()")))
+          self[["associatedSpecimenReference"]] <- obj$fromList(MultiMediaObjectList[["associatedSpecimenReference"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['associatedTaxonReference']])) {
-          self[['associatedTaxonReference']] <- MultiMediaObjectList[['associatedTaxonReference']]
+      if (is.null(typeMapping[["associatedTaxonReference"]])) {
+          self[["associatedTaxonReference"]] <- MultiMediaObjectList[["associatedTaxonReference"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['associatedTaxonReference']], "$new()")))
-          self[['associatedTaxonReference']] <- obj$fromList(MultiMediaObjectList[['associatedTaxonReference']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["associatedTaxonReference"]], "$new()")))
+          self[["associatedTaxonReference"]] <- obj$fromList(MultiMediaObjectList[["associatedTaxonReference"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['multiMediaPublic']])) {
-          self[['multiMediaPublic']] <- MultiMediaObjectList[['multiMediaPublic']]
+      if (is.null(typeMapping[["multiMediaPublic"]])) {
+          self[["multiMediaPublic"]] <- MultiMediaObjectList[["multiMediaPublic"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['multiMediaPublic']], "$new()")))
-          self[['multiMediaPublic']] <- obj$fromList(MultiMediaObjectList[['multiMediaPublic']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["multiMediaPublic"]], "$new()")))
+          self[["multiMediaPublic"]] <- obj$fromList(MultiMediaObjectList[["multiMediaPublic"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['subjectParts']])) {
-          self[['subjectParts']] <- MultiMediaObjectList[['subjectParts']]
+      if (is.null(typeMapping[["subjectParts"]])) {
+          self[["subjectParts"]] <- MultiMediaObjectList[["subjectParts"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['subjectParts']], "$new()")))
-          self[['subjectParts']] <- obj$fromList(MultiMediaObjectList[['subjectParts']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["subjectParts"]], "$new()")))
+          self[["subjectParts"]] <- obj$fromList(MultiMediaObjectList[["subjectParts"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['subjectOrientations']])) {
-          self[['subjectOrientations']] <- MultiMediaObjectList[['subjectOrientations']]
+      if (is.null(typeMapping[["subjectOrientations"]])) {
+          self[["subjectOrientations"]] <- MultiMediaObjectList[["subjectOrientations"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['subjectOrientations']], "$new()")))
-          self[['subjectOrientations']] <- obj$fromList(MultiMediaObjectList[['subjectOrientations']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["subjectOrientations"]], "$new()")))
+          self[["subjectOrientations"]] <- obj$fromList(MultiMediaObjectList[["subjectOrientations"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['phasesOrStages']])) {
-          self[['phasesOrStages']] <- MultiMediaObjectList[['phasesOrStages']]
+      if (is.null(typeMapping[["phasesOrStages"]])) {
+          self[["phasesOrStages"]] <- MultiMediaObjectList[["phasesOrStages"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['phasesOrStages']], "$new()")))
-          self[['phasesOrStages']] <- obj$fromList(MultiMediaObjectList[['phasesOrStages']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["phasesOrStages"]], "$new()")))
+          self[["phasesOrStages"]] <- obj$fromList(MultiMediaObjectList[["phasesOrStages"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['sexes']])) {
-          self[['sexes']] <- MultiMediaObjectList[['sexes']]
+      if (is.null(typeMapping[["sexes"]])) {
+          self[["sexes"]] <- MultiMediaObjectList[["sexes"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['sexes']], "$new()")))
-          self[['sexes']] <- obj$fromList(MultiMediaObjectList[['sexes']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["sexes"]], "$new()")))
+          self[["sexes"]] <- obj$fromList(MultiMediaObjectList[["sexes"]], typeMapping=typeMapping)
       }
-      self[['gatheringEvents']] <- lapply(MultiMediaObjectList[['gatheringEvents']],
+      self[["gatheringEvents"]] <- lapply(MultiMediaObjectList[["gatheringEvents"]],
                                        function(x) MultiMediaGatheringEvent$new()$fromList(x, typeMapping=typeMapping))
-      self[['identifications']] <- lapply(MultiMediaObjectList[['identifications']],
+      self[["identifications"]] <- lapply(MultiMediaObjectList[["identifications"]],
                                        function(x) MultiMediaContentIdentification$new()$fromList(x, typeMapping=typeMapping))
-      if (is.null(typeMapping[['theme']])) {
-          self[['theme']] <- MultiMediaObjectList[['theme']]
+      if (is.null(typeMapping[["theme"]])) {
+          self[["theme"]] <- MultiMediaObjectList[["theme"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['theme']], "$new()")))
-          self[['theme']] <- obj$fromList(MultiMediaObjectList[['theme']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["theme"]], "$new()")))
+          self[["theme"]] <- obj$fromList(MultiMediaObjectList[["theme"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['associatedSpecimen']])) {
-          self[['associatedSpecimen']] <- Specimen$new()$fromList(MultiMediaObjectList[['associatedSpecimen']], typeMapping=typeMapping) 
+      if (is.null(typeMapping[["associatedSpecimen"]])) {
+          self[["associatedSpecimen"]] <- Specimen$new()$fromList(MultiMediaObjectList[["associatedSpecimen"]], typeMapping=typeMapping) 
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['associatedSpecimen']], "$new()")))
-          self[['associatedSpecimen']] <- obj$fromList(MultiMediaObjectList[['associatedSpecimen']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["associatedSpecimen"]], "$new()")))
+          self[["associatedSpecimen"]] <- obj$fromList(MultiMediaObjectList[["associatedSpecimen"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['associatedTaxon']])) {
-          self[['associatedTaxon']] <- Taxon$new()$fromList(MultiMediaObjectList[['associatedTaxon']], typeMapping=typeMapping) 
+      if (is.null(typeMapping[["associatedTaxon"]])) {
+          self[["associatedTaxon"]] <- Taxon$new()$fromList(MultiMediaObjectList[["associatedTaxon"]], typeMapping=typeMapping) 
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['associatedTaxon']], "$new()")))
-          self[['associatedTaxon']] <- obj$fromList(MultiMediaObjectList[['associatedTaxon']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["associatedTaxon"]], "$new()")))
+          self[["associatedTaxon"]] <- obj$fromList(MultiMediaObjectList[["associatedTaxon"]], typeMapping=typeMapping)
       }
       invisible(self)
     },
@@ -495,179 +495,179 @@ MultiMediaObject <- R6::R6Class(
 
     fromJSONString = function(MultiMediaObjectJson, typeMapping=NULL) {
       MultiMediaObjectList <- jsonlite::fromJSON(MultiMediaObjectJson, simplifyVector=F)
-      if (is.null(typeMapping[['sourceSystem']])) {
-          self[['sourceSystem']] <- SourceSystem$new()$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['sourceSystem']], auto_unbox = TRUE), typeMapping=typeMapping) 
+      if (is.null(typeMapping[["sourceSystem"]])) {
+          self[["sourceSystem"]] <- SourceSystem$new()$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["sourceSystem"]], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['sourceSystem']], "$new()")))
-          self[['sourceSystem']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['sourceSystem']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["sourceSystem"]], "$new()")))
+          self[["sourceSystem"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["sourceSystem"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['sourceSystemId']])) {
-          self[['sourceSystemId']] <- MultiMediaObjectList[['sourceSystemId']]
+      if (is.null(typeMapping[["sourceSystemId"]])) {
+          self[["sourceSystemId"]] <- MultiMediaObjectList[["sourceSystemId"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['sourceSystemId']], "$new()")))
-          self[['sourceSystemId']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['sourceSystemId']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["sourceSystemId"]], "$new()")))
+          self[["sourceSystemId"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["sourceSystemId"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['recordURI']])) {
-          self[['recordURI']] <- MultiMediaObjectList[['recordURI']]
+      if (is.null(typeMapping[["recordURI"]])) {
+          self[["recordURI"]] <- MultiMediaObjectList[["recordURI"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['recordURI']], "$new()")))
-          self[['recordURI']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['recordURI']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["recordURI"]], "$new()")))
+          self[["recordURI"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["recordURI"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['id']])) {
-          self[['id']] <- MultiMediaObjectList[['id']]
+      if (is.null(typeMapping[["id"]])) {
+          self[["id"]] <- MultiMediaObjectList[["id"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['id']], "$new()")))
-          self[['id']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['id']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["id"]], "$new()")))
+          self[["id"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["id"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['sourceInstitutionID']])) {
-          self[['sourceInstitutionID']] <- MultiMediaObjectList[['sourceInstitutionID']]
+      if (is.null(typeMapping[["sourceInstitutionID"]])) {
+          self[["sourceInstitutionID"]] <- MultiMediaObjectList[["sourceInstitutionID"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['sourceInstitutionID']], "$new()")))
-          self[['sourceInstitutionID']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['sourceInstitutionID']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["sourceInstitutionID"]], "$new()")))
+          self[["sourceInstitutionID"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["sourceInstitutionID"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['sourceID']])) {
-          self[['sourceID']] <- MultiMediaObjectList[['sourceID']]
+      if (is.null(typeMapping[["sourceID"]])) {
+          self[["sourceID"]] <- MultiMediaObjectList[["sourceID"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['sourceID']], "$new()")))
-          self[['sourceID']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['sourceID']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["sourceID"]], "$new()")))
+          self[["sourceID"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["sourceID"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['owner']])) {
-          self[['owner']] <- MultiMediaObjectList[['owner']]
+      if (is.null(typeMapping[["owner"]])) {
+          self[["owner"]] <- MultiMediaObjectList[["owner"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['owner']], "$new()")))
-          self[['owner']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['owner']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["owner"]], "$new()")))
+          self[["owner"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["owner"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['licenseType']])) {
-          self[['licenseType']] <- MultiMediaObjectList[['licenseType']]
+      if (is.null(typeMapping[["licenseType"]])) {
+          self[["licenseType"]] <- MultiMediaObjectList[["licenseType"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['licenseType']], "$new()")))
-          self[['licenseType']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['licenseType']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["licenseType"]], "$new()")))
+          self[["licenseType"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["licenseType"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['license']])) {
-          self[['license']] <- MultiMediaObjectList[['license']]
+      if (is.null(typeMapping[["license"]])) {
+          self[["license"]] <- MultiMediaObjectList[["license"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['license']], "$new()")))
-          self[['license']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['license']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["license"]], "$new()")))
+          self[["license"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["license"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['unitID']])) {
-          self[['unitID']] <- MultiMediaObjectList[['unitID']]
+      if (is.null(typeMapping[["unitID"]])) {
+          self[["unitID"]] <- MultiMediaObjectList[["unitID"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['unitID']], "$new()")))
-          self[['unitID']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['unitID']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["unitID"]], "$new()")))
+          self[["unitID"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["unitID"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['collectionType']])) {
-          self[['collectionType']] <- MultiMediaObjectList[['collectionType']]
+      if (is.null(typeMapping[["collectionType"]])) {
+          self[["collectionType"]] <- MultiMediaObjectList[["collectionType"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['collectionType']], "$new()")))
-          self[['collectionType']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['collectionType']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["collectionType"]], "$new()")))
+          self[["collectionType"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["collectionType"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['title']])) {
-          self[['title']] <- MultiMediaObjectList[['title']]
+      if (is.null(typeMapping[["title"]])) {
+          self[["title"]] <- MultiMediaObjectList[["title"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['title']], "$new()")))
-          self[['title']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['title']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["title"]], "$new()")))
+          self[["title"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["title"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['caption']])) {
-          self[['caption']] <- MultiMediaObjectList[['caption']]
+      if (is.null(typeMapping[["caption"]])) {
+          self[["caption"]] <- MultiMediaObjectList[["caption"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['caption']], "$new()")))
-          self[['caption']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['caption']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["caption"]], "$new()")))
+          self[["caption"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["caption"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['description']])) {
-          self[['description']] <- MultiMediaObjectList[['description']]
+      if (is.null(typeMapping[["description"]])) {
+          self[["description"]] <- MultiMediaObjectList[["description"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['description']], "$new()")))
-          self[['description']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['description']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["description"]], "$new()")))
+          self[["description"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["description"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      self[['serviceAccessPoints']] <- lapply(MultiMediaObjectList[['serviceAccessPoints']],
+      self[["serviceAccessPoints"]] <- lapply(MultiMediaObjectList[["serviceAccessPoints"]],
                                         function(x) ServiceAccessPoint$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
-      if (is.null(typeMapping[['type']])) {
-          self[['type']] <- MultiMediaObjectList[['type']]
+      if (is.null(typeMapping[["type"]])) {
+          self[["type"]] <- MultiMediaObjectList[["type"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['type']], "$new()")))
-          self[['type']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['type']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["type"]], "$new()")))
+          self[["type"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["type"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['taxonCount']])) {
-          self[['taxonCount']] <- MultiMediaObjectList[['taxonCount']]
+      if (is.null(typeMapping[["taxonCount"]])) {
+          self[["taxonCount"]] <- MultiMediaObjectList[["taxonCount"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['taxonCount']], "$new()")))
-          self[['taxonCount']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['taxonCount']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["taxonCount"]], "$new()")))
+          self[["taxonCount"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["taxonCount"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['creator']])) {
-          self[['creator']] <- MultiMediaObjectList[['creator']]
+      if (is.null(typeMapping[["creator"]])) {
+          self[["creator"]] <- MultiMediaObjectList[["creator"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['creator']], "$new()")))
-          self[['creator']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['creator']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["creator"]], "$new()")))
+          self[["creator"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["creator"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['copyrightText']])) {
-          self[['copyrightText']] <- MultiMediaObjectList[['copyrightText']]
+      if (is.null(typeMapping[["copyrightText"]])) {
+          self[["copyrightText"]] <- MultiMediaObjectList[["copyrightText"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['copyrightText']], "$new()")))
-          self[['copyrightText']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['copyrightText']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["copyrightText"]], "$new()")))
+          self[["copyrightText"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["copyrightText"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['associatedSpecimenReference']])) {
-          self[['associatedSpecimenReference']] <- MultiMediaObjectList[['associatedSpecimenReference']]
+      if (is.null(typeMapping[["associatedSpecimenReference"]])) {
+          self[["associatedSpecimenReference"]] <- MultiMediaObjectList[["associatedSpecimenReference"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['associatedSpecimenReference']], "$new()")))
-          self[['associatedSpecimenReference']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['associatedSpecimenReference']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["associatedSpecimenReference"]], "$new()")))
+          self[["associatedSpecimenReference"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["associatedSpecimenReference"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['associatedTaxonReference']])) {
-          self[['associatedTaxonReference']] <- MultiMediaObjectList[['associatedTaxonReference']]
+      if (is.null(typeMapping[["associatedTaxonReference"]])) {
+          self[["associatedTaxonReference"]] <- MultiMediaObjectList[["associatedTaxonReference"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['associatedTaxonReference']], "$new()")))
-          self[['associatedTaxonReference']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['associatedTaxonReference']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["associatedTaxonReference"]], "$new()")))
+          self[["associatedTaxonReference"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["associatedTaxonReference"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['multiMediaPublic']])) {
-          self[['multiMediaPublic']] <- MultiMediaObjectList[['multiMediaPublic']]
+      if (is.null(typeMapping[["multiMediaPublic"]])) {
+          self[["multiMediaPublic"]] <- MultiMediaObjectList[["multiMediaPublic"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['multiMediaPublic']], "$new()")))
-          self[['multiMediaPublic']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['multiMediaPublic']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["multiMediaPublic"]], "$new()")))
+          self[["multiMediaPublic"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["multiMediaPublic"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['subjectParts']])) {
-          self[['subjectParts']] <- MultiMediaObjectList[['subjectParts']]
+      if (is.null(typeMapping[["subjectParts"]])) {
+          self[["subjectParts"]] <- MultiMediaObjectList[["subjectParts"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['subjectParts']], "$new()")))
-          self[['subjectParts']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['subjectParts']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["subjectParts"]], "$new()")))
+          self[["subjectParts"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["subjectParts"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['subjectOrientations']])) {
-          self[['subjectOrientations']] <- MultiMediaObjectList[['subjectOrientations']]
+      if (is.null(typeMapping[["subjectOrientations"]])) {
+          self[["subjectOrientations"]] <- MultiMediaObjectList[["subjectOrientations"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['subjectOrientations']], "$new()")))
-          self[['subjectOrientations']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['subjectOrientations']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["subjectOrientations"]], "$new()")))
+          self[["subjectOrientations"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["subjectOrientations"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['phasesOrStages']])) {
-          self[['phasesOrStages']] <- MultiMediaObjectList[['phasesOrStages']]
+      if (is.null(typeMapping[["phasesOrStages"]])) {
+          self[["phasesOrStages"]] <- MultiMediaObjectList[["phasesOrStages"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['phasesOrStages']], "$new()")))
-          self[['phasesOrStages']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['phasesOrStages']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["phasesOrStages"]], "$new()")))
+          self[["phasesOrStages"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["phasesOrStages"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['sexes']])) {
-          self[['sexes']] <- MultiMediaObjectList[['sexes']]
+      if (is.null(typeMapping[["sexes"]])) {
+          self[["sexes"]] <- MultiMediaObjectList[["sexes"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['sexes']], "$new()")))
-          self[['sexes']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['sexes']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["sexes"]], "$new()")))
+          self[["sexes"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["sexes"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      self[['gatheringEvents']] <- lapply(MultiMediaObjectList[['gatheringEvents']],
+      self[["gatheringEvents"]] <- lapply(MultiMediaObjectList[["gatheringEvents"]],
                                         function(x) MultiMediaGatheringEvent$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
-      self[['identifications']] <- lapply(MultiMediaObjectList[['identifications']],
+      self[["identifications"]] <- lapply(MultiMediaObjectList[["identifications"]],
                                         function(x) MultiMediaContentIdentification$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
-      if (is.null(typeMapping[['theme']])) {
-          self[['theme']] <- MultiMediaObjectList[['theme']]
+      if (is.null(typeMapping[["theme"]])) {
+          self[["theme"]] <- MultiMediaObjectList[["theme"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['theme']], "$new()")))
-          self[['theme']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['theme']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["theme"]], "$new()")))
+          self[["theme"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["theme"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['associatedSpecimen']])) {
-          self[['associatedSpecimen']] <- Specimen$new()$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['associatedSpecimen']], auto_unbox = TRUE), typeMapping=typeMapping) 
+      if (is.null(typeMapping[["associatedSpecimen"]])) {
+          self[["associatedSpecimen"]] <- Specimen$new()$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["associatedSpecimen"]], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['associatedSpecimen']], "$new()")))
-          self[['associatedSpecimen']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['associatedSpecimen']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["associatedSpecimen"]], "$new()")))
+          self[["associatedSpecimen"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["associatedSpecimen"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['associatedTaxon']])) {
-          self[['associatedTaxon']] <- Taxon$new()$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['associatedTaxon']], auto_unbox = TRUE), typeMapping=typeMapping) 
+      if (is.null(typeMapping[["associatedTaxon"]])) {
+          self[["associatedTaxon"]] <- Taxon$new()$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["associatedTaxon"]], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['associatedTaxon']], "$new()")))
-          self[['associatedTaxon']] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[['associatedTaxon']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["associatedTaxon"]], "$new()")))
+          self[["associatedTaxon"]] <- obj$fromJSONString(jsonlite::toJSON(MultiMediaObjectList[["associatedTaxon"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       invisible(self)
     }

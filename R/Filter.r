@@ -27,66 +27,66 @@ Filter <- R6::R6Class(
     initialize = function(`acceptRegexp`, `rejectRegexp`, `acceptValues`, `rejectValues`){
       if (!missing(`acceptRegexp`)) {
         stopifnot(is.character(`acceptRegexp`), length(`acceptRegexp`) == 1)
-        self[['acceptRegexp']] <- `acceptRegexp`
+        self[["acceptRegexp"]] <- `acceptRegexp`
       }
       if (!missing(`rejectRegexp`)) {
         stopifnot(is.character(`rejectRegexp`), length(`rejectRegexp`) == 1)
-        self[['rejectRegexp']] <- `rejectRegexp`
+        self[["rejectRegexp"]] <- `rejectRegexp`
       }
       if (!missing(`acceptValues`)) {
         stopifnot(is.list(`acceptValues`), length(`acceptValues`) != 0)
         lapply(`acceptValues`, function(x) stopifnot(is.character(x)))
-        self[['acceptValues']] <- `acceptValues`
+        self[["acceptValues"]] <- `acceptValues`
       }
       if (!missing(`rejectValues`)) {
         stopifnot(is.list(`rejectValues`), length(`rejectValues`) != 0)
         lapply(`rejectValues`, function(x) stopifnot(is.character(x)))
-        self[['rejectValues']] <- `rejectValues`
+        self[["rejectValues"]] <- `rejectValues`
       }
     },
 
     toList = function() {
       FilterList <- list()
-        if (!is.null(self[['acceptRegexp']])) {
-        FilterList[['acceptRegexp']] <- self[['acceptRegexp']]
+        if (!is.null(self[["acceptRegexp"]])) {
+        FilterList[["acceptRegexp"]] <- self[["acceptRegexp"]]
       }
-        if (!is.null(self[['rejectRegexp']])) {
-        FilterList[['rejectRegexp']] <- self[['rejectRegexp']]
+        if (!is.null(self[["rejectRegexp"]])) {
+        FilterList[["rejectRegexp"]] <- self[["rejectRegexp"]]
       }
-        if (!is.null(self[['acceptValues']])) {
-        FilterList[['acceptValues']] <- self[['acceptValues']]
+        if (!is.null(self[["acceptValues"]])) {
+        FilterList[["acceptValues"]] <- self[["acceptValues"]]
       }
-        if (!is.null(self[['rejectValues']])) {
-        FilterList[['rejectValues']] <- self[['rejectValues']]
+        if (!is.null(self[["rejectValues"]])) {
+        FilterList[["rejectValues"]] <- self[["rejectValues"]]
       }
       ## omit empty nested lists in returned list
       FilterList[sapply(FilterList, length) > 0]
       },
 
     fromList = function(FilterList, typeMapping=NULL) {
-      if (is.null(typeMapping[['acceptRegexp']])) {
-          self[['acceptRegexp']] <- FilterList[['acceptRegexp']]
+      if (is.null(typeMapping[["acceptRegexp"]])) {
+          self[["acceptRegexp"]] <- FilterList[["acceptRegexp"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['acceptRegexp']], "$new()")))
-          self[['acceptRegexp']] <- obj$fromList(FilterList[['acceptRegexp']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["acceptRegexp"]], "$new()")))
+          self[["acceptRegexp"]] <- obj$fromList(FilterList[["acceptRegexp"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['rejectRegexp']])) {
-          self[['rejectRegexp']] <- FilterList[['rejectRegexp']]
+      if (is.null(typeMapping[["rejectRegexp"]])) {
+          self[["rejectRegexp"]] <- FilterList[["rejectRegexp"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['rejectRegexp']], "$new()")))
-          self[['rejectRegexp']] <- obj$fromList(FilterList[['rejectRegexp']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["rejectRegexp"]], "$new()")))
+          self[["rejectRegexp"]] <- obj$fromList(FilterList[["rejectRegexp"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['acceptValues']])) {
-          self[['acceptValues']] <- FilterList[['acceptValues']]
+      if (is.null(typeMapping[["acceptValues"]])) {
+          self[["acceptValues"]] <- FilterList[["acceptValues"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['acceptValues']], "$new()")))
-          self[['acceptValues']] <- obj$fromList(FilterList[['acceptValues']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["acceptValues"]], "$new()")))
+          self[["acceptValues"]] <- obj$fromList(FilterList[["acceptValues"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['rejectValues']])) {
-          self[['rejectValues']] <- FilterList[['rejectValues']]
+      if (is.null(typeMapping[["rejectValues"]])) {
+          self[["rejectValues"]] <- FilterList[["rejectValues"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['rejectValues']], "$new()")))
-          self[['rejectValues']] <- obj$fromList(FilterList[['rejectValues']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["rejectValues"]], "$new()")))
+          self[["rejectValues"]] <- obj$fromList(FilterList[["rejectValues"]], typeMapping=typeMapping)
       }
       invisible(self)
     },
@@ -97,29 +97,29 @@ Filter <- R6::R6Class(
 
     fromJSONString = function(FilterJson, typeMapping=NULL) {
       FilterList <- jsonlite::fromJSON(FilterJson, simplifyVector=F)
-      if (is.null(typeMapping[['acceptRegexp']])) {
-          self[['acceptRegexp']] <- FilterList[['acceptRegexp']]
+      if (is.null(typeMapping[["acceptRegexp"]])) {
+          self[["acceptRegexp"]] <- FilterList[["acceptRegexp"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['acceptRegexp']], "$new()")))
-          self[['acceptRegexp']] <- obj$fromJSONString(jsonlite::toJSON(FilterList[['acceptRegexp']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["acceptRegexp"]], "$new()")))
+          self[["acceptRegexp"]] <- obj$fromJSONString(jsonlite::toJSON(FilterList[["acceptRegexp"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['rejectRegexp']])) {
-          self[['rejectRegexp']] <- FilterList[['rejectRegexp']]
+      if (is.null(typeMapping[["rejectRegexp"]])) {
+          self[["rejectRegexp"]] <- FilterList[["rejectRegexp"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['rejectRegexp']], "$new()")))
-          self[['rejectRegexp']] <- obj$fromJSONString(jsonlite::toJSON(FilterList[['rejectRegexp']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["rejectRegexp"]], "$new()")))
+          self[["rejectRegexp"]] <- obj$fromJSONString(jsonlite::toJSON(FilterList[["rejectRegexp"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['acceptValues']])) {
-          self[['acceptValues']] <- FilterList[['acceptValues']]
+      if (is.null(typeMapping[["acceptValues"]])) {
+          self[["acceptValues"]] <- FilterList[["acceptValues"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['acceptValues']], "$new()")))
-          self[['acceptValues']] <- obj$fromJSONString(jsonlite::toJSON(FilterList[['acceptValues']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["acceptValues"]], "$new()")))
+          self[["acceptValues"]] <- obj$fromJSONString(jsonlite::toJSON(FilterList[["acceptValues"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['rejectValues']])) {
-          self[['rejectValues']] <- FilterList[['rejectValues']]
+      if (is.null(typeMapping[["rejectValues"]])) {
+          self[["rejectValues"]] <- FilterList[["rejectValues"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['rejectValues']], "$new()")))
-          self[['rejectValues']] <- obj$fromJSONString(jsonlite::toJSON(FilterList[['rejectValues']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["rejectValues"]], "$new()")))
+          self[["rejectValues"]] <- obj$fromJSONString(jsonlite::toJSON(FilterList[["rejectValues"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       invisible(self)
     }

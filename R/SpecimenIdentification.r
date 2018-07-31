@@ -53,221 +53,221 @@ SpecimenIdentification <- R6::R6Class(
     initialize = function(`taxonRank`, `scientificName`, `typeStatus`, `dateIdentified`, `defaultClassification`, `systemClassification`, `vernacularNames`, `identificationQualifiers`, `identifiers`, `taxonomicEnrichments`, `preferred`, `verificationStatus`, `rockType`, `associatedFossilAssemblage`, `rockMineralUsage`, `associatedMineralName`, `remarks`){
       if (!missing(`taxonRank`)) {
         stopifnot(is.character(`taxonRank`), length(`taxonRank`) == 1)
-        self[['taxonRank']] <- `taxonRank`
+        self[["taxonRank"]] <- `taxonRank`
       }
       if (!missing(`scientificName`)) {
         stopifnot(R6::is.R6(`scientificName`))
-        self[['scientificName']] <- `scientificName`
+        self[["scientificName"]] <- `scientificName`
       }
       if (!missing(`typeStatus`)) {
         stopifnot(is.character(`typeStatus`), length(`typeStatus`) == 1)
-        self[['typeStatus']] <- `typeStatus`
+        self[["typeStatus"]] <- `typeStatus`
       }
       if (!missing(`dateIdentified`)) {
         stopifnot(is.character(`dateIdentified`), length(`dateIdentified`) == 1)
-        self[['dateIdentified']] <- `dateIdentified`
+        self[["dateIdentified"]] <- `dateIdentified`
       }
       if (!missing(`defaultClassification`)) {
         stopifnot(R6::is.R6(`defaultClassification`))
-        self[['defaultClassification']] <- `defaultClassification`
+        self[["defaultClassification"]] <- `defaultClassification`
       }
       if (!missing(`systemClassification`)) {
         stopifnot(is.list(`systemClassification`), length(`systemClassification`) != 0)
         lapply(`systemClassification`, function(x) stopifnot(R6::is.R6(x)))
-        self[['systemClassification']] <- `systemClassification`
+        self[["systemClassification"]] <- `systemClassification`
       }
       if (!missing(`vernacularNames`)) {
         stopifnot(is.list(`vernacularNames`), length(`vernacularNames`) != 0)
         lapply(`vernacularNames`, function(x) stopifnot(R6::is.R6(x)))
-        self[['vernacularNames']] <- `vernacularNames`
+        self[["vernacularNames"]] <- `vernacularNames`
       }
       if (!missing(`identificationQualifiers`)) {
         stopifnot(is.list(`identificationQualifiers`), length(`identificationQualifiers`) != 0)
         lapply(`identificationQualifiers`, function(x) stopifnot(is.character(x)))
-        self[['identificationQualifiers']] <- `identificationQualifiers`
+        self[["identificationQualifiers"]] <- `identificationQualifiers`
       }
       if (!missing(`identifiers`)) {
         stopifnot(is.list(`identifiers`), length(`identifiers`) != 0)
         lapply(`identifiers`, function(x) stopifnot(R6::is.R6(x)))
-        self[['identifiers']] <- `identifiers`
+        self[["identifiers"]] <- `identifiers`
       }
       if (!missing(`taxonomicEnrichments`)) {
         stopifnot(is.list(`taxonomicEnrichments`), length(`taxonomicEnrichments`) != 0)
         lapply(`taxonomicEnrichments`, function(x) stopifnot(R6::is.R6(x)))
-        self[['taxonomicEnrichments']] <- `taxonomicEnrichments`
+        self[["taxonomicEnrichments"]] <- `taxonomicEnrichments`
       }
       if (!missing(`preferred`)) {
-        self[['preferred']] <- `preferred`
+        self[["preferred"]] <- `preferred`
       }
       if (!missing(`verificationStatus`)) {
         stopifnot(is.character(`verificationStatus`), length(`verificationStatus`) == 1)
-        self[['verificationStatus']] <- `verificationStatus`
+        self[["verificationStatus"]] <- `verificationStatus`
       }
       if (!missing(`rockType`)) {
         stopifnot(is.character(`rockType`), length(`rockType`) == 1)
-        self[['rockType']] <- `rockType`
+        self[["rockType"]] <- `rockType`
       }
       if (!missing(`associatedFossilAssemblage`)) {
         stopifnot(is.character(`associatedFossilAssemblage`), length(`associatedFossilAssemblage`) == 1)
-        self[['associatedFossilAssemblage']] <- `associatedFossilAssemblage`
+        self[["associatedFossilAssemblage"]] <- `associatedFossilAssemblage`
       }
       if (!missing(`rockMineralUsage`)) {
         stopifnot(is.character(`rockMineralUsage`), length(`rockMineralUsage`) == 1)
-        self[['rockMineralUsage']] <- `rockMineralUsage`
+        self[["rockMineralUsage"]] <- `rockMineralUsage`
       }
       if (!missing(`associatedMineralName`)) {
         stopifnot(is.character(`associatedMineralName`), length(`associatedMineralName`) == 1)
-        self[['associatedMineralName']] <- `associatedMineralName`
+        self[["associatedMineralName"]] <- `associatedMineralName`
       }
       if (!missing(`remarks`)) {
         stopifnot(is.character(`remarks`), length(`remarks`) == 1)
-        self[['remarks']] <- `remarks`
+        self[["remarks"]] <- `remarks`
       }
     },
 
     toList = function() {
       SpecimenIdentificationList <- list()
-        if (!is.null(self[['taxonRank']])) {
-        SpecimenIdentificationList[['taxonRank']] <- self[['taxonRank']]
+        if (!is.null(self[["taxonRank"]])) {
+        SpecimenIdentificationList[["taxonRank"]] <- self[["taxonRank"]]
       }
-        if (!is.null(self[['scientificName']])) {
-        SpecimenIdentificationList[['scientificName']] <- self[['scientificName']]$toList()
+        if (!is.null(self[["scientificName"]])) {
+        SpecimenIdentificationList[["scientificName"]] <- self[["scientificName"]]$toList()
       }
-        if (!is.null(self[['typeStatus']])) {
-        SpecimenIdentificationList[['typeStatus']] <- self[['typeStatus']]
+        if (!is.null(self[["typeStatus"]])) {
+        SpecimenIdentificationList[["typeStatus"]] <- self[["typeStatus"]]
       }
-        if (!is.null(self[['dateIdentified']])) {
-        SpecimenIdentificationList[['dateIdentified']] <- self[['dateIdentified']]
+        if (!is.null(self[["dateIdentified"]])) {
+        SpecimenIdentificationList[["dateIdentified"]] <- self[["dateIdentified"]]
       }
-        if (!is.null(self[['defaultClassification']])) {
-        SpecimenIdentificationList[['defaultClassification']] <- self[['defaultClassification']]$toList()
+        if (!is.null(self[["defaultClassification"]])) {
+        SpecimenIdentificationList[["defaultClassification"]] <- self[["defaultClassification"]]$toList()
       }
-        if (!is.null(self[['systemClassification']])) {
-        SpecimenIdentificationList[['systemClassification']] <- lapply(self[['systemClassification']], function(x) x$toList())
+        if (!is.null(self[["systemClassification"]])) {
+        SpecimenIdentificationList[["systemClassification"]] <- lapply(self[["systemClassification"]], function(x) x$toList())
       }
-        if (!is.null(self[['vernacularNames']])) {
-        SpecimenIdentificationList[['vernacularNames']] <- lapply(self[['vernacularNames']], function(x) x$toList())
+        if (!is.null(self[["vernacularNames"]])) {
+        SpecimenIdentificationList[["vernacularNames"]] <- lapply(self[["vernacularNames"]], function(x) x$toList())
       }
-        if (!is.null(self[['identificationQualifiers']])) {
-        SpecimenIdentificationList[['identificationQualifiers']] <- self[['identificationQualifiers']]
+        if (!is.null(self[["identificationQualifiers"]])) {
+        SpecimenIdentificationList[["identificationQualifiers"]] <- self[["identificationQualifiers"]]
       }
-        if (!is.null(self[['identifiers']])) {
-        SpecimenIdentificationList[['identifiers']] <- lapply(self[['identifiers']], function(x) x$toList())
+        if (!is.null(self[["identifiers"]])) {
+        SpecimenIdentificationList[["identifiers"]] <- lapply(self[["identifiers"]], function(x) x$toList())
       }
-        if (!is.null(self[['taxonomicEnrichments']])) {
-        SpecimenIdentificationList[['taxonomicEnrichments']] <- lapply(self[['taxonomicEnrichments']], function(x) x$toList())
+        if (!is.null(self[["taxonomicEnrichments"]])) {
+        SpecimenIdentificationList[["taxonomicEnrichments"]] <- lapply(self[["taxonomicEnrichments"]], function(x) x$toList())
       }
-        if (!is.null(self[['preferred']])) {
-        SpecimenIdentificationList[['preferred']] <- self[['preferred']]
+        if (!is.null(self[["preferred"]])) {
+        SpecimenIdentificationList[["preferred"]] <- self[["preferred"]]
       }
-        if (!is.null(self[['verificationStatus']])) {
-        SpecimenIdentificationList[['verificationStatus']] <- self[['verificationStatus']]
+        if (!is.null(self[["verificationStatus"]])) {
+        SpecimenIdentificationList[["verificationStatus"]] <- self[["verificationStatus"]]
       }
-        if (!is.null(self[['rockType']])) {
-        SpecimenIdentificationList[['rockType']] <- self[['rockType']]
+        if (!is.null(self[["rockType"]])) {
+        SpecimenIdentificationList[["rockType"]] <- self[["rockType"]]
       }
-        if (!is.null(self[['associatedFossilAssemblage']])) {
-        SpecimenIdentificationList[['associatedFossilAssemblage']] <- self[['associatedFossilAssemblage']]
+        if (!is.null(self[["associatedFossilAssemblage"]])) {
+        SpecimenIdentificationList[["associatedFossilAssemblage"]] <- self[["associatedFossilAssemblage"]]
       }
-        if (!is.null(self[['rockMineralUsage']])) {
-        SpecimenIdentificationList[['rockMineralUsage']] <- self[['rockMineralUsage']]
+        if (!is.null(self[["rockMineralUsage"]])) {
+        SpecimenIdentificationList[["rockMineralUsage"]] <- self[["rockMineralUsage"]]
       }
-        if (!is.null(self[['associatedMineralName']])) {
-        SpecimenIdentificationList[['associatedMineralName']] <- self[['associatedMineralName']]
+        if (!is.null(self[["associatedMineralName"]])) {
+        SpecimenIdentificationList[["associatedMineralName"]] <- self[["associatedMineralName"]]
       }
-        if (!is.null(self[['remarks']])) {
-        SpecimenIdentificationList[['remarks']] <- self[['remarks']]
+        if (!is.null(self[["remarks"]])) {
+        SpecimenIdentificationList[["remarks"]] <- self[["remarks"]]
       }
       ## omit empty nested lists in returned list
       SpecimenIdentificationList[sapply(SpecimenIdentificationList, length) > 0]
       },
 
     fromList = function(SpecimenIdentificationList, typeMapping=NULL) {
-      if (is.null(typeMapping[['taxonRank']])) {
-          self[['taxonRank']] <- SpecimenIdentificationList[['taxonRank']]
+      if (is.null(typeMapping[["taxonRank"]])) {
+          self[["taxonRank"]] <- SpecimenIdentificationList[["taxonRank"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['taxonRank']], "$new()")))
-          self[['taxonRank']] <- obj$fromList(SpecimenIdentificationList[['taxonRank']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["taxonRank"]], "$new()")))
+          self[["taxonRank"]] <- obj$fromList(SpecimenIdentificationList[["taxonRank"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['scientificName']])) {
-          self[['scientificName']] <- ScientificName$new()$fromList(SpecimenIdentificationList[['scientificName']], typeMapping=typeMapping) 
+      if (is.null(typeMapping[["scientificName"]])) {
+          self[["scientificName"]] <- ScientificName$new()$fromList(SpecimenIdentificationList[["scientificName"]], typeMapping=typeMapping) 
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['scientificName']], "$new()")))
-          self[['scientificName']] <- obj$fromList(SpecimenIdentificationList[['scientificName']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["scientificName"]], "$new()")))
+          self[["scientificName"]] <- obj$fromList(SpecimenIdentificationList[["scientificName"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['typeStatus']])) {
-          self[['typeStatus']] <- SpecimenIdentificationList[['typeStatus']]
+      if (is.null(typeMapping[["typeStatus"]])) {
+          self[["typeStatus"]] <- SpecimenIdentificationList[["typeStatus"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['typeStatus']], "$new()")))
-          self[['typeStatus']] <- obj$fromList(SpecimenIdentificationList[['typeStatus']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["typeStatus"]], "$new()")))
+          self[["typeStatus"]] <- obj$fromList(SpecimenIdentificationList[["typeStatus"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['dateIdentified']])) {
-          self[['dateIdentified']] <- SpecimenIdentificationList[['dateIdentified']]
+      if (is.null(typeMapping[["dateIdentified"]])) {
+          self[["dateIdentified"]] <- SpecimenIdentificationList[["dateIdentified"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['dateIdentified']], "$new()")))
-          self[['dateIdentified']] <- obj$fromList(SpecimenIdentificationList[['dateIdentified']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["dateIdentified"]], "$new()")))
+          self[["dateIdentified"]] <- obj$fromList(SpecimenIdentificationList[["dateIdentified"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['defaultClassification']])) {
-          self[['defaultClassification']] <- DefaultClassification$new()$fromList(SpecimenIdentificationList[['defaultClassification']], typeMapping=typeMapping) 
+      if (is.null(typeMapping[["defaultClassification"]])) {
+          self[["defaultClassification"]] <- DefaultClassification$new()$fromList(SpecimenIdentificationList[["defaultClassification"]], typeMapping=typeMapping) 
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['defaultClassification']], "$new()")))
-          self[['defaultClassification']] <- obj$fromList(SpecimenIdentificationList[['defaultClassification']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["defaultClassification"]], "$new()")))
+          self[["defaultClassification"]] <- obj$fromList(SpecimenIdentificationList[["defaultClassification"]], typeMapping=typeMapping)
       }
-      self[['systemClassification']] <- lapply(SpecimenIdentificationList[['systemClassification']],
+      self[["systemClassification"]] <- lapply(SpecimenIdentificationList[["systemClassification"]],
                                        function(x) Monomial$new()$fromList(x, typeMapping=typeMapping))
-      self[['vernacularNames']] <- lapply(SpecimenIdentificationList[['vernacularNames']],
+      self[["vernacularNames"]] <- lapply(SpecimenIdentificationList[["vernacularNames"]],
                                        function(x) VernacularName$new()$fromList(x, typeMapping=typeMapping))
-      if (is.null(typeMapping[['identificationQualifiers']])) {
-          self[['identificationQualifiers']] <- SpecimenIdentificationList[['identificationQualifiers']]
+      if (is.null(typeMapping[["identificationQualifiers"]])) {
+          self[["identificationQualifiers"]] <- SpecimenIdentificationList[["identificationQualifiers"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['identificationQualifiers']], "$new()")))
-          self[['identificationQualifiers']] <- obj$fromList(SpecimenIdentificationList[['identificationQualifiers']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["identificationQualifiers"]], "$new()")))
+          self[["identificationQualifiers"]] <- obj$fromList(SpecimenIdentificationList[["identificationQualifiers"]], typeMapping=typeMapping)
       }
-      self[['identifiers']] <- lapply(SpecimenIdentificationList[['identifiers']],
+      self[["identifiers"]] <- lapply(SpecimenIdentificationList[["identifiers"]],
                                        function(x) Agent$new()$fromList(x, typeMapping=typeMapping))
-      self[['taxonomicEnrichments']] <- lapply(SpecimenIdentificationList[['taxonomicEnrichments']],
+      self[["taxonomicEnrichments"]] <- lapply(SpecimenIdentificationList[["taxonomicEnrichments"]],
                                        function(x) TaxonomicEnrichment$new()$fromList(x, typeMapping=typeMapping))
-      if (is.null(typeMapping[['preferred']])) {
-          self[['preferred']] <- SpecimenIdentificationList[['preferred']]
+      if (is.null(typeMapping[["preferred"]])) {
+          self[["preferred"]] <- SpecimenIdentificationList[["preferred"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['preferred']], "$new()")))
-          self[['preferred']] <- obj$fromList(SpecimenIdentificationList[['preferred']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["preferred"]], "$new()")))
+          self[["preferred"]] <- obj$fromList(SpecimenIdentificationList[["preferred"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['verificationStatus']])) {
-          self[['verificationStatus']] <- SpecimenIdentificationList[['verificationStatus']]
+      if (is.null(typeMapping[["verificationStatus"]])) {
+          self[["verificationStatus"]] <- SpecimenIdentificationList[["verificationStatus"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['verificationStatus']], "$new()")))
-          self[['verificationStatus']] <- obj$fromList(SpecimenIdentificationList[['verificationStatus']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["verificationStatus"]], "$new()")))
+          self[["verificationStatus"]] <- obj$fromList(SpecimenIdentificationList[["verificationStatus"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['rockType']])) {
-          self[['rockType']] <- SpecimenIdentificationList[['rockType']]
+      if (is.null(typeMapping[["rockType"]])) {
+          self[["rockType"]] <- SpecimenIdentificationList[["rockType"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['rockType']], "$new()")))
-          self[['rockType']] <- obj$fromList(SpecimenIdentificationList[['rockType']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["rockType"]], "$new()")))
+          self[["rockType"]] <- obj$fromList(SpecimenIdentificationList[["rockType"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['associatedFossilAssemblage']])) {
-          self[['associatedFossilAssemblage']] <- SpecimenIdentificationList[['associatedFossilAssemblage']]
+      if (is.null(typeMapping[["associatedFossilAssemblage"]])) {
+          self[["associatedFossilAssemblage"]] <- SpecimenIdentificationList[["associatedFossilAssemblage"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['associatedFossilAssemblage']], "$new()")))
-          self[['associatedFossilAssemblage']] <- obj$fromList(SpecimenIdentificationList[['associatedFossilAssemblage']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["associatedFossilAssemblage"]], "$new()")))
+          self[["associatedFossilAssemblage"]] <- obj$fromList(SpecimenIdentificationList[["associatedFossilAssemblage"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['rockMineralUsage']])) {
-          self[['rockMineralUsage']] <- SpecimenIdentificationList[['rockMineralUsage']]
+      if (is.null(typeMapping[["rockMineralUsage"]])) {
+          self[["rockMineralUsage"]] <- SpecimenIdentificationList[["rockMineralUsage"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['rockMineralUsage']], "$new()")))
-          self[['rockMineralUsage']] <- obj$fromList(SpecimenIdentificationList[['rockMineralUsage']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["rockMineralUsage"]], "$new()")))
+          self[["rockMineralUsage"]] <- obj$fromList(SpecimenIdentificationList[["rockMineralUsage"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['associatedMineralName']])) {
-          self[['associatedMineralName']] <- SpecimenIdentificationList[['associatedMineralName']]
+      if (is.null(typeMapping[["associatedMineralName"]])) {
+          self[["associatedMineralName"]] <- SpecimenIdentificationList[["associatedMineralName"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['associatedMineralName']], "$new()")))
-          self[['associatedMineralName']] <- obj$fromList(SpecimenIdentificationList[['associatedMineralName']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["associatedMineralName"]], "$new()")))
+          self[["associatedMineralName"]] <- obj$fromList(SpecimenIdentificationList[["associatedMineralName"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['remarks']])) {
-          self[['remarks']] <- SpecimenIdentificationList[['remarks']]
+      if (is.null(typeMapping[["remarks"]])) {
+          self[["remarks"]] <- SpecimenIdentificationList[["remarks"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['remarks']], "$new()")))
-          self[['remarks']] <- obj$fromList(SpecimenIdentificationList[['remarks']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["remarks"]], "$new()")))
+          self[["remarks"]] <- obj$fromList(SpecimenIdentificationList[["remarks"]], typeMapping=typeMapping)
       }
       invisible(self)
     },
@@ -278,91 +278,91 @@ SpecimenIdentification <- R6::R6Class(
 
     fromJSONString = function(SpecimenIdentificationJson, typeMapping=NULL) {
       SpecimenIdentificationList <- jsonlite::fromJSON(SpecimenIdentificationJson, simplifyVector=F)
-      if (is.null(typeMapping[['taxonRank']])) {
-          self[['taxonRank']] <- SpecimenIdentificationList[['taxonRank']]
+      if (is.null(typeMapping[["taxonRank"]])) {
+          self[["taxonRank"]] <- SpecimenIdentificationList[["taxonRank"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['taxonRank']], "$new()")))
-          self[['taxonRank']] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['taxonRank']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["taxonRank"]], "$new()")))
+          self[["taxonRank"]] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[["taxonRank"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['scientificName']])) {
-          self[['scientificName']] <- ScientificName$new()$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['scientificName']], auto_unbox = TRUE), typeMapping=typeMapping) 
+      if (is.null(typeMapping[["scientificName"]])) {
+          self[["scientificName"]] <- ScientificName$new()$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[["scientificName"]], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['scientificName']], "$new()")))
-          self[['scientificName']] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['scientificName']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["scientificName"]], "$new()")))
+          self[["scientificName"]] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[["scientificName"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['typeStatus']])) {
-          self[['typeStatus']] <- SpecimenIdentificationList[['typeStatus']]
+      if (is.null(typeMapping[["typeStatus"]])) {
+          self[["typeStatus"]] <- SpecimenIdentificationList[["typeStatus"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['typeStatus']], "$new()")))
-          self[['typeStatus']] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['typeStatus']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["typeStatus"]], "$new()")))
+          self[["typeStatus"]] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[["typeStatus"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['dateIdentified']])) {
-          self[['dateIdentified']] <- SpecimenIdentificationList[['dateIdentified']]
+      if (is.null(typeMapping[["dateIdentified"]])) {
+          self[["dateIdentified"]] <- SpecimenIdentificationList[["dateIdentified"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['dateIdentified']], "$new()")))
-          self[['dateIdentified']] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['dateIdentified']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["dateIdentified"]], "$new()")))
+          self[["dateIdentified"]] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[["dateIdentified"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['defaultClassification']])) {
-          self[['defaultClassification']] <- DefaultClassification$new()$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['defaultClassification']], auto_unbox = TRUE), typeMapping=typeMapping) 
+      if (is.null(typeMapping[["defaultClassification"]])) {
+          self[["defaultClassification"]] <- DefaultClassification$new()$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[["defaultClassification"]], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['defaultClassification']], "$new()")))
-          self[['defaultClassification']] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['defaultClassification']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["defaultClassification"]], "$new()")))
+          self[["defaultClassification"]] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[["defaultClassification"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      self[['systemClassification']] <- lapply(SpecimenIdentificationList[['systemClassification']],
+      self[["systemClassification"]] <- lapply(SpecimenIdentificationList[["systemClassification"]],
                                         function(x) Monomial$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
-      self[['vernacularNames']] <- lapply(SpecimenIdentificationList[['vernacularNames']],
+      self[["vernacularNames"]] <- lapply(SpecimenIdentificationList[["vernacularNames"]],
                                         function(x) VernacularName$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
-      if (is.null(typeMapping[['identificationQualifiers']])) {
-          self[['identificationQualifiers']] <- SpecimenIdentificationList[['identificationQualifiers']]
+      if (is.null(typeMapping[["identificationQualifiers"]])) {
+          self[["identificationQualifiers"]] <- SpecimenIdentificationList[["identificationQualifiers"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['identificationQualifiers']], "$new()")))
-          self[['identificationQualifiers']] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['identificationQualifiers']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["identificationQualifiers"]], "$new()")))
+          self[["identificationQualifiers"]] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[["identificationQualifiers"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      self[['identifiers']] <- lapply(SpecimenIdentificationList[['identifiers']],
+      self[["identifiers"]] <- lapply(SpecimenIdentificationList[["identifiers"]],
                                         function(x) Agent$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
-      self[['taxonomicEnrichments']] <- lapply(SpecimenIdentificationList[['taxonomicEnrichments']],
+      self[["taxonomicEnrichments"]] <- lapply(SpecimenIdentificationList[["taxonomicEnrichments"]],
                                         function(x) TaxonomicEnrichment$new()$fromJSONString(jsonlite::toJSON(x, auto_unbox = TRUE), typeMapping=typeMapping))
-      if (is.null(typeMapping[['preferred']])) {
-          self[['preferred']] <- SpecimenIdentificationList[['preferred']]
+      if (is.null(typeMapping[["preferred"]])) {
+          self[["preferred"]] <- SpecimenIdentificationList[["preferred"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['preferred']], "$new()")))
-          self[['preferred']] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['preferred']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["preferred"]], "$new()")))
+          self[["preferred"]] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[["preferred"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['verificationStatus']])) {
-          self[['verificationStatus']] <- SpecimenIdentificationList[['verificationStatus']]
+      if (is.null(typeMapping[["verificationStatus"]])) {
+          self[["verificationStatus"]] <- SpecimenIdentificationList[["verificationStatus"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['verificationStatus']], "$new()")))
-          self[['verificationStatus']] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['verificationStatus']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["verificationStatus"]], "$new()")))
+          self[["verificationStatus"]] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[["verificationStatus"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['rockType']])) {
-          self[['rockType']] <- SpecimenIdentificationList[['rockType']]
+      if (is.null(typeMapping[["rockType"]])) {
+          self[["rockType"]] <- SpecimenIdentificationList[["rockType"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['rockType']], "$new()")))
-          self[['rockType']] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['rockType']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["rockType"]], "$new()")))
+          self[["rockType"]] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[["rockType"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['associatedFossilAssemblage']])) {
-          self[['associatedFossilAssemblage']] <- SpecimenIdentificationList[['associatedFossilAssemblage']]
+      if (is.null(typeMapping[["associatedFossilAssemblage"]])) {
+          self[["associatedFossilAssemblage"]] <- SpecimenIdentificationList[["associatedFossilAssemblage"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['associatedFossilAssemblage']], "$new()")))
-          self[['associatedFossilAssemblage']] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['associatedFossilAssemblage']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["associatedFossilAssemblage"]], "$new()")))
+          self[["associatedFossilAssemblage"]] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[["associatedFossilAssemblage"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['rockMineralUsage']])) {
-          self[['rockMineralUsage']] <- SpecimenIdentificationList[['rockMineralUsage']]
+      if (is.null(typeMapping[["rockMineralUsage"]])) {
+          self[["rockMineralUsage"]] <- SpecimenIdentificationList[["rockMineralUsage"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['rockMineralUsage']], "$new()")))
-          self[['rockMineralUsage']] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['rockMineralUsage']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["rockMineralUsage"]], "$new()")))
+          self[["rockMineralUsage"]] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[["rockMineralUsage"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['associatedMineralName']])) {
-          self[['associatedMineralName']] <- SpecimenIdentificationList[['associatedMineralName']]
+      if (is.null(typeMapping[["associatedMineralName"]])) {
+          self[["associatedMineralName"]] <- SpecimenIdentificationList[["associatedMineralName"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['associatedMineralName']], "$new()")))
-          self[['associatedMineralName']] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['associatedMineralName']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["associatedMineralName"]], "$new()")))
+          self[["associatedMineralName"]] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[["associatedMineralName"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['remarks']])) {
-          self[['remarks']] <- SpecimenIdentificationList[['remarks']]
+      if (is.null(typeMapping[["remarks"]])) {
+          self[["remarks"]] <- SpecimenIdentificationList[["remarks"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['remarks']], "$new()")))
-          self[['remarks']] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[['remarks']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["remarks"]], "$new()")))
+          self[["remarks"]] <- obj$fromJSONString(jsonlite::toJSON(SpecimenIdentificationList[["remarks"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       invisible(self)
     }

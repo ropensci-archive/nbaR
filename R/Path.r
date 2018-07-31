@@ -20,25 +20,25 @@ Path <- R6::R6Class(
     `purePath` = NULL,
     initialize = function(`purePath`){
       if (!missing(`purePath`)) {
-        self[['purePath']] <- `purePath`
+        self[["purePath"]] <- `purePath`
       }
     },
 
     toList = function() {
       PathList <- list()
-        if (!is.null(self[['purePath']])) {
-        PathList[['purePath']] <- self[['purePath']]
+        if (!is.null(self[["purePath"]])) {
+        PathList[["purePath"]] <- self[["purePath"]]
       }
       ## omit empty nested lists in returned list
       PathList[sapply(PathList, length) > 0]
       },
 
     fromList = function(PathList, typeMapping=NULL) {
-      if (is.null(typeMapping[['purePath']])) {
-          self[['purePath']] <- PathList[['purePath']]
+      if (is.null(typeMapping[["purePath"]])) {
+          self[["purePath"]] <- PathList[["purePath"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['purePath']], "$new()")))
-          self[['purePath']] <- obj$fromList(PathList[['purePath']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["purePath"]], "$new()")))
+          self[["purePath"]] <- obj$fromList(PathList[["purePath"]], typeMapping=typeMapping)
       }
       invisible(self)
     },
@@ -49,11 +49,11 @@ Path <- R6::R6Class(
 
     fromJSONString = function(PathJson, typeMapping=NULL) {
       PathList <- jsonlite::fromJSON(PathJson, simplifyVector=F)
-      if (is.null(typeMapping[['purePath']])) {
-          self[['purePath']] <- PathList[['purePath']]
+      if (is.null(typeMapping[["purePath"]])) {
+          self[["purePath"]] <- PathList[["purePath"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['purePath']], "$new()")))
-          self[['purePath']] <- obj$fromJSONString(jsonlite::toJSON(PathList[['purePath']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["purePath"]], "$new()")))
+          self[["purePath"]] <- obj$fromJSONString(jsonlite::toJSON(PathList[["purePath"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       invisible(self)
     }

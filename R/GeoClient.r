@@ -62,7 +62,7 @@
 #'
 #' @export
 GeoClient <- R6::R6Class(
-    'GeoClient',
+    "GeoClient",
     inherit=ApiClient,
     public = list(
         userAgent = "Swagger-Codegen/0.0.0/r",
@@ -85,7 +85,7 @@ GeoClient <- R6::R6Class(
         if (!missing(`querySpec`)) {
           ## querySpec can be either JSON string or object of type QuerySpec. 
           param <- ifelse(typeof(`querySpec`) == "environment", `querySpec`$toJSONString(), `querySpec`)    
-          queryParams['querySpec'] <- param
+          queryParams["querySpec"] <- param
         }
         ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
         names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))
@@ -101,7 +101,7 @@ GeoClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is 'primitive type', return vector or single value
+            ## API call result is "primitive type", return vector or single value
             result <- as.integer(httr::content(response))
             Response$new(result, response)
         }        
@@ -129,7 +129,7 @@ GeoClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is a 'map container' and will be parsed to list 
+            ## API call result is a "map container" and will be parsed to list 
             result <- httr::content(response, simplifyVector=T)
             Response$new(result, response)
         }        
@@ -161,7 +161,7 @@ GeoClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is a 'map container' and will be parsed to list 
+            ## API call result is a "map container" and will be parsed to list 
             result <- httr::content(response, simplifyVector=T)
             Response$new(result, response)
         }        
@@ -221,7 +221,7 @@ GeoClient <- R6::R6Class(
         } else {
             ## API call result is object of model class
             returnObject <- GeoArea$new()
-            ## API call result is 'list container'
+            ## API call result is "list container"
             result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping=list(item=private$getBaseDataType())))
             Response$new(result, response)
         }        
@@ -249,7 +249,7 @@ GeoClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is a 'map container' and will be parsed to list 
+            ## API call result is a "map container" and will be parsed to list 
             result <- httr::content(response, simplifyVector=T)
             Response$new(result, response)
         }        
@@ -281,7 +281,7 @@ GeoClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is 'primitive type', return vector or single value
+            ## API call result is "primitive type", return vector or single value
             result <- as.list(httr::content(response))
             Response$new(result, response)
         }        
@@ -305,7 +305,7 @@ GeoClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is a 'map container' and will be parsed to list 
+            ## API call result is a "map container" and will be parsed to list 
             result <- httr::content(response, simplifyVector=T)
             Response$new(result, response)
         }        
@@ -333,7 +333,7 @@ GeoClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is 'primitive type', return vector or single value
+            ## API call result is "primitive type", return vector or single value
             result <- as.list(httr::content(response))
             Response$new(result, response)
         }        
@@ -357,7 +357,7 @@ GeoClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is 'primitive type', return vector or single value
+            ## API call result is "primitive type", return vector or single value
             result <- as.character(httr::content(response))
             Response$new(result, response)
         }        
@@ -385,7 +385,7 @@ GeoClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is 'primitive type', return vector or single value
+            ## API call result is "primitive type", return vector or single value
             result <- as.list(httr::content(response))
             Response$new(result, response)
         }        
@@ -409,7 +409,7 @@ GeoClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is a 'map container' and will be parsed to list 
+            ## API call result is a "map container" and will be parsed to list 
             result <- httr::content(response, simplifyVector=T)
             Response$new(result, response)
         }        
@@ -441,7 +441,7 @@ GeoClient <- R6::R6Class(
         if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
-            ## API call result is a 'map container' and will be parsed to list 
+            ## API call result is a "map container" and will be parsed to list 
             result <- httr::content(response, simplifyVector=T)
             Response$new(result, response)
         }        
@@ -461,7 +461,7 @@ GeoClient <- R6::R6Class(
         if (!missing(`querySpec`)) {
           ## querySpec can be either JSON string or object of type QuerySpec. 
           param <- ifelse(typeof(`querySpec`) == "environment", `querySpec`$toJSONString(), `querySpec`)    
-          queryParams['querySpec'] <- param
+          queryParams["querySpec"] <- param
         }
         ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
         names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))

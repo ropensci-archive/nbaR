@@ -25,53 +25,53 @@ MultiPolygon <- R6::R6Class(
     initialize = function(`crs`, `bbox`, `coordinates`){
       if (!missing(`crs`)) {
         stopifnot(R6::is.R6(`crs`))
-        self[['crs']] <- `crs`
+        self[["crs"]] <- `crs`
       }
       if (!missing(`bbox`)) {
         stopifnot(is.list(`bbox`), length(`bbox`) != 0)
         lapply(`bbox`, function(x) stopifnot(is.character(x)))
-        self[['bbox']] <- `bbox`
+        self[["bbox"]] <- `bbox`
       }
       if (!missing(`coordinates`)) {
         stopifnot(is.list(`coordinates`), length(`coordinates`) != 0)
         lapply(`coordinates`, function(x) stopifnot(is.character(x)))
-        self[['coordinates']] <- `coordinates`
+        self[["coordinates"]] <- `coordinates`
       }
     },
 
     toList = function() {
       MultiPolygonList <- list()
-        if (!is.null(self[['crs']])) {
-        MultiPolygonList[['crs']] <- self[['crs']]$toList()
+        if (!is.null(self[["crs"]])) {
+        MultiPolygonList[["crs"]] <- self[["crs"]]$toList()
       }
-        if (!is.null(self[['bbox']])) {
-        MultiPolygonList[['bbox']] <- self[['bbox']]
+        if (!is.null(self[["bbox"]])) {
+        MultiPolygonList[["bbox"]] <- self[["bbox"]]
       }
-        if (!is.null(self[['coordinates']])) {
-        MultiPolygonList[['coordinates']] <- self[['coordinates']]
+        if (!is.null(self[["coordinates"]])) {
+        MultiPolygonList[["coordinates"]] <- self[["coordinates"]]
       }
       ## omit empty nested lists in returned list
       MultiPolygonList[sapply(MultiPolygonList, length) > 0]
       },
 
     fromList = function(MultiPolygonList, typeMapping=NULL) {
-      if (is.null(typeMapping[['crs']])) {
-          self[['crs']] <- Crs$new()$fromList(MultiPolygonList[['crs']], typeMapping=typeMapping) 
+      if (is.null(typeMapping[["crs"]])) {
+          self[["crs"]] <- Crs$new()$fromList(MultiPolygonList[["crs"]], typeMapping=typeMapping) 
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
-          self[['crs']] <- obj$fromList(MultiPolygonList[['crs']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["crs"]], "$new()")))
+          self[["crs"]] <- obj$fromList(MultiPolygonList[["crs"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['bbox']])) {
-          self[['bbox']] <- MultiPolygonList[['bbox']]
+      if (is.null(typeMapping[["bbox"]])) {
+          self[["bbox"]] <- MultiPolygonList[["bbox"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['bbox']], "$new()")))
-          self[['bbox']] <- obj$fromList(MultiPolygonList[['bbox']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["bbox"]], "$new()")))
+          self[["bbox"]] <- obj$fromList(MultiPolygonList[["bbox"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['coordinates']])) {
-          self[['coordinates']] <- MultiPolygonList[['coordinates']]
+      if (is.null(typeMapping[["coordinates"]])) {
+          self[["coordinates"]] <- MultiPolygonList[["coordinates"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['coordinates']], "$new()")))
-          self[['coordinates']] <- obj$fromList(MultiPolygonList[['coordinates']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["coordinates"]], "$new()")))
+          self[["coordinates"]] <- obj$fromList(MultiPolygonList[["coordinates"]], typeMapping=typeMapping)
       }
       invisible(self)
     },
@@ -82,23 +82,23 @@ MultiPolygon <- R6::R6Class(
 
     fromJSONString = function(MultiPolygonJson, typeMapping=NULL) {
       MultiPolygonList <- jsonlite::fromJSON(MultiPolygonJson, simplifyVector=F)
-      if (is.null(typeMapping[['crs']])) {
-          self[['crs']] <- Crs$new()$fromJSONString(jsonlite::toJSON(MultiPolygonList[['crs']], auto_unbox = TRUE), typeMapping=typeMapping) 
+      if (is.null(typeMapping[["crs"]])) {
+          self[["crs"]] <- Crs$new()$fromJSONString(jsonlite::toJSON(MultiPolygonList[["crs"]], auto_unbox = TRUE), typeMapping=typeMapping) 
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['crs']], "$new()")))
-          self[['crs']] <- obj$fromJSONString(jsonlite::toJSON(MultiPolygonList[['crs']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["crs"]], "$new()")))
+          self[["crs"]] <- obj$fromJSONString(jsonlite::toJSON(MultiPolygonList[["crs"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['bbox']])) {
-          self[['bbox']] <- MultiPolygonList[['bbox']]
+      if (is.null(typeMapping[["bbox"]])) {
+          self[["bbox"]] <- MultiPolygonList[["bbox"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['bbox']], "$new()")))
-          self[['bbox']] <- obj$fromJSONString(jsonlite::toJSON(MultiPolygonList[['bbox']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["bbox"]], "$new()")))
+          self[["bbox"]] <- obj$fromJSONString(jsonlite::toJSON(MultiPolygonList[["bbox"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['coordinates']])) {
-          self[['coordinates']] <- MultiPolygonList[['coordinates']]
+      if (is.null(typeMapping[["coordinates"]])) {
+          self[["coordinates"]] <- MultiPolygonList[["coordinates"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['coordinates']], "$new()")))
-          self[['coordinates']] <- obj$fromJSONString(jsonlite::toJSON(MultiPolygonList[['coordinates']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["coordinates"]], "$new()")))
+          self[["coordinates"]] <- obj$fromJSONString(jsonlite::toJSON(MultiPolygonList[["coordinates"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       invisible(self)
     }

@@ -23,38 +23,38 @@ SummaryVernacularName <- R6::R6Class(
     initialize = function(`name`, `language`){
       if (!missing(`name`)) {
         stopifnot(is.character(`name`), length(`name`) == 1)
-        self[['name']] <- `name`
+        self[["name"]] <- `name`
       }
       if (!missing(`language`)) {
         stopifnot(is.character(`language`), length(`language`) == 1)
-        self[['language']] <- `language`
+        self[["language"]] <- `language`
       }
     },
 
     toList = function() {
       SummaryVernacularNameList <- list()
-        if (!is.null(self[['name']])) {
-        SummaryVernacularNameList[['name']] <- self[['name']]
+        if (!is.null(self[["name"]])) {
+        SummaryVernacularNameList[["name"]] <- self[["name"]]
       }
-        if (!is.null(self[['language']])) {
-        SummaryVernacularNameList[['language']] <- self[['language']]
+        if (!is.null(self[["language"]])) {
+        SummaryVernacularNameList[["language"]] <- self[["language"]]
       }
       ## omit empty nested lists in returned list
       SummaryVernacularNameList[sapply(SummaryVernacularNameList, length) > 0]
       },
 
     fromList = function(SummaryVernacularNameList, typeMapping=NULL) {
-      if (is.null(typeMapping[['name']])) {
-          self[['name']] <- SummaryVernacularNameList[['name']]
+      if (is.null(typeMapping[["name"]])) {
+          self[["name"]] <- SummaryVernacularNameList[["name"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['name']], "$new()")))
-          self[['name']] <- obj$fromList(SummaryVernacularNameList[['name']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["name"]], "$new()")))
+          self[["name"]] <- obj$fromList(SummaryVernacularNameList[["name"]], typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['language']])) {
-          self[['language']] <- SummaryVernacularNameList[['language']]
+      if (is.null(typeMapping[["language"]])) {
+          self[["language"]] <- SummaryVernacularNameList[["language"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['language']], "$new()")))
-          self[['language']] <- obj$fromList(SummaryVernacularNameList[['language']], typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["language"]], "$new()")))
+          self[["language"]] <- obj$fromList(SummaryVernacularNameList[["language"]], typeMapping=typeMapping)
       }
       invisible(self)
     },
@@ -65,17 +65,17 @@ SummaryVernacularName <- R6::R6Class(
 
     fromJSONString = function(SummaryVernacularNameJson, typeMapping=NULL) {
       SummaryVernacularNameList <- jsonlite::fromJSON(SummaryVernacularNameJson, simplifyVector=F)
-      if (is.null(typeMapping[['name']])) {
-          self[['name']] <- SummaryVernacularNameList[['name']]
+      if (is.null(typeMapping[["name"]])) {
+          self[["name"]] <- SummaryVernacularNameList[["name"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['name']], "$new()")))
-          self[['name']] <- obj$fromJSONString(jsonlite::toJSON(SummaryVernacularNameList[['name']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["name"]], "$new()")))
+          self[["name"]] <- obj$fromJSONString(jsonlite::toJSON(SummaryVernacularNameList[["name"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
-      if (is.null(typeMapping[['language']])) {
-          self[['language']] <- SummaryVernacularNameList[['language']]
+      if (is.null(typeMapping[["language"]])) {
+          self[["language"]] <- SummaryVernacularNameList[["language"]]
       } else {
-          obj <- eval(parse(text=paste0(typeMapping[['language']], "$new()")))
-          self[['language']] <- obj$fromJSONString(jsonlite::toJSON(SummaryVernacularNameList[['language']], auto_unbox = TRUE), typeMapping=typeMapping)
+          obj <- eval(parse(text=paste0(typeMapping[["language"]], "$new()")))
+          self[["language"]] <- obj$fromJSONString(jsonlite::toJSON(SummaryVernacularNameList[["language"]], auto_unbox = TRUE), typeMapping=typeMapping)
       }
       invisible(self)
     }
