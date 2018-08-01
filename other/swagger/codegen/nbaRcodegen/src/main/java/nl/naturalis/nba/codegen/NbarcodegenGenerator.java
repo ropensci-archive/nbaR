@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import io.swagger.codegen.CodegenConfig;
 import io.swagger.codegen.CodegenOperation;
 import io.swagger.codegen.DefaultCodegen;
+import io.swagger.codegen.SupportingFile;
 import io.swagger.codegen.languages.RClientCodegen;
 import io.swagger.models.Operation;
 
@@ -23,7 +24,9 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 	// source folder where to write the files
 	protected String sourceFolder = "src";
 	protected String apiVersion = "1.0.0";
-
+	protected String author = "Hannes Hettling";
+	protected String authorEmail = "hannes.hettling@@naturalis.nl";
+	
 	/**
 	 * Configures a friendly name for the generator. This will be used by
 	 * the generator to select the library with the -l flag.
@@ -50,6 +53,12 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 	{
 		super();
 
+		additionalProperties.put("author", author);
+		additionalProperties.put("authorEmail", authorEmail);
+		
+		// put custom mustache file for package description
+		supportingFiles.add(new SupportingFile("package.mustache", "", "R/nbaR-package.r"));
+		
 		// set the output folder here
 		outputFolder = "generated-code/nbaRcodegen";
 
