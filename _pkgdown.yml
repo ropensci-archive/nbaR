@@ -1,0 +1,91 @@
+navbar:
+  structure:
+    left:
+    - home
+    - intro
+    - reference
+    - articles
+    - tutorials
+    - news
+    right: github
+  components:
+    home:
+      icon: fa-home fa-lg
+      href: index.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    intro:
+      text: Get started
+      href: articles/nbaR.html
+    github:
+      icon: fa-github fa-lg
+      href: https://github.com/naturalis/nbaR
+
+reference:
+- title: All functions
+  desc: ~
+  contents:
+  - '`Agent`'
+  - '`ApiClient`'
+  - '`AssociatedTaxon`'
+  - '`BioStratigraphy`'
+  - '`ChronoStratigraphy`'
+  - '`Crs`'
+  - '`DefaultClassification`'
+  - '`Element`'
+  - '`Expert`'
+  - '`Feature`'
+  - '`FeatureCollection`'
+  - '`Filter`'
+  - '`GatheringEvent`'
+  - '`GatheringSiteCoordinates`'
+  - '`GeoArea`'
+  - '`GeoClient`'
+  - '`GeoJsonObject`'
+  - '`GeometryCollection`'
+  - '`GroupByScientificNameQuerySpec`'
+  - '`Iptc4xmpExt`'
+  - '`LineString`'
+  - '`LithoStratigraphy`'
+  - '`LngLatAlt`'
+  - '`MetadataClient`'
+  - '`Monomial`'
+  - '`MultiLineString`'
+  - '`MultiMediaContentIdentification`'
+  - '`MultiMediaGatheringEvent`'
+  - '`MultiMediaObject`'
+  - '`MultiPoint`'
+  - '`MultiPolygon`'
+  - '`MultimediaClient`'
+  - '`NamedArea`'
+  - '`Organization`'
+  - '`Path`'
+  - '`Person`'
+  - '`Point`'
+  - '`Polygon`'
+  - '`QueryCondition`'
+  - '`QueryResult`'
+  - '`QueryResultItem`'
+  - '`QueryResultItemObject`'
+  - '`QuerySpec`'
+  - '`Reference`'
+  - '`Response`'
+  - '`RestService`'
+  - '`ScientificName`'
+  - '`ServiceAccessPoint`'
+  - '`SortField`'
+  - '`SourceSystem`'
+  - '`Specimen`'
+  - '`SpecimenClient`'
+  - '`SpecimenIdentification`'
+  - '`SummaryScientificName`'
+  - '`SummarySourceSystem`'
+  - '`SummaryVernacularName`'
+  - '`Taxon`'
+  - '`TaxonClient`'
+  - '`TaxonDescription`'
+  - '`TaxonomicEnrichment`'
+  - '`VernacularName`'
+  - '`nbaR`'
+
