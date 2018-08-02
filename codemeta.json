@@ -116,11 +116,11 @@
   ],
   "codeRepository": "https://github.com/naturalis/nbaR",
   "readme": "https://github.com/naturalis/nbaR/blob/master/README.md",
-  "fileSize": "3385.227KB",
+  "fileSize": "2817.681KB",
   "contIntegration": [
     "https://travis-ci.org/naturalis/nbaR",
     "https://coveralls.io/github/naturalis/nbaR?branch=master"
   ],
-  "issueTracker": "nba@naturalis.nl  ",
+  "issueTracker": "<mailto:nba@naturalis.nl>",
   "developmentStatus": "http://www.repostatus.org/#active"
 }

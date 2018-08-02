@@ -5,7 +5,7 @@ Authors@R: person("Hannes", "Hettling", email = "hannes.hettling@naturalis.nl", 
 Maintainer: Hannes Hettling <hannes.hettling@naturalis.nl>
 Description: Access to the digitised Natural History collection at the Naturalis Biodiversity Center.
 URL: https://github.com/naturalis/nbaR
-BugReports: nba@naturalis.nl  
+BugReports: <mailto:nba@naturalis.nl>
 Depends: R (>= 3.3.3)
 Encoding: UTF-8
 License: Unlicense
