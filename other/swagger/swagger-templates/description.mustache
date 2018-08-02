@@ -1,12 +1,21 @@
 Package: {{{packageName}}}
 Title: R Package Client for {{{appName}}}
 Version: {{packageVersion}}
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: {{{appDescription}}}{{^appDescription}}R Package Client for {{{appName}}}{{/appDescription}}
+Authors@R: person("{{{authorFirstName}}}", "{{{authorLastName}}}", email = "{{{authorEmail}}}", role = c("aut", "cre"))
+Maintainer: {{{authorFirstName}}} {{{authorLastName}}} <{{{authorEmail}}}>
+Description: {{{appDescription}}}{{^appDescription}}R Package Client for {{{appName}}}{{/appDescription}}.
+URL: {{{repoURL}}}
+BugReports: {{{nbaRemail}}}  
 Depends: R (>= 3.3.3)
 Encoding: UTF-8
 License: Unlicense
 LazyData: true
-Suggests: testthat
-Imports: jsonlite, httr, R6
-RoxygenNote: 6.0.1.9000
+Suggests:
+    testthat,
+    knitr,
+    rmarkdown
+Imports:
+    jsonlite,
+    httr,
+    R6
+RoxygenNote: 6.1.0
