@@ -5,8 +5,8 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "nbaR",
-  "description": "Access to the digitised Natural History collection at the Naturalis Biodiversity Center via\n\tthe 'Netherlands Biodiversity API'<http://api.biodiversitydata.nl/v2>)",
-  "name": "nbaR: R Package Client for the Netherlands Biodiversity API",
+  "description": "Access to the digitised Natural History collection at the Naturalis Biodiversity Center.",
+  "name": "nbaR: R Package Client for Netherlands Biodiversity Api",
   "license": "Unlicense",
   "version": "0.0.0",
   "programmingLanguage": {
@@ -114,12 +114,13 @@
       "sameAs": "https://CRAN.R-project.org/package=R6"
     }
   ],
-  "codeRepository": "https://github.com/naturalis/nbaR/#readme",
+  "codeRepository": "https://github.com/naturalis/nbaR",
   "readme": "https://github.com/naturalis/nbaR/blob/master/README.md",
-  "fileSize": "8533.75KB",
+  "fileSize": "3385.227KB",
   "contIntegration": [
     "https://travis-ci.org/naturalis/nbaR",
     "https://coveralls.io/github/naturalis/nbaR?branch=master"
   ],
-  "issueTracker": "nba@naturalis.nl"
+  "issueTracker": "nba@naturalis.nl  ",
+  "developmentStatus": "http://www.repostatus.org/#active"
 }

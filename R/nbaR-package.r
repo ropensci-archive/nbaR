@@ -7,5 +7,5 @@
 #' @title nbaR : R Package Client for the Netherlands Biodiversity Api
 #' @docType package
 #' @keywords package
-#' @author Hannes Hettling \email{ hannes.hettling@@naturalis.nl }
+#' @author Hannes  \email{ hannes.hettling@naturalis.nl }
 NULL
