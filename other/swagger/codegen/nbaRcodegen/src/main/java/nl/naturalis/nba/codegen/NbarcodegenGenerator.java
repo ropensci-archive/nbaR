@@ -23,9 +23,12 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 
 	// source folder where to write the files
 	protected String sourceFolder = "src";
-	protected String apiVersion = "1.0.0";
-	protected String author = "Hannes Hettling";
-	protected String authorEmail = "hannes.hettling@@naturalis.nl";
+	protected String apiVersion = "v2";
+	protected String authorFirstName = "Hannes";
+	protected String authorLastName = "Hettling";	
+	protected String authorEmail = "hannes.hettling@naturalis.nl";
+	protected String repoURL = "https://github.com/naturalis/nbaR";
+	protected String nbaRemail = "nba@naturalis.nl";
 	
 	/**
 	 * Configures a friendly name for the generator. This will be used by
@@ -53,9 +56,13 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 	{
 		super();
 
-		additionalProperties.put("author", author);
+		// put some custom additional properties for package metadata files
+		additionalProperties.put("authorFirstName", authorFirstName);
+		additionalProperties.put("authorLastName", authorLastName);		
 		additionalProperties.put("authorEmail", authorEmail);
-		
+		additionalProperties.put("repoURL", repoURL);
+		additionalProperties.put("nbaRemail", nbaRemail);
+						
 		// put custom mustache file for package description
 		supportingFiles.add(new SupportingFile("package.mustache", "", "R/nbaR-package.r"));
 		
