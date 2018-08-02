@@ -117,7 +117,7 @@ MultiMediaContentIdentification <- R6::R6Class(
         MultiMediaContentIdentificationList[["taxonomicEnrichments"]] <- lapply(self[["taxonomicEnrichments"]], function(x) x$toList())
       }
       ## omit empty nested lists in returned list
-      MultiMediaContentIdentificationList[sapply(MultiMediaContentIdentificationList, length) > 0]
+      MultiMediaContentIdentificationList[vapply(MultiMediaContentIdentificationList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(MultiMediaContentIdentificationList, typeMapping = NULL) {

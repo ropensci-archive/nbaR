@@ -40,7 +40,7 @@ SourceSystem <- R6::R6Class(
         SourceSystemList[["name"]] <- self[["name"]]
       }
       ## omit empty nested lists in returned list
-      SourceSystemList[sapply(SourceSystemList, length) > 0]
+      SourceSystemList[vapply(SourceSystemList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(SourceSystemList, typeMapping = NULL) {

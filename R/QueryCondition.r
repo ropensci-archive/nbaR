@@ -93,7 +93,7 @@ QueryCondition <- R6::R6Class(
         QueryConditionList[["boost"]] <- self[["boost"]]
       }
       ## omit empty nested lists in returned list
-      QueryConditionList[sapply(QueryConditionList, length) > 0]
+      QueryConditionList[vapply(QueryConditionList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(QueryConditionList, typeMapping = NULL) {

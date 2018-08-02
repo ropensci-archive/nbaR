@@ -40,7 +40,7 @@ AssociatedTaxon <- R6::R6Class(
         AssociatedTaxonList[["relationType"]] <- self[["relationType"]]
       }
       ## omit empty nested lists in returned list
-      AssociatedTaxonList[sapply(AssociatedTaxonList, length) > 0]
+      AssociatedTaxonList[vapply(AssociatedTaxonList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(AssociatedTaxonList, typeMapping = NULL) {

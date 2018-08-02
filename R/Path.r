@@ -30,7 +30,7 @@ Path <- R6::R6Class(
         PathList[["purePath"]] <- self[["purePath"]]
       }
       ## omit empty nested lists in returned list
-      PathList[sapply(PathList, length) > 0]
+      PathList[vapply(PathList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(PathList, typeMapping = NULL) {

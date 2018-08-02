@@ -51,7 +51,7 @@ LineString <- R6::R6Class(
         LineStringList[["coordinates"]] <- lapply(self[["coordinates"]], function(x) x$toList())
       }
       ## omit empty nested lists in returned list
-      LineStringList[sapply(LineStringList, length) > 0]
+      LineStringList[vapply(LineStringList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(LineStringList, typeMapping = NULL) {

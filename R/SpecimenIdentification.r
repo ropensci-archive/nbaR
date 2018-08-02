@@ -179,7 +179,7 @@ SpecimenIdentification <- R6::R6Class(
         SpecimenIdentificationList[["remarks"]] <- self[["remarks"]]
       }
       ## omit empty nested lists in returned list
-      SpecimenIdentificationList[sapply(SpecimenIdentificationList, length) > 0]
+      SpecimenIdentificationList[vapply(SpecimenIdentificationList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(SpecimenIdentificationList, typeMapping = NULL) {

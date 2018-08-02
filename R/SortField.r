@@ -47,7 +47,7 @@ SortField <- R6::R6Class(
         SortFieldList[["ascending"]] <- self[["ascending"]]
       }
       ## omit empty nested lists in returned list
-      SortFieldList[sapply(SortFieldList, length) > 0]
+      SortFieldList[vapply(SortFieldList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(SortFieldList, typeMapping = NULL) {

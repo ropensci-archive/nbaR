@@ -85,7 +85,7 @@ SummaryScientificName <- R6::R6Class(
         SummaryScientificNameList[["authorshipVerbatim"]] <- self[["authorshipVerbatim"]]
       }
       ## omit empty nested lists in returned list
-      SummaryScientificNameList[sapply(SummaryScientificNameList, length) > 0]
+      SummaryScientificNameList[vapply(SummaryScientificNameList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(SummaryScientificNameList, typeMapping = NULL) {

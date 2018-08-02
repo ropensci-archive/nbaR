@@ -273,7 +273,7 @@ GatheringEvent <- R6::R6Class(
         GatheringEventList[["bioStratigraphic"]] <- lapply(self[["bioStratigraphic"]], function(x) x$toList())
       }
       ## omit empty nested lists in returned list
-      GatheringEventList[sapply(GatheringEventList, length) > 0]
+      GatheringEventList[vapply(GatheringEventList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(GatheringEventList, typeMapping = NULL) {

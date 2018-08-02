@@ -67,7 +67,7 @@ Reference <- R6::R6Class(
         ReferenceList[["publicationDate"]] <- self[["publicationDate"]]
       }
       ## omit empty nested lists in returned list
-      ReferenceList[sapply(ReferenceList, length) > 0]
+      ReferenceList[vapply(ReferenceList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(ReferenceList, typeMapping = NULL) {

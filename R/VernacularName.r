@@ -68,7 +68,7 @@ VernacularName <- R6::R6Class(
         VernacularNameList[["experts"]] <- lapply(self[["experts"]], function(x) x$toList())
       }
       ## omit empty nested lists in returned list
-      VernacularNameList[sapply(VernacularNameList, length) > 0]
+      VernacularNameList[vapply(VernacularNameList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(VernacularNameList, typeMapping = NULL) {

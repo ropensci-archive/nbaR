@@ -41,7 +41,7 @@ GeoJsonObject <- R6::R6Class(
         GeoJsonObjectList[["bbox"]] <- self[["bbox"]]
       }
       ## omit empty nested lists in returned list
-      GeoJsonObjectList[sapply(GeoJsonObjectList, length) > 0]
+      GeoJsonObjectList[vapply(GeoJsonObjectList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(GeoJsonObjectList, typeMapping = NULL) {

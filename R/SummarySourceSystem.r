@@ -31,7 +31,7 @@ SummarySourceSystem <- R6::R6Class(
         SummarySourceSystemList[["code"]] <- self[["code"]]
       }
       ## omit empty nested lists in returned list
-      SummarySourceSystemList[sapply(SummarySourceSystemList, length) > 0]
+      SummarySourceSystemList[vapply(SummarySourceSystemList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(SummarySourceSystemList, typeMapping = NULL) {

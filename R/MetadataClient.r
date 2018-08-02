@@ -294,7 +294,7 @@ MetadataClient <- R6::R6Class(
         self$handleError(response)
       } else {
         ## API call result is a "map container" and will be parsed to list
-        result <- httr::content(response, simplifyVector = T)
+        result <- httr::content(response, simplifyVector = TRUE)
         Response$new(result, response)
       }
     },

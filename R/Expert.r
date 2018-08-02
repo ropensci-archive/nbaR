@@ -49,7 +49,7 @@ Expert <- R6::R6Class(
         ExpertList[["organization"]] <- self[["organization"]]$toList()
       }
       ## omit empty nested lists in returned list
-      ExpertList[sapply(ExpertList, length) > 0]
+      ExpertList[vapply(ExpertList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(ExpertList, typeMapping = NULL) {

@@ -49,7 +49,7 @@ TaxonDescription <- R6::R6Class(
         TaxonDescriptionList[["language"]] <- self[["language"]]
       }
       ## omit empty nested lists in returned list
-      TaxonDescriptionList[sapply(TaxonDescriptionList, length) > 0]
+      TaxonDescriptionList[vapply(TaxonDescriptionList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(TaxonDescriptionList, typeMapping = NULL) {

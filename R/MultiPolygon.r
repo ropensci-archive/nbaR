@@ -51,7 +51,7 @@ MultiPolygon <- R6::R6Class(
         MultiPolygonList[["coordinates"]] <- self[["coordinates"]]
       }
       ## omit empty nested lists in returned list
-      MultiPolygonList[sapply(MultiPolygonList, length) > 0]
+      MultiPolygonList[vapply(MultiPolygonList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(MultiPolygonList, typeMapping = NULL) {

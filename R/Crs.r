@@ -39,7 +39,7 @@ Crs <- R6::R6Class(
         CrsList[["properties"]] <- self[["properties"]]
       }
       ## omit empty nested lists in returned list
-      CrsList[sapply(CrsList, length) > 0]
+      CrsList[vapply(CrsList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(CrsList, typeMapping = NULL) {

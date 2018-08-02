@@ -282,7 +282,7 @@ MultiMediaGatheringEvent <- R6::R6Class(
         MultiMediaGatheringEventList[["bioStratigraphic"]] <- lapply(self[["bioStratigraphic"]], function(x) x$toList())
       }
       ## omit empty nested lists in returned list
-      MultiMediaGatheringEventList[sapply(MultiMediaGatheringEventList, length) > 0]
+      MultiMediaGatheringEventList[vapply(MultiMediaGatheringEventList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(MultiMediaGatheringEventList, typeMapping = NULL) {

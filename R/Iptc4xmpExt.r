@@ -85,7 +85,7 @@ Iptc4xmpExt <- R6::R6Class(
         Iptc4xmpExtList[["sublocation"]] <- self[["sublocation"]]
       }
       ## omit empty nested lists in returned list
-      Iptc4xmpExtList[sapply(Iptc4xmpExtList, length) > 0]
+      Iptc4xmpExtList[vapply(Iptc4xmpExtList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(Iptc4xmpExtList, typeMapping = NULL) {

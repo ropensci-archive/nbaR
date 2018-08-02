@@ -51,7 +51,7 @@ FeatureCollection <- R6::R6Class(
         FeatureCollectionList[["features"]] <- lapply(self[["features"]], function(x) x$toList())
       }
       ## omit empty nested lists in returned list
-      FeatureCollectionList[sapply(FeatureCollectionList, length) > 0]
+      FeatureCollectionList[vapply(FeatureCollectionList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(FeatureCollectionList, typeMapping = NULL) {

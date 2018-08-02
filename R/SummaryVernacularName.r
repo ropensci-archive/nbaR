@@ -40,7 +40,7 @@ SummaryVernacularName <- R6::R6Class(
         SummaryVernacularNameList[["language"]] <- self[["language"]]
       }
       ## omit empty nested lists in returned list
-      SummaryVernacularNameList[sapply(SummaryVernacularNameList, length) > 0]
+      SummaryVernacularNameList[vapply(SummaryVernacularNameList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(SummaryVernacularNameList, typeMapping = NULL) {

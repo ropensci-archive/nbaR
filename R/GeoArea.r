@@ -111,7 +111,7 @@ GeoArea <- R6::R6Class(
         GeoAreaList[["countryNL"]] <- self[["countryNL"]]
       }
       ## omit empty nested lists in returned list
-      GeoAreaList[sapply(GeoAreaList, length) > 0]
+      GeoAreaList[vapply(GeoAreaList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(GeoAreaList, typeMapping = NULL) {

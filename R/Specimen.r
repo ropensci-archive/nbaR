@@ -311,7 +311,7 @@ Specimen <- R6::R6Class(
         SpecimenList[["theme"]] <- self[["theme"]]
       }
       ## omit empty nested lists in returned list
-      SpecimenList[sapply(SpecimenList, length) > 0]
+      SpecimenList[vapply(SpecimenList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(SpecimenList, typeMapping = NULL) {

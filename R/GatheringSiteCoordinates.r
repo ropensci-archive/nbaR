@@ -94,7 +94,7 @@ GatheringSiteCoordinates <- R6::R6Class(
         GatheringSiteCoordinatesList[["geoShape"]] <- self[["geoShape"]]$toList()
       }
       ## omit empty nested lists in returned list
-      GatheringSiteCoordinatesList[sapply(GatheringSiteCoordinatesList, length) > 0]
+      GatheringSiteCoordinatesList[vapply(GatheringSiteCoordinatesList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(GatheringSiteCoordinatesList, typeMapping = NULL) {

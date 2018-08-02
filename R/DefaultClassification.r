@@ -121,7 +121,7 @@ DefaultClassification <- R6::R6Class(
         DefaultClassificationList[["infraspecificRank"]] <- self[["infraspecificRank"]]
       }
       ## omit empty nested lists in returned list
-      DefaultClassificationList[sapply(DefaultClassificationList, length) > 0]
+      DefaultClassificationList[vapply(DefaultClassificationList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(DefaultClassificationList, typeMapping = NULL) {

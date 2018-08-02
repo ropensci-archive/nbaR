@@ -156,7 +156,7 @@ BioStratigraphy <- R6::R6Class(
         BioStratigraphyList[["oldBioStratType"]] <- self[["oldBioStratType"]]
       }
       ## omit empty nested lists in returned list
-      BioStratigraphyList[sapply(BioStratigraphyList, length) > 0]
+      BioStratigraphyList[vapply(BioStratigraphyList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(BioStratigraphyList, typeMapping = NULL) {

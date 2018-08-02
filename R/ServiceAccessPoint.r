@@ -49,7 +49,7 @@ ServiceAccessPoint <- R6::R6Class(
         ServiceAccessPointList[["variant"]] <- self[["variant"]]
       }
       ## omit empty nested lists in returned list
-      ServiceAccessPointList[sapply(ServiceAccessPointList, length) > 0]
+      ServiceAccessPointList[vapply(ServiceAccessPointList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(ServiceAccessPointList, typeMapping = NULL) {

@@ -67,7 +67,7 @@ RestService <- R6::R6Class(
         RestServiceList[["url"]] <- self[["url"]]
       }
       ## omit empty nested lists in returned list
-      RestServiceList[sapply(RestServiceList, length) > 0]
+      RestServiceList[vapply(RestServiceList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(RestServiceList, typeMapping = NULL) {

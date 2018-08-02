@@ -66,7 +66,7 @@ Feature <- R6::R6Class(
         FeatureList[["id"]] <- self[["id"]]
       }
       ## omit empty nested lists in returned list
-      FeatureList[sapply(FeatureList, length) > 0]
+      FeatureList[vapply(FeatureList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(FeatureList, typeMapping = NULL) {

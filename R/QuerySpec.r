@@ -87,7 +87,7 @@ QuerySpec <- R6::R6Class(
         QuerySpecList[["size"]] <- self[["size"]]
       }
       ## omit empty nested lists in returned list
-      QuerySpecList[sapply(QuerySpecList, length) > 0]
+      QuerySpecList[vapply(QuerySpecList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(QuerySpecList, typeMapping = NULL) {

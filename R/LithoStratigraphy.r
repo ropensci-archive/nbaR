@@ -174,7 +174,7 @@ LithoStratigraphy <- R6::R6Class(
         LithoStratigraphyList[["bed"]] <- self[["bed"]]
       }
       ## omit empty nested lists in returned list
-      LithoStratigraphyList[sapply(LithoStratigraphyList, length) > 0]
+      LithoStratigraphyList[vapply(LithoStratigraphyList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(LithoStratigraphyList, typeMapping = NULL) {

@@ -308,7 +308,7 @@ MultiMediaObject <- R6::R6Class(
         MultiMediaObjectList[["associatedTaxon"]] <- self[["associatedTaxon"]]$toList()
       }
       ## omit empty nested lists in returned list
-      MultiMediaObjectList[sapply(MultiMediaObjectList, length) > 0]
+      MultiMediaObjectList[vapply(MultiMediaObjectList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(MultiMediaObjectList, typeMapping = NULL) {

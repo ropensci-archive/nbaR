@@ -59,7 +59,7 @@ LngLatAlt <- R6::R6Class(
         LngLatAltList[["additionalElements"]] <- self[["additionalElements"]]
       }
       ## omit empty nested lists in returned list
-      LngLatAltList[sapply(LngLatAltList, length) > 0]
+      LngLatAltList[vapply(LngLatAltList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(LngLatAltList, typeMapping = NULL) {

@@ -40,7 +40,7 @@ Monomial <- R6::R6Class(
         MonomialList[["name"]] <- self[["name"]]
       }
       ## omit empty nested lists in returned list
-      MonomialList[sapply(MonomialList, length) > 0]
+      MonomialList[vapply(MonomialList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(MonomialList, typeMapping = NULL) {

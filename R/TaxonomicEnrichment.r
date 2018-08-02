@@ -60,7 +60,7 @@ TaxonomicEnrichment <- R6::R6Class(
         TaxonomicEnrichmentList[["taxonId"]] <- self[["taxonId"]]
       }
       ## omit empty nested lists in returned list
-      TaxonomicEnrichmentList[sapply(TaxonomicEnrichmentList, length) > 0]
+      TaxonomicEnrichmentList[vapply(TaxonomicEnrichmentList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(TaxonomicEnrichmentList, typeMapping = NULL) {

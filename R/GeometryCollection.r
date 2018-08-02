@@ -51,7 +51,7 @@ GeometryCollection <- R6::R6Class(
         GeometryCollectionList[["geometries"]] <- self[["geometries"]]
       }
       ## omit empty nested lists in returned list
-      GeometryCollectionList[sapply(GeometryCollectionList, length) > 0]
+      GeometryCollectionList[vapply(GeometryCollectionList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(GeometryCollectionList, typeMapping = NULL) {

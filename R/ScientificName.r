@@ -150,7 +150,7 @@ ScientificName <- R6::R6Class(
         ScientificNameList[["experts"]] <- lapply(self[["experts"]], function(x) x$toList())
       }
       ## omit empty nested lists in returned list
-      ScientificNameList[sapply(ScientificNameList, length) > 0]
+      ScientificNameList[vapply(ScientificNameList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(ScientificNameList, typeMapping = NULL) {

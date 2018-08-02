@@ -141,7 +141,7 @@ GroupByScientificNameQuerySpec <- R6::R6Class(
         GroupByScientificNameQuerySpecList[["noTaxa"]] <- self[["noTaxa"]]
       }
       ## omit empty nested lists in returned list
-      GroupByScientificNameQuerySpecList[sapply(GroupByScientificNameQuerySpecList, length) > 0]
+      GroupByScientificNameQuerySpecList[vapply(GroupByScientificNameQuerySpecList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(GroupByScientificNameQuerySpecList, typeMapping = NULL) {

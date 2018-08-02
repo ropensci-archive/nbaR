@@ -41,7 +41,7 @@ QueryResult <- R6::R6Class(
         QueryResultList[["resultSet"]] <- lapply(self[["resultSet"]], function(x) x$toList())
       }
       ## omit empty nested lists in returned list
-      QueryResultList[sapply(QueryResultList, length) > 0]
+      QueryResultList[vapply(QueryResultList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(QueryResultList, typeMapping = NULL) {

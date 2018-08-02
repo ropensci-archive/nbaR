@@ -31,7 +31,7 @@ Agent <- R6::R6Class(
         AgentList[["agentText"]] <- self[["agentText"]]
       }
       ## omit empty nested lists in returned list
-      AgentList[sapply(AgentList, length) > 0]
+      AgentList[vapply(AgentList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(AgentList, typeMapping = NULL) {

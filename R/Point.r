@@ -50,7 +50,7 @@ Point <- R6::R6Class(
         PointList[["coordinates"]] <- self[["coordinates"]]$toList()
       }
       ## omit empty nested lists in returned list
-      PointList[sapply(PointList, length) > 0]
+      PointList[vapply(PointList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(PointList, typeMapping = NULL) {

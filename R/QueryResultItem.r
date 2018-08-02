@@ -39,7 +39,7 @@ QueryResultItem <- R6::R6Class(
         QueryResultItemList[["item"]] <- self[["item"]]
       }
       ## omit empty nested lists in returned list
-      QueryResultItemList[sapply(QueryResultItemList, length) > 0]
+      QueryResultItemList[vapply(QueryResultItemList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(QueryResultItemList, typeMapping = NULL) {

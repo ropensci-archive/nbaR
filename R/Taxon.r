@@ -181,7 +181,7 @@ Taxon <- R6::R6Class(
         TaxonList[["validName"]] <- self[["validName"]]$toList()
       }
       ## omit empty nested lists in returned list
-      TaxonList[sapply(TaxonList, length) > 0]
+      TaxonList[vapply(TaxonList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(TaxonList, typeMapping = NULL) {

@@ -51,7 +51,7 @@ Polygon <- R6::R6Class(
         PolygonList[["coordinates"]] <- self[["coordinates"]]
       }
       ## omit empty nested lists in returned list
-      PolygonList[sapply(PolygonList, length) > 0]
+      PolygonList[vapply(PolygonList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(PolygonList, typeMapping = NULL) {

@@ -255,7 +255,7 @@ ChronoStratigraphy <- R6::R6Class(
         ChronoStratigraphyList[["oldCertainty"]] <- self[["oldCertainty"]]
       }
       ## omit empty nested lists in returned list
-      ChronoStratigraphyList[sapply(ChronoStratigraphyList, length) > 0]
+      ChronoStratigraphyList[vapply(ChronoStratigraphyList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(ChronoStratigraphyList, typeMapping = NULL) {

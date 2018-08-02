@@ -60,7 +60,7 @@ Filter <- R6::R6Class(
         FilterList[["rejectValues"]] <- self[["rejectValues"]]
       }
       ## omit empty nested lists in returned list
-      FilterList[sapply(FilterList, length) > 0]
+      FilterList[vapply(FilterList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(FilterList, typeMapping = NULL) {

@@ -49,7 +49,7 @@ Person <- R6::R6Class(
         PersonList[["organization"]] <- self[["organization"]]$toList()
       }
       ## omit empty nested lists in returned list
-      PersonList[sapply(PersonList, length) > 0]
+      PersonList[vapply(PersonList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(PersonList, typeMapping = NULL) {

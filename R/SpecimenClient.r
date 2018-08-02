@@ -275,7 +275,7 @@ SpecimenClient <- R6::R6Class(
       if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
         self$handleError(response)
       } else {
-        cat("Query result written to ", filename, "\n")
+        message("Query result written to ", filename)
         ## empty response, e.g. when file is downloaded
         result <- NULL
         Response$new(result, response)
@@ -342,7 +342,7 @@ SpecimenClient <- R6::R6Class(
       if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
         self$handleError(response)
       } else {
-        cat("Query result written to ", filename, "\n")
+        message("Query result written to ", filename)
         ## empty response, e.g. when file is downloaded
         result <- NULL
         Response$new(result, response)
@@ -512,7 +512,7 @@ SpecimenClient <- R6::R6Class(
         self$handleError(response)
       } else {
         ## API call result is a "map container" and will be parsed to list
-        result <- httr::content(response, simplifyVector = T)
+        result <- httr::content(response, simplifyVector = TRUE)
         Response$new(result, response)
       }
     },
@@ -572,7 +572,7 @@ SpecimenClient <- R6::R6Class(
         self$handleError(response)
       } else {
         ## API call result is a "map container" and will be parsed to list
-        result <- httr::content(response, simplifyVector = T)
+        result <- httr::content(response, simplifyVector = TRUE)
         Response$new(result, response)
       }
     },
@@ -710,7 +710,7 @@ SpecimenClient <- R6::R6Class(
         self$handleError(response)
       } else {
         ## API call result is a "map container" and will be parsed to list
-        result <- httr::content(response, simplifyVector = T)
+        result <- httr::content(response, simplifyVector = TRUE)
         Response$new(result, response)
       }
     },

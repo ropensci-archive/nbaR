@@ -40,7 +40,7 @@ Organization <- R6::R6Class(
         OrganizationList[["name"]] <- self[["name"]]
       }
       ## omit empty nested lists in returned list
-      OrganizationList[sapply(OrganizationList, length) > 0]
+      OrganizationList[vapply(OrganizationList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(OrganizationList, typeMapping = NULL) {

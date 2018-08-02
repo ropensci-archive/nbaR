@@ -51,7 +51,7 @@ MultiLineString <- R6::R6Class(
         MultiLineStringList[["coordinates"]] <- self[["coordinates"]]
       }
       ## omit empty nested lists in returned list
-      MultiLineStringList[sapply(MultiLineStringList, length) > 0]
+      MultiLineStringList[vapply(MultiLineStringList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(MultiLineStringList, typeMapping = NULL) {

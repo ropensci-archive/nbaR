@@ -51,7 +51,7 @@ MultiPoint <- R6::R6Class(
         MultiPointList[["coordinates"]] <- lapply(self[["coordinates"]], function(x) x$toList())
       }
       ## omit empty nested lists in returned list
-      MultiPointList[sapply(MultiPointList, length) > 0]
+      MultiPointList[vapply(MultiPointList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(MultiPointList, typeMapping = NULL) {

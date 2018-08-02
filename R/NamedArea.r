@@ -40,7 +40,7 @@ NamedArea <- R6::R6Class(
         NamedAreaList[["areaName"]] <- self[["areaName"]]
       }
       ## omit empty nested lists in returned list
-      NamedAreaList[sapply(NamedAreaList, length) > 0]
+      NamedAreaList[vapply(NamedAreaList, length, FUN.VALUE = integer(1)) > 0]
     },
 
     fromList = function(NamedAreaList, typeMapping = NULL) {
