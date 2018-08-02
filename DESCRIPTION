@@ -4,6 +4,9 @@ Version: 0.0.0
 Authors@R: person("Hannes", "Hettling", email = "hannes.hettling@naturalis.nl", role = c("aut", "cre"))
 Maintainer: Hannes Hettling <hannes.hettling@naturalis.nl>
 Description: Access to the digitised Natural History collection at the Naturalis Biodiversity Center.
+    This is the official client to the Netherlands Biodiversity API
+    (NBA, <http://api.biodiversitydata.nl>) for the R programming language.
+    More information on the NBA can be found at <http://docs.biodiversitydata.nl>.
 URL: https://github.com/naturalis/nbaR
 BugReports: <mailto:nba@naturalis.nl>
 Depends: R (>= 3.3.3)
