@@ -115,7 +115,7 @@
             self$handleError(response)
         } else {
         {{#isResponseFile}}
-            cat("Query result written to ", filename, "\n")
+            message("Query result written to ", filename)
         {{/isResponseFile}}
         {{#returnType}}
             {{#isMapContainer}}
