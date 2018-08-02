@@ -1,8 +1,2 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^\.swagger-codegen-ignore$
-^\.travis.yml$
-^\.swagger-codegen$
-^.\.class$
-^.+\.classpath$
-^codemeta\.json$
