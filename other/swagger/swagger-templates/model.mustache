@@ -69,7 +69,7 @@
       }
       {{/vars}}
       ## omit empty nested lists in returned list
-      {{classname}}List[sapply({{classname}}List, length) > 0]
+      {{classname}}List[vapply({{classname}}List, length, FUN.VALUE=integer(1)) > 0]
       },
 
     fromList = function({{classname}}List, typeMapping = NULL) {
