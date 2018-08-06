@@ -28,6 +28,7 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 	protected String authorLastName = "Hettling";	
 	protected String authorEmail = "hannes.hettling@naturalis.nl";
 	protected String repoURL = "https://github.com/naturalis/nbaR";
+	protected String bugReportURL = "https://github.com/naturalis/nbaR/issues/new";
 	protected String nbaRemail = "nba@naturalis.nl";
 	protected String extendedDescription = "This is the official client to the Netherlands Biodiversity API\n" 
 			 + "    (NBA, <http://api.biodiversitydata.nl>) for the R programming language.\n"
@@ -66,6 +67,7 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 		additionalProperties.put("repoURL", repoURL);
 		additionalProperties.put("nbaRemail", nbaRemail);
 		additionalProperties.put("extendedDescription", extendedDescription);
+		additionalProperties.put("bugReportURL", bugReportURL);
 						
 		// put custom mustache file for package description
 		supportingFiles.add(new SupportingFile("package.mustache", "", "R/nbaR-package.r"));

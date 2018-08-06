@@ -8,10 +8,10 @@ Description: Access to the digitised Natural History collection at the Naturalis
     (NBA, <http://api.biodiversitydata.nl>) for the R programming language.
     More information on the NBA can be found at <http://docs.biodiversitydata.nl>.
 URL: https://github.com/naturalis/nbaR
-BugReports: <mailto:nba@naturalis.nl>
+BugReports: https://github.com/naturalis/nbaR/issues/new
 Depends: R (>= 3.3.3)
 Encoding: UTF-8
-License: Unlicense
+License: MIT + file LICENSE
 LazyData: true
 Suggests:
     testthat,
