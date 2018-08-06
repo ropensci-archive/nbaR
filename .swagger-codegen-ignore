@@ -1,0 +1,10 @@
+.swagger-codegen-ignore
+.travis.yml
+NAMESPACE
+README.md
+inst/**
+tests/**
+other/**
+vignettes/**
+docs/**
+man/**
