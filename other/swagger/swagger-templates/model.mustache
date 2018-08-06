@@ -100,12 +100,12 @@
       invisible(self)
     },
     
-    toJSONString = function(pretty = T) {
-      jsonlite::toJSON(self$toList(), simplifyVector = T, auto_unbox = T, pretty = pretty)
+    toJSONString = function(pretty = TRUE) {
+      jsonlite::toJSON(self$toList(), simplifyVector = TRUE, auto_unbox = TRUE, pretty = pretty)
     },
 
     fromJSONString = function({{classname}}Json, typeMapping = NULL) {
-      {{classname}}List <- jsonlite::fromJSON({{classname}}Json, simplifyVector = F)
+      {{classname}}List <- jsonlite::fromJSON({{classname}}Json, simplifyVector = FALSE)
       {{#vars}}
       {{#isPrimitiveType}}
       if (is.null(typeMapping[["{{baseName}}"]])) {
