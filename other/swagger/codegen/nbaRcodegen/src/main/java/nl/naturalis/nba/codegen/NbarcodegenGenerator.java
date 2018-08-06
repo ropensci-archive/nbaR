@@ -69,6 +69,7 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 						
 		// put custom mustache file for package description
 		supportingFiles.add(new SupportingFile("package.mustache", "", "R/nbaR-package.r"));
+		supportingFiles.add(new SupportingFile("license.mustache", "", "LICENSE"));
 		
 		// set the output folder here
 		outputFolder = "generated-code/nbaRcodegen";
