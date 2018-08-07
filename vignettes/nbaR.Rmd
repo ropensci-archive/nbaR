@@ -31,7 +31,7 @@ for collection- and biodiversity data in near real-time. Furthermore,
 by incorporating information from taxonomic databases, taxonomic name
 resolution can be accomplished with the NBA. Persistent Uniform
 Resource Identifiers (PURLs) ensure that each specimen accessible via
-the NBA is represented by a citable unambiguous web reference. Access
+the NBA is represented by a citeable unambiguous web reference. Access
 to our data is provided via a RESTful interface and several clients such
 as the [BioPortal](http://bioportal.naturalis.nl/), a web application
 for browsing biodiversity data that is served by the NBA.  For more
@@ -40,7 +40,7 @@ information about the NBA, please see our
 
 ## R access
 The R programming language is established as a common tool in scientific 
-resarch, with growing adoption by researchers in biodiversity research.
+research, with growing adoption by researchers in biodiversity research.
 Hence, to ease the access to the NBA for researchers, we developed this R 
 client.
 
@@ -59,7 +59,7 @@ information about NBA settings. Each of the data types is modelled
 as an `R6` class and therefore has its own members such as fields
 and methods. Documentation about a specific class can be retrieved
 in the standard manner, e.g. `?Specimen`
-Each class of the data model can be instanciated and has a `toJSONString` and `toList` method returning
+Each class of the data model can be instantiated and has a `toJSONString` and `toList` method returning
 the object's JSON representation and the object's data as a list datatype, respectively.
 
 ```{r}
@@ -133,15 +133,15 @@ res <- client$query(queryParams=l)
 Note that by default, both conditions are connected by a logical `AND`. 
 The `queryParams` passed as a list thus correspond to 
 basic [*human readable* queries](http://docs.biodiversitydata.nl/en/latest/quickstart/#human-readable).
-For more advanced queries, containing different logical operators or nested subqueries, 
-the user can specify tha query in a `QuerySpec` object.
+For more advanced queries, containing different logical operators or nested sub-queries, 
+the user can specify the query in a `QuerySpec` object.
 
 # Advanced queries
 
 ## Using the QuerySpec object
 Advanced queries with different operators than `AND` or nested query conditions 
 can not be accomplished by simply passing the query parameters as a list. 
-Instead, a query is modeled as a `QuerySpec` obejct which
+Instead, a query is modeled as a `QuerySpec` object which
 captures the relationships between multiple query terms. Please also refer to the 
 [NBA QuerySpec documentation](http://docs.biodiversitydata.nl/en/latest/advanced-queries/#queryspec) for more information.
 
@@ -182,7 +182,7 @@ q3 <- QueryCondition$new(field="identifications.taxonRank",
                          operator="EQUALS", value="species")
 ```
 
-Extending the constraint to also inclu specimens of rank *Subspecies*,  
+Extending the constraint to also include specimens of rank *Subspecies*,  
 we can combine the latter condition with an additional one using the method `or`:
  
 ```{r}
@@ -253,7 +253,7 @@ as follows:
 sapply(res$content$resultSet, function(x)x$item$gatheringEvent$country)
 ```
 
-Note that passing query parameters as a named list only allows forl limited queries; the locical conjunction between 
+Note that passing query parameters as a named list only allows for limited queries; the logical conjunction between 
 parameters is for example always `AND`. More complex queries can be accomplished using the `QuerySpec` object:
 
 ```{r}
@@ -373,7 +373,7 @@ sc$count_distinct_values("gatheringEvent.country")
 ```
 
 #### get_distinct_values_per_group
-Suppose you want to add another filter to the above query of retreiving all distinct values 
+Suppose you want to add another filter to the above query of retrieving all distinct values 
 for a given field, such as splitting the results by their respective source system:
 
 ```{r results='hide'}
@@ -430,7 +430,7 @@ sc$get_setting("index.max_result_window")$content
 ```
 
 #### Operators
-To test if a certain operator can be used for a mutimedia query:
+To test if a certain operator can be used for a multimedia query:
 
 ```{r}
 sc$is_operator_allowed("identifications.defaultClassification.genus", "STARTS_WITH")$content
@@ -516,7 +516,7 @@ tc$find("27706109@COL")$content
 ```
 
 #### find_by_ids
-Given a string with comma-sparated identifiers, returns a list of taxon objects:
+Given a string with comma-separated identifiers, returns a list of taxon objects:
 
 ```{r}
     ids <- "27706109@COL,27704140@COL,27706110@COL,27706111@COL,27706108@COL"
@@ -624,7 +624,7 @@ can be either given as a `list` or as a `QuerySpec` object.
 Below, we make a simple query to get the `GeoArea` object for the Netherlands:
 
 ```{r}
-# instanciate client for geo areas
+# instantiate client for geo areas
 gc <- GeoClient$new()
 
 # query for GeoArea of the Netherlands
@@ -738,8 +738,8 @@ mc$count()$content
 ### Aggregation services
 
 #### get_distinct_values
-This function returns all values present for a certain field, and their counts. Example: retreive
-all different liceses and their counts"
+This function returns all values present for a certain field, and their counts. Example: retrieve
+all different licenses and their counts"
 
 ```{r}
 mc$get_distinct_values("license")$content
@@ -790,13 +790,13 @@ mc <- MetadataClient$new()
 The vocabularies for some fields are controlled by 
 dictionaries with allowed values. For the sex of a museum specimen, for instance, only the
 terms *male*, *female*, *mixed* and *hermaphrodite* are allowed to be assigned to the specimen.
-The fields for which controlled lists are available can be retreived as follows:
+The fields for which controlled lists are available can be retrieved as follows:
 
 ```{r}
 mc$get_controlled_lists()$content
 ```
 
-and for each field that has a controlled vocabulary, there is a separate function to retreive the
+and for each field that has a controlled vocabulary, there is a separate function to retrieve the
 allowed values:
 
 ```{r}
@@ -819,7 +819,7 @@ mc$get_allowed_date_formats()$content
 
 ##### Services list
 The method `get_rest_services` returns a list of all services
-in the NBA as objets of type `RestService`.
+in the NBA as objects of type `RestService`.
 
 ```{r}
 # get the endPoint of the first rest service in the services list
