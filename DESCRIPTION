@@ -1,5 +1,5 @@
 Package: nbaR
-Title: R Package Client for Netherlands Biodiversity Api
+Title: R Package Client for the Netherlands Biodiversity Api
 Version: 0.0.0
 Authors@R: person("Hannes", "Hettling", email = "hannes.hettling@naturalis.nl", role = c("aut", "cre"))
 Maintainer: Hannes Hettling <hannes.hettling@naturalis.nl>
@@ -22,3 +22,4 @@ Imports:
     httr,
     R6
 RoxygenNote: 6.1.0
+VignetteBuilder: knitr
