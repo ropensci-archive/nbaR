@@ -62,13 +62,16 @@ ApiClient  <- R6::R6Class(
             httr::GET(url, query = queryParams, headers = headers, ...)
         }
         else if (method == "POST") {
-            httr::POST(url, query = queryParams, headers = headers, body = body, ...)
+            httr::POST(url, query = queryParams, headers = headers,
+                       body = body, ...)
         }
         else if (method == "PUT") {
-            httr::PUT(url, query = queryParams, headers = headers, body = body, ...)
+            httr::PUT(url, query = queryParams, headers = headers,
+                       body = body, ...)
         }
         else if (method == "PATCH") {
-            httr::PATCH(url, query = queryParams, headers = headers, body = body, ...)
+            httr::PATCH(url, query = queryParams, headers = headers,
+                        body = body, ...)
         }
         else if (method == "HEAD") {
             httr::HEAD(url, query = queryParams, headers = headers, ...)
@@ -77,7 +80,8 @@ ApiClient  <- R6::R6Class(
             httr::DELETE(url, query = queryParams, headers = headers, ...)
         }
         else {
-            stop("http method must be `GET`, `HEAD`, `OPTIONS`, `POST`, `PATCH`, `PUT` or `DELETE`.")
+            stop(paste("http method must be",
+                "`GET`, `HEAD`, `POST`, `PATCH`, `PUT` or `DELETE`."))
         }
     },
     handleError = function(response) {
@@ -87,11 +91,13 @@ ApiClient  <- R6::R6Class(
         if (typeof(httr::content(response)) == "list") {
             ## handle (server) errors with stack trace etc
             c <- httr::content(response)
-            warningMessage <- paste0("Status code:", httr::status_code(response),
-                                     "\n", c$httpStatus$message,                       
-                                     "\nException: ", c$exception$message,
-                                     "\nException type: ", c$exception$type,
-                                     "\nFull stack trace stored in response object")
+            warningMessage <- paste0(
+                    "Status code:",
+                    httr::status_code(response),
+                    "\n", c$httpStatus$message,                       
+                    "\nException: ", c$exception$message,
+                    "\nException type: ", c$exception$type,
+                    "\nFull stack trace stored in response object")
             responseMessage <- c$httpStatus$message                                     
         } else {
             ## handle errors in which httr only returns a string
