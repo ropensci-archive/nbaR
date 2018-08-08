@@ -1,4 +1,4 @@
-# Netherlands Biodiversity Api
+# Netherlands Biodiversity API
 #
 # Access to the digitised Natural History collection at the Naturalis Biodiversity Center
 #
@@ -18,9 +18,13 @@ SummarySourceSystem <- R6::R6Class(
   "SummarySourceSystem",
   public = list(
     `code` = NULL,
-    initialize = function(`code`) {
+    initialize = function(
+                              `code`) {
       if (!missing(`code`)) {
-        stopifnot(is.character(`code`), length(`code`) == 1)
+        stopifnot(
+          is.character(`code`),
+          length(`code`) == 1
+        )
         self[["code"]] <- `code`
       }
     },
@@ -28,33 +32,61 @@ SummarySourceSystem <- R6::R6Class(
     toList = function() {
       SummarySourceSystemList <- list()
       if (!is.null(self[["code"]])) {
-        SummarySourceSystemList[["code"]] <- self[["code"]]
+        SummarySourceSystemList[["code"]] <-
+          self[["code"]]
       }
       ## omit empty nested lists in returned list
-      SummarySourceSystemList[vapply(SummarySourceSystemList, length, FUN.VALUE = integer(1)) > 0]
+      SummarySourceSystemList[vapply(SummarySourceSystemList,
+        length,
+        FUN.VALUE = integer(1)
+      ) > 0]
     },
 
     fromList = function(SummarySourceSystemList, typeMapping = NULL) {
       if (is.null(typeMapping[["code"]])) {
-        self[["code"]] <- SummarySourceSystemList[["code"]]
+        self[["code"]] <-
+          SummarySourceSystemList[["code"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["code"]], "$new()")))
-        self[["code"]] <- obj$fromList(SummarySourceSystemList[["code"]], typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["code"]], "$new()")
+        ))
+        self[["code"]] <- obj$fromList(
+          SummarySourceSystemList[["code"]],
+          typeMapping = typeMapping
+        )
       }
       invisible(self)
     },
 
-    toJSONString = function(pretty = T) {
-      jsonlite::toJSON(self$toList(), simplifyVector = T, auto_unbox = T, pretty = pretty)
+    toJSONString = function(pretty = TRUE) {
+      jsonlite::toJSON(
+        self$toList(),
+        simplifyVector = TRUE,
+        auto_unbox = TRUE,
+        pretty = pretty
+      )
     },
 
-    fromJSONString = function(SummarySourceSystemJson, typeMapping = NULL) {
-      SummarySourceSystemList <- jsonlite::fromJSON(SummarySourceSystemJson, simplifyVector = F)
+    fromJSONString = function(SummarySourceSystemJson,
+                                  typeMapping = NULL) {
+      SummarySourceSystemList <- jsonlite::fromJSON(
+        SummarySourceSystemJson,
+        simplifyVector = FALSE
+      )
       if (is.null(typeMapping[["code"]])) {
-        self[["code"]] <- SummarySourceSystemList[["code"]]
+        self[["code"]] <-
+          SummarySourceSystemList[["code"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["code"]], "$new()")))
-        self[["code"]] <- obj$fromJSONString(jsonlite::toJSON(SummarySourceSystemList[["code"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["code"]], "$new()")
+        ))
+        self[["code"]] <- obj$fromJSONString(
+          jsonlite::toJSON(
+            SummarySourceSystemList[["code"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       }
       invisible(self)
     }

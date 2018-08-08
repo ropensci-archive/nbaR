@@ -1,4 +1,4 @@
-# Netherlands Biodiversity Api
+# Netherlands Biodiversity API
 #
 # Access to the digitised Natural History collection at the Naturalis Biodiversity Center
 #
@@ -18,7 +18,8 @@ Path <- R6::R6Class(
   "Path",
   public = list(
     `purePath` = NULL,
-    initialize = function(`purePath`) {
+    initialize = function(
+                              `purePath`) {
       if (!missing(`purePath`)) {
         self[["purePath"]] <- `purePath`
       }
@@ -27,33 +28,61 @@ Path <- R6::R6Class(
     toList = function() {
       PathList <- list()
       if (!is.null(self[["purePath"]])) {
-        PathList[["purePath"]] <- self[["purePath"]]
+        PathList[["purePath"]] <-
+          self[["purePath"]]
       }
       ## omit empty nested lists in returned list
-      PathList[vapply(PathList, length, FUN.VALUE = integer(1)) > 0]
+      PathList[vapply(PathList,
+        length,
+        FUN.VALUE = integer(1)
+      ) > 0]
     },
 
     fromList = function(PathList, typeMapping = NULL) {
       if (is.null(typeMapping[["purePath"]])) {
-        self[["purePath"]] <- PathList[["purePath"]]
+        self[["purePath"]] <-
+          PathList[["purePath"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["purePath"]], "$new()")))
-        self[["purePath"]] <- obj$fromList(PathList[["purePath"]], typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["purePath"]], "$new()")
+        ))
+        self[["purePath"]] <- obj$fromList(
+          PathList[["purePath"]],
+          typeMapping = typeMapping
+        )
       }
       invisible(self)
     },
 
-    toJSONString = function(pretty = T) {
-      jsonlite::toJSON(self$toList(), simplifyVector = T, auto_unbox = T, pretty = pretty)
+    toJSONString = function(pretty = TRUE) {
+      jsonlite::toJSON(
+        self$toList(),
+        simplifyVector = TRUE,
+        auto_unbox = TRUE,
+        pretty = pretty
+      )
     },
 
-    fromJSONString = function(PathJson, typeMapping = NULL) {
-      PathList <- jsonlite::fromJSON(PathJson, simplifyVector = F)
+    fromJSONString = function(PathJson,
+                                  typeMapping = NULL) {
+      PathList <- jsonlite::fromJSON(
+        PathJson,
+        simplifyVector = FALSE
+      )
       if (is.null(typeMapping[["purePath"]])) {
-        self[["purePath"]] <- PathList[["purePath"]]
+        self[["purePath"]] <-
+          PathList[["purePath"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["purePath"]], "$new()")))
-        self[["purePath"]] <- obj$fromJSONString(jsonlite::toJSON(PathList[["purePath"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["purePath"]], "$new()")
+        ))
+        self[["purePath"]] <- obj$fromJSONString(
+          jsonlite::toJSON(
+            PathList[["purePath"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       }
       invisible(self)
     }

@@ -1,4 +1,4 @@
-# Netherlands Biodiversity Api
+# Netherlands Biodiversity API
 #
 # Access to the digitised Natural History collection at the Naturalis Biodiversity Center
 #
@@ -24,21 +24,37 @@ LngLatAlt <- R6::R6Class(
     `latitude` = NULL,
     `altitude` = NULL,
     `additionalElements` = NULL,
-    initialize = function(`longitude`, `latitude`, `altitude`, `additionalElements`) {
+    initialize = function(
+                              `longitude`,
+                              `latitude`,
+                              `altitude`,
+                              `additionalElements`) {
       if (!missing(`longitude`)) {
-        stopifnot(is.numeric(`longitude`), length(`longitude`) == 1)
+        stopifnot(
+          is.numeric(`longitude`),
+          length(`longitude`) == 1
+        )
         self[["longitude"]] <- `longitude`
       }
       if (!missing(`latitude`)) {
-        stopifnot(is.numeric(`latitude`), length(`latitude`) == 1)
+        stopifnot(
+          is.numeric(`latitude`),
+          length(`latitude`) == 1
+        )
         self[["latitude"]] <- `latitude`
       }
       if (!missing(`altitude`)) {
-        stopifnot(is.numeric(`altitude`), length(`altitude`) == 1)
+        stopifnot(
+          is.numeric(`altitude`),
+          length(`altitude`) == 1
+        )
         self[["altitude"]] <- `altitude`
       }
       if (!missing(`additionalElements`)) {
-        stopifnot(is.list(`additionalElements`), length(`additionalElements`) != 0)
+        stopifnot(
+          is.list(`additionalElements`),
+          length(`additionalElements`) != 0
+        )
         lapply(`additionalElements`, function(x) stopifnot(is.character(x)))
         self[["additionalElements"]] <- `additionalElements`
       }
@@ -47,78 +63,154 @@ LngLatAlt <- R6::R6Class(
     toList = function() {
       LngLatAltList <- list()
       if (!is.null(self[["longitude"]])) {
-        LngLatAltList[["longitude"]] <- self[["longitude"]]
+        LngLatAltList[["longitude"]] <-
+          self[["longitude"]]
       }
       if (!is.null(self[["latitude"]])) {
-        LngLatAltList[["latitude"]] <- self[["latitude"]]
+        LngLatAltList[["latitude"]] <-
+          self[["latitude"]]
       }
       if (!is.null(self[["altitude"]])) {
-        LngLatAltList[["altitude"]] <- self[["altitude"]]
+        LngLatAltList[["altitude"]] <-
+          self[["altitude"]]
       }
       if (!is.null(self[["additionalElements"]])) {
-        LngLatAltList[["additionalElements"]] <- self[["additionalElements"]]
+        LngLatAltList[["additionalElements"]] <-
+          self[["additionalElements"]]
       }
       ## omit empty nested lists in returned list
-      LngLatAltList[vapply(LngLatAltList, length, FUN.VALUE = integer(1)) > 0]
+      LngLatAltList[vapply(LngLatAltList,
+        length,
+        FUN.VALUE = integer(1)
+      ) > 0]
     },
 
     fromList = function(LngLatAltList, typeMapping = NULL) {
       if (is.null(typeMapping[["longitude"]])) {
-        self[["longitude"]] <- LngLatAltList[["longitude"]]
+        self[["longitude"]] <-
+          LngLatAltList[["longitude"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["longitude"]], "$new()")))
-        self[["longitude"]] <- obj$fromList(LngLatAltList[["longitude"]], typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["longitude"]], "$new()")
+        ))
+        self[["longitude"]] <- obj$fromList(
+          LngLatAltList[["longitude"]],
+          typeMapping = typeMapping
+        )
       }
       if (is.null(typeMapping[["latitude"]])) {
-        self[["latitude"]] <- LngLatAltList[["latitude"]]
+        self[["latitude"]] <-
+          LngLatAltList[["latitude"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["latitude"]], "$new()")))
-        self[["latitude"]] <- obj$fromList(LngLatAltList[["latitude"]], typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["latitude"]], "$new()")
+        ))
+        self[["latitude"]] <- obj$fromList(
+          LngLatAltList[["latitude"]],
+          typeMapping = typeMapping
+        )
       }
       if (is.null(typeMapping[["altitude"]])) {
-        self[["altitude"]] <- LngLatAltList[["altitude"]]
+        self[["altitude"]] <-
+          LngLatAltList[["altitude"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["altitude"]], "$new()")))
-        self[["altitude"]] <- obj$fromList(LngLatAltList[["altitude"]], typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["altitude"]], "$new()")
+        ))
+        self[["altitude"]] <- obj$fromList(
+          LngLatAltList[["altitude"]],
+          typeMapping = typeMapping
+        )
       }
       if (is.null(typeMapping[["additionalElements"]])) {
-        self[["additionalElements"]] <- LngLatAltList[["additionalElements"]]
+        self[["additionalElements"]] <-
+          LngLatAltList[["additionalElements"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["additionalElements"]], "$new()")))
-        self[["additionalElements"]] <- obj$fromList(LngLatAltList[["additionalElements"]], typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["additionalElements"]], "$new()")
+        ))
+        self[["additionalElements"]] <- obj$fromList(
+          LngLatAltList[["additionalElements"]],
+          typeMapping = typeMapping
+        )
       }
       invisible(self)
     },
 
-    toJSONString = function(pretty = T) {
-      jsonlite::toJSON(self$toList(), simplifyVector = T, auto_unbox = T, pretty = pretty)
+    toJSONString = function(pretty = TRUE) {
+      jsonlite::toJSON(
+        self$toList(),
+        simplifyVector = TRUE,
+        auto_unbox = TRUE,
+        pretty = pretty
+      )
     },
 
-    fromJSONString = function(LngLatAltJson, typeMapping = NULL) {
-      LngLatAltList <- jsonlite::fromJSON(LngLatAltJson, simplifyVector = F)
+    fromJSONString = function(LngLatAltJson,
+                                  typeMapping = NULL) {
+      LngLatAltList <- jsonlite::fromJSON(
+        LngLatAltJson,
+        simplifyVector = FALSE
+      )
       if (is.null(typeMapping[["longitude"]])) {
-        self[["longitude"]] <- LngLatAltList[["longitude"]]
+        self[["longitude"]] <-
+          LngLatAltList[["longitude"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["longitude"]], "$new()")))
-        self[["longitude"]] <- obj$fromJSONString(jsonlite::toJSON(LngLatAltList[["longitude"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["longitude"]], "$new()")
+        ))
+        self[["longitude"]] <- obj$fromJSONString(
+          jsonlite::toJSON(
+            LngLatAltList[["longitude"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       }
       if (is.null(typeMapping[["latitude"]])) {
-        self[["latitude"]] <- LngLatAltList[["latitude"]]
+        self[["latitude"]] <-
+          LngLatAltList[["latitude"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["latitude"]], "$new()")))
-        self[["latitude"]] <- obj$fromJSONString(jsonlite::toJSON(LngLatAltList[["latitude"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["latitude"]], "$new()")
+        ))
+        self[["latitude"]] <- obj$fromJSONString(
+          jsonlite::toJSON(
+            LngLatAltList[["latitude"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       }
       if (is.null(typeMapping[["altitude"]])) {
-        self[["altitude"]] <- LngLatAltList[["altitude"]]
+        self[["altitude"]] <-
+          LngLatAltList[["altitude"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["altitude"]], "$new()")))
-        self[["altitude"]] <- obj$fromJSONString(jsonlite::toJSON(LngLatAltList[["altitude"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["altitude"]], "$new()")
+        ))
+        self[["altitude"]] <- obj$fromJSONString(
+          jsonlite::toJSON(
+            LngLatAltList[["altitude"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       }
       if (is.null(typeMapping[["additionalElements"]])) {
-        self[["additionalElements"]] <- LngLatAltList[["additionalElements"]]
+        self[["additionalElements"]] <-
+          LngLatAltList[["additionalElements"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["additionalElements"]], "$new()")))
-        self[["additionalElements"]] <- obj$fromJSONString(jsonlite::toJSON(LngLatAltList[["additionalElements"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["additionalElements"]], "$new()")
+        ))
+        self[["additionalElements"]] <- obj$fromJSONString(
+          jsonlite::toJSON(
+            LngLatAltList[["additionalElements"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       }
       invisible(self)
     }

@@ -9,7 +9,7 @@
 GeoClient
 }
 \description{
-nbaR.Geo
+Client class for nbaR.Geo objects
 }
 \section{Fields}{
 
@@ -22,48 +22,188 @@ nbaR.Geo
 \section{Methods}{
 
 \describe{
+\item{\code{ count }}{
 
-count Get the number of geo areas matching a given condition
+  Get the number of geo areas matching a given condition;
+  Conditions given as query string.
 
+    Parameters:
+    \itemize{
+        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation 
+        \item \code{ ... } : additional parameters passed to httr::GET
+    }
+    Returns:
+        \code{ integer }
+}
+\item{\code{ count_distinct_values }}{
 
-count_distinct_values Count the distinct number of values that exist for a given field
+  Count the distinct number of values that exist for a given field;
+  .
 
+    Parameters:
+    \itemize{
+        
+        \item \code{ ... } : additional parameters passed to httr::GET
+    }
+    Returns:
+        \code{ list }
+}
+\item{\code{ count_distinct_values_per_group }}{
 
-count_distinct_values_per_group Count the distinct number of field values that exist per the given field to group by
+  Count the distinct number of field values that exist per the given field to group by;
+  .
 
+    Parameters:
+    \itemize{
+        
+        \item \code{ ... } : additional parameters passed to httr::GET
+    }
+    Returns:
+        \code{ list }
+}
+\item{\code{ find }}{
 
-find Find a GEO area by id
+  Find a GEO area by id;
+  Returns a GEO object containing a GEO json polygon.
 
+    Parameters:
+    \itemize{
+        
+        \item \code{ ... } : additional parameters passed to httr::GET
+    }
+    Returns:
+        \code{ GeoArea }
+}
+\item{\code{ find_by_ids }}{
 
-find_by_ids Find geo areas by ids
+  Find geo areas by ids;
+  Given multiple ids, returns a list of geo area objects.
 
+    Parameters:
+    \itemize{
+        
+        \item \code{ ... } : additional parameters passed to httr::GET
+    }
+    Returns:
+        \code{ GeoArea }
+}
+\item{\code{ get_distinct_values }}{
 
-get_distinct_values Get all different values that exist for a field
+  Get all different values that exist for a field;
+  A list of all fields for geo area documents can be retrieved with /metadata/getFieldInfo.
 
+    Parameters:
+    \itemize{
+        
+        \item \code{ ... } : additional parameters passed to httr::GET
+    }
+    Returns:
+        \code{ list }
+}
+\item{\code{ get_distinct_values_per_group }}{
 
-get_distinct_values_per_group Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by
+  Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by;
+  .
 
+    Parameters:
+    \itemize{
+        
+        \item \code{ ... } : additional parameters passed to httr::GET
+    }
+    Returns:
+        \code{ list }
+}
+\item{\code{ get_field_info }}{
 
-get_field_info Returns extended information for each field of a specimen document
+  Returns extended information for each field of a specimen document;
+  Info consists of whether the fields is indexed, the ElasticSearch datatype and a list of allowed operators.
 
+    Parameters:
+    \itemize{
+        
+        \item \code{ ... } : additional parameters passed to httr::GET
+    }
+    Returns:
+        \code{ list }
+}
+\item{\code{ get_geo_json_for_locality }}{
 
-get_geo_json_for_locality Retrieve a GeoJson object for a given locality
+  Retrieve a GeoJson object for a given locality;
+  Returns a GeoJson polygon.
 
+    Parameters:
+    \itemize{
+        
+        \item \code{ ... } : additional parameters passed to httr::GET
+    }
+    Returns:
+        \code{ list }
+}
+\item{\code{ get_paths }}{
 
-get_paths Returns the full path of all fields within a document
+  Returns the full path of all fields within a document;
+  See also metadata/getFieldInfo for all allowed operators per field.
 
+    Parameters:
+    \itemize{
+        
+        \item \code{ ... } : additional parameters passed to httr::GET
+    }
+    Returns:
+        \code{ character }
+}
+\item{\code{ get_setting }}{
 
-get_setting Get the value of an NBA setting
+  Get the value of an NBA setting;
+  All settings can be queried with /metadata/getSettings.
 
+    Parameters:
+    \itemize{
+        
+        \item \code{ ... } : additional parameters passed to httr::GET
+    }
+    Returns:
+        \code{ list }
+}
+\item{\code{ get_settings }}{
 
-get_settings List all publicly available configuration settings for the NBA
+  List all publicly available configuration settings for the NBA;
+  The value of a specific setting can be queried with metadata/getSetting/{name}.
 
+    Parameters:
+    \itemize{
+        
+        \item \code{ ... } : additional parameters passed to httr::GET
+    }
+    Returns:
+        \code{ list }
+}
+\item{\code{ is_operator_allowed }}{
 
-is_operator_allowed Checks if a given operator is allowed for a given field
+  Checks if a given operator is allowed for a given field;
+  See also metadata/getFieldInfo.
 
+    Parameters:
+    \itemize{
+        
+        \item \code{ ... } : additional parameters passed to httr::GET
+    }
+    Returns:
+        \code{ list }
+}
+\item{\code{ query }}{
 
-query Query for geo areas
+  Query for geo areas;
+  Query on searchable fields to retrieve matching geo areas.
 
+    Parameters:
+    \itemize{
+        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation 
+        \item \code{ ... } : additional parameters passed to httr::GET
+    }
+    Returns:
+        \code{ QueryResult }
+}
 }
 }
 

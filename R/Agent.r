@@ -1,4 +1,4 @@
-# Netherlands Biodiversity Api
+# Netherlands Biodiversity API
 #
 # Access to the digitised Natural History collection at the Naturalis Biodiversity Center
 #
@@ -18,9 +18,13 @@ Agent <- R6::R6Class(
   "Agent",
   public = list(
     `agentText` = NULL,
-    initialize = function(`agentText`) {
+    initialize = function(
+                              `agentText`) {
       if (!missing(`agentText`)) {
-        stopifnot(is.character(`agentText`), length(`agentText`) == 1)
+        stopifnot(
+          is.character(`agentText`),
+          length(`agentText`) == 1
+        )
         self[["agentText"]] <- `agentText`
       }
     },
@@ -28,33 +32,61 @@ Agent <- R6::R6Class(
     toList = function() {
       AgentList <- list()
       if (!is.null(self[["agentText"]])) {
-        AgentList[["agentText"]] <- self[["agentText"]]
+        AgentList[["agentText"]] <-
+          self[["agentText"]]
       }
       ## omit empty nested lists in returned list
-      AgentList[vapply(AgentList, length, FUN.VALUE = integer(1)) > 0]
+      AgentList[vapply(AgentList,
+        length,
+        FUN.VALUE = integer(1)
+      ) > 0]
     },
 
     fromList = function(AgentList, typeMapping = NULL) {
       if (is.null(typeMapping[["agentText"]])) {
-        self[["agentText"]] <- AgentList[["agentText"]]
+        self[["agentText"]] <-
+          AgentList[["agentText"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["agentText"]], "$new()")))
-        self[["agentText"]] <- obj$fromList(AgentList[["agentText"]], typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["agentText"]], "$new()")
+        ))
+        self[["agentText"]] <- obj$fromList(
+          AgentList[["agentText"]],
+          typeMapping = typeMapping
+        )
       }
       invisible(self)
     },
 
-    toJSONString = function(pretty = T) {
-      jsonlite::toJSON(self$toList(), simplifyVector = T, auto_unbox = T, pretty = pretty)
+    toJSONString = function(pretty = TRUE) {
+      jsonlite::toJSON(
+        self$toList(),
+        simplifyVector = TRUE,
+        auto_unbox = TRUE,
+        pretty = pretty
+      )
     },
 
-    fromJSONString = function(AgentJson, typeMapping = NULL) {
-      AgentList <- jsonlite::fromJSON(AgentJson, simplifyVector = F)
+    fromJSONString = function(AgentJson,
+                                  typeMapping = NULL) {
+      AgentList <- jsonlite::fromJSON(
+        AgentJson,
+        simplifyVector = FALSE
+      )
       if (is.null(typeMapping[["agentText"]])) {
-        self[["agentText"]] <- AgentList[["agentText"]]
+        self[["agentText"]] <-
+          AgentList[["agentText"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["agentText"]], "$new()")))
-        self[["agentText"]] <- obj$fromJSONString(jsonlite::toJSON(AgentList[["agentText"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["agentText"]], "$new()")
+        ))
+        self[["agentText"]] <- obj$fromJSONString(
+          jsonlite::toJSON(
+            AgentList[["agentText"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       }
       invisible(self)
     }

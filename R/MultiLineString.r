@@ -1,4 +1,4 @@
-# Netherlands Biodiversity Api
+# Netherlands Biodiversity API
 #
 # Access to the digitised Natural History collection at the Naturalis Biodiversity Center
 #
@@ -22,18 +22,27 @@ MultiLineString <- R6::R6Class(
     `crs` = NULL,
     `bbox` = NULL,
     `coordinates` = NULL,
-    initialize = function(`crs`, `bbox`, `coordinates`) {
+    initialize = function(
+                              `crs`,
+                              `bbox`,
+                              `coordinates`) {
       if (!missing(`crs`)) {
         stopifnot(R6::is.R6(`crs`))
         self[["crs"]] <- `crs`
       }
       if (!missing(`bbox`)) {
-        stopifnot(is.list(`bbox`), length(`bbox`) != 0)
+        stopifnot(
+          is.list(`bbox`),
+          length(`bbox`) != 0
+        )
         lapply(`bbox`, function(x) stopifnot(is.character(x)))
         self[["bbox"]] <- `bbox`
       }
       if (!missing(`coordinates`)) {
-        stopifnot(is.list(`coordinates`), length(`coordinates`) != 0)
+        stopifnot(
+          is.list(`coordinates`),
+          length(`coordinates`) != 0
+        )
         lapply(`coordinates`, function(x) stopifnot(is.character(x)))
         self[["coordinates"]] <- `coordinates`
       }
@@ -42,63 +51,130 @@ MultiLineString <- R6::R6Class(
     toList = function() {
       MultiLineStringList <- list()
       if (!is.null(self[["crs"]])) {
-        MultiLineStringList[["crs"]] <- self[["crs"]]$toList()
+        MultiLineStringList[["crs"]] <-
+          self[["crs"]]$toList()
       }
       if (!is.null(self[["bbox"]])) {
-        MultiLineStringList[["bbox"]] <- self[["bbox"]]
+        MultiLineStringList[["bbox"]] <-
+          self[["bbox"]]
       }
       if (!is.null(self[["coordinates"]])) {
-        MultiLineStringList[["coordinates"]] <- self[["coordinates"]]
+        MultiLineStringList[["coordinates"]] <-
+          self[["coordinates"]]
       }
       ## omit empty nested lists in returned list
-      MultiLineStringList[vapply(MultiLineStringList, length, FUN.VALUE = integer(1)) > 0]
+      MultiLineStringList[vapply(MultiLineStringList,
+        length,
+        FUN.VALUE = integer(1)
+      ) > 0]
     },
 
     fromList = function(MultiLineStringList, typeMapping = NULL) {
       if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <- Crs$new()$fromList(MultiLineStringList[["crs"]], typeMapping = typeMapping)
+        self[["crs"]] <- Crs$new()$fromList(
+          MultiLineStringList[["crs"]],
+          typeMapping = typeMapping
+        )
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["crs"]], "$new()")))
-        self[["crs"]] <- obj$fromList(MultiLineStringList[["crs"]], typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["crs"]], "$new()")
+        ))
+        self[["crs"]] <- obj$fromList(
+          MultiLineStringList[["crs"]],
+          typeMapping = typeMapping
+        )
       }
       if (is.null(typeMapping[["bbox"]])) {
-        self[["bbox"]] <- MultiLineStringList[["bbox"]]
+        self[["bbox"]] <-
+          MultiLineStringList[["bbox"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["bbox"]], "$new()")))
-        self[["bbox"]] <- obj$fromList(MultiLineStringList[["bbox"]], typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["bbox"]], "$new()")
+        ))
+        self[["bbox"]] <- obj$fromList(
+          MultiLineStringList[["bbox"]],
+          typeMapping = typeMapping
+        )
       }
       if (is.null(typeMapping[["coordinates"]])) {
-        self[["coordinates"]] <- MultiLineStringList[["coordinates"]]
+        self[["coordinates"]] <-
+          MultiLineStringList[["coordinates"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["coordinates"]], "$new()")))
-        self[["coordinates"]] <- obj$fromList(MultiLineStringList[["coordinates"]], typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["coordinates"]], "$new()")
+        ))
+        self[["coordinates"]] <- obj$fromList(
+          MultiLineStringList[["coordinates"]],
+          typeMapping = typeMapping
+        )
       }
       invisible(self)
     },
 
-    toJSONString = function(pretty = T) {
-      jsonlite::toJSON(self$toList(), simplifyVector = T, auto_unbox = T, pretty = pretty)
+    toJSONString = function(pretty = TRUE) {
+      jsonlite::toJSON(
+        self$toList(),
+        simplifyVector = TRUE,
+        auto_unbox = TRUE,
+        pretty = pretty
+      )
     },
 
-    fromJSONString = function(MultiLineStringJson, typeMapping = NULL) {
-      MultiLineStringList <- jsonlite::fromJSON(MultiLineStringJson, simplifyVector = F)
+    fromJSONString = function(MultiLineStringJson,
+                                  typeMapping = NULL) {
+      MultiLineStringList <- jsonlite::fromJSON(
+        MultiLineStringJson,
+        simplifyVector = FALSE
+      )
       if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <- Crs$new()$fromJSONString(jsonlite::toJSON(MultiLineStringList[["crs"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        self[["crs"]] <- Crs$new()$fromJSONString(
+          jsonlite::toJSON(
+            MultiLineStringList[["crs"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["crs"]], "$new()")))
-        self[["crs"]] <- obj$fromJSONString(jsonlite::toJSON(MultiLineStringList[["crs"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["crs"]], "$new()")
+        ))
+        self[["crs"]] <- obj$fromJSONString(
+          jsonlite::toJSON(
+            MultiLineStringList[["crs"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       }
       if (is.null(typeMapping[["bbox"]])) {
-        self[["bbox"]] <- MultiLineStringList[["bbox"]]
+        self[["bbox"]] <-
+          MultiLineStringList[["bbox"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["bbox"]], "$new()")))
-        self[["bbox"]] <- obj$fromJSONString(jsonlite::toJSON(MultiLineStringList[["bbox"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["bbox"]], "$new()")
+        ))
+        self[["bbox"]] <- obj$fromJSONString(
+          jsonlite::toJSON(
+            MultiLineStringList[["bbox"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       }
       if (is.null(typeMapping[["coordinates"]])) {
-        self[["coordinates"]] <- MultiLineStringList[["coordinates"]]
+        self[["coordinates"]] <-
+          MultiLineStringList[["coordinates"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["coordinates"]], "$new()")))
-        self[["coordinates"]] <- obj$fromJSONString(jsonlite::toJSON(MultiLineStringList[["coordinates"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["coordinates"]], "$new()")
+        ))
+        self[["coordinates"]] <- obj$fromJSONString(
+          jsonlite::toJSON(
+            MultiLineStringList[["coordinates"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       }
       invisible(self)
     }

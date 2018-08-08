@@ -1,4 +1,4 @@
-# Netherlands Biodiversity Api
+# Netherlands Biodiversity API
 #
 # Access to the digitised Natural History collection at the Naturalis Biodiversity Center
 #
@@ -22,13 +22,22 @@ Person <- R6::R6Class(
     `agentText` = NULL,
     `fullName` = NULL,
     `organization` = NULL,
-    initialize = function(`agentText`, `fullName`, `organization`) {
+    initialize = function(
+                              `agentText`,
+                              `fullName`,
+                              `organization`) {
       if (!missing(`agentText`)) {
-        stopifnot(is.character(`agentText`), length(`agentText`) == 1)
+        stopifnot(
+          is.character(`agentText`),
+          length(`agentText`) == 1
+        )
         self[["agentText"]] <- `agentText`
       }
       if (!missing(`fullName`)) {
-        stopifnot(is.character(`fullName`), length(`fullName`) == 1)
+        stopifnot(
+          is.character(`fullName`),
+          length(`fullName`) == 1
+        )
         self[["fullName"]] <- `fullName`
       }
       if (!missing(`organization`)) {
@@ -40,63 +49,130 @@ Person <- R6::R6Class(
     toList = function() {
       PersonList <- list()
       if (!is.null(self[["agentText"]])) {
-        PersonList[["agentText"]] <- self[["agentText"]]
+        PersonList[["agentText"]] <-
+          self[["agentText"]]
       }
       if (!is.null(self[["fullName"]])) {
-        PersonList[["fullName"]] <- self[["fullName"]]
+        PersonList[["fullName"]] <-
+          self[["fullName"]]
       }
       if (!is.null(self[["organization"]])) {
-        PersonList[["organization"]] <- self[["organization"]]$toList()
+        PersonList[["organization"]] <-
+          self[["organization"]]$toList()
       }
       ## omit empty nested lists in returned list
-      PersonList[vapply(PersonList, length, FUN.VALUE = integer(1)) > 0]
+      PersonList[vapply(PersonList,
+        length,
+        FUN.VALUE = integer(1)
+      ) > 0]
     },
 
     fromList = function(PersonList, typeMapping = NULL) {
       if (is.null(typeMapping[["agentText"]])) {
-        self[["agentText"]] <- PersonList[["agentText"]]
+        self[["agentText"]] <-
+          PersonList[["agentText"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["agentText"]], "$new()")))
-        self[["agentText"]] <- obj$fromList(PersonList[["agentText"]], typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["agentText"]], "$new()")
+        ))
+        self[["agentText"]] <- obj$fromList(
+          PersonList[["agentText"]],
+          typeMapping = typeMapping
+        )
       }
       if (is.null(typeMapping[["fullName"]])) {
-        self[["fullName"]] <- PersonList[["fullName"]]
+        self[["fullName"]] <-
+          PersonList[["fullName"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["fullName"]], "$new()")))
-        self[["fullName"]] <- obj$fromList(PersonList[["fullName"]], typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["fullName"]], "$new()")
+        ))
+        self[["fullName"]] <- obj$fromList(
+          PersonList[["fullName"]],
+          typeMapping = typeMapping
+        )
       }
       if (is.null(typeMapping[["organization"]])) {
-        self[["organization"]] <- Organization$new()$fromList(PersonList[["organization"]], typeMapping = typeMapping)
+        self[["organization"]] <- Organization$new()$fromList(
+          PersonList[["organization"]],
+          typeMapping = typeMapping
+        )
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["organization"]], "$new()")))
-        self[["organization"]] <- obj$fromList(PersonList[["organization"]], typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["organization"]], "$new()")
+        ))
+        self[["organization"]] <- obj$fromList(
+          PersonList[["organization"]],
+          typeMapping = typeMapping
+        )
       }
       invisible(self)
     },
 
-    toJSONString = function(pretty = T) {
-      jsonlite::toJSON(self$toList(), simplifyVector = T, auto_unbox = T, pretty = pretty)
+    toJSONString = function(pretty = TRUE) {
+      jsonlite::toJSON(
+        self$toList(),
+        simplifyVector = TRUE,
+        auto_unbox = TRUE,
+        pretty = pretty
+      )
     },
 
-    fromJSONString = function(PersonJson, typeMapping = NULL) {
-      PersonList <- jsonlite::fromJSON(PersonJson, simplifyVector = F)
+    fromJSONString = function(PersonJson,
+                                  typeMapping = NULL) {
+      PersonList <- jsonlite::fromJSON(
+        PersonJson,
+        simplifyVector = FALSE
+      )
       if (is.null(typeMapping[["agentText"]])) {
-        self[["agentText"]] <- PersonList[["agentText"]]
+        self[["agentText"]] <-
+          PersonList[["agentText"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["agentText"]], "$new()")))
-        self[["agentText"]] <- obj$fromJSONString(jsonlite::toJSON(PersonList[["agentText"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["agentText"]], "$new()")
+        ))
+        self[["agentText"]] <- obj$fromJSONString(
+          jsonlite::toJSON(
+            PersonList[["agentText"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       }
       if (is.null(typeMapping[["fullName"]])) {
-        self[["fullName"]] <- PersonList[["fullName"]]
+        self[["fullName"]] <-
+          PersonList[["fullName"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["fullName"]], "$new()")))
-        self[["fullName"]] <- obj$fromJSONString(jsonlite::toJSON(PersonList[["fullName"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["fullName"]], "$new()")
+        ))
+        self[["fullName"]] <- obj$fromJSONString(
+          jsonlite::toJSON(
+            PersonList[["fullName"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       }
       if (is.null(typeMapping[["organization"]])) {
-        self[["organization"]] <- Organization$new()$fromJSONString(jsonlite::toJSON(PersonList[["organization"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        self[["organization"]] <- Organization$new()$fromJSONString(
+          jsonlite::toJSON(
+            PersonList[["organization"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["organization"]], "$new()")))
-        self[["organization"]] <- obj$fromJSONString(jsonlite::toJSON(PersonList[["organization"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["organization"]], "$new()")
+        ))
+        self[["organization"]] <- obj$fromJSONString(
+          jsonlite::toJSON(
+            PersonList[["organization"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       }
       invisible(self)
     }

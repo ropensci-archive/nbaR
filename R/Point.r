@@ -1,4 +1,4 @@
-# Netherlands Biodiversity Api
+# Netherlands Biodiversity API
 #
 # Access to the digitised Natural History collection at the Naturalis Biodiversity Center
 #
@@ -22,13 +22,19 @@ Point <- R6::R6Class(
     `crs` = NULL,
     `bbox` = NULL,
     `coordinates` = NULL,
-    initialize = function(`crs`, `bbox`, `coordinates`) {
+    initialize = function(
+                              `crs`,
+                              `bbox`,
+                              `coordinates`) {
       if (!missing(`crs`)) {
         stopifnot(R6::is.R6(`crs`))
         self[["crs"]] <- `crs`
       }
       if (!missing(`bbox`)) {
-        stopifnot(is.list(`bbox`), length(`bbox`) != 0)
+        stopifnot(
+          is.list(`bbox`),
+          length(`bbox`) != 0
+        )
         lapply(`bbox`, function(x) stopifnot(is.character(x)))
         self[["bbox"]] <- `bbox`
       }
@@ -41,63 +47,137 @@ Point <- R6::R6Class(
     toList = function() {
       PointList <- list()
       if (!is.null(self[["crs"]])) {
-        PointList[["crs"]] <- self[["crs"]]$toList()
+        PointList[["crs"]] <-
+          self[["crs"]]$toList()
       }
       if (!is.null(self[["bbox"]])) {
-        PointList[["bbox"]] <- self[["bbox"]]
+        PointList[["bbox"]] <-
+          self[["bbox"]]
       }
       if (!is.null(self[["coordinates"]])) {
-        PointList[["coordinates"]] <- self[["coordinates"]]$toList()
+        PointList[["coordinates"]] <-
+          self[["coordinates"]]$toList()
       }
       ## omit empty nested lists in returned list
-      PointList[vapply(PointList, length, FUN.VALUE = integer(1)) > 0]
+      PointList[vapply(PointList,
+        length,
+        FUN.VALUE = integer(1)
+      ) > 0]
     },
 
     fromList = function(PointList, typeMapping = NULL) {
       if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <- Crs$new()$fromList(PointList[["crs"]], typeMapping = typeMapping)
+        self[["crs"]] <- Crs$new()$fromList(
+          PointList[["crs"]],
+          typeMapping = typeMapping
+        )
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["crs"]], "$new()")))
-        self[["crs"]] <- obj$fromList(PointList[["crs"]], typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["crs"]], "$new()")
+        ))
+        self[["crs"]] <- obj$fromList(
+          PointList[["crs"]],
+          typeMapping = typeMapping
+        )
       }
       if (is.null(typeMapping[["bbox"]])) {
-        self[["bbox"]] <- PointList[["bbox"]]
+        self[["bbox"]] <-
+          PointList[["bbox"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["bbox"]], "$new()")))
-        self[["bbox"]] <- obj$fromList(PointList[["bbox"]], typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["bbox"]], "$new()")
+        ))
+        self[["bbox"]] <- obj$fromList(
+          PointList[["bbox"]],
+          typeMapping = typeMapping
+        )
       }
       if (is.null(typeMapping[["coordinates"]])) {
-        self[["coordinates"]] <- LngLatAlt$new()$fromList(PointList[["coordinates"]], typeMapping = typeMapping)
+        self[["coordinates"]] <- LngLatAlt$new()$fromList(
+          PointList[["coordinates"]],
+          typeMapping = typeMapping
+        )
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["coordinates"]], "$new()")))
-        self[["coordinates"]] <- obj$fromList(PointList[["coordinates"]], typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["coordinates"]], "$new()")
+        ))
+        self[["coordinates"]] <- obj$fromList(
+          PointList[["coordinates"]],
+          typeMapping = typeMapping
+        )
       }
       invisible(self)
     },
 
-    toJSONString = function(pretty = T) {
-      jsonlite::toJSON(self$toList(), simplifyVector = T, auto_unbox = T, pretty = pretty)
+    toJSONString = function(pretty = TRUE) {
+      jsonlite::toJSON(
+        self$toList(),
+        simplifyVector = TRUE,
+        auto_unbox = TRUE,
+        pretty = pretty
+      )
     },
 
-    fromJSONString = function(PointJson, typeMapping = NULL) {
-      PointList <- jsonlite::fromJSON(PointJson, simplifyVector = F)
+    fromJSONString = function(PointJson,
+                                  typeMapping = NULL) {
+      PointList <- jsonlite::fromJSON(
+        PointJson,
+        simplifyVector = FALSE
+      )
       if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <- Crs$new()$fromJSONString(jsonlite::toJSON(PointList[["crs"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        self[["crs"]] <- Crs$new()$fromJSONString(
+          jsonlite::toJSON(
+            PointList[["crs"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["crs"]], "$new()")))
-        self[["crs"]] <- obj$fromJSONString(jsonlite::toJSON(PointList[["crs"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["crs"]], "$new()")
+        ))
+        self[["crs"]] <- obj$fromJSONString(
+          jsonlite::toJSON(
+            PointList[["crs"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       }
       if (is.null(typeMapping[["bbox"]])) {
-        self[["bbox"]] <- PointList[["bbox"]]
+        self[["bbox"]] <-
+          PointList[["bbox"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["bbox"]], "$new()")))
-        self[["bbox"]] <- obj$fromJSONString(jsonlite::toJSON(PointList[["bbox"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["bbox"]], "$new()")
+        ))
+        self[["bbox"]] <- obj$fromJSONString(
+          jsonlite::toJSON(
+            PointList[["bbox"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       }
       if (is.null(typeMapping[["coordinates"]])) {
-        self[["coordinates"]] <- LngLatAlt$new()$fromJSONString(jsonlite::toJSON(PointList[["coordinates"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        self[["coordinates"]] <- LngLatAlt$new()$fromJSONString(
+          jsonlite::toJSON(
+            PointList[["coordinates"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["coordinates"]], "$new()")))
-        self[["coordinates"]] <- obj$fromJSONString(jsonlite::toJSON(PointList[["coordinates"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["coordinates"]], "$new()")
+        ))
+        self[["coordinates"]] <- obj$fromJSONString(
+          jsonlite::toJSON(
+            PointList[["coordinates"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       }
       invisible(self)
     }

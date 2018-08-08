@@ -1,4 +1,4 @@
-# Netherlands Biodiversity Api
+# Netherlands Biodiversity API
 #
 # Access to the digitised Natural History collection at the Naturalis Biodiversity Center
 #
@@ -22,18 +22,27 @@ GeometryCollection <- R6::R6Class(
     `crs` = NULL,
     `bbox` = NULL,
     `geometries` = NULL,
-    initialize = function(`crs`, `bbox`, `geometries`) {
+    initialize = function(
+                              `crs`,
+                              `bbox`,
+                              `geometries`) {
       if (!missing(`crs`)) {
         stopifnot(R6::is.R6(`crs`))
         self[["crs"]] <- `crs`
       }
       if (!missing(`bbox`)) {
-        stopifnot(is.list(`bbox`), length(`bbox`) != 0)
+        stopifnot(
+          is.list(`bbox`),
+          length(`bbox`) != 0
+        )
         lapply(`bbox`, function(x) stopifnot(is.character(x)))
         self[["bbox"]] <- `bbox`
       }
       if (!missing(`geometries`)) {
-        stopifnot(is.list(`geometries`), length(`geometries`) != 0)
+        stopifnot(
+          is.list(`geometries`),
+          length(`geometries`) != 0
+        )
         lapply(`geometries`, function(x) stopifnot(is.character(x)))
         self[["geometries"]] <- `geometries`
       }
@@ -42,63 +51,130 @@ GeometryCollection <- R6::R6Class(
     toList = function() {
       GeometryCollectionList <- list()
       if (!is.null(self[["crs"]])) {
-        GeometryCollectionList[["crs"]] <- self[["crs"]]$toList()
+        GeometryCollectionList[["crs"]] <-
+          self[["crs"]]$toList()
       }
       if (!is.null(self[["bbox"]])) {
-        GeometryCollectionList[["bbox"]] <- self[["bbox"]]
+        GeometryCollectionList[["bbox"]] <-
+          self[["bbox"]]
       }
       if (!is.null(self[["geometries"]])) {
-        GeometryCollectionList[["geometries"]] <- self[["geometries"]]
+        GeometryCollectionList[["geometries"]] <-
+          self[["geometries"]]
       }
       ## omit empty nested lists in returned list
-      GeometryCollectionList[vapply(GeometryCollectionList, length, FUN.VALUE = integer(1)) > 0]
+      GeometryCollectionList[vapply(GeometryCollectionList,
+        length,
+        FUN.VALUE = integer(1)
+      ) > 0]
     },
 
     fromList = function(GeometryCollectionList, typeMapping = NULL) {
       if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <- Crs$new()$fromList(GeometryCollectionList[["crs"]], typeMapping = typeMapping)
+        self[["crs"]] <- Crs$new()$fromList(
+          GeometryCollectionList[["crs"]],
+          typeMapping = typeMapping
+        )
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["crs"]], "$new()")))
-        self[["crs"]] <- obj$fromList(GeometryCollectionList[["crs"]], typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["crs"]], "$new()")
+        ))
+        self[["crs"]] <- obj$fromList(
+          GeometryCollectionList[["crs"]],
+          typeMapping = typeMapping
+        )
       }
       if (is.null(typeMapping[["bbox"]])) {
-        self[["bbox"]] <- GeometryCollectionList[["bbox"]]
+        self[["bbox"]] <-
+          GeometryCollectionList[["bbox"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["bbox"]], "$new()")))
-        self[["bbox"]] <- obj$fromList(GeometryCollectionList[["bbox"]], typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["bbox"]], "$new()")
+        ))
+        self[["bbox"]] <- obj$fromList(
+          GeometryCollectionList[["bbox"]],
+          typeMapping = typeMapping
+        )
       }
       if (is.null(typeMapping[["geometries"]])) {
-        self[["geometries"]] <- GeometryCollectionList[["geometries"]]
+        self[["geometries"]] <-
+          GeometryCollectionList[["geometries"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["geometries"]], "$new()")))
-        self[["geometries"]] <- obj$fromList(GeometryCollectionList[["geometries"]], typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["geometries"]], "$new()")
+        ))
+        self[["geometries"]] <- obj$fromList(
+          GeometryCollectionList[["geometries"]],
+          typeMapping = typeMapping
+        )
       }
       invisible(self)
     },
 
-    toJSONString = function(pretty = T) {
-      jsonlite::toJSON(self$toList(), simplifyVector = T, auto_unbox = T, pretty = pretty)
+    toJSONString = function(pretty = TRUE) {
+      jsonlite::toJSON(
+        self$toList(),
+        simplifyVector = TRUE,
+        auto_unbox = TRUE,
+        pretty = pretty
+      )
     },
 
-    fromJSONString = function(GeometryCollectionJson, typeMapping = NULL) {
-      GeometryCollectionList <- jsonlite::fromJSON(GeometryCollectionJson, simplifyVector = F)
+    fromJSONString = function(GeometryCollectionJson,
+                                  typeMapping = NULL) {
+      GeometryCollectionList <- jsonlite::fromJSON(
+        GeometryCollectionJson,
+        simplifyVector = FALSE
+      )
       if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <- Crs$new()$fromJSONString(jsonlite::toJSON(GeometryCollectionList[["crs"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        self[["crs"]] <- Crs$new()$fromJSONString(
+          jsonlite::toJSON(
+            GeometryCollectionList[["crs"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["crs"]], "$new()")))
-        self[["crs"]] <- obj$fromJSONString(jsonlite::toJSON(GeometryCollectionList[["crs"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["crs"]], "$new()")
+        ))
+        self[["crs"]] <- obj$fromJSONString(
+          jsonlite::toJSON(
+            GeometryCollectionList[["crs"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       }
       if (is.null(typeMapping[["bbox"]])) {
-        self[["bbox"]] <- GeometryCollectionList[["bbox"]]
+        self[["bbox"]] <-
+          GeometryCollectionList[["bbox"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["bbox"]], "$new()")))
-        self[["bbox"]] <- obj$fromJSONString(jsonlite::toJSON(GeometryCollectionList[["bbox"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["bbox"]], "$new()")
+        ))
+        self[["bbox"]] <- obj$fromJSONString(
+          jsonlite::toJSON(
+            GeometryCollectionList[["bbox"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       }
       if (is.null(typeMapping[["geometries"]])) {
-        self[["geometries"]] <- GeometryCollectionList[["geometries"]]
+        self[["geometries"]] <-
+          GeometryCollectionList[["geometries"]]
       } else {
-        obj <- eval(parse(text = paste0(typeMapping[["geometries"]], "$new()")))
-        self[["geometries"]] <- obj$fromJSONString(jsonlite::toJSON(GeometryCollectionList[["geometries"]], auto_unbox = TRUE), typeMapping = typeMapping)
+        obj <- eval(parse(
+          text = paste0(typeMapping[["geometries"]], "$new()")
+        ))
+        self[["geometries"]] <- obj$fromJSONString(
+          jsonlite::toJSON(
+            GeometryCollectionList[["geometries"]],
+            auto_unbox = TRUE
+          ),
+          typeMapping = typeMapping
+        )
       }
       invisible(self)
     }
