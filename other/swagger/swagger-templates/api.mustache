@@ -11,9 +11,19 @@
 #' \describe{
 {{#operations}}
 {{#operation}}
+#' \item{\code{ {{operationId}} }}{
 #'
-#' {{operationId}} {{summary}}
+#'   {{summary}};
+#'   {{notes}}.
 #'
+#'     Parameters:
+#'     \itemize{
+#'         {{#queryParams}}\item \code{ {{paramName}} } : {{description}} {{/queryParams}}
+#'         \item \code{ ... } : additional parameters passed to httr::GET
+#'     }
+#'     Returns:
+#'         \code{ {{returnType}} }
+#' }
 {{/operation}}
 #' }
 #'
@@ -28,16 +38,6 @@
     },
 
     {{#operation}}
-    # '@name {{operationId}}
-    # '@title {{summary}}
-    # '@description {{notes}}
-    # '@return \code{ {{returnType}} }
-    {{#hasQueryParams}}
-    {{#queryParams}}
-    # '@param {{paramName}}: {{dataType}}; {{description}}
-    {{/queryParams}}
-    {{/hasQueryParams}}        
-    # '@param ...; additional parameters passed to httr::GET or httr::POST
     {{operationId}} = function({{#allParams}}{{baseName}} = NULL, {{/allParams}}{{#hasQueryParams}}queryParams = list(), {{/hasQueryParams}}{{#isResponseFile}}filename = format(Sys.time(), "download-%Y-%m-%dT%H:%m.zip"), {{/isResponseFile}}...){
         headerParams <- character()
       {{#hasHeaderParams}}
@@ -51,17 +51,21 @@
         {{/hasHeaderParams}}
       {{#hasQueryParams}}
         if (!is.null(querySpec) & length(queryParams) > 0) {
-            stop("QuerySpec object cannot be combined with parameters passed via queryParams argument.")
+            stop("Either querySpec or queryParams argument allowed, not both.")
         }
           {{#queryParams}}            
             
         if (!missing(`{{baseName}}`)) {
           ## querySpec can be either JSON string or object of type QuerySpec. 
-          param <- ifelse(typeof(`{{baseName}}`) == "environment", `{{baseName}}`$toJSONString(), `{{baseName}}`)    
+          param <- ifelse(typeof(`{{baseName}}`) == "environment",
+                          `{{baseName}}`$toJSONString(),
+                          `{{baseName}}`)    
           queryParams["{{baseName}}"] <- param
         }
-        ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
-        names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))
+        ## querySpec parameter has underscore in NBA, omitted in argument
+        names(queryParams) <- gsub("querySpec",
+                                    "_querySpec",
+                                    names(queryParams))
 
           {{/queryParams}}
       {{/hasQueryParams}}
@@ -111,7 +115,8 @@
                                  {{/isResponseFile}}
                                  ...)
 
-        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
             self$handleError(response)
         } else {
         {{#isResponseFile}}
@@ -132,11 +137,18 @@
             returnObject <- {{returnType}}$new()
             {{#isListContainer}}
             ## API call result is "list container"
-            result <- lapply(httr::content(response), function(x)returnObject$fromList(x, typeMapping = list(item = private$getBaseDataType())))
+            result <- lapply(httr::content(response),
+                             function(x) {
+                                 returnObject$fromList(x,
+                                 typeMapping = list(item = private$getBaseDataType()))
+                                 })
             {{/isListContainer}}
             {{^isListContainer}}
-            ## API call result is QueryResult, list items must be mapped to model class
-            result <- returnObject$fromList(httr::content(response), typeMapping = list(item = private$getBaseDataType()))
+            ## API call result is QueryResult,
+            ## list items must be mapped to model class
+            result <- returnObject$fromList(
+                httr::content(response),
+                typeMapping = list(item = private$getBaseDataType()))
             {{/isListContainer}}            
             {{/returnTypeIsPrimitive}}
             {{/isMapContainer}}            
