@@ -6,7 +6,7 @@
   "@type": "SoftwareSourceCode",
   "identifier": "nbaR",
   "description": "Access to the digitised Natural History collection at the Naturalis Biodiversity Center.\n    This is the official client to the Netherlands Biodiversity API\n    (NBA, <http://api.biodiversitydata.nl>) for the R programming language.\n    More information on the NBA can be found at <http://docs.biodiversitydata.nl>.",
-  "name": "nbaR: R Package Client for the Netherlands Biodiversity Api",
+  "name": "nbaR: R Package Client for the Netherlands Biodiversity API",
   "license": "https://spdx.org/licenses/MIT",
   "version": "0.0.0",
   "programmingLanguage": {
@@ -116,7 +116,7 @@
   ],
   "codeRepository": "https://github.com/naturalis/nbaR",
   "readme": "https://github.com/naturalis/nbaR/blob/master/README.md",
-  "fileSize": "9133.736KB",
+  "fileSize": "9633.119KB",
   "contIntegration": [
     "https://travis-ci.org/naturalis/nbaR",
     "https://coveralls.io/github/naturalis/nbaR?branch=master"
