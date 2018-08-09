@@ -34,7 +34,6 @@ QueryResultItem <- R6::R6Class(
         self[["item"]] <- `item`
       }
     },
-
     toList = function() {
       QueryResultItemList <- list()
       if (!is.null(self[["score"]])) {
@@ -46,13 +45,14 @@ QueryResultItem <- R6::R6Class(
           self[["item"]]
       }
       ## omit empty nested lists in returned list
-      QueryResultItemList[vapply(QueryResultItemList,
+      QueryResultItemList[vapply(
+        QueryResultItemList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(QueryResultItemList, typeMapping = NULL) {
+    fromList = function(QueryResultItemList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["score"]])) {
         self[["score"]] <-
           QueryResultItemList[["score"]]
@@ -79,7 +79,6 @@ QueryResultItem <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -88,7 +87,6 @@ QueryResultItem <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(QueryResultItemJson,
                                   typeMapping = NULL) {
       QueryResultItemList <- jsonlite::fromJSON(

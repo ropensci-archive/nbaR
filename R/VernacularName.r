@@ -54,7 +54,10 @@ VernacularName <- R6::R6Class(
           is.list(`references`),
           length(`references`) != 0
         )
-        lapply(`references`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `references`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["references"]] <- `references`
       }
       if (!missing(`experts`)) {
@@ -62,11 +65,13 @@ VernacularName <- R6::R6Class(
           is.list(`experts`),
           length(`experts`) != 0
         )
-        lapply(`experts`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `experts`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["experts"]] <- `experts`
       }
     },
-
     toList = function() {
       VernacularNameList <- list()
       if (!is.null(self[["name"]])) {
@@ -90,13 +95,14 @@ VernacularName <- R6::R6Class(
           lapply(self[["experts"]], function(x) x$toList())
       }
       ## omit empty nested lists in returned list
-      VernacularNameList[vapply(VernacularNameList,
+      VernacularNameList[vapply(
+        VernacularNameList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(VernacularNameList, typeMapping = NULL) {
+    fromList = function(VernacularNameList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["name"]])) {
         self[["name"]] <-
           VernacularNameList[["name"]]
@@ -151,7 +157,6 @@ VernacularName <- R6::R6Class(
       )
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -160,7 +165,6 @@ VernacularName <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(VernacularNameJson,
                                   typeMapping = NULL) {
       VernacularNameList <- jsonlite::fromJSON(

@@ -88,7 +88,6 @@ SummaryScientificName <- R6::R6Class(
         self[["authorshipVerbatim"]] <- `authorshipVerbatim`
       }
     },
-
     toList = function() {
       SummaryScientificNameList <- list()
       if (!is.null(self[["fullScientificName"]])) {
@@ -120,13 +119,14 @@ SummaryScientificName <- R6::R6Class(
           self[["authorshipVerbatim"]]
       }
       ## omit empty nested lists in returned list
-      SummaryScientificNameList[vapply(SummaryScientificNameList,
+      SummaryScientificNameList[vapply(
+        SummaryScientificNameList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(SummaryScientificNameList, typeMapping = NULL) {
+    fromList = function(SummaryScientificNameList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["fullScientificName"]])) {
         self[["fullScientificName"]] <-
           SummaryScientificNameList[["fullScientificName"]]
@@ -213,7 +213,6 @@ SummaryScientificName <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -222,7 +221,6 @@ SummaryScientificName <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(SummaryScientificNameJson,
                                   typeMapping = NULL) {
       SummaryScientificNameList <- jsonlite::fromJSON(

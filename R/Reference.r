@@ -65,7 +65,6 @@ Reference <- R6::R6Class(
         self[["publicationDate"]] <- `publicationDate`
       }
     },
-
     toList = function() {
       ReferenceList <- list()
       if (!is.null(self[["titleCitation"]])) {
@@ -89,13 +88,14 @@ Reference <- R6::R6Class(
           self[["publicationDate"]]
       }
       ## omit empty nested lists in returned list
-      ReferenceList[vapply(ReferenceList,
+      ReferenceList[vapply(
+        ReferenceList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(ReferenceList, typeMapping = NULL) {
+    fromList = function(ReferenceList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["titleCitation"]])) {
         self[["titleCitation"]] <-
           ReferenceList[["titleCitation"]]
@@ -160,7 +160,6 @@ Reference <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -169,7 +168,6 @@ Reference <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(ReferenceJson,
                                   typeMapping = NULL) {
       ReferenceList <- jsonlite::fromJSON(
@@ -222,13 +220,14 @@ Reference <- R6::R6Class(
         )
       }
       if (is.null(typeMapping[["author"]])) {
-        self[["author"]] <- Person$new()$fromJSONString(
-          jsonlite::toJSON(
-            ReferenceList[["author"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
+        self[["author"]] <-
+          Person$new()$fromJSONString(
+            jsonlite::toJSON(
+              ReferenceList[["author"]],
+              auto_unbox = TRUE
+            ),
+            typeMapping = typeMapping
+          )
       } else {
         obj <- eval(parse(
           text = paste0(typeMapping[["author"]], "$new()")

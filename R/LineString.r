@@ -35,7 +35,10 @@ LineString <- R6::R6Class(
           is.list(`bbox`),
           length(`bbox`) != 0
         )
-        lapply(`bbox`, function(x) stopifnot(is.character(x)))
+        lapply(
+          `bbox`,
+          function(x) stopifnot(is.character(x))
+        )
         self[["bbox"]] <- `bbox`
       }
       if (!missing(`coordinates`)) {
@@ -43,11 +46,13 @@ LineString <- R6::R6Class(
           is.list(`coordinates`),
           length(`coordinates`) != 0
         )
-        lapply(`coordinates`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `coordinates`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["coordinates"]] <- `coordinates`
       }
     },
-
     toList = function() {
       LineStringList <- list()
       if (!is.null(self[["crs"]])) {
@@ -63,13 +68,14 @@ LineString <- R6::R6Class(
           lapply(self[["coordinates"]], function(x) x$toList())
       }
       ## omit empty nested lists in returned list
-      LineStringList[vapply(LineStringList,
+      LineStringList[vapply(
+        LineStringList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(LineStringList, typeMapping = NULL) {
+    fromList = function(LineStringList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["crs"]])) {
         self[["crs"]] <- Crs$new()$fromList(
           LineStringList[["crs"]],
@@ -106,7 +112,6 @@ LineString <- R6::R6Class(
       )
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -115,7 +120,6 @@ LineString <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(LineStringJson,
                                   typeMapping = NULL) {
       LineStringList <- jsonlite::fromJSON(
@@ -123,13 +127,14 @@ LineString <- R6::R6Class(
         simplifyVector = FALSE
       )
       if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <- Crs$new()$fromJSONString(
-          jsonlite::toJSON(
-            LineStringList[["crs"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
+        self[["crs"]] <-
+          Crs$new()$fromJSONString(
+            jsonlite::toJSON(
+              LineStringList[["crs"]],
+              auto_unbox = TRUE
+            ),
+            typeMapping = typeMapping
+          )
       } else {
         obj <- eval(parse(
           text = paste0(typeMapping[["crs"]], "$new()")

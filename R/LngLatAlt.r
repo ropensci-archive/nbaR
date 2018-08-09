@@ -55,11 +55,13 @@ LngLatAlt <- R6::R6Class(
           is.list(`additionalElements`),
           length(`additionalElements`) != 0
         )
-        lapply(`additionalElements`, function(x) stopifnot(is.character(x)))
+        lapply(
+          `additionalElements`,
+          function(x) stopifnot(is.character(x))
+        )
         self[["additionalElements"]] <- `additionalElements`
       }
     },
-
     toList = function() {
       LngLatAltList <- list()
       if (!is.null(self[["longitude"]])) {
@@ -79,13 +81,14 @@ LngLatAlt <- R6::R6Class(
           self[["additionalElements"]]
       }
       ## omit empty nested lists in returned list
-      LngLatAltList[vapply(LngLatAltList,
+      LngLatAltList[vapply(
+        LngLatAltList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(LngLatAltList, typeMapping = NULL) {
+    fromList = function(LngLatAltList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["longitude"]])) {
         self[["longitude"]] <-
           LngLatAltList[["longitude"]]
@@ -136,7 +139,6 @@ LngLatAlt <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -145,7 +147,6 @@ LngLatAlt <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(LngLatAltJson,
                                   typeMapping = NULL) {
       LngLatAltList <- jsonlite::fromJSON(

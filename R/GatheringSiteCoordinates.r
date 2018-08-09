@@ -95,7 +95,6 @@ GatheringSiteCoordinates <- R6::R6Class(
         self[["geoShape"]] <- `geoShape`
       }
     },
-
     toList = function() {
       GatheringSiteCoordinatesList <- list()
       if (!is.null(self[["longitudeDecimal"]])) {
@@ -131,13 +130,14 @@ GatheringSiteCoordinates <- R6::R6Class(
           self[["geoShape"]]$toList()
       }
       ## omit empty nested lists in returned list
-      GatheringSiteCoordinatesList[vapply(GatheringSiteCoordinatesList,
+      GatheringSiteCoordinatesList[vapply(
+        GatheringSiteCoordinatesList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(GatheringSiteCoordinatesList, typeMapping = NULL) {
+    fromList = function(GatheringSiteCoordinatesList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["longitudeDecimal"]])) {
         self[["longitudeDecimal"]] <-
           GatheringSiteCoordinatesList[["longitudeDecimal"]]
@@ -238,7 +238,6 @@ GatheringSiteCoordinates <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -247,7 +246,6 @@ GatheringSiteCoordinates <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(GatheringSiteCoordinatesJson,
                                   typeMapping = NULL) {
       GatheringSiteCoordinatesList <- jsonlite::fromJSON(
@@ -360,13 +358,14 @@ GatheringSiteCoordinates <- R6::R6Class(
         )
       }
       if (is.null(typeMapping[["geoShape"]])) {
-        self[["geoShape"]] <- Point$new()$fromJSONString(
-          jsonlite::toJSON(
-            GatheringSiteCoordinatesList[["geoShape"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
+        self[["geoShape"]] <-
+          Point$new()$fromJSONString(
+            jsonlite::toJSON(
+              GatheringSiteCoordinatesList[["geoShape"]],
+              auto_unbox = TRUE
+            ),
+            typeMapping = typeMapping
+          )
       } else {
         obj <- eval(parse(
           text = paste0(typeMapping[["geoShape"]], "$new()")

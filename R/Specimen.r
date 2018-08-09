@@ -185,7 +185,10 @@ Specimen <- R6::R6Class(
           is.list(`previousSourceID`),
           length(`previousSourceID`) != 0
         )
-        lapply(`previousSourceID`, function(x) stopifnot(is.character(x)))
+        lapply(
+          `previousSourceID`,
+          function(x) stopifnot(is.character(x))
+        )
         self[["previousSourceID"]] <- `previousSourceID`
       }
       if (!missing(`owner`)) {
@@ -301,7 +304,10 @@ Specimen <- R6::R6Class(
           is.list(`identifications`),
           length(`identifications`) != 0
         )
-        lapply(`identifications`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `identifications`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["identifications"]] <- `identifications`
       }
       if (!missing(`associatedMultiMediaUris`)) {
@@ -309,7 +315,10 @@ Specimen <- R6::R6Class(
           is.list(`associatedMultiMediaUris`),
           length(`associatedMultiMediaUris`) != 0
         )
-        lapply(`associatedMultiMediaUris`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `associatedMultiMediaUris`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["associatedMultiMediaUris"]] <- `associatedMultiMediaUris`
       }
       if (!missing(`theme`)) {
@@ -317,11 +326,13 @@ Specimen <- R6::R6Class(
           is.list(`theme`),
           length(`theme`) != 0
         )
-        lapply(`theme`, function(x) stopifnot(is.character(x)))
+        lapply(
+          `theme`,
+          function(x) stopifnot(is.character(x))
+        )
         self[["theme"]] <- `theme`
       }
     },
-
     toList = function() {
       SpecimenList <- list()
       if (!is.null(self[["sourceSystem"]])) {
@@ -453,13 +464,14 @@ Specimen <- R6::R6Class(
           self[["theme"]]
       }
       ## omit empty nested lists in returned list
-      SpecimenList[vapply(SpecimenList,
+      SpecimenList[vapply(
+        SpecimenList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(SpecimenList, typeMapping = NULL) {
+    fromList = function(SpecimenList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["sourceSystem"]])) {
         self[["sourceSystem"]] <- SourceSystem$new()$fromList(
           SpecimenList[["sourceSystem"]],
@@ -844,7 +856,6 @@ Specimen <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -853,7 +864,6 @@ Specimen <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(SpecimenJson,
                                   typeMapping = NULL) {
       SpecimenList <- jsonlite::fromJSON(
@@ -861,13 +871,14 @@ Specimen <- R6::R6Class(
         simplifyVector = FALSE
       )
       if (is.null(typeMapping[["sourceSystem"]])) {
-        self[["sourceSystem"]] <- SourceSystem$new()$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["sourceSystem"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
+        self[["sourceSystem"]] <-
+          SourceSystem$new()$fromJSONString(
+            jsonlite::toJSON(
+              SpecimenList[["sourceSystem"]],
+              auto_unbox = TRUE
+            ),
+            typeMapping = typeMapping
+          )
       } else {
         obj <- eval(parse(
           text = paste0(typeMapping[["sourceSystem"]], "$new()")
@@ -1271,13 +1282,14 @@ Specimen <- R6::R6Class(
         )
       }
       if (is.null(typeMapping[["acquiredFrom"]])) {
-        self[["acquiredFrom"]] <- Agent$new()$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["acquiredFrom"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
+        self[["acquiredFrom"]] <-
+          Agent$new()$fromJSONString(
+            jsonlite::toJSON(
+              SpecimenList[["acquiredFrom"]],
+              auto_unbox = TRUE
+            ),
+            typeMapping = typeMapping
+          )
       } else {
         obj <- eval(parse(
           text = paste0(typeMapping[["acquiredFrom"]], "$new()")
@@ -1291,13 +1303,14 @@ Specimen <- R6::R6Class(
         )
       }
       if (is.null(typeMapping[["gatheringEvent"]])) {
-        self[["gatheringEvent"]] <- GatheringEvent$new()$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["gatheringEvent"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
+        self[["gatheringEvent"]] <-
+          GatheringEvent$new()$fromJSONString(
+            jsonlite::toJSON(
+              SpecimenList[["gatheringEvent"]],
+              auto_unbox = TRUE
+            ),
+            typeMapping = typeMapping
+          )
       } else {
         obj <- eval(parse(
           text = paste0(typeMapping[["gatheringEvent"]], "$new()")

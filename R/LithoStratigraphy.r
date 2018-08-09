@@ -184,7 +184,6 @@ LithoStratigraphy <- R6::R6Class(
         self[["bed"]] <- `bed`
       }
     },
-
     toList = function() {
       LithoStratigraphyList <- list()
       if (!is.null(self[["qualifier"]])) {
@@ -256,13 +255,14 @@ LithoStratigraphy <- R6::R6Class(
           self[["bed"]]
       }
       ## omit empty nested lists in returned list
-      LithoStratigraphyList[vapply(LithoStratigraphyList,
+      LithoStratigraphyList[vapply(
+        LithoStratigraphyList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(LithoStratigraphyList, typeMapping = NULL) {
+    fromList = function(LithoStratigraphyList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["qualifier"]])) {
         self[["qualifier"]] <-
           LithoStratigraphyList[["qualifier"]]
@@ -469,7 +469,6 @@ LithoStratigraphy <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -478,7 +477,6 @@ LithoStratigraphy <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(LithoStratigraphyJson,
                                   typeMapping = NULL) {
       LithoStratigraphyList <- jsonlite::fromJSON(

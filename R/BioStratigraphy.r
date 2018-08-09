@@ -164,7 +164,6 @@ BioStratigraphy <- R6::R6Class(
         self[["oldBioStratType"]] <- `oldBioStratType`
       }
     },
-
     toList = function() {
       BioStratigraphyList <- list()
       if (!is.null(self[["youngBioDatingQualifier"]])) {
@@ -228,13 +227,14 @@ BioStratigraphy <- R6::R6Class(
           self[["oldBioStratType"]]
       }
       ## omit empty nested lists in returned list
-      BioStratigraphyList[vapply(BioStratigraphyList,
+      BioStratigraphyList[vapply(
+        BioStratigraphyList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(BioStratigraphyList, typeMapping = NULL) {
+    fromList = function(BioStratigraphyList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["youngBioDatingQualifier"]])) {
         self[["youngBioDatingQualifier"]] <-
           BioStratigraphyList[["youngBioDatingQualifier"]]
@@ -417,7 +417,6 @@ BioStratigraphy <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -426,7 +425,6 @@ BioStratigraphy <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(BioStratigraphyJson,
                                   typeMapping = NULL) {
       BioStratigraphyList <- jsonlite::fromJSON(

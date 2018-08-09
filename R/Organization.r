@@ -38,7 +38,6 @@ Organization <- R6::R6Class(
         self[["name"]] <- `name`
       }
     },
-
     toList = function() {
       OrganizationList <- list()
       if (!is.null(self[["agentText"]])) {
@@ -50,13 +49,14 @@ Organization <- R6::R6Class(
           self[["name"]]
       }
       ## omit empty nested lists in returned list
-      OrganizationList[vapply(OrganizationList,
+      OrganizationList[vapply(
+        OrganizationList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(OrganizationList, typeMapping = NULL) {
+    fromList = function(OrganizationList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["agentText"]])) {
         self[["agentText"]] <-
           OrganizationList[["agentText"]]
@@ -83,7 +83,6 @@ Organization <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -92,7 +91,6 @@ Organization <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(OrganizationJson,
                                   typeMapping = NULL) {
       OrganizationList <- jsonlite::fromJSON(

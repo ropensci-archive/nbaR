@@ -68,7 +68,6 @@ RestService <- R6::R6Class(
         self[["url"]] <- `url`
       }
     },
-
     toList = function() {
       RestServiceList <- list()
       if (!is.null(self[["endPoint"]])) {
@@ -92,13 +91,14 @@ RestService <- R6::R6Class(
           self[["url"]]
       }
       ## omit empty nested lists in returned list
-      RestServiceList[vapply(RestServiceList,
+      RestServiceList[vapply(
+        RestServiceList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(RestServiceList, typeMapping = NULL) {
+    fromList = function(RestServiceList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["endPoint"]])) {
         self[["endPoint"]] <-
           RestServiceList[["endPoint"]]
@@ -161,7 +161,6 @@ RestService <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -170,7 +169,6 @@ RestService <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(RestServiceJson,
                                   typeMapping = NULL) {
       RestServiceList <- jsonlite::fromJSON(

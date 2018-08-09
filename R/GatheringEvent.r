@@ -236,7 +236,10 @@ GatheringEvent <- R6::R6Class(
           is.list(`gatheringPersons`),
           length(`gatheringPersons`) != 0
         )
-        lapply(`gatheringPersons`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `gatheringPersons`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["gatheringPersons"]] <- `gatheringPersons`
       }
       if (!missing(`gatheringOrganizations`)) {
@@ -244,7 +247,10 @@ GatheringEvent <- R6::R6Class(
           is.list(`gatheringOrganizations`),
           length(`gatheringOrganizations`) != 0
         )
-        lapply(`gatheringOrganizations`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `gatheringOrganizations`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["gatheringOrganizations"]] <- `gatheringOrganizations`
       }
       if (!missing(`siteCoordinates`)) {
@@ -252,7 +258,10 @@ GatheringEvent <- R6::R6Class(
           is.list(`siteCoordinates`),
           length(`siteCoordinates`) != 0
         )
-        lapply(`siteCoordinates`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `siteCoordinates`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["siteCoordinates"]] <- `siteCoordinates`
       }
       if (!missing(`namedAreas`)) {
@@ -260,7 +269,10 @@ GatheringEvent <- R6::R6Class(
           is.list(`namedAreas`),
           length(`namedAreas`) != 0
         )
-        lapply(`namedAreas`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `namedAreas`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["namedAreas"]] <- `namedAreas`
       }
       if (!missing(`associatedTaxa`)) {
@@ -268,7 +280,10 @@ GatheringEvent <- R6::R6Class(
           is.list(`associatedTaxa`),
           length(`associatedTaxa`) != 0
         )
-        lapply(`associatedTaxa`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `associatedTaxa`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["associatedTaxa"]] <- `associatedTaxa`
       }
       if (!missing(`chronoStratigraphy`)) {
@@ -276,7 +291,10 @@ GatheringEvent <- R6::R6Class(
           is.list(`chronoStratigraphy`),
           length(`chronoStratigraphy`) != 0
         )
-        lapply(`chronoStratigraphy`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `chronoStratigraphy`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["chronoStratigraphy"]] <- `chronoStratigraphy`
       }
       if (!missing(`lithoStratigraphy`)) {
@@ -284,7 +302,10 @@ GatheringEvent <- R6::R6Class(
           is.list(`lithoStratigraphy`),
           length(`lithoStratigraphy`) != 0
         )
-        lapply(`lithoStratigraphy`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `lithoStratigraphy`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["lithoStratigraphy"]] <- `lithoStratigraphy`
       }
       if (!missing(`bioStratigraphic`)) {
@@ -292,11 +313,13 @@ GatheringEvent <- R6::R6Class(
           is.list(`bioStratigraphic`),
           length(`bioStratigraphic`) != 0
         )
-        lapply(`bioStratigraphic`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `bioStratigraphic`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["bioStratigraphic"]] <- `bioStratigraphic`
       }
     },
-
     toList = function() {
       GatheringEventList <- list()
       if (!is.null(self[["projectTitle"]])) {
@@ -408,13 +431,14 @@ GatheringEvent <- R6::R6Class(
           lapply(self[["bioStratigraphic"]], function(x) x$toList())
       }
       ## omit empty nested lists in returned list
-      GatheringEventList[vapply(GatheringEventList,
+      GatheringEventList[vapply(
+        GatheringEventList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(GatheringEventList, typeMapping = NULL) {
+    fromList = function(GatheringEventList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["projectTitle"]])) {
         self[["projectTitle"]] <-
           GatheringEventList[["projectTitle"]]
@@ -709,7 +733,6 @@ GatheringEvent <- R6::R6Class(
       )
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -718,7 +741,6 @@ GatheringEvent <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(GatheringEventJson,
                                   typeMapping = NULL) {
       GatheringEventList <- jsonlite::fromJSON(

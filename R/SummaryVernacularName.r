@@ -38,7 +38,6 @@ SummaryVernacularName <- R6::R6Class(
         self[["language"]] <- `language`
       }
     },
-
     toList = function() {
       SummaryVernacularNameList <- list()
       if (!is.null(self[["name"]])) {
@@ -50,13 +49,14 @@ SummaryVernacularName <- R6::R6Class(
           self[["language"]]
       }
       ## omit empty nested lists in returned list
-      SummaryVernacularNameList[vapply(SummaryVernacularNameList,
+      SummaryVernacularNameList[vapply(
+        SummaryVernacularNameList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(SummaryVernacularNameList, typeMapping = NULL) {
+    fromList = function(SummaryVernacularNameList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["name"]])) {
         self[["name"]] <-
           SummaryVernacularNameList[["name"]]
@@ -83,7 +83,6 @@ SummaryVernacularName <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -92,7 +91,6 @@ SummaryVernacularName <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(SummaryVernacularNameJson,
                                   typeMapping = NULL) {
       SummaryVernacularNameList <- jsonlite::fromJSON(

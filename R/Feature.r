@@ -41,7 +41,10 @@ Feature <- R6::R6Class(
           is.list(`bbox`),
           length(`bbox`) != 0
         )
-        lapply(`bbox`, function(x) stopifnot(is.character(x)))
+        lapply(
+          `bbox`,
+          function(x) stopifnot(is.character(x))
+        )
         self[["bbox"]] <- `bbox`
       }
       if (!missing(`properties`)) {
@@ -58,7 +61,6 @@ Feature <- R6::R6Class(
         self[["id"]] <- `id`
       }
     },
-
     toList = function() {
       FeatureList <- list()
       if (!is.null(self[["crs"]])) {
@@ -82,13 +84,14 @@ Feature <- R6::R6Class(
           self[["id"]]
       }
       ## omit empty nested lists in returned list
-      FeatureList[vapply(FeatureList,
+      FeatureList[vapply(
+        FeatureList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(FeatureList, typeMapping = NULL) {
+    fromList = function(FeatureList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["crs"]])) {
         self[["crs"]] <- Crs$new()$fromList(
           FeatureList[["crs"]],
@@ -153,7 +156,6 @@ Feature <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -162,7 +164,6 @@ Feature <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(FeatureJson,
                                   typeMapping = NULL) {
       FeatureList <- jsonlite::fromJSON(
@@ -170,13 +171,14 @@ Feature <- R6::R6Class(
         simplifyVector = FALSE
       )
       if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <- Crs$new()$fromJSONString(
-          jsonlite::toJSON(
-            FeatureList[["crs"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
+        self[["crs"]] <-
+          Crs$new()$fromJSONString(
+            jsonlite::toJSON(
+              FeatureList[["crs"]],
+              auto_unbox = TRUE
+            ),
+            typeMapping = typeMapping
+          )
       } else {
         obj <- eval(parse(
           text = paste0(typeMapping[["crs"]], "$new()")

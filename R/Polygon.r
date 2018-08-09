@@ -35,7 +35,10 @@ Polygon <- R6::R6Class(
           is.list(`bbox`),
           length(`bbox`) != 0
         )
-        lapply(`bbox`, function(x) stopifnot(is.character(x)))
+        lapply(
+          `bbox`,
+          function(x) stopifnot(is.character(x))
+        )
         self[["bbox"]] <- `bbox`
       }
       if (!missing(`coordinates`)) {
@@ -43,11 +46,13 @@ Polygon <- R6::R6Class(
           is.list(`coordinates`),
           length(`coordinates`) != 0
         )
-        lapply(`coordinates`, function(x) stopifnot(is.character(x)))
+        lapply(
+          `coordinates`,
+          function(x) stopifnot(is.character(x))
+        )
         self[["coordinates"]] <- `coordinates`
       }
     },
-
     toList = function() {
       PolygonList <- list()
       if (!is.null(self[["crs"]])) {
@@ -63,13 +68,14 @@ Polygon <- R6::R6Class(
           self[["coordinates"]]
       }
       ## omit empty nested lists in returned list
-      PolygonList[vapply(PolygonList,
+      PolygonList[vapply(
+        PolygonList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(PolygonList, typeMapping = NULL) {
+    fromList = function(PolygonList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["crs"]])) {
         self[["crs"]] <- Crs$new()$fromList(
           PolygonList[["crs"]],
@@ -110,7 +116,6 @@ Polygon <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -119,7 +124,6 @@ Polygon <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(PolygonJson,
                                   typeMapping = NULL) {
       PolygonList <- jsonlite::fromJSON(
@@ -127,13 +131,14 @@ Polygon <- R6::R6Class(
         simplifyVector = FALSE
       )
       if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <- Crs$new()$fromJSONString(
-          jsonlite::toJSON(
-            PolygonList[["crs"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
+        self[["crs"]] <-
+          Crs$new()$fromJSONString(
+            jsonlite::toJSON(
+              PolygonList[["crs"]],
+              auto_unbox = TRUE
+            ),
+            typeMapping = typeMapping
+          )
       } else {
         obj <- eval(parse(
           text = paste0(typeMapping[["crs"]], "$new()")

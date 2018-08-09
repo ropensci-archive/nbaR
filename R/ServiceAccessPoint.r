@@ -48,7 +48,6 @@ ServiceAccessPoint <- R6::R6Class(
         self[["variant"]] <- `variant`
       }
     },
-
     toList = function() {
       ServiceAccessPointList <- list()
       if (!is.null(self[["accessUri"]])) {
@@ -64,13 +63,14 @@ ServiceAccessPoint <- R6::R6Class(
           self[["variant"]]
       }
       ## omit empty nested lists in returned list
-      ServiceAccessPointList[vapply(ServiceAccessPointList,
+      ServiceAccessPointList[vapply(
+        ServiceAccessPointList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(ServiceAccessPointList, typeMapping = NULL) {
+    fromList = function(ServiceAccessPointList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["accessUri"]])) {
         self[["accessUri"]] <-
           ServiceAccessPointList[["accessUri"]]
@@ -109,7 +109,6 @@ ServiceAccessPoint <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -118,7 +117,6 @@ ServiceAccessPoint <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(ServiceAccessPointJson,
                                   typeMapping = NULL) {
       ServiceAccessPointList <- jsonlite::fromJSON(

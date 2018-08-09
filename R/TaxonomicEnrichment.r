@@ -34,7 +34,10 @@ TaxonomicEnrichment <- R6::R6Class(
           is.list(`vernacularNames`),
           length(`vernacularNames`) != 0
         )
-        lapply(`vernacularNames`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `vernacularNames`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["vernacularNames"]] <- `vernacularNames`
       }
       if (!missing(`synonyms`)) {
@@ -42,7 +45,10 @@ TaxonomicEnrichment <- R6::R6Class(
           is.list(`synonyms`),
           length(`synonyms`) != 0
         )
-        lapply(`synonyms`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `synonyms`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["synonyms"]] <- `synonyms`
       }
       if (!missing(`sourceSystem`)) {
@@ -57,7 +63,6 @@ TaxonomicEnrichment <- R6::R6Class(
         self[["taxonId"]] <- `taxonId`
       }
     },
-
     toList = function() {
       TaxonomicEnrichmentList <- list()
       if (!is.null(self[["vernacularNames"]])) {
@@ -77,13 +82,14 @@ TaxonomicEnrichment <- R6::R6Class(
           self[["taxonId"]]
       }
       ## omit empty nested lists in returned list
-      TaxonomicEnrichmentList[vapply(TaxonomicEnrichmentList,
+      TaxonomicEnrichmentList[vapply(
+        TaxonomicEnrichmentList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(TaxonomicEnrichmentList, typeMapping = NULL) {
+    fromList = function(TaxonomicEnrichmentList,
+                            typeMapping = NULL) {
       self[["vernacularNames"]] <- lapply(
         TaxonomicEnrichmentList[["vernacularNames"]],
         function(x) {
@@ -128,7 +134,6 @@ TaxonomicEnrichment <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -137,7 +142,6 @@ TaxonomicEnrichment <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(TaxonomicEnrichmentJson,
                                   typeMapping = NULL) {
       TaxonomicEnrichmentList <- jsonlite::fromJSON(
@@ -169,13 +173,14 @@ TaxonomicEnrichment <- R6::R6Class(
         }
       )
       if (is.null(typeMapping[["sourceSystem"]])) {
-        self[["sourceSystem"]] <- SummarySourceSystem$new()$fromJSONString(
-          jsonlite::toJSON(
-            TaxonomicEnrichmentList[["sourceSystem"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
+        self[["sourceSystem"]] <-
+          SummarySourceSystem$new()$fromJSONString(
+            jsonlite::toJSON(
+              TaxonomicEnrichmentList[["sourceSystem"]],
+              auto_unbox = TRUE
+            ),
+            typeMapping = typeMapping
+          )
       } else {
         obj <- eval(parse(
           text = paste0(typeMapping[["sourceSystem"]], "$new()")

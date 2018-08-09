@@ -46,7 +46,10 @@ QuerySpec <- R6::R6Class(
           is.list(`fields`),
           length(`fields`) != 0
         )
-        lapply(`fields`, function(x) stopifnot(is.character(x)))
+        lapply(
+          `fields`,
+          function(x) stopifnot(is.character(x))
+        )
         self[["fields"]] <- `fields`
       }
       if (!missing(`conditions`)) {
@@ -54,7 +57,10 @@ QuerySpec <- R6::R6Class(
           is.list(`conditions`),
           length(`conditions`) != 0
         )
-        lapply(`conditions`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `conditions`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["conditions"]] <- `conditions`
       }
       if (!missing(`logicalOperator`)) {
@@ -69,7 +75,10 @@ QuerySpec <- R6::R6Class(
           is.list(`sortFields`),
           length(`sortFields`) != 0
         )
-        lapply(`sortFields`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `sortFields`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["sortFields"]] <- `sortFields`
       }
       if (!missing(`from`)) {
@@ -87,7 +96,6 @@ QuerySpec <- R6::R6Class(
         self[["size"]] <- `size`
       }
     },
-
     toList = function() {
       QuerySpecList <- list()
       if (!is.null(self[["constantScore"]])) {
@@ -119,13 +127,14 @@ QuerySpec <- R6::R6Class(
           self[["size"]]
       }
       ## omit empty nested lists in returned list
-      QuerySpecList[vapply(QuerySpecList,
+      QuerySpecList[vapply(
+        QuerySpecList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(QuerySpecList, typeMapping = NULL) {
+    fromList = function(QuerySpecList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["constantScore"]])) {
         self[["constantScore"]] <-
           QuerySpecList[["constantScore"]]
@@ -204,7 +213,6 @@ QuerySpec <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -213,7 +221,6 @@ QuerySpec <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(QuerySpecJson,
                                   typeMapping = NULL) {
       QuerySpecList <- jsonlite::fromJSON(

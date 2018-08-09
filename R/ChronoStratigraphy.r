@@ -274,7 +274,6 @@ ChronoStratigraphy <- R6::R6Class(
         self[["oldCertainty"]] <- `oldCertainty`
       }
     },
-
     toList = function() {
       ChronoStratigraphyList <- list()
       if (!is.null(self[["youngRegionalSubstage"]])) {
@@ -382,13 +381,14 @@ ChronoStratigraphy <- R6::R6Class(
           self[["oldCertainty"]]
       }
       ## omit empty nested lists in returned list
-      ChronoStratigraphyList[vapply(ChronoStratigraphyList,
+      ChronoStratigraphyList[vapply(
+        ChronoStratigraphyList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(ChronoStratigraphyList, typeMapping = NULL) {
+    fromList = function(ChronoStratigraphyList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["youngRegionalSubstage"]])) {
         self[["youngRegionalSubstage"]] <-
           ChronoStratigraphyList[["youngRegionalSubstage"]]
@@ -703,7 +703,6 @@ ChronoStratigraphy <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -712,7 +711,6 @@ ChronoStratigraphy <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(ChronoStratigraphyJson,
                                   typeMapping = NULL) {
       ChronoStratigraphyList <- jsonlite::fromJSON(

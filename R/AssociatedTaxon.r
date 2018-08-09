@@ -38,7 +38,6 @@ AssociatedTaxon <- R6::R6Class(
         self[["relationType"]] <- `relationType`
       }
     },
-
     toList = function() {
       AssociatedTaxonList <- list()
       if (!is.null(self[["name"]])) {
@@ -50,13 +49,14 @@ AssociatedTaxon <- R6::R6Class(
           self[["relationType"]]
       }
       ## omit empty nested lists in returned list
-      AssociatedTaxonList[vapply(AssociatedTaxonList,
+      AssociatedTaxonList[vapply(
+        AssociatedTaxonList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(AssociatedTaxonList, typeMapping = NULL) {
+    fromList = function(AssociatedTaxonList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["name"]])) {
         self[["name"]] <-
           AssociatedTaxonList[["name"]]
@@ -83,7 +83,6 @@ AssociatedTaxon <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -92,7 +91,6 @@ AssociatedTaxon <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(AssociatedTaxonJson,
                                   typeMapping = NULL) {
       AssociatedTaxonList <- jsonlite::fromJSON(

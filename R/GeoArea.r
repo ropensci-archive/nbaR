@@ -111,7 +111,6 @@ GeoArea <- R6::R6Class(
         self[["countryNL"]] <- `countryNL`
       }
     },
-
     toList = function() {
       GeoAreaList <- list()
       if (!is.null(self[["sourceSystem"]])) {
@@ -155,13 +154,14 @@ GeoArea <- R6::R6Class(
           self[["countryNL"]]
       }
       ## omit empty nested lists in returned list
-      GeoAreaList[vapply(GeoAreaList,
+      GeoAreaList[vapply(
+        GeoAreaList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(GeoAreaList, typeMapping = NULL) {
+    fromList = function(GeoAreaList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["sourceSystem"]])) {
         self[["sourceSystem"]] <- SourceSystem$new()$fromList(
           GeoAreaList[["sourceSystem"]],
@@ -286,7 +286,6 @@ GeoArea <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -295,7 +294,6 @@ GeoArea <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(GeoAreaJson,
                                   typeMapping = NULL) {
       GeoAreaList <- jsonlite::fromJSON(
@@ -303,13 +301,14 @@ GeoArea <- R6::R6Class(
         simplifyVector = FALSE
       )
       if (is.null(typeMapping[["sourceSystem"]])) {
-        self[["sourceSystem"]] <- SourceSystem$new()$fromJSONString(
-          jsonlite::toJSON(
-            GeoAreaList[["sourceSystem"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
+        self[["sourceSystem"]] <-
+          SourceSystem$new()$fromJSONString(
+            jsonlite::toJSON(
+              GeoAreaList[["sourceSystem"]],
+              auto_unbox = TRUE
+            ),
+            typeMapping = typeMapping
+          )
       } else {
         obj <- eval(parse(
           text = paste0(typeMapping[["sourceSystem"]], "$new()")

@@ -48,7 +48,10 @@ Filter <- R6::R6Class(
           is.list(`acceptValues`),
           length(`acceptValues`) != 0
         )
-        lapply(`acceptValues`, function(x) stopifnot(is.character(x)))
+        lapply(
+          `acceptValues`,
+          function(x) stopifnot(is.character(x))
+        )
         self[["acceptValues"]] <- `acceptValues`
       }
       if (!missing(`rejectValues`)) {
@@ -56,11 +59,13 @@ Filter <- R6::R6Class(
           is.list(`rejectValues`),
           length(`rejectValues`) != 0
         )
-        lapply(`rejectValues`, function(x) stopifnot(is.character(x)))
+        lapply(
+          `rejectValues`,
+          function(x) stopifnot(is.character(x))
+        )
         self[["rejectValues"]] <- `rejectValues`
       }
     },
-
     toList = function() {
       FilterList <- list()
       if (!is.null(self[["acceptRegexp"]])) {
@@ -80,13 +85,14 @@ Filter <- R6::R6Class(
           self[["rejectValues"]]
       }
       ## omit empty nested lists in returned list
-      FilterList[vapply(FilterList,
+      FilterList[vapply(
+        FilterList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(FilterList, typeMapping = NULL) {
+    fromList = function(FilterList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["acceptRegexp"]])) {
         self[["acceptRegexp"]] <-
           FilterList[["acceptRegexp"]]
@@ -137,7 +143,6 @@ Filter <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -146,7 +151,6 @@ Filter <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(FilterJson,
                                   typeMapping = NULL) {
       FilterList <- jsonlite::fromJSON(

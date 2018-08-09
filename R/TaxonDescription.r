@@ -48,7 +48,6 @@ TaxonDescription <- R6::R6Class(
         self[["language"]] <- `language`
       }
     },
-
     toList = function() {
       TaxonDescriptionList <- list()
       if (!is.null(self[["category"]])) {
@@ -64,13 +63,14 @@ TaxonDescription <- R6::R6Class(
           self[["language"]]
       }
       ## omit empty nested lists in returned list
-      TaxonDescriptionList[vapply(TaxonDescriptionList,
+      TaxonDescriptionList[vapply(
+        TaxonDescriptionList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(TaxonDescriptionList, typeMapping = NULL) {
+    fromList = function(TaxonDescriptionList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["category"]])) {
         self[["category"]] <-
           TaxonDescriptionList[["category"]]
@@ -109,7 +109,6 @@ TaxonDescription <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -118,7 +117,6 @@ TaxonDescription <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(TaxonDescriptionJson,
                                   typeMapping = NULL) {
       TaxonDescriptionList <- jsonlite::fromJSON(

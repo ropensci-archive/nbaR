@@ -210,7 +210,10 @@ GeoClient <- R6::R6Class(
       super$initialize(basePath)
     },
 
-    count = function(querySpec = NULL, queryParams = list(), ...) {
+    count = function(
+                         querySpec = NULL,
+                         queryParams = list(),
+                         ...) {
       headerParams <- character()
       if (!is.null(querySpec) & length(queryParams) > 0) {
         stop("Either querySpec or queryParams argument allowed, not both.")
@@ -250,7 +253,9 @@ GeoClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    count_distinct_values = function(field = NULL, ...) {
+    count_distinct_values = function(
+                                         field = NULL,
+                                         ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/geo/countDistinctValues/{field}"
@@ -276,7 +281,10 @@ GeoClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    count_distinct_values_per_group = function(group = NULL, field = NULL, ...) {
+    count_distinct_values_per_group = function(
+                                                   group = NULL,
+                                                   field = NULL,
+                                                   ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/geo/countDistinctValuesPerGroup/{group}/{field}"
@@ -306,7 +314,9 @@ GeoClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    find = function(id = NULL, ...) {
+    find = function(
+                        id = NULL,
+                        ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/geo/find/{id}"
@@ -338,7 +348,9 @@ GeoClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    find_by_ids = function(ids = NULL, ...) {
+    find_by_ids = function(
+                               ids = NULL,
+                               ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/geo/findByIds/{ids}"
@@ -373,7 +385,9 @@ GeoClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_distinct_values = function(field = NULL, ...) {
+    get_distinct_values = function(
+                                       field = NULL,
+                                       ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/geo/getDistinctValues/{field}"
@@ -399,7 +413,10 @@ GeoClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_distinct_values_per_group = function(group = NULL, field = NULL, ...) {
+    get_distinct_values_per_group = function(
+                                                 group = NULL,
+                                                 field = NULL,
+                                                 ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/geo/getDistinctValuesPerGroup/{group}/{field}"
@@ -429,7 +446,8 @@ GeoClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_field_info = function(...) {
+    get_field_info = function(
+                                  ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/geo/metadata/getFieldInfo"
@@ -451,7 +469,9 @@ GeoClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_geo_json_for_locality = function(locality = NULL, ...) {
+    get_geo_json_for_locality = function(
+                                             locality = NULL,
+                                             ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/geo/getGeoJsonForLocality/{locality}"
@@ -477,7 +497,8 @@ GeoClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_paths = function(...) {
+    get_paths = function(
+                             ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/geo/metadata/getPaths"
@@ -499,7 +520,9 @@ GeoClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_setting = function(name = NULL, ...) {
+    get_setting = function(
+                               name = NULL,
+                               ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/geo/metadata/getSetting/{name}"
@@ -525,7 +548,8 @@ GeoClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_settings = function(...) {
+    get_settings = function(
+                                ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/geo/metadata/getSettings"
@@ -547,7 +571,10 @@ GeoClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    is_operator_allowed = function(field = NULL, operator = NULL, ...) {
+    is_operator_allowed = function(
+                                       field = NULL,
+                                       operator = NULL,
+                                       ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/geo/metadata/isOperatorAllowed/{field}/{operator}"
@@ -577,7 +604,10 @@ GeoClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    query = function(querySpec = NULL, queryParams = list(), ...) {
+    query = function(
+                         querySpec = NULL,
+                         queryParams = list(),
+                         ...) {
       headerParams <- character()
       if (!is.null(querySpec) & length(queryParams) > 0) {
         stop("Either querySpec or queryParams argument allowed, not both.")

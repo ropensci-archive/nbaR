@@ -24,7 +24,6 @@ Path <- R6::R6Class(
         self[["purePath"]] <- `purePath`
       }
     },
-
     toList = function() {
       PathList <- list()
       if (!is.null(self[["purePath"]])) {
@@ -32,13 +31,14 @@ Path <- R6::R6Class(
           self[["purePath"]]
       }
       ## omit empty nested lists in returned list
-      PathList[vapply(PathList,
+      PathList[vapply(
+        PathList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(PathList, typeMapping = NULL) {
+    fromList = function(PathList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["purePath"]])) {
         self[["purePath"]] <-
           PathList[["purePath"]]
@@ -53,7 +53,6 @@ Path <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -62,7 +61,6 @@ Path <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(PathJson,
                                   typeMapping = NULL) {
       PathList <- jsonlite::fromJSON(

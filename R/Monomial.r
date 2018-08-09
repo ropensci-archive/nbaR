@@ -38,7 +38,6 @@ Monomial <- R6::R6Class(
         self[["name"]] <- `name`
       }
     },
-
     toList = function() {
       MonomialList <- list()
       if (!is.null(self[["rank"]])) {
@@ -50,13 +49,14 @@ Monomial <- R6::R6Class(
           self[["name"]]
       }
       ## omit empty nested lists in returned list
-      MonomialList[vapply(MonomialList,
+      MonomialList[vapply(
+        MonomialList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(MonomialList, typeMapping = NULL) {
+    fromList = function(MonomialList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["rank"]])) {
         self[["rank"]] <-
           MonomialList[["rank"]]
@@ -83,7 +83,6 @@ Monomial <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -92,7 +91,6 @@ Monomial <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(MonomialJson,
                                   typeMapping = NULL) {
       MonomialList <- jsonlite::fromJSON(

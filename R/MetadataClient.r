@@ -158,7 +158,8 @@ MetadataClient <- R6::R6Class(
       super$initialize(basePath)
     },
 
-    get_allowed_date_formats = function(...) {
+    get_allowed_date_formats = function(
+                                            ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/metadata/getAllowedDateFormats"
@@ -180,7 +181,8 @@ MetadataClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_controlled_list_phase_or_stage = function(...) {
+    get_controlled_list_phase_or_stage = function(
+                                                      ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/metadata/getControlledList/PhaseOrStage"
@@ -202,7 +204,8 @@ MetadataClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_controlled_list_sex = function(...) {
+    get_controlled_list_sex = function(
+                                           ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/metadata/getControlledList/Sex"
@@ -224,7 +227,8 @@ MetadataClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_controlled_list_specimen_type_status = function(...) {
+    get_controlled_list_specimen_type_status = function(
+                                                            ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/metadata/getControlledList/SpecimenTypeStatus"
@@ -246,7 +250,8 @@ MetadataClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_controlled_list_taxonomic_status = function(...) {
+    get_controlled_list_taxonomic_status = function(
+                                                        ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/metadata/getControlledList/TaxonomicStatus"
@@ -268,7 +273,8 @@ MetadataClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_controlled_lists = function(...) {
+    get_controlled_lists = function(
+                                        ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/metadata/getControlledLists"
@@ -290,7 +296,8 @@ MetadataClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_rest_services = function(...) {
+    get_rest_services = function(
+                                     ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/metadata/getRestServices"
@@ -321,7 +328,9 @@ MetadataClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_setting = function(name = NULL, ...) {
+    get_setting = function(
+                               name = NULL,
+                               ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/metadata/getSetting/{name}"
@@ -347,7 +356,8 @@ MetadataClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_settings = function(...) {
+    get_settings = function(
+                                ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/metadata/getSettings"
@@ -369,7 +379,8 @@ MetadataClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_source_systems = function(...) {
+    get_source_systems = function(
+                                      ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/metadata/getSourceSystems"

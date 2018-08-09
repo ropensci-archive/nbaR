@@ -36,7 +36,8 @@ test_that("Query with QuerySpec works", {
 
 
 test_that("Operators other than EQUALS work", {
-  qc <- QueryCondition$new(field = "defaultClassification.genus", operator = "STARTS_WITH", value = "Hydro")
+  qc <- QueryCondition$new(field = "defaultClassification.genus",
+                           operator = "STARTS_WITH", value = "Hydro")
   qs <- QuerySpec$new(conditions = list(qc))
   res <- tc$query(qs)
 
@@ -52,7 +53,8 @@ test_that("Query with query params works", {
 
   ## test for other query if we get the same result with QuerySpec
   qp <- list("defaultClassification.genus" = "Passiflora")
-  qc <- QueryCondition$new(field = "defaultClassification.genus", operator = "EQUALS", value = "Passiflora")
+  qc <- QueryCondition$new(field = "defaultClassification.genus",
+                           operator = "EQUALS", value = "Passiflora")
   qs <- QuerySpec$new(conditions = list(qc))
   res1 <- tc$query(queryParams = qp)
   res2 <- tc$query(querySpec = qs)
@@ -62,7 +64,8 @@ test_that("Query with query params works", {
 
 test_that("Errors and warnings work", {
   ## query on non-existing
-  q1 <- QueryCondition$new(field = "somefield", operator = "EQUALS", value = "some value")
+  q1 <- QueryCondition$new(field = "somefield",
+                           operator = "EQUALS", value = "some value")
 
   ## should give a warning
   expect_warning(tc$query(querySpec = QuerySpec$new(conditions = list(q1))))

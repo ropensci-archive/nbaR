@@ -38,7 +38,18 @@
     },
 
     {{#operation}}
-    {{operationId}} = function({{#allParams}}{{baseName}} = NULL, {{/allParams}}{{#hasQueryParams}}queryParams = list(), {{/hasQueryParams}}{{#isResponseFile}}filename = format(Sys.time(), "download-%Y-%m-%dT%H:%m.zip"), {{/isResponseFile}}...){
+      {{operationId}} = function(
+      {{#allParams}}
+          {{baseName}} = NULL,
+      {{/allParams}}
+      {{#hasQueryParams}}
+          queryParams = list(),
+      {{/hasQueryParams}}
+      {{#isResponseFile}}
+          filename = format(Sys.time(),
+                            "download-%Y-%m-%dT%H:%m.zip"),
+      {{/isResponseFile}}
+          ... ) {
         headerParams <- character()
       {{#hasHeaderParams}}
         {{#headerParams}}

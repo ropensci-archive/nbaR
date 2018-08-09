@@ -102,7 +102,10 @@ SpecimenIdentification <- R6::R6Class(
           is.list(`systemClassification`),
           length(`systemClassification`) != 0
         )
-        lapply(`systemClassification`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `systemClassification`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["systemClassification"]] <- `systemClassification`
       }
       if (!missing(`vernacularNames`)) {
@@ -110,7 +113,10 @@ SpecimenIdentification <- R6::R6Class(
           is.list(`vernacularNames`),
           length(`vernacularNames`) != 0
         )
-        lapply(`vernacularNames`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `vernacularNames`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["vernacularNames"]] <- `vernacularNames`
       }
       if (!missing(`identificationQualifiers`)) {
@@ -118,7 +124,10 @@ SpecimenIdentification <- R6::R6Class(
           is.list(`identificationQualifiers`),
           length(`identificationQualifiers`) != 0
         )
-        lapply(`identificationQualifiers`, function(x) stopifnot(is.character(x)))
+        lapply(
+          `identificationQualifiers`,
+          function(x) stopifnot(is.character(x))
+        )
         self[["identificationQualifiers"]] <- `identificationQualifiers`
       }
       if (!missing(`identifiers`)) {
@@ -126,7 +135,10 @@ SpecimenIdentification <- R6::R6Class(
           is.list(`identifiers`),
           length(`identifiers`) != 0
         )
-        lapply(`identifiers`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `identifiers`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["identifiers"]] <- `identifiers`
       }
       if (!missing(`taxonomicEnrichments`)) {
@@ -134,7 +146,10 @@ SpecimenIdentification <- R6::R6Class(
           is.list(`taxonomicEnrichments`),
           length(`taxonomicEnrichments`) != 0
         )
-        lapply(`taxonomicEnrichments`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `taxonomicEnrichments`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["taxonomicEnrichments"]] <- `taxonomicEnrichments`
       }
       if (!missing(`preferred`)) {
@@ -183,7 +198,6 @@ SpecimenIdentification <- R6::R6Class(
         self[["remarks"]] <- `remarks`
       }
     },
-
     toList = function() {
       SpecimenIdentificationList <- list()
       if (!is.null(self[["taxonRank"]])) {
@@ -255,13 +269,14 @@ SpecimenIdentification <- R6::R6Class(
           self[["remarks"]]
       }
       ## omit empty nested lists in returned list
-      SpecimenIdentificationList[vapply(SpecimenIdentificationList,
+      SpecimenIdentificationList[vapply(
+        SpecimenIdentificationList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(SpecimenIdentificationList, typeMapping = NULL) {
+    fromList = function(SpecimenIdentificationList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["taxonRank"]])) {
         self[["taxonRank"]] <-
           SpecimenIdentificationList[["taxonRank"]]
@@ -456,7 +471,6 @@ SpecimenIdentification <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -465,7 +479,6 @@ SpecimenIdentification <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(SpecimenIdentificationJson,
                                   typeMapping = NULL) {
       SpecimenIdentificationList <- jsonlite::fromJSON(
@@ -488,13 +501,14 @@ SpecimenIdentification <- R6::R6Class(
         )
       }
       if (is.null(typeMapping[["scientificName"]])) {
-        self[["scientificName"]] <- ScientificName$new()$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenIdentificationList[["scientificName"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
+        self[["scientificName"]] <-
+          ScientificName$new()$fromJSONString(
+            jsonlite::toJSON(
+              SpecimenIdentificationList[["scientificName"]],
+              auto_unbox = TRUE
+            ),
+            typeMapping = typeMapping
+          )
       } else {
         obj <- eval(parse(
           text = paste0(typeMapping[["scientificName"]], "$new()")
@@ -538,13 +552,14 @@ SpecimenIdentification <- R6::R6Class(
         )
       }
       if (is.null(typeMapping[["defaultClassification"]])) {
-        self[["defaultClassification"]] <- DefaultClassification$new()$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenIdentificationList[["defaultClassification"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
+        self[["defaultClassification"]] <-
+          DefaultClassification$new()$fromJSONString(
+            jsonlite::toJSON(
+              SpecimenIdentificationList[["defaultClassification"]],
+              auto_unbox = TRUE
+            ),
+            typeMapping = typeMapping
+          )
       } else {
         obj <- eval(parse(
           text = paste0(typeMapping[["defaultClassification"]], "$new()")

@@ -35,7 +35,10 @@ MultiLineString <- R6::R6Class(
           is.list(`bbox`),
           length(`bbox`) != 0
         )
-        lapply(`bbox`, function(x) stopifnot(is.character(x)))
+        lapply(
+          `bbox`,
+          function(x) stopifnot(is.character(x))
+        )
         self[["bbox"]] <- `bbox`
       }
       if (!missing(`coordinates`)) {
@@ -43,11 +46,13 @@ MultiLineString <- R6::R6Class(
           is.list(`coordinates`),
           length(`coordinates`) != 0
         )
-        lapply(`coordinates`, function(x) stopifnot(is.character(x)))
+        lapply(
+          `coordinates`,
+          function(x) stopifnot(is.character(x))
+        )
         self[["coordinates"]] <- `coordinates`
       }
     },
-
     toList = function() {
       MultiLineStringList <- list()
       if (!is.null(self[["crs"]])) {
@@ -63,13 +68,14 @@ MultiLineString <- R6::R6Class(
           self[["coordinates"]]
       }
       ## omit empty nested lists in returned list
-      MultiLineStringList[vapply(MultiLineStringList,
+      MultiLineStringList[vapply(
+        MultiLineStringList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(MultiLineStringList, typeMapping = NULL) {
+    fromList = function(MultiLineStringList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["crs"]])) {
         self[["crs"]] <- Crs$new()$fromList(
           MultiLineStringList[["crs"]],
@@ -110,7 +116,6 @@ MultiLineString <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -119,7 +124,6 @@ MultiLineString <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(MultiLineStringJson,
                                   typeMapping = NULL) {
       MultiLineStringList <- jsonlite::fromJSON(
@@ -127,13 +131,14 @@ MultiLineString <- R6::R6Class(
         simplifyVector = FALSE
       )
       if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <- Crs$new()$fromJSONString(
-          jsonlite::toJSON(
-            MultiLineStringList[["crs"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
+        self[["crs"]] <-
+          Crs$new()$fromJSONString(
+            jsonlite::toJSON(
+              MultiLineStringList[["crs"]],
+              auto_unbox = TRUE
+            ),
+            typeMapping = typeMapping
+          )
       } else {
         obj <- eval(parse(
           text = paste0(typeMapping[["crs"]], "$new()")

@@ -32,11 +32,13 @@ GeoJsonObject <- R6::R6Class(
           is.list(`bbox`),
           length(`bbox`) != 0
         )
-        lapply(`bbox`, function(x) stopifnot(is.character(x)))
+        lapply(
+          `bbox`,
+          function(x) stopifnot(is.character(x))
+        )
         self[["bbox"]] <- `bbox`
       }
     },
-
     toList = function() {
       GeoJsonObjectList <- list()
       if (!is.null(self[["crs"]])) {
@@ -48,13 +50,14 @@ GeoJsonObject <- R6::R6Class(
           self[["bbox"]]
       }
       ## omit empty nested lists in returned list
-      GeoJsonObjectList[vapply(GeoJsonObjectList,
+      GeoJsonObjectList[vapply(
+        GeoJsonObjectList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(GeoJsonObjectList, typeMapping = NULL) {
+    fromList = function(GeoJsonObjectList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["crs"]])) {
         self[["crs"]] <- Crs$new()$fromList(
           GeoJsonObjectList[["crs"]],
@@ -83,7 +86,6 @@ GeoJsonObject <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -92,7 +94,6 @@ GeoJsonObject <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(GeoJsonObjectJson,
                                   typeMapping = NULL) {
       GeoJsonObjectList <- jsonlite::fromJSON(
@@ -100,13 +101,14 @@ GeoJsonObject <- R6::R6Class(
         simplifyVector = FALSE
       )
       if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <- Crs$new()$fromJSONString(
-          jsonlite::toJSON(
-            GeoJsonObjectList[["crs"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
+        self[["crs"]] <-
+          Crs$new()$fromJSONString(
+            jsonlite::toJSON(
+              GeoJsonObjectList[["crs"]],
+              auto_unbox = TRUE
+            ),
+            typeMapping = typeMapping
+          )
       } else {
         obj <- eval(parse(
           text = paste0(typeMapping[["crs"]], "$new()")

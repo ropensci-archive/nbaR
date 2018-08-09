@@ -35,11 +35,13 @@ QueryResult <- R6::R6Class(
           is.list(`resultSet`),
           length(`resultSet`) != 0
         )
-        lapply(`resultSet`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `resultSet`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["resultSet"]] <- `resultSet`
       }
     },
-
     toList = function() {
       QueryResultList <- list()
       if (!is.null(self[["totalSize"]])) {
@@ -51,13 +53,14 @@ QueryResult <- R6::R6Class(
           lapply(self[["resultSet"]], function(x) x$toList())
       }
       ## omit empty nested lists in returned list
-      QueryResultList[vapply(QueryResultList,
+      QueryResultList[vapply(
+        QueryResultList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(QueryResultList, typeMapping = NULL) {
+    fromList = function(QueryResultList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["totalSize"]])) {
         self[["totalSize"]] <-
           QueryResultList[["totalSize"]]
@@ -80,7 +83,6 @@ QueryResult <- R6::R6Class(
       )
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -89,7 +91,6 @@ QueryResult <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(QueryResultJson,
                                   typeMapping = NULL) {
       QueryResultList <- jsonlite::fromJSON(

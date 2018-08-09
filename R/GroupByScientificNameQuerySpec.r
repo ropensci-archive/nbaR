@@ -64,7 +64,10 @@ GroupByScientificNameQuerySpec <- R6::R6Class(
           is.list(`fields`),
           length(`fields`) != 0
         )
-        lapply(`fields`, function(x) stopifnot(is.character(x)))
+        lapply(
+          `fields`,
+          function(x) stopifnot(is.character(x))
+        )
         self[["fields"]] <- `fields`
       }
       if (!missing(`conditions`)) {
@@ -72,7 +75,10 @@ GroupByScientificNameQuerySpec <- R6::R6Class(
           is.list(`conditions`),
           length(`conditions`) != 0
         )
-        lapply(`conditions`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `conditions`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["conditions"]] <- `conditions`
       }
       if (!missing(`logicalOperator`)) {
@@ -87,7 +93,10 @@ GroupByScientificNameQuerySpec <- R6::R6Class(
           is.list(`sortFields`),
           length(`sortFields`) != 0
         )
-        lapply(`sortFields`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `sortFields`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["sortFields"]] <- `sortFields`
       }
       if (!missing(`from`)) {
@@ -134,14 +143,16 @@ GroupByScientificNameQuerySpec <- R6::R6Class(
           is.list(`specimensSortFields`),
           length(`specimensSortFields`) != 0
         )
-        lapply(`specimensSortFields`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `specimensSortFields`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["specimensSortFields"]] <- `specimensSortFields`
       }
       if (!missing(`noTaxa`)) {
         self[["noTaxa"]] <- `noTaxa`
       }
     },
-
     toList = function() {
       GroupByScientificNameQuerySpecList <- list()
       if (!is.null(self[["constantScore"]])) {
@@ -197,13 +208,14 @@ GroupByScientificNameQuerySpec <- R6::R6Class(
           self[["noTaxa"]]
       }
       ## omit empty nested lists in returned list
-      GroupByScientificNameQuerySpecList[vapply(GroupByScientificNameQuerySpecList,
+      GroupByScientificNameQuerySpecList[vapply(
+        GroupByScientificNameQuerySpecList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(GroupByScientificNameQuerySpecList, typeMapping = NULL) {
+    fromList = function(GroupByScientificNameQuerySpecList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["constantScore"]])) {
         self[["constantScore"]] <-
           GroupByScientificNameQuerySpecList[["constantScore"]]
@@ -352,7 +364,6 @@ GroupByScientificNameQuerySpec <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -361,7 +372,6 @@ GroupByScientificNameQuerySpec <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(GroupByScientificNameQuerySpecJson,
                                   typeMapping = NULL) {
       GroupByScientificNameQuerySpecList <- jsonlite::fromJSON(
@@ -483,13 +493,14 @@ GroupByScientificNameQuerySpec <- R6::R6Class(
         )
       }
       if (is.null(typeMapping[["groupFilter"]])) {
-        self[["groupFilter"]] <- Filter$new()$fromJSONString(
-          jsonlite::toJSON(
-            GroupByScientificNameQuerySpecList[["groupFilter"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
+        self[["groupFilter"]] <-
+          Filter$new()$fromJSONString(
+            jsonlite::toJSON(
+              GroupByScientificNameQuerySpecList[["groupFilter"]],
+              auto_unbox = TRUE
+            ),
+            typeMapping = typeMapping
+          )
       } else {
         obj <- eval(parse(
           text = paste0(typeMapping[["groupFilter"]], "$new()")

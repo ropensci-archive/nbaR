@@ -128,7 +128,6 @@ DefaultClassification <- R6::R6Class(
         self[["infraspecificRank"]] <- `infraspecificRank`
       }
     },
-
     toList = function() {
       DefaultClassificationList <- list()
       if (!is.null(self[["kingdom"]])) {
@@ -176,13 +175,14 @@ DefaultClassification <- R6::R6Class(
           self[["infraspecificRank"]]
       }
       ## omit empty nested lists in returned list
-      DefaultClassificationList[vapply(DefaultClassificationList,
+      DefaultClassificationList[vapply(
+        DefaultClassificationList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(DefaultClassificationList, typeMapping = NULL) {
+    fromList = function(DefaultClassificationList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["kingdom"]])) {
         self[["kingdom"]] <-
           DefaultClassificationList[["kingdom"]]
@@ -317,7 +317,6 @@ DefaultClassification <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -326,7 +325,6 @@ DefaultClassification <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(DefaultClassificationJson,
                                   typeMapping = NULL) {
       DefaultClassificationList <- jsonlite::fromJSON(

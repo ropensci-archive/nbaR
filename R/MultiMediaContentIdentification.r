@@ -81,7 +81,10 @@ MultiMediaContentIdentification <- R6::R6Class(
           is.list(`systemClassification`),
           length(`systemClassification`) != 0
         )
-        lapply(`systemClassification`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `systemClassification`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["systemClassification"]] <- `systemClassification`
       }
       if (!missing(`vernacularNames`)) {
@@ -89,7 +92,10 @@ MultiMediaContentIdentification <- R6::R6Class(
           is.list(`vernacularNames`),
           length(`vernacularNames`) != 0
         )
-        lapply(`vernacularNames`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `vernacularNames`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["vernacularNames"]] <- `vernacularNames`
       }
       if (!missing(`identificationQualifiers`)) {
@@ -97,7 +103,10 @@ MultiMediaContentIdentification <- R6::R6Class(
           is.list(`identificationQualifiers`),
           length(`identificationQualifiers`) != 0
         )
-        lapply(`identificationQualifiers`, function(x) stopifnot(is.character(x)))
+        lapply(
+          `identificationQualifiers`,
+          function(x) stopifnot(is.character(x))
+        )
         self[["identificationQualifiers"]] <- `identificationQualifiers`
       }
       if (!missing(`identifiers`)) {
@@ -105,7 +114,10 @@ MultiMediaContentIdentification <- R6::R6Class(
           is.list(`identifiers`),
           length(`identifiers`) != 0
         )
-        lapply(`identifiers`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `identifiers`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["identifiers"]] <- `identifiers`
       }
       if (!missing(`taxonomicEnrichments`)) {
@@ -113,11 +125,13 @@ MultiMediaContentIdentification <- R6::R6Class(
           is.list(`taxonomicEnrichments`),
           length(`taxonomicEnrichments`) != 0
         )
-        lapply(`taxonomicEnrichments`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `taxonomicEnrichments`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["taxonomicEnrichments"]] <- `taxonomicEnrichments`
       }
     },
-
     toList = function() {
       MultiMediaContentIdentificationList <- list()
       if (!is.null(self[["taxonRank"]])) {
@@ -161,13 +175,14 @@ MultiMediaContentIdentification <- R6::R6Class(
           lapply(self[["taxonomicEnrichments"]], function(x) x$toList())
       }
       ## omit empty nested lists in returned list
-      MultiMediaContentIdentificationList[vapply(MultiMediaContentIdentificationList,
+      MultiMediaContentIdentificationList[vapply(
+        MultiMediaContentIdentificationList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(MultiMediaContentIdentificationList, typeMapping = NULL) {
+    fromList = function(MultiMediaContentIdentificationList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["taxonRank"]])) {
         self[["taxonRank"]] <-
           MultiMediaContentIdentificationList[["taxonRank"]]
@@ -278,7 +293,6 @@ MultiMediaContentIdentification <- R6::R6Class(
       )
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -287,7 +301,6 @@ MultiMediaContentIdentification <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(MultiMediaContentIdentificationJson,
                                   typeMapping = NULL) {
       MultiMediaContentIdentificationList <- jsonlite::fromJSON(
@@ -310,13 +323,14 @@ MultiMediaContentIdentification <- R6::R6Class(
         )
       }
       if (is.null(typeMapping[["scientificName"]])) {
-        self[["scientificName"]] <- ScientificName$new()$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaContentIdentificationList[["scientificName"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
+        self[["scientificName"]] <-
+          ScientificName$new()$fromJSONString(
+            jsonlite::toJSON(
+              MultiMediaContentIdentificationList[["scientificName"]],
+              auto_unbox = TRUE
+            ),
+            typeMapping = typeMapping
+          )
       } else {
         obj <- eval(parse(
           text = paste0(typeMapping[["scientificName"]], "$new()")
@@ -360,13 +374,14 @@ MultiMediaContentIdentification <- R6::R6Class(
         )
       }
       if (is.null(typeMapping[["defaultClassification"]])) {
-        self[["defaultClassification"]] <- DefaultClassification$new()$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaContentIdentificationList[["defaultClassification"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
+        self[["defaultClassification"]] <-
+          DefaultClassification$new()$fromJSONString(
+            jsonlite::toJSON(
+              MultiMediaContentIdentificationList[["defaultClassification"]],
+              auto_unbox = TRUE
+            ),
+            typeMapping = typeMapping
+          )
       } else {
         obj <- eval(parse(
           text = paste0(typeMapping[["defaultClassification"]], "$new()")

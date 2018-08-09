@@ -81,7 +81,8 @@ test_that("download endpoint works", {
 })
 
 test_that("getDistinctValuesPerGroup works", {
-  res <- sc$get_distinct_values_per_group(group = "sourceSystem.code", field = "recordBasis")
+  res <- sc$get_distinct_values_per_group(group = "sourceSystem.code",
+                                          field = "recordBasis")
   ## Result should be a list with two entries, for BRAHMS and CRS
   expect_is(res$content, "list")
   expect_length(res$content, 2)
@@ -100,7 +101,9 @@ test_that("getNamedCollections works", {
 })
 
 test_that("groupByScientificName works", {
-  qc <- QueryCondition$new(field = "identifications.defaultClassification.genus", operator = "EQUALS", value = "Passiflora")
+  qc <- QueryCondition$new(
+        field = "identifications.defaultClassification.genus",
+        operator = "EQUALS", value = "Passiflora")
 
   ## check with generic QuerySpec
   qs <- QuerySpec$new(conditions = list(qc))
@@ -112,7 +115,8 @@ test_that("groupByScientificName works", {
   }
 
   ## check if it works with a GroupByScientificNameQuerySpec
-  qs <- GroupByScientificNameQuerySpec$new(conditions = list(qc), groupSort = "NAME_ASC")
+  qs <- GroupByScientificNameQuerySpec$new(conditions = list(qc),
+                                           groupSort = "NAME_ASC")
   res <- sc$group_by_scientific_name(qs)
 
   ## check if we get specimen documents

@@ -41,7 +41,8 @@ test_that("dwca_query() works", {
   qs <- QuerySpec$new(size = size)
   sc$dwca_query(querySpec = qs, filename = filename)
   unzip(filename, exdir = dir)
-  tab <- read.table(file.path(dir, "/Occurrence.txt"), header = T, sep = ",", fill = T, quote = "\"")
+  tab <- read.table(file.path(dir, "/Occurrence.txt"),
+                    header = T, sep = ",", fill = T, quote = "\"")
   expect_true(nrow(tab) == size)
   unlink(dir)
 })

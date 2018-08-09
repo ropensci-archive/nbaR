@@ -239,7 +239,10 @@ MultiMediaGatheringEvent <- R6::R6Class(
           is.list(`gatheringPersons`),
           length(`gatheringPersons`) != 0
         )
-        lapply(`gatheringPersons`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `gatheringPersons`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["gatheringPersons"]] <- `gatheringPersons`
       }
       if (!missing(`gatheringOrganizations`)) {
@@ -247,7 +250,10 @@ MultiMediaGatheringEvent <- R6::R6Class(
           is.list(`gatheringOrganizations`),
           length(`gatheringOrganizations`) != 0
         )
-        lapply(`gatheringOrganizations`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `gatheringOrganizations`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["gatheringOrganizations"]] <- `gatheringOrganizations`
       }
       if (!missing(`siteCoordinates`)) {
@@ -255,7 +261,10 @@ MultiMediaGatheringEvent <- R6::R6Class(
           is.list(`siteCoordinates`),
           length(`siteCoordinates`) != 0
         )
-        lapply(`siteCoordinates`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `siteCoordinates`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["siteCoordinates"]] <- `siteCoordinates`
       }
       if (!missing(`namedAreas`)) {
@@ -263,7 +272,10 @@ MultiMediaGatheringEvent <- R6::R6Class(
           is.list(`namedAreas`),
           length(`namedAreas`) != 0
         )
-        lapply(`namedAreas`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `namedAreas`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["namedAreas"]] <- `namedAreas`
       }
       if (!missing(`associatedTaxa`)) {
@@ -271,7 +283,10 @@ MultiMediaGatheringEvent <- R6::R6Class(
           is.list(`associatedTaxa`),
           length(`associatedTaxa`) != 0
         )
-        lapply(`associatedTaxa`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `associatedTaxa`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["associatedTaxa"]] <- `associatedTaxa`
       }
       if (!missing(`chronoStratigraphy`)) {
@@ -279,7 +294,10 @@ MultiMediaGatheringEvent <- R6::R6Class(
           is.list(`chronoStratigraphy`),
           length(`chronoStratigraphy`) != 0
         )
-        lapply(`chronoStratigraphy`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `chronoStratigraphy`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["chronoStratigraphy"]] <- `chronoStratigraphy`
       }
       if (!missing(`lithoStratigraphy`)) {
@@ -287,7 +305,10 @@ MultiMediaGatheringEvent <- R6::R6Class(
           is.list(`lithoStratigraphy`),
           length(`lithoStratigraphy`) != 0
         )
-        lapply(`lithoStratigraphy`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `lithoStratigraphy`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["lithoStratigraphy"]] <- `lithoStratigraphy`
       }
       if (!missing(`iptc`)) {
@@ -299,11 +320,13 @@ MultiMediaGatheringEvent <- R6::R6Class(
           is.list(`bioStratigraphic`),
           length(`bioStratigraphic`) != 0
         )
-        lapply(`bioStratigraphic`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `bioStratigraphic`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["bioStratigraphic"]] <- `bioStratigraphic`
       }
     },
-
     toList = function() {
       MultiMediaGatheringEventList <- list()
       if (!is.null(self[["projectTitle"]])) {
@@ -419,13 +442,14 @@ MultiMediaGatheringEvent <- R6::R6Class(
           lapply(self[["bioStratigraphic"]], function(x) x$toList())
       }
       ## omit empty nested lists in returned list
-      MultiMediaGatheringEventList[vapply(MultiMediaGatheringEventList,
+      MultiMediaGatheringEventList[vapply(
+        MultiMediaGatheringEventList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(MultiMediaGatheringEventList, typeMapping = NULL) {
+    fromList = function(MultiMediaGatheringEventList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["projectTitle"]])) {
         self[["projectTitle"]] <-
           MultiMediaGatheringEventList[["projectTitle"]]
@@ -734,7 +758,6 @@ MultiMediaGatheringEvent <- R6::R6Class(
       )
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -743,7 +766,6 @@ MultiMediaGatheringEvent <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(MultiMediaGatheringEventJson,
                                   typeMapping = NULL) {
       MultiMediaGatheringEventList <- jsonlite::fromJSON(
@@ -1120,13 +1142,14 @@ MultiMediaGatheringEvent <- R6::R6Class(
         }
       )
       if (is.null(typeMapping[["iptc"]])) {
-        self[["iptc"]] <- Iptc4xmpExt$new()$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaGatheringEventList[["iptc"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
+        self[["iptc"]] <-
+          Iptc4xmpExt$new()$fromJSONString(
+            jsonlite::toJSON(
+              MultiMediaGatheringEventList[["iptc"]],
+              auto_unbox = TRUE
+            ),
+            typeMapping = typeMapping
+          )
       } else {
         obj <- eval(parse(
           text = paste0(typeMapping[["iptc"]], "$new()")

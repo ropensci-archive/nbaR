@@ -38,7 +38,6 @@ SourceSystem <- R6::R6Class(
         self[["name"]] <- `name`
       }
     },
-
     toList = function() {
       SourceSystemList <- list()
       if (!is.null(self[["code"]])) {
@@ -50,13 +49,14 @@ SourceSystem <- R6::R6Class(
           self[["name"]]
       }
       ## omit empty nested lists in returned list
-      SourceSystemList[vapply(SourceSystemList,
+      SourceSystemList[vapply(
+        SourceSystemList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(SourceSystemList, typeMapping = NULL) {
+    fromList = function(SourceSystemList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["code"]])) {
         self[["code"]] <-
           SourceSystemList[["code"]]
@@ -83,7 +83,6 @@ SourceSystem <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -92,7 +91,6 @@ SourceSystem <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(SourceSystemJson,
                                   typeMapping = NULL) {
       SourceSystemList <- jsonlite::fromJSON(

@@ -314,7 +314,10 @@ SpecimenClient <- R6::R6Class(
       super$initialize(basePath)
     },
 
-    count = function(querySpec = NULL, queryParams = list(), ...) {
+    count = function(
+                         querySpec = NULL,
+                         queryParams = list(),
+                         ...) {
       headerParams <- character()
       if (!is.null(querySpec) & length(queryParams) > 0) {
         stop("Either querySpec or queryParams argument allowed, not both.")
@@ -354,7 +357,11 @@ SpecimenClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    count_distinct_values = function(field = NULL, querySpec = NULL, queryParams = list(), ...) {
+    count_distinct_values = function(
+                                         field = NULL,
+                                         querySpec = NULL,
+                                         queryParams = list(),
+                                         ...) {
       headerParams <- character()
       if (!is.null(querySpec) & length(queryParams) > 0) {
         stop("Either querySpec or queryParams argument allowed, not both.")
@@ -398,7 +405,10 @@ SpecimenClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    count_distinct_values_per_group = function(group = NULL, field = NULL, ...) {
+    count_distinct_values_per_group = function(
+                                                   group = NULL,
+                                                   field = NULL,
+                                                   ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/countDistinctValuesPerGroup/{group}/{field}"
@@ -428,7 +438,10 @@ SpecimenClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    download_query = function(querySpec = NULL, queryParams = list(), ...) {
+    download_query = function(
+                                  querySpec = NULL,
+                                  queryParams = list(),
+                                  ...) {
       headerParams <- character()
       if (!is.null(querySpec) & length(queryParams) > 0) {
         stop("Either querySpec or queryParams argument allowed, not both.")
@@ -477,7 +490,13 @@ SpecimenClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    dwca_get_data_set = function(dataset = NULL, filename = format(Sys.time(), "download-%Y-%m-%dT%H:%m.zip"), ...) {
+    dwca_get_data_set = function(
+                                     dataset = NULL,
+                                     filename = format(
+                                       Sys.time(),
+                                       "download-%Y-%m-%dT%H:%m.zip"
+                                     ),
+                                     ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/dwca/getDataSet/{dataset}"
@@ -506,7 +525,8 @@ SpecimenClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    dwca_get_data_set_names = function(...) {
+    dwca_get_data_set_names = function(
+                                           ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/dwca/getDataSetNames"
@@ -528,7 +548,14 @@ SpecimenClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    dwca_query = function(querySpec = NULL, queryParams = list(), filename = format(Sys.time(), "download-%Y-%m-%dT%H:%m.zip"), ...) {
+    dwca_query = function(
+                              querySpec = NULL,
+                              queryParams = list(),
+                              filename = format(
+                                Sys.time(),
+                                "download-%Y-%m-%dT%H:%m.zip"
+                              ),
+                              ...) {
       headerParams <- character()
       if (!is.null(querySpec) & length(queryParams) > 0) {
         stop("Either querySpec or queryParams argument allowed, not both.")
@@ -571,7 +598,9 @@ SpecimenClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    exists = function(unitID = NULL, ...) {
+    exists = function(
+                          unitID = NULL,
+                          ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/exists/{unitID}"
@@ -597,7 +626,9 @@ SpecimenClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    find = function(id = NULL, ...) {
+    find = function(
+                        id = NULL,
+                        ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/find/{id}"
@@ -629,7 +660,9 @@ SpecimenClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    find_by_ids = function(ids = NULL, ...) {
+    find_by_ids = function(
+                               ids = NULL,
+                               ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/findByIds/{ids}"
@@ -664,7 +697,9 @@ SpecimenClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    find_by_unit_id = function(unitID = NULL, ...) {
+    find_by_unit_id = function(
+                                   unitID = NULL,
+                                   ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/findByUnitID/{unitID}"
@@ -699,7 +734,11 @@ SpecimenClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_distinct_values = function(field = NULL, querySpec = NULL, queryParams = list(), ...) {
+    get_distinct_values = function(
+                                       field = NULL,
+                                       querySpec = NULL,
+                                       queryParams = list(),
+                                       ...) {
       headerParams <- character()
       if (!is.null(querySpec) & length(queryParams) > 0) {
         stop("Either querySpec or queryParams argument allowed, not both.")
@@ -743,7 +782,10 @@ SpecimenClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_distinct_values_per_group = function(group = NULL, field = NULL, ...) {
+    get_distinct_values_per_group = function(
+                                                 group = NULL,
+                                                 field = NULL,
+                                                 ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/getDistinctValuesPerGroup/{group}/{field}"
@@ -773,7 +815,8 @@ SpecimenClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_field_info = function(...) {
+    get_field_info = function(
+                                  ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/metadata/getFieldInfo"
@@ -795,7 +838,9 @@ SpecimenClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_ids_in_collection = function(name = NULL, ...) {
+    get_ids_in_collection = function(
+                                         name = NULL,
+                                         ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/getIdsInCollection/{name}"
@@ -821,7 +866,8 @@ SpecimenClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_named_collections = function(...) {
+    get_named_collections = function(
+                                         ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/getNamedCollections"
@@ -843,7 +889,8 @@ SpecimenClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_paths = function(...) {
+    get_paths = function(
+                             ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/metadata/getPaths"
@@ -865,7 +912,9 @@ SpecimenClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_setting = function(name = NULL, ...) {
+    get_setting = function(
+                               name = NULL,
+                               ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/metadata/getSetting/{name}"
@@ -891,7 +940,8 @@ SpecimenClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    get_settings = function(...) {
+    get_settings = function(
+                                ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/metadata/getSettings"
@@ -913,7 +963,10 @@ SpecimenClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    group_by_scientific_name = function(querySpec = NULL, queryParams = list(), ...) {
+    group_by_scientific_name = function(
+                                            querySpec = NULL,
+                                            queryParams = list(),
+                                            ...) {
       headerParams <- character()
       if (!is.null(querySpec) & length(queryParams) > 0) {
         stop("Either querySpec or queryParams argument allowed, not both.")
@@ -959,7 +1012,10 @@ SpecimenClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    is_operator_allowed = function(field = NULL, operator = NULL, ...) {
+    is_operator_allowed = function(
+                                       field = NULL,
+                                       operator = NULL,
+                                       ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/metadata/isOperatorAllowed/{field}/{operator}"
@@ -989,7 +1045,10 @@ SpecimenClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    query = function(querySpec = NULL, queryParams = list(), ...) {
+    query = function(
+                         querySpec = NULL,
+                         queryParams = list(),
+                         ...) {
       headerParams <- character()
       if (!is.null(querySpec) & length(queryParams) > 0) {
         stop("Either querySpec or queryParams argument allowed, not both.")

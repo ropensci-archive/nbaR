@@ -66,7 +66,10 @@ QueryCondition <- R6::R6Class(
           is.list(`and`),
           length(`and`) != 0
         )
-        lapply(`and`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `and`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["and"]] <- `and`
       }
       if (!missing(`or`)) {
@@ -74,7 +77,10 @@ QueryCondition <- R6::R6Class(
           is.list(`or`),
           length(`or`) != 0
         )
-        lapply(`or`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `or`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["or"]] <- `or`
       }
       if (!missing(`constantScore`)) {
@@ -88,7 +94,6 @@ QueryCondition <- R6::R6Class(
         self[["boost"]] <- `boost`
       }
     },
-
     toList = function() {
       QueryConditionList <- list()
       if (!is.null(self[["not"]])) {
@@ -124,13 +129,14 @@ QueryCondition <- R6::R6Class(
           self[["boost"]]
       }
       ## omit empty nested lists in returned list
-      QueryConditionList[vapply(QueryConditionList,
+      QueryConditionList[vapply(
+        QueryConditionList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(QueryConditionList, typeMapping = NULL) {
+    fromList = function(QueryConditionList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["not"]])) {
         self[["not"]] <-
           QueryConditionList[["not"]]
@@ -221,7 +227,6 @@ QueryCondition <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -230,7 +235,6 @@ QueryCondition <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(QueryConditionJson,
                                   typeMapping = NULL) {
       QueryConditionList <- jsonlite::fromJSON(

@@ -210,7 +210,10 @@ MultiMediaObject <- R6::R6Class(
           is.list(`serviceAccessPoints`),
           length(`serviceAccessPoints`) != 0
         )
-        lapply(`serviceAccessPoints`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `serviceAccessPoints`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["serviceAccessPoints"]] <- `serviceAccessPoints`
       }
       if (!missing(`type`)) {
@@ -263,7 +266,10 @@ MultiMediaObject <- R6::R6Class(
           is.list(`subjectParts`),
           length(`subjectParts`) != 0
         )
-        lapply(`subjectParts`, function(x) stopifnot(is.character(x)))
+        lapply(
+          `subjectParts`,
+          function(x) stopifnot(is.character(x))
+        )
         self[["subjectParts"]] <- `subjectParts`
       }
       if (!missing(`subjectOrientations`)) {
@@ -271,7 +277,10 @@ MultiMediaObject <- R6::R6Class(
           is.list(`subjectOrientations`),
           length(`subjectOrientations`) != 0
         )
-        lapply(`subjectOrientations`, function(x) stopifnot(is.character(x)))
+        lapply(
+          `subjectOrientations`,
+          function(x) stopifnot(is.character(x))
+        )
         self[["subjectOrientations"]] <- `subjectOrientations`
       }
       if (!missing(`phasesOrStages`)) {
@@ -279,7 +288,10 @@ MultiMediaObject <- R6::R6Class(
           is.list(`phasesOrStages`),
           length(`phasesOrStages`) != 0
         )
-        lapply(`phasesOrStages`, function(x) stopifnot(is.character(x)))
+        lapply(
+          `phasesOrStages`,
+          function(x) stopifnot(is.character(x))
+        )
         self[["phasesOrStages"]] <- `phasesOrStages`
       }
       if (!missing(`sexes`)) {
@@ -287,7 +299,10 @@ MultiMediaObject <- R6::R6Class(
           is.list(`sexes`),
           length(`sexes`) != 0
         )
-        lapply(`sexes`, function(x) stopifnot(is.character(x)))
+        lapply(
+          `sexes`,
+          function(x) stopifnot(is.character(x))
+        )
         self[["sexes"]] <- `sexes`
       }
       if (!missing(`gatheringEvents`)) {
@@ -295,7 +310,10 @@ MultiMediaObject <- R6::R6Class(
           is.list(`gatheringEvents`),
           length(`gatheringEvents`) != 0
         )
-        lapply(`gatheringEvents`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `gatheringEvents`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["gatheringEvents"]] <- `gatheringEvents`
       }
       if (!missing(`identifications`)) {
@@ -303,7 +321,10 @@ MultiMediaObject <- R6::R6Class(
           is.list(`identifications`),
           length(`identifications`) != 0
         )
-        lapply(`identifications`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(
+          `identifications`,
+          function(x) stopifnot(R6::is.R6(x))
+        )
         self[["identifications"]] <- `identifications`
       }
       if (!missing(`theme`)) {
@@ -311,7 +332,10 @@ MultiMediaObject <- R6::R6Class(
           is.list(`theme`),
           length(`theme`) != 0
         )
-        lapply(`theme`, function(x) stopifnot(is.character(x)))
+        lapply(
+          `theme`,
+          function(x) stopifnot(is.character(x))
+        )
         self[["theme"]] <- `theme`
       }
       if (!missing(`associatedSpecimen`)) {
@@ -323,7 +347,6 @@ MultiMediaObject <- R6::R6Class(
         self[["associatedTaxon"]] <- `associatedTaxon`
       }
     },
-
     toList = function() {
       MultiMediaObjectList <- list()
       if (!is.null(self[["sourceSystem"]])) {
@@ -451,13 +474,14 @@ MultiMediaObject <- R6::R6Class(
           self[["associatedTaxon"]]$toList()
       }
       ## omit empty nested lists in returned list
-      MultiMediaObjectList[vapply(MultiMediaObjectList,
+      MultiMediaObjectList[vapply(
+        MultiMediaObjectList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(MultiMediaObjectList, typeMapping = NULL) {
+    fromList = function(MultiMediaObjectList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["sourceSystem"]])) {
         self[["sourceSystem"]] <- SourceSystem$new()$fromList(
           MultiMediaObjectList[["sourceSystem"]],
@@ -826,7 +850,6 @@ MultiMediaObject <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -835,7 +858,6 @@ MultiMediaObject <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(MultiMediaObjectJson,
                                   typeMapping = NULL) {
       MultiMediaObjectList <- jsonlite::fromJSON(
@@ -843,13 +865,14 @@ MultiMediaObject <- R6::R6Class(
         simplifyVector = FALSE
       )
       if (is.null(typeMapping[["sourceSystem"]])) {
-        self[["sourceSystem"]] <- SourceSystem$new()$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["sourceSystem"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
+        self[["sourceSystem"]] <-
+          SourceSystem$new()$fromJSONString(
+            jsonlite::toJSON(
+              MultiMediaObjectList[["sourceSystem"]],
+              auto_unbox = TRUE
+            ),
+            typeMapping = typeMapping
+          )
       } else {
         obj <- eval(parse(
           text = paste0(typeMapping[["sourceSystem"]], "$new()")
@@ -1274,13 +1297,14 @@ MultiMediaObject <- R6::R6Class(
         )
       }
       if (is.null(typeMapping[["associatedSpecimen"]])) {
-        self[["associatedSpecimen"]] <- Specimen$new()$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["associatedSpecimen"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
+        self[["associatedSpecimen"]] <-
+          Specimen$new()$fromJSONString(
+            jsonlite::toJSON(
+              MultiMediaObjectList[["associatedSpecimen"]],
+              auto_unbox = TRUE
+            ),
+            typeMapping = typeMapping
+          )
       } else {
         obj <- eval(parse(
           text = paste0(typeMapping[["associatedSpecimen"]], "$new()")
@@ -1294,13 +1318,14 @@ MultiMediaObject <- R6::R6Class(
         )
       }
       if (is.null(typeMapping[["associatedTaxon"]])) {
-        self[["associatedTaxon"]] <- Taxon$new()$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["associatedTaxon"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
+        self[["associatedTaxon"]] <-
+          Taxon$new()$fromJSONString(
+            jsonlite::toJSON(
+              MultiMediaObjectList[["associatedTaxon"]],
+              auto_unbox = TRUE
+            ),
+            typeMapping = typeMapping
+          )
       } else {
         obj <- eval(parse(
           text = paste0(typeMapping[["associatedTaxon"]], "$new()")

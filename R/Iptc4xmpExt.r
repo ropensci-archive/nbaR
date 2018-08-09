@@ -88,7 +88,6 @@ Iptc4xmpExt <- R6::R6Class(
         self[["sublocation"]] <- `sublocation`
       }
     },
-
     toList = function() {
       Iptc4xmpExtList <- list()
       if (!is.null(self[["locationShown"]])) {
@@ -120,13 +119,14 @@ Iptc4xmpExt <- R6::R6Class(
           self[["sublocation"]]
       }
       ## omit empty nested lists in returned list
-      Iptc4xmpExtList[vapply(Iptc4xmpExtList,
+      Iptc4xmpExtList[vapply(
+        Iptc4xmpExtList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(Iptc4xmpExtList, typeMapping = NULL) {
+    fromList = function(Iptc4xmpExtList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["locationShown"]])) {
         self[["locationShown"]] <-
           Iptc4xmpExtList[["locationShown"]]
@@ -213,7 +213,6 @@ Iptc4xmpExt <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -222,7 +221,6 @@ Iptc4xmpExt <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(Iptc4xmpExtJson,
                                   typeMapping = NULL) {
       Iptc4xmpExtList <- jsonlite::fromJSON(

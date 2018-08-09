@@ -38,7 +38,6 @@ NamedArea <- R6::R6Class(
         self[["areaName"]] <- `areaName`
       }
     },
-
     toList = function() {
       NamedAreaList <- list()
       if (!is.null(self[["areaClass"]])) {
@@ -50,13 +49,14 @@ NamedArea <- R6::R6Class(
           self[["areaName"]]
       }
       ## omit empty nested lists in returned list
-      NamedAreaList[vapply(NamedAreaList,
+      NamedAreaList[vapply(
+        NamedAreaList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(NamedAreaList, typeMapping = NULL) {
+    fromList = function(NamedAreaList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["areaClass"]])) {
         self[["areaClass"]] <-
           NamedAreaList[["areaClass"]]
@@ -83,7 +83,6 @@ NamedArea <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -92,7 +91,6 @@ NamedArea <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(NamedAreaJson,
                                   typeMapping = NULL) {
       NamedAreaList <- jsonlite::fromJSON(

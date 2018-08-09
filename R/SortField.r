@@ -40,7 +40,6 @@ SortField <- R6::R6Class(
         self[["ascending"]] <- `ascending`
       }
     },
-
     toList = function() {
       SortFieldList <- list()
       if (!is.null(self[["path"]])) {
@@ -56,13 +55,14 @@ SortField <- R6::R6Class(
           self[["ascending"]]
       }
       ## omit empty nested lists in returned list
-      SortFieldList[vapply(SortFieldList,
+      SortFieldList[vapply(
+        SortFieldList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(SortFieldList, typeMapping = NULL) {
+    fromList = function(SortFieldList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["path"]])) {
         self[["path"]] <-
           SortFieldList[["path"]]
@@ -101,7 +101,6 @@ SortField <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -110,7 +109,6 @@ SortField <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(SortFieldJson,
                                   typeMapping = NULL) {
       SortFieldList <- jsonlite::fromJSON(

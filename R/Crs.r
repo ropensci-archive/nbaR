@@ -34,7 +34,6 @@ Crs <- R6::R6Class(
         self[["properties"]] <- `properties`
       }
     },
-
     toList = function() {
       CrsList <- list()
       if (!is.null(self[["type"]])) {
@@ -46,13 +45,14 @@ Crs <- R6::R6Class(
           self[["properties"]]
       }
       ## omit empty nested lists in returned list
-      CrsList[vapply(CrsList,
+      CrsList[vapply(
+        CrsList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(CrsList, typeMapping = NULL) {
+    fromList = function(CrsList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["type"]])) {
         self[["type"]] <-
           CrsList[["type"]]
@@ -79,7 +79,6 @@ Crs <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -88,7 +87,6 @@ Crs <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(CrsJson,
                                   typeMapping = NULL) {
       CrsList <- jsonlite::fromJSON(

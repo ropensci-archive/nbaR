@@ -18,13 +18,15 @@ test_that("Constructor works", {
 
 test_that("CallApi function works", {
   ac <- ApiClient$new()
-  res <- ac$callApi("http://api.biodiversitydata.nl/v2", "GET", NULL, NULL, NULL)
+  res <- ac$callApi("http://api.biodiversitydata.nl/v2", "GET",
+                    NULL, NULL, NULL)
   expect_true(res$status_code == 200)
 })
 
 test_that("HandleError function works", {
   ac <- ApiClient$new()
   ## make call that produces error
-  res <- ac$callApi("http://api.biodiversitydata.nl/v2/unknownendpoint", "GET", NULL, NULL, NULL)
+  res <- ac$callApi("http://api.biodiversitydata.nl/v2/unknownendpoint", "GET",
+                    NULL, NULL, NULL)
   expect_warning(ac$handleError(res))
 })

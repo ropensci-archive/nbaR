@@ -60,19 +60,20 @@
         {{#isPrimitiveType}}
         stopifnot(is.list(`{{baseName}}`),
                   length(`{{baseName}}`) != 0)
-        lapply(`{{baseName}}`, function(x) stopifnot(is.character(x)))
+        lapply(`{{baseName}}`,
+               function(x) stopifnot(is.character(x)))
         {{/isPrimitiveType}}
         {{^isPrimitiveType}}
         stopifnot(is.list(`{{baseName}}`),
                   length(`{{baseName}}`) != 0)
-        lapply(`{{baseName}}`, function(x) stopifnot(R6::is.R6(x)))
+        lapply(`{{baseName}}`,
+               function(x) stopifnot(R6::is.R6(x)))
         {{/isPrimitiveType}}
         {{/isListContainer}}
         self[["{{baseName}}"]] <- `{{baseName}}`
       }
     {{/vars}}
     },
-
     toList = function() {
       {{classname}}List <- list()
       {{#vars}}
@@ -82,12 +83,13 @@
       }
       {{/vars}}
       ## omit empty nested lists in returned list
-      {{classname}}List[vapply({{classname}}List,
+      {{classname}}List[vapply(
+                            {{classname}}List,
                             length,
                             FUN.VALUE=integer(1)) > 0]
       },
-
-    fromList = function({{classname}}List, typeMapping = NULL) {
+    fromList = function({{classname}}List,
+                        typeMapping = NULL) {
       {{#vars}}
       {{#isPrimitiveType}}
       if (is.null(typeMapping[["{{baseName}}"]])) {
@@ -126,7 +128,6 @@
       {{/vars}}
       invisible(self)
     },
-    
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
           self$toList(),
@@ -134,7 +135,6 @@
           auto_unbox = TRUE,
           pretty = pretty)
     },
-
     fromJSONString = function({{classname}}Json,
                               typeMapping = NULL) {
       {{classname}}List <- jsonlite::fromJSON(
@@ -166,11 +166,12 @@
       {{/isListContainer}}
       {{^isListContainer}}
       if (is.null(typeMapping[["{{baseName}}"]])) {
-          self[["{{baseName}}"]] <- {{datatype}}$new()$fromJSONString(
-              jsonlite::toJSON(
-                  {{classname}}List[["{{baseName}}"]],
-                  auto_unbox = TRUE),
-              typeMapping = typeMapping)
+          self[["{{baseName}}"]] <-
+              {{datatype}}$new()$fromJSONString(
+                  jsonlite::toJSON(
+                      {{classname}}List[["{{baseName}}"]],
+                      auto_unbox = TRUE),
+                  typeMapping = typeMapping)
       } else {
           obj <- eval(parse(
               text = paste0(typeMapping[["{{baseName}}"]], "$new()")))

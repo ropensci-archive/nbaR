@@ -28,7 +28,6 @@ Agent <- R6::R6Class(
         self[["agentText"]] <- `agentText`
       }
     },
-
     toList = function() {
       AgentList <- list()
       if (!is.null(self[["agentText"]])) {
@@ -36,13 +35,14 @@ Agent <- R6::R6Class(
           self[["agentText"]]
       }
       ## omit empty nested lists in returned list
-      AgentList[vapply(AgentList,
+      AgentList[vapply(
+        AgentList,
         length,
         FUN.VALUE = integer(1)
       ) > 0]
     },
-
-    fromList = function(AgentList, typeMapping = NULL) {
+    fromList = function(AgentList,
+                            typeMapping = NULL) {
       if (is.null(typeMapping[["agentText"]])) {
         self[["agentText"]] <-
           AgentList[["agentText"]]
@@ -57,7 +57,6 @@ Agent <- R6::R6Class(
       }
       invisible(self)
     },
-
     toJSONString = function(pretty = TRUE) {
       jsonlite::toJSON(
         self$toList(),
@@ -66,7 +65,6 @@ Agent <- R6::R6Class(
         pretty = pretty
       )
     },
-
     fromJSONString = function(AgentJson,
                                   typeMapping = NULL) {
       AgentList <- jsonlite::fromJSON(
