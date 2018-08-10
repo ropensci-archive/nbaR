@@ -40,7 +40,8 @@ test_that("Settings work", {
 
 test_that("isOperatorAllowed works", {
   allowed <- mc$is_operator_allowed(
-      "identifications.scientificName.fullScientificName",
-      "STARTS_WITH")$content
+    "identifications.scientificName.fullScientificName",
+    "STARTS_WITH"
+  )$content
   expect_is(allowed, "logical")
 })

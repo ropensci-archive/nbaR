@@ -27,8 +27,10 @@ test_that("dwca_get_data_set() works", {
   expect_true(file.exists(filename))
   ## check for contents
   l <- unzip(filename, list = T)
-  expect_equal(sort(l$Name), c("eml.xml", "meta.xml",
-                               "Taxa.txt", "Vernacular_Names.txt"))
+  expect_equal(sort(l$Name), c(
+    "eml.xml", "meta.xml",
+    "Taxa.txt", "Vernacular_Names.txt"
+  ))
   unlink(filename)
 })
 
@@ -43,9 +45,10 @@ test_that("dwca_query() works", {
   tc$dwca_query(querySpec = qs, filename = filename)
   unzip(filename, exdir = dir)
   tab <- read.table(file.path(dir, "/Taxa.txt"),
-                    header = T, sep = ",", fill = T, quote = "\"")
+    header = T, sep = ",", fill = T, quote = "\""
+  )
   ## can have more entries than queried number
-  ##because also synonyms are in there!
+  ## because also synonyms are in there!
   expect_true(nrow(tab) >= size)
   unlink(dir)
 })
