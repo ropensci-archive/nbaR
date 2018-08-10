@@ -6,13 +6,13 @@ context("Testing class GatheringEvent")
 
 test_that("Constructor works", {
   obj <- GatheringEvent$new()
-  expect_is(obj, "GatheringEvent")  
+  expect_is(obj, "GatheringEvent")
 })
 
 test_that("toList works", {
   obj <- GatheringEvent$new()
   l <- obj$toList()
-  expect_is(l, "list")  
+  expect_is(l, "list")
 })
 
 test_that("toJSONString works", {
@@ -21,4 +21,3 @@ test_that("toJSONString works", {
   expect_is(s, "json")
   expect_true(s != "")
 })
-

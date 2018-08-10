@@ -6,13 +6,13 @@ context("Testing class Path")
 
 test_that("Constructor works", {
   obj <- Path$new()
-  expect_is(obj, "Path")  
+  expect_is(obj, "Path")
 })
 
 test_that("toList works", {
   obj <- Path$new()
   l <- obj$toList()
-  expect_is(l, "list")  
+  expect_is(l, "list")
 })
 
 test_that("toJSONString works", {
@@ -21,4 +21,3 @@ test_that("toJSONString works", {
   expect_is(s, "json")
   expect_true(s != "")
 })
-

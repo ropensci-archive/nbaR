@@ -6,13 +6,13 @@ context("Testing class RestService")
 
 test_that("Constructor works", {
   obj <- RestService$new()
-  expect_is(obj, "RestService")  
+  expect_is(obj, "RestService")
 })
 
 test_that("toList works", {
   obj <- RestService$new()
   l <- obj$toList()
-  expect_is(l, "list")  
+  expect_is(l, "list")
 })
 
 test_that("toJSONString works", {
@@ -21,4 +21,3 @@ test_that("toJSONString works", {
   expect_is(s, "json")
   expect_true(s != "")
 })
-

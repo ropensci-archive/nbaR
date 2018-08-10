@@ -6,13 +6,13 @@ context("Testing class AssociatedTaxon")
 
 test_that("Constructor works", {
   obj <- AssociatedTaxon$new()
-  expect_is(obj, "AssociatedTaxon")  
+  expect_is(obj, "AssociatedTaxon")
 })
 
 test_that("toList works", {
   obj <- AssociatedTaxon$new()
   l <- obj$toList()
-  expect_is(l, "list")  
+  expect_is(l, "list")
 })
 
 test_that("toJSONString works", {
@@ -21,4 +21,3 @@ test_that("toJSONString works", {
   expect_is(s, "json")
   expect_true(s != "")
 })
-

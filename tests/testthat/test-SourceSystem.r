@@ -6,13 +6,13 @@ context("Testing class SourceSystem")
 
 test_that("Constructor works", {
   obj <- SourceSystem$new()
-  expect_is(obj, "SourceSystem")  
+  expect_is(obj, "SourceSystem")
 })
 
 test_that("toList works", {
   obj <- SourceSystem$new()
   l <- obj$toList()
-  expect_is(l, "list")  
+  expect_is(l, "list")
 })
 
 test_that("toJSONString works", {
@@ -21,4 +21,3 @@ test_that("toJSONString works", {
   expect_is(s, "json")
   expect_true(s != "")
 })
-

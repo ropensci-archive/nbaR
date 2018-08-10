@@ -6,13 +6,13 @@ context("Testing class TaxonomicEnrichment")
 
 test_that("Constructor works", {
   obj <- TaxonomicEnrichment$new()
-  expect_is(obj, "TaxonomicEnrichment")  
+  expect_is(obj, "TaxonomicEnrichment")
 })
 
 test_that("toList works", {
   obj <- TaxonomicEnrichment$new()
   l <- obj$toList()
-  expect_is(l, "list")  
+  expect_is(l, "list")
 })
 
 test_that("toJSONString works", {
@@ -21,4 +21,3 @@ test_that("toJSONString works", {
   expect_is(s, "json")
   expect_true(s != "")
 })
-

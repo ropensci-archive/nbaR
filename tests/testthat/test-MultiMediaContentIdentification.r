@@ -6,13 +6,13 @@ context("Testing class MultiMediaContentIdentification")
 
 test_that("Constructor works", {
   obj <- MultiMediaContentIdentification$new()
-  expect_is(obj, "MultiMediaContentIdentification")  
+  expect_is(obj, "MultiMediaContentIdentification")
 })
 
 test_that("toList works", {
   obj <- MultiMediaContentIdentification$new()
   l <- obj$toList()
-  expect_is(l, "list")  
+  expect_is(l, "list")
 })
 
 test_that("toJSONString works", {
@@ -21,4 +21,3 @@ test_that("toJSONString works", {
   expect_is(s, "json")
   expect_true(s != "")
 })
-

@@ -6,13 +6,13 @@ context("Testing class GeoArea")
 
 test_that("Constructor works", {
   obj <- GeoArea$new()
-  expect_is(obj, "GeoArea")  
+  expect_is(obj, "GeoArea")
 })
 
 test_that("toList works", {
   obj <- GeoArea$new()
   l <- obj$toList()
-  expect_is(l, "list")  
+  expect_is(l, "list")
 })
 
 test_that("toJSONString works", {
@@ -21,4 +21,3 @@ test_that("toJSONString works", {
   expect_is(s, "json")
   expect_true(s != "")
 })
-

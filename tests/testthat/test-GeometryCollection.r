@@ -6,13 +6,13 @@ context("Testing class GeometryCollection")
 
 test_that("Constructor works", {
   obj <- GeometryCollection$new()
-  expect_is(obj, "GeometryCollection")  
+  expect_is(obj, "GeometryCollection")
 })
 
 test_that("toList works", {
   obj <- GeometryCollection$new()
   l <- obj$toList()
-  expect_is(l, "list")  
+  expect_is(l, "list")
 })
 
 test_that("toJSONString works", {
@@ -21,4 +21,3 @@ test_that("toJSONString works", {
   expect_is(s, "json")
   expect_true(s != "")
 })
-

@@ -6,13 +6,13 @@ context("Testing class SpecimenIdentification")
 
 test_that("Constructor works", {
   obj <- SpecimenIdentification$new()
-  expect_is(obj, "SpecimenIdentification")  
+  expect_is(obj, "SpecimenIdentification")
 })
 
 test_that("toList works", {
   obj <- SpecimenIdentification$new()
   l <- obj$toList()
-  expect_is(l, "list")  
+  expect_is(l, "list")
 })
 
 test_that("toJSONString works", {
@@ -21,4 +21,3 @@ test_that("toJSONString works", {
   expect_is(s, "json")
   expect_true(s != "")
 })
-

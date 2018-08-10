@@ -6,13 +6,13 @@ context("Testing class Iptc4xmpExt")
 
 test_that("Constructor works", {
   obj <- Iptc4xmpExt$new()
-  expect_is(obj, "Iptc4xmpExt")  
+  expect_is(obj, "Iptc4xmpExt")
 })
 
 test_that("toList works", {
   obj <- Iptc4xmpExt$new()
   l <- obj$toList()
-  expect_is(l, "list")  
+  expect_is(l, "list")
 })
 
 test_that("toJSONString works", {
@@ -21,4 +21,3 @@ test_that("toJSONString works", {
   expect_is(s, "json")
   expect_true(s != "")
 })
-

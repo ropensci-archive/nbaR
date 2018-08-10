@@ -6,13 +6,13 @@ context("Testing class QueryCondition")
 
 test_that("Constructor works", {
   obj <- QueryCondition$new()
-  expect_is(obj, "QueryCondition")  
+  expect_is(obj, "QueryCondition")
 })
 
 test_that("toList works", {
   obj <- QueryCondition$new()
   l <- obj$toList()
-  expect_is(l, "list")  
+  expect_is(l, "list")
 })
 
 test_that("toJSONString works", {
@@ -21,4 +21,3 @@ test_that("toJSONString works", {
   expect_is(s, "json")
   expect_true(s != "")
 })
-

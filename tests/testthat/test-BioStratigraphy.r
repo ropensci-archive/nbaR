@@ -6,13 +6,13 @@ context("Testing class BioStratigraphy")
 
 test_that("Constructor works", {
   obj <- BioStratigraphy$new()
-  expect_is(obj, "BioStratigraphy")  
+  expect_is(obj, "BioStratigraphy")
 })
 
 test_that("toList works", {
   obj <- BioStratigraphy$new()
   l <- obj$toList()
-  expect_is(l, "list")  
+  expect_is(l, "list")
 })
 
 test_that("toJSONString works", {
@@ -21,4 +21,3 @@ test_that("toJSONString works", {
   expect_is(s, "json")
   expect_true(s != "")
 })
-

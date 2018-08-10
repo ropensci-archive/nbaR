@@ -6,13 +6,13 @@ context("Testing class LngLatAlt")
 
 test_that("Constructor works", {
   obj <- LngLatAlt$new()
-  expect_is(obj, "LngLatAlt")  
+  expect_is(obj, "LngLatAlt")
 })
 
 test_that("toList works", {
   obj <- LngLatAlt$new()
   l <- obj$toList()
-  expect_is(l, "list")  
+  expect_is(l, "list")
 })
 
 test_that("toJSONString works", {
@@ -21,4 +21,3 @@ test_that("toJSONString works", {
   expect_is(s, "json")
   expect_true(s != "")
 })
-

@@ -6,13 +6,13 @@ context("Testing class ChronoStratigraphy")
 
 test_that("Constructor works", {
   obj <- ChronoStratigraphy$new()
-  expect_is(obj, "ChronoStratigraphy")  
+  expect_is(obj, "ChronoStratigraphy")
 })
 
 test_that("toList works", {
   obj <- ChronoStratigraphy$new()
   l <- obj$toList()
-  expect_is(l, "list")  
+  expect_is(l, "list")
 })
 
 test_that("toJSONString works", {
@@ -21,4 +21,3 @@ test_that("toJSONString works", {
   expect_is(s, "json")
   expect_true(s != "")
 })
-

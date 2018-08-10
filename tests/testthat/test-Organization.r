@@ -6,13 +6,13 @@ context("Testing class Organization")
 
 test_that("Constructor works", {
   obj <- Organization$new()
-  expect_is(obj, "Organization")  
+  expect_is(obj, "Organization")
 })
 
 test_that("toList works", {
   obj <- Organization$new()
   l <- obj$toList()
-  expect_is(l, "list")  
+  expect_is(l, "list")
 })
 
 test_that("toJSONString works", {
@@ -21,4 +21,3 @@ test_that("toJSONString works", {
   expect_is(s, "json")
   expect_true(s != "")
 })
-

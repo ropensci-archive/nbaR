@@ -6,13 +6,13 @@ context("Testing class Filter")
 
 test_that("Constructor works", {
   obj <- Filter$new()
-  expect_is(obj, "Filter")  
+  expect_is(obj, "Filter")
 })
 
 test_that("toList works", {
   obj <- Filter$new()
   l <- obj$toList()
-  expect_is(l, "list")  
+  expect_is(l, "list")
 })
 
 test_that("toJSONString works", {
@@ -21,4 +21,3 @@ test_that("toJSONString works", {
   expect_is(s, "json")
   expect_true(s != "")
 })
-

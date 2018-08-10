@@ -6,13 +6,13 @@ context("Testing class SortField")
 
 test_that("Constructor works", {
   obj <- SortField$new()
-  expect_is(obj, "SortField")  
+  expect_is(obj, "SortField")
 })
 
 test_that("toList works", {
   obj <- SortField$new()
   l <- obj$toList()
-  expect_is(l, "list")  
+  expect_is(l, "list")
 })
 
 test_that("toJSONString works", {
@@ -21,4 +21,3 @@ test_that("toJSONString works", {
   expect_is(s, "json")
   expect_true(s != "")
 })
-

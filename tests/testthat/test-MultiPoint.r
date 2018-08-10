@@ -6,13 +6,13 @@ context("Testing class MultiPoint")
 
 test_that("Constructor works", {
   obj <- MultiPoint$new()
-  expect_is(obj, "MultiPoint")  
+  expect_is(obj, "MultiPoint")
 })
 
 test_that("toList works", {
   obj <- MultiPoint$new()
   l <- obj$toList()
-  expect_is(l, "list")  
+  expect_is(l, "list")
 })
 
 test_that("toJSONString works", {
@@ -21,4 +21,3 @@ test_that("toJSONString works", {
   expect_is(s, "json")
   expect_true(s != "")
 })
-

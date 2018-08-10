@@ -6,13 +6,13 @@ context("Testing class FeatureCollection")
 
 test_that("Constructor works", {
   obj <- FeatureCollection$new()
-  expect_is(obj, "FeatureCollection")  
+  expect_is(obj, "FeatureCollection")
 })
 
 test_that("toList works", {
   obj <- FeatureCollection$new()
   l <- obj$toList()
-  expect_is(l, "list")  
+  expect_is(l, "list")
 })
 
 test_that("toJSONString works", {
@@ -21,4 +21,3 @@ test_that("toJSONString works", {
   expect_is(s, "json")
   expect_true(s != "")
 })
-
