@@ -3,8 +3,6 @@
 NAMESPACE
 README.md
 inst/**
-tests/**
 other/**
 vignettes/**
 docs/**
-man/**

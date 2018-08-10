@@ -7,8 +7,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JToggleButton.ToggleButtonModel;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import io.swagger.codegen.CodegenConfig;
 import io.swagger.codegen.CodegenOperation;
@@ -72,9 +76,15 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 		// put custom mustache file for package description
 		supportingFiles.add(new SupportingFile("package.mustache", "", "R/nbaR-package.r"));
 		supportingFiles.add(new SupportingFile("license.mustache", "", "LICENSE"));
+
+		this.outputFolder = ".";
+
+		this.testPackage = "tests/testthat/";
 		
+		modelTestTemplateFiles.put("model_test.mustache", ".r");
+				
 		// set the output folder here
-		outputFolder = "generated-code/nbaRcodegen";
+		outputFolder = ".";
 
 		/**
 		 * Template Location. This is the location which templates will
@@ -129,6 +139,13 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 
 	}
 
+	@Override
+	public String toModelTestFilename(String name)
+	{
+		System.out.println("toModelTestFilename");
+		return ("test-" + name);
+	}
+	
 	/*
 	 * Overridden to change later R object name from e.g. SpecimenApi to
 	 * SpecimenClient
@@ -155,7 +172,8 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 		}
 		return initialCaps(name) + "Client";
 	}
-
+	
+	
 	/*
 	 * Overridden to clean up operationID from suffixes like _http_get2 etc
 	 */
