@@ -1,11 +1,33 @@
-
 library("nbaR")
 library("testthat")
+
+set.seed(111)
 
 context("Testing class Person")
 
 test_that("Constructor works", {
   obj <- Person$new()
+  expect_is(obj, "Person")
+
+  # test constructor with random arguments
+  # test field agentText, type character
+  obj <- Person$new(
+    agentText = paste(sample(
+      c(LETTERS, letters),
+      sample(1:20, 1)
+    ), collapse = "")
+  )
+  expect_is(obj, "Person")
+  # test field fullName, type character
+  obj <- Person$new(
+    fullName = paste(sample(
+      c(LETTERS, letters),
+      sample(1:20, 1)
+    ), collapse = "")
+  )
+  expect_is(obj, "Person")
+  # test field organization, type Organization
+  obj <- Person$new(organization = Organization$new())
   expect_is(obj, "Person")
 })
 

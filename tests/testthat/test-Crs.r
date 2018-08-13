@@ -1,11 +1,22 @@
-
 library("nbaR")
 library("testthat")
+
+set.seed(111)
 
 context("Testing class Crs")
 
 test_that("Constructor works", {
   obj <- Crs$new()
+  expect_is(obj, "Crs")
+
+  # test constructor with random arguments
+  # test field type, type character
+  obj <- Crs$new(
+    type = paste(sample(
+      c(LETTERS, letters),
+      sample(1:20, 1)
+    ), collapse = "")
+  )
   expect_is(obj, "Crs")
 })
 

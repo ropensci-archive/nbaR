@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import io.swagger.codegen.CodegenConfig;
+import io.swagger.codegen.CodegenConstants;
 import io.swagger.codegen.CodegenOperation;
 import io.swagger.codegen.DefaultCodegen;
 import io.swagger.codegen.SupportingFile;
@@ -77,14 +78,12 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 		supportingFiles.add(new SupportingFile("package.mustache", "", "R/nbaR-package.r"));
 		supportingFiles.add(new SupportingFile("license.mustache", "", "LICENSE"));
 
+		// set the output folder here
 		this.outputFolder = ".";
 
-		this.testPackage = "tests/testthat/";
+		this.testPackage = "tests/testthat";
 		
 		modelTestTemplateFiles.put("model_test.mustache", ".r");
-				
-		// set the output folder here
-		outputFolder = ".";
 
 		/**
 		 * Template Location. This is the location which templates will
@@ -139,6 +138,50 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 
 	}
 
+	    @Override
+	    public void processOpts() {
+	        super.processOpts();
+
+	        if (additionalProperties.containsKey(CodegenConstants.PACKAGE_NAME)) {
+	            setPackageName((String) additionalProperties.get(CodegenConstants.PACKAGE_NAME));
+	        } else {
+	            setPackageName("swagger");
+	        }
+
+	        if (additionalProperties.containsKey(CodegenConstants.PACKAGE_VERSION)) {
+	            setPackageVersion((String) additionalProperties.get(CodegenConstants.PACKAGE_VERSION));
+	        } else {
+	            setPackageVersion("1.0.0");
+	        }
+
+	        additionalProperties.put(CodegenConstants.PACKAGE_NAME, packageName);
+	        additionalProperties.put(CodegenConstants.PACKAGE_VERSION, packageVersion);
+
+	        additionalProperties.put("apiDocPath", apiDocPath);
+	        additionalProperties.put("modelDocPath", modelDocPath);
+
+	        //Hannes: Commented out from superclass
+	        //apiTestTemplateFiles.clear(); // TODO: add api test template
+	        //modelTestTemplateFiles.clear(); // TODO: add model test template
+
+	        //apiDocTemplateFiles.clear(); // TODO: add api doc template
+	        //modelDocTemplateFiles.clear(); // TODO: add model doc template
+
+	        modelPackage = packageName;
+	        apiPackage = packageName;
+
+	        supportingFiles.add(new SupportingFile("README.mustache", "", "README.md"));
+	        supportingFiles.add(new SupportingFile("git_push.sh.mustache", "", "git_push.sh"));
+	        supportingFiles.add(new SupportingFile("gitignore.mustache", "", ".gitignore"));
+	        supportingFiles.add(new SupportingFile("description.mustache", "", "DESCRIPTION"));
+	        supportingFiles.add(new SupportingFile("Rbuildignore.mustache", "", ".Rbuildignore"));
+	        supportingFiles.add(new SupportingFile(".travis.yml", "", ".travis.yml"));
+	        supportingFiles.add(new SupportingFile("response.mustache", "/R", "Response.r"));
+	        supportingFiles.add(new SupportingFile("element.mustache", "/R", "Element.r"));
+	        supportingFiles.add(new SupportingFile("api_client.mustache", "/R", "ApiClient.r"));
+	        supportingFiles.add(new SupportingFile("NAMESPACE.mustache", "", "NAMESPACE"));
+	    }
+	
 	@Override
 	public String toModelTestFilename(String name)
 	{
@@ -146,6 +189,13 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 		return ("test-" + name);
 	}
 	
+/*	@Override
+	public String modelTestFileFolder() 
+	{
+		System.out.println("Testpackage : " + testPackage());
+	        return "tests/testthat/";
+	}
+*/	
 	/*
 	 * Overridden to change later R object name from e.g. SpecimenApi to
 	 * SpecimenClient

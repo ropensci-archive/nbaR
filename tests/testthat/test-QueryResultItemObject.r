@@ -1,11 +1,17 @@
-
 library("nbaR")
 library("testthat")
+
+set.seed(111)
 
 context("Testing class QueryResultItemObject")
 
 test_that("Constructor works", {
   obj <- QueryResultItemObject$new()
+  expect_is(obj, "QueryResultItemObject")
+
+  # test constructor with random arguments
+  # test field score, type numeric
+  obj <- QueryResultItemObject$new(score = runif(1))
   expect_is(obj, "QueryResultItemObject")
 })
 

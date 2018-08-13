@@ -1,11 +1,38 @@
-
 library("nbaR")
 library("testthat")
+
+set.seed(111)
 
 context("Testing class TaxonDescription")
 
 test_that("Constructor works", {
   obj <- TaxonDescription$new()
+  expect_is(obj, "TaxonDescription")
+
+  # test constructor with random arguments
+  # test field category, type character
+  obj <- TaxonDescription$new(
+    category = paste(sample(
+      c(LETTERS, letters),
+      sample(1:20, 1)
+    ), collapse = "")
+  )
+  expect_is(obj, "TaxonDescription")
+  # test field description, type character
+  obj <- TaxonDescription$new(
+    description = paste(sample(
+      c(LETTERS, letters),
+      sample(1:20, 1)
+    ), collapse = "")
+  )
+  expect_is(obj, "TaxonDescription")
+  # test field language, type character
+  obj <- TaxonDescription$new(
+    language = paste(sample(
+      c(LETTERS, letters),
+      sample(1:20, 1)
+    ), collapse = "")
+  )
   expect_is(obj, "TaxonDescription")
 })
 
