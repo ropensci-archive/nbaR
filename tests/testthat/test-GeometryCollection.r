@@ -5,39 +5,51 @@ set.seed(111)
 
 context("Testing class GeometryCollection")
 
-test_that("Constructor works", {
-  obj <- GeometryCollection$new()
-  expect_is(obj, "GeometryCollection")
+# Make a list with random arguments for all fields in the class
+args <- list()
+args[["crs"]] <- Crs$new()
+randomList <- lapply(
+  1:sample(5:10, 1),
+  function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
+)
+args[["bbox"]] <- randomList
+randomList <- lapply(
+  1:sample(5:10, 1),
+  function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
+)
+args[["geometries"]] <- randomList
 
-  # test constructor with random arguments
-  # test field crs, type Crs
-  obj <- GeometryCollection$new(crs = Crs$new())
-  expect_is(obj, "GeometryCollection")
-  # test field bbox, type list, datatype numeric
-  randomList <- lapply(
-    1:sample(5:10, 1),
-    function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
-  )
-  obj <- GeometryCollection$new(bbox = randomList)
-  expect_is(obj, "GeometryCollection")
-  # test field geometries, type list, datatype list
-  randomList <- lapply(
-    1:sample(5:10, 1),
-    function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
-  )
-  obj <- GeometryCollection$new(geometries = randomList)
-  expect_is(obj, "GeometryCollection")
+# make GeometryCollection object without and with args
+objEmpty <- GeometryCollection$new()
+objRand <- do.call(GeometryCollection$new, args)
+
+test_that("Constructor works", {
+  expect_is(objEmpty, "GeometryCollection")
+  expect_is(objRand, "GeometryCollection")
 })
 
 test_that("toList works", {
+  expect_is(objEmpty$toList(), "list")
+  expect_is(objRand$toList(), "list")
+})
+
+test_that("fromList works", {
   obj <- GeometryCollection$new()
-  l <- obj$toList()
-  expect_is(l, "list")
+  obj$fromList(objRand$toList())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "GeometryCollection")
 })
 
 test_that("toJSONString works", {
+  expect_is(objEmpty$toJSONString(), "json")
+  expect_true(objEmpty$toJSONString() != "")
+  expect_is(objRand$toJSONString(), "json")
+  expect_true(objRand$toJSONString() != "")
+})
+
+test_that("fromJSONString works", {
   obj <- GeometryCollection$new()
-  s <- obj$toJSONString()
-  expect_is(s, "json")
-  expect_true(s != "")
+  obj$fromJSONString(objRand$toJSONString())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "GeometryCollection")
 })

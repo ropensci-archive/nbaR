@@ -5,224 +5,142 @@ set.seed(111)
 
 context("Testing class Specimen")
 
-test_that("Constructor works", {
-  obj <- Specimen$new()
-  expect_is(obj, "Specimen")
+# Make a list with random arguments for all fields in the class
+args <- list()
+args[["sourceSystem"]] <- SourceSystem$new()
+args[["sourceSystemId"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["recordURI"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["id"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["unitID"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["unitGUID"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["collectorsFieldNumber"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["assemblageID"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["sourceInstitutionID"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["sourceID"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+randomList <- lapply(
+  1:sample(5:10, 1),
+  function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
+)
+args[["previousSourceID"]] <- randomList
+args[["owner"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["licenseType"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["license"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["recordBasis"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["kindOfUnit"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["collectionType"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["sex"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["phaseOrStage"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["title"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["notes"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["preparationType"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["previousUnitsText"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["numberOfSpecimen"]] <- sample(0:10, 1)
+args[["acquiredFrom"]] <- Agent$new()
+args[["gatheringEvent"]] <- GatheringEvent$new()
+randomList <- lapply(1:sample(1:10, 1), function(x) SpecimenIdentification$new())
+args[["identifications"]] <- randomList
+randomList <- lapply(1:sample(1:10, 1), function(x) ServiceAccessPoint$new())
+args[["associatedMultiMediaUris"]] <- randomList
+randomList <- lapply(
+  1:sample(5:10, 1),
+  function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
+)
+args[["theme"]] <- randomList
 
-  # test constructor with random arguments
-  # test field sourceSystem, type SourceSystem
-  obj <- Specimen$new(sourceSystem = SourceSystem$new())
-  expect_is(obj, "Specimen")
-  # test field sourceSystemId, type character
-  obj <- Specimen$new(
-    sourceSystemId = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Specimen")
-  # test field recordURI, type character
-  obj <- Specimen$new(
-    recordURI = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Specimen")
-  # test field id, type character
-  obj <- Specimen$new(
-    id = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Specimen")
-  # test field unitID, type character
-  obj <- Specimen$new(
-    unitID = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Specimen")
-  # test field unitGUID, type character
-  obj <- Specimen$new(
-    unitGUID = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Specimen")
-  # test field collectorsFieldNumber, type character
-  obj <- Specimen$new(
-    collectorsFieldNumber = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Specimen")
-  # test field assemblageID, type character
-  obj <- Specimen$new(
-    assemblageID = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Specimen")
-  # test field sourceInstitutionID, type character
-  obj <- Specimen$new(
-    sourceInstitutionID = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Specimen")
-  # test field sourceID, type character
-  obj <- Specimen$new(
-    sourceID = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Specimen")
-  # test field previousSourceID, type list, datatype character
-  randomList <- lapply(
-    1:sample(5:10, 1),
-    function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
-  )
-  obj <- Specimen$new(previousSourceID = randomList)
-  expect_is(obj, "Specimen")
-  # test field owner, type character
-  obj <- Specimen$new(
-    owner = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Specimen")
-  # test field licenseType, type character
-  obj <- Specimen$new(
-    licenseType = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Specimen")
-  # test field license, type character
-  obj <- Specimen$new(
-    license = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Specimen")
-  # test field recordBasis, type character
-  obj <- Specimen$new(
-    recordBasis = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Specimen")
-  # test field kindOfUnit, type character
-  obj <- Specimen$new(
-    kindOfUnit = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Specimen")
-  # test field collectionType, type character
-  obj <- Specimen$new(
-    collectionType = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Specimen")
-  # test field sex, type character
-  obj <- Specimen$new(
-    sex = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Specimen")
-  # test field phaseOrStage, type character
-  obj <- Specimen$new(
-    phaseOrStage = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Specimen")
-  # test field title, type character
-  obj <- Specimen$new(
-    title = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Specimen")
-  # test field notes, type character
-  obj <- Specimen$new(
-    notes = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Specimen")
-  # test field preparationType, type character
-  obj <- Specimen$new(
-    preparationType = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Specimen")
-  # test field previousUnitsText, type character
-  obj <- Specimen$new(
-    previousUnitsText = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Specimen")
-  # test field numberOfSpecimen, type integer
-  obj <- Specimen$new(numberOfSpecimen = sample(0:10, 1))
-  expect_is(obj, "Specimen")
-  # test field acquiredFrom, type Agent
-  obj <- Specimen$new(acquiredFrom = Agent$new())
-  expect_is(obj, "Specimen")
-  # test field gatheringEvent, type GatheringEvent
-  obj <- Specimen$new(gatheringEvent = GatheringEvent$new())
-  expect_is(obj, "Specimen")
-  # test field identifications, type list, datatype SpecimenIdentification
-  lst <- lapply(1:sample(1:10, 1), function(x) SpecimenIdentification$new())
-  obj <- Specimen$new(identifications = lst)
-  expect_is(obj, "Specimen")
-  # test field associatedMultiMediaUris, type list, datatype ServiceAccessPoint
-  lst <- lapply(1:sample(1:10, 1), function(x) ServiceAccessPoint$new())
-  obj <- Specimen$new(associatedMultiMediaUris = lst)
-  expect_is(obj, "Specimen")
-  # test field theme, type list, datatype character
-  randomList <- lapply(
-    1:sample(5:10, 1),
-    function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
-  )
-  obj <- Specimen$new(theme = randomList)
-  expect_is(obj, "Specimen")
+# make Specimen object without and with args
+objEmpty <- Specimen$new()
+objRand <- do.call(Specimen$new, args)
+
+test_that("Constructor works", {
+  expect_is(objEmpty, "Specimen")
+  expect_is(objRand, "Specimen")
 })
 
 test_that("toList works", {
+  expect_is(objEmpty$toList(), "list")
+  expect_is(objRand$toList(), "list")
+})
+
+test_that("fromList works", {
   obj <- Specimen$new()
-  l <- obj$toList()
-  expect_is(l, "list")
+  obj$fromList(objRand$toList())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "Specimen")
 })
 
 test_that("toJSONString works", {
+  expect_is(objEmpty$toJSONString(), "json")
+  expect_true(objEmpty$toJSONString() != "")
+  expect_is(objRand$toJSONString(), "json")
+  expect_true(objRand$toJSONString() != "")
+})
+
+test_that("fromJSONString works", {
   obj <- Specimen$new()
-  s <- obj$toJSONString()
-  expect_is(s, "json")
-  expect_true(s != "")
+  obj$fromJSONString(objRand$toJSONString())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "Specimen")
 })

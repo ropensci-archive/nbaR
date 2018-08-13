@@ -5,41 +5,49 @@ set.seed(111)
 
 context("Testing class Expert")
 
-test_that("Constructor works", {
-  obj <- Expert$new()
-  expect_is(obj, "Expert")
+# Make a list with random arguments for all fields in the class
+args <- list()
+args[["agentText"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["fullName"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["organization"]] <- Organization$new()
 
-  # test constructor with random arguments
-  # test field agentText, type character
-  obj <- Expert$new(
-    agentText = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Expert")
-  # test field fullName, type character
-  obj <- Expert$new(
-    fullName = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Expert")
-  # test field organization, type Organization
-  obj <- Expert$new(organization = Organization$new())
-  expect_is(obj, "Expert")
+# make Expert object without and with args
+objEmpty <- Expert$new()
+objRand <- do.call(Expert$new, args)
+
+test_that("Constructor works", {
+  expect_is(objEmpty, "Expert")
+  expect_is(objRand, "Expert")
 })
 
 test_that("toList works", {
+  expect_is(objEmpty$toList(), "list")
+  expect_is(objRand$toList(), "list")
+})
+
+test_that("fromList works", {
   obj <- Expert$new()
-  l <- obj$toList()
-  expect_is(l, "list")
+  obj$fromList(objRand$toList())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "Expert")
 })
 
 test_that("toJSONString works", {
+  expect_is(objEmpty$toJSONString(), "json")
+  expect_true(objEmpty$toJSONString() != "")
+  expect_is(objRand$toJSONString(), "json")
+  expect_true(objRand$toJSONString() != "")
+})
+
+test_that("fromJSONString works", {
   obj <- Expert$new()
-  s <- obj$toJSONString()
-  expect_is(s, "json")
-  expect_true(s != "")
+  obj$fromJSONString(objRand$toJSONString())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "Expert")
 })

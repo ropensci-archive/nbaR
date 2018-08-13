@@ -5,46 +5,52 @@ set.seed(111)
 
 context("Testing class ServiceAccessPoint")
 
-test_that("Constructor works", {
-  obj <- ServiceAccessPoint$new()
-  expect_is(obj, "ServiceAccessPoint")
+# Make a list with random arguments for all fields in the class
+args <- list()
+args[["accessUri"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["format"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["variant"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
 
-  # test constructor with random arguments
-  # test field accessUri, type character
-  obj <- ServiceAccessPoint$new(
-    accessUri = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "ServiceAccessPoint")
-  # test field format, type character
-  obj <- ServiceAccessPoint$new(
-    format = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "ServiceAccessPoint")
-  # test field variant, type character
-  obj <- ServiceAccessPoint$new(
-    variant = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "ServiceAccessPoint")
+# make ServiceAccessPoint object without and with args
+objEmpty <- ServiceAccessPoint$new()
+objRand <- do.call(ServiceAccessPoint$new, args)
+
+test_that("Constructor works", {
+  expect_is(objEmpty, "ServiceAccessPoint")
+  expect_is(objRand, "ServiceAccessPoint")
 })
 
 test_that("toList works", {
+  expect_is(objEmpty$toList(), "list")
+  expect_is(objRand$toList(), "list")
+})
+
+test_that("fromList works", {
   obj <- ServiceAccessPoint$new()
-  l <- obj$toList()
-  expect_is(l, "list")
+  obj$fromList(objRand$toList())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "ServiceAccessPoint")
 })
 
 test_that("toJSONString works", {
+  expect_is(objEmpty$toJSONString(), "json")
+  expect_true(objEmpty$toJSONString() != "")
+  expect_is(objRand$toJSONString(), "json")
+  expect_true(objRand$toJSONString() != "")
+})
+
+test_that("fromJSONString works", {
   obj <- ServiceAccessPoint$new()
-  s <- obj$toJSONString()
-  expect_is(s, "json")
-  expect_true(s != "")
+  obj$fromJSONString(objRand$toJSONString())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "ServiceAccessPoint")
 })

@@ -5,114 +5,84 @@ set.seed(111)
 
 context("Testing class Taxon")
 
-test_that("Constructor works", {
-  obj <- Taxon$new()
-  expect_is(obj, "Taxon")
+# Make a list with random arguments for all fields in the class
+args <- list()
+args[["sourceSystem"]] <- SourceSystem$new()
+args[["sourceSystemId"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["recordURI"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["id"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["sourceSystemParentId"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["taxonRank"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["taxonRemarks"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["occurrenceStatusVerbatim"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["acceptedName"]] <- ScientificName$new()
+args[["defaultClassification"]] <- DefaultClassification$new()
+randomList <- lapply(1:sample(1:10, 1), function(x) Monomial$new())
+args[["systemClassification"]] <- randomList
+randomList <- lapply(1:sample(1:10, 1), function(x) ScientificName$new())
+args[["synonyms"]] <- randomList
+randomList <- lapply(1:sample(1:10, 1), function(x) VernacularName$new())
+args[["vernacularNames"]] <- randomList
+randomList <- lapply(1:sample(1:10, 1), function(x) TaxonDescription$new())
+args[["descriptions"]] <- randomList
+randomList <- lapply(1:sample(1:10, 1), function(x) Reference$new())
+args[["references"]] <- randomList
+randomList <- lapply(1:sample(1:10, 1), function(x) Expert$new())
+args[["experts"]] <- randomList
+args[["validName"]] <- ScientificName$new()
 
-  # test constructor with random arguments
-  # test field sourceSystem, type SourceSystem
-  obj <- Taxon$new(sourceSystem = SourceSystem$new())
-  expect_is(obj, "Taxon")
-  # test field sourceSystemId, type character
-  obj <- Taxon$new(
-    sourceSystemId = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Taxon")
-  # test field recordURI, type character
-  obj <- Taxon$new(
-    recordURI = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Taxon")
-  # test field id, type character
-  obj <- Taxon$new(
-    id = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Taxon")
-  # test field sourceSystemParentId, type character
-  obj <- Taxon$new(
-    sourceSystemParentId = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Taxon")
-  # test field taxonRank, type character
-  obj <- Taxon$new(
-    taxonRank = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Taxon")
-  # test field taxonRemarks, type character
-  obj <- Taxon$new(
-    taxonRemarks = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Taxon")
-  # test field occurrenceStatusVerbatim, type character
-  obj <- Taxon$new(
-    occurrenceStatusVerbatim = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Taxon")
-  # test field acceptedName, type ScientificName
-  obj <- Taxon$new(acceptedName = ScientificName$new())
-  expect_is(obj, "Taxon")
-  # test field defaultClassification, type DefaultClassification
-  obj <- Taxon$new(defaultClassification = DefaultClassification$new())
-  expect_is(obj, "Taxon")
-  # test field systemClassification, type list, datatype Monomial
-  lst <- lapply(1:sample(1:10, 1), function(x) Monomial$new())
-  obj <- Taxon$new(systemClassification = lst)
-  expect_is(obj, "Taxon")
-  # test field synonyms, type list, datatype ScientificName
-  lst <- lapply(1:sample(1:10, 1), function(x) ScientificName$new())
-  obj <- Taxon$new(synonyms = lst)
-  expect_is(obj, "Taxon")
-  # test field vernacularNames, type list, datatype VernacularName
-  lst <- lapply(1:sample(1:10, 1), function(x) VernacularName$new())
-  obj <- Taxon$new(vernacularNames = lst)
-  expect_is(obj, "Taxon")
-  # test field descriptions, type list, datatype TaxonDescription
-  lst <- lapply(1:sample(1:10, 1), function(x) TaxonDescription$new())
-  obj <- Taxon$new(descriptions = lst)
-  expect_is(obj, "Taxon")
-  # test field references, type list, datatype Reference
-  lst <- lapply(1:sample(1:10, 1), function(x) Reference$new())
-  obj <- Taxon$new(references = lst)
-  expect_is(obj, "Taxon")
-  # test field experts, type list, datatype Expert
-  lst <- lapply(1:sample(1:10, 1), function(x) Expert$new())
-  obj <- Taxon$new(experts = lst)
-  expect_is(obj, "Taxon")
-  # test field validName, type ScientificName
-  obj <- Taxon$new(validName = ScientificName$new())
-  expect_is(obj, "Taxon")
+# make Taxon object without and with args
+objEmpty <- Taxon$new()
+objRand <- do.call(Taxon$new, args)
+
+test_that("Constructor works", {
+  expect_is(objEmpty, "Taxon")
+  expect_is(objRand, "Taxon")
 })
 
 test_that("toList works", {
+  expect_is(objEmpty$toList(), "list")
+  expect_is(objRand$toList(), "list")
+})
+
+test_that("fromList works", {
   obj <- Taxon$new()
-  l <- obj$toList()
-  expect_is(l, "list")
+  obj$fromList(objRand$toList())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "Taxon")
 })
 
 test_that("toJSONString works", {
+  expect_is(objEmpty$toJSONString(), "json")
+  expect_true(objEmpty$toJSONString() != "")
+  expect_is(objRand$toJSONString(), "json")
+  expect_true(objRand$toJSONString() != "")
+})
+
+test_that("fromJSONString works", {
   obj <- Taxon$new()
-  s <- obj$toJSONString()
-  expect_is(s, "json")
-  expect_true(s != "")
+  obj$fromJSONString(objRand$toJSONString())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "Taxon")
 })

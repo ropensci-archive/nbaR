@@ -5,46 +5,52 @@ set.seed(111)
 
 context("Testing class VernacularName")
 
-test_that("Constructor works", {
-  obj <- VernacularName$new()
-  expect_is(obj, "VernacularName")
+# Make a list with random arguments for all fields in the class
+args <- list()
+args[["name"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["language"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+randomList <- lapply(1:sample(1:10, 1), function(x) Reference$new())
+args[["references"]] <- randomList
+randomList <- lapply(1:sample(1:10, 1), function(x) Expert$new())
+args[["experts"]] <- randomList
 
-  # test constructor with random arguments
-  # test field name, type character
-  obj <- VernacularName$new(
-    name = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "VernacularName")
-  # test field language, type character
-  obj <- VernacularName$new(
-    language = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "VernacularName")
-  # test field references, type list, datatype Reference
-  lst <- lapply(1:sample(1:10, 1), function(x) Reference$new())
-  obj <- VernacularName$new(references = lst)
-  expect_is(obj, "VernacularName")
-  # test field experts, type list, datatype Expert
-  lst <- lapply(1:sample(1:10, 1), function(x) Expert$new())
-  obj <- VernacularName$new(experts = lst)
-  expect_is(obj, "VernacularName")
+# make VernacularName object without and with args
+objEmpty <- VernacularName$new()
+objRand <- do.call(VernacularName$new, args)
+
+test_that("Constructor works", {
+  expect_is(objEmpty, "VernacularName")
+  expect_is(objRand, "VernacularName")
 })
 
 test_that("toList works", {
+  expect_is(objEmpty$toList(), "list")
+  expect_is(objRand$toList(), "list")
+})
+
+test_that("fromList works", {
   obj <- VernacularName$new()
-  l <- obj$toList()
-  expect_is(l, "list")
+  obj$fromList(objRand$toList())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "VernacularName")
 })
 
 test_that("toJSONString works", {
+  expect_is(objEmpty$toJSONString(), "json")
+  expect_true(objEmpty$toJSONString() != "")
+  expect_is(objRand$toJSONString(), "json")
+  expect_true(objRand$toJSONString() != "")
+})
+
+test_that("fromJSONString works", {
   obj <- VernacularName$new()
-  s <- obj$toJSONString()
-  expect_is(s, "json")
-  expect_true(s != "")
+  obj$fromJSONString(objRand$toJSONString())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "VernacularName")
 })

@@ -5,30 +5,44 @@ set.seed(111)
 
 context("Testing class Crs")
 
-test_that("Constructor works", {
-  obj <- Crs$new()
-  expect_is(obj, "Crs")
+# Make a list with random arguments for all fields in the class
+args <- list()
+args[["type"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
 
-  # test constructor with random arguments
-  # test field type, type character
-  obj <- Crs$new(
-    type = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Crs")
+# make Crs object without and with args
+objEmpty <- Crs$new()
+objRand <- do.call(Crs$new, args)
+
+test_that("Constructor works", {
+  expect_is(objEmpty, "Crs")
+  expect_is(objRand, "Crs")
 })
 
 test_that("toList works", {
+  expect_is(objEmpty$toList(), "list")
+  expect_is(objRand$toList(), "list")
+})
+
+test_that("fromList works", {
   obj <- Crs$new()
-  l <- obj$toList()
-  expect_is(l, "list")
+  obj$fromList(objRand$toList())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "Crs")
 })
 
 test_that("toJSONString works", {
+  expect_is(objEmpty$toJSONString(), "json")
+  expect_true(objEmpty$toJSONString() != "")
+  expect_is(objRand$toJSONString(), "json")
+  expect_true(objRand$toJSONString() != "")
+})
+
+test_that("fromJSONString works", {
   obj <- Crs$new()
-  s <- obj$toJSONString()
-  expect_is(s, "json")
-  expect_true(s != "")
+  obj$fromJSONString(objRand$toJSONString())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "Crs")
 })

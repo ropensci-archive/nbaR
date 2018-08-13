@@ -5,134 +5,96 @@ set.seed(111)
 
 context("Testing class BioStratigraphy")
 
-test_that("Constructor works", {
-  obj <- BioStratigraphy$new()
-  expect_is(obj, "BioStratigraphy")
+# Make a list with random arguments for all fields in the class
+args <- list()
+args[["youngBioDatingQualifier"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["youngBioName"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["youngFossilZone"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["youngFossilSubZone"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["youngBioCertainty"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["youngStratType"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["bioDatingQualifier"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["rangePosition"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["oldBioName"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["bioIdentifier"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["oldFossilzone"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["oldFossilSubzone"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["oldBioCertainty"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["oldBioStratType"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
 
-  # test constructor with random arguments
-  # test field youngBioDatingQualifier, type character
-  obj <- BioStratigraphy$new(
-    youngBioDatingQualifier = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "BioStratigraphy")
-  # test field youngBioName, type character
-  obj <- BioStratigraphy$new(
-    youngBioName = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "BioStratigraphy")
-  # test field youngFossilZone, type character
-  obj <- BioStratigraphy$new(
-    youngFossilZone = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "BioStratigraphy")
-  # test field youngFossilSubZone, type character
-  obj <- BioStratigraphy$new(
-    youngFossilSubZone = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "BioStratigraphy")
-  # test field youngBioCertainty, type character
-  obj <- BioStratigraphy$new(
-    youngBioCertainty = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "BioStratigraphy")
-  # test field youngStratType, type character
-  obj <- BioStratigraphy$new(
-    youngStratType = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "BioStratigraphy")
-  # test field bioDatingQualifier, type character
-  obj <- BioStratigraphy$new(
-    bioDatingQualifier = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "BioStratigraphy")
-  # test field rangePosition, type character
-  obj <- BioStratigraphy$new(
-    rangePosition = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "BioStratigraphy")
-  # test field oldBioName, type character
-  obj <- BioStratigraphy$new(
-    oldBioName = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "BioStratigraphy")
-  # test field bioIdentifier, type character
-  obj <- BioStratigraphy$new(
-    bioIdentifier = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "BioStratigraphy")
-  # test field oldFossilzone, type character
-  obj <- BioStratigraphy$new(
-    oldFossilzone = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "BioStratigraphy")
-  # test field oldFossilSubzone, type character
-  obj <- BioStratigraphy$new(
-    oldFossilSubzone = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "BioStratigraphy")
-  # test field oldBioCertainty, type character
-  obj <- BioStratigraphy$new(
-    oldBioCertainty = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "BioStratigraphy")
-  # test field oldBioStratType, type character
-  obj <- BioStratigraphy$new(
-    oldBioStratType = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "BioStratigraphy")
+# make BioStratigraphy object without and with args
+objEmpty <- BioStratigraphy$new()
+objRand <- do.call(BioStratigraphy$new, args)
+
+test_that("Constructor works", {
+  expect_is(objEmpty, "BioStratigraphy")
+  expect_is(objRand, "BioStratigraphy")
 })
 
 test_that("toList works", {
+  expect_is(objEmpty$toList(), "list")
+  expect_is(objRand$toList(), "list")
+})
+
+test_that("fromList works", {
   obj <- BioStratigraphy$new()
-  l <- obj$toList()
-  expect_is(l, "list")
+  obj$fromList(objRand$toList())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "BioStratigraphy")
 })
 
 test_that("toJSONString works", {
+  expect_is(objEmpty$toJSONString(), "json")
+  expect_true(objEmpty$toJSONString() != "")
+  expect_is(objRand$toJSONString(), "json")
+  expect_true(objRand$toJSONString() != "")
+})
+
+test_that("fromJSONString works", {
   obj <- BioStratigraphy$new()
-  s <- obj$toJSONString()
-  expect_is(s, "json")
-  expect_true(s != "")
+  obj$fromJSONString(objRand$toJSONString())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "BioStratigraphy")
 })

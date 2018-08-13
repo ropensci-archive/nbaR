@@ -5,38 +5,48 @@ set.seed(111)
 
 context("Testing class Monomial")
 
-test_that("Constructor works", {
-  obj <- Monomial$new()
-  expect_is(obj, "Monomial")
+# Make a list with random arguments for all fields in the class
+args <- list()
+args[["rank"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["name"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
 
-  # test constructor with random arguments
-  # test field rank, type character
-  obj <- Monomial$new(
-    rank = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Monomial")
-  # test field name, type character
-  obj <- Monomial$new(
-    name = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Monomial")
+# make Monomial object without and with args
+objEmpty <- Monomial$new()
+objRand <- do.call(Monomial$new, args)
+
+test_that("Constructor works", {
+  expect_is(objEmpty, "Monomial")
+  expect_is(objRand, "Monomial")
 })
 
 test_that("toList works", {
+  expect_is(objEmpty$toList(), "list")
+  expect_is(objRand$toList(), "list")
+})
+
+test_that("fromList works", {
   obj <- Monomial$new()
-  l <- obj$toList()
-  expect_is(l, "list")
+  obj$fromList(objRand$toList())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "Monomial")
 })
 
 test_that("toJSONString works", {
+  expect_is(objEmpty$toJSONString(), "json")
+  expect_true(objEmpty$toJSONString() != "")
+  expect_is(objRand$toJSONString(), "json")
+  expect_true(objRand$toJSONString() != "")
+})
+
+test_that("fromJSONString works", {
   obj <- Monomial$new()
-  s <- obj$toJSONString()
-  expect_is(s, "json")
-  expect_true(s != "")
+  obj$fromJSONString(objRand$toJSONString())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "Monomial")
 })

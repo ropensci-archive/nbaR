@@ -5,72 +5,64 @@ set.seed(111)
 
 context("Testing class GroupByScientificNameQuerySpec")
 
-test_that("Constructor works", {
-  obj <- GroupByScientificNameQuerySpec$new()
-  expect_is(obj, "GroupByScientificNameQuerySpec")
+# Make a list with random arguments for all fields in the class
+args <- list()
+randomList <- lapply(
+  1:sample(5:10, 1),
+  function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
+)
+args[["fields"]] <- randomList
+randomList <- lapply(1:sample(1:10, 1), function(x) QueryCondition$new())
+args[["conditions"]] <- randomList
+args[["logicalOperator"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+randomList <- lapply(1:sample(1:10, 1), function(x) SortField$new())
+args[["sortFields"]] <- randomList
+args[["from"]] <- sample(0:10, 1)
+args[["size"]] <- sample(0:10, 1)
+args[["groupSort"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["groupFilter"]] <- Filter$new()
+args[["specimensFrom"]] <- sample(0:10, 1)
+args[["specimensSize"]] <- sample(0:10, 1)
+randomList <- lapply(1:sample(1:10, 1), function(x) SortField$new())
+args[["specimensSortFields"]] <- randomList
 
-  # test constructor with random arguments
-  # test field fields, type list, datatype character
-  randomList <- lapply(
-    1:sample(5:10, 1),
-    function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
-  )
-  obj <- GroupByScientificNameQuerySpec$new(fields = randomList)
-  expect_is(obj, "GroupByScientificNameQuerySpec")
-  # test field conditions, type list, datatype QueryCondition
-  lst <- lapply(1:sample(1:10, 1), function(x) QueryCondition$new())
-  obj <- GroupByScientificNameQuerySpec$new(conditions = lst)
-  expect_is(obj, "GroupByScientificNameQuerySpec")
-  # test field logicalOperator, type character
-  obj <- GroupByScientificNameQuerySpec$new(
-    logicalOperator = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "GroupByScientificNameQuerySpec")
-  # test field sortFields, type list, datatype SortField
-  lst <- lapply(1:sample(1:10, 1), function(x) SortField$new())
-  obj <- GroupByScientificNameQuerySpec$new(sortFields = lst)
-  expect_is(obj, "GroupByScientificNameQuerySpec")
-  # test field from, type integer
-  obj <- GroupByScientificNameQuerySpec$new(from = sample(0:10, 1))
-  expect_is(obj, "GroupByScientificNameQuerySpec")
-  # test field size, type integer
-  obj <- GroupByScientificNameQuerySpec$new(size = sample(0:10, 1))
-  expect_is(obj, "GroupByScientificNameQuerySpec")
-  # test field groupSort, type character
-  obj <- GroupByScientificNameQuerySpec$new(
-    groupSort = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "GroupByScientificNameQuerySpec")
-  # test field groupFilter, type Filter
-  obj <- GroupByScientificNameQuerySpec$new(groupFilter = Filter$new())
-  expect_is(obj, "GroupByScientificNameQuerySpec")
-  # test field specimensFrom, type integer
-  obj <- GroupByScientificNameQuerySpec$new(specimensFrom = sample(0:10, 1))
-  expect_is(obj, "GroupByScientificNameQuerySpec")
-  # test field specimensSize, type integer
-  obj <- GroupByScientificNameQuerySpec$new(specimensSize = sample(0:10, 1))
-  expect_is(obj, "GroupByScientificNameQuerySpec")
-  # test field specimensSortFields, type list, datatype SortField
-  lst <- lapply(1:sample(1:10, 1), function(x) SortField$new())
-  obj <- GroupByScientificNameQuerySpec$new(specimensSortFields = lst)
-  expect_is(obj, "GroupByScientificNameQuerySpec")
+# make GroupByScientificNameQuerySpec object without and with args
+objEmpty <- GroupByScientificNameQuerySpec$new()
+objRand <- do.call(GroupByScientificNameQuerySpec$new, args)
+
+test_that("Constructor works", {
+  expect_is(objEmpty, "GroupByScientificNameQuerySpec")
+  expect_is(objRand, "GroupByScientificNameQuerySpec")
 })
 
 test_that("toList works", {
+  expect_is(objEmpty$toList(), "list")
+  expect_is(objRand$toList(), "list")
+})
+
+test_that("fromList works", {
   obj <- GroupByScientificNameQuerySpec$new()
-  l <- obj$toList()
-  expect_is(l, "list")
+  obj$fromList(objRand$toList())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "GroupByScientificNameQuerySpec")
 })
 
 test_that("toJSONString works", {
+  expect_is(objEmpty$toJSONString(), "json")
+  expect_true(objEmpty$toJSONString() != "")
+  expect_is(objRand$toJSONString(), "json")
+  expect_true(objRand$toJSONString() != "")
+})
+
+test_that("fromJSONString works", {
   obj <- GroupByScientificNameQuerySpec$new()
-  s <- obj$toJSONString()
-  expect_is(s, "json")
-  expect_true(s != "")
+  obj$fromJSONString(objRand$toJSONString())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "GroupByScientificNameQuerySpec")
 })

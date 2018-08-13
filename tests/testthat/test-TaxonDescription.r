@@ -5,46 +5,52 @@ set.seed(111)
 
 context("Testing class TaxonDescription")
 
-test_that("Constructor works", {
-  obj <- TaxonDescription$new()
-  expect_is(obj, "TaxonDescription")
+# Make a list with random arguments for all fields in the class
+args <- list()
+args[["category"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["description"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["language"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
 
-  # test constructor with random arguments
-  # test field category, type character
-  obj <- TaxonDescription$new(
-    category = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "TaxonDescription")
-  # test field description, type character
-  obj <- TaxonDescription$new(
-    description = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "TaxonDescription")
-  # test field language, type character
-  obj <- TaxonDescription$new(
-    language = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "TaxonDescription")
+# make TaxonDescription object without and with args
+objEmpty <- TaxonDescription$new()
+objRand <- do.call(TaxonDescription$new, args)
+
+test_that("Constructor works", {
+  expect_is(objEmpty, "TaxonDescription")
+  expect_is(objRand, "TaxonDescription")
 })
 
 test_that("toList works", {
+  expect_is(objEmpty$toList(), "list")
+  expect_is(objRand$toList(), "list")
+})
+
+test_that("fromList works", {
   obj <- TaxonDescription$new()
-  l <- obj$toList()
-  expect_is(l, "list")
+  obj$fromList(objRand$toList())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "TaxonDescription")
 })
 
 test_that("toJSONString works", {
+  expect_is(objEmpty$toJSONString(), "json")
+  expect_true(objEmpty$toJSONString() != "")
+  expect_is(objRand$toJSONString(), "json")
+  expect_true(objRand$toJSONString() != "")
+})
+
+test_that("fromJSONString works", {
   obj <- TaxonDescription$new()
-  s <- obj$toJSONString()
-  expect_is(s, "json")
-  expect_true(s != "")
+  obj$fromJSONString(objRand$toJSONString())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "TaxonDescription")
 })

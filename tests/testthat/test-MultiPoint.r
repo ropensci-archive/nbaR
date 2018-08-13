@@ -5,36 +5,48 @@ set.seed(111)
 
 context("Testing class MultiPoint")
 
-test_that("Constructor works", {
-  obj <- MultiPoint$new()
-  expect_is(obj, "MultiPoint")
+# Make a list with random arguments for all fields in the class
+args <- list()
+args[["crs"]] <- Crs$new()
+randomList <- lapply(
+  1:sample(5:10, 1),
+  function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
+)
+args[["bbox"]] <- randomList
+randomList <- lapply(1:sample(1:10, 1), function(x) LngLatAlt$new())
+args[["coordinates"]] <- randomList
 
-  # test constructor with random arguments
-  # test field crs, type Crs
-  obj <- MultiPoint$new(crs = Crs$new())
-  expect_is(obj, "MultiPoint")
-  # test field bbox, type list, datatype numeric
-  randomList <- lapply(
-    1:sample(5:10, 1),
-    function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
-  )
-  obj <- MultiPoint$new(bbox = randomList)
-  expect_is(obj, "MultiPoint")
-  # test field coordinates, type list, datatype LngLatAlt
-  lst <- lapply(1:sample(1:10, 1), function(x) LngLatAlt$new())
-  obj <- MultiPoint$new(coordinates = lst)
-  expect_is(obj, "MultiPoint")
+# make MultiPoint object without and with args
+objEmpty <- MultiPoint$new()
+objRand <- do.call(MultiPoint$new, args)
+
+test_that("Constructor works", {
+  expect_is(objEmpty, "MultiPoint")
+  expect_is(objRand, "MultiPoint")
 })
 
 test_that("toList works", {
+  expect_is(objEmpty$toList(), "list")
+  expect_is(objRand$toList(), "list")
+})
+
+test_that("fromList works", {
   obj <- MultiPoint$new()
-  l <- obj$toList()
-  expect_is(l, "list")
+  obj$fromList(objRand$toList())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "MultiPoint")
 })
 
 test_that("toJSONString works", {
+  expect_is(objEmpty$toJSONString(), "json")
+  expect_true(objEmpty$toJSONString() != "")
+  expect_is(objRand$toJSONString(), "json")
+  expect_true(objRand$toJSONString() != "")
+})
+
+test_that("fromJSONString works", {
   obj <- MultiPoint$new()
-  s <- obj$toJSONString()
-  expect_is(s, "json")
-  expect_true(s != "")
+  obj$fromJSONString(objRand$toJSONString())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "MultiPoint")
 })

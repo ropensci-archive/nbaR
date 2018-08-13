@@ -5,78 +5,68 @@ set.seed(111)
 
 context("Testing class SummaryScientificName")
 
-test_that("Constructor works", {
-  obj <- SummaryScientificName$new()
-  expect_is(obj, "SummaryScientificName")
+# Make a list with random arguments for all fields in the class
+args <- list()
+args[["fullScientificName"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["taxonomicStatus"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["genusOrMonomial"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["subgenus"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["specificEpithet"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["infraspecificEpithet"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["authorshipVerbatim"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
 
-  # test constructor with random arguments
-  # test field fullScientificName, type character
-  obj <- SummaryScientificName$new(
-    fullScientificName = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "SummaryScientificName")
-  # test field taxonomicStatus, type character
-  obj <- SummaryScientificName$new(
-    taxonomicStatus = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "SummaryScientificName")
-  # test field genusOrMonomial, type character
-  obj <- SummaryScientificName$new(
-    genusOrMonomial = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "SummaryScientificName")
-  # test field subgenus, type character
-  obj <- SummaryScientificName$new(
-    subgenus = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "SummaryScientificName")
-  # test field specificEpithet, type character
-  obj <- SummaryScientificName$new(
-    specificEpithet = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "SummaryScientificName")
-  # test field infraspecificEpithet, type character
-  obj <- SummaryScientificName$new(
-    infraspecificEpithet = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "SummaryScientificName")
-  # test field authorshipVerbatim, type character
-  obj <- SummaryScientificName$new(
-    authorshipVerbatim = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "SummaryScientificName")
+# make SummaryScientificName object without and with args
+objEmpty <- SummaryScientificName$new()
+objRand <- do.call(SummaryScientificName$new, args)
+
+test_that("Constructor works", {
+  expect_is(objEmpty, "SummaryScientificName")
+  expect_is(objRand, "SummaryScientificName")
 })
 
 test_that("toList works", {
+  expect_is(objEmpty$toList(), "list")
+  expect_is(objRand$toList(), "list")
+})
+
+test_that("fromList works", {
   obj <- SummaryScientificName$new()
-  l <- obj$toList()
-  expect_is(l, "list")
+  obj$fromList(objRand$toList())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "SummaryScientificName")
 })
 
 test_that("toJSONString works", {
+  expect_is(objEmpty$toJSONString(), "json")
+  expect_true(objEmpty$toJSONString() != "")
+  expect_is(objRand$toJSONString(), "json")
+  expect_true(objRand$toJSONString() != "")
+})
+
+test_that("fromJSONString works", {
   obj <- SummaryScientificName$new()
-  s <- obj$toJSONString()
-  expect_is(s, "json")
-  expect_true(s != "")
+  obj$fromJSONString(objRand$toJSONString())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "SummaryScientificName")
 })

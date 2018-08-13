@@ -5,38 +5,48 @@ set.seed(111)
 
 context("Testing class LngLatAlt")
 
-test_that("Constructor works", {
-  obj <- LngLatAlt$new()
-  expect_is(obj, "LngLatAlt")
+# Make a list with random arguments for all fields in the class
+args <- list()
+args[["longitude"]] <- runif(1)
+args[["latitude"]] <- runif(1)
+args[["altitude"]] <- runif(1)
+randomList <- lapply(
+  1:sample(5:10, 1),
+  function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
+)
+args[["additionalElements"]] <- randomList
 
-  # test constructor with random arguments
-  # test field longitude, type numeric
-  obj <- LngLatAlt$new(longitude = runif(1))
-  expect_is(obj, "LngLatAlt")
-  # test field latitude, type numeric
-  obj <- LngLatAlt$new(latitude = runif(1))
-  expect_is(obj, "LngLatAlt")
-  # test field altitude, type numeric
-  obj <- LngLatAlt$new(altitude = runif(1))
-  expect_is(obj, "LngLatAlt")
-  # test field additionalElements, type list, datatype numeric
-  randomList <- lapply(
-    1:sample(5:10, 1),
-    function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
-  )
-  obj <- LngLatAlt$new(additionalElements = randomList)
-  expect_is(obj, "LngLatAlt")
+# make LngLatAlt object without and with args
+objEmpty <- LngLatAlt$new()
+objRand <- do.call(LngLatAlt$new, args)
+
+test_that("Constructor works", {
+  expect_is(objEmpty, "LngLatAlt")
+  expect_is(objRand, "LngLatAlt")
 })
 
 test_that("toList works", {
+  expect_is(objEmpty$toList(), "list")
+  expect_is(objRand$toList(), "list")
+})
+
+test_that("fromList works", {
   obj <- LngLatAlt$new()
-  l <- obj$toList()
-  expect_is(l, "list")
+  obj$fromList(objRand$toList())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "LngLatAlt")
 })
 
 test_that("toJSONString works", {
+  expect_is(objEmpty$toJSONString(), "json")
+  expect_true(objEmpty$toJSONString() != "")
+  expect_is(objRand$toJSONString(), "json")
+  expect_true(objRand$toJSONString() != "")
+})
+
+test_that("fromJSONString works", {
   obj <- LngLatAlt$new()
-  s <- obj$toJSONString()
-  expect_is(s, "json")
-  expect_true(s != "")
+  obj$fromJSONString(objRand$toJSONString())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "LngLatAlt")
 })

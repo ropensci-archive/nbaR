@@ -5,36 +5,48 @@ set.seed(111)
 
 context("Testing class FeatureCollection")
 
-test_that("Constructor works", {
-  obj <- FeatureCollection$new()
-  expect_is(obj, "FeatureCollection")
+# Make a list with random arguments for all fields in the class
+args <- list()
+args[["crs"]] <- Crs$new()
+randomList <- lapply(
+  1:sample(5:10, 1),
+  function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
+)
+args[["bbox"]] <- randomList
+randomList <- lapply(1:sample(1:10, 1), function(x) Feature$new())
+args[["features"]] <- randomList
 
-  # test constructor with random arguments
-  # test field crs, type Crs
-  obj <- FeatureCollection$new(crs = Crs$new())
-  expect_is(obj, "FeatureCollection")
-  # test field bbox, type list, datatype numeric
-  randomList <- lapply(
-    1:sample(5:10, 1),
-    function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
-  )
-  obj <- FeatureCollection$new(bbox = randomList)
-  expect_is(obj, "FeatureCollection")
-  # test field features, type list, datatype Feature
-  lst <- lapply(1:sample(1:10, 1), function(x) Feature$new())
-  obj <- FeatureCollection$new(features = lst)
-  expect_is(obj, "FeatureCollection")
+# make FeatureCollection object without and with args
+objEmpty <- FeatureCollection$new()
+objRand <- do.call(FeatureCollection$new, args)
+
+test_that("Constructor works", {
+  expect_is(objEmpty, "FeatureCollection")
+  expect_is(objRand, "FeatureCollection")
 })
 
 test_that("toList works", {
+  expect_is(objEmpty$toList(), "list")
+  expect_is(objRand$toList(), "list")
+})
+
+test_that("fromList works", {
   obj <- FeatureCollection$new()
-  l <- obj$toList()
-  expect_is(l, "list")
+  obj$fromList(objRand$toList())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "FeatureCollection")
 })
 
 test_that("toJSONString works", {
+  expect_is(objEmpty$toJSONString(), "json")
+  expect_true(objEmpty$toJSONString() != "")
+  expect_is(objRand$toJSONString(), "json")
+  expect_true(objRand$toJSONString() != "")
+})
+
+test_that("fromJSONString works", {
   obj <- FeatureCollection$new()
-  s <- obj$toJSONString()
-  expect_is(s, "json")
-  expect_true(s != "")
+  obj$fromJSONString(objRand$toJSONString())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "FeatureCollection")
 })

@@ -5,56 +5,58 @@ set.seed(111)
 
 context("Testing class Reference")
 
-test_that("Constructor works", {
-  obj <- Reference$new()
-  expect_is(obj, "Reference")
+# Make a list with random arguments for all fields in the class
+args <- list()
+args[["titleCitation"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["citationDetail"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["uri"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["author"]] <- Person$new()
+randomDate <- as.character(sample(seq(as.Date("1600/01/01"),
+  as.Date("2018/06/04"),
+  by = "day"
+), 1))
+args[["publicationDate"]] <- randomDate
 
-  # test constructor with random arguments
-  # test field titleCitation, type character
-  obj <- Reference$new(
-    titleCitation = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Reference")
-  # test field citationDetail, type character
-  obj <- Reference$new(
-    citationDetail = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Reference")
-  # test field uri, type character
-  obj <- Reference$new(
-    uri = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "Reference")
-  # test field author, type Person
-  obj <- Reference$new(author = Person$new())
-  expect_is(obj, "Reference")
-  # test field publicationDate, type character
-  randomDate <- as.character(sample(seq(as.Date("1600/01/01"),
-    as.Date("2018/06/04"),
-    by = "day"
-  ), 1))
-  obj <- Reference$new(publicationDate = randomDate)
-  expect_is(obj, "Reference")
+# make Reference object without and with args
+objEmpty <- Reference$new()
+objRand <- do.call(Reference$new, args)
+
+test_that("Constructor works", {
+  expect_is(objEmpty, "Reference")
+  expect_is(objRand, "Reference")
 })
 
 test_that("toList works", {
+  expect_is(objEmpty$toList(), "list")
+  expect_is(objRand$toList(), "list")
+})
+
+test_that("fromList works", {
   obj <- Reference$new()
-  l <- obj$toList()
-  expect_is(l, "list")
+  obj$fromList(objRand$toList())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "Reference")
 })
 
 test_that("toJSONString works", {
+  expect_is(objEmpty$toJSONString(), "json")
+  expect_true(objEmpty$toJSONString() != "")
+  expect_is(objRand$toJSONString(), "json")
+  expect_true(objRand$toJSONString() != "")
+})
+
+test_that("fromJSONString works", {
   obj <- Reference$new()
-  s <- obj$toJSONString()
-  expect_is(s, "json")
-  expect_true(s != "")
+  obj$fromJSONString(objRand$toJSONString())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "Reference")
 })

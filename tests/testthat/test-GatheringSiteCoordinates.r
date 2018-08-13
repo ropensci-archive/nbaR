@@ -5,61 +5,57 @@ set.seed(111)
 
 context("Testing class GatheringSiteCoordinates")
 
-test_that("Constructor works", {
-  obj <- GatheringSiteCoordinates$new()
-  expect_is(obj, "GatheringSiteCoordinates")
+# Make a list with random arguments for all fields in the class
+args <- list()
+args[["longitudeDecimal"]] <- runif(1)
+args[["latitudeDecimal"]] <- runif(1)
+args[["gridCellSystem"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["gridLatitudeDecimal"]] <- runif(1)
+args[["gridLongitudeDecimal"]] <- runif(1)
+args[["gridCellCode"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["gridQualifier"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["geoShape"]] <- Point$new()
 
-  # test constructor with random arguments
-  # test field longitudeDecimal, type numeric
-  obj <- GatheringSiteCoordinates$new(longitudeDecimal = runif(1))
-  expect_is(obj, "GatheringSiteCoordinates")
-  # test field latitudeDecimal, type numeric
-  obj <- GatheringSiteCoordinates$new(latitudeDecimal = runif(1))
-  expect_is(obj, "GatheringSiteCoordinates")
-  # test field gridCellSystem, type character
-  obj <- GatheringSiteCoordinates$new(
-    gridCellSystem = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "GatheringSiteCoordinates")
-  # test field gridLatitudeDecimal, type numeric
-  obj <- GatheringSiteCoordinates$new(gridLatitudeDecimal = runif(1))
-  expect_is(obj, "GatheringSiteCoordinates")
-  # test field gridLongitudeDecimal, type numeric
-  obj <- GatheringSiteCoordinates$new(gridLongitudeDecimal = runif(1))
-  expect_is(obj, "GatheringSiteCoordinates")
-  # test field gridCellCode, type character
-  obj <- GatheringSiteCoordinates$new(
-    gridCellCode = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "GatheringSiteCoordinates")
-  # test field gridQualifier, type character
-  obj <- GatheringSiteCoordinates$new(
-    gridQualifier = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "GatheringSiteCoordinates")
-  # test field geoShape, type Point
-  obj <- GatheringSiteCoordinates$new(geoShape = Point$new())
-  expect_is(obj, "GatheringSiteCoordinates")
+# make GatheringSiteCoordinates object without and with args
+objEmpty <- GatheringSiteCoordinates$new()
+objRand <- do.call(GatheringSiteCoordinates$new, args)
+
+test_that("Constructor works", {
+  expect_is(objEmpty, "GatheringSiteCoordinates")
+  expect_is(objRand, "GatheringSiteCoordinates")
 })
 
 test_that("toList works", {
+  expect_is(objEmpty$toList(), "list")
+  expect_is(objRand$toList(), "list")
+})
+
+test_that("fromList works", {
   obj <- GatheringSiteCoordinates$new()
-  l <- obj$toList()
-  expect_is(l, "list")
+  obj$fromList(objRand$toList())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "GatheringSiteCoordinates")
 })
 
 test_that("toJSONString works", {
+  expect_is(objEmpty$toJSONString(), "json")
+  expect_true(objEmpty$toJSONString() != "")
+  expect_is(objRand$toJSONString(), "json")
+  expect_true(objRand$toJSONString() != "")
+})
+
+test_that("fromJSONString works", {
   obj <- GatheringSiteCoordinates$new()
-  s <- obj$toJSONString()
-  expect_is(s, "json")
-  expect_true(s != "")
+  obj$fromJSONString(objRand$toJSONString())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "GatheringSiteCoordinates")
 })

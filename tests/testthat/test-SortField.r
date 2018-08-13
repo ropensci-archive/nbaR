@@ -5,30 +5,44 @@ set.seed(111)
 
 context("Testing class SortField")
 
-test_that("Constructor works", {
-  obj <- SortField$new()
-  expect_is(obj, "SortField")
+# Make a list with random arguments for all fields in the class
+args <- list()
+args[["sortOrder"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
 
-  # test constructor with random arguments
-  # test field sortOrder, type character
-  obj <- SortField$new(
-    sortOrder = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "SortField")
+# make SortField object without and with args
+objEmpty <- SortField$new()
+objRand <- do.call(SortField$new, args)
+
+test_that("Constructor works", {
+  expect_is(objEmpty, "SortField")
+  expect_is(objRand, "SortField")
 })
 
 test_that("toList works", {
+  expect_is(objEmpty$toList(), "list")
+  expect_is(objRand$toList(), "list")
+})
+
+test_that("fromList works", {
   obj <- SortField$new()
-  l <- obj$toList()
-  expect_is(l, "list")
+  obj$fromList(objRand$toList())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "SortField")
 })
 
 test_that("toJSONString works", {
+  expect_is(objEmpty$toJSONString(), "json")
+  expect_true(objEmpty$toJSONString() != "")
+  expect_is(objRand$toJSONString(), "json")
+  expect_true(objRand$toJSONString() != "")
+})
+
+test_that("fromJSONString works", {
   obj <- SortField$new()
-  s <- obj$toJSONString()
-  expect_is(s, "json")
-  expect_true(s != "")
+  obj$fromJSONString(objRand$toJSONString())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "SortField")
 })

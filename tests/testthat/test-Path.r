@@ -5,22 +5,40 @@ set.seed(111)
 
 context("Testing class Path")
 
-test_that("Constructor works", {
-  obj <- Path$new()
-  expect_is(obj, "Path")
+# Make a list with random arguments for all fields in the class
+args <- list()
 
-  # test constructor with random arguments
+# make Path object without and with args
+objEmpty <- Path$new()
+objRand <- do.call(Path$new, args)
+
+test_that("Constructor works", {
+  expect_is(objEmpty, "Path")
+  expect_is(objRand, "Path")
 })
 
 test_that("toList works", {
+  expect_is(objEmpty$toList(), "list")
+  expect_is(objRand$toList(), "list")
+})
+
+test_that("fromList works", {
   obj <- Path$new()
-  l <- obj$toList()
-  expect_is(l, "list")
+  obj$fromList(objRand$toList())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "Path")
 })
 
 test_that("toJSONString works", {
+  expect_is(objEmpty$toJSONString(), "json")
+  expect_true(objEmpty$toJSONString() != "")
+  expect_is(objRand$toJSONString(), "json")
+  expect_true(objRand$toJSONString() != "")
+})
+
+test_that("fromJSONString works", {
   obj <- Path$new()
-  s <- obj$toJSONString()
-  expect_is(s, "json")
-  expect_true(s != "")
+  obj$fromJSONString(objRand$toJSONString())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "Path")
 })

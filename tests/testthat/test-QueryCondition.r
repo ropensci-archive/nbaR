@@ -5,49 +5,53 @@ set.seed(111)
 
 context("Testing class QueryCondition")
 
-test_that("Constructor works", {
-  obj <- QueryCondition$new()
-  expect_is(obj, "QueryCondition")
+# Make a list with random arguments for all fields in the class
+args <- list()
+args[["not"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["operator"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+randomList <- lapply(1:sample(1:10, 1), function(x) QueryCondition$new())
+args[["and"]] <- randomList
+randomList <- lapply(1:sample(1:10, 1), function(x) QueryCondition$new())
+args[["or"]] <- randomList
+args[["boost"]] <- runif(1)
 
-  # test constructor with random arguments
-  # test field not, type character
-  obj <- QueryCondition$new(
-    not = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "QueryCondition")
-  # test field operator, type character
-  obj <- QueryCondition$new(
-    operator = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "QueryCondition")
-  # test field and, type list, datatype QueryCondition
-  lst <- lapply(1:sample(1:10, 1), function(x) QueryCondition$new())
-  obj <- QueryCondition$new(and = lst)
-  expect_is(obj, "QueryCondition")
-  # test field or, type list, datatype QueryCondition
-  lst <- lapply(1:sample(1:10, 1), function(x) QueryCondition$new())
-  obj <- QueryCondition$new(or = lst)
-  expect_is(obj, "QueryCondition")
-  # test field boost, type numeric
-  obj <- QueryCondition$new(boost = runif(1))
-  expect_is(obj, "QueryCondition")
+# make QueryCondition object without and with args
+objEmpty <- QueryCondition$new()
+objRand <- do.call(QueryCondition$new, args)
+
+test_that("Constructor works", {
+  expect_is(objEmpty, "QueryCondition")
+  expect_is(objRand, "QueryCondition")
 })
 
 test_that("toList works", {
+  expect_is(objEmpty$toList(), "list")
+  expect_is(objRand$toList(), "list")
+})
+
+test_that("fromList works", {
   obj <- QueryCondition$new()
-  l <- obj$toList()
-  expect_is(l, "list")
+  obj$fromList(objRand$toList())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "QueryCondition")
 })
 
 test_that("toJSONString works", {
+  expect_is(objEmpty$toJSONString(), "json")
+  expect_true(objEmpty$toJSONString() != "")
+  expect_is(objRand$toJSONString(), "json")
+  expect_true(objRand$toJSONString() != "")
+})
+
+test_that("fromJSONString works", {
   obj <- QueryCondition$new()
-  s <- obj$toJSONString()
-  expect_is(s, "json")
-  expect_true(s != "")
+  obj$fromJSONString(objRand$toJSONString())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "QueryCondition")
 })

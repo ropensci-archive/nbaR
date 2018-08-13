@@ -5,38 +5,48 @@ set.seed(111)
 
 context("Testing class SourceSystem")
 
-test_that("Constructor works", {
-  obj <- SourceSystem$new()
-  expect_is(obj, "SourceSystem")
+# Make a list with random arguments for all fields in the class
+args <- list()
+args[["code"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
+args[["name"]] <- paste(sample(
+  c(LETTERS, letters),
+  sample(1:20, 1)
+), collapse = "")
 
-  # test constructor with random arguments
-  # test field code, type character
-  obj <- SourceSystem$new(
-    code = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "SourceSystem")
-  # test field name, type character
-  obj <- SourceSystem$new(
-    name = paste(sample(
-      c(LETTERS, letters),
-      sample(1:20, 1)
-    ), collapse = "")
-  )
-  expect_is(obj, "SourceSystem")
+# make SourceSystem object without and with args
+objEmpty <- SourceSystem$new()
+objRand <- do.call(SourceSystem$new, args)
+
+test_that("Constructor works", {
+  expect_is(objEmpty, "SourceSystem")
+  expect_is(objRand, "SourceSystem")
 })
 
 test_that("toList works", {
+  expect_is(objEmpty$toList(), "list")
+  expect_is(objRand$toList(), "list")
+})
+
+test_that("fromList works", {
   obj <- SourceSystem$new()
-  l <- obj$toList()
-  expect_is(l, "list")
+  obj$fromList(objRand$toList())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "SourceSystem")
 })
 
 test_that("toJSONString works", {
+  expect_is(objEmpty$toJSONString(), "json")
+  expect_true(objEmpty$toJSONString() != "")
+  expect_is(objRand$toJSONString(), "json")
+  expect_true(objRand$toJSONString() != "")
+})
+
+test_that("fromJSONString works", {
   obj <- SourceSystem$new()
-  s <- obj$toJSONString()
-  expect_is(s, "json")
-  expect_true(s != "")
+  obj$fromJSONString(objRand$toJSONString())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "SourceSystem")
 })
