@@ -177,7 +177,7 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 	        supportingFiles.add(new SupportingFile("Rbuildignore.mustache", "", ".Rbuildignore"));
 	        supportingFiles.add(new SupportingFile(".travis.yml", "", ".travis.yml"));
 	        supportingFiles.add(new SupportingFile("response.mustache", "/R", "Response.r"));
-	        supportingFiles.add(new SupportingFile("element.mustache", "/R", "Element.r"));
+	        // supportingFiles.add(new SupportingFile("element.mustache", "/R", "Element.r"));
 	        supportingFiles.add(new SupportingFile("api_client.mustache", "/R", "ApiClient.r"));
 	        supportingFiles.add(new SupportingFile("NAMESPACE.mustache", "", "NAMESPACE"));
 	    }

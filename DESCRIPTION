@@ -9,7 +9,7 @@ Description: Access to the digitised Natural History collection at the Naturalis
     More information on the NBA can be found at <http://docs.biodiversitydata.nl>.
 URL: https://github.com/naturalis/nbaR
 BugReports: https://github.com/naturalis/nbaR/issues/new
-Depends: R (>= 3.3.3)
+Depends: R (>= 3.3.0)
 Encoding: UTF-8
 License: MIT + file LICENSE
 LazyData: true
