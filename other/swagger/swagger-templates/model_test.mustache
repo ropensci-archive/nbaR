@@ -1,0 +1,89 @@
+{{#models}}{{#model}}library("nbaR")
+library("testthat")
+
+set.seed(111)
+
+context("Testing class {{classname}}")
+
+# Make a list with random arguments for all fields in the class
+args <- list()
+{{#vars}}
+  {{^isListContainer}}
+    {{#isInteger}}
+      args[["{{baseName}}"]] <- sample(0:10, 1)
+    {{/isInteger}}
+    {{#isLong}}
+      args[["{{baseName}}"]] = runif(1)
+    {{/isLong}}
+    {{#isFloat}}
+      args[["{{baseName}}"]] <- runif(1)
+    {{/isFloat}}
+    {{#isDouble}}
+      args[["{{baseName}}"]] <- runif(1)
+    {{/isDouble}}
+    {{#isString}}
+      args[["{{baseName}}"]] <- paste(sample(c(LETTERS, letters),
+      sample(1:20, 1)), collapse="")
+    {{/isString}}
+    {{#isDate}}
+      randomDate <- as.character(sample(seq(as.Date('1600/01/01'),
+      as.Date('2018/06/04'), by="day"), 1))
+      args[["{{baseName}}"]] <- randomDate
+    {{/isDate}}
+    {{#isDateTime}}
+      randomDate <- as.character(sample(seq(as.Date('1600/01/01'),
+      as.Date('2018/06/04'), by="day"), 1))
+      args[["{{baseName}}"]] <- randomDate
+    {{/isDateTime}}
+    {{^isPrimitiveType}}
+      args[["{{baseName}}"]] <- {{datatype}}$new()
+      {{/isPrimitiveType}}
+  {{/isListContainer}}
+  {{#isListContainer}}
+    {{#isPrimitiveType}}
+      randomList <- lapply(1:sample(5:10, 1),
+      function(x)paste(sample(letters, sample(1:10, 1)), collapse=''))
+      args[["{{baseName}}"]] <- randomList
+    {{/isPrimitiveType}}
+    {{^isPrimitiveType}}
+      randomList <- lapply(1:sample(1:10, 1), function(x){{datatype}}$new())
+      args[["{{baseName}}"]] <- randomList
+    {{/isPrimitiveType}}
+  {{/isListContainer}}    
+{{/vars}}
+
+# make {{classname}} object without and with args
+objEmpty <- {{classname}}$new()
+objRand <- do.call({{classname}}$new, args)
+
+test_that("Constructor works", {
+  expect_is(objEmpty, "{{classname}}")  
+  expect_is(objRand, "{{classname}}")  
+})
+
+test_that("toList works", {
+  expect_is(objEmpty$toList(), "list")
+  expect_is(objRand$toList(), "list")
+})
+
+test_that("fromList works", {
+  obj <- {{classname}}$new()
+  obj$fromList(objRand$toList())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "{{classname}}")
+})
+
+test_that("toJSONString works", {
+  expect_is(objEmpty$toJSONString(), "json")
+  expect_true(objEmpty$toJSONString() != "")
+  expect_is(objRand$toJSONString(), "json")
+  expect_true(objRand$toJSONString() != "")
+})
+
+test_that("fromJSONString works", {
+  obj <- {{classname}}$new()
+  obj$fromJSONString(objRand$toJSONString())
+  # expect_equal(obj, objRand)
+  expect_is(obj, "{{classname}}")
+})
+{{/model}}{{/models}}
