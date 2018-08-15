@@ -71,42 +71,12 @@ TaxonDescription <- R6::R6Class(
     },
     fromList = function(TaxonDescriptionList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["category"]])) {
-        self[["category"]] <-
-          TaxonDescriptionList[["category"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["category"]], "$new()")
-        ))
-        self[["category"]] <- obj$fromList(
-          TaxonDescriptionList[["category"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["description"]])) {
-        self[["description"]] <-
-          TaxonDescriptionList[["description"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["description"]], "$new()")
-        ))
-        self[["description"]] <- obj$fromList(
-          TaxonDescriptionList[["description"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["language"]])) {
-        self[["language"]] <-
-          TaxonDescriptionList[["language"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["language"]], "$new()")
-        ))
-        self[["language"]] <- obj$fromList(
-          TaxonDescriptionList[["language"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["category"]] <-
+        TaxonDescriptionList[["category"]]
+      self[["description"]] <-
+        TaxonDescriptionList[["description"]]
+      self[["language"]] <-
+        TaxonDescriptionList[["language"]]
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

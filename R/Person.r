@@ -68,44 +68,14 @@ Person <- R6::R6Class(
     },
     fromList = function(PersonList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["agentText"]])) {
-        self[["agentText"]] <-
-          PersonList[["agentText"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["agentText"]], "$new()")
-        ))
-        self[["agentText"]] <- obj$fromList(
-          PersonList[["agentText"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["fullName"]])) {
-        self[["fullName"]] <-
-          PersonList[["fullName"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["fullName"]], "$new()")
-        ))
-        self[["fullName"]] <- obj$fromList(
-          PersonList[["fullName"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["organization"]])) {
-        self[["organization"]] <- Organization$new()$fromList(
-          PersonList[["organization"]],
-          typeMapping = typeMapping
-        )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["organization"]], "$new()")
-        ))
-        self[["organization"]] <- obj$fromList(
-          PersonList[["organization"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["agentText"]] <-
+        PersonList[["agentText"]]
+      self[["fullName"]] <-
+        PersonList[["fullName"]]
+      self[["organization"]] <- Organization$new()$fromList(
+        PersonList[["organization"]],
+        typeMapping = typeMapping
+      )
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

@@ -279,132 +279,32 @@ Taxon <- R6::R6Class(
     },
     fromList = function(TaxonList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["sourceSystem"]])) {
-        self[["sourceSystem"]] <- SourceSystem$new()$fromList(
-          TaxonList[["sourceSystem"]],
-          typeMapping = typeMapping
-        )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sourceSystem"]], "$new()")
-        ))
-        self[["sourceSystem"]] <- obj$fromList(
-          TaxonList[["sourceSystem"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["sourceSystemId"]])) {
-        self[["sourceSystemId"]] <-
-          TaxonList[["sourceSystemId"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sourceSystemId"]], "$new()")
-        ))
-        self[["sourceSystemId"]] <- obj$fromList(
-          TaxonList[["sourceSystemId"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["recordURI"]])) {
-        self[["recordURI"]] <-
-          TaxonList[["recordURI"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["recordURI"]], "$new()")
-        ))
-        self[["recordURI"]] <- obj$fromList(
-          TaxonList[["recordURI"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["id"]])) {
-        self[["id"]] <-
-          TaxonList[["id"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["id"]], "$new()")
-        ))
-        self[["id"]] <- obj$fromList(
-          TaxonList[["id"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["sourceSystemParentId"]])) {
-        self[["sourceSystemParentId"]] <-
-          TaxonList[["sourceSystemParentId"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sourceSystemParentId"]], "$new()")
-        ))
-        self[["sourceSystemParentId"]] <- obj$fromList(
-          TaxonList[["sourceSystemParentId"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["taxonRank"]])) {
-        self[["taxonRank"]] <-
-          TaxonList[["taxonRank"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["taxonRank"]], "$new()")
-        ))
-        self[["taxonRank"]] <- obj$fromList(
-          TaxonList[["taxonRank"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["taxonRemarks"]])) {
-        self[["taxonRemarks"]] <-
-          TaxonList[["taxonRemarks"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["taxonRemarks"]], "$new()")
-        ))
-        self[["taxonRemarks"]] <- obj$fromList(
-          TaxonList[["taxonRemarks"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["occurrenceStatusVerbatim"]])) {
-        self[["occurrenceStatusVerbatim"]] <-
-          TaxonList[["occurrenceStatusVerbatim"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["occurrenceStatusVerbatim"]], "$new()")
-        ))
-        self[["occurrenceStatusVerbatim"]] <- obj$fromList(
-          TaxonList[["occurrenceStatusVerbatim"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["acceptedName"]])) {
-        self[["acceptedName"]] <- ScientificName$new()$fromList(
-          TaxonList[["acceptedName"]],
-          typeMapping = typeMapping
-        )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["acceptedName"]], "$new()")
-        ))
-        self[["acceptedName"]] <- obj$fromList(
-          TaxonList[["acceptedName"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["defaultClassification"]])) {
-        self[["defaultClassification"]] <- DefaultClassification$new()$fromList(
-          TaxonList[["defaultClassification"]],
-          typeMapping = typeMapping
-        )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["defaultClassification"]], "$new()")
-        ))
-        self[["defaultClassification"]] <- obj$fromList(
-          TaxonList[["defaultClassification"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["sourceSystem"]] <- SourceSystem$new()$fromList(
+        TaxonList[["sourceSystem"]],
+        typeMapping = typeMapping
+      )
+      self[["sourceSystemId"]] <-
+        TaxonList[["sourceSystemId"]]
+      self[["recordURI"]] <-
+        TaxonList[["recordURI"]]
+      self[["id"]] <-
+        TaxonList[["id"]]
+      self[["sourceSystemParentId"]] <-
+        TaxonList[["sourceSystemParentId"]]
+      self[["taxonRank"]] <-
+        TaxonList[["taxonRank"]]
+      self[["taxonRemarks"]] <-
+        TaxonList[["taxonRemarks"]]
+      self[["occurrenceStatusVerbatim"]] <-
+        TaxonList[["occurrenceStatusVerbatim"]]
+      self[["acceptedName"]] <- ScientificName$new()$fromList(
+        TaxonList[["acceptedName"]],
+        typeMapping = typeMapping
+      )
+      self[["defaultClassification"]] <- DefaultClassification$new()$fromList(
+        TaxonList[["defaultClassification"]],
+        typeMapping = typeMapping
+      )
       self[["systemClassification"]] <- lapply(
         TaxonList[["systemClassification"]],
         function(x) {
@@ -453,20 +353,10 @@ Taxon <- R6::R6Class(
           )
         }
       )
-      if (is.null(typeMapping[["validName"]])) {
-        self[["validName"]] <- ScientificName$new()$fromList(
-          TaxonList[["validName"]],
-          typeMapping = typeMapping
-        )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["validName"]], "$new()")
-        ))
-        self[["validName"]] <- obj$fromList(
-          TaxonList[["validName"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["validName"]] <- ScientificName$new()$fromList(
+        TaxonList[["validName"]],
+        typeMapping = typeMapping
+      )
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

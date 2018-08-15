@@ -58,32 +58,12 @@ GeoJsonObject <- R6::R6Class(
     },
     fromList = function(GeoJsonObjectList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <- Crs$new()$fromList(
-          GeoJsonObjectList[["crs"]],
-          typeMapping = typeMapping
-        )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["crs"]], "$new()")
-        ))
-        self[["crs"]] <- obj$fromList(
-          GeoJsonObjectList[["crs"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["bbox"]])) {
-        self[["bbox"]] <-
-          GeoJsonObjectList[["bbox"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["bbox"]], "$new()")
-        ))
-        self[["bbox"]] <- obj$fromList(
-          GeoJsonObjectList[["bbox"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["crs"]] <- Crs$new()$fromList(
+        GeoJsonObjectList[["crs"]],
+        typeMapping = typeMapping
+      )
+      self[["bbox"]] <-
+        GeoJsonObjectList[["bbox"]]
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

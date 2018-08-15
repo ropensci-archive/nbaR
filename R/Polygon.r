@@ -76,44 +76,14 @@ Polygon <- R6::R6Class(
     },
     fromList = function(PolygonList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <- Crs$new()$fromList(
-          PolygonList[["crs"]],
-          typeMapping = typeMapping
-        )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["crs"]], "$new()")
-        ))
-        self[["crs"]] <- obj$fromList(
-          PolygonList[["crs"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["bbox"]])) {
-        self[["bbox"]] <-
-          PolygonList[["bbox"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["bbox"]], "$new()")
-        ))
-        self[["bbox"]] <- obj$fromList(
-          PolygonList[["bbox"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["coordinates"]])) {
-        self[["coordinates"]] <-
-          PolygonList[["coordinates"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["coordinates"]], "$new()")
-        ))
-        self[["coordinates"]] <- obj$fromList(
-          PolygonList[["coordinates"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["crs"]] <- Crs$new()$fromList(
+        PolygonList[["crs"]],
+        typeMapping = typeMapping
+      )
+      self[["bbox"]] <-
+        PolygonList[["bbox"]]
+      self[["coordinates"]] <-
+        PolygonList[["coordinates"]]
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

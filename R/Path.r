@@ -39,18 +39,8 @@ Path <- R6::R6Class(
     },
     fromList = function(PathList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["purePath"]])) {
-        self[["purePath"]] <-
-          PathList[["purePath"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["purePath"]], "$new()")
-        ))
-        self[["purePath"]] <- obj$fromList(
-          PathList[["purePath"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["purePath"]] <-
+        PathList[["purePath"]]
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

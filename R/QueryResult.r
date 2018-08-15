@@ -61,18 +61,8 @@ QueryResult <- R6::R6Class(
     },
     fromList = function(QueryResultList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["totalSize"]])) {
-        self[["totalSize"]] <-
-          QueryResultList[["totalSize"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["totalSize"]], "$new()")
-        ))
-        self[["totalSize"]] <- obj$fromList(
-          QueryResultList[["totalSize"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["totalSize"]] <-
+        QueryResultList[["totalSize"]]
       self[["resultSet"]] <- lapply(
         QueryResultList[["resultSet"]],
         function(x) {

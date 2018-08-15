@@ -76,32 +76,12 @@ FeatureCollection <- R6::R6Class(
     },
     fromList = function(FeatureCollectionList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <- Crs$new()$fromList(
-          FeatureCollectionList[["crs"]],
-          typeMapping = typeMapping
-        )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["crs"]], "$new()")
-        ))
-        self[["crs"]] <- obj$fromList(
-          FeatureCollectionList[["crs"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["bbox"]])) {
-        self[["bbox"]] <-
-          FeatureCollectionList[["bbox"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["bbox"]], "$new()")
-        ))
-        self[["bbox"]] <- obj$fromList(
-          FeatureCollectionList[["bbox"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["crs"]] <- Crs$new()$fromList(
+        FeatureCollectionList[["crs"]],
+        typeMapping = typeMapping
+      )
+      self[["bbox"]] <-
+        FeatureCollectionList[["bbox"]]
       self[["features"]] <- lapply(
         FeatureCollectionList[["features"]],
         function(x) {

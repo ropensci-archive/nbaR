@@ -57,30 +57,10 @@ AssociatedTaxon <- R6::R6Class(
     },
     fromList = function(AssociatedTaxonList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["name"]])) {
-        self[["name"]] <-
-          AssociatedTaxonList[["name"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["name"]], "$new()")
-        ))
-        self[["name"]] <- obj$fromList(
-          AssociatedTaxonList[["name"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["relationType"]])) {
-        self[["relationType"]] <-
-          AssociatedTaxonList[["relationType"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["relationType"]], "$new()")
-        ))
-        self[["relationType"]] <- obj$fromList(
-          AssociatedTaxonList[["relationType"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["name"]] <-
+        AssociatedTaxonList[["name"]]
+      self[["relationType"]] <-
+        AssociatedTaxonList[["relationType"]]
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

@@ -76,44 +76,14 @@ GeometryCollection <- R6::R6Class(
     },
     fromList = function(GeometryCollectionList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <- Crs$new()$fromList(
-          GeometryCollectionList[["crs"]],
-          typeMapping = typeMapping
-        )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["crs"]], "$new()")
-        ))
-        self[["crs"]] <- obj$fromList(
-          GeometryCollectionList[["crs"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["bbox"]])) {
-        self[["bbox"]] <-
-          GeometryCollectionList[["bbox"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["bbox"]], "$new()")
-        ))
-        self[["bbox"]] <- obj$fromList(
-          GeometryCollectionList[["bbox"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["geometries"]])) {
-        self[["geometries"]] <-
-          GeometryCollectionList[["geometries"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["geometries"]], "$new()")
-        ))
-        self[["geometries"]] <- obj$fromList(
-          GeometryCollectionList[["geometries"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["crs"]] <- Crs$new()$fromList(
+        GeometryCollectionList[["crs"]],
+        typeMapping = typeMapping
+      )
+      self[["bbox"]] <-
+        GeometryCollectionList[["bbox"]]
+      self[["geometries"]] <-
+        GeometryCollectionList[["geometries"]]
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

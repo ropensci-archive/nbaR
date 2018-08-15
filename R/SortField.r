@@ -63,42 +63,12 @@ SortField <- R6::R6Class(
     },
     fromList = function(SortFieldList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["path"]])) {
-        self[["path"]] <-
-          SortFieldList[["path"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["path"]], "$new()")
-        ))
-        self[["path"]] <- obj$fromList(
-          SortFieldList[["path"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["sortOrder"]])) {
-        self[["sortOrder"]] <-
-          SortFieldList[["sortOrder"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sortOrder"]], "$new()")
-        ))
-        self[["sortOrder"]] <- obj$fromList(
-          SortFieldList[["sortOrder"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["ascending"]])) {
-        self[["ascending"]] <-
-          SortFieldList[["ascending"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["ascending"]], "$new()")
-        ))
-        self[["ascending"]] <- obj$fromList(
-          SortFieldList[["ascending"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["path"]] <-
+        SortFieldList[["path"]]
+      self[["sortOrder"]] <-
+        SortFieldList[["sortOrder"]]
+      self[["ascending"]] <-
+        SortFieldList[["ascending"]]
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

@@ -53,18 +53,8 @@ QueryResultItemObject <- R6::R6Class(
     },
     fromList = function(QueryResultItemObjectList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["score"]])) {
-        self[["score"]] <-
-          QueryResultItemObjectList[["score"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["score"]], "$new()")
-        ))
-        self[["score"]] <- obj$fromList(
-          QueryResultItemObjectList[["score"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["score"]] <-
+        QueryResultItemObjectList[["score"]]
       if (is.null(typeMapping[["item"]])) {
         self[["item"]] <-
           QueryResultItemObjectList[["item"]]

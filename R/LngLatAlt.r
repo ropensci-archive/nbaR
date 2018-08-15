@@ -89,54 +89,14 @@ LngLatAlt <- R6::R6Class(
     },
     fromList = function(LngLatAltList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["longitude"]])) {
-        self[["longitude"]] <-
-          LngLatAltList[["longitude"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["longitude"]], "$new()")
-        ))
-        self[["longitude"]] <- obj$fromList(
-          LngLatAltList[["longitude"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["latitude"]])) {
-        self[["latitude"]] <-
-          LngLatAltList[["latitude"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["latitude"]], "$new()")
-        ))
-        self[["latitude"]] <- obj$fromList(
-          LngLatAltList[["latitude"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["altitude"]])) {
-        self[["altitude"]] <-
-          LngLatAltList[["altitude"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["altitude"]], "$new()")
-        ))
-        self[["altitude"]] <- obj$fromList(
-          LngLatAltList[["altitude"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["additionalElements"]])) {
-        self[["additionalElements"]] <-
-          LngLatAltList[["additionalElements"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["additionalElements"]], "$new()")
-        ))
-        self[["additionalElements"]] <- obj$fromList(
-          LngLatAltList[["additionalElements"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["longitude"]] <-
+        LngLatAltList[["longitude"]]
+      self[["latitude"]] <-
+        LngLatAltList[["latitude"]]
+      self[["altitude"]] <-
+        LngLatAltList[["altitude"]]
+      self[["additionalElements"]] <-
+        LngLatAltList[["additionalElements"]]
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

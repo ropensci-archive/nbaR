@@ -183,70 +183,20 @@ MultiMediaContentIdentification <- R6::R6Class(
     },
     fromList = function(MultiMediaContentIdentificationList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["taxonRank"]])) {
-        self[["taxonRank"]] <-
-          MultiMediaContentIdentificationList[["taxonRank"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["taxonRank"]], "$new()")
-        ))
-        self[["taxonRank"]] <- obj$fromList(
-          MultiMediaContentIdentificationList[["taxonRank"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["scientificName"]])) {
-        self[["scientificName"]] <- ScientificName$new()$fromList(
-          MultiMediaContentIdentificationList[["scientificName"]],
-          typeMapping = typeMapping
-        )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["scientificName"]], "$new()")
-        ))
-        self[["scientificName"]] <- obj$fromList(
-          MultiMediaContentIdentificationList[["scientificName"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["typeStatus"]])) {
-        self[["typeStatus"]] <-
-          MultiMediaContentIdentificationList[["typeStatus"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["typeStatus"]], "$new()")
-        ))
-        self[["typeStatus"]] <- obj$fromList(
-          MultiMediaContentIdentificationList[["typeStatus"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["dateIdentified"]])) {
-        self[["dateIdentified"]] <-
-          MultiMediaContentIdentificationList[["dateIdentified"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["dateIdentified"]], "$new()")
-        ))
-        self[["dateIdentified"]] <- obj$fromList(
-          MultiMediaContentIdentificationList[["dateIdentified"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["defaultClassification"]])) {
-        self[["defaultClassification"]] <- DefaultClassification$new()$fromList(
-          MultiMediaContentIdentificationList[["defaultClassification"]],
-          typeMapping = typeMapping
-        )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["defaultClassification"]], "$new()")
-        ))
-        self[["defaultClassification"]] <- obj$fromList(
-          MultiMediaContentIdentificationList[["defaultClassification"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["taxonRank"]] <-
+        MultiMediaContentIdentificationList[["taxonRank"]]
+      self[["scientificName"]] <- ScientificName$new()$fromList(
+        MultiMediaContentIdentificationList[["scientificName"]],
+        typeMapping = typeMapping
+      )
+      self[["typeStatus"]] <-
+        MultiMediaContentIdentificationList[["typeStatus"]]
+      self[["dateIdentified"]] <-
+        MultiMediaContentIdentificationList[["dateIdentified"]]
+      self[["defaultClassification"]] <- DefaultClassification$new()$fromList(
+        MultiMediaContentIdentificationList[["defaultClassification"]],
+        typeMapping = typeMapping
+      )
       self[["systemClassification"]] <- lapply(
         MultiMediaContentIdentificationList[["systemClassification"]],
         function(x) {
@@ -263,18 +213,8 @@ MultiMediaContentIdentification <- R6::R6Class(
           )
         }
       )
-      if (is.null(typeMapping[["identificationQualifiers"]])) {
-        self[["identificationQualifiers"]] <-
-          MultiMediaContentIdentificationList[["identificationQualifiers"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["identificationQualifiers"]], "$new()")
-        ))
-        self[["identificationQualifiers"]] <- obj$fromList(
-          MultiMediaContentIdentificationList[["identificationQualifiers"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["identificationQualifiers"]] <-
+        MultiMediaContentIdentificationList[["identificationQualifiers"]]
       self[["identifiers"]] <- lapply(
         MultiMediaContentIdentificationList[["identifiers"]],
         function(x) {

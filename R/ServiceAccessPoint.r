@@ -71,42 +71,12 @@ ServiceAccessPoint <- R6::R6Class(
     },
     fromList = function(ServiceAccessPointList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["accessUri"]])) {
-        self[["accessUri"]] <-
-          ServiceAccessPointList[["accessUri"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["accessUri"]], "$new()")
-        ))
-        self[["accessUri"]] <- obj$fromList(
-          ServiceAccessPointList[["accessUri"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["format"]])) {
-        self[["format"]] <-
-          ServiceAccessPointList[["format"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["format"]], "$new()")
-        ))
-        self[["format"]] <- obj$fromList(
-          ServiceAccessPointList[["format"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["variant"]])) {
-        self[["variant"]] <-
-          ServiceAccessPointList[["variant"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["variant"]], "$new()")
-        ))
-        self[["variant"]] <- obj$fromList(
-          ServiceAccessPointList[["variant"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["accessUri"]] <-
+        ServiceAccessPointList[["accessUri"]]
+      self[["format"]] <-
+        ServiceAccessPointList[["format"]]
+      self[["variant"]] <-
+        ServiceAccessPointList[["variant"]]
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

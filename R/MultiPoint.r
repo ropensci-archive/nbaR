@@ -76,32 +76,12 @@ MultiPoint <- R6::R6Class(
     },
     fromList = function(MultiPointList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <- Crs$new()$fromList(
-          MultiPointList[["crs"]],
-          typeMapping = typeMapping
-        )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["crs"]], "$new()")
-        ))
-        self[["crs"]] <- obj$fromList(
-          MultiPointList[["crs"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["bbox"]])) {
-        self[["bbox"]] <-
-          MultiPointList[["bbox"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["bbox"]], "$new()")
-        ))
-        self[["bbox"]] <- obj$fromList(
-          MultiPointList[["bbox"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["crs"]] <- Crs$new()$fromList(
+        MultiPointList[["crs"]],
+        typeMapping = typeMapping
+      )
+      self[["bbox"]] <-
+        MultiPointList[["bbox"]]
       self[["coordinates"]] <- lapply(
         MultiPointList[["coordinates"]],
         function(x) {

@@ -263,210 +263,40 @@ LithoStratigraphy <- R6::R6Class(
     },
     fromList = function(LithoStratigraphyList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["qualifier"]])) {
-        self[["qualifier"]] <-
-          LithoStratigraphyList[["qualifier"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["qualifier"]], "$new()")
-        ))
-        self[["qualifier"]] <- obj$fromList(
-          LithoStratigraphyList[["qualifier"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["preferredFlag"]])) {
-        self[["preferredFlag"]] <-
-          LithoStratigraphyList[["preferredFlag"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["preferredFlag"]], "$new()")
-        ))
-        self[["preferredFlag"]] <- obj$fromList(
-          LithoStratigraphyList[["preferredFlag"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["member2"]])) {
-        self[["member2"]] <-
-          LithoStratigraphyList[["member2"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["member2"]], "$new()")
-        ))
-        self[["member2"]] <- obj$fromList(
-          LithoStratigraphyList[["member2"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["member"]])) {
-        self[["member"]] <-
-          LithoStratigraphyList[["member"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["member"]], "$new()")
-        ))
-        self[["member"]] <- obj$fromList(
-          LithoStratigraphyList[["member"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["informalName2"]])) {
-        self[["informalName2"]] <-
-          LithoStratigraphyList[["informalName2"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["informalName2"]], "$new()")
-        ))
-        self[["informalName2"]] <- obj$fromList(
-          LithoStratigraphyList[["informalName2"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["informalName"]])) {
-        self[["informalName"]] <-
-          LithoStratigraphyList[["informalName"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["informalName"]], "$new()")
-        ))
-        self[["informalName"]] <- obj$fromList(
-          LithoStratigraphyList[["informalName"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["importedName2"]])) {
-        self[["importedName2"]] <-
-          LithoStratigraphyList[["importedName2"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["importedName2"]], "$new()")
-        ))
-        self[["importedName2"]] <- obj$fromList(
-          LithoStratigraphyList[["importedName2"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["importedName1"]])) {
-        self[["importedName1"]] <-
-          LithoStratigraphyList[["importedName1"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["importedName1"]], "$new()")
-        ))
-        self[["importedName1"]] <- obj$fromList(
-          LithoStratigraphyList[["importedName1"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["lithoIdentifier"]])) {
-        self[["lithoIdentifier"]] <-
-          LithoStratigraphyList[["lithoIdentifier"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["lithoIdentifier"]], "$new()")
-        ))
-        self[["lithoIdentifier"]] <- obj$fromList(
-          LithoStratigraphyList[["lithoIdentifier"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["formation2"]])) {
-        self[["formation2"]] <-
-          LithoStratigraphyList[["formation2"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["formation2"]], "$new()")
-        ))
-        self[["formation2"]] <- obj$fromList(
-          LithoStratigraphyList[["formation2"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["formationGroup2"]])) {
-        self[["formationGroup2"]] <-
-          LithoStratigraphyList[["formationGroup2"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["formationGroup2"]], "$new()")
-        ))
-        self[["formationGroup2"]] <- obj$fromList(
-          LithoStratigraphyList[["formationGroup2"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["formationGroup"]])) {
-        self[["formationGroup"]] <-
-          LithoStratigraphyList[["formationGroup"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["formationGroup"]], "$new()")
-        ))
-        self[["formationGroup"]] <- obj$fromList(
-          LithoStratigraphyList[["formationGroup"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["formation"]])) {
-        self[["formation"]] <-
-          LithoStratigraphyList[["formation"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["formation"]], "$new()")
-        ))
-        self[["formation"]] <- obj$fromList(
-          LithoStratigraphyList[["formation"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["certainty2"]])) {
-        self[["certainty2"]] <-
-          LithoStratigraphyList[["certainty2"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["certainty2"]], "$new()")
-        ))
-        self[["certainty2"]] <- obj$fromList(
-          LithoStratigraphyList[["certainty2"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["certainty"]])) {
-        self[["certainty"]] <-
-          LithoStratigraphyList[["certainty"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["certainty"]], "$new()")
-        ))
-        self[["certainty"]] <- obj$fromList(
-          LithoStratigraphyList[["certainty"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["bed2"]])) {
-        self[["bed2"]] <-
-          LithoStratigraphyList[["bed2"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["bed2"]], "$new()")
-        ))
-        self[["bed2"]] <- obj$fromList(
-          LithoStratigraphyList[["bed2"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["bed"]])) {
-        self[["bed"]] <-
-          LithoStratigraphyList[["bed"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["bed"]], "$new()")
-        ))
-        self[["bed"]] <- obj$fromList(
-          LithoStratigraphyList[["bed"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["qualifier"]] <-
+        LithoStratigraphyList[["qualifier"]]
+      self[["preferredFlag"]] <-
+        LithoStratigraphyList[["preferredFlag"]]
+      self[["member2"]] <-
+        LithoStratigraphyList[["member2"]]
+      self[["member"]] <-
+        LithoStratigraphyList[["member"]]
+      self[["informalName2"]] <-
+        LithoStratigraphyList[["informalName2"]]
+      self[["informalName"]] <-
+        LithoStratigraphyList[["informalName"]]
+      self[["importedName2"]] <-
+        LithoStratigraphyList[["importedName2"]]
+      self[["importedName1"]] <-
+        LithoStratigraphyList[["importedName1"]]
+      self[["lithoIdentifier"]] <-
+        LithoStratigraphyList[["lithoIdentifier"]]
+      self[["formation2"]] <-
+        LithoStratigraphyList[["formation2"]]
+      self[["formationGroup2"]] <-
+        LithoStratigraphyList[["formationGroup2"]]
+      self[["formationGroup"]] <-
+        LithoStratigraphyList[["formationGroup"]]
+      self[["formation"]] <-
+        LithoStratigraphyList[["formation"]]
+      self[["certainty2"]] <-
+        LithoStratigraphyList[["certainty2"]]
+      self[["certainty"]] <-
+        LithoStratigraphyList[["certainty"]]
+      self[["bed2"]] <-
+        LithoStratigraphyList[["bed2"]]
+      self[["bed"]] <-
+        LithoStratigraphyList[["bed"]]
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

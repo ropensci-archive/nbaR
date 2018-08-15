@@ -551,8 +551,11 @@ TaxonClient <- R6::R6Class(
       } else {
         ## API call result is object of model class
         returnObject <- Taxon$new()
-        ## API call result is QueryResult,
+        ## if API call result is QueryResult,
         ## list items must be mapped to model class
+        ## if (class(returnObject)[1] == "QueryResult") {
+        ##  returnObject$docType <- private$getBaseDataType()
+        ## }
         result <- returnObject$fromList(
           httr::content(response),
           typeMapping = list(item = private$getBaseDataType())
@@ -795,8 +798,11 @@ TaxonClient <- R6::R6Class(
       } else {
         ## API call result is object of model class
         returnObject <- QueryResult$new()
-        ## API call result is QueryResult,
+        ## if API call result is QueryResult,
         ## list items must be mapped to model class
+        ## if (class(returnObject)[1] == "QueryResult") {
+        ##  returnObject$docType <- private$getBaseDataType()
+        ## }
         result <- returnObject$fromList(
           httr::content(response),
           typeMapping = list(item = private$getBaseDataType())
@@ -877,8 +883,11 @@ TaxonClient <- R6::R6Class(
       } else {
         ## API call result is object of model class
         returnObject <- QueryResult$new()
-        ## API call result is QueryResult,
+        ## if API call result is QueryResult,
         ## list items must be mapped to model class
+        ## if (class(returnObject)[1] == "QueryResult") {
+        ##  returnObject$docType <- private$getBaseDataType()
+        ## }
         result <- returnObject$fromList(
           httr::content(response),
           typeMapping = list(item = private$getBaseDataType())

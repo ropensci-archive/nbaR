@@ -57,30 +57,10 @@ SourceSystem <- R6::R6Class(
     },
     fromList = function(SourceSystemList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["code"]])) {
-        self[["code"]] <-
-          SourceSystemList[["code"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["code"]], "$new()")
-        ))
-        self[["code"]] <- obj$fromList(
-          SourceSystemList[["code"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["name"]])) {
-        self[["name"]] <-
-          SourceSystemList[["name"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["name"]], "$new()")
-        ))
-        self[["name"]] <- obj$fromList(
-          SourceSystemList[["name"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["code"]] <-
+        SourceSystemList[["code"]]
+      self[["name"]] <-
+        SourceSystemList[["name"]]
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

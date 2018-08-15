@@ -233,150 +233,30 @@ ScientificName <- R6::R6Class(
     },
     fromList = function(ScientificNameList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["fullScientificName"]])) {
-        self[["fullScientificName"]] <-
-          ScientificNameList[["fullScientificName"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["fullScientificName"]], "$new()")
-        ))
-        self[["fullScientificName"]] <- obj$fromList(
-          ScientificNameList[["fullScientificName"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["taxonomicStatus"]])) {
-        self[["taxonomicStatus"]] <-
-          ScientificNameList[["taxonomicStatus"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["taxonomicStatus"]], "$new()")
-        ))
-        self[["taxonomicStatus"]] <- obj$fromList(
-          ScientificNameList[["taxonomicStatus"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["genusOrMonomial"]])) {
-        self[["genusOrMonomial"]] <-
-          ScientificNameList[["genusOrMonomial"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["genusOrMonomial"]], "$new()")
-        ))
-        self[["genusOrMonomial"]] <- obj$fromList(
-          ScientificNameList[["genusOrMonomial"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["subgenus"]])) {
-        self[["subgenus"]] <-
-          ScientificNameList[["subgenus"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["subgenus"]], "$new()")
-        ))
-        self[["subgenus"]] <- obj$fromList(
-          ScientificNameList[["subgenus"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["specificEpithet"]])) {
-        self[["specificEpithet"]] <-
-          ScientificNameList[["specificEpithet"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["specificEpithet"]], "$new()")
-        ))
-        self[["specificEpithet"]] <- obj$fromList(
-          ScientificNameList[["specificEpithet"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["infraspecificEpithet"]])) {
-        self[["infraspecificEpithet"]] <-
-          ScientificNameList[["infraspecificEpithet"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["infraspecificEpithet"]], "$new()")
-        ))
-        self[["infraspecificEpithet"]] <- obj$fromList(
-          ScientificNameList[["infraspecificEpithet"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["infraspecificMarker"]])) {
-        self[["infraspecificMarker"]] <-
-          ScientificNameList[["infraspecificMarker"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["infraspecificMarker"]], "$new()")
-        ))
-        self[["infraspecificMarker"]] <- obj$fromList(
-          ScientificNameList[["infraspecificMarker"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["nameAddendum"]])) {
-        self[["nameAddendum"]] <-
-          ScientificNameList[["nameAddendum"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["nameAddendum"]], "$new()")
-        ))
-        self[["nameAddendum"]] <- obj$fromList(
-          ScientificNameList[["nameAddendum"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["authorshipVerbatim"]])) {
-        self[["authorshipVerbatim"]] <-
-          ScientificNameList[["authorshipVerbatim"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["authorshipVerbatim"]], "$new()")
-        ))
-        self[["authorshipVerbatim"]] <- obj$fromList(
-          ScientificNameList[["authorshipVerbatim"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["author"]])) {
-        self[["author"]] <-
-          ScientificNameList[["author"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["author"]], "$new()")
-        ))
-        self[["author"]] <- obj$fromList(
-          ScientificNameList[["author"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["year"]])) {
-        self[["year"]] <-
-          ScientificNameList[["year"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["year"]], "$new()")
-        ))
-        self[["year"]] <- obj$fromList(
-          ScientificNameList[["year"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["scientificNameGroup"]])) {
-        self[["scientificNameGroup"]] <-
-          ScientificNameList[["scientificNameGroup"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["scientificNameGroup"]], "$new()")
-        ))
-        self[["scientificNameGroup"]] <- obj$fromList(
-          ScientificNameList[["scientificNameGroup"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["fullScientificName"]] <-
+        ScientificNameList[["fullScientificName"]]
+      self[["taxonomicStatus"]] <-
+        ScientificNameList[["taxonomicStatus"]]
+      self[["genusOrMonomial"]] <-
+        ScientificNameList[["genusOrMonomial"]]
+      self[["subgenus"]] <-
+        ScientificNameList[["subgenus"]]
+      self[["specificEpithet"]] <-
+        ScientificNameList[["specificEpithet"]]
+      self[["infraspecificEpithet"]] <-
+        ScientificNameList[["infraspecificEpithet"]]
+      self[["infraspecificMarker"]] <-
+        ScientificNameList[["infraspecificMarker"]]
+      self[["nameAddendum"]] <-
+        ScientificNameList[["nameAddendum"]]
+      self[["authorshipVerbatim"]] <-
+        ScientificNameList[["authorshipVerbatim"]]
+      self[["author"]] <-
+        ScientificNameList[["author"]]
+      self[["year"]] <-
+        ScientificNameList[["year"]]
+      self[["scientificNameGroup"]] <-
+        ScientificNameList[["scientificNameGroup"]]
       self[["references"]] <- lapply(
         ScientificNameList[["references"]],
         function(x) {

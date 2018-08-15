@@ -135,30 +135,10 @@ QuerySpec <- R6::R6Class(
     },
     fromList = function(QuerySpecList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["constantScore"]])) {
-        self[["constantScore"]] <-
-          QuerySpecList[["constantScore"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["constantScore"]], "$new()")
-        ))
-        self[["constantScore"]] <- obj$fromList(
-          QuerySpecList[["constantScore"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["fields"]])) {
-        self[["fields"]] <-
-          QuerySpecList[["fields"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["fields"]], "$new()")
-        ))
-        self[["fields"]] <- obj$fromList(
-          QuerySpecList[["fields"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["constantScore"]] <-
+        QuerySpecList[["constantScore"]]
+      self[["fields"]] <-
+        QuerySpecList[["fields"]]
       self[["conditions"]] <- lapply(
         QuerySpecList[["conditions"]],
         function(x) {
@@ -167,18 +147,8 @@ QuerySpec <- R6::R6Class(
           )
         }
       )
-      if (is.null(typeMapping[["logicalOperator"]])) {
-        self[["logicalOperator"]] <-
-          QuerySpecList[["logicalOperator"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["logicalOperator"]], "$new()")
-        ))
-        self[["logicalOperator"]] <- obj$fromList(
-          QuerySpecList[["logicalOperator"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["logicalOperator"]] <-
+        QuerySpecList[["logicalOperator"]]
       self[["sortFields"]] <- lapply(
         QuerySpecList[["sortFields"]],
         function(x) {
@@ -187,30 +157,10 @@ QuerySpec <- R6::R6Class(
           )
         }
       )
-      if (is.null(typeMapping[["from"]])) {
-        self[["from"]] <-
-          QuerySpecList[["from"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["from"]], "$new()")
-        ))
-        self[["from"]] <- obj$fromList(
-          QuerySpecList[["from"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["size"]])) {
-        self[["size"]] <-
-          QuerySpecList[["size"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["size"]], "$new()")
-        ))
-        self[["size"]] <- obj$fromList(
-          QuerySpecList[["size"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["from"]] <-
+        QuerySpecList[["from"]]
+      self[["size"]] <-
+        QuerySpecList[["size"]]
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

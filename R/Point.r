@@ -69,46 +69,16 @@ Point <- R6::R6Class(
     },
     fromList = function(PointList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <- Crs$new()$fromList(
-          PointList[["crs"]],
-          typeMapping = typeMapping
-        )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["crs"]], "$new()")
-        ))
-        self[["crs"]] <- obj$fromList(
-          PointList[["crs"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["bbox"]])) {
-        self[["bbox"]] <-
-          PointList[["bbox"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["bbox"]], "$new()")
-        ))
-        self[["bbox"]] <- obj$fromList(
-          PointList[["bbox"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["coordinates"]])) {
-        self[["coordinates"]] <- LngLatAlt$new()$fromList(
-          PointList[["coordinates"]],
-          typeMapping = typeMapping
-        )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["coordinates"]], "$new()")
-        ))
-        self[["coordinates"]] <- obj$fromList(
-          PointList[["coordinates"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["crs"]] <- Crs$new()$fromList(
+        PointList[["crs"]],
+        typeMapping = typeMapping
+      )
+      self[["bbox"]] <-
+        PointList[["bbox"]]
+      self[["coordinates"]] <- LngLatAlt$new()$fromList(
+        PointList[["coordinates"]],
+        typeMapping = typeMapping
+      )
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

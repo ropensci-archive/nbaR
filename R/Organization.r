@@ -57,30 +57,10 @@ Organization <- R6::R6Class(
     },
     fromList = function(OrganizationList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["agentText"]])) {
-        self[["agentText"]] <-
-          OrganizationList[["agentText"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["agentText"]], "$new()")
-        ))
-        self[["agentText"]] <- obj$fromList(
-          OrganizationList[["agentText"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["name"]])) {
-        self[["name"]] <-
-          OrganizationList[["name"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["name"]], "$new()")
-        ))
-        self[["name"]] <- obj$fromList(
-          OrganizationList[["name"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["agentText"]] <-
+        OrganizationList[["agentText"]]
+      self[["name"]] <-
+        OrganizationList[["name"]]
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

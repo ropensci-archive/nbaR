@@ -76,44 +76,14 @@ MultiPolygon <- R6::R6Class(
     },
     fromList = function(MultiPolygonList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <- Crs$new()$fromList(
-          MultiPolygonList[["crs"]],
-          typeMapping = typeMapping
-        )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["crs"]], "$new()")
-        ))
-        self[["crs"]] <- obj$fromList(
-          MultiPolygonList[["crs"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["bbox"]])) {
-        self[["bbox"]] <-
-          MultiPolygonList[["bbox"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["bbox"]], "$new()")
-        ))
-        self[["bbox"]] <- obj$fromList(
-          MultiPolygonList[["bbox"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["coordinates"]])) {
-        self[["coordinates"]] <-
-          MultiPolygonList[["coordinates"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["coordinates"]], "$new()")
-        ))
-        self[["coordinates"]] <- obj$fromList(
-          MultiPolygonList[["coordinates"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["crs"]] <- Crs$new()$fromList(
+        MultiPolygonList[["crs"]],
+        typeMapping = typeMapping
+      )
+      self[["bbox"]] <-
+        MultiPolygonList[["bbox"]]
+      self[["coordinates"]] <-
+        MultiPolygonList[["coordinates"]]
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

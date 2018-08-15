@@ -57,30 +57,10 @@ NamedArea <- R6::R6Class(
     },
     fromList = function(NamedAreaList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["areaClass"]])) {
-        self[["areaClass"]] <-
-          NamedAreaList[["areaClass"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["areaClass"]], "$new()")
-        ))
-        self[["areaClass"]] <- obj$fromList(
-          NamedAreaList[["areaClass"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["areaName"]])) {
-        self[["areaName"]] <-
-          NamedAreaList[["areaName"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["areaName"]], "$new()")
-        ))
-        self[["areaName"]] <- obj$fromList(
-          NamedAreaList[["areaName"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["areaClass"]] <-
+        NamedAreaList[["areaClass"]]
+      self[["areaName"]] <-
+        NamedAreaList[["areaName"]]
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

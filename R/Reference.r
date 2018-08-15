@@ -96,68 +96,18 @@ Reference <- R6::R6Class(
     },
     fromList = function(ReferenceList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["titleCitation"]])) {
-        self[["titleCitation"]] <-
-          ReferenceList[["titleCitation"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["titleCitation"]], "$new()")
-        ))
-        self[["titleCitation"]] <- obj$fromList(
-          ReferenceList[["titleCitation"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["citationDetail"]])) {
-        self[["citationDetail"]] <-
-          ReferenceList[["citationDetail"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["citationDetail"]], "$new()")
-        ))
-        self[["citationDetail"]] <- obj$fromList(
-          ReferenceList[["citationDetail"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["uri"]])) {
-        self[["uri"]] <-
-          ReferenceList[["uri"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["uri"]], "$new()")
-        ))
-        self[["uri"]] <- obj$fromList(
-          ReferenceList[["uri"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["author"]])) {
-        self[["author"]] <- Person$new()$fromList(
-          ReferenceList[["author"]],
-          typeMapping = typeMapping
-        )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["author"]], "$new()")
-        ))
-        self[["author"]] <- obj$fromList(
-          ReferenceList[["author"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["publicationDate"]])) {
-        self[["publicationDate"]] <-
-          ReferenceList[["publicationDate"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["publicationDate"]], "$new()")
-        ))
-        self[["publicationDate"]] <- obj$fromList(
-          ReferenceList[["publicationDate"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["titleCitation"]] <-
+        ReferenceList[["titleCitation"]]
+      self[["citationDetail"]] <-
+        ReferenceList[["citationDetail"]]
+      self[["uri"]] <-
+        ReferenceList[["uri"]]
+      self[["author"]] <- Person$new()$fromList(
+        ReferenceList[["author"]],
+        typeMapping = typeMapping
+      )
+      self[["publicationDate"]] <-
+        ReferenceList[["publicationDate"]]
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

@@ -162,128 +162,28 @@ GeoArea <- R6::R6Class(
     },
     fromList = function(GeoAreaList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["sourceSystem"]])) {
-        self[["sourceSystem"]] <- SourceSystem$new()$fromList(
-          GeoAreaList[["sourceSystem"]],
-          typeMapping = typeMapping
-        )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sourceSystem"]], "$new()")
-        ))
-        self[["sourceSystem"]] <- obj$fromList(
-          GeoAreaList[["sourceSystem"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["sourceSystemId"]])) {
-        self[["sourceSystemId"]] <-
-          GeoAreaList[["sourceSystemId"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sourceSystemId"]], "$new()")
-        ))
-        self[["sourceSystemId"]] <- obj$fromList(
-          GeoAreaList[["sourceSystemId"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["recordURI"]])) {
-        self[["recordURI"]] <-
-          GeoAreaList[["recordURI"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["recordURI"]], "$new()")
-        ))
-        self[["recordURI"]] <- obj$fromList(
-          GeoAreaList[["recordURI"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["id"]])) {
-        self[["id"]] <-
-          GeoAreaList[["id"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["id"]], "$new()")
-        ))
-        self[["id"]] <- obj$fromList(
-          GeoAreaList[["id"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["areaType"]])) {
-        self[["areaType"]] <-
-          GeoAreaList[["areaType"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["areaType"]], "$new()")
-        ))
-        self[["areaType"]] <- obj$fromList(
-          GeoAreaList[["areaType"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["locality"]])) {
-        self[["locality"]] <-
-          GeoAreaList[["locality"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["locality"]], "$new()")
-        ))
-        self[["locality"]] <- obj$fromList(
-          GeoAreaList[["locality"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["shape"]])) {
-        self[["shape"]] <-
-          GeoAreaList[["shape"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["shape"]], "$new()")
-        ))
-        self[["shape"]] <- obj$fromList(
-          GeoAreaList[["shape"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["source"]])) {
-        self[["source"]] <-
-          GeoAreaList[["source"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["source"]], "$new()")
-        ))
-        self[["source"]] <- obj$fromList(
-          GeoAreaList[["source"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["isoCode"]])) {
-        self[["isoCode"]] <-
-          GeoAreaList[["isoCode"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["isoCode"]], "$new()")
-        ))
-        self[["isoCode"]] <- obj$fromList(
-          GeoAreaList[["isoCode"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["countryNL"]])) {
-        self[["countryNL"]] <-
-          GeoAreaList[["countryNL"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["countryNL"]], "$new()")
-        ))
-        self[["countryNL"]] <- obj$fromList(
-          GeoAreaList[["countryNL"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["sourceSystem"]] <- SourceSystem$new()$fromList(
+        GeoAreaList[["sourceSystem"]],
+        typeMapping = typeMapping
+      )
+      self[["sourceSystemId"]] <-
+        GeoAreaList[["sourceSystemId"]]
+      self[["recordURI"]] <-
+        GeoAreaList[["recordURI"]]
+      self[["id"]] <-
+        GeoAreaList[["id"]]
+      self[["areaType"]] <-
+        GeoAreaList[["areaType"]]
+      self[["locality"]] <-
+        GeoAreaList[["locality"]]
+      self[["shape"]] <-
+        GeoAreaList[["shape"]]
+      self[["source"]] <-
+        GeoAreaList[["source"]]
+      self[["isoCode"]] <-
+        GeoAreaList[["isoCode"]]
+      self[["countryNL"]] <-
+        GeoAreaList[["countryNL"]]
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

@@ -43,18 +43,8 @@ SummarySourceSystem <- R6::R6Class(
     },
     fromList = function(SummarySourceSystemList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["code"]])) {
-        self[["code"]] <-
-          SummarySourceSystemList[["code"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["code"]], "$new()")
-        ))
-        self[["code"]] <- obj$fromList(
-          SummarySourceSystemList[["code"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["code"]] <-
+        SummarySourceSystemList[["code"]]
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

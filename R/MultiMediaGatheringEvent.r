@@ -450,234 +450,44 @@ MultiMediaGatheringEvent <- R6::R6Class(
     },
     fromList = function(MultiMediaGatheringEventList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["projectTitle"]])) {
-        self[["projectTitle"]] <-
-          MultiMediaGatheringEventList[["projectTitle"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["projectTitle"]], "$new()")
-        ))
-        self[["projectTitle"]] <- obj$fromList(
-          MultiMediaGatheringEventList[["projectTitle"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["worldRegion"]])) {
-        self[["worldRegion"]] <-
-          MultiMediaGatheringEventList[["worldRegion"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["worldRegion"]], "$new()")
-        ))
-        self[["worldRegion"]] <- obj$fromList(
-          MultiMediaGatheringEventList[["worldRegion"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["continent"]])) {
-        self[["continent"]] <-
-          MultiMediaGatheringEventList[["continent"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["continent"]], "$new()")
-        ))
-        self[["continent"]] <- obj$fromList(
-          MultiMediaGatheringEventList[["continent"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["country"]])) {
-        self[["country"]] <-
-          MultiMediaGatheringEventList[["country"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["country"]], "$new()")
-        ))
-        self[["country"]] <- obj$fromList(
-          MultiMediaGatheringEventList[["country"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["iso3166Code"]])) {
-        self[["iso3166Code"]] <-
-          MultiMediaGatheringEventList[["iso3166Code"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["iso3166Code"]], "$new()")
-        ))
-        self[["iso3166Code"]] <- obj$fromList(
-          MultiMediaGatheringEventList[["iso3166Code"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["provinceState"]])) {
-        self[["provinceState"]] <-
-          MultiMediaGatheringEventList[["provinceState"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["provinceState"]], "$new()")
-        ))
-        self[["provinceState"]] <- obj$fromList(
-          MultiMediaGatheringEventList[["provinceState"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["island"]])) {
-        self[["island"]] <-
-          MultiMediaGatheringEventList[["island"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["island"]], "$new()")
-        ))
-        self[["island"]] <- obj$fromList(
-          MultiMediaGatheringEventList[["island"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["locality"]])) {
-        self[["locality"]] <-
-          MultiMediaGatheringEventList[["locality"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["locality"]], "$new()")
-        ))
-        self[["locality"]] <- obj$fromList(
-          MultiMediaGatheringEventList[["locality"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["city"]])) {
-        self[["city"]] <-
-          MultiMediaGatheringEventList[["city"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["city"]], "$new()")
-        ))
-        self[["city"]] <- obj$fromList(
-          MultiMediaGatheringEventList[["city"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["sublocality"]])) {
-        self[["sublocality"]] <-
-          MultiMediaGatheringEventList[["sublocality"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sublocality"]], "$new()")
-        ))
-        self[["sublocality"]] <- obj$fromList(
-          MultiMediaGatheringEventList[["sublocality"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["localityText"]])) {
-        self[["localityText"]] <-
-          MultiMediaGatheringEventList[["localityText"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["localityText"]], "$new()")
-        ))
-        self[["localityText"]] <- obj$fromList(
-          MultiMediaGatheringEventList[["localityText"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["dateTimeBegin"]])) {
-        self[["dateTimeBegin"]] <-
-          MultiMediaGatheringEventList[["dateTimeBegin"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["dateTimeBegin"]], "$new()")
-        ))
-        self[["dateTimeBegin"]] <- obj$fromList(
-          MultiMediaGatheringEventList[["dateTimeBegin"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["dateTimeEnd"]])) {
-        self[["dateTimeEnd"]] <-
-          MultiMediaGatheringEventList[["dateTimeEnd"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["dateTimeEnd"]], "$new()")
-        ))
-        self[["dateTimeEnd"]] <- obj$fromList(
-          MultiMediaGatheringEventList[["dateTimeEnd"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["method"]])) {
-        self[["method"]] <-
-          MultiMediaGatheringEventList[["method"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["method"]], "$new()")
-        ))
-        self[["method"]] <- obj$fromList(
-          MultiMediaGatheringEventList[["method"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["altitude"]])) {
-        self[["altitude"]] <-
-          MultiMediaGatheringEventList[["altitude"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["altitude"]], "$new()")
-        ))
-        self[["altitude"]] <- obj$fromList(
-          MultiMediaGatheringEventList[["altitude"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["altitudeUnifOfMeasurement"]])) {
-        self[["altitudeUnifOfMeasurement"]] <-
-          MultiMediaGatheringEventList[["altitudeUnifOfMeasurement"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["altitudeUnifOfMeasurement"]], "$new()")
-        ))
-        self[["altitudeUnifOfMeasurement"]] <- obj$fromList(
-          MultiMediaGatheringEventList[["altitudeUnifOfMeasurement"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["biotopeText"]])) {
-        self[["biotopeText"]] <-
-          MultiMediaGatheringEventList[["biotopeText"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["biotopeText"]], "$new()")
-        ))
-        self[["biotopeText"]] <- obj$fromList(
-          MultiMediaGatheringEventList[["biotopeText"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["depth"]])) {
-        self[["depth"]] <-
-          MultiMediaGatheringEventList[["depth"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["depth"]], "$new()")
-        ))
-        self[["depth"]] <- obj$fromList(
-          MultiMediaGatheringEventList[["depth"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["depthUnitOfMeasurement"]])) {
-        self[["depthUnitOfMeasurement"]] <-
-          MultiMediaGatheringEventList[["depthUnitOfMeasurement"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["depthUnitOfMeasurement"]], "$new()")
-        ))
-        self[["depthUnitOfMeasurement"]] <- obj$fromList(
-          MultiMediaGatheringEventList[["depthUnitOfMeasurement"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["projectTitle"]] <-
+        MultiMediaGatheringEventList[["projectTitle"]]
+      self[["worldRegion"]] <-
+        MultiMediaGatheringEventList[["worldRegion"]]
+      self[["continent"]] <-
+        MultiMediaGatheringEventList[["continent"]]
+      self[["country"]] <-
+        MultiMediaGatheringEventList[["country"]]
+      self[["iso3166Code"]] <-
+        MultiMediaGatheringEventList[["iso3166Code"]]
+      self[["provinceState"]] <-
+        MultiMediaGatheringEventList[["provinceState"]]
+      self[["island"]] <-
+        MultiMediaGatheringEventList[["island"]]
+      self[["locality"]] <-
+        MultiMediaGatheringEventList[["locality"]]
+      self[["city"]] <-
+        MultiMediaGatheringEventList[["city"]]
+      self[["sublocality"]] <-
+        MultiMediaGatheringEventList[["sublocality"]]
+      self[["localityText"]] <-
+        MultiMediaGatheringEventList[["localityText"]]
+      self[["dateTimeBegin"]] <-
+        MultiMediaGatheringEventList[["dateTimeBegin"]]
+      self[["dateTimeEnd"]] <-
+        MultiMediaGatheringEventList[["dateTimeEnd"]]
+      self[["method"]] <-
+        MultiMediaGatheringEventList[["method"]]
+      self[["altitude"]] <-
+        MultiMediaGatheringEventList[["altitude"]]
+      self[["altitudeUnifOfMeasurement"]] <-
+        MultiMediaGatheringEventList[["altitudeUnifOfMeasurement"]]
+      self[["biotopeText"]] <-
+        MultiMediaGatheringEventList[["biotopeText"]]
+      self[["depth"]] <-
+        MultiMediaGatheringEventList[["depth"]]
+      self[["depthUnitOfMeasurement"]] <-
+        MultiMediaGatheringEventList[["depthUnitOfMeasurement"]]
       self[["gatheringPersons"]] <- lapply(
         MultiMediaGatheringEventList[["gatheringPersons"]],
         function(x) {
@@ -734,20 +544,10 @@ MultiMediaGatheringEvent <- R6::R6Class(
           )
         }
       )
-      if (is.null(typeMapping[["iptc"]])) {
-        self[["iptc"]] <- Iptc4xmpExt$new()$fromList(
-          MultiMediaGatheringEventList[["iptc"]],
-          typeMapping = typeMapping
-        )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["iptc"]], "$new()")
-        ))
-        self[["iptc"]] <- obj$fromList(
-          MultiMediaGatheringEventList[["iptc"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["iptc"]] <- Iptc4xmpExt$new()$fromList(
+        MultiMediaGatheringEventList[["iptc"]],
+        typeMapping = typeMapping
+      )
       self[["bioStratigraphic"]] <- lapply(
         MultiMediaGatheringEventList[["bioStratigraphic"]],
         function(x) {

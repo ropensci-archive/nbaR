@@ -68,44 +68,14 @@ Expert <- R6::R6Class(
     },
     fromList = function(ExpertList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["agentText"]])) {
-        self[["agentText"]] <-
-          ExpertList[["agentText"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["agentText"]], "$new()")
-        ))
-        self[["agentText"]] <- obj$fromList(
-          ExpertList[["agentText"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["fullName"]])) {
-        self[["fullName"]] <-
-          ExpertList[["fullName"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["fullName"]], "$new()")
-        ))
-        self[["fullName"]] <- obj$fromList(
-          ExpertList[["fullName"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["organization"]])) {
-        self[["organization"]] <- Organization$new()$fromList(
-          ExpertList[["organization"]],
-          typeMapping = typeMapping
-        )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["organization"]], "$new()")
-        ))
-        self[["organization"]] <- obj$fromList(
-          ExpertList[["organization"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["agentText"]] <-
+        ExpertList[["agentText"]]
+      self[["fullName"]] <-
+        ExpertList[["fullName"]]
+      self[["organization"]] <- Organization$new()$fromList(
+        ExpertList[["organization"]],
+        typeMapping = typeMapping
+      )
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

@@ -93,54 +93,14 @@ Filter <- R6::R6Class(
     },
     fromList = function(FilterList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["acceptRegexp"]])) {
-        self[["acceptRegexp"]] <-
-          FilterList[["acceptRegexp"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["acceptRegexp"]], "$new()")
-        ))
-        self[["acceptRegexp"]] <- obj$fromList(
-          FilterList[["acceptRegexp"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["rejectRegexp"]])) {
-        self[["rejectRegexp"]] <-
-          FilterList[["rejectRegexp"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["rejectRegexp"]], "$new()")
-        ))
-        self[["rejectRegexp"]] <- obj$fromList(
-          FilterList[["rejectRegexp"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["acceptValues"]])) {
-        self[["acceptValues"]] <-
-          FilterList[["acceptValues"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["acceptValues"]], "$new()")
-        ))
-        self[["acceptValues"]] <- obj$fromList(
-          FilterList[["acceptValues"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["rejectValues"]])) {
-        self[["rejectValues"]] <-
-          FilterList[["rejectValues"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["rejectValues"]], "$new()")
-        ))
-        self[["rejectValues"]] <- obj$fromList(
-          FilterList[["rejectValues"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["acceptRegexp"]] <-
+        FilterList[["acceptRegexp"]]
+      self[["rejectRegexp"]] <-
+        FilterList[["rejectRegexp"]]
+      self[["acceptValues"]] <-
+        FilterList[["acceptValues"]]
+      self[["rejectValues"]] <-
+        FilterList[["rejectValues"]]
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

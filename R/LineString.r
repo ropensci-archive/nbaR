@@ -76,32 +76,12 @@ LineString <- R6::R6Class(
     },
     fromList = function(LineStringList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <- Crs$new()$fromList(
-          LineStringList[["crs"]],
-          typeMapping = typeMapping
-        )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["crs"]], "$new()")
-        ))
-        self[["crs"]] <- obj$fromList(
-          LineStringList[["crs"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["bbox"]])) {
-        self[["bbox"]] <-
-          LineStringList[["bbox"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["bbox"]], "$new()")
-        ))
-        self[["bbox"]] <- obj$fromList(
-          LineStringList[["bbox"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["crs"]] <- Crs$new()$fromList(
+        LineStringList[["crs"]],
+        typeMapping = typeMapping
+      )
+      self[["bbox"]] <-
+        LineStringList[["bbox"]]
       self[["coordinates"]] <- lapply(
         LineStringList[["coordinates"]],
         function(x) {

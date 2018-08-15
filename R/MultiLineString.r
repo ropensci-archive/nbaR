@@ -76,44 +76,14 @@ MultiLineString <- R6::R6Class(
     },
     fromList = function(MultiLineStringList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <- Crs$new()$fromList(
-          MultiLineStringList[["crs"]],
-          typeMapping = typeMapping
-        )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["crs"]], "$new()")
-        ))
-        self[["crs"]] <- obj$fromList(
-          MultiLineStringList[["crs"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["bbox"]])) {
-        self[["bbox"]] <-
-          MultiLineStringList[["bbox"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["bbox"]], "$new()")
-        ))
-        self[["bbox"]] <- obj$fromList(
-          MultiLineStringList[["bbox"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["coordinates"]])) {
-        self[["coordinates"]] <-
-          MultiLineStringList[["coordinates"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["coordinates"]], "$new()")
-        ))
-        self[["coordinates"]] <- obj$fromList(
-          MultiLineStringList[["coordinates"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["crs"]] <- Crs$new()$fromList(
+        MultiLineStringList[["crs"]],
+        typeMapping = typeMapping
+      )
+      self[["bbox"]] <-
+        MultiLineStringList[["bbox"]]
+      self[["coordinates"]] <-
+        MultiLineStringList[["coordinates"]]
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

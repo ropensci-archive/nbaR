@@ -92,68 +92,18 @@ Feature <- R6::R6Class(
     },
     fromList = function(FeatureList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <- Crs$new()$fromList(
-          FeatureList[["crs"]],
-          typeMapping = typeMapping
-        )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["crs"]], "$new()")
-        ))
-        self[["crs"]] <- obj$fromList(
-          FeatureList[["crs"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["bbox"]])) {
-        self[["bbox"]] <-
-          FeatureList[["bbox"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["bbox"]], "$new()")
-        ))
-        self[["bbox"]] <- obj$fromList(
-          FeatureList[["bbox"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["properties"]])) {
-        self[["properties"]] <-
-          FeatureList[["properties"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["properties"]], "$new()")
-        ))
-        self[["properties"]] <- obj$fromList(
-          FeatureList[["properties"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["geometry"]])) {
-        self[["geometry"]] <-
-          FeatureList[["geometry"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["geometry"]], "$new()")
-        ))
-        self[["geometry"]] <- obj$fromList(
-          FeatureList[["geometry"]],
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["id"]])) {
-        self[["id"]] <-
-          FeatureList[["id"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["id"]], "$new()")
-        ))
-        self[["id"]] <- obj$fromList(
-          FeatureList[["id"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["crs"]] <- Crs$new()$fromList(
+        FeatureList[["crs"]],
+        typeMapping = typeMapping
+      )
+      self[["bbox"]] <-
+        FeatureList[["bbox"]]
+      self[["properties"]] <-
+        FeatureList[["properties"]]
+      self[["geometry"]] <-
+        FeatureList[["geometry"]]
+      self[["id"]] <-
+        FeatureList[["id"]]
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {

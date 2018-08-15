@@ -43,18 +43,8 @@ Agent <- R6::R6Class(
     },
     fromList = function(AgentList,
                             typeMapping = NULL) {
-      if (is.null(typeMapping[["agentText"]])) {
-        self[["agentText"]] <-
-          AgentList[["agentText"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["agentText"]], "$new()")
-        ))
-        self[["agentText"]] <- obj$fromList(
-          AgentList[["agentText"]],
-          typeMapping = typeMapping
-        )
-      }
+      self[["agentText"]] <-
+        AgentList[["agentText"]]
       invisible(self)
     },
     toJSONString = function(pretty = TRUE) {
