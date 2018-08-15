@@ -155,6 +155,7 @@
           simplifyVector = FALSE)
       {{#vars}}
       {{#isPrimitiveType}}
+      {{#needsTypeMapping}}
       if (is.null(typeMapping[["{{baseName}}"]])) {
             self[["{{baseName}}"]] <-
                 {{classname}}List[["{{baseName}}"]]
@@ -166,6 +167,11 @@
                   {{classname}}List[["{{baseName}}"]], auto_unbox = TRUE),
               typeMapping = typeMapping)
       }
+      {{/needsTypeMapping}}
+      {{^needsTypeMapping}}
+        self[["{{baseName}}"]] <-
+                {{classname}}List[["{{baseName}}"]]
+      {{/needsTypeMapping}}  
       {{/isPrimitiveType}}
       {{^isPrimitiveType}}
       {{#isListContainer}}
@@ -178,7 +184,8 @@
                                                typeMapping = typeMapping)})
       {{/isListContainer}}
       {{^isListContainer}}
-      if (is.null(typeMapping[["{{baseName}}"]])) {
+      {{#needsTypeMapping}}
+        if (is.null(typeMapping[["{{baseName}}"]])) {
           self[["{{baseName}}"]] <-
               {{datatype}}$new()$fromJSONString(
                   jsonlite::toJSON(
@@ -194,6 +201,15 @@
                   auto_unbox = TRUE),
               typeMapping=typeMapping)
       }
+      {{/needsTypeMapping}}
+           self[["{{baseName}}"]] <-
+              {{datatype}}$new()$fromJSONString(
+                  jsonlite::toJSON(
+                      {{classname}}List[["{{baseName}}"]],
+                      auto_unbox = TRUE),
+                  typeMapping = typeMapping)
+      {{^needsTypeMapping}}
+      {{/needsTypeMapping}}
       {{/isListContainer}}
       {{/isPrimitiveType}}
       {{/vars}}

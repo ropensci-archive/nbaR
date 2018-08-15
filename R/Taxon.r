@@ -373,174 +373,44 @@ Taxon <- R6::R6Class(
         TaxonJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["sourceSystem"]])) {
-        self[["sourceSystem"]] <-
-          SourceSystem$new()$fromJSONString(
-            jsonlite::toJSON(
-              TaxonList[["sourceSystem"]],
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sourceSystem"]], "$new()")
-        ))
-        self[["sourceSystem"]] <- obj$fromJSONString(
+      self[["sourceSystem"]] <-
+        SourceSystem$new()$fromJSONString(
           jsonlite::toJSON(
             TaxonList[["sourceSystem"]],
             auto_unbox = TRUE
           ),
           typeMapping = typeMapping
         )
-      }
-      if (is.null(typeMapping[["sourceSystemId"]])) {
-        self[["sourceSystemId"]] <-
-          TaxonList[["sourceSystemId"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sourceSystemId"]], "$new()")
-        ))
-        self[["sourceSystemId"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            TaxonList[["sourceSystemId"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["recordURI"]])) {
-        self[["recordURI"]] <-
-          TaxonList[["recordURI"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["recordURI"]], "$new()")
-        ))
-        self[["recordURI"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            TaxonList[["recordURI"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["id"]])) {
-        self[["id"]] <-
-          TaxonList[["id"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["id"]], "$new()")
-        ))
-        self[["id"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            TaxonList[["id"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["sourceSystemParentId"]])) {
-        self[["sourceSystemParentId"]] <-
-          TaxonList[["sourceSystemParentId"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sourceSystemParentId"]], "$new()")
-        ))
-        self[["sourceSystemParentId"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            TaxonList[["sourceSystemParentId"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["taxonRank"]])) {
-        self[["taxonRank"]] <-
-          TaxonList[["taxonRank"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["taxonRank"]], "$new()")
-        ))
-        self[["taxonRank"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            TaxonList[["taxonRank"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["taxonRemarks"]])) {
-        self[["taxonRemarks"]] <-
-          TaxonList[["taxonRemarks"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["taxonRemarks"]], "$new()")
-        ))
-        self[["taxonRemarks"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            TaxonList[["taxonRemarks"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["occurrenceStatusVerbatim"]])) {
-        self[["occurrenceStatusVerbatim"]] <-
-          TaxonList[["occurrenceStatusVerbatim"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["occurrenceStatusVerbatim"]], "$new()")
-        ))
-        self[["occurrenceStatusVerbatim"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            TaxonList[["occurrenceStatusVerbatim"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["acceptedName"]])) {
-        self[["acceptedName"]] <-
-          ScientificName$new()$fromJSONString(
-            jsonlite::toJSON(
-              TaxonList[["acceptedName"]],
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["acceptedName"]], "$new()")
-        ))
-        self[["acceptedName"]] <- obj$fromJSONString(
+      self[["sourceSystemId"]] <-
+        TaxonList[["sourceSystemId"]]
+      self[["recordURI"]] <-
+        TaxonList[["recordURI"]]
+      self[["id"]] <-
+        TaxonList[["id"]]
+      self[["sourceSystemParentId"]] <-
+        TaxonList[["sourceSystemParentId"]]
+      self[["taxonRank"]] <-
+        TaxonList[["taxonRank"]]
+      self[["taxonRemarks"]] <-
+        TaxonList[["taxonRemarks"]]
+      self[["occurrenceStatusVerbatim"]] <-
+        TaxonList[["occurrenceStatusVerbatim"]]
+      self[["acceptedName"]] <-
+        ScientificName$new()$fromJSONString(
           jsonlite::toJSON(
             TaxonList[["acceptedName"]],
             auto_unbox = TRUE
           ),
           typeMapping = typeMapping
         )
-      }
-      if (is.null(typeMapping[["defaultClassification"]])) {
-        self[["defaultClassification"]] <-
-          DefaultClassification$new()$fromJSONString(
-            jsonlite::toJSON(
-              TaxonList[["defaultClassification"]],
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["defaultClassification"]], "$new()")
-        ))
-        self[["defaultClassification"]] <- obj$fromJSONString(
+      self[["defaultClassification"]] <-
+        DefaultClassification$new()$fromJSONString(
           jsonlite::toJSON(
             TaxonList[["defaultClassification"]],
             auto_unbox = TRUE
           ),
           typeMapping = typeMapping
         )
-      }
       self[["systemClassification"]] <- lapply(
         TaxonList[["systemClassification"]],
         function(x) {
@@ -613,27 +483,14 @@ Taxon <- R6::R6Class(
           )
         }
       )
-      if (is.null(typeMapping[["validName"]])) {
-        self[["validName"]] <-
-          ScientificName$new()$fromJSONString(
-            jsonlite::toJSON(
-              TaxonList[["validName"]],
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["validName"]], "$new()")
-        ))
-        self[["validName"]] <- obj$fromJSONString(
+      self[["validName"]] <-
+        ScientificName$new()$fromJSONString(
           jsonlite::toJSON(
             TaxonList[["validName"]],
             auto_unbox = TRUE
           ),
           typeMapping = typeMapping
         )
-      }
       invisible(self)
     }
   )

@@ -221,171 +221,28 @@ DefaultClassification <- R6::R6Class(
         DefaultClassificationJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["kingdom"]])) {
-        self[["kingdom"]] <-
-          DefaultClassificationList[["kingdom"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["kingdom"]], "$new()")
-        ))
-        self[["kingdom"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            DefaultClassificationList[["kingdom"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["phylum"]])) {
-        self[["phylum"]] <-
-          DefaultClassificationList[["phylum"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["phylum"]], "$new()")
-        ))
-        self[["phylum"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            DefaultClassificationList[["phylum"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["className"]])) {
-        self[["className"]] <-
-          DefaultClassificationList[["className"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["className"]], "$new()")
-        ))
-        self[["className"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            DefaultClassificationList[["className"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["order"]])) {
-        self[["order"]] <-
-          DefaultClassificationList[["order"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["order"]], "$new()")
-        ))
-        self[["order"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            DefaultClassificationList[["order"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["superFamily"]])) {
-        self[["superFamily"]] <-
-          DefaultClassificationList[["superFamily"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["superFamily"]], "$new()")
-        ))
-        self[["superFamily"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            DefaultClassificationList[["superFamily"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["family"]])) {
-        self[["family"]] <-
-          DefaultClassificationList[["family"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["family"]], "$new()")
-        ))
-        self[["family"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            DefaultClassificationList[["family"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["genus"]])) {
-        self[["genus"]] <-
-          DefaultClassificationList[["genus"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["genus"]], "$new()")
-        ))
-        self[["genus"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            DefaultClassificationList[["genus"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["subgenus"]])) {
-        self[["subgenus"]] <-
-          DefaultClassificationList[["subgenus"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["subgenus"]], "$new()")
-        ))
-        self[["subgenus"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            DefaultClassificationList[["subgenus"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["specificEpithet"]])) {
-        self[["specificEpithet"]] <-
-          DefaultClassificationList[["specificEpithet"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["specificEpithet"]], "$new()")
-        ))
-        self[["specificEpithet"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            DefaultClassificationList[["specificEpithet"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["infraspecificEpithet"]])) {
-        self[["infraspecificEpithet"]] <-
-          DefaultClassificationList[["infraspecificEpithet"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["infraspecificEpithet"]], "$new()")
-        ))
-        self[["infraspecificEpithet"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            DefaultClassificationList[["infraspecificEpithet"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["infraspecificRank"]])) {
-        self[["infraspecificRank"]] <-
-          DefaultClassificationList[["infraspecificRank"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["infraspecificRank"]], "$new()")
-        ))
-        self[["infraspecificRank"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            DefaultClassificationList[["infraspecificRank"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["kingdom"]] <-
+        DefaultClassificationList[["kingdom"]]
+      self[["phylum"]] <-
+        DefaultClassificationList[["phylum"]]
+      self[["className"]] <-
+        DefaultClassificationList[["className"]]
+      self[["order"]] <-
+        DefaultClassificationList[["order"]]
+      self[["superFamily"]] <-
+        DefaultClassificationList[["superFamily"]]
+      self[["family"]] <-
+        DefaultClassificationList[["family"]]
+      self[["genus"]] <-
+        DefaultClassificationList[["genus"]]
+      self[["subgenus"]] <-
+        DefaultClassificationList[["subgenus"]]
+      self[["specificEpithet"]] <-
+        DefaultClassificationList[["specificEpithet"]]
+      self[["infraspecificEpithet"]] <-
+        DefaultClassificationList[["infraspecificEpithet"]]
+      self[["infraspecificRank"]] <-
+        DefaultClassificationList[["infraspecificRank"]]
       invisible(self)
     }
   )

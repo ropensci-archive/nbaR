@@ -93,51 +93,12 @@ ServiceAccessPoint <- R6::R6Class(
         ServiceAccessPointJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["accessUri"]])) {
-        self[["accessUri"]] <-
-          ServiceAccessPointList[["accessUri"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["accessUri"]], "$new()")
-        ))
-        self[["accessUri"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ServiceAccessPointList[["accessUri"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["format"]])) {
-        self[["format"]] <-
-          ServiceAccessPointList[["format"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["format"]], "$new()")
-        ))
-        self[["format"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ServiceAccessPointList[["format"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["variant"]])) {
-        self[["variant"]] <-
-          ServiceAccessPointList[["variant"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["variant"]], "$new()")
-        ))
-        self[["variant"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ServiceAccessPointList[["variant"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["accessUri"]] <-
+        ServiceAccessPointList[["accessUri"]]
+      self[["format"]] <-
+        ServiceAccessPointList[["format"]]
+      self[["variant"]] <-
+        ServiceAccessPointList[["variant"]]
       invisible(self)
     }
   )

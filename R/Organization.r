@@ -77,36 +77,10 @@ Organization <- R6::R6Class(
         OrganizationJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["agentText"]])) {
-        self[["agentText"]] <-
-          OrganizationList[["agentText"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["agentText"]], "$new()")
-        ))
-        self[["agentText"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            OrganizationList[["agentText"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["name"]])) {
-        self[["name"]] <-
-          OrganizationList[["name"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["name"]], "$new()")
-        ))
-        self[["name"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            OrganizationList[["name"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["agentText"]] <-
+        OrganizationList[["agentText"]]
+      self[["name"]] <-
+        OrganizationList[["name"]]
       invisible(self)
     }
   )

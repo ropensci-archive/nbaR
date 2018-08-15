@@ -113,66 +113,14 @@ LngLatAlt <- R6::R6Class(
         LngLatAltJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["longitude"]])) {
-        self[["longitude"]] <-
-          LngLatAltList[["longitude"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["longitude"]], "$new()")
-        ))
-        self[["longitude"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            LngLatAltList[["longitude"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["latitude"]])) {
-        self[["latitude"]] <-
-          LngLatAltList[["latitude"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["latitude"]], "$new()")
-        ))
-        self[["latitude"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            LngLatAltList[["latitude"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["altitude"]])) {
-        self[["altitude"]] <-
-          LngLatAltList[["altitude"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["altitude"]], "$new()")
-        ))
-        self[["altitude"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            LngLatAltList[["altitude"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["additionalElements"]])) {
-        self[["additionalElements"]] <-
-          LngLatAltList[["additionalElements"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["additionalElements"]], "$new()")
-        ))
-        self[["additionalElements"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            LngLatAltList[["additionalElements"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["longitude"]] <-
+        LngLatAltList[["longitude"]]
+      self[["latitude"]] <-
+        LngLatAltList[["latitude"]]
+      self[["altitude"]] <-
+        LngLatAltList[["altitude"]]
+      self[["additionalElements"]] <-
+        LngLatAltList[["additionalElements"]]
       invisible(self)
     }
   )

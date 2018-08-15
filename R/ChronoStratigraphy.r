@@ -457,396 +457,58 @@ ChronoStratigraphy <- R6::R6Class(
         ChronoStratigraphyJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["youngRegionalSubstage"]])) {
-        self[["youngRegionalSubstage"]] <-
-          ChronoStratigraphyList[["youngRegionalSubstage"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["youngRegionalSubstage"]], "$new()")
-        ))
-        self[["youngRegionalSubstage"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["youngRegionalSubstage"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["youngRegionalStage"]])) {
-        self[["youngRegionalStage"]] <-
-          ChronoStratigraphyList[["youngRegionalStage"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["youngRegionalStage"]], "$new()")
-        ))
-        self[["youngRegionalStage"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["youngRegionalStage"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["youngRegionalSeries"]])) {
-        self[["youngRegionalSeries"]] <-
-          ChronoStratigraphyList[["youngRegionalSeries"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["youngRegionalSeries"]], "$new()")
-        ))
-        self[["youngRegionalSeries"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["youngRegionalSeries"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["youngDatingQualifier"]])) {
-        self[["youngDatingQualifier"]] <-
-          ChronoStratigraphyList[["youngDatingQualifier"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["youngDatingQualifier"]], "$new()")
-        ))
-        self[["youngDatingQualifier"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["youngDatingQualifier"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["youngInternSystem"]])) {
-        self[["youngInternSystem"]] <-
-          ChronoStratigraphyList[["youngInternSystem"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["youngInternSystem"]], "$new()")
-        ))
-        self[["youngInternSystem"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["youngInternSystem"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["youngInternSubstage"]])) {
-        self[["youngInternSubstage"]] <-
-          ChronoStratigraphyList[["youngInternSubstage"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["youngInternSubstage"]], "$new()")
-        ))
-        self[["youngInternSubstage"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["youngInternSubstage"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["youngInternStage"]])) {
-        self[["youngInternStage"]] <-
-          ChronoStratigraphyList[["youngInternStage"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["youngInternStage"]], "$new()")
-        ))
-        self[["youngInternStage"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["youngInternStage"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["youngInternSeries"]])) {
-        self[["youngInternSeries"]] <-
-          ChronoStratigraphyList[["youngInternSeries"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["youngInternSeries"]], "$new()")
-        ))
-        self[["youngInternSeries"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["youngInternSeries"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["youngInternErathem"]])) {
-        self[["youngInternErathem"]] <-
-          ChronoStratigraphyList[["youngInternErathem"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["youngInternErathem"]], "$new()")
-        ))
-        self[["youngInternErathem"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["youngInternErathem"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["youngInternEonothem"]])) {
-        self[["youngInternEonothem"]] <-
-          ChronoStratigraphyList[["youngInternEonothem"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["youngInternEonothem"]], "$new()")
-        ))
-        self[["youngInternEonothem"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["youngInternEonothem"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["youngChronoName"]])) {
-        self[["youngChronoName"]] <-
-          ChronoStratigraphyList[["youngChronoName"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["youngChronoName"]], "$new()")
-        ))
-        self[["youngChronoName"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["youngChronoName"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["youngCertainty"]])) {
-        self[["youngCertainty"]] <-
-          ChronoStratigraphyList[["youngCertainty"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["youngCertainty"]], "$new()")
-        ))
-        self[["youngCertainty"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["youngCertainty"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["oldDatingQualifier"]])) {
-        self[["oldDatingQualifier"]] <-
-          ChronoStratigraphyList[["oldDatingQualifier"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["oldDatingQualifier"]], "$new()")
-        ))
-        self[["oldDatingQualifier"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["oldDatingQualifier"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["chronoPreferredFlag"]])) {
-        self[["chronoPreferredFlag"]] <-
-          ChronoStratigraphyList[["chronoPreferredFlag"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["chronoPreferredFlag"]], "$new()")
-        ))
-        self[["chronoPreferredFlag"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["chronoPreferredFlag"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["oldRegionalSubstage"]])) {
-        self[["oldRegionalSubstage"]] <-
-          ChronoStratigraphyList[["oldRegionalSubstage"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["oldRegionalSubstage"]], "$new()")
-        ))
-        self[["oldRegionalSubstage"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["oldRegionalSubstage"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["oldRegionalStage"]])) {
-        self[["oldRegionalStage"]] <-
-          ChronoStratigraphyList[["oldRegionalStage"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["oldRegionalStage"]], "$new()")
-        ))
-        self[["oldRegionalStage"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["oldRegionalStage"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["oldRegionalSeries"]])) {
-        self[["oldRegionalSeries"]] <-
-          ChronoStratigraphyList[["oldRegionalSeries"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["oldRegionalSeries"]], "$new()")
-        ))
-        self[["oldRegionalSeries"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["oldRegionalSeries"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["oldInternSystem"]])) {
-        self[["oldInternSystem"]] <-
-          ChronoStratigraphyList[["oldInternSystem"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["oldInternSystem"]], "$new()")
-        ))
-        self[["oldInternSystem"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["oldInternSystem"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["oldInternSubstage"]])) {
-        self[["oldInternSubstage"]] <-
-          ChronoStratigraphyList[["oldInternSubstage"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["oldInternSubstage"]], "$new()")
-        ))
-        self[["oldInternSubstage"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["oldInternSubstage"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["oldInternStage"]])) {
-        self[["oldInternStage"]] <-
-          ChronoStratigraphyList[["oldInternStage"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["oldInternStage"]], "$new()")
-        ))
-        self[["oldInternStage"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["oldInternStage"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["oldInternSeries"]])) {
-        self[["oldInternSeries"]] <-
-          ChronoStratigraphyList[["oldInternSeries"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["oldInternSeries"]], "$new()")
-        ))
-        self[["oldInternSeries"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["oldInternSeries"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["oldInternErathem"]])) {
-        self[["oldInternErathem"]] <-
-          ChronoStratigraphyList[["oldInternErathem"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["oldInternErathem"]], "$new()")
-        ))
-        self[["oldInternErathem"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["oldInternErathem"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["oldInternEonothem"]])) {
-        self[["oldInternEonothem"]] <-
-          ChronoStratigraphyList[["oldInternEonothem"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["oldInternEonothem"]], "$new()")
-        ))
-        self[["oldInternEonothem"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["oldInternEonothem"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["oldChronoName"]])) {
-        self[["oldChronoName"]] <-
-          ChronoStratigraphyList[["oldChronoName"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["oldChronoName"]], "$new()")
-        ))
-        self[["oldChronoName"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["oldChronoName"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["chronoIdentifier"]])) {
-        self[["chronoIdentifier"]] <-
-          ChronoStratigraphyList[["chronoIdentifier"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["chronoIdentifier"]], "$new()")
-        ))
-        self[["chronoIdentifier"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["chronoIdentifier"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["oldCertainty"]])) {
-        self[["oldCertainty"]] <-
-          ChronoStratigraphyList[["oldCertainty"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["oldCertainty"]], "$new()")
-        ))
-        self[["oldCertainty"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ChronoStratigraphyList[["oldCertainty"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["youngRegionalSubstage"]] <-
+        ChronoStratigraphyList[["youngRegionalSubstage"]]
+      self[["youngRegionalStage"]] <-
+        ChronoStratigraphyList[["youngRegionalStage"]]
+      self[["youngRegionalSeries"]] <-
+        ChronoStratigraphyList[["youngRegionalSeries"]]
+      self[["youngDatingQualifier"]] <-
+        ChronoStratigraphyList[["youngDatingQualifier"]]
+      self[["youngInternSystem"]] <-
+        ChronoStratigraphyList[["youngInternSystem"]]
+      self[["youngInternSubstage"]] <-
+        ChronoStratigraphyList[["youngInternSubstage"]]
+      self[["youngInternStage"]] <-
+        ChronoStratigraphyList[["youngInternStage"]]
+      self[["youngInternSeries"]] <-
+        ChronoStratigraphyList[["youngInternSeries"]]
+      self[["youngInternErathem"]] <-
+        ChronoStratigraphyList[["youngInternErathem"]]
+      self[["youngInternEonothem"]] <-
+        ChronoStratigraphyList[["youngInternEonothem"]]
+      self[["youngChronoName"]] <-
+        ChronoStratigraphyList[["youngChronoName"]]
+      self[["youngCertainty"]] <-
+        ChronoStratigraphyList[["youngCertainty"]]
+      self[["oldDatingQualifier"]] <-
+        ChronoStratigraphyList[["oldDatingQualifier"]]
+      self[["chronoPreferredFlag"]] <-
+        ChronoStratigraphyList[["chronoPreferredFlag"]]
+      self[["oldRegionalSubstage"]] <-
+        ChronoStratigraphyList[["oldRegionalSubstage"]]
+      self[["oldRegionalStage"]] <-
+        ChronoStratigraphyList[["oldRegionalStage"]]
+      self[["oldRegionalSeries"]] <-
+        ChronoStratigraphyList[["oldRegionalSeries"]]
+      self[["oldInternSystem"]] <-
+        ChronoStratigraphyList[["oldInternSystem"]]
+      self[["oldInternSubstage"]] <-
+        ChronoStratigraphyList[["oldInternSubstage"]]
+      self[["oldInternStage"]] <-
+        ChronoStratigraphyList[["oldInternStage"]]
+      self[["oldInternSeries"]] <-
+        ChronoStratigraphyList[["oldInternSeries"]]
+      self[["oldInternErathem"]] <-
+        ChronoStratigraphyList[["oldInternErathem"]]
+      self[["oldInternEonothem"]] <-
+        ChronoStratigraphyList[["oldInternEonothem"]]
+      self[["oldChronoName"]] <-
+        ChronoStratigraphyList[["oldChronoName"]]
+      self[["chronoIdentifier"]] <-
+        ChronoStratigraphyList[["chronoIdentifier"]]
+      self[["oldCertainty"]] <-
+        ChronoStratigraphyList[["oldCertainty"]]
       invisible(self)
     }
   )

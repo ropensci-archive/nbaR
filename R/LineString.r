@@ -106,42 +106,16 @@ LineString <- R6::R6Class(
         LineStringJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <-
-          Crs$new()$fromJSONString(
-            jsonlite::toJSON(
-              LineStringList[["crs"]],
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["crs"]], "$new()")
-        ))
-        self[["crs"]] <- obj$fromJSONString(
+      self[["crs"]] <-
+        Crs$new()$fromJSONString(
           jsonlite::toJSON(
             LineStringList[["crs"]],
             auto_unbox = TRUE
           ),
           typeMapping = typeMapping
         )
-      }
-      if (is.null(typeMapping[["bbox"]])) {
-        self[["bbox"]] <-
-          LineStringList[["bbox"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["bbox"]], "$new()")
-        ))
-        self[["bbox"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            LineStringList[["bbox"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["bbox"]] <-
+        LineStringList[["bbox"]]
       self[["coordinates"]] <- lapply(
         LineStringList[["coordinates"]],
         function(x) {

@@ -77,36 +77,10 @@ SummaryVernacularName <- R6::R6Class(
         SummaryVernacularNameJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["name"]])) {
-        self[["name"]] <-
-          SummaryVernacularNameList[["name"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["name"]], "$new()")
-        ))
-        self[["name"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SummaryVernacularNameList[["name"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["language"]])) {
-        self[["language"]] <-
-          SummaryVernacularNameList[["language"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["language"]], "$new()")
-        ))
-        self[["language"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SummaryVernacularNameList[["language"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["name"]] <-
+        SummaryVernacularNameList[["name"]]
+      self[["language"]] <-
+        SummaryVernacularNameList[["language"]]
       invisible(self)
     }
   )

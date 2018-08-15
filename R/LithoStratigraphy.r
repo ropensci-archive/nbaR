@@ -313,261 +313,40 @@ LithoStratigraphy <- R6::R6Class(
         LithoStratigraphyJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["qualifier"]])) {
-        self[["qualifier"]] <-
-          LithoStratigraphyList[["qualifier"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["qualifier"]], "$new()")
-        ))
-        self[["qualifier"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            LithoStratigraphyList[["qualifier"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["preferredFlag"]])) {
-        self[["preferredFlag"]] <-
-          LithoStratigraphyList[["preferredFlag"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["preferredFlag"]], "$new()")
-        ))
-        self[["preferredFlag"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            LithoStratigraphyList[["preferredFlag"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["member2"]])) {
-        self[["member2"]] <-
-          LithoStratigraphyList[["member2"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["member2"]], "$new()")
-        ))
-        self[["member2"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            LithoStratigraphyList[["member2"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["member"]])) {
-        self[["member"]] <-
-          LithoStratigraphyList[["member"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["member"]], "$new()")
-        ))
-        self[["member"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            LithoStratigraphyList[["member"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["informalName2"]])) {
-        self[["informalName2"]] <-
-          LithoStratigraphyList[["informalName2"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["informalName2"]], "$new()")
-        ))
-        self[["informalName2"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            LithoStratigraphyList[["informalName2"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["informalName"]])) {
-        self[["informalName"]] <-
-          LithoStratigraphyList[["informalName"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["informalName"]], "$new()")
-        ))
-        self[["informalName"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            LithoStratigraphyList[["informalName"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["importedName2"]])) {
-        self[["importedName2"]] <-
-          LithoStratigraphyList[["importedName2"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["importedName2"]], "$new()")
-        ))
-        self[["importedName2"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            LithoStratigraphyList[["importedName2"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["importedName1"]])) {
-        self[["importedName1"]] <-
-          LithoStratigraphyList[["importedName1"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["importedName1"]], "$new()")
-        ))
-        self[["importedName1"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            LithoStratigraphyList[["importedName1"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["lithoIdentifier"]])) {
-        self[["lithoIdentifier"]] <-
-          LithoStratigraphyList[["lithoIdentifier"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["lithoIdentifier"]], "$new()")
-        ))
-        self[["lithoIdentifier"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            LithoStratigraphyList[["lithoIdentifier"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["formation2"]])) {
-        self[["formation2"]] <-
-          LithoStratigraphyList[["formation2"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["formation2"]], "$new()")
-        ))
-        self[["formation2"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            LithoStratigraphyList[["formation2"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["formationGroup2"]])) {
-        self[["formationGroup2"]] <-
-          LithoStratigraphyList[["formationGroup2"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["formationGroup2"]], "$new()")
-        ))
-        self[["formationGroup2"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            LithoStratigraphyList[["formationGroup2"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["formationGroup"]])) {
-        self[["formationGroup"]] <-
-          LithoStratigraphyList[["formationGroup"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["formationGroup"]], "$new()")
-        ))
-        self[["formationGroup"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            LithoStratigraphyList[["formationGroup"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["formation"]])) {
-        self[["formation"]] <-
-          LithoStratigraphyList[["formation"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["formation"]], "$new()")
-        ))
-        self[["formation"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            LithoStratigraphyList[["formation"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["certainty2"]])) {
-        self[["certainty2"]] <-
-          LithoStratigraphyList[["certainty2"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["certainty2"]], "$new()")
-        ))
-        self[["certainty2"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            LithoStratigraphyList[["certainty2"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["certainty"]])) {
-        self[["certainty"]] <-
-          LithoStratigraphyList[["certainty"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["certainty"]], "$new()")
-        ))
-        self[["certainty"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            LithoStratigraphyList[["certainty"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["bed2"]])) {
-        self[["bed2"]] <-
-          LithoStratigraphyList[["bed2"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["bed2"]], "$new()")
-        ))
-        self[["bed2"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            LithoStratigraphyList[["bed2"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["bed"]])) {
-        self[["bed"]] <-
-          LithoStratigraphyList[["bed"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["bed"]], "$new()")
-        ))
-        self[["bed"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            LithoStratigraphyList[["bed"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["qualifier"]] <-
+        LithoStratigraphyList[["qualifier"]]
+      self[["preferredFlag"]] <-
+        LithoStratigraphyList[["preferredFlag"]]
+      self[["member2"]] <-
+        LithoStratigraphyList[["member2"]]
+      self[["member"]] <-
+        LithoStratigraphyList[["member"]]
+      self[["informalName2"]] <-
+        LithoStratigraphyList[["informalName2"]]
+      self[["informalName"]] <-
+        LithoStratigraphyList[["informalName"]]
+      self[["importedName2"]] <-
+        LithoStratigraphyList[["importedName2"]]
+      self[["importedName1"]] <-
+        LithoStratigraphyList[["importedName1"]]
+      self[["lithoIdentifier"]] <-
+        LithoStratigraphyList[["lithoIdentifier"]]
+      self[["formation2"]] <-
+        LithoStratigraphyList[["formation2"]]
+      self[["formationGroup2"]] <-
+        LithoStratigraphyList[["formationGroup2"]]
+      self[["formationGroup"]] <-
+        LithoStratigraphyList[["formationGroup"]]
+      self[["formation"]] <-
+        LithoStratigraphyList[["formation"]]
+      self[["certainty2"]] <-
+        LithoStratigraphyList[["certainty2"]]
+      self[["certainty"]] <-
+        LithoStratigraphyList[["certainty"]]
+      self[["bed2"]] <-
+        LithoStratigraphyList[["bed2"]]
+      self[["bed"]] <-
+        LithoStratigraphyList[["bed"]]
       invisible(self)
     }
   )

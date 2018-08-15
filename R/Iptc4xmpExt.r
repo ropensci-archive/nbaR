@@ -157,111 +157,20 @@ Iptc4xmpExt <- R6::R6Class(
         Iptc4xmpExtJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["locationShown"]])) {
-        self[["locationShown"]] <-
-          Iptc4xmpExtList[["locationShown"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["locationShown"]], "$new()")
-        ))
-        self[["locationShown"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            Iptc4xmpExtList[["locationShown"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["worldRegion"]])) {
-        self[["worldRegion"]] <-
-          Iptc4xmpExtList[["worldRegion"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["worldRegion"]], "$new()")
-        ))
-        self[["worldRegion"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            Iptc4xmpExtList[["worldRegion"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["countryCode"]])) {
-        self[["countryCode"]] <-
-          Iptc4xmpExtList[["countryCode"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["countryCode"]], "$new()")
-        ))
-        self[["countryCode"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            Iptc4xmpExtList[["countryCode"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["countryName"]])) {
-        self[["countryName"]] <-
-          Iptc4xmpExtList[["countryName"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["countryName"]], "$new()")
-        ))
-        self[["countryName"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            Iptc4xmpExtList[["countryName"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["provinceState"]])) {
-        self[["provinceState"]] <-
-          Iptc4xmpExtList[["provinceState"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["provinceState"]], "$new()")
-        ))
-        self[["provinceState"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            Iptc4xmpExtList[["provinceState"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["city"]])) {
-        self[["city"]] <-
-          Iptc4xmpExtList[["city"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["city"]], "$new()")
-        ))
-        self[["city"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            Iptc4xmpExtList[["city"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["sublocation"]])) {
-        self[["sublocation"]] <-
-          Iptc4xmpExtList[["sublocation"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sublocation"]], "$new()")
-        ))
-        self[["sublocation"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            Iptc4xmpExtList[["sublocation"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["locationShown"]] <-
+        Iptc4xmpExtList[["locationShown"]]
+      self[["worldRegion"]] <-
+        Iptc4xmpExtList[["worldRegion"]]
+      self[["countryCode"]] <-
+        Iptc4xmpExtList[["countryCode"]]
+      self[["countryName"]] <-
+        Iptc4xmpExtList[["countryName"]]
+      self[["provinceState"]] <-
+        Iptc4xmpExtList[["provinceState"]]
+      self[["city"]] <-
+        Iptc4xmpExtList[["city"]]
+      self[["sublocation"]] <-
+        Iptc4xmpExtList[["sublocation"]]
       invisible(self)
     }
   )

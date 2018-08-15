@@ -106,42 +106,16 @@ FeatureCollection <- R6::R6Class(
         FeatureCollectionJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <-
-          Crs$new()$fromJSONString(
-            jsonlite::toJSON(
-              FeatureCollectionList[["crs"]],
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["crs"]], "$new()")
-        ))
-        self[["crs"]] <- obj$fromJSONString(
+      self[["crs"]] <-
+        Crs$new()$fromJSONString(
           jsonlite::toJSON(
             FeatureCollectionList[["crs"]],
             auto_unbox = TRUE
           ),
           typeMapping = typeMapping
         )
-      }
-      if (is.null(typeMapping[["bbox"]])) {
-        self[["bbox"]] <-
-          FeatureCollectionList[["bbox"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["bbox"]], "$new()")
-        ))
-        self[["bbox"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            FeatureCollectionList[["bbox"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["bbox"]] <-
+        FeatureCollectionList[["bbox"]]
       self[["features"]] <- lapply(
         FeatureCollectionList[["features"]],
         function(x) {

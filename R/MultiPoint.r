@@ -106,42 +106,16 @@ MultiPoint <- R6::R6Class(
         MultiPointJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <-
-          Crs$new()$fromJSONString(
-            jsonlite::toJSON(
-              MultiPointList[["crs"]],
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["crs"]], "$new()")
-        ))
-        self[["crs"]] <- obj$fromJSONString(
+      self[["crs"]] <-
+        Crs$new()$fromJSONString(
           jsonlite::toJSON(
             MultiPointList[["crs"]],
             auto_unbox = TRUE
           ),
           typeMapping = typeMapping
         )
-      }
-      if (is.null(typeMapping[["bbox"]])) {
-        self[["bbox"]] <-
-          MultiPointList[["bbox"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["bbox"]], "$new()")
-        ))
-        self[["bbox"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiPointList[["bbox"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["bbox"]] <-
+        MultiPointList[["bbox"]]
       self[["coordinates"]] <- lapply(
         MultiPointList[["coordinates"]],
         function(x) {

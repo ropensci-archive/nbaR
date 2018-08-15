@@ -117,66 +117,14 @@ Filter <- R6::R6Class(
         FilterJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["acceptRegexp"]])) {
-        self[["acceptRegexp"]] <-
-          FilterList[["acceptRegexp"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["acceptRegexp"]], "$new()")
-        ))
-        self[["acceptRegexp"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            FilterList[["acceptRegexp"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["rejectRegexp"]])) {
-        self[["rejectRegexp"]] <-
-          FilterList[["rejectRegexp"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["rejectRegexp"]], "$new()")
-        ))
-        self[["rejectRegexp"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            FilterList[["rejectRegexp"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["acceptValues"]])) {
-        self[["acceptValues"]] <-
-          FilterList[["acceptValues"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["acceptValues"]], "$new()")
-        ))
-        self[["acceptValues"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            FilterList[["acceptValues"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["rejectValues"]])) {
-        self[["rejectValues"]] <-
-          FilterList[["rejectValues"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["rejectValues"]], "$new()")
-        ))
-        self[["rejectValues"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            FilterList[["rejectValues"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["acceptRegexp"]] <-
+        FilterList[["acceptRegexp"]]
+      self[["rejectRegexp"]] <-
+        FilterList[["rejectRegexp"]]
+      self[["acceptValues"]] <-
+        FilterList[["acceptValues"]]
+      self[["rejectValues"]] <-
+        FilterList[["rejectValues"]]
       invisible(self)
     }
   )

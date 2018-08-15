@@ -77,36 +77,10 @@ Monomial <- R6::R6Class(
         MonomialJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["rank"]])) {
-        self[["rank"]] <-
-          MonomialList[["rank"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["rank"]], "$new()")
-        ))
-        self[["rank"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MonomialList[["rank"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["name"]])) {
-        self[["name"]] <-
-          MonomialList[["name"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["name"]], "$new()")
-        ))
-        self[["name"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MonomialList[["name"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["rank"]] <-
+        MonomialList[["rank"]]
+      self[["name"]] <-
+        MonomialList[["name"]]
       invisible(self)
     }
   )

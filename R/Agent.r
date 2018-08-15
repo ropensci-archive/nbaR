@@ -61,21 +61,8 @@ Agent <- R6::R6Class(
         AgentJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["agentText"]])) {
-        self[["agentText"]] <-
-          AgentList[["agentText"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["agentText"]], "$new()")
-        ))
-        self[["agentText"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            AgentList[["agentText"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["agentText"]] <-
+        AgentList[["agentText"]]
       invisible(self)
     }
   )

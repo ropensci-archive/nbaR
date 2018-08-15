@@ -73,36 +73,10 @@ Crs <- R6::R6Class(
         CrsJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["type"]])) {
-        self[["type"]] <-
-          CrsList[["type"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["type"]], "$new()")
-        ))
-        self[["type"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            CrsList[["type"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["properties"]])) {
-        self[["properties"]] <-
-          CrsList[["properties"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["properties"]], "$new()")
-        ))
-        self[["properties"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            CrsList[["properties"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["type"]] <-
+        CrsList[["type"]]
+      self[["properties"]] <-
+        CrsList[["properties"]]
       invisible(self)
     }
   )

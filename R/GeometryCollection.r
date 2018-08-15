@@ -100,57 +100,18 @@ GeometryCollection <- R6::R6Class(
         GeometryCollectionJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["crs"]])) {
-        self[["crs"]] <-
-          Crs$new()$fromJSONString(
-            jsonlite::toJSON(
-              GeometryCollectionList[["crs"]],
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["crs"]], "$new()")
-        ))
-        self[["crs"]] <- obj$fromJSONString(
+      self[["crs"]] <-
+        Crs$new()$fromJSONString(
           jsonlite::toJSON(
             GeometryCollectionList[["crs"]],
             auto_unbox = TRUE
           ),
           typeMapping = typeMapping
         )
-      }
-      if (is.null(typeMapping[["bbox"]])) {
-        self[["bbox"]] <-
-          GeometryCollectionList[["bbox"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["bbox"]], "$new()")
-        ))
-        self[["bbox"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GeometryCollectionList[["bbox"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["geometries"]])) {
-        self[["geometries"]] <-
-          GeometryCollectionList[["geometries"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["geometries"]], "$new()")
-        ))
-        self[["geometries"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GeometryCollectionList[["geometries"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["bbox"]] <-
+        GeometryCollectionList[["bbox"]]
+      self[["geometries"]] <-
+        GeometryCollectionList[["geometries"]]
       invisible(self)
     }
   )

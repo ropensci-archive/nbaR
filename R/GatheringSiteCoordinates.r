@@ -172,132 +172,28 @@ GatheringSiteCoordinates <- R6::R6Class(
         GatheringSiteCoordinatesJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["longitudeDecimal"]])) {
-        self[["longitudeDecimal"]] <-
-          GatheringSiteCoordinatesList[["longitudeDecimal"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["longitudeDecimal"]], "$new()")
-        ))
-        self[["longitudeDecimal"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringSiteCoordinatesList[["longitudeDecimal"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["latitudeDecimal"]])) {
-        self[["latitudeDecimal"]] <-
-          GatheringSiteCoordinatesList[["latitudeDecimal"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["latitudeDecimal"]], "$new()")
-        ))
-        self[["latitudeDecimal"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringSiteCoordinatesList[["latitudeDecimal"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["gridCellSystem"]])) {
-        self[["gridCellSystem"]] <-
-          GatheringSiteCoordinatesList[["gridCellSystem"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["gridCellSystem"]], "$new()")
-        ))
-        self[["gridCellSystem"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringSiteCoordinatesList[["gridCellSystem"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["gridLatitudeDecimal"]])) {
-        self[["gridLatitudeDecimal"]] <-
-          GatheringSiteCoordinatesList[["gridLatitudeDecimal"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["gridLatitudeDecimal"]], "$new()")
-        ))
-        self[["gridLatitudeDecimal"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringSiteCoordinatesList[["gridLatitudeDecimal"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["gridLongitudeDecimal"]])) {
-        self[["gridLongitudeDecimal"]] <-
-          GatheringSiteCoordinatesList[["gridLongitudeDecimal"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["gridLongitudeDecimal"]], "$new()")
-        ))
-        self[["gridLongitudeDecimal"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringSiteCoordinatesList[["gridLongitudeDecimal"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["gridCellCode"]])) {
-        self[["gridCellCode"]] <-
-          GatheringSiteCoordinatesList[["gridCellCode"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["gridCellCode"]], "$new()")
-        ))
-        self[["gridCellCode"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringSiteCoordinatesList[["gridCellCode"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["gridQualifier"]])) {
-        self[["gridQualifier"]] <-
-          GatheringSiteCoordinatesList[["gridQualifier"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["gridQualifier"]], "$new()")
-        ))
-        self[["gridQualifier"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringSiteCoordinatesList[["gridQualifier"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["geoShape"]])) {
-        self[["geoShape"]] <-
-          Point$new()$fromJSONString(
-            jsonlite::toJSON(
-              GatheringSiteCoordinatesList[["geoShape"]],
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["geoShape"]], "$new()")
-        ))
-        self[["geoShape"]] <- obj$fromJSONString(
+      self[["longitudeDecimal"]] <-
+        GatheringSiteCoordinatesList[["longitudeDecimal"]]
+      self[["latitudeDecimal"]] <-
+        GatheringSiteCoordinatesList[["latitudeDecimal"]]
+      self[["gridCellSystem"]] <-
+        GatheringSiteCoordinatesList[["gridCellSystem"]]
+      self[["gridLatitudeDecimal"]] <-
+        GatheringSiteCoordinatesList[["gridLatitudeDecimal"]]
+      self[["gridLongitudeDecimal"]] <-
+        GatheringSiteCoordinatesList[["gridLongitudeDecimal"]]
+      self[["gridCellCode"]] <-
+        GatheringSiteCoordinatesList[["gridCellCode"]]
+      self[["gridQualifier"]] <-
+        GatheringSiteCoordinatesList[["gridQualifier"]]
+      self[["geoShape"]] <-
+        Point$new()$fromJSONString(
           jsonlite::toJSON(
             GatheringSiteCoordinatesList[["geoShape"]],
             auto_unbox = TRUE
           ),
           typeMapping = typeMapping
         )
-      }
       invisible(self)
     }
   )

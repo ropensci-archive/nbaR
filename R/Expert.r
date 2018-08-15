@@ -92,57 +92,18 @@ Expert <- R6::R6Class(
         ExpertJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["agentText"]])) {
-        self[["agentText"]] <-
-          ExpertList[["agentText"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["agentText"]], "$new()")
-        ))
-        self[["agentText"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ExpertList[["agentText"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["fullName"]])) {
-        self[["fullName"]] <-
-          ExpertList[["fullName"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["fullName"]], "$new()")
-        ))
-        self[["fullName"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            ExpertList[["fullName"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["organization"]])) {
-        self[["organization"]] <-
-          Organization$new()$fromJSONString(
-            jsonlite::toJSON(
-              ExpertList[["organization"]],
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["organization"]], "$new()")
-        ))
-        self[["organization"]] <- obj$fromJSONString(
+      self[["agentText"]] <-
+        ExpertList[["agentText"]]
+      self[["fullName"]] <-
+        ExpertList[["fullName"]]
+      self[["organization"]] <-
+        Organization$new()$fromJSONString(
           jsonlite::toJSON(
             ExpertList[["organization"]],
             auto_unbox = TRUE
           ),
           typeMapping = typeMapping
         )
-      }
       invisible(self)
     }
   )

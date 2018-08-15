@@ -247,93 +247,28 @@ MultiMediaContentIdentification <- R6::R6Class(
         MultiMediaContentIdentificationJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["taxonRank"]])) {
-        self[["taxonRank"]] <-
-          MultiMediaContentIdentificationList[["taxonRank"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["taxonRank"]], "$new()")
-        ))
-        self[["taxonRank"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaContentIdentificationList[["taxonRank"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["scientificName"]])) {
-        self[["scientificName"]] <-
-          ScientificName$new()$fromJSONString(
-            jsonlite::toJSON(
-              MultiMediaContentIdentificationList[["scientificName"]],
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["scientificName"]], "$new()")
-        ))
-        self[["scientificName"]] <- obj$fromJSONString(
+      self[["taxonRank"]] <-
+        MultiMediaContentIdentificationList[["taxonRank"]]
+      self[["scientificName"]] <-
+        ScientificName$new()$fromJSONString(
           jsonlite::toJSON(
             MultiMediaContentIdentificationList[["scientificName"]],
             auto_unbox = TRUE
           ),
           typeMapping = typeMapping
         )
-      }
-      if (is.null(typeMapping[["typeStatus"]])) {
-        self[["typeStatus"]] <-
-          MultiMediaContentIdentificationList[["typeStatus"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["typeStatus"]], "$new()")
-        ))
-        self[["typeStatus"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaContentIdentificationList[["typeStatus"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["dateIdentified"]])) {
-        self[["dateIdentified"]] <-
-          MultiMediaContentIdentificationList[["dateIdentified"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["dateIdentified"]], "$new()")
-        ))
-        self[["dateIdentified"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaContentIdentificationList[["dateIdentified"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["defaultClassification"]])) {
-        self[["defaultClassification"]] <-
-          DefaultClassification$new()$fromJSONString(
-            jsonlite::toJSON(
-              MultiMediaContentIdentificationList[["defaultClassification"]],
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["defaultClassification"]], "$new()")
-        ))
-        self[["defaultClassification"]] <- obj$fromJSONString(
+      self[["typeStatus"]] <-
+        MultiMediaContentIdentificationList[["typeStatus"]]
+      self[["dateIdentified"]] <-
+        MultiMediaContentIdentificationList[["dateIdentified"]]
+      self[["defaultClassification"]] <-
+        DefaultClassification$new()$fromJSONString(
           jsonlite::toJSON(
             MultiMediaContentIdentificationList[["defaultClassification"]],
             auto_unbox = TRUE
           ),
           typeMapping = typeMapping
         )
-      }
       self[["systemClassification"]] <- lapply(
         MultiMediaContentIdentificationList[["systemClassification"]],
         function(x) {
@@ -358,21 +293,8 @@ MultiMediaContentIdentification <- R6::R6Class(
           )
         }
       )
-      if (is.null(typeMapping[["identificationQualifiers"]])) {
-        self[["identificationQualifiers"]] <-
-          MultiMediaContentIdentificationList[["identificationQualifiers"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["identificationQualifiers"]], "$new()")
-        ))
-        self[["identificationQualifiers"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaContentIdentificationList[["identificationQualifiers"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["identificationQualifiers"]] <-
+        MultiMediaContentIdentificationList[["identificationQualifiers"]]
       self[["identifiers"]] <- lapply(
         MultiMediaContentIdentificationList[["identifiers"]],
         function(x) {

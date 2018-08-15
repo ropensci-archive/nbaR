@@ -73,36 +73,10 @@ QueryResultItem <- R6::R6Class(
         QueryResultItemJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["score"]])) {
-        self[["score"]] <-
-          QueryResultItemList[["score"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["score"]], "$new()")
-        ))
-        self[["score"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            QueryResultItemList[["score"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["item"]])) {
-        self[["item"]] <-
-          QueryResultItemList[["item"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["item"]], "$new()")
-        ))
-        self[["item"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            QueryResultItemList[["item"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["score"]] <-
+        QueryResultItemList[["score"]]
+      self[["item"]] <-
+        QueryResultItemList[["item"]]
       invisible(self)
     }
   )

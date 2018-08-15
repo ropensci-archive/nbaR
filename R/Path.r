@@ -57,21 +57,8 @@ Path <- R6::R6Class(
         PathJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["purePath"]])) {
-        self[["purePath"]] <-
-          PathList[["purePath"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["purePath"]], "$new()")
-        ))
-        self[["purePath"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            PathList[["purePath"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["purePath"]] <-
+        PathList[["purePath"]]
       invisible(self)
     }
   )

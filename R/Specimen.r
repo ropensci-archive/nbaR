@@ -570,459 +570,82 @@ Specimen <- R6::R6Class(
         SpecimenJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["sourceSystem"]])) {
-        self[["sourceSystem"]] <-
-          SourceSystem$new()$fromJSONString(
-            jsonlite::toJSON(
-              SpecimenList[["sourceSystem"]],
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sourceSystem"]], "$new()")
-        ))
-        self[["sourceSystem"]] <- obj$fromJSONString(
+      self[["sourceSystem"]] <-
+        SourceSystem$new()$fromJSONString(
           jsonlite::toJSON(
             SpecimenList[["sourceSystem"]],
             auto_unbox = TRUE
           ),
           typeMapping = typeMapping
         )
-      }
-      if (is.null(typeMapping[["sourceSystemId"]])) {
-        self[["sourceSystemId"]] <-
-          SpecimenList[["sourceSystemId"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sourceSystemId"]], "$new()")
-        ))
-        self[["sourceSystemId"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["sourceSystemId"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["recordURI"]])) {
-        self[["recordURI"]] <-
-          SpecimenList[["recordURI"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["recordURI"]], "$new()")
-        ))
-        self[["recordURI"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["recordURI"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["id"]])) {
-        self[["id"]] <-
-          SpecimenList[["id"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["id"]], "$new()")
-        ))
-        self[["id"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["id"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["unitID"]])) {
-        self[["unitID"]] <-
-          SpecimenList[["unitID"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["unitID"]], "$new()")
-        ))
-        self[["unitID"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["unitID"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["unitGUID"]])) {
-        self[["unitGUID"]] <-
-          SpecimenList[["unitGUID"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["unitGUID"]], "$new()")
-        ))
-        self[["unitGUID"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["unitGUID"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["collectorsFieldNumber"]])) {
-        self[["collectorsFieldNumber"]] <-
-          SpecimenList[["collectorsFieldNumber"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["collectorsFieldNumber"]], "$new()")
-        ))
-        self[["collectorsFieldNumber"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["collectorsFieldNumber"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["assemblageID"]])) {
-        self[["assemblageID"]] <-
-          SpecimenList[["assemblageID"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["assemblageID"]], "$new()")
-        ))
-        self[["assemblageID"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["assemblageID"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["sourceInstitutionID"]])) {
-        self[["sourceInstitutionID"]] <-
-          SpecimenList[["sourceInstitutionID"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sourceInstitutionID"]], "$new()")
-        ))
-        self[["sourceInstitutionID"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["sourceInstitutionID"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["sourceID"]])) {
-        self[["sourceID"]] <-
-          SpecimenList[["sourceID"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sourceID"]], "$new()")
-        ))
-        self[["sourceID"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["sourceID"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["previousSourceID"]])) {
-        self[["previousSourceID"]] <-
-          SpecimenList[["previousSourceID"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["previousSourceID"]], "$new()")
-        ))
-        self[["previousSourceID"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["previousSourceID"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["owner"]])) {
-        self[["owner"]] <-
-          SpecimenList[["owner"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["owner"]], "$new()")
-        ))
-        self[["owner"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["owner"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["licenseType"]])) {
-        self[["licenseType"]] <-
-          SpecimenList[["licenseType"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["licenseType"]], "$new()")
-        ))
-        self[["licenseType"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["licenseType"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["license"]])) {
-        self[["license"]] <-
-          SpecimenList[["license"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["license"]], "$new()")
-        ))
-        self[["license"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["license"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["recordBasis"]])) {
-        self[["recordBasis"]] <-
-          SpecimenList[["recordBasis"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["recordBasis"]], "$new()")
-        ))
-        self[["recordBasis"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["recordBasis"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["kindOfUnit"]])) {
-        self[["kindOfUnit"]] <-
-          SpecimenList[["kindOfUnit"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["kindOfUnit"]], "$new()")
-        ))
-        self[["kindOfUnit"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["kindOfUnit"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["collectionType"]])) {
-        self[["collectionType"]] <-
-          SpecimenList[["collectionType"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["collectionType"]], "$new()")
-        ))
-        self[["collectionType"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["collectionType"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["sex"]])) {
-        self[["sex"]] <-
-          SpecimenList[["sex"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sex"]], "$new()")
-        ))
-        self[["sex"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["sex"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["phaseOrStage"]])) {
-        self[["phaseOrStage"]] <-
-          SpecimenList[["phaseOrStage"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["phaseOrStage"]], "$new()")
-        ))
-        self[["phaseOrStage"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["phaseOrStage"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["title"]])) {
-        self[["title"]] <-
-          SpecimenList[["title"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["title"]], "$new()")
-        ))
-        self[["title"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["title"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["notes"]])) {
-        self[["notes"]] <-
-          SpecimenList[["notes"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["notes"]], "$new()")
-        ))
-        self[["notes"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["notes"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["preparationType"]])) {
-        self[["preparationType"]] <-
-          SpecimenList[["preparationType"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["preparationType"]], "$new()")
-        ))
-        self[["preparationType"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["preparationType"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["previousUnitsText"]])) {
-        self[["previousUnitsText"]] <-
-          SpecimenList[["previousUnitsText"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["previousUnitsText"]], "$new()")
-        ))
-        self[["previousUnitsText"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["previousUnitsText"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["numberOfSpecimen"]])) {
-        self[["numberOfSpecimen"]] <-
-          SpecimenList[["numberOfSpecimen"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["numberOfSpecimen"]], "$new()")
-        ))
-        self[["numberOfSpecimen"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["numberOfSpecimen"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["fromCaptivity"]])) {
-        self[["fromCaptivity"]] <-
-          SpecimenList[["fromCaptivity"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["fromCaptivity"]], "$new()")
-        ))
-        self[["fromCaptivity"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["fromCaptivity"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["objectPublic"]])) {
-        self[["objectPublic"]] <-
-          SpecimenList[["objectPublic"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["objectPublic"]], "$new()")
-        ))
-        self[["objectPublic"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["objectPublic"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["multiMediaPublic"]])) {
-        self[["multiMediaPublic"]] <-
-          SpecimenList[["multiMediaPublic"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["multiMediaPublic"]], "$new()")
-        ))
-        self[["multiMediaPublic"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["multiMediaPublic"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["acquiredFrom"]])) {
-        self[["acquiredFrom"]] <-
-          Agent$new()$fromJSONString(
-            jsonlite::toJSON(
-              SpecimenList[["acquiredFrom"]],
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["acquiredFrom"]], "$new()")
-        ))
-        self[["acquiredFrom"]] <- obj$fromJSONString(
+      self[["sourceSystemId"]] <-
+        SpecimenList[["sourceSystemId"]]
+      self[["recordURI"]] <-
+        SpecimenList[["recordURI"]]
+      self[["id"]] <-
+        SpecimenList[["id"]]
+      self[["unitID"]] <-
+        SpecimenList[["unitID"]]
+      self[["unitGUID"]] <-
+        SpecimenList[["unitGUID"]]
+      self[["collectorsFieldNumber"]] <-
+        SpecimenList[["collectorsFieldNumber"]]
+      self[["assemblageID"]] <-
+        SpecimenList[["assemblageID"]]
+      self[["sourceInstitutionID"]] <-
+        SpecimenList[["sourceInstitutionID"]]
+      self[["sourceID"]] <-
+        SpecimenList[["sourceID"]]
+      self[["previousSourceID"]] <-
+        SpecimenList[["previousSourceID"]]
+      self[["owner"]] <-
+        SpecimenList[["owner"]]
+      self[["licenseType"]] <-
+        SpecimenList[["licenseType"]]
+      self[["license"]] <-
+        SpecimenList[["license"]]
+      self[["recordBasis"]] <-
+        SpecimenList[["recordBasis"]]
+      self[["kindOfUnit"]] <-
+        SpecimenList[["kindOfUnit"]]
+      self[["collectionType"]] <-
+        SpecimenList[["collectionType"]]
+      self[["sex"]] <-
+        SpecimenList[["sex"]]
+      self[["phaseOrStage"]] <-
+        SpecimenList[["phaseOrStage"]]
+      self[["title"]] <-
+        SpecimenList[["title"]]
+      self[["notes"]] <-
+        SpecimenList[["notes"]]
+      self[["preparationType"]] <-
+        SpecimenList[["preparationType"]]
+      self[["previousUnitsText"]] <-
+        SpecimenList[["previousUnitsText"]]
+      self[["numberOfSpecimen"]] <-
+        SpecimenList[["numberOfSpecimen"]]
+      self[["fromCaptivity"]] <-
+        SpecimenList[["fromCaptivity"]]
+      self[["objectPublic"]] <-
+        SpecimenList[["objectPublic"]]
+      self[["multiMediaPublic"]] <-
+        SpecimenList[["multiMediaPublic"]]
+      self[["acquiredFrom"]] <-
+        Agent$new()$fromJSONString(
           jsonlite::toJSON(
             SpecimenList[["acquiredFrom"]],
             auto_unbox = TRUE
           ),
           typeMapping = typeMapping
         )
-      }
-      if (is.null(typeMapping[["gatheringEvent"]])) {
-        self[["gatheringEvent"]] <-
-          GatheringEvent$new()$fromJSONString(
-            jsonlite::toJSON(
-              SpecimenList[["gatheringEvent"]],
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["gatheringEvent"]], "$new()")
-        ))
-        self[["gatheringEvent"]] <- obj$fromJSONString(
+      self[["gatheringEvent"]] <-
+        GatheringEvent$new()$fromJSONString(
           jsonlite::toJSON(
             SpecimenList[["gatheringEvent"]],
             auto_unbox = TRUE
           ),
           typeMapping = typeMapping
         )
-      }
       self[["identifications"]] <- lapply(
         SpecimenList[["identifications"]],
         function(x) {
@@ -1047,21 +670,8 @@ Specimen <- R6::R6Class(
           )
         }
       )
-      if (is.null(typeMapping[["theme"]])) {
-        self[["theme"]] <-
-          SpecimenList[["theme"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["theme"]], "$new()")
-        ))
-        self[["theme"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenList[["theme"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["theme"]] <-
+        SpecimenList[["theme"]]
       invisible(self)
     }
   )

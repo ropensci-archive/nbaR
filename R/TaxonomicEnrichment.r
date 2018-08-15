@@ -152,42 +152,16 @@ TaxonomicEnrichment <- R6::R6Class(
           )
         }
       )
-      if (is.null(typeMapping[["sourceSystem"]])) {
-        self[["sourceSystem"]] <-
-          SummarySourceSystem$new()$fromJSONString(
-            jsonlite::toJSON(
-              TaxonomicEnrichmentList[["sourceSystem"]],
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sourceSystem"]], "$new()")
-        ))
-        self[["sourceSystem"]] <- obj$fromJSONString(
+      self[["sourceSystem"]] <-
+        SummarySourceSystem$new()$fromJSONString(
           jsonlite::toJSON(
             TaxonomicEnrichmentList[["sourceSystem"]],
             auto_unbox = TRUE
           ),
           typeMapping = typeMapping
         )
-      }
-      if (is.null(typeMapping[["taxonId"]])) {
-        self[["taxonId"]] <-
-          TaxonomicEnrichmentList[["taxonId"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["taxonId"]], "$new()")
-        ))
-        self[["taxonId"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            TaxonomicEnrichmentList[["taxonId"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["taxonId"]] <-
+        TaxonomicEnrichmentList[["taxonId"]]
       invisible(self)
     }
   )

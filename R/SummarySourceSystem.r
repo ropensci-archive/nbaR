@@ -61,21 +61,8 @@ SummarySourceSystem <- R6::R6Class(
         SummarySourceSystemJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["code"]])) {
-        self[["code"]] <-
-          SummarySourceSystemList[["code"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["code"]], "$new()")
-        ))
-        self[["code"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            SummarySourceSystemList[["code"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["code"]] <-
+        SummarySourceSystemList[["code"]]
       invisible(self)
     }
   )

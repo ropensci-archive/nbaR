@@ -584,222 +584,40 @@ MultiMediaObject <- R6::R6Class(
         MultiMediaObjectJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["sourceSystem"]])) {
-        self[["sourceSystem"]] <-
-          SourceSystem$new()$fromJSONString(
-            jsonlite::toJSON(
-              MultiMediaObjectList[["sourceSystem"]],
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sourceSystem"]], "$new()")
-        ))
-        self[["sourceSystem"]] <- obj$fromJSONString(
+      self[["sourceSystem"]] <-
+        SourceSystem$new()$fromJSONString(
           jsonlite::toJSON(
             MultiMediaObjectList[["sourceSystem"]],
             auto_unbox = TRUE
           ),
           typeMapping = typeMapping
         )
-      }
-      if (is.null(typeMapping[["sourceSystemId"]])) {
-        self[["sourceSystemId"]] <-
-          MultiMediaObjectList[["sourceSystemId"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sourceSystemId"]], "$new()")
-        ))
-        self[["sourceSystemId"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["sourceSystemId"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["recordURI"]])) {
-        self[["recordURI"]] <-
-          MultiMediaObjectList[["recordURI"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["recordURI"]], "$new()")
-        ))
-        self[["recordURI"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["recordURI"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["id"]])) {
-        self[["id"]] <-
-          MultiMediaObjectList[["id"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["id"]], "$new()")
-        ))
-        self[["id"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["id"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["sourceInstitutionID"]])) {
-        self[["sourceInstitutionID"]] <-
-          MultiMediaObjectList[["sourceInstitutionID"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sourceInstitutionID"]], "$new()")
-        ))
-        self[["sourceInstitutionID"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["sourceInstitutionID"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["sourceID"]])) {
-        self[["sourceID"]] <-
-          MultiMediaObjectList[["sourceID"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sourceID"]], "$new()")
-        ))
-        self[["sourceID"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["sourceID"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["owner"]])) {
-        self[["owner"]] <-
-          MultiMediaObjectList[["owner"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["owner"]], "$new()")
-        ))
-        self[["owner"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["owner"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["licenseType"]])) {
-        self[["licenseType"]] <-
-          MultiMediaObjectList[["licenseType"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["licenseType"]], "$new()")
-        ))
-        self[["licenseType"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["licenseType"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["license"]])) {
-        self[["license"]] <-
-          MultiMediaObjectList[["license"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["license"]], "$new()")
-        ))
-        self[["license"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["license"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["unitID"]])) {
-        self[["unitID"]] <-
-          MultiMediaObjectList[["unitID"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["unitID"]], "$new()")
-        ))
-        self[["unitID"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["unitID"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["collectionType"]])) {
-        self[["collectionType"]] <-
-          MultiMediaObjectList[["collectionType"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["collectionType"]], "$new()")
-        ))
-        self[["collectionType"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["collectionType"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["title"]])) {
-        self[["title"]] <-
-          MultiMediaObjectList[["title"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["title"]], "$new()")
-        ))
-        self[["title"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["title"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["caption"]])) {
-        self[["caption"]] <-
-          MultiMediaObjectList[["caption"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["caption"]], "$new()")
-        ))
-        self[["caption"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["caption"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["description"]])) {
-        self[["description"]] <-
-          MultiMediaObjectList[["description"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["description"]], "$new()")
-        ))
-        self[["description"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["description"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["sourceSystemId"]] <-
+        MultiMediaObjectList[["sourceSystemId"]]
+      self[["recordURI"]] <-
+        MultiMediaObjectList[["recordURI"]]
+      self[["id"]] <-
+        MultiMediaObjectList[["id"]]
+      self[["sourceInstitutionID"]] <-
+        MultiMediaObjectList[["sourceInstitutionID"]]
+      self[["sourceID"]] <-
+        MultiMediaObjectList[["sourceID"]]
+      self[["owner"]] <-
+        MultiMediaObjectList[["owner"]]
+      self[["licenseType"]] <-
+        MultiMediaObjectList[["licenseType"]]
+      self[["license"]] <-
+        MultiMediaObjectList[["license"]]
+      self[["unitID"]] <-
+        MultiMediaObjectList[["unitID"]]
+      self[["collectionType"]] <-
+        MultiMediaObjectList[["collectionType"]]
+      self[["title"]] <-
+        MultiMediaObjectList[["title"]]
+      self[["caption"]] <-
+        MultiMediaObjectList[["caption"]]
+      self[["description"]] <-
+        MultiMediaObjectList[["description"]]
       self[["serviceAccessPoints"]] <- lapply(
         MultiMediaObjectList[["serviceAccessPoints"]],
         function(x) {
@@ -812,171 +630,28 @@ MultiMediaObject <- R6::R6Class(
           )
         }
       )
-      if (is.null(typeMapping[["type"]])) {
-        self[["type"]] <-
-          MultiMediaObjectList[["type"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["type"]], "$new()")
-        ))
-        self[["type"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["type"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["taxonCount"]])) {
-        self[["taxonCount"]] <-
-          MultiMediaObjectList[["taxonCount"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["taxonCount"]], "$new()")
-        ))
-        self[["taxonCount"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["taxonCount"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["creator"]])) {
-        self[["creator"]] <-
-          MultiMediaObjectList[["creator"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["creator"]], "$new()")
-        ))
-        self[["creator"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["creator"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["copyrightText"]])) {
-        self[["copyrightText"]] <-
-          MultiMediaObjectList[["copyrightText"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["copyrightText"]], "$new()")
-        ))
-        self[["copyrightText"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["copyrightText"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["associatedSpecimenReference"]])) {
-        self[["associatedSpecimenReference"]] <-
-          MultiMediaObjectList[["associatedSpecimenReference"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["associatedSpecimenReference"]], "$new()")
-        ))
-        self[["associatedSpecimenReference"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["associatedSpecimenReference"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["associatedTaxonReference"]])) {
-        self[["associatedTaxonReference"]] <-
-          MultiMediaObjectList[["associatedTaxonReference"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["associatedTaxonReference"]], "$new()")
-        ))
-        self[["associatedTaxonReference"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["associatedTaxonReference"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["multiMediaPublic"]])) {
-        self[["multiMediaPublic"]] <-
-          MultiMediaObjectList[["multiMediaPublic"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["multiMediaPublic"]], "$new()")
-        ))
-        self[["multiMediaPublic"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["multiMediaPublic"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["subjectParts"]])) {
-        self[["subjectParts"]] <-
-          MultiMediaObjectList[["subjectParts"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["subjectParts"]], "$new()")
-        ))
-        self[["subjectParts"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["subjectParts"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["subjectOrientations"]])) {
-        self[["subjectOrientations"]] <-
-          MultiMediaObjectList[["subjectOrientations"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["subjectOrientations"]], "$new()")
-        ))
-        self[["subjectOrientations"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["subjectOrientations"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["phasesOrStages"]])) {
-        self[["phasesOrStages"]] <-
-          MultiMediaObjectList[["phasesOrStages"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["phasesOrStages"]], "$new()")
-        ))
-        self[["phasesOrStages"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["phasesOrStages"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["sexes"]])) {
-        self[["sexes"]] <-
-          MultiMediaObjectList[["sexes"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sexes"]], "$new()")
-        ))
-        self[["sexes"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["sexes"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["type"]] <-
+        MultiMediaObjectList[["type"]]
+      self[["taxonCount"]] <-
+        MultiMediaObjectList[["taxonCount"]]
+      self[["creator"]] <-
+        MultiMediaObjectList[["creator"]]
+      self[["copyrightText"]] <-
+        MultiMediaObjectList[["copyrightText"]]
+      self[["associatedSpecimenReference"]] <-
+        MultiMediaObjectList[["associatedSpecimenReference"]]
+      self[["associatedTaxonReference"]] <-
+        MultiMediaObjectList[["associatedTaxonReference"]]
+      self[["multiMediaPublic"]] <-
+        MultiMediaObjectList[["multiMediaPublic"]]
+      self[["subjectParts"]] <-
+        MultiMediaObjectList[["subjectParts"]]
+      self[["subjectOrientations"]] <-
+        MultiMediaObjectList[["subjectOrientations"]]
+      self[["phasesOrStages"]] <-
+        MultiMediaObjectList[["phasesOrStages"]]
+      self[["sexes"]] <-
+        MultiMediaObjectList[["sexes"]]
       self[["gatheringEvents"]] <- lapply(
         MultiMediaObjectList[["gatheringEvents"]],
         function(x) {
@@ -1001,63 +676,24 @@ MultiMediaObject <- R6::R6Class(
           )
         }
       )
-      if (is.null(typeMapping[["theme"]])) {
-        self[["theme"]] <-
-          MultiMediaObjectList[["theme"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["theme"]], "$new()")
-        ))
-        self[["theme"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaObjectList[["theme"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["associatedSpecimen"]])) {
-        self[["associatedSpecimen"]] <-
-          Specimen$new()$fromJSONString(
-            jsonlite::toJSON(
-              MultiMediaObjectList[["associatedSpecimen"]],
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["associatedSpecimen"]], "$new()")
-        ))
-        self[["associatedSpecimen"]] <- obj$fromJSONString(
+      self[["theme"]] <-
+        MultiMediaObjectList[["theme"]]
+      self[["associatedSpecimen"]] <-
+        Specimen$new()$fromJSONString(
           jsonlite::toJSON(
             MultiMediaObjectList[["associatedSpecimen"]],
             auto_unbox = TRUE
           ),
           typeMapping = typeMapping
         )
-      }
-      if (is.null(typeMapping[["associatedTaxon"]])) {
-        self[["associatedTaxon"]] <-
-          Taxon$new()$fromJSONString(
-            jsonlite::toJSON(
-              MultiMediaObjectList[["associatedTaxon"]],
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["associatedTaxon"]], "$new()")
-        ))
-        self[["associatedTaxon"]] <- obj$fromJSONString(
+      self[["associatedTaxon"]] <-
+        Taxon$new()$fromJSONString(
           jsonlite::toJSON(
             MultiMediaObjectList[["associatedTaxon"]],
             auto_unbox = TRUE
           ),
           typeMapping = typeMapping
         )
-      }
       invisible(self)
     }
   )

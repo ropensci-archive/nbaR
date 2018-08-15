@@ -557,291 +557,44 @@ GatheringEvent <- R6::R6Class(
         GatheringEventJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["projectTitle"]])) {
-        self[["projectTitle"]] <-
-          GatheringEventList[["projectTitle"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["projectTitle"]], "$new()")
-        ))
-        self[["projectTitle"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringEventList[["projectTitle"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["worldRegion"]])) {
-        self[["worldRegion"]] <-
-          GatheringEventList[["worldRegion"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["worldRegion"]], "$new()")
-        ))
-        self[["worldRegion"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringEventList[["worldRegion"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["continent"]])) {
-        self[["continent"]] <-
-          GatheringEventList[["continent"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["continent"]], "$new()")
-        ))
-        self[["continent"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringEventList[["continent"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["country"]])) {
-        self[["country"]] <-
-          GatheringEventList[["country"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["country"]], "$new()")
-        ))
-        self[["country"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringEventList[["country"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["iso3166Code"]])) {
-        self[["iso3166Code"]] <-
-          GatheringEventList[["iso3166Code"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["iso3166Code"]], "$new()")
-        ))
-        self[["iso3166Code"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringEventList[["iso3166Code"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["provinceState"]])) {
-        self[["provinceState"]] <-
-          GatheringEventList[["provinceState"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["provinceState"]], "$new()")
-        ))
-        self[["provinceState"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringEventList[["provinceState"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["island"]])) {
-        self[["island"]] <-
-          GatheringEventList[["island"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["island"]], "$new()")
-        ))
-        self[["island"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringEventList[["island"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["locality"]])) {
-        self[["locality"]] <-
-          GatheringEventList[["locality"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["locality"]], "$new()")
-        ))
-        self[["locality"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringEventList[["locality"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["city"]])) {
-        self[["city"]] <-
-          GatheringEventList[["city"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["city"]], "$new()")
-        ))
-        self[["city"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringEventList[["city"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["sublocality"]])) {
-        self[["sublocality"]] <-
-          GatheringEventList[["sublocality"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["sublocality"]], "$new()")
-        ))
-        self[["sublocality"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringEventList[["sublocality"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["localityText"]])) {
-        self[["localityText"]] <-
-          GatheringEventList[["localityText"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["localityText"]], "$new()")
-        ))
-        self[["localityText"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringEventList[["localityText"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["dateTimeBegin"]])) {
-        self[["dateTimeBegin"]] <-
-          GatheringEventList[["dateTimeBegin"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["dateTimeBegin"]], "$new()")
-        ))
-        self[["dateTimeBegin"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringEventList[["dateTimeBegin"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["dateTimeEnd"]])) {
-        self[["dateTimeEnd"]] <-
-          GatheringEventList[["dateTimeEnd"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["dateTimeEnd"]], "$new()")
-        ))
-        self[["dateTimeEnd"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringEventList[["dateTimeEnd"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["method"]])) {
-        self[["method"]] <-
-          GatheringEventList[["method"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["method"]], "$new()")
-        ))
-        self[["method"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringEventList[["method"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["altitude"]])) {
-        self[["altitude"]] <-
-          GatheringEventList[["altitude"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["altitude"]], "$new()")
-        ))
-        self[["altitude"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringEventList[["altitude"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["altitudeUnifOfMeasurement"]])) {
-        self[["altitudeUnifOfMeasurement"]] <-
-          GatheringEventList[["altitudeUnifOfMeasurement"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["altitudeUnifOfMeasurement"]], "$new()")
-        ))
-        self[["altitudeUnifOfMeasurement"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringEventList[["altitudeUnifOfMeasurement"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["biotopeText"]])) {
-        self[["biotopeText"]] <-
-          GatheringEventList[["biotopeText"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["biotopeText"]], "$new()")
-        ))
-        self[["biotopeText"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringEventList[["biotopeText"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["depth"]])) {
-        self[["depth"]] <-
-          GatheringEventList[["depth"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["depth"]], "$new()")
-        ))
-        self[["depth"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringEventList[["depth"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["depthUnitOfMeasurement"]])) {
-        self[["depthUnitOfMeasurement"]] <-
-          GatheringEventList[["depthUnitOfMeasurement"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["depthUnitOfMeasurement"]], "$new()")
-        ))
-        self[["depthUnitOfMeasurement"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            GatheringEventList[["depthUnitOfMeasurement"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["projectTitle"]] <-
+        GatheringEventList[["projectTitle"]]
+      self[["worldRegion"]] <-
+        GatheringEventList[["worldRegion"]]
+      self[["continent"]] <-
+        GatheringEventList[["continent"]]
+      self[["country"]] <-
+        GatheringEventList[["country"]]
+      self[["iso3166Code"]] <-
+        GatheringEventList[["iso3166Code"]]
+      self[["provinceState"]] <-
+        GatheringEventList[["provinceState"]]
+      self[["island"]] <-
+        GatheringEventList[["island"]]
+      self[["locality"]] <-
+        GatheringEventList[["locality"]]
+      self[["city"]] <-
+        GatheringEventList[["city"]]
+      self[["sublocality"]] <-
+        GatheringEventList[["sublocality"]]
+      self[["localityText"]] <-
+        GatheringEventList[["localityText"]]
+      self[["dateTimeBegin"]] <-
+        GatheringEventList[["dateTimeBegin"]]
+      self[["dateTimeEnd"]] <-
+        GatheringEventList[["dateTimeEnd"]]
+      self[["method"]] <-
+        GatheringEventList[["method"]]
+      self[["altitude"]] <-
+        GatheringEventList[["altitude"]]
+      self[["altitudeUnifOfMeasurement"]] <-
+        GatheringEventList[["altitudeUnifOfMeasurement"]]
+      self[["biotopeText"]] <-
+        GatheringEventList[["biotopeText"]]
+      self[["depth"]] <-
+        GatheringEventList[["depth"]]
+      self[["depthUnitOfMeasurement"]] <-
+        GatheringEventList[["depthUnitOfMeasurement"]]
       self[["gatheringPersons"]] <- lapply(
         GatheringEventList[["gatheringPersons"]],
         function(x) {

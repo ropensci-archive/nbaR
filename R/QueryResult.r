@@ -87,21 +87,8 @@ QueryResult <- R6::R6Class(
         QueryResultJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["totalSize"]])) {
-        self[["totalSize"]] <-
-          QueryResultList[["totalSize"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["totalSize"]], "$new()")
-        ))
-        self[["totalSize"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            QueryResultList[["totalSize"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["totalSize"]] <-
+        QueryResultList[["totalSize"]]
       self[["resultSet"]] <- lapply(
         QueryResultList[["resultSet"]],
         function(x) {

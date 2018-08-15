@@ -77,36 +77,10 @@ NamedArea <- R6::R6Class(
         NamedAreaJson,
         simplifyVector = FALSE
       )
-      if (is.null(typeMapping[["areaClass"]])) {
-        self[["areaClass"]] <-
-          NamedAreaList[["areaClass"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["areaClass"]], "$new()")
-        ))
-        self[["areaClass"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            NamedAreaList[["areaClass"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
-      if (is.null(typeMapping[["areaName"]])) {
-        self[["areaName"]] <-
-          NamedAreaList[["areaName"]]
-      } else {
-        obj <- eval(parse(
-          text = paste0(typeMapping[["areaName"]], "$new()")
-        ))
-        self[["areaName"]] <- obj$fromJSONString(
-          jsonlite::toJSON(
-            NamedAreaList[["areaName"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      }
+      self[["areaClass"]] <-
+        NamedAreaList[["areaClass"]]
+      self[["areaName"]] <-
+        NamedAreaList[["areaName"]]
       invisible(self)
     }
   )
