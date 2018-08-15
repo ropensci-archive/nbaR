@@ -144,8 +144,10 @@
             result <- as.{{returnType}}(httr::content(response))
             {{/returnTypeIsPrimitive}}
             {{^returnTypeIsPrimitive}}
+            {{#hasReference}}
             ## API call result is object of model class
             returnObject <- {{returnType}}$new()
+            {{/hasReference}}
             {{#isListContainer}}
             ## API call result is "list container"
             result <- lapply(httr::content(response),
@@ -154,12 +156,15 @@
                                  typeMapping = list(item = private$getBaseDataType()))
                                  })
             {{/isListContainer}}
-            {{^isListContainer}}
-            ## API call result is QueryResult,
-            ## list items must be mapped to model class
+            {{^isListContainer}}                        
+            ## if API call result is QueryResult,
+            ## list items must be mapped to model class            
+            ##if (class(returnObject)[1] == "QueryResult") {
+            ##  returnObject$docType <- private$getBaseDataType()
+            ##}
             result <- returnObject$fromList(
                 httr::content(response),
-                typeMapping = list(item = private$getBaseDataType()))
+                  typeMapping = list(item = private$getBaseDataType()))
             {{/isListContainer}}            
             {{/returnTypeIsPrimitive}}
             {{/isMapContainer}}            

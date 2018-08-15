@@ -92,6 +92,7 @@
                         typeMapping = NULL) {
       {{#vars}}
       {{#isPrimitiveType}}
+      {{#needsTypeMapping}}
       if (is.null(typeMapping[["{{baseName}}"]])) {
             self[["{{baseName}}"]] <-
                 {{classname}}List[["{{baseName}}"]]
@@ -101,7 +102,12 @@
           self[["{{baseName}}"]] <- obj$fromList(
               {{classname}}List[["{{baseName}}"]],
               typeMapping = typeMapping)
-      }
+              }
+      {{/needsTypeMapping}}
+      {{^needsTypeMapping}}
+            self[["{{baseName}}"]] <-
+                {{classname}}List[["{{baseName}}"]]        
+      {{/needsTypeMapping}}
       {{/isPrimitiveType}}
       {{^isPrimitiveType}}
       {{#isListContainer}}
@@ -112,6 +118,7 @@
                                           })
       {{/isListContainer}}
       {{^isListContainer}}
+      {{#needsTypeMapping}}
       if (is.null(typeMapping[["{{baseName}}"]])) {
           self[["{{baseName}}"]] <- {{datatype}}$new()$fromList(
               {{classname}}List[["{{baseName}}"]],
@@ -123,6 +130,12 @@
               {{classname}}List[["{{baseName}}"]],
               typeMapping = typeMapping)
       }
+      {{/needsTypeMapping}}
+      {{^needsTypeMapping}}
+          self[["{{baseName}}"]] <- {{datatype}}$new()$fromList(
+              {{classname}}List[["{{baseName}}"]],
+              typeMapping = typeMapping)
+      {{/needsTypeMapping}}          
       {{/isListContainer}}
       {{/isPrimitiveType}}
       {{/vars}}

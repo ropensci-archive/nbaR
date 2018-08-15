@@ -7,16 +7,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.JToggleButton.ToggleButtonModel;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.fasterxml.jackson.databind.SerializationFeature;
-
 import io.swagger.codegen.CodegenConfig;
 import io.swagger.codegen.CodegenConstants;
+import io.swagger.codegen.CodegenModel;
 import io.swagger.codegen.CodegenOperation;
+import io.swagger.codegen.CodegenProperty;
 import io.swagger.codegen.DefaultCodegen;
 import io.swagger.codegen.SupportingFile;
 import io.swagger.codegen.languages.RClientCodegen;
@@ -169,7 +167,7 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 
 	        modelPackage = packageName;
 	        apiPackage = packageName;
-
+	        
 	        supportingFiles.add(new SupportingFile("README.mustache", "", "README.md"));
 	        supportingFiles.add(new SupportingFile("git_push.sh.mustache", "", "git_push.sh"));
 	        supportingFiles.add(new SupportingFile("gitignore.mustache", "", ".gitignore"));
@@ -270,6 +268,29 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 		return objs;
 	}
 
+	@Override
+	public Map<String, Object> postProcessModelsEnum(Map<String, Object> objs)
+	{
+		super.postProcessModelsEnum(objs);
+		List<Object> models = (List<Object>) objs.get("models");
+		        for (Object _mo : models) {
+		            Map<String, Object> mo = (Map<String, Object>) _mo;
+		            CodegenModel cm = (CodegenModel) mo.get("model");
+		            System.out.println(cm.name);
+		            		            
+		            if (cm.name == "QueryResultItemObject") { //cm.name == "QueryResult" ||
+		        	    for (CodegenProperty prop : cm.allVars) {
+		        		    System.out.println("\t" + prop.name);
+		        		    if (prop.baseName == "item") { // || prop.baseName == "resultSet") {
+		        			    prop.needsTypeMapping = true;		        			    
+		        		    }		        		    
+		        	    }
+		            }
+		         
+		        }	
+		return super.postProcessModelsEnum(objs);
+	}
+	
 	/*
 	 * Overridden to omit check for unique operation IDs
 	 */
