@@ -838,3 +838,12 @@ mc$get_settings()$content
 mc$get_setting("operator.contains.min_term_length")$content
 ```
 
+# Use cases
+
+```{r}
+sc <- SpecimenClient$new()
+qc <- QueryCondition$new(field="gatheringEvent.chronoStratigraphy.chronoIdentifier", operator="NOT_EQUALS", value="")
+qs <- QuerySpec$new(conditions=list(qc), size=10000)
+res <- sc$query(querySpec=qs)
+sc$get_distinct_values("identifications.defaultClassification.family", querySpec = qs)$content
+```
