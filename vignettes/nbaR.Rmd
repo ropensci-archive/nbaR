@@ -187,7 +187,7 @@ we can combine the latter condition with an additional one using the method `or`
  
 ```{r}
 # logical conjunction using 'or' method
-q3$or<- list(QueryCondition$new(field = "identifications.taxonRank",
+q3$or <- list(QueryCondition$new(field = "identifications.taxonRank",
                                 operator="EQUALS",
                                 value="subspecies"))
 
@@ -840,10 +840,71 @@ mc$get_setting("operator.contains.min_term_length")$content
 
 # Use cases
 
-```{r}
+```{r, eval=FALSE}
+## all records with a chronoIdentifier
 sc <- SpecimenClient$new()
-qc <- QueryCondition$new(field="gatheringEvent.chronoStratigraphy.chronoIdentifier", operator="NOT_EQUALS", value="")
-qs <- QuerySpec$new(conditions=list(qc))
-res <- sc$query(querySpec=qs)
-sc$get_distinct_values("identifications.defaultClassification.family", querySpec = qs)$content
+##qc <- QueryCondition$new(field="gatheringEvent.chronoStratigraphy.chronoIdentifier", operator="NOT_EQUALS", value="")
+##qs <- QuerySpec$new(conditions=list(qc))
+##res <- sc$query(querySpec=qs)
+##sc$get_distinct_values("identifications.defaultClassification.family", querySpec = qs)$content
+
+##lapply(young_name, get_geo_age_range)
+
+## get entries of family "Carcharhinidae" that have youngChronoName or oldChronoName
+qc <- QueryCondition$new(field="gatheringEvent.chronoStratigraphy.youngChronoName", operator="NOT_EQUALS", value="")
+qc2 <- QueryCondition$new(field="gatheringEvent.chronoStratigraphy.oldChronoName", operator="NOT_EQUALS", value="")
+qc3 <- QueryCondition$new(field="identifications.defaultClassification.family", operator="EQUALS", value="Carcharhinidae")
+qc$or <- list(qc2)
+
+qs <- QuerySpec$new(conditions=list(qc, qc3), size=1000)
+res <- sc$query(querySpec = qs)
+
+## get geological periods: youngChronoName and oldChrononame
+young_name <- sapply(res$content$resultSet, function(x)x$item$gatheringEvent$chronoStratigraphy[[1]]$youngChronoName)
+old_name <- sapply(res$content$resultSet, function(x)x$item$gatheringEvent$chronoStratigraphy[[1]]$oldChronoName)
+
+## translate this into years; get min young_name, max old_name
+lower_bounds <- sapply(young_name, function(x)(min(unlist(get_geo_age_range(x)))))
+upper_bounds <- sapply(old_name, function(x)(max(unlist(get_geo_age_range(x)))))
+
+## get all genera
+genera <- unlist(sapply(res$content$resultSet,
+                      function(x)paste(x$item$identifications[[1]]$defaultClassification$genus)))
+
+## put names to genera
+names(lower_bounds) <- genera
+names(upper_bounds) <- genera
+
+upper_bounds_genera <- sapply(unique(genera), function(x)mean(upper_bounds[which(names(upper_bounds)==x)], na.rm=T))
+lower_bounds_genera <- sapply(unique(genera), function(x)mean(lower_bounds[which(names(lower_bounds)==x)], na.rm=T))
+
+
+lapply(unique(genera), function(x){
+    grep (paste0("^", x, "_"), tree$tip.label)
+})
+
+    
+## get all taxon names from NBA data
+#specs <- unlist(sapply(res$content$resultSet,
+#                      function(x)paste(x$item$identifications[[1]]$defaultClassification$genus,
+#                                       x$item$identifications[[1]]$defaultClassification$specificEpithet, sep="_")))
+
+
+
+## get lower and upper bounds for genera
+
+
+##genera <- unlist(unique(lapply(res$content$resultSet, function(x)x$item$identifications[[1]]$defaultClassification$genus))
+
+                 
+##scoli <- res$content$resultSet[which(lapply(res$content$resultSet, function(x)x$item$identifications[[1]]$defaultClassification$genus) == "Scoliodon")]
+##young_name <- sapply(scoli, function(x)x$item$gatheringEvent$chronoStratigraphy[[1]]$youngChronoName)
+##old_name <- sapply(scoli, function(x)x$item$gatheringEvent$chronoStratigraphy[[1]]$oldChronoName)
+
+
+##qc <- QueryCondition$new(field="gatheringEvent.biostratigraphy.bioDatingQualifier", operator="NOT_EQUALS", value="")
+##qs <- QuerySpec$new(conditions=list(qc))
+##res <- sc$query(querySpec=qs)
+
+
 ```
