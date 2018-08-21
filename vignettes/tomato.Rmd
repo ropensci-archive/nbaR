@@ -1,0 +1,211 @@
+---
+title: "The oldest tomato specimen in the world"
+author: "Hannes Hettling, Rutger Vos"
+date: "`r format(Sys.time(), '%b %d, %Y')`"
+output: 
+  html_document:
+    highlight: tango
+    code_folding: show
+    theme: sandstone
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      
+vignette: >
+  %\VignetteIndexEntry{nbaR: R access to the Netherlands Biodiversity API}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# The 'En Tibi' tomato specimen
+
+For the different data types in the NBA (Specimen, Taxon, Multimedia, Geo),
+there are respective client classes (`SpecimenClient`, `TaxonClient`, 
+`MultimediaClient`, `GeoClient`). 
+
+## Using the SpecimenClient
+
+For the different data types in the NBA (Specimen, Taxon, Multimedia, Geo),
+there are respective client classes (`SpecimenClient`, `TaxonClient`, 
+`MultimediaClient`, `GeoClient`). To retreive electronic specimen records, 
+we instantiate a `SpecimenClient`:
+
+```{r}
+library(nbaR)
+sc <- SpecimenClient$new(basePath="http://145.136.242.167:8080/v2")
+```
+
+To get an overview of what we can do with such a client, `?SpecimenClient` will
+give us some description and list all the methods that are available for this client.
+To get an overview of what nbaR stores in a `Specimen` object, we could use the function
+`get_paths`, which lists everything that can be queried for a specimen:
+
+```{r}
+res <- sc$get_paths()
+```
+
+Note that client class methods (and other class members) are accessed with a `$`. 
+The respose from the taxon client is stored in `res`, an object of class `Response`. 
+Have a look at `?Response` to see what this object contains. But how to get the data?
+It is in the field `content`.
+
+```{r}
+res$content
+``` 
+
+Suppose that we do not know the scientific name of the tomato plant, 
+there are two fields that store a vernacular name for a specimen:
+
+* `identifications.vernacularNames.name`
+* `identifications.taxonomicEnrichments.vernacularNames.name`
+
+The first one is the vernacular name that is exaclty equal to the one in the
+*source database*. Since often, a vernacular name is missing in the source database,
+a *taxonomic enrichment* is performed during the import of the data from the source database
+in whch, using among others the *Catalogue of life*, species names are enriched with synonyms and 
+vernacular names.
+
+## Simple queries
+
+Let's try the first field and query for all `Specimen` records with `identifications.vernacularNames.name` field
+matching the name `tomato`, we can use the client's `query` function:
+
+```{r}
+res <- sc$query(queryParams=list(identifications.vernacularNames.name="tomato"))
+```
+
+Note that the `queryParams` arguments takes a list, so
+we could search for more criteria. How many hits do we got?
+
+```{r}
+res$content$totalSize
+```
+
+No hits, thus no record has the vernacular name equal to `tomato`. We therefore 
+search in `identifications.taxonomicEnrichments.vernacularNames.name`:
+
+```{r}
+res <- sc$query(queryParams=list(identifications.taxonomicEnrichments.vernacularNames.name="tomato"))
+# how many hits?
+res$content$totalSize
+```	
+
+Again, no hits. 
+
+## More complex queries
+
+Let's try partial matching. For this, we have to make a 
+more complicated query, involving `QuerySpec` and `QueryCondition` objects,
+which are very powerful for constructing complex and nested queries.
+
+A `QueryCondition` can be specified as follows:
+
+```{r}
+qc <- QueryCondition$new(field="identifications.taxonomicEnrichments.vernacularNames.name", operator="MATCHES", value="tomato")
+```
+
+Note that we use the operator `MATCHES` that does a partial instead of an exact match 
+(which would be `EQUALS`).
+
+From one or multiple `QueryConditions`, a `QuerySpec` can be created, and used as input 
+for he `query` function. 
+
+```{r}
+qs <- QuerySpec$new(conditions=list(qc))
+
+# do the query with SpecimenClient
+res <- sc$query(querySpec=qs)
+
+# how many hits?
+res$content$totalSize
+```
+
+Finally, we have some hits. The content of the response of the `query` function 
+is always of type `QueryResult` (see also `?QueryResult`) which has the fields
+`totalSize` (as used above) and a `resultSet`, a list which stores the actual data.
+From the `resultSet`, a single `Specimen` object can be obtained as follows:
+
+```{r}
+# retreive the first Specimen object
+sp <- res$content$resultSet[[1]]
+
+# check if it is really a specimen
+class(sp)
+
+# list fields and methods of the object
+sp
+```
+
+**Note:** By default, the NBA (and thus nbaR) returns the first 10 hits. 
+To fetch more records, we need to specify this in the `QuerySpec` object. 
+
+
+```{r}
+# specify size in QuerySpec obejct
+qs <- QuerySpec$new(conditions=list(qc), size=1000)
+
+# perform query
+res <- sc$query(querySpec=qs)
+
+# do we have all records?
+res$content$totalSize == length(res$content$resultSet)
+```
+
+## Sorting
+
+We now want to see which one is the oldest specimen. We could, of course
+do the sorting in R 
+(e.g. `sort(unlist(lapply(res$content$resultSet, function(x)x$item$gatheringEvent$dateTimeBegin)))`),
+but there is also functionality to do this directly in the query.
+This can be donw with objects of type `?SortField`, which can take a 
+path specifying on what to sort, and whether to sort ascending or
+descending. We will sort our results by the values of the field
+`gatheringEvent.dateTimeBegin`:
+
+
+```{r}
+# specify field to sort
+sf <- SortField$new(path="gatheringEvent.dateTimeBegin", sortOrder="asc")
+
+# make querySpec using sortField 
+qs <- QuerySpec$new(conditions=list(qc), size=1000, sortFields=list(sf))
+
+# do the query
+res <- sc$query(querySpec=qs)
+```
+
+Now, the first result should be the specimen with a gathering event the furthest
+in the past. 
+
+```{r}
+sp <- res$content$resultSet[[1]]$item
+
+# get date
+sp$gatheringEvent$dateTimeBegin
+```
+
+## Multimedia content
+
+Many specimens have associated multimedia content, such as photos or videos. 
+To retrieve e.g. the URL of the first multimedia item of our specimen:
+
+```{r}
+# get multimedia URL
+url <- sp$associatedMultiMediaUris[[1]]$accessUri
+url
+
+# display image
+library(knitr)
+include_graphics(url)
+
+```
+
+
+
+
+
+
+
+
+
