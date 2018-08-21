@@ -908,3 +908,19 @@ lapply(unique(genera), function(x){
 
 
 ```
+
+
+```{r, eval=FALSE}
+## get the en tibi tomato specimen
+
+sc <- SpecimenClient$new()
+qc <- QueryCondition$new(field="identifications.taxonomicEnrichments.vernacularNames.name", operator="MATCHES", value="Tomato")
+sf <- SortField$new(path="gatheringEvent.dateTimeBegin", sortOrder="asc")
+
+qs <- QuerySpec$new(conditions=list(qc), size=1000, sortFields=list(sf))
+res <- sc$query(querySpec=qs)
+
+sp <- res$content$resultSet[[1]]$item
+sp$associatedMultiMediaUris[[1]]$accessUri
+
+```
