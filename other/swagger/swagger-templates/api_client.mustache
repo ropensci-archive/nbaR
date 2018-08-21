@@ -25,8 +25,8 @@
 #' Ref: https://github.com/swagger-api/swagger-codegen
 #' Do not edit the class manually.
 #'
-#'
-#' @field path Stores url path of the request.
+#' @field basePath specifies the base URL of the API, defaults to
+#'                 http://api.biodiversitydata.nl/v2
 #' @field userAgent Set the user agent of the request.
 #'
 #' @importFrom R6 R6Class
