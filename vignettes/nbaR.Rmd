@@ -842,7 +842,7 @@ mc$get_setting("operator.contains.min_term_length")$content
 
 ```{r, eval=FALSE}
 ## all records with a chronoIdentifier
-sc <- SpecimenClient$new()
+sc <- SpecimenClient$new(basePath="http://145.136.242.167:8080/v2")
 ##qc <- QueryCondition$new(field="gatheringEvent.chronoStratigraphy.chronoIdentifier", operator="NOT_EQUALS", value="")
 ##qs <- QuerySpec$new(conditions=list(qc))
 ##res <- sc$query(querySpec=qs)
@@ -853,19 +853,61 @@ sc <- SpecimenClient$new()
 ## get entries of family "Carcharhinidae" that have youngChronoName or oldChronoName
 qc <- QueryCondition$new(field="gatheringEvent.chronoStratigraphy.youngChronoName", operator="NOT_EQUALS", value="")
 qc2 <- QueryCondition$new(field="gatheringEvent.chronoStratigraphy.oldChronoName", operator="NOT_EQUALS", value="")
-qc3 <- QueryCondition$new(field="identifications.defaultClassification.family", operator="EQUALS", value="Carcharhinidae")
 qc$or <- list(qc2)
+qc3 <- QueryCondition$new(field="identifications.defaultClassification.family", operator="EQUALS", value="Carcharhinidae")
 
 qs <- QuerySpec$new(conditions=list(qc, qc3), size=1000)
 res <- sc$query(querySpec = qs)
 
 ## get geological periods: youngChronoName and oldChrononame
-young_name <- sapply(res$content$resultSet, function(x)x$item$gatheringEvent$chronoStratigraphy[[1]]$youngChronoName)
-old_name <- sapply(res$content$resultSet, function(x)x$item$gatheringEvent$chronoStratigraphy[[1]]$oldChronoName)
+genera <- sapply(res$content$resultSet, function(x) {
+    res <- x$item$identifications[[1]]$defaultClassification$genus
+    ifelse(is.null(res), NA, res)
+})
+
+species <- sapply(res$content$resultSet, function(x) {
+    res <- x$item$identifications[[1]]$defaultClassification$specificEpithet
+    ifelse(is.null(res), NA, res)
+})
+ 
+young_periods <- sapply(res$content$resultSet, function(x) {
+    res <- x$item$gatheringEvent$chronoStratigraphy[[1]]$youngChronoName
+    ifelse(is.null(res), NA, res)
+})
+
+old_periods <- sapply(res$content$resultSet, function(x) {
+    res <- x$item$gatheringEvent$chronoStratigraphy[[1]]$oldChronoName
+    ifelse(is.null(res), NA, res)
+})
+
+## translate the geological periods to mya
+times <- geo_age(unique(c(young_periods, old_periods)))
+
+## put all relevant data together
+data <- data.frame(genus=genera, species=species, young_p=young_periods, old_p=old_periods)
+data$early_age <- sapply(data$young_p, function(x)ifelse(is.na(x), NA, unlist(times['early_age', x])))
+data$late_age <- sapply(data$old_p, function(x)ifelse(is.na(x), NA, unlist(times['late_age', x])))
+
+require(ape)
+tree <- read.nexus('other/sharks.nex')
+
+spp <- paste(data$genus, data$species, sep="_")
+
+## check which one of our data is in our tree
+idx <- which(spp %in% tree$tip.label)
+
+
+
+
+
+
 
 ## translate this into years; get min young_name, max old_name
-lower_bounds <- sapply(young_name, function(x)(min(unlist(get_geo_age_range(x)))))
-upper_bounds <- sapply(old_name, function(x)(max(unlist(get_geo_age_range(x)))))
+lower_bounds <- sapply(young_periods, function(x)(min(unlist(get_geo_age_range(x)))))
+
+
+
+upper_bounds <- sapply(old_periods, function(x)(max(unlist(get_geo_age_range(x)))))
 
 ## get all genera
 genera <- unlist(sapply(res$content$resultSet,
