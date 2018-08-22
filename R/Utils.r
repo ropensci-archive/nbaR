@@ -1,7 +1,17 @@
+## vectorized version of .geo_age
+geo_age <- function (geo_unit) {    
+    as.data.frame(vapply(geo_unit, .geo_age, FUN.VALUE=list(early_age=NA, late_age=NA)))
+}
 
 ## Function to get a geological age range from
 ## unit can be Eon, Era, System/Period, Series/Epoch
-get_geo_age_range <- function(geo_unit) {
+.geo_age <- function(geo_unit) {
+    if (is.null(geo_unit)) {
+        return(list(early_age=NA, late_age=NA))
+    }
+    if (is.na(geo_unit)) {
+        return(list(early_age=NA, late_age=NA))
+    }    
     unit <- tolower(geo_unit)
     unit <- sub("u\\.", "late", unit)
     unit <- sub("l\\.", "early", unit)
@@ -17,15 +27,15 @@ get_geo_age_range <- function(geo_unit) {
         httr::GET(fullPath, httr::timeout(10))
     },
     error=function(cond) {
-        warning("Timeout reached while retreiving values for geo unit ",
-                geo_unit, " from earthlifeconsortium.org")
+        warning("Timeout reached while retreiving values for geo unit \"",
+                geo_unit, "\" from earthlifeconsortium.org")
         NULL
     }
     )
     
     if (is.null(res) || res$status_code != 200) {
-        warning("Could not retreive values for geo unit ",
-                geo_unit, " from earthlifeconsortium.org")
+        warning("Could not retreive values for geo unit \"",
+                geo_unit, "\" from earthlifeconsortium.org")
         return(list(early_age=NA, late_age=NA))
     }
     
