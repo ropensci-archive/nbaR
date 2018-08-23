@@ -843,18 +843,21 @@ mc$get_setting("operator.contains.min_term_length")$content
 ```{r, eval=FALSE}
 ## all records with a chronoIdentifier
 sc <- SpecimenClient$new(basePath="http://145.136.242.167:8080/v2")
-##qc <- QueryCondition$new(field="gatheringEvent.chronoStratigraphy.chronoIdentifier", operator="NOT_EQUALS", value="")
-##qs <- QuerySpec$new(conditions=list(qc))
-##res <- sc$query(querySpec=qs)
-##sc$get_distinct_values("identifications.defaultClassification.family", querySpec = qs)$content
-
-##lapply(young_name, get_geo_age_range)
 
 ## get entries of family "Carcharhinidae" that have youngChronoName or oldChronoName
 qc <- QueryCondition$new(field="gatheringEvent.chronoStratigraphy.youngChronoName", operator="NOT_EQUALS", value="")
 qc2 <- QueryCondition$new(field="gatheringEvent.chronoStratigraphy.oldChronoName", operator="NOT_EQUALS", value="")
 qc$or <- list(qc2)
-qc3 <- QueryCondition$new(field="identifications.defaultClassification.family", operator="EQUALS", value="Carcharhinidae")
+shark_orders <- c("Carcharhiniformes",
+                  "Heterodontiformes",
+                  "Hexanchiformes",
+                  "Lamniformes",
+                  "Orectolobiformes",
+                  "Pristiophoriformes",
+                  "Squaliformes",
+                  "Squatiniformes")
+qc3 <- QueryCondition$new(field="identifications.defaultClassification.order", operator="IN", value=shark_orders) 
+
 
 qs <- QuerySpec$new(conditions=list(qc, qc3), size=1000)
 res <- sc$query(querySpec = qs)
@@ -869,7 +872,7 @@ species <- sapply(res$content$resultSet, function(x) {
     res <- x$item$identifications[[1]]$defaultClassification$specificEpithet
     ifelse(is.null(res), NA, res)
 })
- 
+
 young_periods <- sapply(res$content$resultSet, function(x) {
     res <- x$item$gatheringEvent$chronoStratigraphy[[1]]$youngChronoName
     ifelse(is.null(res), NA, res)
@@ -885,84 +888,51 @@ times <- geo_age(unique(c(young_periods, old_periods)))
 
 ## put all relevant data together
 data <- data.frame(genus=genera, species=species, young_p=young_periods, old_p=old_periods)
-data$early_age <- sapply(data$young_p, function(x)ifelse(is.na(x), NA, unlist(times['early_age', x])))
-data$late_age <- sapply(data$old_p, function(x)ifelse(is.na(x), NA, unlist(times['late_age', x])))
+data$young_age <- sapply(data$young_p, function(x)ifelse(is.na(x), NA, unlist(times['late_age', as.character(x)])))
+data$old_age <- sapply(data$old_p, function(x)ifelse(is.na(x), NA, unlist(times['early_age', as.character(x)])))
+## filter for the ones that have data
+data <- data[! (is.na(data$young_age) & is.na(data$old_age)), ]
+## filter out duplicates
+data <- unique(data)
 
 require(ape)
 tree <- read.nexus('other/sharks.nex')
 
-spp <- paste(data$genus, data$species, sep="_")
+## filter data further such that we only keep the taxa that are in
+## the tree
 
-## check which one of our data is in our tree
-idx <- which(spp %in% tree$tip.label)
+data_filtered <- data[paste(data$genus, data$species, sep="_") %in% tree$tip.label,]
+species <- paste(data$genus, data$species, sep="_")
 
+## aggregate over genus
+## aggregate(young_age~genus, data_filtered, mean)
 
+## aggregate(data, list(data_filtered$genus), function(x)ifelse(all(is.na(x)), NA, mean(x, na.rm=T)))
 
+data$young_age[is.na(data$young_age)] <- data$old_age[is.na(data$young_age)]
+data$old_age[is.na(data$old_age)] <- data$young_age[is.na(data$old_age)]
 
+aggregate(.~genus, data, mean)
 
+##aggregate(young_age+old_age~genus, data, mean)
 
+##aggregate(young_age~genus, data, mean)
+##aggregate(old_age~genus, data, mean)
 
-## translate this into years; get min young_name, max old_name
-lower_bounds <- sapply(young_periods, function(x)(min(unlist(get_geo_age_range(x)))))
-
-
-
-upper_bounds <- sapply(old_periods, function(x)(max(unlist(get_geo_age_range(x)))))
-
-## get all genera
-genera <- unlist(sapply(res$content$resultSet,
-                      function(x)paste(x$item$identifications[[1]]$defaultClassification$genus)))
-
-## put names to genera
-names(lower_bounds) <- genera
-names(upper_bounds) <- genera
-
-upper_bounds_genera <- sapply(unique(genera), function(x)mean(upper_bounds[which(names(upper_bounds)==x)], na.rm=T))
-lower_bounds_genera <- sapply(unique(genera), function(x)mean(lower_bounds[which(names(lower_bounds)==x)], na.rm=T))
-
-
-lapply(unique(genera), function(x){
-    grep (paste0("^", x, "_"), tree$tip.label)
-})
-
-    
-## get all taxon names from NBA data
-#specs <- unlist(sapply(res$content$resultSet,
-#                      function(x)paste(x$item$identifications[[1]]$defaultClassification$genus,
-#                                       x$item$identifications[[1]]$defaultClassification$specificEpithet, sep="_")))
+##aggregate(young_age+old_age~genus, data, mean)
 
 
 
-## get lower and upper bounds for genera
+get_parent <- function(tree, node) {
+    thisnode <- ifelse(is.character(node), match(node, tree$tip.label), node)
+    tree$edge[which(tree$edge[,2]==thisnode),1]
+}
 
+df <- aggregate(data_filtered, list(data_filtered$genus, data_filtered$species), function(x)ifelse(all(is.na(x)), NA, mean(x, na.rm=T)))
+df$young_age[is.na(df$young_age)] <- 0
+nodes <- sapply(paste(df$Group.1, df$Group.2, sep="_"), function(x)which(x==tree$tip.label))
+nn <- sapply(nodes, function(x)get_parent(tree, x))
 
-##genera <- unlist(unique(lapply(res$content$resultSet, function(x)x$item$identifications[[1]]$defaultClassification$genus))
-
-                 
-##scoli <- res$content$resultSet[which(lapply(res$content$resultSet, function(x)x$item$identifications[[1]]$defaultClassification$genus) == "Scoliodon")]
-##young_name <- sapply(scoli, function(x)x$item$gatheringEvent$chronoStratigraphy[[1]]$youngChronoName)
-##old_name <- sapply(scoli, function(x)x$item$gatheringEvent$chronoStratigraphy[[1]]$oldChronoName)
-
-
-##qc <- QueryCondition$new(field="gatheringEvent.biostratigraphy.bioDatingQualifier", operator="NOT_EQUALS", value="")
-##qs <- QuerySpec$new(conditions=list(qc))
-##res <- sc$query(querySpec=qs)
-
-
-```
-
-
-```{r, eval=FALSE}
-## get the en tibi tomato specimen
-
-sc <- SpecimenClient$new()
-qc <- QueryCondition$new(field="identifications.taxonomicEnrichments.vernacularNames.name", operator="MATCHES", value="Tomato")
-sf <- SortField$new(path="gatheringEvent.dateTimeBegin", sortOrder="asc")
-
-qs <- QuerySpec$new(conditions=list(qc), size=1000, sortFields=list(sf))
-res <- sc$query(querySpec=qs)
-
-sp <- res$content$resultSet[[1]]$item
-sp$associatedMultiMediaUris[[1]]$accessUri
-
+calib <- makeChronosCalib(tree, node=nn, age.min=df$young_age, age.max=df$old_age)
+chronogram <- chronos(tree, calibration=calib)
 ```
