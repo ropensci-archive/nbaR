@@ -1,0 +1,144 @@
+---
+title: "Calibrating a shark phylogeny"
+author: "Hannes Hettling, Rutger Vos"
+date: "`r format(Sys.time(), '%b %d, %Y')`"
+output: 
+  html_document:
+    highlight: tango
+    code_folding: show
+    theme: sandstone
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      
+vignette: >
+  %\VignetteIndexEntry{nbaR: R access to the Netherlands Biodiversity API}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+
+
+
+```{r}
+## all records with a chronoIdentifier
+sc <- SpecimenClient$new(basePath="http://145.136.242.167:8080/v2")
+
+## get entries of family "Carcharhinidae" that have youngChronoName or oldChronoName
+qc <- QueryCondition$new(field="gatheringEvent.chronoStratigraphy.youngChronoName", operator="NOT_EQUALS", value="")
+qc2 <- QueryCondition$new(field="gatheringEvent.chronoStratigraphy.oldChronoName", operator="NOT_EQUALS", value="")
+qc$or <- list(qc2)
+shark_orders <- c("Carcharhiniformes",
+                  "Heterodontiformes",
+                  "Hexanchiformes",
+                  "Lamniformes",
+                  "Orectolobiformes",
+                  "Pristiophoriformes",
+                  "Squaliformes",
+                  "Squatiniformes")
+qc3 <- QueryCondition$new(field="identifications.defaultClassification.order", operator="IN", value=shark_orders) 
+
+
+qs <- QuerySpec$new(conditions=list(qc, qc3), size=5000)
+res <- sc$query(querySpec = qs)
+
+```
+
+
+```{r}
+
+require(ape)
+tree <- read.nexus('other/sharks.nex')
+tree <- drop.tip(tree, "Squatina_nebulosa")
+
+## extract specimens from result
+specimens <- lapply(res$content$resultSet, function(x)x$item)
+
+## use built-in convenience function for getting ape's chronos style calibration table
+calib_genus <- chronos_calib(specimens, tree, 'genus')
+## clean up: one reogue taxon in genus "Squatina"! Skip this genus
+calib_genus <- calib_genus[calib_genus$taxon != "Squatina",]
+
+## run ape's chronos function
+chronogram_genus<- chronos(tree, calibration=calib_genus)
+
+calib_family <- chronos_calib(specimens, tree, 'family')
+calib_family <- calib_family[calib_family$taxon != "Squalidae",]
+chronogram_family<- chronos(tree, calibration=calib_family)
+
+calib_order <- chronos_calib(specimens, tree, 'order')
+chronogram_order<- chronos(tree, calibration=calib_order)
+
+
+```
+
+
+
+
+```{r}
+## get geological periods: youngChronoName and oldChrononame
+genera <- sapply(res$content$resultSet, function(x) {
+    res <- x$item$identifications[[1]]$defaultClassification$genus
+    ifelse(is.null(res), NA, res)
+})
+
+species <- sapply(res$content$resultSet, function(x) {
+    res <- x$item$identifications[[1]]$defaultClassification$specificEpithet
+    ifelse(is.null(res), NA, res)
+})
+
+young_periods <- sapply(res$content$resultSet, function(x) {
+    res <- x$item$gatheringEvent$chronoStratigraphy[[1]]$youngChronoName
+    ifelse(is.null(res), NA, res)
+})
+
+old_periods <- sapply(res$content$resultSet, function(x) {
+    res <- x$item$gatheringEvent$chronoStratigraphy[[1]]$oldChronoName
+    ifelse(is.null(res), NA, res)
+})
+
+## translate the geological periods to mya
+times <- geo_age(unique(c(young_periods, old_periods)))
+
+## put all relevant data together
+data <- data.frame(genus=genera, species=species, young_p=young_periods, old_p=old_periods)
+data$young_age <- sapply(data$young_p, function(x)ifelse(is.na(x), NA, unlist(times['late_age', as.character(x)])))
+data$old_age <- sapply(data$old_p, function(x)ifelse(is.na(x), NA, unlist(times['early_age', as.character(x)])))
+
+## filter for the ones that have data
+data <- data[! (is.na(data$young_age) & is.na(data$old_age)), ]
+
+## filter out duplicates
+data <- unique(data)
+
+require(ape)
+tree <- read.nexus('other/sharks.nex')
+
+tree_genera <- unique(sapply(strsplit(tree$tip.label, "_"), `[`, 1))
+
+## filter out genera that are not in our tree
+data_filtered <- data[data$genus %in% tree_genera,]
+
+genera_ages <- aggregate(data_filtered[c('young_age', 'old_age')], by=list(data_filtered$genus), FUN=mean, na.rm=T)
+genera_ages <- genera_ages[complete.cases(genera_ages),]
+
+genera_ages$node <- sapply(genera_ages[,1], function(genus) {
+    tips <- grep(paste0("^", genus, "_"), tree$tip.label)
+    mrca <- getMRCA(tree, tips)
+    ifelse(is.null(mrca), NA, mrca)
+})
+
+genera_ages <- genera_ages[complete.cases(genera_ages),]
+
+## We have a rogue taxon in Genus Squatina. Filter it out!!
+genera_ages <- genera_ages[! genera_ages[,1] == "Squatina",]
+
+calib <- makeChronosCalib(tree, genera_ages$node, age.min=genera_ages$young_age, age.max=genera_ages$old_age)
+
+chronogram <- chronos(tree, calibration=calib)
+
+
+
+```
