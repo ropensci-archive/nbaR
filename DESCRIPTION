@@ -16,7 +16,8 @@ LazyData: true
 Suggests:
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    ape
 Imports:
     jsonlite,
     httr,
