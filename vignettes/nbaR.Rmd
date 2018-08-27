@@ -842,7 +842,7 @@ mc$get_setting("operator.contains.min_term_length")$content
 
 ```{r, eval=FALSE}
 ## all records with a chronoIdentifier
-sc <- SpecimenClient$new(basePath="http://145.136.242.167:8080/v2")
+sc <- SpecimenClient$new()
 
 ## get entries of family "Carcharhinidae" that have youngChronoName or oldChronoName
 qc <- QueryCondition$new(field="gatheringEvent.chronoStratigraphy.youngChronoName", operator="NOT_EQUALS", value="")

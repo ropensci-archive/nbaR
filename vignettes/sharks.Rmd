@@ -1,7 +1,8 @@
 ---
-title: "Calibrating a shark phylogeny"
+title: "Calibrating molecular phylogeny of the sharks"
 author: "Hannes Hettling, Rutger Vos"
 date: "`r format(Sys.time(), '%b %d, %Y')`"
+bibliography: bibliography.bib
 output: 
   html_document:
     highlight: tango
@@ -13,23 +14,47 @@ output:
       collapsed: false
       
 vignette: >
-  %\VignetteIndexEntry{nbaR: R access to the Netherlands Biodiversity API}
+  %\VignetteIndexEntry{nbaR: calibrating a shark phylogeny}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
+# Background
+The time-calibration of molecular phylogenies, i.e. assigning absolute ages to nodes 
+in the phylogeny is an essential tool in phylogenetic comparative analyses. 
+Time-calibration can be accomplished with e.g. data from fossil specimen with an 
+assigned age that are in a known taxonomic group. Specimen ages can be determined by 
+e.g. carbon dating or stratigraphic methods. Node can then be assigned using Baeysian or
+Maximum-Likelihood methods. 
+At Naturalis, quite a few of our specimen records hold chronographic information. 
 
+Here we will demonstrate how to extract this data using `nbaR` and
+how to create input for the popular tree-calibration function `chronos` from the phylogenetic analysis 
+package `ape`.
 
+## The phylogeny
+As input, we will use a species-level molecular shark phylogeny published by 
+[Vélez-Zuazo and Agnarsson (2012) @VELEZZUAZO2011207]. 
 
+The phylogeny is a majority-rule consensus tree inferred from molecular markers using 
+Bayesian inference and comprises 229 species in all eight orders of the sharks (superorder *Selachimorpha*):
+
+![](https://ars.els-cdn.com/content/image/1-s2.0-S1055790310004537-gr3.jpg)
+
+The non-ultrametric tree in the above figure is not time-calibrated, the branch lengths thus 
+represent molecular distances. 
+
+# Getting chronological data with nbaR
+Chronological association is associated with `Specimen` data, we thus instanciate
+a `SpecimenClient`:
 
 ```{r}
-## all records with a chronoIdentifier
-sc <- SpecimenClient$new(basePath="http://145.136.242.167:8080/v2")
+sc <- SpecimenClient$new()
+```
 
-## get entries of family "Carcharhinidae" that have youngChronoName or oldChronoName
-qc <- QueryCondition$new(field="gatheringEvent.chronoStratigraphy.youngChronoName", operator="NOT_EQUALS", value="")
-qc2 <- QueryCondition$new(field="gatheringEvent.chronoStratigraphy.oldChronoName", operator="NOT_EQUALS", value="")
-qc$or <- list(qc2)
+In total, there are [eight extant shark orders](https://en.wikipedia.org/wiki/Shark).
+
+```{r}
 shark_orders <- c("Carcharhiniformes",
                   "Heterodontiformes",
                   "Hexanchiformes",
@@ -38,19 +63,141 @@ shark_orders <- c("Carcharhiniformes",
                   "Pristiophoriformes",
                   "Squaliformes",
                   "Squatiniformes")
-qc3 <- QueryCondition$new(field="identifications.defaultClassification.order", operator="IN", value=shark_orders) 
+```
 
+We can then formulate a query condition for specimens that are identified in one of these orders
+using the operator `IN`:
 
+```{r}
+qc <- QueryCondition$new(field="identifications.defaultClassification.order", operator="IN", value=shark_orders) 
+```
+
+For many specimen, chronological information is available in the fiels `gatheringEvent.chronoStratigraphy.youngChronoName`
+and `gatheringEvent.chronoStratigraphy.oldChronoName` which represent the upper- and lower time bounds, respectively.
+Below, we will formulate a `QueryCondition` that requires either one of these fields to be non-empty:
+
+```{r}
+## formulate query conditions for fields to be non-empty
+qc2 <- QueryCondition$new(field="gatheringEvent.chronoStratigraphy.youngChronoName", operator="NOT_EQUALS", value="")
+qc3 <- QueryCondition$new(field="gatheringEvent.chronoStratigraphy.oldChronoName", operator="NOT_EQUALS", value="")
+
+## join qc2 and qc3 with operator OR
+qc2$or <- list(qc3)
+```
+
+Now we can do the query:
+
+```{r}
+## instantiate QuerySpec, give size 
 qs <- QuerySpec$new(conditions=list(qc, qc3), size=5000)
 res <- sc$query(querySpec = qs)
 
+## how many hits?
+res$content$totalSize
+```
+
+## Exploring the data
+
+Now we can explore the data a bit:
+
+```{r}
+## load all specimens
+specimens <- lapply(res$content$resultSet, function(x)x$item)
+
+## whats in youngCronoName and oldChronoName?
+unique(unlist(lapply(specimens, function(x)x$gatheringEvent$chronoStratigraphy[[1]]$youngChronoName)))
+unique(unlist(lapply(specimens, function(x)x$gatheringEvent$chronoStratigraphy[[1]]$oldChronoName)))
+```
+
+**Caution**: As you see above, there can be more than one chronoStratigraphy assigned with a 
+specimen. Check how many we have per specimen:
+
+```{r}
+unique(sapply(res$content$resultSet, function(x)length(x$item$gatheringEvent$chronoStratigraphy)))
+```
+
+Ok, each `gatheringEvent` in each `Specimen` has only one `chronoStratigraphy`. We thus do not miss data by taking 
+the first one (`chronoStratigraphy[[1]]`).
+
+Let's further expleore the data. To see what part of the animals were preserved, we can look into
+the field `kindOfUnit`:
+
+```{r}
+table(sapply(specimens, `[[`, "kindOfUnit"))
+```
+
+Almost all of them are teeth.
+
+## Getting absolute ages
+The type of chronostratigraphic data (as shown above) is given in divisions on the geological time scale, e.g. *Miocene*. 
+These strings can refer to *eons*, *eras*, *periods*, *epochs* and *ages*. In order to 
+translate this into absolute ages, we will use the API of the [Earth Life Consortium](http://earthlifeconsortium.org/).
+This is possible using the *conventience function* `get_age`. For example
+
+```{r}
+## get the upper chrono name for the first specimen
+name <- specimens[[1]]$gatheringEvent$chronoStratigraphy[[1]]$oldChronoNam
+name
+
+## get the lower and upper bounds for this division
+geo_age(name)
+```
+
+We can now make a table with all interesting data, below this is done for the 
+first 50 specimen objetcs:
+
+```{r}
+## Get genus, species and chrono information from specimen records
+data <- as.data.frame(do.call(rbind, lapply(specimens[1:50], function(x) {
+    genus <- x$identifications[[1]]$defaultClassification$genus
+    if (is.null(genus)) genus <- NA
+    specificEpithet <- x$identifications[[1]]$defaultClassification$specificEpithet
+    if (is.null(specificEpithet)) specificEpithet <- NA
+    youngChronoName <- x$gatheringEvent$chronoStratigraphy[[1]]$youngChronoName
+    if (is.null(youngChronoName)) youngChronoName <- NA
+    oldChronoName <- x$gatheringEvent$chronoStratigraphy[[1]]$oldChronoName                    
+    oldChronoName <- x$gatheringEvent$chronoStratigraphy[[1]]$oldChronoName                
+    c(genus=genus, specificEpithet=specificEpithet,
+      youngChronoName=youngChronoName, oldChronoName=oldChronoName)
+})))
+
+## Get absolute ages from earth life consortium
+times <- geo_age(unique(c(as.character(data$youngChronoName), as.character(data$oldChronoName))))
+
+## add upper and lower bounds to ages
+data$young_age <- sapply(data$youngChronoName, function(x)ifelse(is.na(x), NA, unlist(times['late_age', as.character(x)])))
+data$old_age <- sapply(data$oldChronoName, function(x)ifelse(is.na(x), NA, unlist(times['early_age', as.character(x)])))
+
+data
 ```
 
 
-```{r}
 
-require(ape)
-tree <- read.nexus('other/sharks.nex')
+
+##specimens, function(x)x$gatheringEvent$chronoStratigraphy[[1]]$oldChronoName))
+
+
+
+# Calibrating the phylogeny
+
+The shark phylogeny comes with the package and can be 
+parsed using the package `ape`:
+
+```{r}
+library(ape)
+
+## read data
+path <- system.file('extdata', 'shark_tree.nex', package='nbaR')
+tree <- read.nexus(path)
+
+## plot the tree
+plot(tree, cex=0.3)
+```
+
+
+
+```{r eval=FALSE}
+
 tree <- drop.tip(tree, "Squatina_nebulosa")
 
 ## extract specimens from result
@@ -77,7 +224,7 @@ chronogram_order<- chronos(tree, calibration=calib_order)
 
 
 
-```{r}
+```{r eval=FALSE}
 ## get geological periods: youngChronoName and oldChrononame
 genera <- sapply(res$content$resultSet, function(x) {
     res <- x$item$identifications[[1]]$defaultClassification$genus
@@ -142,3 +289,5 @@ chronogram <- chronos(tree, calibration=calib)
 
 
 ```
+
+# References
