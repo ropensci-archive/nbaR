@@ -14,8 +14,6 @@ Monomial Class
 \section{Fields}{
 
 \describe{
-\item{\code{rank}}{}
-
 \item{\code{name}}{}
 }}
 

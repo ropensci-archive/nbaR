@@ -29,7 +29,7 @@ Client class for nbaR.Specimen objects
 
     Parameters:
     \itemize{
-        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation 
+        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -42,7 +42,7 @@ Client class for nbaR.Specimen objects
 
     Parameters:
     \itemize{
-        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation 
+        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -55,7 +55,7 @@ Client class for nbaR.Specimen objects
 
     Parameters:
     \itemize{
-        
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -68,7 +68,7 @@ Client class for nbaR.Specimen objects
 
     Parameters:
     \itemize{
-        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation 
+        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -81,7 +81,7 @@ Client class for nbaR.Specimen objects
 
     Parameters:
     \itemize{
-        
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -94,7 +94,7 @@ Client class for nbaR.Specimen objects
 
     Parameters:
     \itemize{
-        
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -107,7 +107,7 @@ Client class for nbaR.Specimen objects
 
     Parameters:
     \itemize{
-        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation 
+        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -120,7 +120,7 @@ Client class for nbaR.Specimen objects
 
     Parameters:
     \itemize{
-        
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -133,7 +133,7 @@ Client class for nbaR.Specimen objects
 
     Parameters:
     \itemize{
-        
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -146,7 +146,7 @@ Client class for nbaR.Specimen objects
 
     Parameters:
     \itemize{
-        
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -159,7 +159,7 @@ Client class for nbaR.Specimen objects
 
     Parameters:
     \itemize{
-        
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -172,7 +172,7 @@ Client class for nbaR.Specimen objects
 
     Parameters:
     \itemize{
-        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation 
+        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -185,7 +185,7 @@ Client class for nbaR.Specimen objects
 
     Parameters:
     \itemize{
-        
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -198,7 +198,7 @@ Client class for nbaR.Specimen objects
 
     Parameters:
     \itemize{
-        
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -211,7 +211,7 @@ Client class for nbaR.Specimen objects
 
     Parameters:
     \itemize{
-        
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -224,7 +224,7 @@ Client class for nbaR.Specimen objects
 
     Parameters:
     \itemize{
-        
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -237,7 +237,7 @@ Client class for nbaR.Specimen objects
 
     Parameters:
     \itemize{
-        
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -250,7 +250,7 @@ Client class for nbaR.Specimen objects
 
     Parameters:
     \itemize{
-        
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -263,7 +263,7 @@ Client class for nbaR.Specimen objects
 
     Parameters:
     \itemize{
-        
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -276,7 +276,7 @@ Client class for nbaR.Specimen objects
 
     Parameters:
     \itemize{
-        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation 
+        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -289,7 +289,7 @@ Client class for nbaR.Specimen objects
 
     Parameters:
     \itemize{
-        
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -302,7 +302,7 @@ Client class for nbaR.Specimen objects
 
     Parameters:
     \itemize{
-        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation 
+        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:

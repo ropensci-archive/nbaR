@@ -14,8 +14,6 @@ SourceSystem Class
 \section{Fields}{
 
 \describe{
-\item{\code{code}}{}
-
 \item{\code{name}}{}
 }}
 

@@ -14,14 +14,6 @@ RestService Class
 \section{Fields}{
 
 \describe{
-\item{\code{endPoint}}{}
-
-\item{\code{method}}{}
-
-\item{\code{consumes}}{}
-
-\item{\code{produces}}{}
-
 \item{\code{url}}{}
 }}
 

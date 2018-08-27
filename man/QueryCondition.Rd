@@ -14,20 +14,6 @@ QueryCondition Class
 \section{Fields}{
 
 \describe{
-\item{\code{not}}{}
-
-\item{\code{field}}{}
-
-\item{\code{operator}}{}
-
-\item{\code{value}}{}
-
-\item{\code{and}}{}
-
-\item{\code{or}}{}
-
-\item{\code{constantScore}}{}
-
 \item{\code{boost}}{}
 }}
 

@@ -14,10 +14,6 @@ SortField Class
 \section{Fields}{
 
 \describe{
-\item{\code{path}}{}
-
-\item{\code{sortOrder}}{}
-
 \item{\code{ascending}}{}
 }}
 

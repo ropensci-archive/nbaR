@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="Metadata operations — MetadataClient" />
 
-<meta property="og:description" content="nbaR.Metadata" />
+<meta property="og:description" content="Client class for nbaR.Metadata objects" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -79,6 +79,24 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/sharks.html">Calibrating molecular phylogeny of the sharks</a>
+    </li>
+    <li>
+      <a href="../articles/tomato-tax.html">UNKNOWN TITLE</a>
+    </li>
+    <li>
+      <a href="../articles/tomato.html">The oldest tomato specimen in the world</a>
+    </li>
+  </ul>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -107,7 +125,7 @@
 
     <div class="ref-description">
     
-    <p>nbaR.Metadata</p>
+    <p>Client class for nbaR.Metadata objects</p>
     
     </div>
 
@@ -129,17 +147,87 @@
 
     
     <dl class='dl-horizontal'>
-    get_allowed_date_formats Get allowed values for dates in queries
-    get_controlled_list_phase_or_stage Get allowed values for the field &amp;#39;PhaseOrStage&amp;#39; in a specimen document
-    get_controlled_list_sex Get allowed values for the field &amp;#39;Sex&amp;#39; in a specimen document
-    get_controlled_list_specimen_type_status Get allowed values for the field &amp;#39;SpecimenTypeStatus&amp;#39; in a specimen document
-    get_controlled_list_taxonomic_status Get allowed values for the field &amp;#39;TaxonomicStatus&amp;#39; in specimen and taxon documents
-    get_controlled_lists Get the names of fields for which a controlled vocabulary exists
-    get_rest_services List all available REST services and their parameters
-    get_setting Get the value of an NBA setting
-    get_settings List all publicly available configuration settings for the NBA
-    get_source_systems Get the data sources from which the data was retrieved
-    </dl>
+<dt><code> get_allowed_date_formats </code></dt><dd><p>Get allowed values for dates in queries;
+  Queries with other formatted dates will result in a query error.
+    Parameters:
+    <ul>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> character </code></p></dd>
+<dt><code> get_controlled_list_phase_or_stage </code></dt><dd><p>Get allowed values for the field &amp;#39;PhaseOrStage&amp;#39; in a specimen document;
+  .
+    Parameters:
+    <ul>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> character </code></p></dd>
+<dt><code> get_controlled_list_sex </code></dt><dd><p>Get allowed values for the field &amp;#39;Sex&amp;#39; in a specimen document;
+  .
+    Parameters:
+    <ul>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> character </code></p></dd>
+<dt><code> get_controlled_list_specimen_type_status </code></dt><dd><p>Get allowed values for the field &amp;#39;SpecimenTypeStatus&amp;#39; in a specimen document;
+  .
+    Parameters:
+    <ul>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> character </code></p></dd>
+<dt><code> get_controlled_list_taxonomic_status </code></dt><dd><p>Get allowed values for the field &amp;#39;TaxonomicStatus&amp;#39; in specimen and taxon documents;
+  .
+    Parameters:
+    <ul>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> character </code></p></dd>
+<dt><code> get_controlled_lists </code></dt><dd><p>Get the names of fields for which a controlled vocabulary exists;
+  Possible values for fields with controlled vocabularies can be queried with metadata/getControlledList/field.
+    Parameters:
+    <ul>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> character </code></p></dd>
+<dt><code> get_rest_services </code></dt><dd><p>List all available REST services and their parameters;
+  Lists end point name, http method, response type, and URL.
+    Parameters:
+    <ul>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> RestService </code></p></dd>
+<dt><code> get_setting </code></dt><dd><p>Get the value of an NBA setting;
+  All settings can be queried with /metadata/getSettings.
+    Parameters:
+    <ul>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> list </code></p></dd>
+<dt><code> get_settings </code></dt><dd><p>List all publicly available configuration settings for the NBA;
+  The value of a specific setting can be queried with metadata/getSetting/name.
+    Parameters:
+    <ul>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> list </code></p></dd>
+<dt><code> get_source_systems </code></dt><dd><p>Get the data sources from which the data was retrieved;
+  Returns code and name of all source systems.
+    Parameters:
+    <ul>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> SourceSystem </code></p></dd>
+</dl>
     
 
   </div>

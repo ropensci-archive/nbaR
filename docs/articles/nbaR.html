@@ -47,6 +47,24 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/sharks.html">Calibrating molecular phylogeny of the sharks</a>
+    </li>
+    <li>
+      <a href="../articles/tomato-tax.html">UNKNOWN TITLE</a>
+    </li>
+    <li>
+      <a href="../articles/tomato.html">The oldest tomato specimen in the world</a>
+    </li>
+  </ul>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -70,7 +88,7 @@
       <h1>nbaR: R access to the Netherlands Biodiversity API</h1>
                         <h4 class="author">Hannes Hettling</h4>
             
-            <h4 class="date">Aug 01, 2018</h4>
+            <h4 class="date">Aug 27, 2018</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/naturalis/nbaR/blob/master/vignettes/nbaR.Rmd"><code>vignettes/nbaR.Rmd</code></a></small>
       <div class="hidden name"><code>nbaR.Rmd</code></div>
@@ -85,12 +103,12 @@
 <div id="the-netherlands-biodiversity-api" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-netherlands-biodiversity-api" class="anchor"></a>The Netherlands Biodiversity API</h2>
-<p>The Netherlands Biodiversity API (NBA) facilitates access to the Natural History Collection at Naturalis Biodiversity Center. Next to museum specimen records and metadata, access to taxonomic classification and nomenclature, to geographical information, and to multimedia files is provided. By using the powerful Elasticsearch engine, the NBA facilitates searching for collection- and biodiversity data in near real-time. Furthermore, by incorporating information from taxonomic databases, taxonomic name resolution can be accomplished with the NBA. Persistent Uniform Resource Identifiers (PURLs) ensure that each specimen accessible via the NBA is represented by a citable unambiguous web reference. Access to our data is provided via a RESTful interface and several clients such as the <a href="http://bioportal.naturalis.nl/">BioPortal</a>, a web application for browsing biodiversity data that is served by the NBA. For more information about the NBA, please see our <a href="http://docs.biodiversitydata.nl/">detailed documentation</a>.</p>
+<p>The Netherlands Biodiversity API (NBA) facilitates access to the Natural History Collection at Naturalis Biodiversity Center. Next to museum specimen records and metadata, access to taxonomic classification and nomenclature, to geographical information, and to multimedia files is provided. By using the powerful Elasticsearch engine, the NBA facilitates searching for collection- and biodiversity data in near real-time. Furthermore, by incorporating information from taxonomic databases, taxonomic name resolution can be accomplished with the NBA. Persistent Uniform Resource Identifiers (PURLs) ensure that each specimen accessible via the NBA is represented by a citeable unambiguous web reference. Access to our data is provided via a RESTful interface and several clients such as the <a href="http://bioportal.naturalis.nl/">BioPortal</a>, a web application for browsing biodiversity data that is served by the NBA. For more information about the NBA, please see our <a href="http://docs.biodiversitydata.nl/">detailed documentation</a>.</p>
 </div>
 <div id="r-access" class="section level2">
 <h2 class="hasAnchor">
 <a href="#r-access" class="anchor"></a>R access</h2>
-<p>The R programming language is established as a common tool in scientific resarch, with growing adoption by researchers in biodiversity research. Hence, to ease the access to the NBA for researchers, we developed this R client.</p>
+<p>The R programming language is established as a common tool in scientific research, with growing adoption by researchers in biodiversity research. Hence, to ease the access to the NBA for researchers, we developed this R client.</p>
 </div>
 </div>
 <div id="getting-started" class="section level1">
@@ -106,7 +124,7 @@
 <li>Multimedia</li>
 <li>Geo</li>
 </ul>
-<p>Additionally, the data type <em>Metadata</em> stores miscellaneous information about NBA settings. Each of the data types is modelled as an <code>R6</code> class and therefore has its own members such as fields and methods. Documentation about a specific class can be retrieved in the standard manner, e.g. <code><a href="../reference/Specimen.html">?Specimen</a></code> Each class of the data model can be instanciated and has a <code>toJSONString</code> and <code>toList</code> method returning the object’s JSON representation and the object’s data as a list datatype, respectively.</p>
+<p>Additionally, the data type <em>Metadata</em> stores miscellaneous information about NBA settings. Each of the data types is modelled as an <code>R6</code> class and therefore has its own members such as fields and methods. Documentation about a specific class can be retrieved in the standard manner, e.g. <code><a href="../reference/Specimen.html">?Specimen</a></code> Each class of the data model can be instantiated and has a <code>toJSONString</code> and <code>toList</code> method returning the object’s JSON representation and the object’s data as a list datatype, respectively.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># load nbaR</span></a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(<span class="st">'nbaR'</span>)                                        </a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"></a>
@@ -157,7 +175,7 @@
 <a class="sourceLine" id="cb7-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co"># run query</span></a>
 <a class="sourceLine" id="cb7-5" data-line-number="5">res &lt;-<span class="st"> </span>client<span class="op">$</span><span class="kw">query</span>(<span class="dt">queryParams=</span>l)</a></code></pre></div>
-<p>Note that by default, both conditions are connected by a logical <code>AND</code>. The <code>queryParams</code> passed as a list thus correspond to basic <a href="http://docs.biodiversitydata.nl/en/latest/quickstart/#human-readable"><em>human readable</em> queries</a>. For more advanced queries, containing different logical operators or nested subqueries, the user can specify tha query in a <code>QuerySpec</code> object.</p>
+<p>Note that by default, both conditions are connected by a logical <code>AND</code>. The <code>queryParams</code> passed as a list thus correspond to basic <a href="http://docs.biodiversitydata.nl/en/latest/quickstart/#human-readable"><em>human readable</em> queries</a>. For more advanced queries, containing different logical operators or nested sub-queries, the user can specify the query in a <code>QuerySpec</code> object.</p>
 </div>
 </div>
 </div>
@@ -167,7 +185,7 @@
 <div id="using-the-queryspec-object" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-the-queryspec-object" class="anchor"></a>Using the QuerySpec object</h2>
-<p>Advanced queries with different operators than <code>AND</code> or nested query conditions can not be accomplished by simply passing the query parameters as a list. Instead, a query is modeled as a <code>QuerySpec</code> obejct which captures the relationships between multiple query terms. Please also refer to the <a href="http://docs.biodiversitydata.nl/en/latest/advanced-queries/#queryspec">NBA QuerySpec documentation</a> for more information.</p>
+<p>Advanced queries with different operators than <code>AND</code> or nested query conditions can not be accomplished by simply passing the query parameters as a list. Instead, a query is modeled as a <code>QuerySpec</code> object which captures the relationships between multiple query terms. Please also refer to the <a href="http://docs.biodiversitydata.nl/en/latest/advanced-queries/#queryspec">NBA QuerySpec documentation</a> for more information.</p>
 <p>A <code>QuerySpec</code> object usually consists of one or more <code>QueryCondition</code> objects, specifying query terms. A <code>QueryCondition</code> object usually contains the fields <code>field</code>, <code>operator</code>, and <code>value</code>(see also <code><a href="../reference/QueryCondition.html">?QueryCondition</a></code>). These fields can be specified in the constructor. If, for example, we want to query for records with a unitID equal to <em>L.4304195</em>, a <code>QueryCondition</code> would look as follows:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># specify search in QueryCondition object</span></a>
 <a class="sourceLine" id="cb8-2" data-line-number="2">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"unitID"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"L.4304195"</span>)</a></code></pre></div>
@@ -187,10 +205,10 @@
 <a class="sourceLine" id="cb10-6" data-line-number="6">                         <span class="dt">value=</span><span class="st">"Equidae"</span>)</a>
 <a class="sourceLine" id="cb10-7" data-line-number="7">q3 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"identifications.taxonRank"</span>,</a>
 <a class="sourceLine" id="cb10-8" data-line-number="8">                         <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"species"</span>)</a></code></pre></div>
-<p>Extending the constraint to also inclu specimens of rank <em>Subspecies</em>,<br>
+<p>Extending the constraint to also include specimens of rank <em>Subspecies</em>,<br>
 we can combine the latter condition with an additional one using the method <code>or</code>:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># logical conjunction using 'or' method</span></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">q3<span class="op">$</span>or&lt;-<span class="st"> </span><span class="kw">list</span>(QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field =</span> <span class="st">"identifications.taxonRank"</span>,</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">q3<span class="op">$</span>or &lt;-<span class="st"> </span><span class="kw">list</span>(QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field =</span> <span class="st">"identifications.taxonRank"</span>,</a>
 <a class="sourceLine" id="cb11-3" data-line-number="3">                                <span class="dt">operator=</span><span class="st">"EQUALS"</span>,</a>
 <a class="sourceLine" id="cb11-4" data-line-number="4">                                <span class="dt">value=</span><span class="st">"subspecies"</span>))</a>
 <a class="sourceLine" id="cb11-5" data-line-number="5"></a>
@@ -241,9 +259,9 @@ we can combine the latter condition with an additional one using the method <cod
 <a class="sourceLine" id="cb13-8" data-line-number="8">res &lt;-<span class="st"> </span>sc<span class="op">$</span><span class="kw">query</span>(<span class="dt">queryParams=</span>qp)</a></code></pre></div>
 <p>If we now want to know all the countries that the specimens were collected in, we can access the <code>Specimen</code> objects in <code>res$content$resultSet</code> as follows:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">sapply</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet, <span class="cf">function</span>(x)x<span class="op">$</span>item<span class="op">$</span>gatheringEvent<span class="op">$</span>country)</a></code></pre></div>
-<pre><code>##  [1] "Italy"       "Austria"     "Netherlands" "Switzerland" "Italy"      
-##  [6] "Switzerland" "Netherlands" "Netherlands" "France"      "Austria"</code></pre>
-<p>Note that passing query parameters as a named list only allows forl limited queries; the locical conjunction between parameters is for example always <code>AND</code>. More complex queries can be accomplished using the <code>QuerySpec</code> object:</p>
+<pre><code>##  [1] "Austria"     "Italy"       "Netherlands" "Switzerland" "Netherlands"
+##  [6] "Italy"       "Switzerland" "France"      "Netherlands" "Netherlands"</code></pre>
+<p>Note that passing query parameters as a named list only allows for limited queries; the logical conjunction between parameters is for example always <code>AND</code>. More complex queries can be accomplished using the <code>QuerySpec</code> object:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co"># get all specimens with genus name starting with 'Hydro'</span></a>
 <a class="sourceLine" id="cb16-2" data-line-number="2">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"identifications.defaultClassification.genus"</span>, <span class="dt">operator=</span><span class="st">"STARTS_WITH"</span>, <span class="dt">value=</span><span class="st">"Hydro"</span>)</a>
 <a class="sourceLine" id="cb16-3" data-line-number="3">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc))</a>
@@ -270,10 +288,10 @@ we can combine the latter condition with an additional one using the method <cod
 ##  [5] "siebold"       "martin"        "arts"          "meteorites"   
 ##  [9] "en_tibi"       "extinct-birds"</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">sc<span class="op">$</span><span class="kw">get_ids_in_collection</span>(<span class="st">"siebold"</span>)<span class="op">$</span>content</a></code></pre></div>
-<pre><code>##  [1] "L  0103254@BRAHMS" "L  0103363@BRAHMS" "L  0103426@BRAHMS"
-##  [4] "L  0103432@BRAHMS" "L  0103445@BRAHMS" "L  0103460@BRAHMS"
-##  [7] "L  0103649@BRAHMS" "L  0103791@BRAHMS" "L  0103902@BRAHMS"
-## [10] "L  0103973@BRAHMS"</code></pre>
+<pre><code>##  [1] "L.1670559@BRAHMS"  "L  0368007@BRAHMS" "L  0572064@BRAHMS"
+##  [4] "L  0366698@BRAHMS" "L  0366708@BRAHMS" "L  0366756@BRAHMS"
+##  [7] "L  0367061@BRAHMS" "L  0367167@BRAHMS" "L  0424928@BRAHMS"
+## [10] "L  0693136@BRAHMS"</code></pre>
 </div>
 <div id="count" class="section level4">
 <h4 class="hasAnchor">
@@ -286,7 +304,7 @@ we can combine the latter condition with an additional one using the method <cod
 <a class="sourceLine" id="cb22-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb22-6" data-line-number="6"><span class="co"># get the number of specimens</span></a>
 <a class="sourceLine" id="cb22-7" data-line-number="7">sc<span class="op">$</span><span class="kw">count</span>(qs)<span class="op">$</span>content</a></code></pre></div>
-<pre><code>## [1] 4886994</code></pre>
+<pre><code>## [1] 4250813</code></pre>
 <p>Note that the count of matches for a given query is also returned by the <code>query</code> function. However, <code>count</code> is more lightweight as it returns an <code>integer</code> instead of a <code>ResultSet</code> containing <code>Specimen</code> objects.</p>
 </div>
 <div id="exists" class="section level4">
@@ -345,7 +363,7 @@ we can combine the latter condition with an additional one using the method <cod
 ##     sourceSystemId: RMNH.MAM.17209.B
 ##     theme: NULL
 ##     title: RMNH.MAM.17209.b_RMNH_MAM_17209.b
-##     toJSONString: function (pretty = T) 
+##     toJSONString: function (pretty = TRUE) 
 ##     toList: function () 
 ##     unitGUID: http://data.biodiversitydata.nl/naturalis/specimen/RMNH. ...
 ##     unitID: RMNH.MAM.17209.B</code></pre>
@@ -386,7 +404,7 @@ we can combine the latter condition with an additional one using the method <cod
 <div id="get_distinct_values_per_group" class="section level4">
 <h4 class="hasAnchor">
 <a href="#get_distinct_values_per_group" class="anchor"></a>get_distinct_values_per_group</h4>
-<p>Suppose you want to add another filter to the above query of retreiving all distinct values for a given field, such as splitting the results by their respective source system:</p>
+<p>Suppose you want to add another filter to the above query of retrieving all distinct values for a given field, such as splitting the results by their respective source system:</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">sc<span class="op">$</span><span class="kw">get_distinct_values_per_group</span>(<span class="st">"sourceSystem.name"</span>, <span class="st">"gatheringEvent.country"</span>)</a></code></pre></div>
 </div>
 <div id="count_distinct_values_per_group" class="section level4">
@@ -402,208 +420,228 @@ we can combine the latter condition with an additional one using the method <cod
 <p>Specimen Metadata services include the same standard metadata services as for the other data types:</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="co"># get all paths for the Specimen datatype </span></a>
 <a class="sourceLine" id="cb35-2" data-line-number="2">sc<span class="op">$</span><span class="kw">get_paths</span>()<span class="op">$</span>content</a></code></pre></div>
-<pre><code>##   [1] "sourceSystem.code"                                                       
-##   [2] "sourceSystem.name"                                                       
-##   [3] "sourceSystemId"                                                          
-##   [4] "recordURI"                                                               
-##   [5] "unitID"                                                                  
-##   [6] "unitGUID"                                                                
-##   [7] "collectorsFieldNumber"                                                   
-##   [8] "assemblageID"                                                            
-##   [9] "sourceInstitutionID"                                                     
-##  [10] "sourceID"                                                                
-##  [11] "previousSourceID"                                                        
-##  [12] "owner"                                                                   
-##  [13] "licenseType"                                                             
-##  [14] "license"                                                                 
-##  [15] "recordBasis"                                                             
-##  [16] "kindOfUnit"                                                              
-##  [17] "collectionType"                                                          
-##  [18] "sex"                                                                     
-##  [19] "phaseOrStage"                                                            
-##  [20] "title"                                                                   
-##  [21] "notes"                                                                   
-##  [22] "preparationType"                                                         
-##  [23] "previousUnitsText"                                                       
-##  [24] "numberOfSpecimen"                                                        
-##  [25] "fromCaptivity"                                                           
-##  [26] "objectPublic"                                                            
-##  [27] "multiMediaPublic"                                                        
-##  [28] "acquiredFrom.agentText"                                                  
-##  [29] "gatheringEvent.projectTitle"                                             
-##  [30] "gatheringEvent.worldRegion"                                              
-##  [31] "gatheringEvent.continent"                                                
-##  [32] "gatheringEvent.country"                                                  
-##  [33] "gatheringEvent.iso3166Code"                                              
-##  [34] "gatheringEvent.provinceState"                                            
-##  [35] "gatheringEvent.island"                                                   
-##  [36] "gatheringEvent.locality"                                                 
-##  [37] "gatheringEvent.city"                                                     
-##  [38] "gatheringEvent.sublocality"                                              
-##  [39] "gatheringEvent.localityText"                                             
-##  [40] "gatheringEvent.dateTimeBegin"                                            
-##  [41] "gatheringEvent.dateTimeEnd"                                              
-##  [42] "gatheringEvent.method"                                                   
-##  [43] "gatheringEvent.altitude"                                                 
-##  [44] "gatheringEvent.altitudeUnifOfMeasurement"                                
-##  [45] "gatheringEvent.biotopeText"                                              
-##  [46] "gatheringEvent.depth"                                                    
-##  [47] "gatheringEvent.depthUnitOfMeasurement"                                   
-##  [48] "gatheringEvent.gatheringPersons.agentText"                               
-##  [49] "gatheringEvent.gatheringPersons.fullName"                                
-##  [50] "gatheringEvent.gatheringPersons.organization.agentText"                  
-##  [51] "gatheringEvent.gatheringPersons.organization.name"                       
-##  [52] "gatheringEvent.gatheringOrganizations.agentText"                         
-##  [53] "gatheringEvent.gatheringOrganizations.name"                              
-##  [54] "gatheringEvent.siteCoordinates.longitudeDecimal"                         
-##  [55] "gatheringEvent.siteCoordinates.latitudeDecimal"                          
-##  [56] "gatheringEvent.siteCoordinates.gridCellSystem"                           
-##  [57] "gatheringEvent.siteCoordinates.gridLatitudeDecimal"                      
-##  [58] "gatheringEvent.siteCoordinates.gridLongitudeDecimal"                     
-##  [59] "gatheringEvent.siteCoordinates.gridCellCode"                             
-##  [60] "gatheringEvent.siteCoordinates.gridQualifier"                            
-##  [61] "gatheringEvent.siteCoordinates.geoShape"                                 
-##  [62] "gatheringEvent.namedAreas.areaName"                                      
-##  [63] "gatheringEvent.namedAreas.areaClass"                                     
-##  [64] "gatheringEvent.associatedTaxa.name"                                      
-##  [65] "gatheringEvent.associatedTaxa.relationType"                              
-##  [66] "gatheringEvent.chronoStratigraphy.youngRegionalSubstage"                 
-##  [67] "gatheringEvent.chronoStratigraphy.youngRegionalStage"                    
-##  [68] "gatheringEvent.chronoStratigraphy.youngRegionalSeries"                   
-##  [69] "gatheringEvent.chronoStratigraphy.youngDatingQualifier"                  
-##  [70] "gatheringEvent.chronoStratigraphy.youngInternSystem"                     
-##  [71] "gatheringEvent.chronoStratigraphy.youngInternSubstage"                   
-##  [72] "gatheringEvent.chronoStratigraphy.youngInternStage"                      
-##  [73] "gatheringEvent.chronoStratigraphy.youngInternSeries"                     
-##  [74] "gatheringEvent.chronoStratigraphy.youngInternErathem"                    
-##  [75] "gatheringEvent.chronoStratigraphy.youngInternEonothem"                   
-##  [76] "gatheringEvent.chronoStratigraphy.youngChronoName"                       
-##  [77] "gatheringEvent.chronoStratigraphy.youngCertainty"                        
-##  [78] "gatheringEvent.chronoStratigraphy.oldDatingQualifier"                    
-##  [79] "gatheringEvent.chronoStratigraphy.chronoPreferredFlag"                   
-##  [80] "gatheringEvent.chronoStratigraphy.oldRegionalSubstage"                   
-##  [81] "gatheringEvent.chronoStratigraphy.oldRegionalStage"                      
-##  [82] "gatheringEvent.chronoStratigraphy.oldRegionalSeries"                     
-##  [83] "gatheringEvent.chronoStratigraphy.oldInternSystem"                       
-##  [84] "gatheringEvent.chronoStratigraphy.oldInternSubstage"                     
-##  [85] "gatheringEvent.chronoStratigraphy.oldInternStage"                        
-##  [86] "gatheringEvent.chronoStratigraphy.oldInternSeries"                       
-##  [87] "gatheringEvent.chronoStratigraphy.oldInternErathem"                      
-##  [88] "gatheringEvent.chronoStratigraphy.oldInternEonothem"                     
-##  [89] "gatheringEvent.chronoStratigraphy.oldChronoName"                         
-##  [90] "gatheringEvent.chronoStratigraphy.chronoIdentifier"                      
-##  [91] "gatheringEvent.chronoStratigraphy.oldCertainty"                          
-##  [92] "gatheringEvent.bioStratigraphy.youngBioDatingQualifier"                  
-##  [93] "gatheringEvent.bioStratigraphy.youngBioName"                             
-##  [94] "gatheringEvent.bioStratigraphy.youngFossilZone"                          
-##  [95] "gatheringEvent.bioStratigraphy.youngFossilSubZone"                       
-##  [96] "gatheringEvent.bioStratigraphy.youngBioCertainty"                        
-##  [97] "gatheringEvent.bioStratigraphy.youngStratType"                           
-##  [98] "gatheringEvent.bioStratigraphy.bioDatingQualifier"                       
-##  [99] "gatheringEvent.bioStratigraphy.bioPreferredFlag"                         
-## [100] "gatheringEvent.bioStratigraphy.rangePosition"                            
-## [101] "gatheringEvent.bioStratigraphy.oldBioName"                               
-## [102] "gatheringEvent.bioStratigraphy.bioIdentifier"                            
-## [103] "gatheringEvent.bioStratigraphy.oldFossilzone"                            
-## [104] "gatheringEvent.bioStratigraphy.oldFossilSubzone"                         
-## [105] "gatheringEvent.bioStratigraphy.oldBioCertainty"                          
-## [106] "gatheringEvent.bioStratigraphy.oldBioStratType"                          
-## [107] "gatheringEvent.lithoStratigraphy.qualifier"                              
-## [108] "gatheringEvent.lithoStratigraphy.preferredFlag"                          
-## [109] "gatheringEvent.lithoStratigraphy.member2"                                
-## [110] "gatheringEvent.lithoStratigraphy.member"                                 
-## [111] "gatheringEvent.lithoStratigraphy.informalName2"                          
-## [112] "gatheringEvent.lithoStratigraphy.informalName"                           
-## [113] "gatheringEvent.lithoStratigraphy.importedName2"                          
-## [114] "gatheringEvent.lithoStratigraphy.importedName1"                          
-## [115] "gatheringEvent.lithoStratigraphy.lithoIdentifier"                        
-## [116] "gatheringEvent.lithoStratigraphy.formation2"                             
-## [117] "gatheringEvent.lithoStratigraphy.formationGroup2"                        
-## [118] "gatheringEvent.lithoStratigraphy.formationGroup"                         
-## [119] "gatheringEvent.lithoStratigraphy.formation"                              
-## [120] "gatheringEvent.lithoStratigraphy.certainty2"                             
-## [121] "gatheringEvent.lithoStratigraphy.certainty"                              
-## [122] "gatheringEvent.lithoStratigraphy.bed2"                                   
-## [123] "gatheringEvent.lithoStratigraphy.bed"                                    
-## [124] "identifications.taxonRank"                                               
-## [125] "identifications.scientificName.fullScientificName"                       
-## [126] "identifications.scientificName.taxonomicStatus"                          
-## [127] "identifications.scientificName.genusOrMonomial"                          
-## [128] "identifications.scientificName.subgenus"                                 
-## [129] "identifications.scientificName.specificEpithet"                          
-## [130] "identifications.scientificName.infraspecificEpithet"                     
-## [131] "identifications.scientificName.infraspecificMarker"                      
-## [132] "identifications.scientificName.nameAddendum"                             
-## [133] "identifications.scientificName.authorshipVerbatim"                       
-## [134] "identifications.scientificName.author"                                   
-## [135] "identifications.scientificName.year"                                     
-## [136] "identifications.scientificName.scientificNameGroup"                      
-## [137] "identifications.scientificName.references.titleCitation"                 
-## [138] "identifications.scientificName.references.citationDetail"                
-## [139] "identifications.scientificName.references.uri"                           
-## [140] "identifications.scientificName.references.author.agentText"              
-## [141] "identifications.scientificName.references.author.fullName"               
-## [142] "identifications.scientificName.references.author.organization.agentText" 
-## [143] "identifications.scientificName.references.author.organization.name"      
-## [144] "identifications.scientificName.references.publicationDate"               
-## [145] "identifications.scientificName.experts.agentText"                        
-## [146] "identifications.scientificName.experts.fullName"                         
-## [147] "identifications.scientificName.experts.organization.agentText"           
-## [148] "identifications.scientificName.experts.organization.name"                
-## [149] "identifications.typeStatus"                                              
-## [150] "identifications.dateIdentified"                                          
-## [151] "identifications.defaultClassification.kingdom"                           
-## [152] "identifications.defaultClassification.phylum"                            
-## [153] "identifications.defaultClassification.className"                         
-## [154] "identifications.defaultClassification.order"                             
-## [155] "identifications.defaultClassification.superFamily"                       
-## [156] "identifications.defaultClassification.family"                            
-## [157] "identifications.defaultClassification.genus"                             
-## [158] "identifications.defaultClassification.subgenus"                          
-## [159] "identifications.defaultClassification.specificEpithet"                   
-## [160] "identifications.defaultClassification.infraspecificEpithet"              
-## [161] "identifications.defaultClassification.infraspecificRank"                 
-## [162] "identifications.systemClassification.rank"                               
-## [163] "identifications.systemClassification.name"                               
-## [164] "identifications.vernacularNames.name"                                    
-## [165] "identifications.vernacularNames.language"                                
-## [166] "identifications.vernacularNames.preferred"                               
-## [167] "identifications.vernacularNames.references.titleCitation"                
-## [168] "identifications.vernacularNames.references.citationDetail"               
-## [169] "identifications.vernacularNames.references.uri"                          
-## [170] "identifications.vernacularNames.references.author.agentText"             
-## [171] "identifications.vernacularNames.references.author.fullName"              
-## [172] "identifications.vernacularNames.references.author.organization.agentText"
-## [173] "identifications.vernacularNames.references.author.organization.name"     
-## [174] "identifications.vernacularNames.references.publicationDate"              
-## [175] "identifications.vernacularNames.experts.agentText"                       
-## [176] "identifications.vernacularNames.experts.fullName"                        
-## [177] "identifications.vernacularNames.experts.organization.agentText"          
-## [178] "identifications.vernacularNames.experts.organization.name"               
-## [179] "identifications.identificationQualifiers"                                
-## [180] "identifications.identifiers.agentText"                                   
-## [181] "identifications.taxonomicEnrichments.vernacularNames.name"               
-## [182] "identifications.taxonomicEnrichments.vernacularNames.language"           
-## [183] "identifications.taxonomicEnrichments.synonyms.fullScientificName"        
-## [184] "identifications.taxonomicEnrichments.synonyms.taxonomicStatus"           
-## [185] "identifications.taxonomicEnrichments.synonyms.genusOrMonomial"           
-## [186] "identifications.taxonomicEnrichments.synonyms.subgenus"                  
-## [187] "identifications.taxonomicEnrichments.synonyms.specificEpithet"           
-## [188] "identifications.taxonomicEnrichments.synonyms.infraspecificEpithet"      
-## [189] "identifications.taxonomicEnrichments.synonyms.authorshipVerbatim"        
-## [190] "identifications.taxonomicEnrichments.sourceSystem.code"                  
-## [191] "identifications.taxonomicEnrichments.taxonId"                            
-## [192] "identifications.preferred"                                               
-## [193] "identifications.verificationStatus"                                      
-## [194] "identifications.rockType"                                                
-## [195] "identifications.associatedFossilAssemblage"                              
-## [196] "identifications.rockMineralUsage"                                        
-## [197] "identifications.associatedMineralName"                                   
-## [198] "identifications.remarks"                                                 
-## [199] "associatedMultiMediaUris.accessUri"                                      
-## [200] "associatedMultiMediaUris.format"                                         
-## [201] "associatedMultiMediaUris.variant"                                        
-## [202] "theme"</code></pre>
+<pre><code>##   [1] "sourceSystem.code"                                                              
+##   [2] "sourceSystem.name"                                                              
+##   [3] "sourceSystemId"                                                                 
+##   [4] "recordURI"                                                                      
+##   [5] "unitID"                                                                         
+##   [6] "unitGUID"                                                                       
+##   [7] "collectorsFieldNumber"                                                          
+##   [8] "assemblageID"                                                                   
+##   [9] "sourceInstitutionID"                                                            
+##  [10] "sourceID"                                                                       
+##  [11] "previousSourceID"                                                               
+##  [12] "owner"                                                                          
+##  [13] "licenseType"                                                                    
+##  [14] "license"                                                                        
+##  [15] "recordBasis"                                                                    
+##  [16] "kindOfUnit"                                                                     
+##  [17] "collectionType"                                                                 
+##  [18] "sex"                                                                            
+##  [19] "phaseOrStage"                                                                   
+##  [20] "title"                                                                          
+##  [21] "notes"                                                                          
+##  [22] "preparationType"                                                                
+##  [23] "previousUnitsText"                                                              
+##  [24] "numberOfSpecimen"                                                               
+##  [25] "fromCaptivity"                                                                  
+##  [26] "objectPublic"                                                                   
+##  [27] "multiMediaPublic"                                                               
+##  [28] "acquiredFrom.agentText"                                                         
+##  [29] "gatheringEvent.projectTitle"                                                    
+##  [30] "gatheringEvent.worldRegion"                                                     
+##  [31] "gatheringEvent.continent"                                                       
+##  [32] "gatheringEvent.country"                                                         
+##  [33] "gatheringEvent.iso3166Code"                                                     
+##  [34] "gatheringEvent.provinceState"                                                   
+##  [35] "gatheringEvent.island"                                                          
+##  [36] "gatheringEvent.locality"                                                        
+##  [37] "gatheringEvent.city"                                                            
+##  [38] "gatheringEvent.sublocality"                                                     
+##  [39] "gatheringEvent.localityText"                                                    
+##  [40] "gatheringEvent.dateTimeBegin"                                                   
+##  [41] "gatheringEvent.dateTimeEnd"                                                     
+##  [42] "gatheringEvent.dateText"                                                        
+##  [43] "gatheringEvent.method"                                                          
+##  [44] "gatheringEvent.altitude"                                                        
+##  [45] "gatheringEvent.altitudeUnifOfMeasurement"                                       
+##  [46] "gatheringEvent.behavior"                                                        
+##  [47] "gatheringEvent.biotopeText"                                                     
+##  [48] "gatheringEvent.depth"                                                           
+##  [49] "gatheringEvent.depthUnitOfMeasurement"                                          
+##  [50] "gatheringEvent.code"                                                            
+##  [51] "gatheringEvent.establishmentMeans"                                              
+##  [52] "gatheringEvent.gatheringPersons.agentText"                                      
+##  [53] "gatheringEvent.gatheringPersons.fullName"                                       
+##  [54] "gatheringEvent.gatheringPersons.organization.agentText"                         
+##  [55] "gatheringEvent.gatheringPersons.organization.name"                              
+##  [56] "gatheringEvent.gatheringOrganizations.agentText"                                
+##  [57] "gatheringEvent.gatheringOrganizations.name"                                     
+##  [58] "gatheringEvent.siteCoordinates.longitudeDecimal"                                
+##  [59] "gatheringEvent.siteCoordinates.latitudeDecimal"                                 
+##  [60] "gatheringEvent.siteCoordinates.gridCellSystem"                                  
+##  [61] "gatheringEvent.siteCoordinates.gridLatitudeDecimal"                             
+##  [62] "gatheringEvent.siteCoordinates.gridLongitudeDecimal"                            
+##  [63] "gatheringEvent.siteCoordinates.gridCellCode"                                    
+##  [64] "gatheringEvent.siteCoordinates.gridQualifier"                                   
+##  [65] "gatheringEvent.siteCoordinates.coordinateErrorDistanceInMeters"                 
+##  [66] "gatheringEvent.siteCoordinates.spatialDatum"                                    
+##  [67] "gatheringEvent.siteCoordinates.geoShape"                                        
+##  [68] "gatheringEvent.namedAreas.areaName"                                             
+##  [69] "gatheringEvent.namedAreas.areaClass"                                            
+##  [70] "gatheringEvent.associatedTaxa.name"                                             
+##  [71] "gatheringEvent.associatedTaxa.relationType"                                     
+##  [72] "gatheringEvent.chronoStratigraphy.youngRegionalSubstage"                        
+##  [73] "gatheringEvent.chronoStratigraphy.youngRegionalStage"                           
+##  [74] "gatheringEvent.chronoStratigraphy.youngRegionalSeries"                          
+##  [75] "gatheringEvent.chronoStratigraphy.youngDatingQualifier"                         
+##  [76] "gatheringEvent.chronoStratigraphy.youngInternSystem"                            
+##  [77] "gatheringEvent.chronoStratigraphy.youngInternSubstage"                          
+##  [78] "gatheringEvent.chronoStratigraphy.youngInternStage"                             
+##  [79] "gatheringEvent.chronoStratigraphy.youngInternSeries"                            
+##  [80] "gatheringEvent.chronoStratigraphy.youngInternErathem"                           
+##  [81] "gatheringEvent.chronoStratigraphy.youngInternEonothem"                          
+##  [82] "gatheringEvent.chronoStratigraphy.youngChronoName"                              
+##  [83] "gatheringEvent.chronoStratigraphy.youngCertainty"                               
+##  [84] "gatheringEvent.chronoStratigraphy.oldDatingQualifier"                           
+##  [85] "gatheringEvent.chronoStratigraphy.chronoPreferredFlag"                          
+##  [86] "gatheringEvent.chronoStratigraphy.oldRegionalSubstage"                          
+##  [87] "gatheringEvent.chronoStratigraphy.oldRegionalStage"                             
+##  [88] "gatheringEvent.chronoStratigraphy.oldRegionalSeries"                            
+##  [89] "gatheringEvent.chronoStratigraphy.oldInternSystem"                              
+##  [90] "gatheringEvent.chronoStratigraphy.oldInternSubstage"                            
+##  [91] "gatheringEvent.chronoStratigraphy.oldInternStage"                               
+##  [92] "gatheringEvent.chronoStratigraphy.oldInternSeries"                              
+##  [93] "gatheringEvent.chronoStratigraphy.oldInternErathem"                             
+##  [94] "gatheringEvent.chronoStratigraphy.oldInternEonothem"                            
+##  [95] "gatheringEvent.chronoStratigraphy.oldChronoName"                                
+##  [96] "gatheringEvent.chronoStratigraphy.chronoIdentifier"                             
+##  [97] "gatheringEvent.chronoStratigraphy.oldCertainty"                                 
+##  [98] "gatheringEvent.bioStratigraphy.youngBioDatingQualifier"                         
+##  [99] "gatheringEvent.bioStratigraphy.youngBioName"                                    
+## [100] "gatheringEvent.bioStratigraphy.youngFossilZone"                                 
+## [101] "gatheringEvent.bioStratigraphy.youngFossilSubZone"                              
+## [102] "gatheringEvent.bioStratigraphy.youngBioCertainty"                               
+## [103] "gatheringEvent.bioStratigraphy.youngStratType"                                  
+## [104] "gatheringEvent.bioStratigraphy.bioDatingQualifier"                              
+## [105] "gatheringEvent.bioStratigraphy.bioPreferredFlag"                                
+## [106] "gatheringEvent.bioStratigraphy.rangePosition"                                   
+## [107] "gatheringEvent.bioStratigraphy.oldBioName"                                      
+## [108] "gatheringEvent.bioStratigraphy.bioIdentifier"                                   
+## [109] "gatheringEvent.bioStratigraphy.oldFossilzone"                                   
+## [110] "gatheringEvent.bioStratigraphy.oldFossilSubzone"                                
+## [111] "gatheringEvent.bioStratigraphy.oldBioCertainty"                                 
+## [112] "gatheringEvent.bioStratigraphy.oldBioStratType"                                 
+## [113] "gatheringEvent.lithoStratigraphy.qualifier"                                     
+## [114] "gatheringEvent.lithoStratigraphy.preferredFlag"                                 
+## [115] "gatheringEvent.lithoStratigraphy.member2"                                       
+## [116] "gatheringEvent.lithoStratigraphy.member"                                        
+## [117] "gatheringEvent.lithoStratigraphy.informalName2"                                 
+## [118] "gatheringEvent.lithoStratigraphy.informalName"                                  
+## [119] "gatheringEvent.lithoStratigraphy.importedName2"                                 
+## [120] "gatheringEvent.lithoStratigraphy.importedName1"                                 
+## [121] "gatheringEvent.lithoStratigraphy.lithoIdentifier"                               
+## [122] "gatheringEvent.lithoStratigraphy.formation2"                                    
+## [123] "gatheringEvent.lithoStratigraphy.formationGroup2"                               
+## [124] "gatheringEvent.lithoStratigraphy.formationGroup"                                
+## [125] "gatheringEvent.lithoStratigraphy.formation"                                     
+## [126] "gatheringEvent.lithoStratigraphy.certainty2"                                    
+## [127] "gatheringEvent.lithoStratigraphy.certainty"                                     
+## [128] "gatheringEvent.lithoStratigraphy.bed2"                                          
+## [129] "gatheringEvent.lithoStratigraphy.bed"                                           
+## [130] "informationWithheld"                                                            
+## [131] "dataGeneralizations"                                                            
+## [132] "dateLastEdited"                                                                 
+## [133] "identifications.taxonRank"                                                      
+## [134] "identifications.scientificName.fullScientificName"                              
+## [135] "identifications.scientificName.taxonomicStatus"                                 
+## [136] "identifications.scientificName.genusOrMonomial"                                 
+## [137] "identifications.scientificName.subgenus"                                        
+## [138] "identifications.scientificName.specificEpithet"                                 
+## [139] "identifications.scientificName.infraspecificEpithet"                            
+## [140] "identifications.scientificName.infraspecificMarker"                             
+## [141] "identifications.scientificName.nameAddendum"                                    
+## [142] "identifications.scientificName.authorshipVerbatim"                              
+## [143] "identifications.scientificName.author"                                          
+## [144] "identifications.scientificName.year"                                            
+## [145] "identifications.scientificName.scientificNameGroup"                             
+## [146] "identifications.scientificName.references.titleCitation"                        
+## [147] "identifications.scientificName.references.citationDetail"                       
+## [148] "identifications.scientificName.references.uri"                                  
+## [149] "identifications.scientificName.references.author.agentText"                     
+## [150] "identifications.scientificName.references.author.fullName"                      
+## [151] "identifications.scientificName.references.author.organization.agentText"        
+## [152] "identifications.scientificName.references.author.organization.name"             
+## [153] "identifications.scientificName.references.publicationDate"                      
+## [154] "identifications.scientificName.experts.agentText"                               
+## [155] "identifications.scientificName.experts.fullName"                                
+## [156] "identifications.scientificName.experts.organization.agentText"                  
+## [157] "identifications.scientificName.experts.organization.name"                       
+## [158] "identifications.typeStatus"                                                     
+## [159] "identifications.dateIdentified"                                                 
+## [160] "identifications.defaultClassification.kingdom"                                  
+## [161] "identifications.defaultClassification.phylum"                                   
+## [162] "identifications.defaultClassification.className"                                
+## [163] "identifications.defaultClassification.order"                                    
+## [164] "identifications.defaultClassification.superFamily"                              
+## [165] "identifications.defaultClassification.family"                                   
+## [166] "identifications.defaultClassification.genus"                                    
+## [167] "identifications.defaultClassification.subgenus"                                 
+## [168] "identifications.defaultClassification.specificEpithet"                          
+## [169] "identifications.defaultClassification.infraspecificEpithet"                     
+## [170] "identifications.defaultClassification.infraspecificRank"                        
+## [171] "identifications.systemClassification.rank"                                      
+## [172] "identifications.systemClassification.name"                                      
+## [173] "identifications.vernacularNames.name"                                           
+## [174] "identifications.vernacularNames.language"                                       
+## [175] "identifications.vernacularNames.preferred"                                      
+## [176] "identifications.vernacularNames.references.titleCitation"                       
+## [177] "identifications.vernacularNames.references.citationDetail"                      
+## [178] "identifications.vernacularNames.references.uri"                                 
+## [179] "identifications.vernacularNames.references.author.agentText"                    
+## [180] "identifications.vernacularNames.references.author.fullName"                     
+## [181] "identifications.vernacularNames.references.author.organization.agentText"       
+## [182] "identifications.vernacularNames.references.author.organization.name"            
+## [183] "identifications.vernacularNames.references.publicationDate"                     
+## [184] "identifications.vernacularNames.experts.agentText"                              
+## [185] "identifications.vernacularNames.experts.fullName"                               
+## [186] "identifications.vernacularNames.experts.organization.agentText"                 
+## [187] "identifications.vernacularNames.experts.organization.name"                      
+## [188] "identifications.identificationQualifiers"                                       
+## [189] "identifications.identifiers.agentText"                                          
+## [190] "identifications.taxonomicEnrichments.vernacularNames.name"                      
+## [191] "identifications.taxonomicEnrichments.vernacularNames.language"                  
+## [192] "identifications.taxonomicEnrichments.synonyms.fullScientificName"               
+## [193] "identifications.taxonomicEnrichments.synonyms.taxonomicStatus"                  
+## [194] "identifications.taxonomicEnrichments.synonyms.genusOrMonomial"                  
+## [195] "identifications.taxonomicEnrichments.synonyms.subgenus"                         
+## [196] "identifications.taxonomicEnrichments.synonyms.specificEpithet"                  
+## [197] "identifications.taxonomicEnrichments.synonyms.infraspecificEpithet"             
+## [198] "identifications.taxonomicEnrichments.synonyms.authorshipVerbatim"               
+## [199] "identifications.taxonomicEnrichments.defaultClassification.kingdom"             
+## [200] "identifications.taxonomicEnrichments.defaultClassification.phylum"              
+## [201] "identifications.taxonomicEnrichments.defaultClassification.className"           
+## [202] "identifications.taxonomicEnrichments.defaultClassification.order"               
+## [203] "identifications.taxonomicEnrichments.defaultClassification.superFamily"         
+## [204] "identifications.taxonomicEnrichments.defaultClassification.family"              
+## [205] "identifications.taxonomicEnrichments.defaultClassification.genus"               
+## [206] "identifications.taxonomicEnrichments.defaultClassification.subgenus"            
+## [207] "identifications.taxonomicEnrichments.defaultClassification.specificEpithet"     
+## [208] "identifications.taxonomicEnrichments.defaultClassification.infraspecificEpithet"
+## [209] "identifications.taxonomicEnrichments.defaultClassification.infraspecificRank"   
+## [210] "identifications.taxonomicEnrichments.sourceSystem.code"                         
+## [211] "identifications.taxonomicEnrichments.taxonId"                                   
+## [212] "identifications.preferred"                                                      
+## [213] "identifications.verificationStatus"                                             
+## [214] "identifications.rockType"                                                       
+## [215] "identifications.associatedFossilAssemblage"                                     
+## [216] "identifications.rockMineralUsage"                                               
+## [217] "identifications.associatedMineralName"                                          
+## [218] "identifications.remarks"                                                        
+## [219] "associatedMultiMediaUris.accessUri"                                             
+## [220] "associatedMultiMediaUris.format"                                                
+## [221] "associatedMultiMediaUris.variant"                                               
+## [222] "theme"</code></pre>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="co"># get info e.g. for field collectionType</span></a>
 <a class="sourceLine" id="cb37-2" data-line-number="2">sc<span class="op">$</span><span class="kw">get_field_info</span>()<span class="op">$</span>content<span class="op">$</span>collectionType</a></code></pre></div>
 <pre><code>## $indexed
@@ -656,7 +694,7 @@ we can combine the latter condition with an additional one using the method <cod
 <div id="operators" class="section level4">
 <h4 class="hasAnchor">
 <a href="#operators" class="anchor"></a>Operators</h4>
-<p>To test if a certain operator can be used for a mutimedia query:</p>
+<p>To test if a certain operator can be used for a multimedia query:</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">sc<span class="op">$</span><span class="kw">is_operator_allowed</span>(<span class="st">"identifications.defaultClassification.genus"</span>, <span class="st">"STARTS_WITH"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
@@ -680,118 +718,92 @@ we can combine the latter condition with an additional one using the method <cod
 ## [15] "hymenoptera"                "lepidoptera"               
 ## [17] "mammalia"                   "micropaleontology"         
 ## [19] "mollusca"                   "odonata"                   
-## [21] "orthopteroidea"             "paleobotany"               
-## [23] "paleontology-invertebrates" "pisces"                    
-## [25] "porifera"                   "tunicata"</code></pre>
+## [21] "orthopteroidea"             "paleontology-invertebrates"
+## [23] "pisces"                     "porifera"                  
+## [25] "tunicata"</code></pre>
 <p>A dataset can then be downloaded using <code>dwca_get_data_set</code>. A filename can be given as argument, if none is given, the DwCA archive is written to <em>download-YYYY-MM-DDThh:mm.zip</em> in the current working directory.</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="co"># download dataset 'porifera' to temporary file</span></a>
 <a class="sourceLine" id="cb54-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
 <a class="sourceLine" id="cb54-3" data-line-number="3">sc<span class="op">$</span><span class="kw">dwca_get_data_set</span>(<span class="st">'porifera'</span>, <span class="dt">filename=</span>filename)                                                                               </a></code></pre></div>
 <pre><code>## 
-Downloading: 9.4 kB     
-Downloading: 9.4 kB     
+Downloading: 9.7 kB     
+Downloading: 9.7 kB     
 Downloading: 16 kB     
 Downloading: 16 kB     
-Downloading: 16 kB     
-Downloading: 16 kB     
-Downloading: 31 kB     
-Downloading: 31 kB     
-Downloading: 47 kB     
-Downloading: 47 kB     
+Downloading: 26 kB     
+Downloading: 26 kB     
+Downloading: 42 kB     
+Downloading: 42 kB     
 Downloading: 49 kB     
 Downloading: 49 kB     
-Downloading: 49 kB     
-Downloading: 49 kB     
-Downloading: 55 kB     
-Downloading: 55 kB     
-Downloading: 71 kB     
-Downloading: 71 kB     
+Downloading: 57 kB     
+Downloading: 57 kB     
+Downloading: 73 kB     
+Downloading: 73 kB     
+Downloading: 77 kB     
+Downloading: 77 kB     
 Downloading: 82 kB     
 Downloading: 82 kB     
-Downloading: 82 kB     
-Downloading: 82 kB     
-Downloading: 89 kB     
-Downloading: 89 kB     
-Downloading: 110 kB     
-Downloading: 110 kB     
+Downloading: 84 kB     
+Downloading: 84 kB     
+Downloading: 100 kB     
+Downloading: 100 kB     
 Downloading: 110 kB     
 Downloading: 110 kB     
 Downloading: 120 kB     
 Downloading: 120 kB     
-Downloading: 120 kB     
-Downloading: 120 kB     
-Downloading: 130 kB     
-Downloading: 130 kB     
-Downloading: 130 kB     
-Downloading: 130 kB     
 Downloading: 130 kB     
 Downloading: 130 kB     
 Downloading: 140 kB     
 Downloading: 140 kB     
 Downloading: 150 kB     
 Downloading: 150 kB     
-Downloading: 150 kB     
-Downloading: 150 kB     
-Downloading: 170 kB     
-Downloading: 170 kB     
-Downloading: 170 kB     
-Downloading: 170 kB     
+Downloading: 160 kB     
+Downloading: 160 kB     
+Downloading: 160 kB     
+Downloading: 160 kB     
 Downloading: 170 kB     
 Downloading: 170 kB     
 Downloading: 190 kB     
 Downloading: 190 kB     
 Downloading: 200 kB     
 Downloading: 200 kB     
-Downloading: 200 kB     
-Downloading: 200 kB     
-Downloading: 200 kB     
-Downloading: 200 kB     
+Downloading: 210 kB     
+Downloading: 210 kB     
 Downloading: 220 kB     
 Downloading: 220 kB     
 Downloading: 230 kB     
 Downloading: 230 kB     
 Downloading: 240 kB     
 Downloading: 240 kB     
-Downloading: 240 kB     
-Downloading: 240 kB     
-Downloading: 240 kB     
-Downloading: 240 kB     
 Downloading: 250 kB     
 Downloading: 250 kB     
-Downloading: 250 kB     
-Downloading: 250 kB     
-Downloading: 270 kB     
-Downloading: 270 kB     
+Downloading: 260 kB     
+Downloading: 260 kB     
+Downloading: 280 kB     
+Downloading: 280 kB     
+Downloading: 280 kB     
+Downloading: 280 kB     
 Downloading: 280 kB     
 Downloading: 280 kB     
 Downloading: 290 kB     
 Downloading: 290 kB     
-Downloading: 290 kB     
-Downloading: 290 kB     
-Downloading: 290 kB     
-Downloading: 290 kB     
+Downloading: 310 kB     
+Downloading: 310 kB     
 Downloading: 310 kB     
 Downloading: 310 kB     
 Downloading: 320 kB     
 Downloading: 320 kB     
-Downloading: 320 kB     
-Downloading: 320 kB     
-Downloading: 330 kB     
-Downloading: 330 kB     
-Downloading: 330 kB     
-Downloading: 330 kB     
+Downloading: 340 kB     
+Downloading: 340 kB     
+Downloading: 340 kB     
+Downloading: 340 kB     
 Downloading: 350 kB     
 Downloading: 350 kB     
-Downloading: 350 kB     
-Downloading: 350 kB     
-Downloading: 350 kB     
-Downloading: 350 kB     
-Downloading: 370 kB     
-Downloading: 370 kB     
-Downloading: 370 kB     
-Downloading: 370 kB     
-Downloading: 370 kB     
-Downloading: 370 kB     
+Downloading: 360 kB     
+Downloading: 360 kB     
+Downloading: 360 kB     
+Downloading: 360 kB     
 Downloading: 370 kB     
 Downloading: 370 kB     
 Downloading: 390 kB     
@@ -800,44 +812,38 @@ Downloading: 400 kB
 Downloading: 400 kB     
 Downloading: 400 kB     
 Downloading: 400 kB     
-Downloading: 410 kB     
-Downloading: 410 kB     
+Downloading: 420 kB     
+Downloading: 420 kB     
+Downloading: 420 kB     
+Downloading: 420 kB     
+Downloading: 420 kB     
+Downloading: 420 kB     
 Downloading: 430 kB     
 Downloading: 430 kB     
-Downloading: 430 kB     
-Downloading: 430 kB     
-Downloading: 430 kB     
-Downloading: 430 kB     
-Downloading: 450 kB     
-Downloading: 450 kB     
+Downloading: 440 kB     
+Downloading: 440 kB     
 Downloading: 460 kB     
 Downloading: 460 kB     
 Downloading: 470 kB     
 Downloading: 470 kB     
-Downloading: 470 kB     
-Downloading: 470 kB     
+Downloading: 480 kB     
+Downloading: 480 kB     
 Downloading: 480 kB     
 Downloading: 480 kB     
 Downloading: 490 kB     
 Downloading: 490 kB     
-Downloading: 490 kB     
-Downloading: 490 kB     
-Downloading: 500 kB     
-Downloading: 500 kB     
-Downloading: 500 kB     
-Downloading: 500 kB     
-Downloading: 520 kB     
-Downloading: 520 kB     
-Downloading: 520 kB     
-Downloading: 520 kB     
+Downloading: 510 kB     
+Downloading: 510 kB     
+Downloading: 510 kB     
+Downloading: 510 kB     
 Downloading: 520 kB     
 Downloading: 520 kB     
 Downloading: 530 kB     
 Downloading: 530 kB     
+Downloading: 530 kB     
+Downloading: 530 kB     
 Downloading: 540 kB     
 Downloading: 540 kB     
-Downloading: 550 kB     
-Downloading: 550 kB     
 Downloading: 550 kB     
 Downloading: 550 kB     
 Downloading: 560 kB     
@@ -848,20 +854,12 @@ Downloading: 580 kB
 Downloading: 580 kB     
 Downloading: 590 kB     
 Downloading: 590 kB     
-Downloading: 590 kB     
-Downloading: 590 kB     
 Downloading: 600 kB     
 Downloading: 600 kB     
 Downloading: 600 kB     
 Downloading: 600 kB     
-Downloading: 600 kB     
-Downloading: 600 kB     
-Downloading: 610 kB     
-Downloading: 610 kB     
-Downloading: 630 kB     
-Downloading: 630 kB     
-Downloading: 630 kB     
-Downloading: 630 kB     
+Downloading: 620 kB     
+Downloading: 620 kB     
 Downloading: 630 kB     
 Downloading: 630 kB     
 Downloading: 640 kB     
@@ -870,28 +868,20 @@ Downloading: 660 kB
 Downloading: 660 kB     
 Downloading: 670 kB     
 Downloading: 670 kB     
-Downloading: 670 kB     
-Downloading: 670 kB     
 Downloading: 680 kB     
 Downloading: 680 kB     
-Downloading: 700 kB     
-Downloading: 700 kB     
-Downloading: 700 kB     
-Downloading: 700 kB     
+Downloading: 690 kB     
+Downloading: 690 kB     
 Downloading: 700 kB     
 Downloading: 700 kB     
 Downloading: 710 kB     
 Downloading: 710 kB     
 Downloading: 720 kB     
 Downloading: 720 kB     
-Downloading: 720 kB     
-Downloading: 720 kB     
 Downloading: 730 kB     
 Downloading: 730 kB     
 Downloading: 740 kB     
 Downloading: 740 kB     
-Downloading: 750 kB     
-Downloading: 750 kB     
 Downloading: 750 kB     
 Downloading: 750 kB     
 Downloading: 760 kB     
@@ -902,18 +892,16 @@ Downloading: 780 kB
 Downloading: 780 kB     
 Downloading: 790 kB     
 Downloading: 790 kB     
-Downloading: 800 kB     
-Downloading: 800 kB     
-Downloading: 800 kB     
-Downloading: 800 kB     
+Downloading: 790 kB     
+Downloading: 790 kB     
 Downloading: 800 kB     
 Downloading: 800 kB     
 Downloading: 810 kB     
 Downloading: 810 kB     
+Downloading: 820 kB     
+Downloading: 820 kB     
 Downloading: 830 kB     
 Downloading: 830 kB     
-Downloading: 840 kB     
-Downloading: 840 kB     
 Downloading: 840 kB     
 Downloading: 840 kB     
 Downloading: 850 kB     
@@ -922,40 +910,34 @@ Downloading: 860 kB
 Downloading: 860 kB     
 Downloading: 870 kB     
 Downloading: 870 kB     
-Downloading: 870 kB     
-Downloading: 870 kB     
+Downloading: 880 kB     
+Downloading: 880 kB     
 Downloading: 890 kB     
 Downloading: 890 kB     
-Downloading: 900 kB     
-Downloading: 900 kB     
-Downloading: 900 kB     
-Downloading: 900 kB     
 Downloading: 900 kB     
 Downloading: 900 kB     
 Downloading: 910 kB     
 Downloading: 910 kB     
 Downloading: 920 kB     
 Downloading: 920 kB     
-Downloading: 920 kB     
-Downloading: 920 kB     
 Downloading: 930 kB     
 Downloading: 930 kB     
+Downloading: 940 kB     
+Downloading: 940 kB     
+Downloading: 940 kB     
+Downloading: 940 kB     
 Downloading: 950 kB     
 Downloading: 950 kB     
 Downloading: 950 kB     
 Downloading: 950 kB     
-Downloading: 950 kB     
-Downloading: 950 kB     
-Downloading: 970 kB     
-Downloading: 970 kB     
+Downloading: 960 kB     
+Downloading: 960 kB     
+Downloading: 980 kB     
+Downloading: 980 kB     
+Downloading: 980 kB     
+Downloading: 980 kB     
 Downloading: 990 kB     
 Downloading: 990 kB     
-Downloading: 990 kB     
-Downloading: 990 kB     
-Downloading: 990 kB     
-Downloading: 990 kB     
-Downloading: 1,000 kB     
-Downloading: 1,000 kB     
 Downloading: 1 MB     
 Downloading: 1 MB     
 Downloading: 1 MB     
@@ -970,10 +952,6 @@ Downloading: 1 MB
 Downloading: 1 MB     
 Downloading: 1 MB     
 Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
 Downloading: 1.1 MB     
 Downloading: 1.1 MB     
 Downloading: 1.1 MB     
@@ -992,18 +970,6 @@ Downloading: 1.1 MB
 Downloading: 1.1 MB     
 Downloading: 1.1 MB     
 Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
 Downloading: 1.2 MB     
 Downloading: 1.2 MB     
 Downloading: 1.2 MB     
@@ -1037,9 +1003,8 @@ Downloading: 1.3 MB
 Downloading: 1.3 MB     
 Downloading: 1.3 MB     
 Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     Query result written to  /tmp/Rtmp6NWdAt/file17986a58fd8d.zip</code></pre>
+Downloading: 1.3 MB</code></pre>
+<pre><code>## Query result written to /tmp/RtmpKiwWvU/file4c7815df5666.zip</code></pre>
 <pre><code>## &lt;Response&gt;
 ##   Public:
 ##     clone: function (deep = FALSE) 
@@ -1051,15 +1016,16 @@ Downloading: 1.3 MB     Query result written to  /tmp/Rtmp6NWdAt/file17986a58fd8
 <h4 class="hasAnchor">
 <a href="#dynamic-download" class="anchor"></a>Dynamic download</h4>
 <p>The dynamic download function <code>dwca_query</code> allows for download of arbitrary sets, defined by the user’s query. The arguments to this methods are similar to <code>query</code>, plus the filename:</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="co"># download all specimen of genus 'Hydrochoerus'</span></a>
-<a class="sourceLine" id="cb57-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
-<a class="sourceLine" id="cb57-3" data-line-number="3">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"identifications.defaultClassification.genus"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Hydrochoerus"</span>)))</a>
-<a class="sourceLine" id="cb57-4" data-line-number="4">sc<span class="op">$</span><span class="kw">dwca_query</span>(<span class="dt">querySpec=</span>qs, <span class="dt">filename=</span>filename)</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="co"># download all specimen of genus 'Hydrochoerus'</span></a>
+<a class="sourceLine" id="cb58-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
+<a class="sourceLine" id="cb58-3" data-line-number="3">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"identifications.defaultClassification.genus"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Hydrochoerus"</span>)))</a>
+<a class="sourceLine" id="cb58-4" data-line-number="4">sc<span class="op">$</span><span class="kw">dwca_query</span>(<span class="dt">querySpec=</span>qs, <span class="dt">filename=</span>filename)</a></code></pre></div>
 <pre><code>## 
-Downloading: 2.7 kB     
-Downloading: 2.7 kB     
-Downloading: 2.7 kB     
-Downloading: 2.7 kB     Query result written to  /tmp/Rtmp6NWdAt/file17984afc763.zip</code></pre>
+Downloading: 2.6 kB     
+Downloading: 2.6 kB     
+Downloading: 2.6 kB     
+Downloading: 2.6 kB</code></pre>
+<pre><code>## Query result written to /tmp/RtmpKiwWvU/file4c783031a449.zip</code></pre>
 <pre><code>## &lt;Response&gt;
 ##   Public:
 ##     clone: function (deep = FALSE) 
@@ -1079,12 +1045,12 @@ Downloading: 2.7 kB     Query result written to  /tmp/Rtmp6NWdAt/file17984afc763
 <h4 class="hasAnchor">
 <a href="#query-1" class="anchor"></a>query</h4>
 <p>Query for taxon document with given search criteria. Example:</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="co"># query for taxa of genus 'Sedum' that are in the Netherlands Soortenregister (NSR)</span></a>
-<a class="sourceLine" id="cb60-2" data-line-number="2">tc &lt;-<span class="st"> </span>TaxonClient<span class="op">$</span><span class="kw">new</span>()</a>
-<a class="sourceLine" id="cb60-3" data-line-number="3">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"acceptedName.genusOrMonomial"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Sedum"</span>)</a>
-<a class="sourceLine" id="cb60-4" data-line-number="4">qc2 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"sourceSystem.code"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"NSR"</span>)</a>
-<a class="sourceLine" id="cb60-5" data-line-number="5">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc, qc2))</a>
-<a class="sourceLine" id="cb60-6" data-line-number="6">tc<span class="op">$</span><span class="kw">query</span>(qs)</a></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="co"># query for taxa of genus 'Sedum' that are in the Netherlands Soortenregister (NSR)</span></a>
+<a class="sourceLine" id="cb62-2" data-line-number="2">tc &lt;-<span class="st"> </span>TaxonClient<span class="op">$</span><span class="kw">new</span>()</a>
+<a class="sourceLine" id="cb62-3" data-line-number="3">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"acceptedName.genusOrMonomial"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Sedum"</span>)</a>
+<a class="sourceLine" id="cb62-4" data-line-number="4">qc2 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"sourceSystem.code"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"NSR"</span>)</a>
+<a class="sourceLine" id="cb62-5" data-line-number="5">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc, qc2))</a>
+<a class="sourceLine" id="cb62-6" data-line-number="6">tc<span class="op">$</span><span class="kw">query</span>(qs)</a></code></pre></div>
 </div>
 <div id="download_query-1" class="section level4">
 <h4 class="hasAnchor">
@@ -1099,11 +1065,11 @@ Downloading: 2.7 kB     Query result written to  /tmp/Rtmp6NWdAt/file17984afc763
 <h4 class="hasAnchor">
 <a href="#count-1" class="anchor"></a>count</h4>
 <p>For a given query, do not return <code>Taxon</code> objects but the mere count. Example</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="co"># get counts for taxa of genus 'Sedum' that are in the Netherlands Soortenregister (NSR)</span></a>
-<a class="sourceLine" id="cb61-2" data-line-number="2">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"acceptedName.genusOrMonomial"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Sedum"</span>)</a>
-<a class="sourceLine" id="cb61-3" data-line-number="3">qc2 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"sourceSystem.code"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"NSR"</span>)</a>
-<a class="sourceLine" id="cb61-4" data-line-number="4">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc, qc2))</a>
-<a class="sourceLine" id="cb61-5" data-line-number="5">tc<span class="op">$</span><span class="kw">count</span>(qs)</a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="co"># get counts for taxa of genus 'Sedum' that are in the Netherlands Soortenregister (NSR)</span></a>
+<a class="sourceLine" id="cb63-2" data-line-number="2">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"acceptedName.genusOrMonomial"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Sedum"</span>)</a>
+<a class="sourceLine" id="cb63-3" data-line-number="3">qc2 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"sourceSystem.code"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"NSR"</span>)</a>
+<a class="sourceLine" id="cb63-4" data-line-number="4">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc, qc2))</a>
+<a class="sourceLine" id="cb63-5" data-line-number="5">tc<span class="op">$</span><span class="kw">count</span>(qs)</a></code></pre></div>
 <pre><code>## &lt;Response&gt;
 ##   Public:
 ##     clone: function (deep = FALSE) 
@@ -1115,7 +1081,7 @@ Downloading: 2.7 kB     Query result written to  /tmp/Rtmp6NWdAt/file17984afc763
 <h4 class="hasAnchor">
 <a href="#find-1" class="anchor"></a>find</h4>
 <p>Returns a taxon object given its identifier:</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">tc<span class="op">$</span><span class="kw">find</span>(<span class="st">"27706109@COL"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">tc<span class="op">$</span><span class="kw">find</span>(<span class="st">"27706109@COL"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## &lt;Taxon&gt;
 ##   Public:
 ##     acceptedName: ScientificName, R6
@@ -1137,7 +1103,7 @@ Downloading: 2.7 kB     Query result written to  /tmp/Rtmp6NWdAt/file17984afc763
 ##     systemClassification: list
 ##     taxonRank: infraspecies
 ##     taxonRemarks: NULL
-##     toJSONString: function (pretty = T) 
+##     toJSONString: function (pretty = TRUE) 
 ##     toList: function () 
 ##     validName: ScientificName, R6
 ##     vernacularNames: list</code></pre>
@@ -1145,9 +1111,9 @@ Downloading: 2.7 kB     Query result written to  /tmp/Rtmp6NWdAt/file17984afc763
 <div id="find_by_ids-1" class="section level4">
 <h4 class="hasAnchor">
 <a href="#find_by_ids-1" class="anchor"></a>find_by_ids</h4>
-<p>Given a string with comma-sparated identifiers, returns a list of taxon objects:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">    ids &lt;-<span class="st"> "27706109@COL,27704140@COL,27706110@COL,27706111@COL,27706108@COL"</span></a>
-<a class="sourceLine" id="cb65-2" data-line-number="2">    res &lt;-<span class="st"> </span>tc<span class="op">$</span><span class="kw">find_by_ids</span>(ids)</a></code></pre></div>
+<p>Given a string with comma-separated identifiers, returns a list of taxon objects:</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">    ids &lt;-<span class="st"> "27706109@COL,27704140@COL,27706110@COL,27706111@COL,27706108@COL"</span></a>
+<a class="sourceLine" id="cb67-2" data-line-number="2">    res &lt;-<span class="st"> </span>tc<span class="op">$</span><span class="kw">find_by_ids</span>(ids)</a></code></pre></div>
 </div>
 </div>
 <div id="aggregation-services-1" class="section level3">
@@ -1157,20 +1123,20 @@ Downloading: 2.7 kB     Query result written to  /tmp/Rtmp6NWdAt/file17984afc763
 <h4 class="hasAnchor">
 <a href="#get_distinct_values-1" class="anchor"></a>get_distinct_values</h4>
 <p>This method takes a specific field as an argument and returns all possible values and the frequency for that field in thy data. Example: get all data source systems for taxon objects:</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">tc<span class="op">$</span><span class="kw">get_distinct_values</span>(<span class="st">"sourceSystem.name"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1">tc<span class="op">$</span><span class="kw">get_distinct_values</span>(<span class="st">"sourceSystem.name"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## $`Species 2000 - Catalogue Of Life`
 ## [1] 1865315
 ## 
 ## $`Naturalis - Dutch Species Register`
-## [1] 47576</code></pre>
+## [1] 47666</code></pre>
 </div>
 </div>
 <div id="metadata-services-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#metadata-services-1" class="anchor"></a>Metadata services</h3>
 <p>Taxon Metadata services include the same standard metadata services as for the other data types:</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="co"># get all paths for the Taxon datatype </span></a>
-<a class="sourceLine" id="cb68-2" data-line-number="2">tc<span class="op">$</span><span class="kw">get_paths</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="co"># get all paths for the Taxon datatype </span></a>
+<a class="sourceLine" id="cb70-2" data-line-number="2">tc<span class="op">$</span><span class="kw">get_paths</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>##  [1] "sourceSystem.code"                                       
 ##  [2] "sourceSystem.name"                                       
 ##  [3] "sourceSystemId"                                          
@@ -1270,8 +1236,8 @@ Downloading: 2.7 kB     Query result written to  /tmp/Rtmp6NWdAt/file17984afc763
 ## [97] "experts.fullName"                                        
 ## [98] "experts.organization.agentText"                          
 ## [99] "experts.organization.name"</code></pre>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="co"># get info e.g. for field collectionType</span></a>
-<a class="sourceLine" id="cb70-2" data-line-number="2">tc<span class="op">$</span><span class="kw">get_field_info</span>()<span class="op">$</span>content<span class="op">$</span>synonyms.author</a></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="co"># get info e.g. for field collectionType</span></a>
+<a class="sourceLine" id="cb72-2" data-line-number="2">tc<span class="op">$</span><span class="kw">get_field_info</span>()<span class="op">$</span>content<span class="op">$</span>synonyms.author</a></code></pre></div>
 <pre><code>## $indexed
 ## [1] TRUE
 ## 
@@ -1284,39 +1250,39 @@ Downloading: 2.7 kB     Query result written to  /tmp/Rtmp6NWdAt/file17984afc763
 ##  [7] "IN"                 "NOT_IN"             "MATCHES"           
 ## [10] "NOT_MATCHES"        "STARTS_WITH"        "NOT_STARTS_WITH"   
 ## [13] "STARTS_WITH_IC"     "NOT_STARTS_WITH_IC"</code></pre>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="co"># get all settings</span></a>
-<a class="sourceLine" id="cb72-2" data-line-number="2">tc<span class="op">$</span><span class="kw">get_settings</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="co"># get all settings</span></a>
+<a class="sourceLine" id="cb74-2" data-line-number="2">tc<span class="op">$</span><span class="kw">get_settings</span>()</a></code></pre></div>
 <pre><code>## &lt;Response&gt;
 ##   Public:
 ##     clone: function (deep = FALSE) 
 ##     content: list
 ##     initialize: function (content, response) 
 ##     response: response</code></pre>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="co"># get specific setting</span></a>
-<a class="sourceLine" id="cb74-2" data-line-number="2">tc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"index.max_result_window"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="co"># get specific setting</span></a>
+<a class="sourceLine" id="cb76-2" data-line-number="2">tc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"index.max_result_window"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 50000</code></pre>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="co"># check if operator is allowed</span></a>
-<a class="sourceLine" id="cb76-2" data-line-number="2">tc<span class="op">$</span><span class="kw">is_operator_allowed</span>(<span class="st">"synonyms.author"</span>, <span class="st">"EQUALS"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="co"># check if operator is allowed</span></a>
+<a class="sourceLine" id="cb78-2" data-line-number="2">tc<span class="op">$</span><span class="kw">is_operator_allowed</span>(<span class="st">"synonyms.author"</span>, <span class="st">"EQUALS"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <div id="available-paths-and-fields-1" class="section level4">
 <h4 class="hasAnchor">
 <a href="#available-paths-and-fields-1" class="anchor"></a>Available paths and fields</h4>
 <p>All fields can be retrieved with <code>get_paths</code> and specific information on the fields, such as allowed operators etc. with <code>get_field_info</code></p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1">tc<span class="op">$</span><span class="kw">get_paths</span>()<span class="op">$</span>content</a>
-<a class="sourceLine" id="cb78-2" data-line-number="2">tc<span class="op">$</span><span class="kw">get_field_info</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1">tc<span class="op">$</span><span class="kw">get_paths</span>()<span class="op">$</span>content</a>
+<a class="sourceLine" id="cb80-2" data-line-number="2">tc<span class="op">$</span><span class="kw">get_field_info</span>()<span class="op">$</span>content</a></code></pre></div>
 </div>
 <div id="settings-1" class="section level4">
 <h4 class="hasAnchor">
 <a href="#settings-1" class="anchor"></a>Settings</h4>
 <p>Multimedia-specific settings can be retrieved with <code>get_settings</code> and a specific setting with <code>get_setting</code>:</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1">tc<span class="op">$</span><span class="kw">get_settings</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1">tc<span class="op">$</span><span class="kw">get_settings</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## $index.max_result_window
 ## [1] 50000
 ## 
 ## $taxon.group_by_scientific_name.max_num_buckets
 ## [1] 10000</code></pre>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1">tc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"index.max_result_window"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1">tc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"index.max_result_window"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 50000</code></pre>
 </div>
@@ -1324,7 +1290,7 @@ Downloading: 2.7 kB     Query result written to  /tmp/Rtmp6NWdAt/file17984afc763
 <h4 class="hasAnchor">
 <a href="#operators-1" class="anchor"></a>Operators</h4>
 <p>To test if a certain operator can be used for a mutimedia query:</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1">tc<span class="op">$</span><span class="kw">is_operator_allowed</span>(<span class="st">"identifications.defaultClassification.genus"</span>, <span class="st">"STARTS_WITH"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1">tc<span class="op">$</span><span class="kw">is_operator_allowed</span>(<span class="st">"identifications.defaultClassification.genus"</span>, <span class="st">"STARTS_WITH"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## Warning in self$handleError(response): Status code:500
 ## Internal Server Error
 ## Exception: Invalid element "identifications" in path "identifications.defaultClassification.genus"
@@ -1341,95 +1307,77 @@ Downloading: 2.7 kB     Query result written to  /tmp/Rtmp6NWdAt/file17984afc763
 <h4 class="hasAnchor">
 <a href="#static-download-1" class="anchor"></a>Static download</h4>
 <p>Static download services offer the download of predefined datasets. The sets that are available for download can be queried with <code>dwca_get_data_set_names</code>:</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1">tc<span class="op">$</span><span class="kw">dwca_get_data_set_names</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1">tc<span class="op">$</span><span class="kw">dwca_get_data_set_names</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [1] "nsr"</code></pre>
 <p>A dataset can then be downloaded using <code>dwca_get_data_set</code>. A filename can be given as argument, if none is given, the DwCA archive is written to <em>download-YYYY-MM-DDThh:mm.zip</em> in the current working directory.</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1"><span class="co"># download dataset 'nsr' to temporary file</span></a>
-<a class="sourceLine" id="cb88-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
-<a class="sourceLine" id="cb88-3" data-line-number="3">tc<span class="op">$</span><span class="kw">dwca_get_data_set</span>(<span class="st">'nsr'</span>, <span class="dt">filename=</span>filename)                                                                               </a></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1"><span class="co"># download dataset 'nsr' to temporary file</span></a>
+<a class="sourceLine" id="cb90-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
+<a class="sourceLine" id="cb90-3" data-line-number="3">tc<span class="op">$</span><span class="kw">dwca_get_data_set</span>(<span class="st">'nsr'</span>, <span class="dt">filename=</span>filename)                                                                               </a></code></pre></div>
 <pre><code>## 
-Downloading: 3.7 kB     
-Downloading: 3.7 kB     
+Downloading: 9.7 kB     
+Downloading: 9.7 kB     
 Downloading: 16 kB     
 Downloading: 16 kB     
-Downloading: 22 kB     
-Downloading: 22 kB     
-Downloading: 33 kB     
-Downloading: 33 kB     
-Downloading: 33 kB     
-Downloading: 33 kB     
-Downloading: 50 kB     
-Downloading: 50 kB     
-Downloading: 66 kB     
-Downloading: 66 kB     
-Downloading: 66 kB     
-Downloading: 66 kB     
-Downloading: 66 kB     
-Downloading: 66 kB     
-Downloading: 83 kB     
-Downloading: 83 kB     
-Downloading: 83 kB     
-Downloading: 83 kB     
-Downloading: 83 kB     
-Downloading: 83 kB     
-Downloading: 99 kB     
-Downloading: 99 kB     
+Downloading: 26 kB     
+Downloading: 26 kB     
+Downloading: 32 kB     
+Downloading: 32 kB     
+Downloading: 41 kB     
+Downloading: 41 kB     
+Downloading: 57 kB     
+Downloading: 57 kB     
+Downloading: 60 kB     
+Downloading: 60 kB     
+Downloading: 65 kB     
+Downloading: 65 kB     
+Downloading: 75 kB     
+Downloading: 75 kB     
+Downloading: 77 kB     
+Downloading: 77 kB     
+Downloading: 88 kB     
+Downloading: 88 kB     
+Downloading: 100 kB     
+Downloading: 100 kB     
+Downloading: 110 kB     
+Downloading: 110 kB     
 Downloading: 120 kB     
 Downloading: 120 kB     
-Downloading: 120 kB     
-Downloading: 120 kB     
-Downloading: 120 kB     
-Downloading: 120 kB     
-Downloading: 120 kB     
-Downloading: 120 kB     
-Downloading: 130 kB     
-Downloading: 130 kB     
 Downloading: 130 kB     
 Downloading: 130 kB     
 Downloading: 140 kB     
 Downloading: 140 kB     
-Downloading: 150 kB     
-Downloading: 150 kB     
+Downloading: 160 kB     
+Downloading: 160 kB     
+Downloading: 160 kB     
+Downloading: 160 kB     
 Downloading: 170 kB     
 Downloading: 170 kB     
 Downloading: 180 kB     
 Downloading: 180 kB     
-Downloading: 180 kB     
-Downloading: 180 kB     
-Downloading: 180 kB     
-Downloading: 180 kB     
 Downloading: 190 kB     
 Downloading: 190 kB     
-Downloading: 200 kB     
-Downloading: 200 kB     
+Downloading: 210 kB     
+Downloading: 210 kB     
+Downloading: 210 kB     
+Downloading: 210 kB     
 Downloading: 220 kB     
 Downloading: 220 kB     
-Downloading: 220 kB     
-Downloading: 220 kB     
-Downloading: 230 kB     
-Downloading: 230 kB     
 Downloading: 230 kB     
 Downloading: 230 kB     
 Downloading: 240 kB     
 Downloading: 240 kB     
 Downloading: 260 kB     
 Downloading: 260 kB     
+Downloading: 260 kB     
+Downloading: 260 kB     
 Downloading: 270 kB     
 Downloading: 270 kB     
-Downloading: 270 kB     
-Downloading: 270 kB     
-Downloading: 270 kB     
-Downloading: 270 kB     
-Downloading: 280 kB     
-Downloading: 280 kB     
 Downloading: 280 kB     
 Downloading: 280 kB     
 Downloading: 290 kB     
 Downloading: 290 kB     
-Downloading: 310 kB     
-Downloading: 310 kB     
-Downloading: 310 kB     
-Downloading: 310 kB     
+Downloading: 300 kB     
+Downloading: 300 kB     
 Downloading: 310 kB     
 Downloading: 310 kB     
 Downloading: 320 kB     
@@ -1442,32 +1390,20 @@ Downloading: 350 kB
 Downloading: 350 kB     
 Downloading: 360 kB     
 Downloading: 360 kB     
-Downloading: 360 kB     
-Downloading: 360 kB     
 Downloading: 380 kB     
 Downloading: 380 kB     
 Downloading: 380 kB     
 Downloading: 380 kB     
-Downloading: 380 kB     
-Downloading: 380 kB     
-Downloading: 380 kB     
-Downloading: 380 kB     
-Downloading: 400 kB     
-Downloading: 400 kB     
+Downloading: 390 kB     
+Downloading: 390 kB     
 Downloading: 410 kB     
 Downloading: 410 kB     
 Downloading: 410 kB     
 Downloading: 410 kB     
-Downloading: 430 kB     
-Downloading: 430 kB     
-Downloading: 430 kB     
-Downloading: 430 kB     
 Downloading: 430 kB     
 Downloading: 430 kB     
 Downloading: 440 kB     
 Downloading: 440 kB     
-Downloading: 460 kB     
-Downloading: 460 kB     
 Downloading: 460 kB     
 Downloading: 460 kB     
 Downloading: 460 kB     
@@ -1482,18 +1418,10 @@ Downloading: 510 kB
 Downloading: 510 kB     
 Downloading: 510 kB     
 Downloading: 510 kB     
-Downloading: 510 kB     
-Downloading: 510 kB     
 Downloading: 520 kB     
 Downloading: 520 kB     
-Downloading: 530 kB     
-Downloading: 530 kB     
-Downloading: 530 kB     
-Downloading: 530 kB     
 Downloading: 540 kB     
 Downloading: 540 kB     
-Downloading: 550 kB     
-Downloading: 550 kB     
 Downloading: 560 kB     
 Downloading: 560 kB     
 Downloading: 560 kB     
@@ -1504,30 +1432,20 @@ Downloading: 570 kB
 Downloading: 570 kB     
 Downloading: 580 kB     
 Downloading: 580 kB     
-Downloading: 580 kB     
-Downloading: 580 kB     
 Downloading: 590 kB     
 Downloading: 590 kB     
 Downloading: 600 kB     
 Downloading: 600 kB     
 Downloading: 610 kB     
 Downloading: 610 kB     
-Downloading: 610 kB     
-Downloading: 610 kB     
 Downloading: 630 kB     
 Downloading: 630 kB     
-Downloading: 630 kB     
-Downloading: 630 kB     
-Downloading: 630 kB     
-Downloading: 630 kB     
-Downloading: 630 kB     
-Downloading: 630 kB     
-Downloading: 650 kB     
-Downloading: 650 kB     
+Downloading: 640 kB     
+Downloading: 640 kB     
 Downloading: 660 kB     
 Downloading: 660 kB     
-Downloading: 680 kB     
-Downloading: 680 kB     
+Downloading: 660 kB     
+Downloading: 660 kB     
 Downloading: 680 kB     
 Downloading: 680 kB     
 Downloading: 680 kB     
@@ -1538,58 +1456,42 @@ Downloading: 700 kB
 Downloading: 700 kB     
 Downloading: 710 kB     
 Downloading: 710 kB     
-Downloading: 710 kB     
-Downloading: 710 kB     
+Downloading: 720 kB     
+Downloading: 720 kB     
+Downloading: 720 kB     
+Downloading: 720 kB     
 Downloading: 730 kB     
 Downloading: 730 kB     
-Downloading: 730 kB     
-Downloading: 730 kB     
-Downloading: 730 kB     
-Downloading: 730 kB     
-Downloading: 750 kB     
-Downloading: 750 kB     
 Downloading: 750 kB     
 Downloading: 750 kB     
 Downloading: 760 kB     
 Downloading: 760 kB     
+Downloading: 770 kB     
+Downloading: 770 kB     
 Downloading: 780 kB     
 Downloading: 780 kB     
-Downloading: 780 kB     
-Downloading: 780 kB     
-Downloading: 780 kB     
-Downloading: 780 kB     
+Downloading: 790 kB     
+Downloading: 790 kB     
+Downloading: 790 kB     
+Downloading: 790 kB     
 Downloading: 800 kB     
 Downloading: 800 kB     
-Downloading: 800 kB     
-Downloading: 800 kB     
-Downloading: 800 kB     
-Downloading: 800 kB     
-Downloading: 810 kB     
-Downloading: 810 kB     
-Downloading: 830 kB     
-Downloading: 830 kB     
-Downloading: 830 kB     
-Downloading: 830 kB     
+Downloading: 820 kB     
+Downloading: 820 kB     
 Downloading: 830 kB     
 Downloading: 830 kB     
 Downloading: 840 kB     
 Downloading: 840 kB     
+Downloading: 850 kB     
+Downloading: 850 kB     
 Downloading: 860 kB     
 Downloading: 860 kB     
-Downloading: 860 kB     
-Downloading: 860 kB     
-Downloading: 860 kB     
-Downloading: 860 kB     
-Downloading: 870 kB     
-Downloading: 870 kB     
 Downloading: 880 kB     
 Downloading: 880 kB     
 Downloading: 880 kB     
 Downloading: 880 kB     
 Downloading: 890 kB     
 Downloading: 890 kB     
-Downloading: 900 kB     
-Downloading: 900 kB     
 Downloading: 910 kB     
 Downloading: 910 kB     
 Downloading: 910 kB     
@@ -1602,14 +1504,12 @@ Downloading: 950 kB
 Downloading: 950 kB     
 Downloading: 950 kB     
 Downloading: 950 kB     
-Downloading: 950 kB     
-Downloading: 950 kB     
-Downloading: 960 kB     
-Downloading: 960 kB     
 Downloading: 960 kB     
 Downloading: 960 kB     
 Downloading: 970 kB     
 Downloading: 970 kB     
+Downloading: 990 kB     
+Downloading: 990 kB     
 Downloading: 990 kB     
 Downloading: 990 kB     
 Downloading: 1,000 kB     
@@ -1626,12 +1526,6 @@ Downloading: 1 MB
 Downloading: 1 MB     
 Downloading: 1 MB     
 Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
 Downloading: 1.1 MB     
 Downloading: 1.1 MB     
 Downloading: 1.1 MB     
@@ -1652,22 +1546,6 @@ Downloading: 1.1 MB
 Downloading: 1.1 MB     
 Downloading: 1.1 MB     
 Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
 Downloading: 1.2 MB     
 Downloading: 1.2 MB     
 Downloading: 1.2 MB     
@@ -1710,10 +1588,6 @@ Downloading: 1.3 MB
 Downloading: 1.3 MB     
 Downloading: 1.3 MB     
 Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
 Downloading: 1.4 MB     
 Downloading: 1.4 MB     
 Downloading: 1.4 MB     
@@ -1732,24 +1606,6 @@ Downloading: 1.4 MB
 Downloading: 1.4 MB     
 Downloading: 1.4 MB     
 Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
 Downloading: 1.5 MB     
 Downloading: 1.5 MB     
 Downloading: 1.5 MB     
@@ -1790,12 +1646,6 @@ Downloading: 1.6 MB
 Downloading: 1.6 MB     
 Downloading: 1.6 MB     
 Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
 Downloading: 1.7 MB     
 Downloading: 1.7 MB     
 Downloading: 1.7 MB     
@@ -1812,24 +1662,6 @@ Downloading: 1.7 MB
 Downloading: 1.7 MB     
 Downloading: 1.7 MB     
 Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
 Downloading: 1.8 MB     
 Downloading: 1.8 MB     
 Downloading: 1.8 MB     
@@ -1868,22 +1700,6 @@ Downloading: 1.9 MB
 Downloading: 1.9 MB     
 Downloading: 1.9 MB     
 Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
 Downloading: 2 MB     
 Downloading: 2 MB     
 Downloading: 2 MB     
@@ -1937,7 +1753,10 @@ Downloading: 2.2 MB
 Downloading: 2.2 MB     
 Downloading: 2.2 MB     
 Downloading: 2.2 MB     
-Downloading: 2.2 MB     Query result written to  /tmp/Rtmp6NWdAt/file179825350acf.zip</code></pre>
+Downloading: 2.2 MB     
+Downloading: 2.2 MB     
+Downloading: 2.2 MB</code></pre>
+<pre><code>## Query result written to /tmp/RtmpKiwWvU/file4c781d01c411.zip</code></pre>
 <pre><code>## &lt;Response&gt;
 ##   Public:
 ##     clone: function (deep = FALSE) 
@@ -1949,25 +1768,28 @@ Downloading: 2.2 MB     Query result written to  /tmp/Rtmp6NWdAt/file179825350ac
 <h4 class="hasAnchor">
 <a href="#dynamic-download-1" class="anchor"></a>Dynamic download</h4>
 <p>The dynamic download function <code>dwca_query</code> allows for download of arbitrary sets, defined by the user’s query. The arguments to this methods are similar to <code>query</code>, plus the filename:</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1"><span class="co"># download all taxa for genus 'Clematis'</span></a>
-<a class="sourceLine" id="cb91-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
-<a class="sourceLine" id="cb91-3" data-line-number="3">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"defaultClassification.genus"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Clematis"</span>)))</a>
-<a class="sourceLine" id="cb91-4" data-line-number="4">tc<span class="op">$</span><span class="kw">dwca_query</span>(<span class="dt">querySpec=</span>qs, <span class="dt">filename=</span>filename)</a></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1"><span class="co"># download all taxa for genus 'Clematis'</span></a>
+<a class="sourceLine" id="cb94-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
+<a class="sourceLine" id="cb94-3" data-line-number="3">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"defaultClassification.genus"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Clematis"</span>)))</a>
+<a class="sourceLine" id="cb94-4" data-line-number="4">tc<span class="op">$</span><span class="kw">dwca_query</span>(<span class="dt">querySpec=</span>qs, <span class="dt">filename=</span>filename)</a></code></pre></div>
 <pre><code>## 
+Downloading: 6.8 kB     
+Downloading: 6.8 kB     
 Downloading: 16 kB     
 Downloading: 16 kB     
-Downloading: 16 kB     
-Downloading: 16 kB     
-Downloading: 33 kB     
-Downloading: 33 kB     
-Downloading: 33 kB     
-Downloading: 33 kB     
-Downloading: 43 kB     
-Downloading: 43 kB     
+Downloading: 23 kB     
+Downloading: 23 kB     
+Downloading: 32 kB     
+Downloading: 32 kB     
+Downloading: 36 kB     
+Downloading: 36 kB     
+Downloading: 41 kB     
+Downloading: 41 kB     
 Downloading: 57 kB     
 Downloading: 57 kB     
 Downloading: 57 kB     
-Downloading: 57 kB     Query result written to  /tmp/Rtmp6NWdAt/file17981e770f1f.zip</code></pre>
+Downloading: 57 kB</code></pre>
+<pre><code>## Query result written to /tmp/RtmpKiwWvU/file4c7837924436.zip</code></pre>
 <pre><code>## &lt;Response&gt;
 ##   Public:
 ##     clone: function (deep = FALSE) 
@@ -1984,16 +1806,16 @@ Downloading: 57 kB     Query result written to  /tmp/Rtmp6NWdAt/file17981e770f1f
 <h3 class="hasAnchor">
 <a href="#query-services-2" class="anchor"></a>Query Services</h3>
 <p>The GeoArea query service allows for detailed search within the fields of a GeoArea object. As for the other data types, query parameters can be either given as a <code>list</code> or as a <code>QuerySpec</code> object. Below, we make a simple query to get the <code>GeoArea</code> object for the Netherlands:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1"><span class="co"># instanciate client for geo areas</span></a>
-<a class="sourceLine" id="cb94-2" data-line-number="2">gc &lt;-<span class="st"> </span>GeoClient<span class="op">$</span><span class="kw">new</span>()</a>
-<a class="sourceLine" id="cb94-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb94-4" data-line-number="4"><span class="co"># query for GeoArea of the Netherlands</span></a>
-<a class="sourceLine" id="cb94-5" data-line-number="5">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"locality"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Netherlands"</span>)</a>
-<a class="sourceLine" id="cb94-6" data-line-number="6">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc))</a>
-<a class="sourceLine" id="cb94-7" data-line-number="7">res &lt;-<span class="st"> </span>gc<span class="op">$</span><span class="kw">query</span>(qs)</a>
-<a class="sourceLine" id="cb94-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb94-9" data-line-number="9"><span class="co"># get item</span></a>
-<a class="sourceLine" id="cb94-10" data-line-number="10">res<span class="op">$</span>content<span class="op">$</span>resultSet[[<span class="dv">1</span>]]<span class="op">$</span>item</a></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1"><span class="co"># instantiate client for geo areas</span></a>
+<a class="sourceLine" id="cb98-2" data-line-number="2">gc &lt;-<span class="st"> </span>GeoClient<span class="op">$</span><span class="kw">new</span>()</a>
+<a class="sourceLine" id="cb98-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb98-4" data-line-number="4"><span class="co"># query for GeoArea of the Netherlands</span></a>
+<a class="sourceLine" id="cb98-5" data-line-number="5">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"locality"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Netherlands"</span>)</a>
+<a class="sourceLine" id="cb98-6" data-line-number="6">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc))</a>
+<a class="sourceLine" id="cb98-7" data-line-number="7">res &lt;-<span class="st"> </span>gc<span class="op">$</span><span class="kw">query</span>(qs)</a>
+<a class="sourceLine" id="cb98-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb98-9" data-line-number="9"><span class="co"># get item</span></a>
+<a class="sourceLine" id="cb98-10" data-line-number="10">res<span class="op">$</span>content<span class="op">$</span>resultSet[[<span class="dv">1</span>]]<span class="op">$</span>item</a></code></pre></div>
 <pre><code>## &lt;GeoArea&gt;
 ##   Public:
 ##     areaType: Country
@@ -2010,7 +1832,7 @@ Downloading: 57 kB     Query result written to  /tmp/Rtmp6NWdAt/file17981e770f1f
 ##     source: World Countries
 ##     sourceSystem: SourceSystem, R6
 ##     sourceSystemId: 1004050
-##     toJSONString: function (pretty = T) 
+##     toJSONString: function (pretty = TRUE) 
 ##     toList: function ()</code></pre>
 </div>
 <div id="data-access-services-2" class="section level3">
@@ -2020,18 +1842,18 @@ Downloading: 57 kB     Query result written to  /tmp/Rtmp6NWdAt/file17981e770f1f
 <h4 class="hasAnchor">
 <a href="#get_geo_json_for_locality" class="anchor"></a>get_geo_json_for_locality</h4>
 <p>This is a convenience function to directly extract the a GeoJSON object for a specific locality. <a href="https://en.wikipedia.org/wiki/GeoJSON">GeoJSON</a> is a popular format for storing geographical point- and polygon data. To e.g. extract the GeoJSON polygon representation for the Netherlands:</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1">loc &lt;-<span class="st"> "Netherlands"</span></a>
-<a class="sourceLine" id="cb96-2" data-line-number="2">res &lt;-<span class="st"> </span>gc<span class="op">$</span><span class="kw">get_geo_json_for_locality</span>(loc)</a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1">loc &lt;-<span class="st"> "Netherlands"</span></a>
+<a class="sourceLine" id="cb100-2" data-line-number="2">res &lt;-<span class="st"> </span>gc<span class="op">$</span><span class="kw">get_geo_json_for_locality</span>(loc)</a></code></pre></div>
 <p>Results are returned as a <code>list</code> by default, but can be easily converted to a JSON string, e.g.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1">jsonlite<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">toJSON</a></span>(res<span class="op">$</span>content)</a></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">jsonlite<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">toJSON</a></span>(res<span class="op">$</span>content)</a></code></pre></div>
 </div>
 <div id="count-2" class="section level4">
 <h4 class="hasAnchor">
 <a href="#count-2" class="anchor"></a>count</h4>
 <p>For any given query (with <code>QuerySpec</code> or not), returns the count of matches instead of <code>GeoArea</code> objects:</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1"><span class="co"># return count of all GeoAreas</span></a>
-<a class="sourceLine" id="cb98-2" data-line-number="2">res &lt;-<span class="st"> </span>gc<span class="op">$</span><span class="kw">count</span>()</a>
-<a class="sourceLine" id="cb98-3" data-line-number="3">res<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="co"># return count of all GeoAreas</span></a>
+<a class="sourceLine" id="cb102-2" data-line-number="2">res &lt;-<span class="st"> </span>gc<span class="op">$</span><span class="kw">count</span>()</a>
+<a class="sourceLine" id="cb102-3" data-line-number="3">res<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [1] 1654</code></pre>
 </div>
 </div>
@@ -2042,7 +1864,7 @@ Downloading: 57 kB     Query result written to  /tmp/Rtmp6NWdAt/file17981e770f1f
 <h4 class="hasAnchor">
 <a href="#get_distinct_values-2" class="anchor"></a>get_distinct_values</h4>
 <p>This function returns all values present for a certain field, and their counts:</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1">gc<span class="op">$</span><span class="kw">get_distinct_values</span>(<span class="st">"areaType"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1">gc<span class="op">$</span><span class="kw">get_distinct_values</span>(<span class="st">"areaType"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## $Nature
 ## [1] 987
 ## 
@@ -2060,14 +1882,14 @@ Downloading: 57 kB     Query result written to  /tmp/Rtmp6NWdAt/file17981e770f1f
 <h3 class="hasAnchor">
 <a href="#metadata-services-2" class="anchor"></a>Metadata services</h3>
 <p>Geo Metadata services include the same standard metadata services as for the other data types:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="co"># get all paths for the GeoArea datatype </span></a>
-<a class="sourceLine" id="cb102-2" data-line-number="2">gc<span class="op">$</span><span class="kw">get_paths</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="co"># get all paths for the GeoArea datatype </span></a>
+<a class="sourceLine" id="cb106-2" data-line-number="2">gc<span class="op">$</span><span class="kw">get_paths</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>##  [1] "sourceSystem.code" "sourceSystem.name" "sourceSystemId"   
 ##  [4] "recordURI"         "areaType"          "locality"         
 ##  [7] "shape"             "source"            "isoCode"          
 ## [10] "countryNL"</code></pre>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1"><span class="co"># get info e.g. for field 'areaType'</span></a>
-<a class="sourceLine" id="cb104-2" data-line-number="2">gc<span class="op">$</span><span class="kw">get_field_info</span>()<span class="op">$</span>content<span class="op">$</span>areaType</a></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1"><span class="co"># get info e.g. for field 'areaType'</span></a>
+<a class="sourceLine" id="cb108-2" data-line-number="2">gc<span class="op">$</span><span class="kw">get_field_info</span>()<span class="op">$</span>content<span class="op">$</span>areaType</a></code></pre></div>
 <pre><code>## $indexed
 ## [1] TRUE
 ## 
@@ -2079,20 +1901,20 @@ Downloading: 57 kB     Query result written to  /tmp/Rtmp6NWdAt/file17981e770f1f
 ##  [4] "NOT_EQUALS_IC"      "IN"                 "NOT_IN"            
 ##  [7] "MATCHES"            "NOT_MATCHES"        "STARTS_WITH"       
 ## [10] "NOT_STARTS_WITH"    "STARTS_WITH_IC"     "NOT_STARTS_WITH_IC"</code></pre>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="co"># get all settings</span></a>
-<a class="sourceLine" id="cb106-2" data-line-number="2">gc<span class="op">$</span><span class="kw">get_settings</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1"><span class="co"># get all settings</span></a>
+<a class="sourceLine" id="cb110-2" data-line-number="2">gc<span class="op">$</span><span class="kw">get_settings</span>()</a></code></pre></div>
 <pre><code>## &lt;Response&gt;
 ##   Public:
 ##     clone: function (deep = FALSE) 
 ##     content: list
 ##     initialize: function (content, response) 
 ##     response: response</code></pre>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1"><span class="co"># get specific setting</span></a>
-<a class="sourceLine" id="cb108-2" data-line-number="2">gc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"index.max_result_window"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1"><span class="co"># get specific setting</span></a>
+<a class="sourceLine" id="cb112-2" data-line-number="2">gc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"index.max_result_window"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 50000</code></pre>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1"><span class="co"># check if operator is allowed</span></a>
-<a class="sourceLine" id="cb110-2" data-line-number="2">gc<span class="op">$</span><span class="kw">is_operator_allowed</span>(<span class="st">"locality"</span>, <span class="st">"STARTS_WITH"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1"><span class="co"># check if operator is allowed</span></a>
+<a class="sourceLine" id="cb114-2" data-line-number="2">gc<span class="op">$</span><span class="kw">is_operator_allowed</span>(<span class="st">"locality"</span>, <span class="st">"STARTS_WITH"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 </div>
@@ -2100,13 +1922,13 @@ Downloading: 57 kB     Query result written to  /tmp/Rtmp6NWdAt/file17981e770f1f
 <h2 class="hasAnchor">
 <a href="#multimedia-services" class="anchor"></a>Multimedia services</h2>
 <p>Multimedia services are accessible with a <code>MultimediaClient</code>, instantiated as follows:</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1">mc &lt;-<span class="st"> </span>MultimediaClient<span class="op">$</span><span class="kw">new</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1">mc &lt;-<span class="st"> </span>MultimediaClient<span class="op">$</span><span class="kw">new</span>()</a></code></pre></div>
 <div id="query-services-3" class="section level3">
 <h3 class="hasAnchor">
 <a href="#query-services-3" class="anchor"></a>Query Services</h3>
 <p>As for the other data types, the <code>query</code> method enables simple and complex queries using a list or a <code>QuerySpec</code> object to specify query parameters.</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1"><span class="co"># example of multimedia query passing parameters as a list</span></a>
-<a class="sourceLine" id="cb113-2" data-line-number="2">mc<span class="op">$</span><span class="kw">query</span>(<span class="dt">queryParams=</span><span class="kw">list</span>(<span class="dt">collectionType=</span><span class="st">'Cnidaria'</span>))<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1"><span class="co"># example of multimedia query passing parameters as a list</span></a>
+<a class="sourceLine" id="cb117-2" data-line-number="2">mc<span class="op">$</span><span class="kw">query</span>(<span class="dt">queryParams=</span><span class="kw">list</span>(<span class="dt">collectionType=</span><span class="st">'Cnidaria'</span>))<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## &lt;QueryResult&gt;
 ##   Public:
 ##     clone: function (deep = FALSE) 
@@ -2114,117 +1936,117 @@ Downloading: 57 kB     Query result written to  /tmp/Rtmp6NWdAt/file17981e770f1f
 ##     fromList: function (QueryResultList, typeMapping = NULL) 
 ##     initialize: function (totalSize, resultSet) 
 ##     resultSet: list
-##     toJSONString: function (pretty = T) 
+##     toJSONString: function (pretty = TRUE) 
 ##     toList: function () 
 ##     totalSize: 42257</code></pre>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1"><span class="co"># example of multimedia query using QuerySpec: get the first 100</span></a>
-<a class="sourceLine" id="cb115-2" data-line-number="2"><span class="co"># multimedia items associated with a specimen with name starting with "Ba"</span></a>
-<a class="sourceLine" id="cb115-3" data-line-number="3">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"identifications.scientificName.fullScientificName"</span>, <span class="dt">operator=</span><span class="st">"STARTS_WITH"</span>, <span class="dt">value=</span><span class="st">"Qu"</span>)</a>
-<a class="sourceLine" id="cb115-4" data-line-number="4">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc), <span class="dt">size=</span><span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb115-5" data-line-number="5">res &lt;-<span class="st"> </span>mc<span class="op">$</span><span class="kw">query</span>(qs)</a>
-<a class="sourceLine" id="cb115-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb115-7" data-line-number="7"><span class="co"># check if scientific names indeed start with 'Qu'</span></a>
-<a class="sourceLine" id="cb115-8" data-line-number="8"><span class="kw">sapply</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet, <span class="cf">function</span>(x)x<span class="op">$</span>item<span class="op">$</span>identifications[[<span class="dv">1</span>]]<span class="op">$</span>scientificName<span class="op">$</span>fullScientificName)</a></code></pre></div>
-<pre><code>##   [1] "Quadraceps conformis (Blagoveshtchensky, 1940)"               
-##   [2] "Quadraceps p. punctatus (Burmeister 1838)"                    
-##   [3] "Quarzum-agathes Calcedonius, divers: coloris &amp; @elbuiditatis."
-##   [4] "Quincycolculina distorqucata"                                 
-##   [5] "Quadrimaera pieteri n.sp."                                    
-##   [6] "Quadrimaera pieteri n.sp."                                    
-##   [7] "Quadrimaera pieteri n.sp."                                    
-##   [8] "Quadrivisio"                                                  
-##   [9] "Quadrivisio"                                                  
-##  [10] "Quadrivisio"                                                  
-##  [11] "Quadrivisio"                                                  
-##  [12] "Quadrivisio"                                                  
-##  [13] "Quadrivisio"                                                  
-##  [14] "Quadrivisio"                                                  
-##  [15] "Quadrivisio"                                                  
-##  [16] "Quadrivisio"                                                  
-##  [17] "Quadrivisio"                                                  
-##  [18] "Quadrivisio"                                                  
-##  [19] "Quadrivisio"                                                  
-##  [20] "Quinqueloculina sclerotica Karrer"                            
-##  [21] "Quinqueloculina lamarckiana (dÓrbigny)"                       
-##  [22] "Quelea cardinalis rhodesiae Grant &amp; Mackworth-Praed, 1944"    
-##  [23] "Quiscalus lugubris lugubris Swainson, 1838"                   
-##  [24] "Quiscalus quiscula versicolor Vieillot, 1819"                 
-##  [25] "Quiscalus quiscula versicolor Vieillot, 1819"                 
-##  [26] "Quelea quelea aethiopica (Sundevall, 1850)"                   
-##  [27] "Quelea quelea aethiopica (Sundevall, 1850)"                   
-##  [28] "Quisqualis indica L."                                         
-##  [29] "Quadraspidiotus ostreaeformis Curt."                          
-##  [30] "Quadraspidiotus ostreaeformis Curt."                          
-##  [31] "Quadraspidiotus pyri Licht."                                  
-##  [32] "Quelea cardinalis rhodesiae Grant &amp; Mackworth-Praed, 1944"    
-##  [33] "Quintinia"                                                    
-##  [34] "Quintinia quatrefagesii F.Muell."                             
-##  [35] "Quintinia quatrefagesii F.Muell."                             
-##  [36] "Quintinia quatrefagesii F.Muell."                             
-##  [37] "Quintinia montiswilhelmii P.Royen"                            
-##  [38] "Quintinia major (Baill.) Schltr."                             
-##  [39] "Quintinia lanceolata Reeder"                                  
-##  [40] "Quintinia macrophylla Hatschb."                               
-##  [41] "Quintinia altigena Schltr."                                   
-##  [42] "Quintinia apoensis (Elmer) Schltr."                           
-##  [43] "Quintinia acutifolia Kirk"                                    
-##  [44] "Quintinia altigena Schltr."                                   
-##  [45] "Quintinia"                                                    
-##  [46] "Quintinia"                                                    
-##  [47] "Quintinia"                                                    
-##  [48] "Quintinia"                                                    
-##  [49] "Quintinia"                                                    
-##  [50] "Quintinia"                                                    
-##  [51] "Quintinia"                                                    
-##  [52] "Quintinia"                                                    
-##  [53] "Quintinia"                                                    
-##  [54] "Quintinia"                                                    
-##  [55] "Quintinia schlechteriana O.C.Schmidt"                         
-##  [56] "Quintinia serrata A.Cunn."                                    
-##  [57] "Quintinia sieberi A.DC."                                      
-##  [58] "Quintinia verdonii F.Muell."                                  
-##  [59] "Quercus garryana Douglas ex Hook."                            
-##  [60] "Quercus garryana Douglas ex Hook."                            
-##  [61] "Quercus garryana Douglas ex Hook."                            
-##  [62] "Quercus garryana Douglas ex Hook."                            
-##  [63] "Quercus gaharuensis Soepadmo"                                 
-##  [64] "Quercus fleuryi Hickel &amp; A.Camus"                             
-##  [65] "Quercus fabrei Hance"                                         
-##  [66] "Quercus fernowii Trel."                                       
-##  [67] "Quercus elmeri Merr."                                         
-##  [68] "Quercus dumosa Nutt. var. revoluta Sarg."                     
-##  [69] "Quercus americana Valck.Sur. var. sessiliflora"               
-##  [70] "Quercus aliena Blume"                                         
-##  [71] "Quercus aliena Blume cv. Ssp."                                
-##  [72] "Quercus pseudomolucca Blume"                                  
-##  [73] "Quisqualis indica L."                                         
-##  [74] "Quisqualis indica L. var. indica"                             
-##  [75] "Quisqualis indica L."                                         
-##  [76] "Qualea amoena Ducke"                                          
-##  [77] "Qualea cryptantha (Spreng.) Warm. var. cryptantha"            
-##  [78] "Quercus  L."                                                  
-##  [79] "Quercus  L."                                                  
-##  [80] "Quercus  L."                                                  
-##  [81] "Quisqualis indica L."                                         
-##  [82] "Quisqualis indica L."                                         
-##  [83] "Quercus missouriensis Ashe"                                   
-##  [84] "Quercus ×cerrioides Willk. &amp; Costa"                           
-##  [85] "Quercus austriaca Willd."                                     
-##  [86] "Quercus pedunculata Ehrh."                                    
-##  [87] "Quercus macranthera Fisch. &amp; C.A.Mey."                        
-##  [88] "Quercus daphnoidea Blume"                                     
-##  [89] "Quercus dolichocarpa Seem."                                   
-##  [90] "Quercus induta Blume"                                         
-##  [91] "Quercus lanceifolia Roxb."                                    
-##  [92] "Quercus ballota Desf."                                        
-##  [93] "Quercus sundaica Blume"                                       
-##  [94] "Quercus platycarpa Blume"                                     
-##  [95] "Quercus pseudomolucca Blume"                                  
-##  [96] "Quercus reinwardtii Korth."                                   
-##  [97] "Quercus tomentosa Willd."                                     
-##  [98] "Quercus  L."                                                  
-##  [99] "Quercus  L."                                                  
-## [100] "Quercus peduncularis Née var. sublanosa (Trel.) Muller"</code></pre>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="co"># example of multimedia query using QuerySpec: get the first 100</span></a>
+<a class="sourceLine" id="cb119-2" data-line-number="2"><span class="co"># multimedia items associated with a specimen with name starting with "Ba"</span></a>
+<a class="sourceLine" id="cb119-3" data-line-number="3">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"identifications.scientificName.fullScientificName"</span>, <span class="dt">operator=</span><span class="st">"STARTS_WITH"</span>, <span class="dt">value=</span><span class="st">"Qu"</span>)</a>
+<a class="sourceLine" id="cb119-4" data-line-number="4">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc), <span class="dt">size=</span><span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb119-5" data-line-number="5">res &lt;-<span class="st"> </span>mc<span class="op">$</span><span class="kw">query</span>(qs)</a>
+<a class="sourceLine" id="cb119-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb119-7" data-line-number="7"><span class="co"># check if scientific names indeed start with 'Qu'</span></a>
+<a class="sourceLine" id="cb119-8" data-line-number="8"><span class="kw">sapply</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet, <span class="cf">function</span>(x)x<span class="op">$</span>item<span class="op">$</span>identifications[[<span class="dv">1</span>]]<span class="op">$</span>scientificName<span class="op">$</span>fullScientificName)</a></code></pre></div>
+<pre><code>##   [1] "Quercus tinctoria Bartram"                                
+##   [2] "Quintinia sieberi A.DC."                                  
+##   [3] "Quintinia altigena Schltr."                               
+##   [4] "Quintinia altigena Schltr."                               
+##   [5] "Quintinia"                                                
+##   [6] "Quintinia quatrefagesii F.Muell."                         
+##   [7] "Quintinia quatrefagesii F.Muell."                         
+##   [8] "Quintinia quatrefagesii F.Muell."                         
+##   [9] "Quintinia montiswilhelmii P.Royen"                        
+##  [10] "Quintinia major (Baill.) Schltr."                         
+##  [11] "Quintinia lanceolata Reeder"                              
+##  [12] "Quintinia macrophylla Hatschb."                           
+##  [13] "Quintinia altigena Schltr."                               
+##  [14] "Quintinia apoensis (Elmer) Schltr."                       
+##  [15] "Quintinia acutifolia Kirk"                                
+##  [16] "Quintinia altigena Schltr."                               
+##  [17] "Quintinia"                                                
+##  [18] "Quintinia"                                                
+##  [19] "Quintinia"                                                
+##  [20] "Quintinia"                                                
+##  [21] "Quintinia"                                                
+##  [22] "Quintinia"                                                
+##  [23] "Quintinia"                                                
+##  [24] "Quintinia"                                                
+##  [25] "Quintinia"                                                
+##  [26] "Quintinia"                                                
+##  [27] "Quintinia schlechteriana O.C.Schmidt"                     
+##  [28] "Quintinia serrata A.Cunn."                                
+##  [29] "Quintinia sieberi A.DC."                                  
+##  [30] "Quintinia verdonii F.Muell."                              
+##  [31] "Quercus petraea (Matt.) Liebl. 'Laciniata'"               
+##  [32] "Quercus lineata Blume var. hildebrandii Hook.f."          
+##  [33] "Quercus kerrii Craib var. kerrii"                         
+##  [34] "Quercus  L."                                              
+##  [35] "Quercus myrsinaefolia Blume"                              
+##  [36] "Quercus  L."                                              
+##  [37] "Quercus  L."                                              
+##  [38] "Quercus turneri A.DC."                                    
+##  [39] "Quercus thalassica Hance"                                 
+##  [40] "Quercus thalassica Hance"                                 
+##  [41] "Quercus  L."                                              
+##  [42] "Quercus  L."                                              
+##  [43] "Quercus  L."                                              
+##  [44] "Quercus  L."                                              
+##  [45] "Quercus  L."                                              
+##  [46] "Quercus  L."                                              
+##  [47] "Quercus  L."                                              
+##  [48] "Quercus pinnatiloba K.Koch"                               
+##  [49] "Quercus viridis Hansen"                                   
+##  [50] "Quercus ×warburgii A.Camus"                               
+##  [51] "Quercus  L."                                              
+##  [52] "Quercus  L."                                              
+##  [53] "Quercus  L."                                              
+##  [54] "Quercus  L."                                              
+##  [55] "Quercus  L."                                              
+##  [56] "Quercus  L."                                              
+##  [57] "Quercus  L."                                              
+##  [58] "Quercus  L."                                              
+##  [59] "Quisqualis indica L."                                     
+##  [60] "Quisqualis indica L. var. indica"                         
+##  [61] "Quisqualis indica L."                                     
+##  [62] "Quercus kewensis Osbeck"                                  
+##  [63] "Quercus infectoria Olivier subsp. boissieri (Reut.) Gürke"
+##  [64] "Quercus confusa Wooton &amp; Standl."                         
+##  [65] "Quercus coccifera L. subsp. calliprinos"                  
+##  [66] "Quercus coccifera L. subsp. calliprinos"                  
+##  [67] "Quercus chrysolepis Liebm. var. minor"                    
+##  [68] "Quercus cinerea Michx."                                   
+##  [69] "Quercus cerris L. var. cilicica"                          
+##  [70] "Quercus cambodiensis Hickel &amp; A.Camus"                    
+##  [71] "Quercus ×bushii Sarg."                                    
+##  [72] "Quercus  L."                                              
+##  [73] "Quercus  L."                                              
+##  [74] "Quiabentia pflanzii (Vaupel) Vaupel ex Berger"            
+##  [75] "Quercus pedunculata Ehrh."                                
+##  [76] "Quercus  L."                                              
+##  [77] "Quercus  L."                                              
+##  [78] "Quercus  L."                                              
+##  [79] "Quercus  L."                                              
+##  [80] "Quercus  L."                                              
+##  [81] "Quercus  L."                                              
+##  [82] "Quercus  L."                                              
+##  [83] "Quercus  L."                                              
+##  [84] "Quercus  L."                                              
+##  [85] "Quercus  L."                                              
+##  [86] "Quercus  L."                                              
+##  [87] "Quercus  L."                                              
+##  [88] "Quercus  L."                                              
+##  [89] "Quercus  L."                                              
+##  [90] "Quercus  L."                                              
+##  [91] "Quercus  L."                                              
+##  [92] "Quercus  L."                                              
+##  [93] "Quercus  L."                                              
+##  [94] "Quercus  L."                                              
+##  [95] "Quercus korthalsii Blume"                                 
+##  [96] "Quercus pseudomolucca Blume"                              
+##  [97] "Quercus silva Blume"                                      
+##  [98] "Quercus  L."                                              
+##  [99] "Quercus turbinata Blume"                                  
+## [100] "Quercus turbinata Blume"</code></pre>
 </div>
 <div id="data-access-services-3" class="section level3">
 <h3 class="hasAnchor">
@@ -2233,9 +2055,9 @@ Downloading: 57 kB     Query result written to  /tmp/Rtmp6NWdAt/file17981e770f1f
 <h4 class="hasAnchor">
 <a href="#count-3" class="anchor"></a>count</h4>
 <p>As for the other data types, a <code>count</code> function returns counts instead of the actual objects:</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1"><span class="co"># count all multimedia documents</span></a>
-<a class="sourceLine" id="cb117-2" data-line-number="2">mc<span class="op">$</span><span class="kw">count</span>()<span class="op">$</span>content</a></code></pre></div>
-<pre><code>## [1] 5360994</code></pre>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1"><span class="co"># count all multimedia documents</span></a>
+<a class="sourceLine" id="cb121-2" data-line-number="2">mc<span class="op">$</span><span class="kw">count</span>()<span class="op">$</span>content</a></code></pre></div>
+<pre><code>## [1] 5330434</code></pre>
 </div>
 </div>
 <div id="aggregation-services-3" class="section level3">
@@ -2244,34 +2066,28 @@ Downloading: 57 kB     Query result written to  /tmp/Rtmp6NWdAt/file17981e770f1f
 <div id="get_distinct_values-3" class="section level4">
 <h4 class="hasAnchor">
 <a href="#get_distinct_values-3" class="anchor"></a>get_distinct_values</h4>
-<p>This function returns all values present for a certain field, and their counts. Example: retreive all different liceses and their counts"</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_distinct_values</span>(<span class="st">"license"</span>)<span class="op">$</span>content</a></code></pre></div>
+<p>This function returns all values present for a certain field, and their counts. Example: retrieve all different licenses and their counts"</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_distinct_values</span>(<span class="st">"license"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## $CC0
-## [1] 5299937
-## 
-## $`All rights reserved`
-## [1] 33811
+## [1] 5302349
 ## 
 ## $`CC BY-NC-ND`
-## [1] 13855
+## [1] 14298
 ## 
 ## $`CC BY`
-## [1] 8542
+## [1] 8829
 ## 
 ## $`CC BY-NC`
-## [1] 3049
+## [1] 3103
 ## 
 ## $`CC BY-NC-SA`
-## [1] 1236
+## [1] 1292
 ## 
 ## $`CC BY-SA`
 ## [1] 384
 ## 
 ## $`CC BY-ND`
-## [1] 2
-## 
-## $`CC BY-SA 3.0`
-## [1] 1</code></pre>
+## [1] 2</code></pre>
 </div>
 </div>
 <div id="metadata-services-3" class="section level3">
@@ -2281,17 +2097,17 @@ Downloading: 57 kB     Query result written to  /tmp/Rtmp6NWdAt/file17981e770f1f
 <h4 class="hasAnchor">
 <a href="#available-paths-and-fields-2" class="anchor"></a>Available paths and fields</h4>
 <p>All fields can be retrieved with <code>get_paths</code> and specific information on the fields, such as allowed operators etc. with <code>get_field_info</code></p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_paths</span>()<span class="op">$</span>content</a>
-<a class="sourceLine" id="cb121-2" data-line-number="2">mc<span class="op">$</span><span class="kw">get_field_info</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_paths</span>()<span class="op">$</span>content</a>
+<a class="sourceLine" id="cb125-2" data-line-number="2">mc<span class="op">$</span><span class="kw">get_field_info</span>()<span class="op">$</span>content</a></code></pre></div>
 </div>
 <div id="settings-2" class="section level4">
 <h4 class="hasAnchor">
 <a href="#settings-2" class="anchor"></a>Settings</h4>
 <p>Multimedia-specific settings can be retrieved with <code>get_settings</code> and a specific setting with <code>get_setting</code>:</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_settings</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_settings</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## $index.max_result_window
 ## [1] 50000</code></pre>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"index.max_result_window"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"index.max_result_window"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 50000</code></pre>
 </div>
@@ -2299,7 +2115,7 @@ Downloading: 57 kB     Query result written to  /tmp/Rtmp6NWdAt/file17981e770f1f
 <h4 class="hasAnchor">
 <a href="#operators-2" class="anchor"></a>Operators</h4>
 <p>To test if a certain operator can be used for a mutimedia query:</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1">mc<span class="op">$</span><span class="kw">is_operator_allowed</span>(<span class="st">"identifications.scientificName.fullScientificName"</span>, <span class="st">"STARTS_WITH"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1">mc<span class="op">$</span><span class="kw">is_operator_allowed</span>(<span class="st">"identifications.scientificName.fullScientificName"</span>, <span class="st">"STARTS_WITH"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 </div>
@@ -2308,28 +2124,30 @@ Downloading: 57 kB     Query result written to  /tmp/Rtmp6NWdAt/file17981e770f1f
 <h2 class="hasAnchor">
 <a href="#metadata-services-4" class="anchor"></a>Metadata services</h2>
 <p>Metadata services provide miscellaneous information about the data available via the NBA. Note that there is also type-specific metadata for each data type (e.g. <code>Specimen</code>) which can be retrieved with the specific client of that class. Here we show the available methods for the <code>MetadataClient</code> which gives general, non-type specific metadata. The client is instantiated in the standard way:</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1">mc &lt;-<span class="st"> </span>MetadataClient<span class="op">$</span><span class="kw">new</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1">mc &lt;-<span class="st"> </span>MetadataClient<span class="op">$</span><span class="kw">new</span>()</a></code></pre></div>
 <div id="controlled-vocabularies" class="section level4">
 <h4 class="hasAnchor">
 <a href="#controlled-vocabularies" class="anchor"></a>Controlled vocabularies</h4>
-<p>The vocabularies for some fields are controlled by dictionaries with allowed values. For the sex of a museum specimen, for instance, only the terms <em>male</em>, <em>female</em>, <em>mixed</em> and <em>hermaphrodite</em> are allowed to be assigned to the specimen. The fields for which controlled lists are available can be retreived as follows:</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_controlled_lists</span>()<span class="op">$</span>content</a></code></pre></div>
-<pre><code>## [1] "PhaseOrStage"       "Sex"                "SpecimenTypeStatus"
-## [4] "TaxonomicStatus"</code></pre>
-<p>and for each field that has a controlled vocabulary, there is a separate function to retreive the allowed values:</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_controlled_list_taxonomic_status</span>()<span class="op">$</span>content</a></code></pre></div>
+<p>The vocabularies for some fields are controlled by dictionaries with allowed values. For the sex of a museum specimen, for instance, only the terms <em>male</em>, <em>female</em>, <em>mixed</em> and <em>hermaphrodite</em> are allowed to be assigned to the specimen. The fields for which controlled lists are available can be retrieved as follows:</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_controlled_lists</span>()<span class="op">$</span>content</a></code></pre></div>
+<pre><code>## [1] "AreaClass"          "License"            "LicenseType"       
+## [4] "PhaseOrStage"       "RelationType"       "Sex"               
+## [7] "SpatialDatum"       "SpecimenTypeStatus" "TaxonomicStatus"</code></pre>
+<p>and for each field that has a controlled vocabulary, there is a separate function to retrieve the allowed values:</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_controlled_list_taxonomic_status</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [1] "accepted name"               "synonym"                    
 ## [3] "basionym"                    "homonym"                    
 ## [5] "ambiguous synonym"           "misapplied name"            
 ## [7] "misspelled name"             "provisionally accepted name"</code></pre>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_controlled_list_specimen_type_status</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_controlled_list_specimen_type_status</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>##  [1] "allotype"      "epitype"       "hapantotype"   "holotype"     
 ##  [5] "isoepitype"    "isolectotype"  "isoneotype"    "isosyntype"   
 ##  [9] "isotype"       "lectotype"     "neotype"       "paratype"     
 ## [13] "paralectotype" "syntype"       "topotype"      "type"</code></pre>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_controlled_list_sex</span>()<span class="op">$</span>content</a></code></pre></div>
-<pre><code>## [1] "male"          "female"        "mixed"         "hermaphrodite"</code></pre>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_controlled_list_phase_or_stage</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_controlled_list_sex</span>()<span class="op">$</span>content</a></code></pre></div>
+<pre><code>## [1] "male"          "female"        "mixed"         "hermaphrodite"
+## [5] "unknowable"    "undetermined"</code></pre>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_controlled_list_phase_or_stage</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [1] "adult"    "subadult" "egg"      "embryo"   "immature" "juvenile"
 ## [7] "larva"    "pupa"     "nymph"</code></pre>
 </div>
@@ -2340,7 +2158,7 @@ Downloading: 57 kB     Query result written to  /tmp/Rtmp6NWdAt/file17981e770f1f
 <h5 class="hasAnchor">
 <a href="#dates" class="anchor"></a>Dates</h5>
 <p>To maintain data integrity, dates have to be coded in specific formats in our systems. For instance, <em>yyyy-MM-dd</em> is a valid format. Allowed formats can be retrieved as follows:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_allowed_date_formats</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_allowed_date_formats</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [1] "yyyy-MM-dd'T'HH:mm:ssZ"         "yyyy-MM-dd'T'HH:mm[:ss][.SSS]Z"
 ## [3] "yyyy-MM-dd'T'HH:mm[:ss]"        "yyyy-MM-dd HH:mm[:ss]"         
 ## [5] "yyyy-MM-dd"                     "yyyy-MM"                       
@@ -2349,9 +2167,9 @@ Downloading: 57 kB     Query result written to  /tmp/Rtmp6NWdAt/file17981e770f1f
 <div id="services-list" class="section level5">
 <h5 class="hasAnchor">
 <a href="#services-list" class="anchor"></a>Services list</h5>
-<p>The method <code>get_rest_services</code> returns a list of all services in the NBA as objets of type <code>RestService</code>.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1"><span class="co"># get the endPoint of the first rest service in the services list</span></a>
-<a class="sourceLine" id="cb141-2" data-line-number="2">mc<span class="op">$</span><span class="kw">get_rest_services</span>()<span class="op">$</span>content[[<span class="dv">1</span>]]</a></code></pre></div>
+<p>The method <code>get_rest_services</code> returns a list of all services in the NBA as objects of type <code>RestService</code>.</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1"><span class="co"># get the endPoint of the first rest service in the services list</span></a>
+<a class="sourceLine" id="cb145-2" data-line-number="2">mc<span class="op">$</span><span class="kw">get_rest_services</span>()<span class="op">$</span>content[[<span class="dv">1</span>]]</a></code></pre></div>
 <pre><code>## &lt;RestService&gt;
 ##   Public:
 ##     clone: function (deep = FALSE) 
@@ -2362,28 +2180,165 @@ Downloading: 57 kB     Query result written to  /tmp/Rtmp6NWdAt/file17981e770f1f
 ##     initialize: function (endPoint, method, consumes, produces, url) 
 ##     method: POST
 ##     produces: application/json;charset=UTF-8
-##     toJSONString: function (pretty = T) 
+##     toJSONString: function (pretty = TRUE) 
 ##     toList: function () 
-##     url: http://api.biodiversitydata.nl/v2/taxon/query</code></pre>
+##     url: http://145.136.242.167:8080/v2/taxon/query</code></pre>
 </div>
 <div id="settings-3" class="section level5">
 <h5 class="hasAnchor">
 <a href="#settings-3" class="anchor"></a>Settings</h5>
 <p>Similar to the document-specific metadata services, we can get general settings with the <code>MetaDataClient</code>:</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1"><span class="co">#get all settings</span></a>
-<a class="sourceLine" id="cb143-2" data-line-number="2">mc<span class="op">$</span><span class="kw">get_settings</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1"><span class="co">#get all settings</span></a>
+<a class="sourceLine" id="cb147-2" data-line-number="2">mc<span class="op">$</span><span class="kw">get_settings</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## $operator.contains.min_term_length
 ## [1] 3
 ## 
 ## $operator.contains.max_term_length
 ## [1] 15</code></pre>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1"><span class="co"># get value for specific setting</span></a>
-<a class="sourceLine" id="cb145-2" data-line-number="2">mc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"operator.contains.min_term_length"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1"><span class="co"># get value for specific setting</span></a>
+<a class="sourceLine" id="cb149-2" data-line-number="2">mc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"operator.contains.min_term_length"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 3</code></pre>
 </div>
 </div>
 </div>
+</div>
+<div id="use-cases" class="section level1">
+<h1 class="hasAnchor">
+<a href="#use-cases" class="anchor"></a>Use cases</h1>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1">## all records with a chronoIdentifier</a>
+<a class="sourceLine" id="cb151-2" data-line-number="2">sc &lt;-<span class="st"> </span>SpecimenClient<span class="op">$</span><span class="kw">new</span>()</a>
+<a class="sourceLine" id="cb151-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb151-4" data-line-number="4">## get entries of family "Carcharhinidae" that have youngChronoName or oldChronoName</a>
+<a class="sourceLine" id="cb151-5" data-line-number="5">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"gatheringEvent.chronoStratigraphy.youngChronoName"</span>, <span class="dt">operator=</span><span class="st">"NOT_EQUALS"</span>, <span class="dt">value=</span><span class="st">""</span>)</a>
+<a class="sourceLine" id="cb151-6" data-line-number="6">qc2 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"gatheringEvent.chronoStratigraphy.oldChronoName"</span>, <span class="dt">operator=</span><span class="st">"NOT_EQUALS"</span>, <span class="dt">value=</span><span class="st">""</span>)</a>
+<a class="sourceLine" id="cb151-7" data-line-number="7">qc<span class="op">$</span>or &lt;-<span class="st"> </span><span class="kw">list</span>(qc2)</a>
+<a class="sourceLine" id="cb151-8" data-line-number="8">shark_orders &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"Carcharhiniformes"</span>,</a>
+<a class="sourceLine" id="cb151-9" data-line-number="9">                  <span class="st">"Heterodontiformes"</span>,</a>
+<a class="sourceLine" id="cb151-10" data-line-number="10">                  <span class="st">"Hexanchiformes"</span>,</a>
+<a class="sourceLine" id="cb151-11" data-line-number="11">                  <span class="st">"Lamniformes"</span>,</a>
+<a class="sourceLine" id="cb151-12" data-line-number="12">                  <span class="st">"Orectolobiformes"</span>,</a>
+<a class="sourceLine" id="cb151-13" data-line-number="13">                  <span class="st">"Pristiophoriformes"</span>,</a>
+<a class="sourceLine" id="cb151-14" data-line-number="14">                  <span class="st">"Squaliformes"</span>,</a>
+<a class="sourceLine" id="cb151-15" data-line-number="15">                  <span class="st">"Squatiniformes"</span>)</a>
+<a class="sourceLine" id="cb151-16" data-line-number="16">qc3 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"identifications.defaultClassification.order"</span>, <span class="dt">operator=</span><span class="st">"IN"</span>, <span class="dt">value=</span>shark_orders) </a>
+<a class="sourceLine" id="cb151-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb151-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb151-19" data-line-number="19">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc, qc3), <span class="dt">size=</span><span class="dv">5000</span>)</a>
+<a class="sourceLine" id="cb151-20" data-line-number="20">res &lt;-<span class="st"> </span>sc<span class="op">$</span><span class="kw">query</span>(<span class="dt">querySpec =</span> qs)</a>
+<a class="sourceLine" id="cb151-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb151-22" data-line-number="22">## get geological periods: youngChronoName and oldChrononame</a>
+<a class="sourceLine" id="cb151-23" data-line-number="23">genera &lt;-<span class="st"> </span><span class="kw">sapply</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet, <span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb151-24" data-line-number="24">    res &lt;-<span class="st"> </span>x<span class="op">$</span>item<span class="op">$</span>identifications[[<span class="dv">1</span>]]<span class="op">$</span>defaultClassification<span class="op">$</span>genus</a>
+<a class="sourceLine" id="cb151-25" data-line-number="25">    <span class="kw">ifelse</span>(<span class="kw">is.null</span>(res), <span class="ot">NA</span>, res)</a>
+<a class="sourceLine" id="cb151-26" data-line-number="26">})</a>
+<a class="sourceLine" id="cb151-27" data-line-number="27"></a>
+<a class="sourceLine" id="cb151-28" data-line-number="28">species &lt;-<span class="st"> </span><span class="kw">sapply</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet, <span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb151-29" data-line-number="29">    res &lt;-<span class="st"> </span>x<span class="op">$</span>item<span class="op">$</span>identifications[[<span class="dv">1</span>]]<span class="op">$</span>defaultClassification<span class="op">$</span>specificEpithet</a>
+<a class="sourceLine" id="cb151-30" data-line-number="30">    <span class="kw">ifelse</span>(<span class="kw">is.null</span>(res), <span class="ot">NA</span>, res)</a>
+<a class="sourceLine" id="cb151-31" data-line-number="31">})</a>
+<a class="sourceLine" id="cb151-32" data-line-number="32"></a>
+<a class="sourceLine" id="cb151-33" data-line-number="33">young_periods &lt;-<span class="st"> </span><span class="kw">sapply</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet, <span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb151-34" data-line-number="34">    res &lt;-<span class="st"> </span>x<span class="op">$</span>item<span class="op">$</span>gatheringEvent<span class="op">$</span>chronoStratigraphy[[<span class="dv">1</span>]]<span class="op">$</span>youngChronoName</a>
+<a class="sourceLine" id="cb151-35" data-line-number="35">    <span class="kw">ifelse</span>(<span class="kw">is.null</span>(res), <span class="ot">NA</span>, res)</a>
+<a class="sourceLine" id="cb151-36" data-line-number="36">})</a>
+<a class="sourceLine" id="cb151-37" data-line-number="37"></a>
+<a class="sourceLine" id="cb151-38" data-line-number="38">old_periods &lt;-<span class="st"> </span><span class="kw">sapply</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet, <span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb151-39" data-line-number="39">    res &lt;-<span class="st"> </span>x<span class="op">$</span>item<span class="op">$</span>gatheringEvent<span class="op">$</span>chronoStratigraphy[[<span class="dv">1</span>]]<span class="op">$</span>oldChronoName</a>
+<a class="sourceLine" id="cb151-40" data-line-number="40">    <span class="kw">ifelse</span>(<span class="kw">is.null</span>(res), <span class="ot">NA</span>, res)</a>
+<a class="sourceLine" id="cb151-41" data-line-number="41">})</a>
+<a class="sourceLine" id="cb151-42" data-line-number="42"></a>
+<a class="sourceLine" id="cb151-43" data-line-number="43">## translate the geological periods to mya</a>
+<a class="sourceLine" id="cb151-44" data-line-number="44">times &lt;-<span class="st"> </span><span class="kw">geo_age</span>(<span class="kw">unique</span>(<span class="kw">c</span>(young_periods, old_periods)))</a>
+<a class="sourceLine" id="cb151-45" data-line-number="45"></a>
+<a class="sourceLine" id="cb151-46" data-line-number="46">## put all relevant data together</a>
+<a class="sourceLine" id="cb151-47" data-line-number="47">data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">genus=</span>genera, <span class="dt">species=</span>species, <span class="dt">young_p=</span>young_periods, <span class="dt">old_p=</span>old_periods)</a>
+<a class="sourceLine" id="cb151-48" data-line-number="48">data<span class="op">$</span>young_age &lt;-<span class="st"> </span><span class="kw">sapply</span>(data<span class="op">$</span>young_p, <span class="cf">function</span>(x)<span class="kw">ifelse</span>(<span class="kw">is.na</span>(x), <span class="ot">NA</span>, <span class="kw">unlist</span>(times[<span class="st">'late_age'</span>, <span class="kw">as.character</span>(x)])))</a>
+<a class="sourceLine" id="cb151-49" data-line-number="49">data<span class="op">$</span>old_age &lt;-<span class="st"> </span><span class="kw">sapply</span>(data<span class="op">$</span>old_p, <span class="cf">function</span>(x)<span class="kw">ifelse</span>(<span class="kw">is.na</span>(x), <span class="ot">NA</span>, <span class="kw">unlist</span>(times[<span class="st">'early_age'</span>, <span class="kw">as.character</span>(x)])))</a>
+<a class="sourceLine" id="cb151-50" data-line-number="50">## filter for the ones that have data</a>
+<a class="sourceLine" id="cb151-51" data-line-number="51">data &lt;-<span class="st"> </span>data[<span class="op">!</span><span class="st"> </span>(<span class="kw">is.na</span>(data<span class="op">$</span>young_age) <span class="op">&amp;</span><span class="st"> </span><span class="kw">is.na</span>(data<span class="op">$</span>old_age)), ]</a>
+<a class="sourceLine" id="cb151-52" data-line-number="52"></a>
+<a class="sourceLine" id="cb151-53" data-line-number="53">## filter out duplicates</a>
+<a class="sourceLine" id="cb151-54" data-line-number="54">data &lt;-<span class="st"> </span><span class="kw">unique</span>(data)</a>
+<a class="sourceLine" id="cb151-55" data-line-number="55"></a>
+<a class="sourceLine" id="cb151-56" data-line-number="56">## set ages if one value is NA</a>
+<a class="sourceLine" id="cb151-57" data-line-number="57">##data$young_age[is.na(data$young_age)] &lt;- data$old_age[is.na(data$young_age)]</a>
+<a class="sourceLine" id="cb151-58" data-line-number="58">##data$old_age[is.na(data$old_age)] &lt;- data$young_age[is.na(data$old_age)]</a>
+<a class="sourceLine" id="cb151-59" data-line-number="59"></a>
+<a class="sourceLine" id="cb151-60" data-line-number="60"><span class="kw">require</span>(ape)</a>
+<a class="sourceLine" id="cb151-61" data-line-number="61">tree &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/read.nexus">read.nexus</a></span>(<span class="st">'other/sharks.nex'</span>)</a>
+<a class="sourceLine" id="cb151-62" data-line-number="62"></a>
+<a class="sourceLine" id="cb151-63" data-line-number="63">tree_genera &lt;-<span class="st"> </span><span class="kw">unique</span>(<span class="kw">sapply</span>(<span class="kw">strsplit</span>(tree<span class="op">$</span>tip.label, <span class="st">"_"</span>), <span class="st">`</span><span class="dt">[</span><span class="st">`</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb151-64" data-line-number="64"></a>
+<a class="sourceLine" id="cb151-65" data-line-number="65">## filter out genera that are not in our tree</a>
+<a class="sourceLine" id="cb151-66" data-line-number="66">data_filtered &lt;-<span class="st"> </span>data[data<span class="op">$</span>genus <span class="op">%in%</span><span class="st"> </span>tree_genera,]</a>
+<a class="sourceLine" id="cb151-67" data-line-number="67"></a>
+<a class="sourceLine" id="cb151-68" data-line-number="68">genera_ages &lt;-<span class="st"> </span><span class="kw">aggregate</span>(data_filtered[<span class="kw">c</span>(<span class="st">'young_age'</span>, <span class="st">'old_age'</span>)], <span class="dt">by=</span><span class="kw">list</span>(data_filtered<span class="op">$</span>genus), <span class="dt">FUN=</span>mean, <span class="dt">na.rm=</span>T)</a>
+<a class="sourceLine" id="cb151-69" data-line-number="69">genera_ages &lt;-<span class="st"> </span>genera_ages[<span class="kw">complete.cases</span>(genera_ages),]</a>
+<a class="sourceLine" id="cb151-70" data-line-number="70"></a>
+<a class="sourceLine" id="cb151-71" data-line-number="71">genera_ages<span class="op">$</span>node &lt;-<span class="st"> </span><span class="kw">sapply</span>(genera_ages[,<span class="dv">1</span>], <span class="cf">function</span>(genus) {</a>
+<a class="sourceLine" id="cb151-72" data-line-number="72">    tips &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="kw">paste0</span>(<span class="st">"^"</span>, genus, <span class="st">"_"</span>), tree<span class="op">$</span>tip.label)</a>
+<a class="sourceLine" id="cb151-73" data-line-number="73">    mrca &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/mrca">getMRCA</a></span>(tree, tips)</a>
+<a class="sourceLine" id="cb151-74" data-line-number="74">    <span class="kw">ifelse</span>(<span class="kw">is.null</span>(mrca), <span class="ot">NA</span>, mrca)</a>
+<a class="sourceLine" id="cb151-75" data-line-number="75">})</a>
+<a class="sourceLine" id="cb151-76" data-line-number="76"></a>
+<a class="sourceLine" id="cb151-77" data-line-number="77">genera_ages &lt;-<span class="st"> </span>genera_ages[<span class="kw">complete.cases</span>(genera_ages),]</a>
+<a class="sourceLine" id="cb151-78" data-line-number="78"></a>
+<a class="sourceLine" id="cb151-79" data-line-number="79">## We have a rogue taxon in Genus Squatina. Filter it out!!</a>
+<a class="sourceLine" id="cb151-80" data-line-number="80">genera_ages &lt;-<span class="st"> </span>genera_ages[<span class="op">!</span><span class="st"> </span>genera_ages[,<span class="dv">1</span>] <span class="op">==</span><span class="st"> "Squatina"</span>,]</a>
+<a class="sourceLine" id="cb151-81" data-line-number="81"><span class="co">#genera_ages &lt;- genera_ages[! genera_ages[,1] == "Carcharadon",] ## same node??</span></a>
+<a class="sourceLine" id="cb151-82" data-line-number="82"><span class="co">#genera_ages &lt;- genera_ages[! genera_ages[,1] == "Carcharias",]</span></a>
+<a class="sourceLine" id="cb151-83" data-line-number="83"><span class="co">#genera_ages &lt;- genera_ages[! genera_ages[,1] == "Odontaspis",] ## same node??</span></a>
+<a class="sourceLine" id="cb151-84" data-line-number="84"><span class="co"># "Pristiophorus" : non-monophyletic</span></a>
+<a class="sourceLine" id="cb151-85" data-line-number="85"></a>
+<a class="sourceLine" id="cb151-86" data-line-number="86"></a>
+<a class="sourceLine" id="cb151-87" data-line-number="87">calib &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/chronos">makeChronosCalib</a></span>(tree, genera_ages<span class="op">$</span>node, <span class="dt">age.min=</span>genera_ages<span class="op">$</span>young_age, <span class="dt">age.max=</span>genera_ages<span class="op">$</span>old_age)</a>
+<a class="sourceLine" id="cb151-88" data-line-number="88">chronogram &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/chronos">chronos</a></span>(tree, <span class="dt">calibration=</span>calib)</a>
+<a class="sourceLine" id="cb151-89" data-line-number="89"></a>
+<a class="sourceLine" id="cb151-90" data-line-number="90"></a>
+<a class="sourceLine" id="cb151-91" data-line-number="91">## get mrca</a>
+<a class="sourceLine" id="cb151-92" data-line-number="92"></a>
+<a class="sourceLine" id="cb151-93" data-line-number="93">##t &lt;- t(sapply(unique(data_filtered$genus), function(x)colMeans(data_filtered[data_filtered$genus==x, c('young_age', 'old_age')])))</a>
+<a class="sourceLine" id="cb151-94" data-line-number="94"></a>
+<a class="sourceLine" id="cb151-95" data-line-number="95">## filter out NaN values (genera that are not in our data)</a>
+<a class="sourceLine" id="cb151-96" data-line-number="96">##t &lt;- dat[complete.cases(dat),]</a>
+<a class="sourceLine" id="cb151-97" data-line-number="97"></a>
+<a class="sourceLine" id="cb151-98" data-line-number="98"></a>
+<a class="sourceLine" id="cb151-99" data-line-number="99"></a>
+<a class="sourceLine" id="cb151-100" data-line-number="100">## filter data further such that we only keep the taxa that are in</a>
+<a class="sourceLine" id="cb151-101" data-line-number="101">## the tree</a>
+<a class="sourceLine" id="cb151-102" data-line-number="102"></a>
+<a class="sourceLine" id="cb151-103" data-line-number="103">## data_filtered &lt;- data[paste(data$genus, data$species, sep="_") %in% tree$tip.label,]</a>
+<a class="sourceLine" id="cb151-104" data-line-number="104">##species &lt;- paste(data$genus, data$species, sep="_")</a>
+<a class="sourceLine" id="cb151-105" data-line-number="105"></a>
+<a class="sourceLine" id="cb151-106" data-line-number="106">## aggregate over genus</a>
+<a class="sourceLine" id="cb151-107" data-line-number="107">## aggregate(young_age~genus, data_filtered, mean)</a>
+<a class="sourceLine" id="cb151-108" data-line-number="108"></a>
+<a class="sourceLine" id="cb151-109" data-line-number="109">## aggregate(data, list(data_filtered$genus), function(x)ifelse(all(is.na(x)), NA, mean(x, na.rm=T)))</a>
+<a class="sourceLine" id="cb151-110" data-line-number="110"></a>
+<a class="sourceLine" id="cb151-111" data-line-number="111"></a>
+<a class="sourceLine" id="cb151-112" data-line-number="112"></a>
+<a class="sourceLine" id="cb151-113" data-line-number="113"></a>
+<a class="sourceLine" id="cb151-114" data-line-number="114"></a>
+<a class="sourceLine" id="cb151-115" data-line-number="115">## aggregate(.~genus, data, mean)</a>
+<a class="sourceLine" id="cb151-116" data-line-number="116"></a>
+<a class="sourceLine" id="cb151-117" data-line-number="117">##aggregate(young_age+old_age~genus, data, mean)</a>
+<a class="sourceLine" id="cb151-118" data-line-number="118"></a>
+<a class="sourceLine" id="cb151-119" data-line-number="119">##aggregate(young_age~genus, data, mean)</a>
+<a class="sourceLine" id="cb151-120" data-line-number="120">##aggregate(old_age~genus, data, mean)</a>
+<a class="sourceLine" id="cb151-121" data-line-number="121"></a>
+<a class="sourceLine" id="cb151-122" data-line-number="122">##aggregate(young_age+old_age~genus, data, mean)</a>
+<a class="sourceLine" id="cb151-123" data-line-number="123"></a>
+<a class="sourceLine" id="cb151-124" data-line-number="124"></a>
+<a class="sourceLine" id="cb151-125" data-line-number="125"></a>
+<a class="sourceLine" id="cb151-126" data-line-number="126"></a>
+<a class="sourceLine" id="cb151-127" data-line-number="127">df &lt;-<span class="st"> </span><span class="kw">aggregate</span>(data_filtered, <span class="kw">list</span>(data_filtered<span class="op">$</span>genus, data_filtered<span class="op">$</span>species), <span class="cf">function</span>(x)<span class="kw">ifelse</span>(<span class="kw">all</span>(<span class="kw">is.na</span>(x)), <span class="ot">NA</span>, <span class="kw">mean</span>(x, <span class="dt">na.rm=</span>T)))</a>
+<a class="sourceLine" id="cb151-128" data-line-number="128">df<span class="op">$</span>young_age[<span class="kw">is.na</span>(df<span class="op">$</span>young_age)] &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb151-129" data-line-number="129">nodes &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">paste</span>(df<span class="op">$</span>Group<span class="fl">.1</span>, df<span class="op">$</span>Group<span class="fl">.2</span>, <span class="dt">sep=</span><span class="st">"_"</span>), <span class="cf">function</span>(x)<span class="kw">which</span>(x<span class="op">==</span>tree<span class="op">$</span>tip.label))</a>
+<a class="sourceLine" id="cb151-130" data-line-number="130">nn &lt;-<span class="st"> </span><span class="kw">sapply</span>(nodes, <span class="cf">function</span>(x)<span class="kw">get_parent</span>(tree, x))</a>
+<a class="sourceLine" id="cb151-131" data-line-number="131"></a>
+<a class="sourceLine" id="cb151-132" data-line-number="132">calib &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/chronos">makeChronosCalib</a></span>(tree, <span class="dt">node=</span>nn, <span class="dt">age.min=</span>df<span class="op">$</span>young_age, <span class="dt">age.max=</span>df<span class="op">$</span>old_age)</a>
+<a class="sourceLine" id="cb151-133" data-line-number="133">chronogram &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/chronos">chronos</a></span>(tree, <span class="dt">calibration=</span>calib)</a></code></pre></div>
 </div>
   </div>
 
@@ -2419,6 +2374,7 @@ Downloading: 57 kB     Query result written to  /tmp/Rtmp6NWdAt/file17981e770f1f
       <li><a href="#metadata-services-4">Metadata services</a></li>
       </ul>
 </li>
+      <li><a href="#use-cases">Use cases</a></li>
       </ul>
 </div>
       </div>

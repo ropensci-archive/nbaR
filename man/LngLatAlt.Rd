@@ -14,12 +14,6 @@ LngLatAlt Class
 \section{Fields}{
 
 \describe{
-\item{\code{longitude}}{}
-
-\item{\code{latitude}}{}
-
-\item{\code{altitude}}{}
-
 \item{\code{additionalElements}}{}
 }}
 

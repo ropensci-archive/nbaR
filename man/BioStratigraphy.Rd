@@ -14,34 +14,6 @@ BioStratigraphy Class
 \section{Fields}{
 
 \describe{
-\item{\code{youngBioDatingQualifier}}{}
-
-\item{\code{youngBioName}}{}
-
-\item{\code{youngFossilZone}}{}
-
-\item{\code{youngFossilSubZone}}{}
-
-\item{\code{youngBioCertainty}}{}
-
-\item{\code{youngStratType}}{}
-
-\item{\code{bioDatingQualifier}}{}
-
-\item{\code{bioPreferredFlag}}{}
-
-\item{\code{rangePosition}}{}
-
-\item{\code{oldBioName}}{}
-
-\item{\code{bioIdentifier}}{}
-
-\item{\code{oldFossilzone}}{}
-
-\item{\code{oldFossilSubzone}}{}
-
-\item{\code{oldBioCertainty}}{}
-
 \item{\code{oldBioStratType}}{}
 }}
 

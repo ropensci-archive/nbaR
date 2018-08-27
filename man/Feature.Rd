@@ -14,14 +14,6 @@ Feature Class
 \section{Fields}{
 
 \describe{
-\item{\code{crs}}{}
-
-\item{\code{bbox}}{}
-
-\item{\code{properties}}{}
-
-\item{\code{geometry}}{}
-
 \item{\code{id}}{}
 }}
 

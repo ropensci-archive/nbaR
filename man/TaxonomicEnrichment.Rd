@@ -14,12 +14,6 @@ TaxonomicEnrichment Class
 \section{Fields}{
 
 \describe{
-\item{\code{vernacularNames}}{}
-
-\item{\code{synonyms}}{}
-
-\item{\code{sourceSystem}}{}
-
 \item{\code{taxonId}}{}
 }}
 

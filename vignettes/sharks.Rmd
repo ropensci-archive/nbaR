@@ -49,6 +49,7 @@ Chronological association is associated with `Specimen` data, we thus instanciat
 a `SpecimenClient`:
 
 ```{r}
+library(nbaR)
 sc <- SpecimenClient$new()
 ```
 

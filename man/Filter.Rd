@@ -14,12 +14,6 @@ Filter Class
 \section{Fields}{
 
 \describe{
-\item{\code{acceptRegexp}}{}
-
-\item{\code{rejectRegexp}}{}
-
-\item{\code{acceptValues}}{}
-
 \item{\code{rejectValues}}{}
 }}
 

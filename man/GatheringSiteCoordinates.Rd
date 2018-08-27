@@ -14,20 +14,6 @@ GatheringSiteCoordinates Class
 \section{Fields}{
 
 \describe{
-\item{\code{longitudeDecimal}}{}
-
-\item{\code{latitudeDecimal}}{}
-
-\item{\code{gridCellSystem}}{}
-
-\item{\code{gridLatitudeDecimal}}{}
-
-\item{\code{gridLongitudeDecimal}}{}
-
-\item{\code{gridCellCode}}{}
-
-\item{\code{gridQualifier}}{}
-
 \item{\code{geoShape}}{}
 }}
 

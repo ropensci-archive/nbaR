@@ -14,8 +14,6 @@ QueryResultItemObject Class
 \section{Fields}{
 
 \describe{
-\item{\code{score}}{}
-
 \item{\code{item}}{}
 }}
 

@@ -14,10 +14,6 @@ TaxonDescription Class
 \section{Fields}{
 
 \describe{
-\item{\code{category}}{}
-
-\item{\code{description}}{}
-
 \item{\code{language}}{}
 }}
 

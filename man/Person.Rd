@@ -14,10 +14,6 @@ Person Class
 \section{Fields}{
 
 \describe{
-\item{\code{agentText}}{}
-
-\item{\code{fullName}}{}
-
 \item{\code{organization}}{}
 }}
 

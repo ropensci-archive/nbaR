@@ -14,30 +14,6 @@ GroupByScientificNameQuerySpec Class
 \section{Fields}{
 
 \describe{
-\item{\code{constantScore}}{}
-
-\item{\code{fields}}{}
-
-\item{\code{conditions}}{}
-
-\item{\code{logicalOperator}}{}
-
-\item{\code{sortFields}}{}
-
-\item{\code{from}}{}
-
-\item{\code{size}}{}
-
-\item{\code{groupSort}}{}
-
-\item{\code{groupFilter}}{}
-
-\item{\code{specimensFrom}}{}
-
-\item{\code{specimensSize}}{}
-
-\item{\code{specimensSortFields}}{}
-
 \item{\code{noTaxa}}{}
 }}
 

@@ -14,8 +14,6 @@ Organization Class
 \section{Fields}{
 
 \describe{
-\item{\code{agentText}}{}
-
 \item{\code{name}}{}
 }}
 

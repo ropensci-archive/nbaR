@@ -14,8 +14,6 @@ Crs Class
 \section{Fields}{
 
 \describe{
-\item{\code{type}}{}
-
 \item{\code{properties}}{}
 }}
 

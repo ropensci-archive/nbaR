@@ -14,10 +14,6 @@ ServiceAccessPoint Class
 \section{Fields}{
 
 \describe{
-\item{\code{accessUri}}{}
-
-\item{\code{format}}{}
-
 \item{\code{variant}}{}
 }}
 

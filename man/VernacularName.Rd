@@ -14,14 +14,6 @@ VernacularName Class
 \section{Fields}{
 
 \describe{
-\item{\code{name}}{}
-
-\item{\code{language}}{}
-
-\item{\code{preferred}}{}
-
-\item{\code{references}}{}
-
 \item{\code{experts}}{}
 }}
 

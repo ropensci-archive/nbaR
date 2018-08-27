@@ -14,8 +14,6 @@ SummaryVernacularName Class
 \section{Fields}{
 
 \describe{
-\item{\code{name}}{}
-
 \item{\code{language}}{}
 }}
 

@@ -14,32 +14,6 @@ ScientificName Class
 \section{Fields}{
 
 \describe{
-\item{\code{fullScientificName}}{}
-
-\item{\code{taxonomicStatus}}{}
-
-\item{\code{genusOrMonomial}}{}
-
-\item{\code{subgenus}}{}
-
-\item{\code{specificEpithet}}{}
-
-\item{\code{infraspecificEpithet}}{}
-
-\item{\code{infraspecificMarker}}{}
-
-\item{\code{nameAddendum}}{}
-
-\item{\code{authorshipVerbatim}}{}
-
-\item{\code{author}}{}
-
-\item{\code{year}}{}
-
-\item{\code{scientificNameGroup}}{}
-
-\item{\code{references}}{}
-
 \item{\code{experts}}{}
 }}
 

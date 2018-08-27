@@ -14,8 +14,6 @@ QueryResult Class
 \section{Fields}{
 
 \describe{
-\item{\code{totalSize}}{}
-
 \item{\code{resultSet}}{}
 }}
 

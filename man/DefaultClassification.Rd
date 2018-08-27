@@ -14,26 +14,6 @@ DefaultClassification Class
 \section{Fields}{
 
 \describe{
-\item{\code{kingdom}}{}
-
-\item{\code{phylum}}{}
-
-\item{\code{className}}{}
-
-\item{\code{order}}{}
-
-\item{\code{superFamily}}{}
-
-\item{\code{family}}{}
-
-\item{\code{genus}}{}
-
-\item{\code{subgenus}}{}
-
-\item{\code{specificEpithet}}{}
-
-\item{\code{infraspecificEpithet}}{}
-
 \item{\code{infraspecificRank}}{}
 }}
 

@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="Geo operations — GeoClient" />
 
-<meta property="og:description" content="nbaR.Geo" />
+<meta property="og:description" content="Client class for nbaR.Geo objects" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -79,6 +79,24 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/sharks.html">Calibrating molecular phylogeny of the sharks</a>
+    </li>
+    <li>
+      <a href="../articles/tomato-tax.html">UNKNOWN TITLE</a>
+    </li>
+    <li>
+      <a href="../articles/tomato.html">The oldest tomato specimen in the world</a>
+    </li>
+  </ul>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -107,7 +125,7 @@
 
     <div class="ref-description">
     
-    <p>nbaR.Geo</p>
+    <p>Client class for nbaR.Geo objects</p>
     
     </div>
 
@@ -129,21 +147,121 @@
 
     
     <dl class='dl-horizontal'>
-    count Get the number of geo areas matching a given condition
-    count_distinct_values Count the distinct number of values that exist for a given field
-    count_distinct_values_per_group Count the distinct number of field values that exist per the given field to group by
-    find Find a GEO area by id
-    find_by_ids Find geo areas by ids
-    get_distinct_values Get all different values that exist for a field
-    get_distinct_values_per_group Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by
-    get_field_info Returns extended information for each field of a specimen document
-    get_geo_json_for_locality Retrieve a GeoJson object for a given locality
-    get_paths Returns the full path of all fields within a document
-    get_setting Get the value of an NBA setting
-    get_settings List all publicly available configuration settings for the NBA
-    is_operator_allowed Checks if a given operator is allowed for a given field
-    query Query for geo areas
-    </dl>
+<dt><code> count </code></dt><dd><p>Get the number of geo areas matching a given condition;
+  Conditions given as query string.
+    Parameters:
+    <ul>
+<li><p><code> query_spec </code> : Object of type QuerySpec or its JSON representation</p></li>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> integer </code></p></dd>
+<dt><code> count_distinct_values </code></dt><dd><p>Count the distinct number of values that exist for a given field;
+  .
+    Parameters:
+    <ul>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> list </code></p></dd>
+<dt><code> count_distinct_values_per_group </code></dt><dd><p>Count the distinct number of field values that exist per the given field to group by;
+  .
+    Parameters:
+    <ul>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> list </code></p></dd>
+<dt><code> find </code></dt><dd><p>Find a GEO area by id;
+  Returns a GEO object containing a GEO json polygon.
+    Parameters:
+    <ul>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> GeoArea </code></p></dd>
+<dt><code> find_by_ids </code></dt><dd><p>Find geo areas by ids;
+  Given multiple ids, returns a list of geo area objects.
+    Parameters:
+    <ul>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> GeoArea </code></p></dd>
+<dt><code> get_distinct_values </code></dt><dd><p>Get all different values that exist for a field;
+  A list of all fields for geo area documents can be retrieved with /metadata/getFieldInfo.
+    Parameters:
+    <ul>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> list </code></p></dd>
+<dt><code> get_distinct_values_per_group </code></dt><dd><p>Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by;
+  .
+    Parameters:
+    <ul>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> list </code></p></dd>
+<dt><code> get_field_info </code></dt><dd><p>Returns extended information for each field of a specimen document;
+  Info consists of whether the fields is indexed, the ElasticSearch datatype and a list of allowed operators.
+    Parameters:
+    <ul>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> list </code></p></dd>
+<dt><code> get_geo_json_for_locality </code></dt><dd><p>Retrieve a GeoJson object for a given locality;
+  Returns a GeoJson polygon.
+    Parameters:
+    <ul>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> list </code></p></dd>
+<dt><code> get_paths </code></dt><dd><p>Returns the full path of all fields within a document;
+  See also metadata/getFieldInfo for all allowed operators per field.
+    Parameters:
+    <ul>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> character </code></p></dd>
+<dt><code> get_setting </code></dt><dd><p>Get the value of an NBA setting;
+  All settings can be queried with /metadata/getSettings.
+    Parameters:
+    <ul>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> list </code></p></dd>
+<dt><code> get_settings </code></dt><dd><p>List all publicly available configuration settings for the NBA;
+  The value of a specific setting can be queried with metadata/getSetting/name.
+    Parameters:
+    <ul>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> list </code></p></dd>
+<dt><code> is_operator_allowed </code></dt><dd><p>Checks if a given operator is allowed for a given field;
+  See also metadata/getFieldInfo.
+    Parameters:
+    <ul>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> list </code></p></dd>
+<dt><code> query </code></dt><dd><p>Query for geo areas;
+  Query on searchable fields to retrieve matching geo areas.
+    Parameters:
+    <ul>
+<li><p><code> query_spec </code> : Object of type QuerySpec or its JSON representation</p></li>
+<li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
+</ul>
+    Returns:
+        <code> QueryResult </code></p></dd>
+</dl>
     
 
   </div>

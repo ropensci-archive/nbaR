@@ -14,10 +14,6 @@ GeometryCollection Class
 \section{Fields}{
 
 \describe{
-\item{\code{crs}}{}
-
-\item{\code{bbox}}{}
-
 \item{\code{geometries}}{}
 }}
 

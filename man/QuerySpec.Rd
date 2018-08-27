@@ -14,18 +14,6 @@ QuerySpec Class
 \section{Fields}{
 
 \describe{
-\item{\code{constantScore}}{}
-
-\item{\code{fields}}{}
-
-\item{\code{conditions}}{}
-
-\item{\code{logicalOperator}}{}
-
-\item{\code{sortFields}}{}
-
-\item{\code{from}}{}
-
 \item{\code{size}}{}
 }}
 

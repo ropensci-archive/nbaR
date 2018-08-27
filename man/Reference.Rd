@@ -14,14 +14,6 @@ Reference Class
 \section{Fields}{
 
 \describe{
-\item{\code{titleCitation}}{}
-
-\item{\code{citationDetail}}{}
-
-\item{\code{uri}}{}
-
-\item{\code{author}}{}
-
 \item{\code{publicationDate}}{}
 }}
 

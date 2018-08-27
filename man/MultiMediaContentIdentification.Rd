@@ -14,24 +14,6 @@ MultiMediaContentIdentification Class
 \section{Fields}{
 
 \describe{
-\item{\code{taxonRank}}{}
-
-\item{\code{scientificName}}{}
-
-\item{\code{typeStatus}}{}
-
-\item{\code{dateIdentified}}{}
-
-\item{\code{defaultClassification}}{}
-
-\item{\code{systemClassification}}{}
-
-\item{\code{vernacularNames}}{}
-
-\item{\code{identificationQualifiers}}{}
-
-\item{\code{identifiers}}{}
-
 \item{\code{taxonomicEnrichments}}{}
 }}
 

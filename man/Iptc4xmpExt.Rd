@@ -14,18 +14,6 @@ Iptc4xmpExt Class
 \section{Fields}{
 
 \describe{
-\item{\code{locationShown}}{}
-
-\item{\code{worldRegion}}{}
-
-\item{\code{countryCode}}{}
-
-\item{\code{countryName}}{}
-
-\item{\code{provinceState}}{}
-
-\item{\code{city}}{}
-
 \item{\code{sublocation}}{}
 }}
 

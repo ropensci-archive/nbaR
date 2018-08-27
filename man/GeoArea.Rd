@@ -14,24 +14,6 @@ GeoArea Class
 \section{Fields}{
 
 \describe{
-\item{\code{sourceSystem}}{}
-
-\item{\code{sourceSystemId}}{}
-
-\item{\code{recordURI}}{}
-
-\item{\code{id}}{}
-
-\item{\code{areaType}}{}
-
-\item{\code{locality}}{}
-
-\item{\code{shape}}{}
-
-\item{\code{source}}{}
-
-\item{\code{isoCode}}{}
-
 \item{\code{countryNL}}{}
 }}
 
