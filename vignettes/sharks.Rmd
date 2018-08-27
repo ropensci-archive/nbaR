@@ -3,7 +3,7 @@ title: "Calibrating molecular phylogeny of the sharks"
 author: "Hannes Hettling, Rutger Vos"
 date: "`r format(Sys.time(), '%b %d, %Y')`"
 bibliography: bibliography.bib
-output: 
+output:
   html_document:
     highlight: tango
     code_folding: show
@@ -12,7 +12,7 @@ output:
     toc_depth: 3
     toc_float:
       collapsed: false
-      
+
 vignette: >
   %\VignetteIndexEntry{nbaR: calibrating a shark phylogeny}
   %\VignetteEngine{knitr::rmarkdown}
@@ -20,29 +20,29 @@ vignette: >
 ---
 
 # Background
-The time-calibration of molecular phylogenies, i.e. assigning absolute ages to nodes 
-in the phylogeny is an essential tool in phylogenetic comparative analyses. 
-Time-calibration can be accomplished with e.g. data from fossil specimen with an 
-assigned age that are in a known taxonomic group. Specimen ages can be determined by 
+The time-calibration of molecular phylogenies, i.e. assigning absolute ages to nodes
+in the phylogeny is an essential tool in phylogenetic comparative analyses.
+Time-calibration can be accomplished with e.g. data from fossil specimen with an
+assigned age that are in a known taxonomic group. Specimen ages can be determined by
 e.g. carbon dating or stratigraphic methods. Node can then be assigned using Baeysian or
-Maximum-Likelihood methods. 
-At Naturalis, quite a few of our specimen records hold chronographic information. 
+Maximum-Likelihood methods.
+At Naturalis, quite a few of our specimen records hold chronographic information.
 
 Here we will demonstrate how to extract this data using `nbaR` and
-how to create input for the popular tree-calibration function `chronos` from the phylogenetic analysis 
+how to create input for the popular tree-calibration function `chronos` from the phylogenetic analysis
 package `ape`.
 
 ## The phylogeny
-As input, we will use a species-level molecular shark phylogeny published by 
-[Vélez-Zuazo and Agnarsson (2012) @VELEZZUAZO2011207]. 
+As input, we will use a species-level molecular shark phylogeny published by
+[Vélez-Zuazo and Agnarsson (2012) @VELEZZUAZO2011207].
 
-The phylogeny is a majority-rule consensus tree inferred from molecular markers using 
+The phylogeny is a majority-rule consensus tree inferred from molecular markers using
 Bayesian inference and comprises 229 species in all eight orders of the sharks (superorder *Selachimorpha*):
 
 ![](https://ars.els-cdn.com/content/image/1-s2.0-S1055790310004537-gr3.jpg)
 
-The non-ultrametric tree in the above figure is not time-calibrated, the branch lengths thus 
-represent molecular distances. 
+The non-ultrametric tree in the above figure is not time-calibrated, the branch lengths thus
+represent molecular distances.
 
 # Getting chronological data with nbaR
 Chronological association is associated with `Specimen` data, we thus instanciate
@@ -70,7 +70,7 @@ We can then formulate a query condition for specimens that are identified in one
 using the operator `IN`:
 
 ```{r}
-qc <- QueryCondition$new(field="identifications.defaultClassification.order", operator="IN", value=shark_orders) 
+qc <- QueryCondition$new(field="identifications.defaultClassification.order", operator="IN", value=shark_orders)
 ```
 
 For many specimen, chronological information is available in the fiels `gatheringEvent.chronoStratigraphy.youngChronoName`
@@ -89,7 +89,7 @@ qc2$or <- list(qc3)
 Now we can do the query:
 
 ```{r}
-## instantiate QuerySpec, give size 
+## instantiate QuerySpec, give size
 qs <- QuerySpec$new(conditions=list(qc, qc3), size=5000)
 res <- sc$query(querySpec = qs)
 
@@ -110,14 +110,14 @@ unique(unlist(lapply(specimens, function(x)x$gatheringEvent$chronoStratigraphy[[
 unique(unlist(lapply(specimens, function(x)x$gatheringEvent$chronoStratigraphy[[1]]$oldChronoName)))
 ```
 
-**Caution**: As you see above, there can be more than one chronoStratigraphy assigned with a 
+**Caution**: As you see above, there can be more than one chronoStratigraphy assigned with a
 specimen. Check how many we have per specimen:
 
 ```{r}
 unique(sapply(res$content$resultSet, function(x)length(x$item$gatheringEvent$chronoStratigraphy)))
 ```
 
-Ok, each `gatheringEvent` in each `Specimen` has only one `chronoStratigraphy`. We thus do not miss data by taking 
+Ok, each `gatheringEvent` in each `Specimen` has only one `chronoStratigraphy`. We thus do not miss data by taking
 the first one (`chronoStratigraphy[[1]]`).
 
 Let's further expleore the data. To see what part of the animals were preserved, we can look into
@@ -130,8 +130,8 @@ table(sapply(specimens, `[[`, "kindOfUnit"))
 Almost all of them are teeth.
 
 ## Getting absolute ages
-The type of chronostratigraphic data (as shown above) is given in divisions on the geological time scale, e.g. *Miocene*. 
-These strings can refer to *eons*, *eras*, *periods*, *epochs* and *ages*. In order to 
+The type of chronostratigraphic data (as shown above) is given in divisions on the geological time scale, e.g. *Miocene*.
+These strings can refer to *eons*, *eras*, *periods*, *epochs* and *ages*. In order to
 translate this into absolute ages, we will use the API of the [Earth Life Consortium](http://earthlifeconsortium.org/).
 This is possible using the *conventience function* `get_age`. For example
 
@@ -144,7 +144,7 @@ name
 geo_age(name)
 ```
 
-We can now make a table with all interesting data, below this is done for the 
+We can now make a table with all interesting data, below this is done for the
 first 50 specimen objetcs:
 
 ```{r}
@@ -156,8 +156,8 @@ data <- as.data.frame(do.call(rbind, lapply(specimens[1:50], function(x) {
     if (is.null(specificEpithet)) specificEpithet <- NA
     youngChronoName <- x$gatheringEvent$chronoStratigraphy[[1]]$youngChronoName
     if (is.null(youngChronoName)) youngChronoName <- NA
-    oldChronoName <- x$gatheringEvent$chronoStratigraphy[[1]]$oldChronoName                    
-    oldChronoName <- x$gatheringEvent$chronoStratigraphy[[1]]$oldChronoName                
+    oldChronoName <- x$gatheringEvent$chronoStratigraphy[[1]]$oldChronoName
+    if (is.null(oldChronoName)) oldChronoName <- NA
     c(genus=genus, specificEpithet=specificEpithet,
       youngChronoName=youngChronoName, oldChronoName=oldChronoName)
 })))
@@ -172,16 +172,19 @@ data$old_age <- sapply(data$oldChronoName, function(x)ifelse(is.na(x), NA, unlis
 data
 ```
 
-
-
-
-##specimens, function(x)x$gatheringEvent$chronoStratigraphy[[1]]$oldChronoName))
-
-
-
 # Calibrating the phylogeny
 
-The shark phylogeny comes with the package and can be 
+Depending on the data, calibration points could be chosen on different taxonomic levels;
+If there are sufficient specimen determined at species level, one could use the upper- and
+lower bounds above. It is also possible to average upper- and lower values for a higher taxonomic
+group, such as genus or family. Since this requires some data cleaning, such as dealing with duplicates,
+missing data, etc,
+`nbaR` offers the function `chronos_calib` which takes a set of specimen object, and a tree and
+averages the data for a user-defined taxonomic
+group and returns a calibration table that can be directly used as input for the function `chronos`
+from the package `ape`. The function also determines the node which will be calibrated in the phylogenetic tree.
+
+The shark phylogeny comes with the package and can be
 parsed using the package `ape`:
 
 ```{r}
@@ -195,100 +198,45 @@ tree <- read.nexus(path)
 plot(tree, cex=0.3)
 ```
 
+Now we use `chronos_calib` to get the table at the genus level. `chronos_calib`
+also selects the nodes in the tree that will be calibrated. This is done by
+selecting the most recent common ancestor (mrca) of the species for which the data are averaged.
 
-
-```{r eval=FALSE}
-
-tree <- drop.tip(tree, "Squatina_nebulosa")
-
-## extract specimens from result
-specimens <- lapply(res$content$resultSet, function(x)x$item)
-
-## use built-in convenience function for getting ape's chronos style calibration table
-calib_genus <- chronos_calib(specimens, tree, 'genus')
-## clean up: one reogue taxon in genus "Squatina"! Skip this genus
-calib_genus <- calib_genus[calib_genus$taxon != "Squatina",]
-
-## run ape's chronos function
-chronogram_genus<- chronos(tree, calibration=calib_genus)
-
-calib_family <- chronos_calib(specimens, tree, 'family')
-calib_family <- calib_family[calib_family$taxon != "Squalidae",]
-chronogram_family<- chronos(tree, calibration=calib_family)
-
-calib_order <- chronos_calib(specimens, tree, 'order')
-chronogram_order<- chronos(tree, calibration=calib_order)
-
-
+```{r}
+## make calibration table on genus level
+calibration_table <- chronos_calib(specimens, tree, "genus")
+calibration_table
 ```
 
+**Note**: This function can produce many warnings, a worning is emitted
+whenever, for some geological division, no data can be obtained from the
+earth life consortium. This can be due to misspellings or words in foreign languages.
 
+```{r}
+## print the warnings
+warnings()
+```
+
+**Note**: It is essential to thoroughly evaluate the calibration table! In this example,
+for example, the genus *Squatina* is non-monophyletic and one species is
+placed somewhere else in the tree. Calibrating the most recent common ancestor node
+for this genus can therefore result in errenous results or in errors using the calibration
+routine. We will therefore remove the calibration points for genus *Squatina* before calibration:
 
 
 ```{r eval=FALSE}
-## get geological periods: youngChronoName and oldChrononame
-genera <- sapply(res$content$resultSet, function(x) {
-    res <- x$item$identifications[[1]]$defaultClassification$genus
-    ifelse(is.null(res), NA, res)
-})
+## clean up: one reogue taxon in genus "Squatina"! Skip this genus
+calibration_table <- calibration_table[calibration_table$taxon != "Squatina",]
 
-species <- sapply(res$content$resultSet, function(x) {
-    res <- x$item$identifications[[1]]$defaultClassification$specificEpithet
-    ifelse(is.null(res), NA, res)
-})
+## run ape's chronos
+chronogram <- chronos(tree, calibration=calibration_table)
 
-young_periods <- sapply(res$content$resultSet, function(x) {
-    res <- x$item$gatheringEvent$chronoStratigraphy[[1]]$youngChronoName
-    ifelse(is.null(res), NA, res)
-})
+## plot tree with time axis
+plot(chronogram, cex=0.3)
+axisPhylo()
 
-old_periods <- sapply(res$content$resultSet, function(x) {
-    res <- x$item$gatheringEvent$chronoStratigraphy[[1]]$oldChronoName
-    ifelse(is.null(res), NA, res)
-})
-
-## translate the geological periods to mya
-times <- geo_age(unique(c(young_periods, old_periods)))
-
-## put all relevant data together
-data <- data.frame(genus=genera, species=species, young_p=young_periods, old_p=old_periods)
-data$young_age <- sapply(data$young_p, function(x)ifelse(is.na(x), NA, unlist(times['late_age', as.character(x)])))
-data$old_age <- sapply(data$old_p, function(x)ifelse(is.na(x), NA, unlist(times['early_age', as.character(x)])))
-
-## filter for the ones that have data
-data <- data[! (is.na(data$young_age) & is.na(data$old_age)), ]
-
-## filter out duplicates
-data <- unique(data)
-
-require(ape)
-tree <- read.nexus('other/sharks.nex')
-
-tree_genera <- unique(sapply(strsplit(tree$tip.label, "_"), `[`, 1))
-
-## filter out genera that are not in our tree
-data_filtered <- data[data$genus %in% tree_genera,]
-
-genera_ages <- aggregate(data_filtered[c('young_age', 'old_age')], by=list(data_filtered$genus), FUN=mean, na.rm=T)
-genera_ages <- genera_ages[complete.cases(genera_ages),]
-
-genera_ages$node <- sapply(genera_ages[,1], function(genus) {
-    tips <- grep(paste0("^", genus, "_"), tree$tip.label)
-    mrca <- getMRCA(tree, tips)
-    ifelse(is.null(mrca), NA, mrca)
-})
-
-genera_ages <- genera_ages[complete.cases(genera_ages),]
-
-## We have a rogue taxon in Genus Squatina. Filter it out!!
-genera_ages <- genera_ages[! genera_ages[,1] == "Squatina",]
-
-calib <- makeChronosCalib(tree, genera_ages$node, age.min=genera_ages$young_age, age.max=genera_ages$old_age)
-
-chronogram <- chronos(tree, calibration=calib)
-
-
-
+## label the mrcas that were used as calibration points
+nodelabels(calibration_table$taxon, calibration_table$node, frame='none', pch='x', cex.tex=0.6)
 ```
 
 # References
