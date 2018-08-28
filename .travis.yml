@@ -11,6 +11,7 @@ env:
 r_binary_packages:
     - testthat
     - roxygen2
+    - remotes
 
 r_github_packages:
     - r-lib/covr
