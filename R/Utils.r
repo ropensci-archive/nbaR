@@ -47,7 +47,9 @@ geo_age <- function (geo_unit) {
                 late_age = resultList[['records']][['late_age']]))
 }
 
-
+#'
+#'
+#' @export
 chronos_calib <- function(specimens, tree, level="genus") {
 
     ## gather taxonomic data and chronostratigraphy data
