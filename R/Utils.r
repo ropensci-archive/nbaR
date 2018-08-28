@@ -87,7 +87,7 @@ chronos_calib <- function(specimens, tree, level="genus") {
     if (level == "genus") {
         tree_taxa <- tree_genera
     } else {
-        tree_taxa <- as.character(mapply(function(x,y)get_higher_taxon(x,y, level), tree_genera, species))
+        tree_taxa <- as.character(mapply(function(x,y)get_higher_taxon(x,y, level), tree_genera, tree_species))
     }
 
     ## filter out taxa that are not in our tree
