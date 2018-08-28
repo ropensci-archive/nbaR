@@ -19,7 +19,7 @@ Suggests:
     rmarkdown,
     tic,
     remotes,
-    pkgdown
+    pkgdown,
     ape
 Imports:
     jsonlite,
