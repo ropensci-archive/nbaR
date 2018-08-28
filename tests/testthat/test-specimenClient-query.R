@@ -13,7 +13,7 @@ sc <- SpecimenClient$new(basePath = "http://api.biodiversitydata.nl/v2")
 qc <- QueryCondition$new(
   field = "unitID",
   operator = "EQUALS",
-  value = "L.4304195"
+  value = "RMNH.CRUS.D.18484"
 )
 qs <- QuerySpec$new(conditions = list(qc))
 
