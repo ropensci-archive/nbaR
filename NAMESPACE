@@ -72,3 +72,6 @@ importFrom(httr,PUT)
 importFrom(httr,add_headers)
 importFrom(jsonlite,fromJSON)
 importFrom(jsonlite,toJSON)
+importFrom(stats, aggregate)
+importFrom(stats, complete.cases)
+
