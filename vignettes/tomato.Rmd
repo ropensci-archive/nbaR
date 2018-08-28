@@ -2,7 +2,7 @@
 title: "The oldest tomato specimen in the world"
 author: "Hannes Hettling, Rutger Vos"
 date: "`r format(Sys.time(), '%b %d, %Y')`"
-output: 
+output:
   html_document:
     highlight: tango
     code_folding: show
@@ -11,7 +11,7 @@ output:
     toc_depth: 3
     toc_float:
       collapsed: false
-      
+
 vignette: >
   %\VignetteIndexEntry{nbaR: R access to the Netherlands Biodiversity API}
   %\VignetteEngine{knitr::rmarkdown}
@@ -21,19 +21,19 @@ vignette: >
 # The 'En Tibi' tomato specimen
 
 For the different data types in the NBA (Specimen, Taxon, Multimedia, Geo),
-there are respective client classes (`SpecimenClient`, `TaxonClient`, 
-`MultimediaClient`, `GeoClient`). 
+there are respective client classes (`SpecimenClient`, `TaxonClient`,
+`MultimediaClient`, `GeoClient`).
 
 ## Using the SpecimenClient
 
 For the different data types in the NBA (Specimen, Taxon, Multimedia, Geo),
-there are respective client classes (`SpecimenClient`, `TaxonClient`, 
-`MultimediaClient`, `GeoClient`). To retreive electronic specimen records, 
+there are respective client classes (`SpecimenClient`, `TaxonClient`,
+`MultimediaClient`, `GeoClient`). To retreive electronic specimen records,
 we instantiate a `SpecimenClient`:
 
 ```{r}
 library(nbaR)
-sc <- SpecimenClient$new(basePath="http://145.136.242.167:8080/v2")
+sc <- SpecimenClient$new()
 ```
 
 To get an overview of what we can do with such a client, `?SpecimenClient` will
@@ -45,16 +45,16 @@ To get an overview of what nbaR stores in a `Specimen` object, we could use the 
 res <- sc$get_paths()
 ```
 
-Note that client class methods (and other class members) are accessed with a `$`. 
-The respose from the taxon client is stored in `res`, an object of class `Response`. 
+Note that client class methods (and other class members) are accessed with a `$`.
+The respose from the taxon client is stored in `res`, an object of class `Response`.
 Have a look at `?Response` to see what this object contains. But how to get the data?
 It is in the field `content`.
 
 ```{r}
 res$content
-``` 
+```
 
-Suppose that we do not know the scientific name of the tomato plant, 
+Suppose that we do not know the scientific name of the tomato plant,
 there are two fields that store a vernacular name for a specimen:
 
 * `identifications.vernacularNames.name`
@@ -63,7 +63,7 @@ there are two fields that store a vernacular name for a specimen:
 The first one is the vernacular name that is exaclty equal to the one in the
 *source database*. Since often, a vernacular name is missing in the source database,
 a *taxonomic enrichment* is performed during the import of the data from the source database
-in whch, using among others the *Catalogue of life*, species names are enriched with synonyms and 
+in whch, using among others the *Catalogue of life*, species names are enriched with synonyms and
 vernacular names.
 
 ## Simple queries
@@ -82,20 +82,20 @@ we could search for more criteria. How many hits do we got?
 res$content$totalSize
 ```
 
-No hits, thus no record has the vernacular name equal to `tomato`. We therefore 
+No hits, thus no record has the vernacular name equal to `tomato`. We therefore
 search in `identifications.taxonomicEnrichments.vernacularNames.name`:
 
 ```{r}
 res <- sc$query(queryParams=list(identifications.taxonomicEnrichments.vernacularNames.name="tomato"))
 # how many hits?
 res$content$totalSize
-```	
+```
 
-Again, no hits. 
+Again, no hits.
 
 ## More complex queries
 
-Let's try partial matching. For this, we have to make a 
+Let's try partial matching. For this, we have to make a
 more complicated query, involving `QuerySpec` and `QueryCondition` objects,
 which are very powerful for constructing complex and nested queries.
 
@@ -105,11 +105,11 @@ A `QueryCondition` can be specified as follows:
 qc <- QueryCondition$new(field="identifications.taxonomicEnrichments.vernacularNames.name", operator="MATCHES", value="tomato")
 ```
 
-Note that we use the operator `MATCHES` that does a partial instead of an exact match 
+Note that we use the operator `MATCHES` that does a partial instead of an exact match
 (which would be `EQUALS`).
 
-From one or multiple `QueryConditions`, a `QuerySpec` can be created, and used as input 
-for he `query` function. 
+From one or multiple `QueryConditions`, a `QuerySpec` can be created, and used as input
+for he `query` function.
 
 ```{r}
 qs <- QuerySpec$new(conditions=list(qc))
@@ -121,7 +121,7 @@ res <- sc$query(querySpec=qs)
 res$content$totalSize
 ```
 
-Finally, we have some hits. The content of the response of the `query` function 
+Finally, we have some hits. The content of the response of the `query` function
 is always of type `QueryResult` (see also `?QueryResult`) which has the fields
 `totalSize` (as used above) and a `resultSet`, a list which stores the actual data.
 From the `resultSet`, a single `Specimen` object can be obtained as follows:
@@ -137,8 +137,8 @@ class(sp)
 sp
 ```
 
-**Note:** By default, the NBA (and thus nbaR) returns the first 10 hits. 
-To fetch more records, we need to specify this in the `QuerySpec` object. 
+**Note:** By default, the NBA (and thus nbaR) returns the first 10 hits.
+To fetch more records, we need to specify this in the `QuerySpec` object.
 
 
 ```{r}
@@ -155,10 +155,10 @@ res$content$totalSize == length(res$content$resultSet)
 ## Sorting
 
 We now want to see which one is the oldest specimen. We could, of course
-do the sorting in R 
+do the sorting in R
 (e.g. `sort(unlist(lapply(res$content$resultSet, function(x)x$item$gatheringEvent$dateTimeBegin)))`),
 but there is also functionality to do this directly in the query.
-This can be donw with objects of type `?SortField`, which can take a 
+This can be donw with objects of type `?SortField`, which can take a
 path specifying on what to sort, and whether to sort ascending or
 descending. We will sort our results by the values of the field
 `gatheringEvent.dateTimeBegin`:
@@ -168,7 +168,7 @@ descending. We will sort our results by the values of the field
 # specify field to sort
 sf <- SortField$new(path="gatheringEvent.dateTimeBegin", sortOrder="asc")
 
-# make querySpec using sortField 
+# make querySpec using sortField
 qs <- QuerySpec$new(conditions=list(qc), size=1000, sortFields=list(sf))
 
 # do the query
@@ -176,7 +176,7 @@ res <- sc$query(querySpec=qs)
 ```
 
 Now, the first result should be the specimen with a gathering event the furthest
-in the past. 
+in the past.
 
 ```{r}
 sp <- res$content$resultSet[[1]]$item
@@ -187,7 +187,7 @@ sp$gatheringEvent$dateTimeBegin
 
 ## Multimedia content
 
-Many specimens have associated multimedia content, such as photos or videos. 
+Many specimens have associated multimedia content, such as photos or videos.
 To retrieve e.g. the URL of the first multimedia item of our specimen:
 
 ```{r}
@@ -198,7 +198,25 @@ url
 # display image
 library(knitr)
 include_graphics(url)
+```
 
+
+```{r}
+# Solanum lycopersicum
+qc <- QueryCondition$new(field='identifications.defaultClassification.genus', operator='EQUALS', value='Solanum')
+qc2 <- QueryCondition$new(field='identifications.defaultClassification.specificEpithet', operator='EQUALS', value='lycopersicum')
+qc3 <- QueryCondition$new(field='gatheringEvent.siteCoordinates.longitudeDecimal', operator="NOT_EQUALS")
+qc4 <- QueryCondition$new(field='gatheringEvent.siteCoordinates.latitudeDecimal', operator="NOT_EQUALS")
+## qc3 <- QueryCondition$new(field='gatheringEvent.siteCoordinates.geoShape', operator='IN', value='1004000@GEO')
+qs <- QuerySpec$new(conditions=list(qc, qc2, qc3, qc4))
+
+res <- sc$query(querySpec=qs)
+
+#lat <- sapply(res$content$resultSet, function(x)x$item$gatheringEvent$siteCoordinates[[1]]$latitudeDecimal)
+#long <- sapply(res$content$resultSet, function(x)x$item$gatheringEvent$siteCoordinates[[1]]$longitudeDecimal)
+#library('maps')
+#map("world", fill=TRUE, col="white", bg="lightblue", ylim=c(-60, 90), mar=c(0,0,0,0))
+#points(long, lat, col='red', pch=16)
 ```
 
 
