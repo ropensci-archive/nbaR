@@ -27,8 +27,8 @@ after_success:
 deploy:
    provider: script
    script:
-	 - R CMD INSTALL .
-	 - R -q -e 'tic::deploy()'
+     - R CMD INSTALL .
+     - R -q -e 'tic::deploy()'
    on:
      branch: master
      condition:
