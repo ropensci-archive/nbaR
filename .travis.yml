@@ -25,10 +25,9 @@ after_success:
     - Rscript -e 'covr::coveralls()'
 
 deploy:
+   skip_cleanup: true
    provider: script
-   script:
-     - R CMD INSTALL .
-     - R -q -e 'tic::deploy()'
+   script: R -q -e 'tic::deploy()'
    on:
      branch: master
      condition:
