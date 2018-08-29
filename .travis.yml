@@ -27,7 +27,9 @@ after_success:
 deploy:
    skip_cleanup: true
    provider: script
-   script: R -q -e 'tic::deploy()'
+   script:
+       - R CMD INSTALL .
+       - R -q -e 'tic::deploy()'
    on:
      branch: master
      condition:
