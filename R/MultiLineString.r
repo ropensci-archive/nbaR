@@ -9,10 +9,42 @@
 
 #' MultiLineString Class
 #'
-#' @field crs
-#' @field bbox
-#' @field coordinates
 #'
+#'
+#' @field crs  Crs
+#' @field bbox  list(numeric)
+#' @field coordinates  list(LngLatAlt)
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor MultiLineString object.
+#'
+#' }
+#' \item{\code{$fromList(MultiLineStringList)}}{
+#'
+#'   Create MultiLineString object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of MultiLineString.
+#'
+#' }
+#' \item{\code{fromJSONString(MultiLineStringJson)}}{
+#'
+#'   Create MultiLineString object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of MultiLineString.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

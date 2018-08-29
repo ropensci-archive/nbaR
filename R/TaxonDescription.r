@@ -9,10 +9,42 @@
 
 #' TaxonDescription Class
 #'
-#' @field category
-#' @field description
-#' @field language
 #'
+#'
+#' @field category  character
+#' @field description  character
+#' @field language  character
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor TaxonDescription object.
+#'
+#' }
+#' \item{\code{$fromList(TaxonDescriptionList)}}{
+#'
+#'   Create TaxonDescription object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of TaxonDescription.
+#'
+#' }
+#' \item{\code{fromJSONString(TaxonDescriptionJson)}}{
+#'
+#'   Create TaxonDescription object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of TaxonDescription.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

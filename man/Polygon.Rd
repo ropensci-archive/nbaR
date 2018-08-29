@@ -14,7 +14,44 @@ Polygon Class
 \section{Fields}{
 
 \describe{
-\item{\code{coordinates}}{}
+\item{\code{crs}}{Crs}
+
+\item{\code{bbox}}{list(numeric)}
+
+\item{\code{coordinates}}{list(LngLatAlt)}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor Polygon object.
+
+}
+\item{\code{$fromList(PolygonList)}}{
+
+  Create Polygon object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of Polygon.
+
+}
+\item{\code{fromJSONString(PolygonJson)}}{
+
+  Create Polygon object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of Polygon.
+
+}
+}
+}
 
 \keyword{datasets}

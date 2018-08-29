@@ -9,24 +9,56 @@
 
 #' SpecimenIdentification Class
 #'
-#' @field taxonRank
-#' @field scientificName
-#' @field typeStatus
-#' @field dateIdentified
-#' @field defaultClassification
-#' @field systemClassification
-#' @field vernacularNames
-#' @field identificationQualifiers
-#' @field identifiers
-#' @field taxonomicEnrichments
-#' @field preferred
-#' @field verificationStatus
-#' @field rockType
-#' @field associatedFossilAssemblage
-#' @field rockMineralUsage
-#' @field associatedMineralName
-#' @field remarks
 #'
+#'
+#' @field taxonRank  character
+#' @field scientificName  ScientificName
+#' @field typeStatus  character
+#' @field dateIdentified  character
+#' @field defaultClassification  DefaultClassification
+#' @field systemClassification  list(Monomial)
+#' @field vernacularNames  list(VernacularName)
+#' @field identificationQualifiers  list(character)
+#' @field identifiers  list(Agent)
+#' @field taxonomicEnrichments  list(TaxonomicEnrichment)
+#' @field preferred  logical
+#' @field verificationStatus  character
+#' @field rockType  character
+#' @field associatedFossilAssemblage  character
+#' @field rockMineralUsage  character
+#' @field associatedMineralName  character
+#' @field remarks  character
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor SpecimenIdentification object.
+#'
+#' }
+#' \item{\code{$fromList(SpecimenIdentificationList)}}{
+#'
+#'   Create SpecimenIdentification object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of SpecimenIdentification.
+#'
+#' }
+#' \item{\code{fromJSONString(SpecimenIdentificationJson)}}{
+#'
+#'   Create SpecimenIdentification object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of SpecimenIdentification.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

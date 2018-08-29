@@ -9,24 +9,56 @@
 
 #' LithoStratigraphy Class
 #'
-#' @field qualifier
-#' @field preferredFlag
-#' @field member2
-#' @field member
-#' @field informalName2
-#' @field informalName
-#' @field importedName2
-#' @field importedName1
-#' @field lithoIdentifier
-#' @field formation2
-#' @field formationGroup2
-#' @field formationGroup
-#' @field formation
-#' @field certainty2
-#' @field certainty
-#' @field bed2
-#' @field bed
 #'
+#'
+#' @field qualifier  character
+#' @field preferredFlag  logical
+#' @field member2  character
+#' @field member  character
+#' @field informalName2  character
+#' @field informalName  character
+#' @field importedName2  character
+#' @field importedName1  character
+#' @field lithoIdentifier  character
+#' @field formation2  character
+#' @field formationGroup2  character
+#' @field formationGroup  character
+#' @field formation  character
+#' @field certainty2  character
+#' @field certainty  character
+#' @field bed2  character
+#' @field bed  character
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor LithoStratigraphy object.
+#'
+#' }
+#' \item{\code{$fromList(LithoStratigraphyList)}}{
+#'
+#'   Create LithoStratigraphy object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of LithoStratigraphy.
+#'
+#' }
+#' \item{\code{fromJSONString(LithoStratigraphyJson)}}{
+#'
+#'   Create LithoStratigraphy object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of LithoStratigraphy.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

@@ -9,12 +9,44 @@
 
 #' Feature Class
 #'
-#' @field crs
-#' @field bbox
-#' @field properties
-#' @field geometry
-#' @field id
 #'
+#'
+#' @field crs  Crs
+#' @field bbox  list(numeric)
+#' @field properties  list
+#' @field geometry  list
+#' @field id  character
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor Feature object.
+#'
+#' }
+#' \item{\code{$fromList(FeatureList)}}{
+#'
+#'   Create Feature object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of Feature.
+#'
+#' }
+#' \item{\code{fromJSONString(FeatureJson)}}{
+#'
+#'   Create Feature object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of Feature.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

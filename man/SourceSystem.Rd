@@ -14,7 +14,42 @@ SourceSystem Class
 \section{Fields}{
 
 \describe{
-\item{\code{name}}{}
+\item{\code{code}}{character}
+
+\item{\code{name}}{character}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor SourceSystem object.
+
+}
+\item{\code{$fromList(SourceSystemList)}}{
+
+  Create SourceSystem object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of SourceSystem.
+
+}
+\item{\code{fromJSONString(SourceSystemJson)}}{
+
+  Create SourceSystem object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of SourceSystem.
+
+}
+}
+}
 
 \keyword{datasets}

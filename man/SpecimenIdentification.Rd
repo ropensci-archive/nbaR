@@ -14,7 +14,72 @@ SpecimenIdentification Class
 \section{Fields}{
 
 \describe{
-\item{\code{remarks}}{}
+\item{\code{taxonRank}}{character}
+
+\item{\code{scientificName}}{ScientificName}
+
+\item{\code{typeStatus}}{character}
+
+\item{\code{dateIdentified}}{character}
+
+\item{\code{defaultClassification}}{DefaultClassification}
+
+\item{\code{systemClassification}}{list(Monomial)}
+
+\item{\code{vernacularNames}}{list(VernacularName)}
+
+\item{\code{identificationQualifiers}}{list(character)}
+
+\item{\code{identifiers}}{list(Agent)}
+
+\item{\code{taxonomicEnrichments}}{list(TaxonomicEnrichment)}
+
+\item{\code{preferred}}{logical}
+
+\item{\code{verificationStatus}}{character}
+
+\item{\code{rockType}}{character}
+
+\item{\code{associatedFossilAssemblage}}{character}
+
+\item{\code{rockMineralUsage}}{character}
+
+\item{\code{associatedMineralName}}{character}
+
+\item{\code{remarks}}{character}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor SpecimenIdentification object.
+
+}
+\item{\code{$fromList(SpecimenIdentificationList)}}{
+
+  Create SpecimenIdentification object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of SpecimenIdentification.
+
+}
+\item{\code{fromJSONString(SpecimenIdentificationJson)}}{
+
+  Create SpecimenIdentification object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of SpecimenIdentification.
+
+}
+}
+}
 
 \keyword{datasets}

@@ -14,7 +14,42 @@ Crs Class
 \section{Fields}{
 
 \describe{
-\item{\code{properties}}{}
+\item{\code{type}}{character}
+
+\item{\code{properties}}{list}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor Crs object.
+
+}
+\item{\code{$fromList(CrsList)}}{
+
+  Create Crs object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of Crs.
+
+}
+\item{\code{fromJSONString(CrsJson)}}{
+
+  Create Crs object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of Crs.
+
+}
+}
+}
 
 \keyword{datasets}

@@ -9,21 +9,53 @@
 
 #' ScientificName Class
 #'
-#' @field fullScientificName
-#' @field taxonomicStatus
-#' @field genusOrMonomial
-#' @field subgenus
-#' @field specificEpithet
-#' @field infraspecificEpithet
-#' @field infraspecificMarker
-#' @field nameAddendum
-#' @field authorshipVerbatim
-#' @field author
-#' @field year
-#' @field scientificNameGroup
-#' @field references
-#' @field experts
 #'
+#'
+#' @field fullScientificName  character
+#' @field taxonomicStatus  character
+#' @field genusOrMonomial  character
+#' @field subgenus  character
+#' @field specificEpithet  character
+#' @field infraspecificEpithet  character
+#' @field infraspecificMarker  character
+#' @field nameAddendum  character
+#' @field authorshipVerbatim  character
+#' @field author  character
+#' @field year  character
+#' @field scientificNameGroup  character
+#' @field references  list(Reference)
+#' @field experts  list(Expert)
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor ScientificName object.
+#'
+#' }
+#' \item{\code{$fromList(ScientificNameList)}}{
+#'
+#'   Create ScientificName object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of ScientificName.
+#'
+#' }
+#' \item{\code{fromJSONString(ScientificNameJson)}}{
+#'
+#'   Create ScientificName object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of ScientificName.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

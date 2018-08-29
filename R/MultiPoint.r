@@ -9,10 +9,42 @@
 
 #' MultiPoint Class
 #'
-#' @field crs
-#' @field bbox
-#' @field coordinates
 #'
+#'
+#' @field crs  Crs
+#' @field bbox  list(numeric)
+#' @field coordinates  list(LngLatAlt)
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor MultiPoint object.
+#'
+#' }
+#' \item{\code{$fromList(MultiPointList)}}{
+#'
+#'   Create MultiPoint object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of MultiPoint.
+#'
+#' }
+#' \item{\code{fromJSONString(MultiPointJson)}}{
+#'
+#'   Create MultiPoint object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of MultiPoint.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

@@ -9,9 +9,41 @@
 
 #' Monomial Class
 #'
-#' @field rank
-#' @field name
 #'
+#'
+#' @field rank  character
+#' @field name  character
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor Monomial object.
+#'
+#' }
+#' \item{\code{$fromList(MonomialList)}}{
+#'
+#'   Create Monomial object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of Monomial.
+#'
+#' }
+#' \item{\code{fromJSONString(MonomialJson)}}{
+#'
+#'   Create Monomial object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of Monomial.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

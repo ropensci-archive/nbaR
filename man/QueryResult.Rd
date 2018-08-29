@@ -14,7 +14,42 @@ QueryResult Class
 \section{Fields}{
 
 \describe{
-\item{\code{resultSet}}{}
+\item{\code{totalSize}}{integer}
+
+\item{\code{resultSet}}{list(QueryResultItemObject)}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor QueryResult object.
+
+}
+\item{\code{$fromList(QueryResultList)}}{
+
+  Create QueryResult object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of QueryResult.
+
+}
+\item{\code{fromJSONString(QueryResultJson)}}{
+
+  Create QueryResult object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of QueryResult.
+
+}
+}
+}
 
 \keyword{datasets}

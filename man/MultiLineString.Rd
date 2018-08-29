@@ -14,7 +14,44 @@ MultiLineString Class
 \section{Fields}{
 
 \describe{
-\item{\code{coordinates}}{}
+\item{\code{crs}}{Crs}
+
+\item{\code{bbox}}{list(numeric)}
+
+\item{\code{coordinates}}{list(LngLatAlt)}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor MultiLineString object.
+
+}
+\item{\code{$fromList(MultiLineStringList)}}{
+
+  Create MultiLineString object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of MultiLineString.
+
+}
+\item{\code{fromJSONString(MultiLineStringJson)}}{
+
+  Create MultiLineString object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of MultiLineString.
+
+}
+}
+}
 
 \keyword{datasets}

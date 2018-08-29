@@ -14,7 +14,44 @@ MultiPolygon Class
 \section{Fields}{
 
 \describe{
-\item{\code{coordinates}}{}
+\item{\code{crs}}{Crs}
+
+\item{\code{bbox}}{list(numeric)}
+
+\item{\code{coordinates}}{list(LngLatAlt)}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor MultiPolygon object.
+
+}
+\item{\code{$fromList(MultiPolygonList)}}{
+
+  Create MultiPolygon object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of MultiPolygon.
+
+}
+\item{\code{fromJSONString(MultiPolygonJson)}}{
+
+  Create MultiPolygon object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of MultiPolygon.
+
+}
+}
+}
 
 \keyword{datasets}

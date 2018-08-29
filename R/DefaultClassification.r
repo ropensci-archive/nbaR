@@ -9,18 +9,50 @@
 
 #' DefaultClassification Class
 #'
-#' @field kingdom
-#' @field phylum
-#' @field className
-#' @field order
-#' @field superFamily
-#' @field family
-#' @field genus
-#' @field subgenus
-#' @field specificEpithet
-#' @field infraspecificEpithet
-#' @field infraspecificRank
 #'
+#'
+#' @field kingdom  character
+#' @field phylum  character
+#' @field className  character
+#' @field order  character
+#' @field superFamily  character
+#' @field family  character
+#' @field genus  character
+#' @field subgenus  character
+#' @field specificEpithet  character
+#' @field infraspecificEpithet  character
+#' @field infraspecificRank  character
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor DefaultClassification object.
+#'
+#' }
+#' \item{\code{$fromList(DefaultClassificationList)}}{
+#'
+#'   Create DefaultClassification object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of DefaultClassification.
+#'
+#' }
+#' \item{\code{fromJSONString(DefaultClassificationJson)}}{
+#'
+#'   Create DefaultClassification object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of DefaultClassification.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

@@ -14,7 +14,46 @@ TaxonomicEnrichment Class
 \section{Fields}{
 
 \describe{
-\item{\code{taxonId}}{}
+\item{\code{vernacularNames}}{list(SummaryVernacularName)}
+
+\item{\code{synonyms}}{list(SummaryScientificName)}
+
+\item{\code{sourceSystem}}{SummarySourceSystem}
+
+\item{\code{taxonId}}{character}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor TaxonomicEnrichment object.
+
+}
+\item{\code{$fromList(TaxonomicEnrichmentList)}}{
+
+  Create TaxonomicEnrichment object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of TaxonomicEnrichment.
+
+}
+\item{\code{fromJSONString(TaxonomicEnrichmentJson)}}{
+
+  Create TaxonomicEnrichment object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of TaxonomicEnrichment.
+
+}
+}
+}
 
 \keyword{datasets}

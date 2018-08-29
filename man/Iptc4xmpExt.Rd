@@ -14,7 +14,52 @@ Iptc4xmpExt Class
 \section{Fields}{
 
 \describe{
-\item{\code{sublocation}}{}
+\item{\code{locationShown}}{character}
+
+\item{\code{worldRegion}}{character}
+
+\item{\code{countryCode}}{character}
+
+\item{\code{countryName}}{character}
+
+\item{\code{provinceState}}{character}
+
+\item{\code{city}}{character}
+
+\item{\code{sublocation}}{character}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor Iptc4xmpExt object.
+
+}
+\item{\code{$fromList(Iptc4xmpExtList)}}{
+
+  Create Iptc4xmpExt object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of Iptc4xmpExt.
+
+}
+\item{\code{fromJSONString(Iptc4xmpExtJson)}}{
+
+  Create Iptc4xmpExt object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of Iptc4xmpExt.
+
+}
+}
+}
 
 \keyword{datasets}

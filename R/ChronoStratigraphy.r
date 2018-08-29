@@ -9,33 +9,65 @@
 
 #' ChronoStratigraphy Class
 #'
-#' @field youngRegionalSubstage
-#' @field youngRegionalStage
-#' @field youngRegionalSeries
-#' @field youngDatingQualifier
-#' @field youngInternSystem
-#' @field youngInternSubstage
-#' @field youngInternStage
-#' @field youngInternSeries
-#' @field youngInternErathem
-#' @field youngInternEonothem
-#' @field youngChronoName
-#' @field youngCertainty
-#' @field oldDatingQualifier
-#' @field chronoPreferredFlag
-#' @field oldRegionalSubstage
-#' @field oldRegionalStage
-#' @field oldRegionalSeries
-#' @field oldInternSystem
-#' @field oldInternSubstage
-#' @field oldInternStage
-#' @field oldInternSeries
-#' @field oldInternErathem
-#' @field oldInternEonothem
-#' @field oldChronoName
-#' @field chronoIdentifier
-#' @field oldCertainty
 #'
+#'
+#' @field youngRegionalSubstage  character
+#' @field youngRegionalStage  character
+#' @field youngRegionalSeries  character
+#' @field youngDatingQualifier  character
+#' @field youngInternSystem  character
+#' @field youngInternSubstage  character
+#' @field youngInternStage  character
+#' @field youngInternSeries  character
+#' @field youngInternErathem  character
+#' @field youngInternEonothem  character
+#' @field youngChronoName  character
+#' @field youngCertainty  character
+#' @field oldDatingQualifier  character
+#' @field chronoPreferredFlag  logical
+#' @field oldRegionalSubstage  character
+#' @field oldRegionalStage  character
+#' @field oldRegionalSeries  character
+#' @field oldInternSystem  character
+#' @field oldInternSubstage  character
+#' @field oldInternStage  character
+#' @field oldInternSeries  character
+#' @field oldInternErathem  character
+#' @field oldInternEonothem  character
+#' @field oldChronoName  character
+#' @field chronoIdentifier  character
+#' @field oldCertainty  character
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor ChronoStratigraphy object.
+#'
+#' }
+#' \item{\code{$fromList(ChronoStratigraphyList)}}{
+#'
+#'   Create ChronoStratigraphy object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of ChronoStratigraphy.
+#'
+#' }
+#' \item{\code{fromJSONString(ChronoStratigraphyJson)}}{
+#'
+#'   Create ChronoStratigraphy object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of ChronoStratigraphy.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

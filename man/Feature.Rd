@@ -14,7 +14,48 @@ Feature Class
 \section{Fields}{
 
 \describe{
-\item{\code{id}}{}
+\item{\code{crs}}{Crs}
+
+\item{\code{bbox}}{list(numeric)}
+
+\item{\code{properties}}{list}
+
+\item{\code{geometry}}{list}
+
+\item{\code{id}}{character}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor Feature object.
+
+}
+\item{\code{$fromList(FeatureList)}}{
+
+  Create Feature object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of Feature.
+
+}
+\item{\code{fromJSONString(FeatureJson)}}{
+
+  Create Feature object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of Feature.
+
+}
+}
+}
 
 \keyword{datasets}

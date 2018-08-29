@@ -14,7 +14,52 @@ QuerySpec Class
 \section{Fields}{
 
 \describe{
-\item{\code{size}}{}
+\item{\code{constantScore}}{logical}
+
+\item{\code{fields}}{list(character)}
+
+\item{\code{conditions}}{list(QueryCondition)}
+
+\item{\code{logicalOperator}}{character}
+
+\item{\code{sortFields}}{list(SortField)}
+
+\item{\code{from}}{integer}
+
+\item{\code{size}}{integer}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor QuerySpec object.
+
+}
+\item{\code{$fromList(QuerySpecList)}}{
+
+  Create QuerySpec object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of QuerySpec.
+
+}
+\item{\code{fromJSONString(QuerySpecJson)}}{
+
+  Create QuerySpec object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of QuerySpec.
+
+}
+}
+}
 
 \keyword{datasets}

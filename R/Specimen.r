@@ -9,39 +9,71 @@
 
 #' Specimen Class
 #'
-#' @field sourceSystem
-#' @field sourceSystemId
-#' @field recordURI
-#' @field id
-#' @field unitID
-#' @field unitGUID
-#' @field collectorsFieldNumber
-#' @field assemblageID
-#' @field sourceInstitutionID
-#' @field sourceID
-#' @field previousSourceID
-#' @field owner
-#' @field licenseType
-#' @field license
-#' @field recordBasis
-#' @field kindOfUnit
-#' @field collectionType
-#' @field sex
-#' @field phaseOrStage
-#' @field title
-#' @field notes
-#' @field preparationType
-#' @field previousUnitsText
-#' @field numberOfSpecimen
-#' @field fromCaptivity
-#' @field objectPublic
-#' @field multiMediaPublic
-#' @field acquiredFrom
-#' @field gatheringEvent
-#' @field identifications
-#' @field associatedMultiMediaUris
-#' @field theme
+#' This class models a Specimen record. Specimen records constitute the core of data served by the NBA. They can be unambiguously distinguished by the field unitID. Further fields include (among others) information about Finding place, identification, and multimedia content.
 #'
+#' @field sourceSystem  SourceSystem
+#' @field sourceSystemId  character
+#' @field recordURI  character
+#' @field id  character
+#' @field unitID  character
+#' @field unitGUID  character
+#' @field collectorsFieldNumber  character
+#' @field assemblageID  character
+#' @field sourceInstitutionID  character
+#' @field sourceID  character
+#' @field previousSourceID  list(character)
+#' @field owner  character
+#' @field licenseType  character
+#' @field license  character
+#' @field recordBasis  character
+#' @field kindOfUnit  character
+#' @field collectionType  character
+#' @field sex  character
+#' @field phaseOrStage  character
+#' @field title  character
+#' @field notes  character
+#' @field preparationType  character
+#' @field previousUnitsText  character
+#' @field numberOfSpecimen  integer
+#' @field fromCaptivity  logical
+#' @field objectPublic  logical
+#' @field multiMediaPublic  logical
+#' @field acquiredFrom  Agent
+#' @field gatheringEvent  GatheringEvent
+#' @field identifications  list(SpecimenIdentification)
+#' @field associatedMultiMediaUris  list(ServiceAccessPoint)
+#' @field theme  list(character)
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor Specimen object.
+#'
+#' }
+#' \item{\code{$fromList(SpecimenList)}}{
+#'
+#'   Create Specimen object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of Specimen.
+#'
+#' }
+#' \item{\code{fromJSONString(SpecimenJson)}}{
+#'
+#'   Create Specimen object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of Specimen.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

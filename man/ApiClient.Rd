@@ -14,7 +14,8 @@ Generic class for API client calls
 \section{Fields}{
 
 \describe{
-\item{\code{path}}{Stores url path of the request.}
+\item{\code{basePath}}{specifies the base URL of the API, defaults to
+http://api.biodiversitydata.nl/v2}
 
 \item{\code{userAgent}}{Set the user agent of the request.}
 }}

@@ -136,7 +136,22 @@
 
     
     <dl class='dl-horizontal'>
-<dt><code>experts</code></dt><dd><p></p></dd>
+<dt><code>name</code></dt><dd><p>character</p></dd>
+    <dt><code>language</code></dt><dd><p>character</p></dd>
+    <dt><code>preferred</code></dt><dd><p>logical</p></dd>
+    <dt><code>references</code></dt><dd><p>list(Reference)</p></dd>
+    <dt><code>experts</code></dt><dd><p>list(Expert)</p></dd>
+</dl>
+    
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
+
+    
+    <dl class='dl-horizontal'>
+    <dt><code>$new()</code></dt><dd><p>Constructor VernacularName object.</p></dd>
+<dt><code>$fromList(VernacularNameList)</code></dt><dd><p>Create VernacularName object from list.</p></dd>
+    <dt><code>$toList()</code></dt><dd><p>Get list representation of VernacularName.</p></dd>
+<dt><code>fromJSONString(VernacularNameJson)</code></dt><dd><p>Create VernacularName object from list.</p></dd>
+<dt><code>toJSONString(pretty=TRUE)</code></dt><dd><p>Get JSON representation of VernacularName.</p></dd>
 </dl>
     
 
@@ -148,6 +163,8 @@
       <li><a href="#format">Format</a></li>
 
       <li><a href="#fields">Fields</a></li>
+
+      <li><a href="#methods">Methods</a></li>
           </ul>
 
   </div>

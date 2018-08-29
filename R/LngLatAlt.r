@@ -9,11 +9,43 @@
 
 #' LngLatAlt Class
 #'
-#' @field longitude
-#' @field latitude
-#' @field altitude
-#' @field additionalElements
 #'
+#'
+#' @field longitude  numeric
+#' @field latitude  numeric
+#' @field altitude  numeric
+#' @field additionalElements  list(numeric)
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor LngLatAlt object.
+#'
+#' }
+#' \item{\code{$fromList(LngLatAltList)}}{
+#'
+#'   Create LngLatAlt object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of LngLatAlt.
+#'
+#' }
+#' \item{\code{fromJSONString(LngLatAltJson)}}{
+#'
+#'   Create LngLatAlt object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of LngLatAlt.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

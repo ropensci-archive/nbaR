@@ -9,11 +9,43 @@
 
 #' Filter Class
 #'
-#' @field acceptRegexp
-#' @field rejectRegexp
-#' @field acceptValues
-#' @field rejectValues
 #'
+#'
+#' @field acceptRegexp  character
+#' @field rejectRegexp  character
+#' @field acceptValues  list(character)
+#' @field rejectValues  list(character)
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor Filter object.
+#'
+#' }
+#' \item{\code{$fromList(FilterList)}}{
+#'
+#'   Create Filter object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of Filter.
+#'
+#' }
+#' \item{\code{fromJSONString(FilterJson)}}{
+#'
+#'   Create Filter object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of Filter.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

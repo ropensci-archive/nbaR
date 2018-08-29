@@ -9,9 +9,41 @@
 
 #' QueryResultItemObject Class
 #'
-#' @field score
-#' @field item
+#' Contains an object returned from a QuerySpec query. Holds an item and a relevance score.
 #'
+#' @field score  numeric
+#' @field item  list
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor QueryResultItemObject object.
+#'
+#' }
+#' \item{\code{$fromList(QueryResultItemObjectList)}}{
+#'
+#'   Create QueryResultItemObject object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of QueryResultItemObject.
+#'
+#' }
+#' \item{\code{fromJSONString(QueryResultItemObjectJson)}}{
+#'
+#'   Create QueryResultItemObject object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of QueryResultItemObject.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

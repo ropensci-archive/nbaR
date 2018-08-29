@@ -9,34 +9,66 @@
 
 #' GatheringEvent Class
 #'
-#' @field projectTitle
-#' @field worldRegion
-#' @field continent
-#' @field country
-#' @field iso3166Code
-#' @field provinceState
-#' @field island
-#' @field locality
-#' @field city
-#' @field sublocality
-#' @field localityText
-#' @field dateTimeBegin
-#' @field dateTimeEnd
-#' @field method
-#' @field altitude
-#' @field altitudeUnifOfMeasurement
-#' @field biotopeText
-#' @field depth
-#' @field depthUnitOfMeasurement
-#' @field gatheringPersons
-#' @field gatheringOrganizations
-#' @field siteCoordinates
-#' @field namedAreas
-#' @field associatedTaxa
-#' @field chronoStratigraphy
-#' @field lithoStratigraphy
-#' @field bioStratigraphic
 #'
+#'
+#' @field projectTitle  character
+#' @field worldRegion  character
+#' @field continent  character
+#' @field country  character
+#' @field iso3166Code  character
+#' @field provinceState  character
+#' @field island  character
+#' @field locality  character
+#' @field city  character
+#' @field sublocality  character
+#' @field localityText  character
+#' @field dateTimeBegin  character
+#' @field dateTimeEnd  character
+#' @field method  character
+#' @field altitude  character
+#' @field altitudeUnifOfMeasurement  character
+#' @field biotopeText  character
+#' @field depth  character
+#' @field depthUnitOfMeasurement  character
+#' @field gatheringPersons  list(Person)
+#' @field gatheringOrganizations  list(Organization)
+#' @field siteCoordinates  list(GatheringSiteCoordinates)
+#' @field namedAreas  list(NamedArea)
+#' @field associatedTaxa  list(AssociatedTaxon)
+#' @field chronoStratigraphy  list(ChronoStratigraphy)
+#' @field lithoStratigraphy  list(LithoStratigraphy)
+#' @field bioStratigraphic  list(BioStratigraphy)
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor GatheringEvent object.
+#'
+#' }
+#' \item{\code{$fromList(GatheringEventList)}}{
+#'
+#'   Create GatheringEvent object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of GatheringEvent.
+#'
+#' }
+#' \item{\code{fromJSONString(GatheringEventJson)}}{
+#'
+#'   Create GatheringEvent object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of GatheringEvent.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

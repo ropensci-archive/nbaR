@@ -14,7 +14,54 @@ GatheringSiteCoordinates Class
 \section{Fields}{
 
 \describe{
-\item{\code{geoShape}}{}
+\item{\code{longitudeDecimal}}{numeric}
+
+\item{\code{latitudeDecimal}}{numeric}
+
+\item{\code{gridCellSystem}}{character}
+
+\item{\code{gridLatitudeDecimal}}{numeric}
+
+\item{\code{gridLongitudeDecimal}}{numeric}
+
+\item{\code{gridCellCode}}{character}
+
+\item{\code{gridQualifier}}{character}
+
+\item{\code{geoShape}}{Point}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor GatheringSiteCoordinates object.
+
+}
+\item{\code{$fromList(GatheringSiteCoordinatesList)}}{
+
+  Create GatheringSiteCoordinates object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of GatheringSiteCoordinates.
+
+}
+\item{\code{fromJSONString(GatheringSiteCoordinatesJson)}}{
+
+  Create GatheringSiteCoordinates object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of GatheringSiteCoordinates.
+
+}
+}
+}
 
 \keyword{datasets}

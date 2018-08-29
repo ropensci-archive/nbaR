@@ -9,15 +9,47 @@
 
 #' QueryCondition Class
 #'
-#' @field not
-#' @field field
-#' @field operator
-#' @field value
-#' @field and
-#' @field or
-#' @field constantScore
-#' @field boost
 #'
+#'
+#' @field not  character
+#' @field field  character
+#' @field operator  character
+#' @field value  list
+#' @field and  list(QueryCondition)
+#' @field or  list(QueryCondition)
+#' @field constantScore  logical
+#' @field boost  numeric
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor QueryCondition object.
+#'
+#' }
+#' \item{\code{$fromList(QueryConditionList)}}{
+#'
+#'   Create QueryCondition object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of QueryCondition.
+#'
+#' }
+#' \item{\code{fromJSONString(QueryConditionJson)}}{
+#'
+#'   Create QueryCondition object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of QueryCondition.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

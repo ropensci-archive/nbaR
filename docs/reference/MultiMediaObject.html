@@ -136,7 +136,48 @@
 
     
     <dl class='dl-horizontal'>
-<dt><code>associatedTaxon</code></dt><dd><p></p></dd>
+<dt><code>sourceSystem</code></dt><dd><p>SourceSystem</p></dd>
+    <dt><code>sourceSystemId</code></dt><dd><p>character</p></dd>
+    <dt><code>recordURI</code></dt><dd><p>character</p></dd>
+    <dt><code>id</code></dt><dd><p>character</p></dd>
+    <dt><code>sourceInstitutionID</code></dt><dd><p>character</p></dd>
+    <dt><code>sourceID</code></dt><dd><p>character</p></dd>
+    <dt><code>owner</code></dt><dd><p>character</p></dd>
+    <dt><code>licenseType</code></dt><dd><p>character</p></dd>
+    <dt><code>license</code></dt><dd><p>character</p></dd>
+    <dt><code>unitID</code></dt><dd><p>character</p></dd>
+    <dt><code>collectionType</code></dt><dd><p>character</p></dd>
+    <dt><code>title</code></dt><dd><p>character</p></dd>
+    <dt><code>caption</code></dt><dd><p>character</p></dd>
+    <dt><code>description</code></dt><dd><p>character</p></dd>
+    <dt><code>serviceAccessPoints</code></dt><dd><p>list(ServiceAccessPoint)</p></dd>
+    <dt><code>type</code></dt><dd><p>character</p></dd>
+    <dt><code>taxonCount</code></dt><dd><p>integer</p></dd>
+    <dt><code>creator</code></dt><dd><p>character</p></dd>
+    <dt><code>copyrightText</code></dt><dd><p>character</p></dd>
+    <dt><code>associatedSpecimenReference</code></dt><dd><p>character</p></dd>
+    <dt><code>associatedTaxonReference</code></dt><dd><p>character</p></dd>
+    <dt><code>multiMediaPublic</code></dt><dd><p>logical</p></dd>
+    <dt><code>subjectParts</code></dt><dd><p>list(character)</p></dd>
+    <dt><code>subjectOrientations</code></dt><dd><p>list(character)</p></dd>
+    <dt><code>phasesOrStages</code></dt><dd><p>list(character)</p></dd>
+    <dt><code>sexes</code></dt><dd><p>list(character)</p></dd>
+    <dt><code>gatheringEvents</code></dt><dd><p>list(MultiMediaGatheringEvent)</p></dd>
+    <dt><code>identifications</code></dt><dd><p>list(MultiMediaContentIdentification)</p></dd>
+    <dt><code>theme</code></dt><dd><p>list(character)</p></dd>
+    <dt><code>associatedSpecimen</code></dt><dd><p>Specimen</p></dd>
+    <dt><code>associatedTaxon</code></dt><dd><p>Taxon</p></dd>
+</dl>
+    
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
+
+    
+    <dl class='dl-horizontal'>
+    <dt><code>$new()</code></dt><dd><p>Constructor MultiMediaObject object.</p></dd>
+<dt><code>$fromList(MultiMediaObjectList)</code></dt><dd><p>Create MultiMediaObject object from list.</p></dd>
+    <dt><code>$toList()</code></dt><dd><p>Get list representation of MultiMediaObject.</p></dd>
+<dt><code>fromJSONString(MultiMediaObjectJson)</code></dt><dd><p>Create MultiMediaObject object from list.</p></dd>
+<dt><code>toJSONString(pretty=TRUE)</code></dt><dd><p>Get JSON representation of MultiMediaObject.</p></dd>
 </dl>
     
 
@@ -148,6 +189,8 @@
       <li><a href="#format">Format</a></li>
 
       <li><a href="#fields">Fields</a></li>
+
+      <li><a href="#methods">Methods</a></li>
           </ul>
 
   </div>

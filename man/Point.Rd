@@ -14,7 +14,44 @@ Point Class
 \section{Fields}{
 
 \describe{
-\item{\code{coordinates}}{}
+\item{\code{crs}}{Crs}
+
+\item{\code{bbox}}{list(numeric)}
+
+\item{\code{coordinates}}{LngLatAlt}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor Point object.
+
+}
+\item{\code{$fromList(PointList)}}{
+
+  Create Point object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of Point.
+
+}
+\item{\code{fromJSONString(PointJson)}}{
+
+  Create Point object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of Point.
+
+}
+}
+}
 
 \keyword{datasets}

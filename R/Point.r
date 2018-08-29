@@ -9,10 +9,42 @@
 
 #' Point Class
 #'
-#' @field crs
-#' @field bbox
-#' @field coordinates
 #'
+#'
+#' @field crs  Crs
+#' @field bbox  list(numeric)
+#' @field coordinates  LngLatAlt
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor Point object.
+#'
+#' }
+#' \item{\code{$fromList(PointList)}}{
+#'
+#'   Create Point object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of Point.
+#'
+#' }
+#' \item{\code{fromJSONString(PointJson)}}{
+#'
+#'   Create Point object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of Point.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

@@ -136,7 +136,24 @@
 
     
     <dl class='dl-horizontal'>
-<dt><code>authorshipVerbatim</code></dt><dd><p></p></dd>
+<dt><code>fullScientificName</code></dt><dd><p>character</p></dd>
+    <dt><code>taxonomicStatus</code></dt><dd><p>character</p></dd>
+    <dt><code>genusOrMonomial</code></dt><dd><p>character</p></dd>
+    <dt><code>subgenus</code></dt><dd><p>character</p></dd>
+    <dt><code>specificEpithet</code></dt><dd><p>character</p></dd>
+    <dt><code>infraspecificEpithet</code></dt><dd><p>character</p></dd>
+    <dt><code>authorshipVerbatim</code></dt><dd><p>character</p></dd>
+</dl>
+    
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
+
+    
+    <dl class='dl-horizontal'>
+    <dt><code>$new()</code></dt><dd><p>Constructor SummaryScientificName object.</p></dd>
+<dt><code>$fromList(SummaryScientificNameList)</code></dt><dd><p>Create SummaryScientificName object from list.</p></dd>
+    <dt><code>$toList()</code></dt><dd><p>Get list representation of SummaryScientificName.</p></dd>
+<dt><code>fromJSONString(SummaryScientificNameJson)</code></dt><dd><p>Create SummaryScientificName object from list.</p></dd>
+<dt><code>toJSONString(pretty=TRUE)</code></dt><dd><p>Get JSON representation of SummaryScientificName.</p></dd>
 </dl>
     
 
@@ -148,6 +165,8 @@
       <li><a href="#format">Format</a></li>
 
       <li><a href="#fields">Fields</a></li>
+
+      <li><a href="#methods">Methods</a></li>
           </ul>
 
   </div>

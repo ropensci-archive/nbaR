@@ -14,7 +14,64 @@ GroupByScientificNameQuerySpec Class
 \section{Fields}{
 
 \describe{
-\item{\code{noTaxa}}{}
+\item{\code{constantScore}}{logical}
+
+\item{\code{fields}}{list(character)}
+
+\item{\code{conditions}}{list(QueryCondition)}
+
+\item{\code{logicalOperator}}{character}
+
+\item{\code{sortFields}}{list(SortField)}
+
+\item{\code{from}}{integer}
+
+\item{\code{size}}{integer}
+
+\item{\code{groupSort}}{character}
+
+\item{\code{groupFilter}}{Filter}
+
+\item{\code{specimensFrom}}{integer}
+
+\item{\code{specimensSize}}{integer}
+
+\item{\code{specimensSortFields}}{list(SortField)}
+
+\item{\code{noTaxa}}{logical}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor GroupByScientificNameQuerySpec object.
+
+}
+\item{\code{$fromList(GroupByScientificNameQuerySpecList)}}{
+
+  Create GroupByScientificNameQuerySpec object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of GroupByScientificNameQuerySpec.
+
+}
+\item{\code{fromJSONString(GroupByScientificNameQuerySpecJson)}}{
+
+  Create GroupByScientificNameQuerySpec object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of GroupByScientificNameQuerySpec.
+
+}
+}
+}
 
 \keyword{datasets}

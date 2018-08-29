@@ -14,7 +14,44 @@ Person Class
 \section{Fields}{
 
 \describe{
-\item{\code{organization}}{}
+\item{\code{agentText}}{character}
+
+\item{\code{fullName}}{character}
+
+\item{\code{organization}}{Organization}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor Person object.
+
+}
+\item{\code{$fromList(PersonList)}}{
+
+  Create Person object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of Person.
+
+}
+\item{\code{fromJSONString(PersonJson)}}{
+
+  Create Person object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of Person.
+
+}
+}
+}
 
 \keyword{datasets}

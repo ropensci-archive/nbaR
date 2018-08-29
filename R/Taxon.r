@@ -9,24 +9,56 @@
 
 #' Taxon Class
 #'
-#' @field sourceSystem
-#' @field sourceSystemId
-#' @field recordURI
-#' @field id
-#' @field sourceSystemParentId
-#' @field taxonRank
-#' @field taxonRemarks
-#' @field occurrenceStatusVerbatim
-#' @field acceptedName
-#' @field defaultClassification
-#' @field systemClassification
-#' @field synonyms
-#' @field vernacularNames
-#' @field descriptions
-#' @field references
-#' @field experts
-#' @field validName
 #'
+#'
+#' @field sourceSystem  SourceSystem
+#' @field sourceSystemId  character
+#' @field recordURI  character
+#' @field id  character
+#' @field sourceSystemParentId  character
+#' @field taxonRank  character
+#' @field taxonRemarks  character
+#' @field occurrenceStatusVerbatim  character
+#' @field acceptedName  ScientificName
+#' @field defaultClassification  DefaultClassification
+#' @field systemClassification  list(Monomial)
+#' @field synonyms  list(ScientificName)
+#' @field vernacularNames  list(VernacularName)
+#' @field descriptions  list(TaxonDescription)
+#' @field references  list(Reference)
+#' @field experts  list(Expert)
+#' @field validName  ScientificName
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor Taxon object.
+#'
+#' }
+#' \item{\code{$fromList(TaxonList)}}{
+#'
+#'   Create Taxon object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of Taxon.
+#'
+#' }
+#' \item{\code{fromJSONString(TaxonJson)}}{
+#'
+#'   Create Taxon object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of Taxon.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

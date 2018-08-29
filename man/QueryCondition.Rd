@@ -14,7 +14,54 @@ QueryCondition Class
 \section{Fields}{
 
 \describe{
-\item{\code{boost}}{}
+\item{\code{not}}{character}
+
+\item{\code{field}}{character}
+
+\item{\code{operator}}{character}
+
+\item{\code{value}}{list}
+
+\item{\code{and}}{list(QueryCondition)}
+
+\item{\code{or}}{list(QueryCondition)}
+
+\item{\code{constantScore}}{logical}
+
+\item{\code{boost}}{numeric}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor QueryCondition object.
+
+}
+\item{\code{$fromList(QueryConditionList)}}{
+
+  Create QueryCondition object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of QueryCondition.
+
+}
+\item{\code{fromJSONString(QueryConditionJson)}}{
+
+  Create QueryCondition object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of QueryCondition.
+
+}
+}
+}
 
 \keyword{datasets}

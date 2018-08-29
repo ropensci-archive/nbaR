@@ -9,12 +9,47 @@
 QueryResultItemObject
 }
 \description{
-QueryResultItemObject Class
+Contains an object returned from a QuerySpec query. Holds an item and a relevance score.
 }
 \section{Fields}{
 
 \describe{
-\item{\code{item}}{}
+\item{\code{score}}{numeric}
+
+\item{\code{item}}{list}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor QueryResultItemObject object.
+
+}
+\item{\code{$fromList(QueryResultItemObjectList)}}{
+
+  Create QueryResultItemObject object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of QueryResultItemObject.
+
+}
+\item{\code{fromJSONString(QueryResultItemObjectJson)}}{
+
+  Create QueryResultItemObject object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of QueryResultItemObject.
+
+}
+}
+}
 
 \keyword{datasets}

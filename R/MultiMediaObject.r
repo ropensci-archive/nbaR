@@ -9,38 +9,70 @@
 
 #' MultiMediaObject Class
 #'
-#' @field sourceSystem
-#' @field sourceSystemId
-#' @field recordURI
-#' @field id
-#' @field sourceInstitutionID
-#' @field sourceID
-#' @field owner
-#' @field licenseType
-#' @field license
-#' @field unitID
-#' @field collectionType
-#' @field title
-#' @field caption
-#' @field description
-#' @field serviceAccessPoints
-#' @field type
-#' @field taxonCount
-#' @field creator
-#' @field copyrightText
-#' @field associatedSpecimenReference
-#' @field associatedTaxonReference
-#' @field multiMediaPublic
-#' @field subjectParts
-#' @field subjectOrientations
-#' @field phasesOrStages
-#' @field sexes
-#' @field gatheringEvents
-#' @field identifications
-#' @field theme
-#' @field associatedSpecimen
-#' @field associatedTaxon
 #'
+#'
+#' @field sourceSystem  SourceSystem
+#' @field sourceSystemId  character
+#' @field recordURI  character
+#' @field id  character
+#' @field sourceInstitutionID  character
+#' @field sourceID  character
+#' @field owner  character
+#' @field licenseType  character
+#' @field license  character
+#' @field unitID  character
+#' @field collectionType  character
+#' @field title  character
+#' @field caption  character
+#' @field description  character
+#' @field serviceAccessPoints  list(ServiceAccessPoint)
+#' @field type  character
+#' @field taxonCount  integer
+#' @field creator  character
+#' @field copyrightText  character
+#' @field associatedSpecimenReference  character
+#' @field associatedTaxonReference  character
+#' @field multiMediaPublic  logical
+#' @field subjectParts  list(character)
+#' @field subjectOrientations  list(character)
+#' @field phasesOrStages  list(character)
+#' @field sexes  list(character)
+#' @field gatheringEvents  list(MultiMediaGatheringEvent)
+#' @field identifications  list(MultiMediaContentIdentification)
+#' @field theme  list(character)
+#' @field associatedSpecimen  Specimen
+#' @field associatedTaxon  Taxon
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor MultiMediaObject object.
+#'
+#' }
+#' \item{\code{$fromList(MultiMediaObjectList)}}{
+#'
+#'   Create MultiMediaObject object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of MultiMediaObject.
+#'
+#' }
+#' \item{\code{fromJSONString(MultiMediaObjectJson)}}{
+#'
+#'   Create MultiMediaObject object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of MultiMediaObject.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

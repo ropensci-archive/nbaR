@@ -136,7 +136,34 @@
 
     
     <dl class='dl-horizontal'>
-<dt><code>validName</code></dt><dd><p></p></dd>
+<dt><code>sourceSystem</code></dt><dd><p>SourceSystem</p></dd>
+    <dt><code>sourceSystemId</code></dt><dd><p>character</p></dd>
+    <dt><code>recordURI</code></dt><dd><p>character</p></dd>
+    <dt><code>id</code></dt><dd><p>character</p></dd>
+    <dt><code>sourceSystemParentId</code></dt><dd><p>character</p></dd>
+    <dt><code>taxonRank</code></dt><dd><p>character</p></dd>
+    <dt><code>taxonRemarks</code></dt><dd><p>character</p></dd>
+    <dt><code>occurrenceStatusVerbatim</code></dt><dd><p>character</p></dd>
+    <dt><code>acceptedName</code></dt><dd><p>ScientificName</p></dd>
+    <dt><code>defaultClassification</code></dt><dd><p>DefaultClassification</p></dd>
+    <dt><code>systemClassification</code></dt><dd><p>list(Monomial)</p></dd>
+    <dt><code>synonyms</code></dt><dd><p>list(ScientificName)</p></dd>
+    <dt><code>vernacularNames</code></dt><dd><p>list(VernacularName)</p></dd>
+    <dt><code>descriptions</code></dt><dd><p>list(TaxonDescription)</p></dd>
+    <dt><code>references</code></dt><dd><p>list(Reference)</p></dd>
+    <dt><code>experts</code></dt><dd><p>list(Expert)</p></dd>
+    <dt><code>validName</code></dt><dd><p>ScientificName</p></dd>
+</dl>
+    
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
+
+    
+    <dl class='dl-horizontal'>
+    <dt><code>$new()</code></dt><dd><p>Constructor Taxon object.</p></dd>
+<dt><code>$fromList(TaxonList)</code></dt><dd><p>Create Taxon object from list.</p></dd>
+    <dt><code>$toList()</code></dt><dd><p>Get list representation of Taxon.</p></dd>
+<dt><code>fromJSONString(TaxonJson)</code></dt><dd><p>Create Taxon object from list.</p></dd>
+<dt><code>toJSONString(pretty=TRUE)</code></dt><dd><p>Get JSON representation of Taxon.</p></dd>
 </dl>
     
 
@@ -148,6 +175,8 @@
       <li><a href="#format">Format</a></li>
 
       <li><a href="#fields">Fields</a></li>
+
+      <li><a href="#methods">Methods</a></li>
           </ul>
 
   </div>

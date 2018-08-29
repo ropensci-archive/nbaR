@@ -9,10 +9,42 @@
 
 #' Expert Class
 #'
-#' @field agentText
-#' @field fullName
-#' @field organization
 #'
+#'
+#' @field agentText  character
+#' @field fullName  character
+#' @field organization  Organization
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor Expert object.
+#'
+#' }
+#' \item{\code{$fromList(ExpertList)}}{
+#'
+#'   Create Expert object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of Expert.
+#'
+#' }
+#' \item{\code{fromJSONString(ExpertJson)}}{
+#'
+#'   Create Expert object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of Expert.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

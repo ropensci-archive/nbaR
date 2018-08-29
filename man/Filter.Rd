@@ -14,7 +14,46 @@ Filter Class
 \section{Fields}{
 
 \describe{
-\item{\code{rejectValues}}{}
+\item{\code{acceptRegexp}}{character}
+
+\item{\code{rejectRegexp}}{character}
+
+\item{\code{acceptValues}}{list(character)}
+
+\item{\code{rejectValues}}{list(character)}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor Filter object.
+
+}
+\item{\code{$fromList(FilterList)}}{
+
+  Create Filter object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of Filter.
+
+}
+\item{\code{fromJSONString(FilterJson)}}{
+
+  Create Filter object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of Filter.
+
+}
+}
+}
 
 \keyword{datasets}

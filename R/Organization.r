@@ -9,9 +9,41 @@
 
 #' Organization Class
 #'
-#' @field agentText
-#' @field name
 #'
+#'
+#' @field agentText  character
+#' @field name  character
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor Organization object.
+#'
+#' }
+#' \item{\code{$fromList(OrganizationList)}}{
+#'
+#'   Create Organization object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of Organization.
+#'
+#' }
+#' \item{\code{fromJSONString(OrganizationJson)}}{
+#'
+#'   Create Organization object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of Organization.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

@@ -14,7 +14,48 @@ Reference Class
 \section{Fields}{
 
 \describe{
-\item{\code{publicationDate}}{}
+\item{\code{titleCitation}}{character}
+
+\item{\code{citationDetail}}{character}
+
+\item{\code{uri}}{character}
+
+\item{\code{author}}{Person}
+
+\item{\code{publicationDate}}{character}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor Reference object.
+
+}
+\item{\code{$fromList(ReferenceList)}}{
+
+  Create Reference object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of Reference.
+
+}
+\item{\code{fromJSONString(ReferenceJson)}}{
+
+  Create Reference object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of Reference.
+
+}
+}
+}
 
 \keyword{datasets}

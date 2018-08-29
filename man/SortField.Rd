@@ -14,7 +14,44 @@ SortField Class
 \section{Fields}{
 
 \describe{
-\item{\code{ascending}}{}
+\item{\code{path}}{character}
+
+\item{\code{sortOrder}}{character}
+
+\item{\code{ascending}}{logical}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor SortField object.
+
+}
+\item{\code{$fromList(SortFieldList)}}{
+
+  Create SortField object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of SortField.
+
+}
+\item{\code{fromJSONString(SortFieldJson)}}{
+
+  Create SortField object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of SortField.
+
+}
+}
+}
 
 \keyword{datasets}

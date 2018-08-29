@@ -14,7 +14,72 @@ LithoStratigraphy Class
 \section{Fields}{
 
 \describe{
-\item{\code{bed}}{}
+\item{\code{qualifier}}{character}
+
+\item{\code{preferredFlag}}{logical}
+
+\item{\code{member2}}{character}
+
+\item{\code{member}}{character}
+
+\item{\code{informalName2}}{character}
+
+\item{\code{informalName}}{character}
+
+\item{\code{importedName2}}{character}
+
+\item{\code{importedName1}}{character}
+
+\item{\code{lithoIdentifier}}{character}
+
+\item{\code{formation2}}{character}
+
+\item{\code{formationGroup2}}{character}
+
+\item{\code{formationGroup}}{character}
+
+\item{\code{formation}}{character}
+
+\item{\code{certainty2}}{character}
+
+\item{\code{certainty}}{character}
+
+\item{\code{bed2}}{character}
+
+\item{\code{bed}}{character}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor LithoStratigraphy object.
+
+}
+\item{\code{$fromList(LithoStratigraphyList)}}{
+
+  Create LithoStratigraphy object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of LithoStratigraphy.
+
+}
+\item{\code{fromJSONString(LithoStratigraphyJson)}}{
+
+  Create LithoStratigraphy object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of LithoStratigraphy.
+
+}
+}
+}
 
 \keyword{datasets}

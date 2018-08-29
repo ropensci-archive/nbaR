@@ -9,8 +9,40 @@
 
 #' Path Class
 #'
-#' @field purePath
 #'
+#'
+#' @field purePath  character
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor Path object.
+#'
+#' }
+#' \item{\code{$fromList(PathList)}}{
+#'
+#'   Create Path object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of Path.
+#'
+#' }
+#' \item{\code{fromJSONString(PathJson)}}{
+#'
+#'   Create Path object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of Path.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

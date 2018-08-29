@@ -9,10 +9,42 @@
 
 #' Person Class
 #'
-#' @field agentText
-#' @field fullName
-#' @field organization
 #'
+#'
+#' @field agentText  character
+#' @field fullName  character
+#' @field organization  Organization
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor Person object.
+#'
+#' }
+#' \item{\code{$fromList(PersonList)}}{
+#'
+#'   Create Person object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of Person.
+#'
+#' }
+#' \item{\code{fromJSONString(PersonJson)}}{
+#'
+#'   Create Person object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of Person.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

@@ -9,9 +9,41 @@
 
 #' AssociatedTaxon Class
 #'
-#' @field name
-#' @field relationType
 #'
+#'
+#' @field name  character
+#' @field relationType  character
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor AssociatedTaxon object.
+#'
+#' }
+#' \item{\code{$fromList(AssociatedTaxonList)}}{
+#'
+#'   Create AssociatedTaxon object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of AssociatedTaxon.
+#'
+#' }
+#' \item{\code{fromJSONString(AssociatedTaxonJson)}}{
+#'
+#'   Create AssociatedTaxon object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of AssociatedTaxon.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

@@ -9,14 +9,46 @@
 
 #' SummaryScientificName Class
 #'
-#' @field fullScientificName
-#' @field taxonomicStatus
-#' @field genusOrMonomial
-#' @field subgenus
-#' @field specificEpithet
-#' @field infraspecificEpithet
-#' @field authorshipVerbatim
 #'
+#'
+#' @field fullScientificName  character
+#' @field taxonomicStatus  character
+#' @field genusOrMonomial  character
+#' @field subgenus  character
+#' @field specificEpithet  character
+#' @field infraspecificEpithet  character
+#' @field authorshipVerbatim  character
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor SummaryScientificName object.
+#'
+#' }
+#' \item{\code{$fromList(SummaryScientificNameList)}}{
+#'
+#'   Create SummaryScientificName object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of SummaryScientificName.
+#'
+#' }
+#' \item{\code{fromJSONString(SummaryScientificNameJson)}}{
+#'
+#'   Create SummaryScientificName object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of SummaryScientificName.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

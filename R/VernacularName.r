@@ -9,12 +9,44 @@
 
 #' VernacularName Class
 #'
-#' @field name
-#' @field language
-#' @field preferred
-#' @field references
-#' @field experts
 #'
+#'
+#' @field name  character
+#' @field language  character
+#' @field preferred  logical
+#' @field references  list(Reference)
+#' @field experts  list(Expert)
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor VernacularName object.
+#'
+#' }
+#' \item{\code{$fromList(VernacularNameList)}}{
+#'
+#'   Create VernacularName object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of VernacularName.
+#'
+#' }
+#' \item{\code{fromJSONString(VernacularNameJson)}}{
+#'
+#'   Create VernacularName object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of VernacularName.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

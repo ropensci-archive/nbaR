@@ -9,9 +9,41 @@
 
 #' SummaryVernacularName Class
 #'
-#' @field name
-#' @field language
 #'
+#'
+#' @field name  character
+#' @field language  character
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor SummaryVernacularName object.
+#'
+#' }
+#' \item{\code{$fromList(SummaryVernacularNameList)}}{
+#'
+#'   Create SummaryVernacularName object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of SummaryVernacularName.
+#'
+#' }
+#' \item{\code{fromJSONString(SummaryVernacularNameJson)}}{
+#'
+#'   Create SummaryVernacularName object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of SummaryVernacularName.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

@@ -9,10 +9,42 @@
 
 #' GeometryCollection Class
 #'
-#' @field crs
-#' @field bbox
-#' @field geometries
 #'
+#'
+#' @field crs  Crs
+#' @field bbox  list(numeric)
+#' @field geometries  list(list)
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor GeometryCollection object.
+#'
+#' }
+#' \item{\code{$fromList(GeometryCollectionList)}}{
+#'
+#'   Create GeometryCollection object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of GeometryCollection.
+#'
+#' }
+#' \item{\code{fromJSONString(GeometryCollectionJson)}}{
+#'
+#'   Create GeometryCollection object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of GeometryCollection.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

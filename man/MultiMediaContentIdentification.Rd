@@ -14,7 +14,58 @@ MultiMediaContentIdentification Class
 \section{Fields}{
 
 \describe{
-\item{\code{taxonomicEnrichments}}{}
+\item{\code{taxonRank}}{character}
+
+\item{\code{scientificName}}{ScientificName}
+
+\item{\code{typeStatus}}{character}
+
+\item{\code{dateIdentified}}{character}
+
+\item{\code{defaultClassification}}{DefaultClassification}
+
+\item{\code{systemClassification}}{list(Monomial)}
+
+\item{\code{vernacularNames}}{list(VernacularName)}
+
+\item{\code{identificationQualifiers}}{list(character)}
+
+\item{\code{identifiers}}{list(Agent)}
+
+\item{\code{taxonomicEnrichments}}{list(TaxonomicEnrichment)}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor MultiMediaContentIdentification object.
+
+}
+\item{\code{$fromList(MultiMediaContentIdentificationList)}}{
+
+  Create MultiMediaContentIdentification object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of MultiMediaContentIdentification.
+
+}
+\item{\code{fromJSONString(MultiMediaContentIdentificationJson)}}{
+
+  Create MultiMediaContentIdentification object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of MultiMediaContentIdentification.
+
+}
+}
+}
 
 \keyword{datasets}

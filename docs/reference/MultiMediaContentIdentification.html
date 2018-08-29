@@ -136,7 +136,27 @@
 
     
     <dl class='dl-horizontal'>
-<dt><code>taxonomicEnrichments</code></dt><dd><p></p></dd>
+<dt><code>taxonRank</code></dt><dd><p>character</p></dd>
+    <dt><code>scientificName</code></dt><dd><p>ScientificName</p></dd>
+    <dt><code>typeStatus</code></dt><dd><p>character</p></dd>
+    <dt><code>dateIdentified</code></dt><dd><p>character</p></dd>
+    <dt><code>defaultClassification</code></dt><dd><p>DefaultClassification</p></dd>
+    <dt><code>systemClassification</code></dt><dd><p>list(Monomial)</p></dd>
+    <dt><code>vernacularNames</code></dt><dd><p>list(VernacularName)</p></dd>
+    <dt><code>identificationQualifiers</code></dt><dd><p>list(character)</p></dd>
+    <dt><code>identifiers</code></dt><dd><p>list(Agent)</p></dd>
+    <dt><code>taxonomicEnrichments</code></dt><dd><p>list(TaxonomicEnrichment)</p></dd>
+</dl>
+    
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
+
+    
+    <dl class='dl-horizontal'>
+    <dt><code>$new()</code></dt><dd><p>Constructor MultiMediaContentIdentification object.</p></dd>
+<dt><code>$fromList(MultiMediaContentIdentificationList)</code></dt><dd><p>Create MultiMediaContentIdentification object from list.</p></dd>
+    <dt><code>$toList()</code></dt><dd><p>Get list representation of MultiMediaContentIdentification.</p></dd>
+<dt><code>fromJSONString(MultiMediaContentIdentificationJson)</code></dt><dd><p>Create MultiMediaContentIdentification object from list.</p></dd>
+<dt><code>toJSONString(pretty=TRUE)</code></dt><dd><p>Get JSON representation of MultiMediaContentIdentification.</p></dd>
 </dl>
     
 
@@ -148,6 +168,8 @@
       <li><a href="#format">Format</a></li>
 
       <li><a href="#fields">Fields</a></li>
+
+      <li><a href="#methods">Methods</a></li>
           </ul>
 
   </div>

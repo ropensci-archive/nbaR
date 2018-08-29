@@ -14,7 +14,40 @@ Agent Class
 \section{Fields}{
 
 \describe{
-\item{\code{agentText}}{}
+\item{\code{agentText}}{character}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor Agent object.
+
+}
+\item{\code{$fromList(AgentList)}}{
+
+  Create Agent object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of Agent.
+
+}
+\item{\code{fromJSONString(AgentJson)}}{
+
+  Create Agent object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of Agent.
+
+}
+}
+}
 
 \keyword{datasets}

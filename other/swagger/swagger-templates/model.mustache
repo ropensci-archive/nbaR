@@ -2,7 +2,9 @@
 {{#model}}
 {{>partial_header}}
 
-#' {{classname}} Class: {{description}}
+#' {{classname}} Class
+#'
+#' {{description}}
 #'
 {{#vars}}
 #' @field {{baseName}} {{title}} {{#isListContainer}}list({{/isListContainer}}{{datatype}}{{#isListContainer}}){{/isListContainer}}
@@ -10,11 +12,33 @@
 #'
 #' @section Methods:
 #' \describe{
-#'         \item{\code{$new()}}{Constructor {{classname}} object.}
-#'         \item{\code{$fromList({{classname}}List)}}{Create {{classname}} object from list.}
-#'         \item{\code{$toList()}}{Get list representation of {{classname}}.}
-#'         \item{\code{fromJSONString({{classname}}Json)}}{Create {{classname}} object from list.}
-#'         \item{\code{toJSONString(pretty=TRUE)}}{Get JSON representation of {{classname}}.}
+#' 
+#' \item{\code{$new()}}{
+#'
+#'   Constructor {{classname}} object.
+#'
+#' }
+#' \item{\code{$fromList({{classname}}List)}}{
+#'
+#'   Create {{classname}} object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of {{classname}}.
+#' 
+#' }
+#' \item{\code{fromJSONString({{classname}}Json)}}{
+#'
+#'   Create {{classname}} object from list.
+#' 
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#' 
+#'   Get JSON representation of {{classname}}.
+#'
+#' }
 #' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON

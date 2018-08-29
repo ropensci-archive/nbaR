@@ -9,10 +9,42 @@
 
 #' MultiPolygon Class
 #'
-#' @field crs
-#' @field bbox
-#' @field coordinates
 #'
+#'
+#' @field crs  Crs
+#' @field bbox  list(numeric)
+#' @field coordinates  list(LngLatAlt)
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor MultiPolygon object.
+#'
+#' }
+#' \item{\code{$fromList(MultiPolygonList)}}{
+#'
+#'   Create MultiPolygon object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of MultiPolygon.
+#'
+#' }
+#' \item{\code{fromJSONString(MultiPolygonJson)}}{
+#'
+#'   Create MultiPolygon object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of MultiPolygon.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

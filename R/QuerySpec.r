@@ -9,14 +9,46 @@
 
 #' QuerySpec Class
 #'
-#' @field constantScore
-#' @field fields
-#' @field conditions
-#' @field logicalOperator
-#' @field sortFields
-#' @field from
-#' @field size
 #'
+#'
+#' @field constantScore  logical
+#' @field fields  list(character)
+#' @field conditions  list(QueryCondition)
+#' @field logicalOperator  character
+#' @field sortFields  list(SortField)
+#' @field from  integer
+#' @field size  integer
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor QuerySpec object.
+#'
+#' }
+#' \item{\code{$fromList(QuerySpecList)}}{
+#'
+#'   Create QuerySpec object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of QuerySpec.
+#'
+#' }
+#' \item{\code{fromJSONString(QuerySpecJson)}}{
+#'
+#'   Create QuerySpec object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of QuerySpec.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

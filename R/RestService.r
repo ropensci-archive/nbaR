@@ -9,12 +9,44 @@
 
 #' RestService Class
 #'
-#' @field endPoint
-#' @field method
-#' @field consumes
-#' @field produces
-#' @field url
 #'
+#'
+#' @field endPoint  character
+#' @field method  character
+#' @field consumes  character
+#' @field produces  character
+#' @field url  character
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor RestService object.
+#'
+#' }
+#' \item{\code{$fromList(RestServiceList)}}{
+#'
+#'   Create RestService object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of RestService.
+#'
+#' }
+#' \item{\code{fromJSONString(RestServiceJson)}}{
+#'
+#'   Create RestService object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of RestService.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

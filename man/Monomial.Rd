@@ -14,7 +14,42 @@ Monomial Class
 \section{Fields}{
 
 \describe{
-\item{\code{name}}{}
+\item{\code{rank}}{character}
+
+\item{\code{name}}{character}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor Monomial object.
+
+}
+\item{\code{$fromList(MonomialList)}}{
+
+  Create Monomial object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of Monomial.
+
+}
+\item{\code{fromJSONString(MonomialJson)}}{
+
+  Create Monomial object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of Monomial.
+
+}
+}
+}
 
 \keyword{datasets}

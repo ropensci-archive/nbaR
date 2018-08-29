@@ -14,7 +14,48 @@ RestService Class
 \section{Fields}{
 
 \describe{
-\item{\code{url}}{}
+\item{\code{endPoint}}{character}
+
+\item{\code{method}}{character}
+
+\item{\code{consumes}}{character}
+
+\item{\code{produces}}{character}
+
+\item{\code{url}}{character}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor RestService object.
+
+}
+\item{\code{$fromList(RestServiceList)}}{
+
+  Create RestService object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of RestService.
+
+}
+\item{\code{fromJSONString(RestServiceJson)}}{
+
+  Create RestService object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of RestService.
+
+}
+}
+}
 
 \keyword{datasets}

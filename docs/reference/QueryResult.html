@@ -136,7 +136,19 @@
 
     
     <dl class='dl-horizontal'>
-<dt><code>resultSet</code></dt><dd><p></p></dd>
+<dt><code>totalSize</code></dt><dd><p>integer</p></dd>
+    <dt><code>resultSet</code></dt><dd><p>list(QueryResultItemObject)</p></dd>
+</dl>
+    
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
+
+    
+    <dl class='dl-horizontal'>
+    <dt><code>$new()</code></dt><dd><p>Constructor QueryResult object.</p></dd>
+<dt><code>$fromList(QueryResultList)</code></dt><dd><p>Create QueryResult object from list.</p></dd>
+    <dt><code>$toList()</code></dt><dd><p>Get list representation of QueryResult.</p></dd>
+<dt><code>fromJSONString(QueryResultJson)</code></dt><dd><p>Create QueryResult object from list.</p></dd>
+<dt><code>toJSONString(pretty=TRUE)</code></dt><dd><p>Get JSON representation of QueryResult.</p></dd>
 </dl>
     
 
@@ -148,6 +160,8 @@
       <li><a href="#format">Format</a></li>
 
       <li><a href="#fields">Fields</a></li>
+
+      <li><a href="#methods">Methods</a></li>
           </ul>
 
   </div>

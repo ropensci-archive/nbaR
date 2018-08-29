@@ -9,9 +9,41 @@
 
 #' GeoJsonObject Class
 #'
-#' @field crs
-#' @field bbox
 #'
+#'
+#' @field crs  Crs
+#' @field bbox  list(numeric)
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor GeoJsonObject object.
+#'
+#' }
+#' \item{\code{$fromList(GeoJsonObjectList)}}{
+#'
+#'   Create GeoJsonObject object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of GeoJsonObject.
+#'
+#' }
+#' \item{\code{fromJSONString(GeoJsonObjectJson)}}{
+#'
+#'   Create GeoJsonObject object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of GeoJsonObject.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

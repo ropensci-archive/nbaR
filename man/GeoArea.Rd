@@ -14,7 +14,58 @@ GeoArea Class
 \section{Fields}{
 
 \describe{
-\item{\code{countryNL}}{}
+\item{\code{sourceSystem}}{SourceSystem}
+
+\item{\code{sourceSystemId}}{character}
+
+\item{\code{recordURI}}{character}
+
+\item{\code{id}}{character}
+
+\item{\code{areaType}}{character}
+
+\item{\code{locality}}{character}
+
+\item{\code{shape}}{list}
+
+\item{\code{source}}{character}
+
+\item{\code{isoCode}}{character}
+
+\item{\code{countryNL}}{character}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor GeoArea object.
+
+}
+\item{\code{$fromList(GeoAreaList)}}{
+
+  Create GeoArea object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of GeoArea.
+
+}
+\item{\code{fromJSONString(GeoAreaJson)}}{
+
+  Create GeoArea object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of GeoArea.
+
+}
+}
+}
 
 \keyword{datasets}

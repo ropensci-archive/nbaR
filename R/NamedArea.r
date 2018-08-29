@@ -9,9 +9,41 @@
 
 #' NamedArea Class
 #'
-#' @field areaClass
-#' @field areaName
 #'
+#'
+#' @field areaClass  character
+#' @field areaName  character
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor NamedArea object.
+#'
+#' }
+#' \item{\code{$fromList(NamedAreaList)}}{
+#'
+#'   Create NamedArea object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of NamedArea.
+#'
+#' }
+#' \item{\code{fromJSONString(NamedAreaJson)}}{
+#'
+#'   Create NamedArea object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of NamedArea.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

@@ -18,9 +18,24 @@ navbar:
     intro:
       text: Get started
       href: articles/nbaR.html
+    articles:
+      text: Articles
+      menu:
+      - text: Calibrating a molecular phylogeny of the sharks
+        href: articles/sharks.html
+      - text: The oldest tomato specimen in the world
+        href: articles/tomato.html
     github:
       icon: fa-github fa-lg
       href: https://github.com/naturalis/nbaR
+
+articles:
+- title: All vignettes
+  desc: ~
+  contents:
+  - '`nbaR`'
+  - '`sharks`'
+  - '`tomato`'
 
 reference:
 - title: All functions
@@ -41,6 +56,7 @@ reference:
   - '`GatheringEvent`'
   - '`GatheringSiteCoordinates`'
   - '`GeoArea`'
+  - '`GeoAreaClient`'
   - '`GeoClient`'
   - '`GeoJsonObject`'
   - '`GeometryCollection`'

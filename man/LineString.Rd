@@ -14,7 +14,44 @@ LineString Class
 \section{Fields}{
 
 \describe{
-\item{\code{coordinates}}{}
+\item{\code{crs}}{Crs}
+
+\item{\code{bbox}}{list(numeric)}
+
+\item{\code{coordinates}}{list(LngLatAlt)}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor LineString object.
+
+}
+\item{\code{$fromList(LineStringList)}}{
+
+  Create LineString object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of LineString.
+
+}
+\item{\code{fromJSONString(LineStringJson)}}{
+
+  Create LineString object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of LineString.
+
+}
+}
+}
 
 \keyword{datasets}

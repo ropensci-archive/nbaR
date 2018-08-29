@@ -9,10 +9,42 @@
 
 #' ServiceAccessPoint Class
 #'
-#' @field accessUri
-#' @field format
-#' @field variant
 #'
+#'
+#' @field accessUri  character
+#' @field format  character
+#' @field variant  character
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor ServiceAccessPoint object.
+#'
+#' }
+#' \item{\code{$fromList(ServiceAccessPointList)}}{
+#'
+#'   Create ServiceAccessPoint object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of ServiceAccessPoint.
+#'
+#' }
+#' \item{\code{fromJSONString(ServiceAccessPointJson)}}{
+#'
+#'   Create ServiceAccessPoint object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of ServiceAccessPoint.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

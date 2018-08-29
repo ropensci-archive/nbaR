@@ -9,14 +9,46 @@
 
 #' Iptc4xmpExt Class
 #'
-#' @field locationShown
-#' @field worldRegion
-#' @field countryCode
-#' @field countryName
-#' @field provinceState
-#' @field city
-#' @field sublocation
 #'
+#'
+#' @field locationShown  character
+#' @field worldRegion  character
+#' @field countryCode  character
+#' @field countryName  character
+#' @field provinceState  character
+#' @field city  character
+#' @field sublocation  character
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor Iptc4xmpExt object.
+#'
+#' }
+#' \item{\code{$fromList(Iptc4xmpExtList)}}{
+#'
+#'   Create Iptc4xmpExt object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of Iptc4xmpExt.
+#'
+#' }
+#' \item{\code{fromJSONString(Iptc4xmpExtJson)}}{
+#'
+#'   Create Iptc4xmpExt object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of Iptc4xmpExt.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

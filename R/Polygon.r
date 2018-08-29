@@ -9,10 +9,42 @@
 
 #' Polygon Class
 #'
-#' @field crs
-#' @field bbox
-#' @field coordinates
 #'
+#'
+#' @field crs  Crs
+#' @field bbox  list(numeric)
+#' @field coordinates  list(LngLatAlt)
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor Polygon object.
+#'
+#' }
+#' \item{\code{$fromList(PolygonList)}}{
+#'
+#'   Create Polygon object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of Polygon.
+#'
+#' }
+#' \item{\code{fromJSONString(PolygonJson)}}{
+#'
+#'   Create Polygon object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of Polygon.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

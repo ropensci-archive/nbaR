@@ -14,7 +14,72 @@ Taxon Class
 \section{Fields}{
 
 \describe{
-\item{\code{validName}}{}
+\item{\code{sourceSystem}}{SourceSystem}
+
+\item{\code{sourceSystemId}}{character}
+
+\item{\code{recordURI}}{character}
+
+\item{\code{id}}{character}
+
+\item{\code{sourceSystemParentId}}{character}
+
+\item{\code{taxonRank}}{character}
+
+\item{\code{taxonRemarks}}{character}
+
+\item{\code{occurrenceStatusVerbatim}}{character}
+
+\item{\code{acceptedName}}{ScientificName}
+
+\item{\code{defaultClassification}}{DefaultClassification}
+
+\item{\code{systemClassification}}{list(Monomial)}
+
+\item{\code{synonyms}}{list(ScientificName)}
+
+\item{\code{vernacularNames}}{list(VernacularName)}
+
+\item{\code{descriptions}}{list(TaxonDescription)}
+
+\item{\code{references}}{list(Reference)}
+
+\item{\code{experts}}{list(Expert)}
+
+\item{\code{validName}}{ScientificName}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor Taxon object.
+
+}
+\item{\code{$fromList(TaxonList)}}{
+
+  Create Taxon object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of Taxon.
+
+}
+\item{\code{fromJSONString(TaxonJson)}}{
+
+  Create Taxon object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of Taxon.
+
+}
+}
+}
 
 \keyword{datasets}

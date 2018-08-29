@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="Specimen Class — Specimen" />
 
-<meta property="og:description" content="Specimen Class" />
+<meta property="og:description" content="This class models a Specimen record. Specimen records constitute the core of data served by the NBA. They can be unambiguously distinguished by the field unitID. Further fields include (among others) information about Finding place, identification, and multimedia content." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -122,7 +122,7 @@
 
     <div class="ref-description">
     
-    <p>Specimen Class</p>
+    <p>This class models a Specimen record. Specimen records constitute the core of data served by the NBA. They can be unambiguously distinguished by the field unitID. Further fields include (among others) information about Finding place, identification, and multimedia content.</p>
     
     </div>
 
@@ -136,7 +136,49 @@
 
     
     <dl class='dl-horizontal'>
-<dt><code>theme</code></dt><dd><p></p></dd>
+<dt><code>sourceSystem</code></dt><dd><p>SourceSystem</p></dd>
+    <dt><code>sourceSystemId</code></dt><dd><p>character</p></dd>
+    <dt><code>recordURI</code></dt><dd><p>character</p></dd>
+    <dt><code>id</code></dt><dd><p>character</p></dd>
+    <dt><code>unitID</code></dt><dd><p>character</p></dd>
+    <dt><code>unitGUID</code></dt><dd><p>character</p></dd>
+    <dt><code>collectorsFieldNumber</code></dt><dd><p>character</p></dd>
+    <dt><code>assemblageID</code></dt><dd><p>character</p></dd>
+    <dt><code>sourceInstitutionID</code></dt><dd><p>character</p></dd>
+    <dt><code>sourceID</code></dt><dd><p>character</p></dd>
+    <dt><code>previousSourceID</code></dt><dd><p>list(character)</p></dd>
+    <dt><code>owner</code></dt><dd><p>character</p></dd>
+    <dt><code>licenseType</code></dt><dd><p>character</p></dd>
+    <dt><code>license</code></dt><dd><p>character</p></dd>
+    <dt><code>recordBasis</code></dt><dd><p>character</p></dd>
+    <dt><code>kindOfUnit</code></dt><dd><p>character</p></dd>
+    <dt><code>collectionType</code></dt><dd><p>character</p></dd>
+    <dt><code>sex</code></dt><dd><p>character</p></dd>
+    <dt><code>phaseOrStage</code></dt><dd><p>character</p></dd>
+    <dt><code>title</code></dt><dd><p>character</p></dd>
+    <dt><code>notes</code></dt><dd><p>character</p></dd>
+    <dt><code>preparationType</code></dt><dd><p>character</p></dd>
+    <dt><code>previousUnitsText</code></dt><dd><p>character</p></dd>
+    <dt><code>numberOfSpecimen</code></dt><dd><p>integer</p></dd>
+    <dt><code>fromCaptivity</code></dt><dd><p>logical</p></dd>
+    <dt><code>objectPublic</code></dt><dd><p>logical</p></dd>
+    <dt><code>multiMediaPublic</code></dt><dd><p>logical</p></dd>
+    <dt><code>acquiredFrom</code></dt><dd><p>Agent</p></dd>
+    <dt><code>gatheringEvent</code></dt><dd><p>GatheringEvent</p></dd>
+    <dt><code>identifications</code></dt><dd><p>list(SpecimenIdentification)</p></dd>
+    <dt><code>associatedMultiMediaUris</code></dt><dd><p>list(ServiceAccessPoint)</p></dd>
+    <dt><code>theme</code></dt><dd><p>list(character)</p></dd>
+</dl>
+    
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
+
+    
+    <dl class='dl-horizontal'>
+    <dt><code>$new()</code></dt><dd><p>Constructor Specimen object.</p></dd>
+<dt><code>$fromList(SpecimenList)</code></dt><dd><p>Create Specimen object from list.</p></dd>
+    <dt><code>$toList()</code></dt><dd><p>Get list representation of Specimen.</p></dd>
+<dt><code>fromJSONString(SpecimenJson)</code></dt><dd><p>Create Specimen object from list.</p></dd>
+<dt><code>toJSONString(pretty=TRUE)</code></dt><dd><p>Get JSON representation of Specimen.</p></dd>
 </dl>
     
 
@@ -148,6 +190,8 @@
       <li><a href="#format">Format</a></li>
 
       <li><a href="#fields">Fields</a></li>
+
+      <li><a href="#methods">Methods</a></li>
           </ul>
 
   </div>

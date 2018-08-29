@@ -14,7 +14,44 @@ GeometryCollection Class
 \section{Fields}{
 
 \describe{
-\item{\code{geometries}}{}
+\item{\code{crs}}{Crs}
+
+\item{\code{bbox}}{list(numeric)}
+
+\item{\code{geometries}}{list(list)}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor GeometryCollection object.
+
+}
+\item{\code{$fromList(GeometryCollectionList)}}{
+
+  Create GeometryCollection object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of GeometryCollection.
+
+}
+\item{\code{fromJSONString(GeometryCollectionJson)}}{
+
+  Create GeometryCollection object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of GeometryCollection.
+
+}
+}
+}
 
 \keyword{datasets}

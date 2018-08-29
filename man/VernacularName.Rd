@@ -14,7 +14,48 @@ VernacularName Class
 \section{Fields}{
 
 \describe{
-\item{\code{experts}}{}
+\item{\code{name}}{character}
+
+\item{\code{language}}{character}
+
+\item{\code{preferred}}{logical}
+
+\item{\code{references}}{list(Reference)}
+
+\item{\code{experts}}{list(Expert)}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor VernacularName object.
+
+}
+\item{\code{$fromList(VernacularNameList)}}{
+
+  Create VernacularName object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of VernacularName.
+
+}
+\item{\code{fromJSONString(VernacularNameJson)}}{
+
+  Create VernacularName object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of VernacularName.
+
+}
+}
+}
 
 \keyword{datasets}

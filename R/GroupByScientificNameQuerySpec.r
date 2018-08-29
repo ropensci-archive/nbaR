@@ -9,20 +9,52 @@
 
 #' GroupByScientificNameQuerySpec Class
 #'
-#' @field constantScore
-#' @field fields
-#' @field conditions
-#' @field logicalOperator
-#' @field sortFields
-#' @field from
-#' @field size
-#' @field groupSort
-#' @field groupFilter
-#' @field specimensFrom
-#' @field specimensSize
-#' @field specimensSortFields
-#' @field noTaxa
 #'
+#'
+#' @field constantScore  logical
+#' @field fields  list(character)
+#' @field conditions  list(QueryCondition)
+#' @field logicalOperator  character
+#' @field sortFields  list(SortField)
+#' @field from  integer
+#' @field size  integer
+#' @field groupSort  character
+#' @field groupFilter  Filter
+#' @field specimensFrom  integer
+#' @field specimensSize  integer
+#' @field specimensSortFields  list(SortField)
+#' @field noTaxa  logical
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor GroupByScientificNameQuerySpec object.
+#'
+#' }
+#' \item{\code{$fromList(GroupByScientificNameQuerySpecList)}}{
+#'
+#'   Create GroupByScientificNameQuerySpec object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of GroupByScientificNameQuerySpec.
+#'
+#' }
+#' \item{\code{fromJSONString(GroupByScientificNameQuerySpecJson)}}{
+#'
+#'   Create GroupByScientificNameQuerySpec object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of GroupByScientificNameQuerySpec.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

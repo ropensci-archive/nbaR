@@ -9,22 +9,54 @@
 
 #' BioStratigraphy Class
 #'
-#' @field youngBioDatingQualifier
-#' @field youngBioName
-#' @field youngFossilZone
-#' @field youngFossilSubZone
-#' @field youngBioCertainty
-#' @field youngStratType
-#' @field bioDatingQualifier
-#' @field bioPreferredFlag
-#' @field rangePosition
-#' @field oldBioName
-#' @field bioIdentifier
-#' @field oldFossilzone
-#' @field oldFossilSubzone
-#' @field oldBioCertainty
-#' @field oldBioStratType
 #'
+#'
+#' @field youngBioDatingQualifier  character
+#' @field youngBioName  character
+#' @field youngFossilZone  character
+#' @field youngFossilSubZone  character
+#' @field youngBioCertainty  character
+#' @field youngStratType  character
+#' @field bioDatingQualifier  character
+#' @field bioPreferredFlag  logical
+#' @field rangePosition  character
+#' @field oldBioName  character
+#' @field bioIdentifier  character
+#' @field oldFossilzone  character
+#' @field oldFossilSubzone  character
+#' @field oldBioCertainty  character
+#' @field oldBioStratType  character
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor BioStratigraphy object.
+#'
+#' }
+#' \item{\code{$fromList(BioStratigraphyList)}}{
+#'
+#'   Create BioStratigraphy object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of BioStratigraphy.
+#'
+#' }
+#' \item{\code{fromJSONString(BioStratigraphyJson)}}{
+#'
+#'   Create BioStratigraphy object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of BioStratigraphy.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="QueryResultItemObject Class — QueryResultItemObject" />
 
-<meta property="og:description" content="QueryResultItemObject Class" />
+<meta property="og:description" content="Contains an object returned from a QuerySpec query. Holds an item and a relevance score." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -122,7 +122,7 @@
 
     <div class="ref-description">
     
-    <p>QueryResultItemObject Class</p>
+    <p>Contains an object returned from a QuerySpec query. Holds an item and a relevance score.</p>
     
     </div>
 
@@ -136,7 +136,19 @@
 
     
     <dl class='dl-horizontal'>
-<dt><code>item</code></dt><dd><p></p></dd>
+<dt><code>score</code></dt><dd><p>numeric</p></dd>
+    <dt><code>item</code></dt><dd><p>list</p></dd>
+</dl>
+    
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
+
+    
+    <dl class='dl-horizontal'>
+    <dt><code>$new()</code></dt><dd><p>Constructor QueryResultItemObject object.</p></dd>
+<dt><code>$fromList(QueryResultItemObjectList)</code></dt><dd><p>Create QueryResultItemObject object from list.</p></dd>
+    <dt><code>$toList()</code></dt><dd><p>Get list representation of QueryResultItemObject.</p></dd>
+<dt><code>fromJSONString(QueryResultItemObjectJson)</code></dt><dd><p>Create QueryResultItemObject object from list.</p></dd>
+<dt><code>toJSONString(pretty=TRUE)</code></dt><dd><p>Get JSON representation of QueryResultItemObject.</p></dd>
 </dl>
     
 
@@ -148,6 +160,8 @@
       <li><a href="#format">Format</a></li>
 
       <li><a href="#fields">Fields</a></li>
+
+      <li><a href="#methods">Methods</a></li>
           </ul>
 
   </div>

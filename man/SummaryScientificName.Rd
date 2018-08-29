@@ -14,7 +14,52 @@ SummaryScientificName Class
 \section{Fields}{
 
 \describe{
-\item{\code{authorshipVerbatim}}{}
+\item{\code{fullScientificName}}{character}
+
+\item{\code{taxonomicStatus}}{character}
+
+\item{\code{genusOrMonomial}}{character}
+
+\item{\code{subgenus}}{character}
+
+\item{\code{specificEpithet}}{character}
+
+\item{\code{infraspecificEpithet}}{character}
+
+\item{\code{authorshipVerbatim}}{character}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor SummaryScientificName object.
+
+}
+\item{\code{$fromList(SummaryScientificNameList)}}{
+
+  Create SummaryScientificName object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of SummaryScientificName.
+
+}
+\item{\code{fromJSONString(SummaryScientificNameJson)}}{
+
+  Create SummaryScientificName object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of SummaryScientificName.
+
+}
+}
+}
 
 \keyword{datasets}

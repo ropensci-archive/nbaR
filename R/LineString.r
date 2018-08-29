@@ -9,10 +9,42 @@
 
 #' LineString Class
 #'
-#' @field crs
-#' @field bbox
-#' @field coordinates
 #'
+#'
+#' @field crs  Crs
+#' @field bbox  list(numeric)
+#' @field coordinates  list(LngLatAlt)
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor LineString object.
+#'
+#' }
+#' \item{\code{$fromList(LineStringList)}}{
+#'
+#'   Create LineString object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of LineString.
+#'
+#' }
+#' \item{\code{fromJSONString(LineStringJson)}}{
+#'
+#'   Create LineString object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of LineString.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

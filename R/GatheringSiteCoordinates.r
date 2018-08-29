@@ -9,15 +9,47 @@
 
 #' GatheringSiteCoordinates Class
 #'
-#' @field longitudeDecimal
-#' @field latitudeDecimal
-#' @field gridCellSystem
-#' @field gridLatitudeDecimal
-#' @field gridLongitudeDecimal
-#' @field gridCellCode
-#' @field gridQualifier
-#' @field geoShape
 #'
+#'
+#' @field longitudeDecimal  numeric
+#' @field latitudeDecimal  numeric
+#' @field gridCellSystem  character
+#' @field gridLatitudeDecimal  numeric
+#' @field gridLongitudeDecimal  numeric
+#' @field gridCellCode  character
+#' @field gridQualifier  character
+#' @field geoShape  Point
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor GatheringSiteCoordinates object.
+#'
+#' }
+#' \item{\code{$fromList(GatheringSiteCoordinatesList)}}{
+#'
+#'   Create GatheringSiteCoordinates object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of GatheringSiteCoordinates.
+#'
+#' }
+#' \item{\code{fromJSONString(GatheringSiteCoordinatesJson)}}{
+#'
+#'   Create GatheringSiteCoordinates object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of GatheringSiteCoordinates.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

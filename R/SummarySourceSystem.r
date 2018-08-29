@@ -9,8 +9,40 @@
 
 #' SummarySourceSystem Class
 #'
-#' @field code
 #'
+#'
+#' @field code  character
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor SummarySourceSystem object.
+#'
+#' }
+#' \item{\code{$fromList(SummarySourceSystemList)}}{
+#'
+#'   Create SummarySourceSystem object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of SummarySourceSystem.
+#'
+#' }
+#' \item{\code{fromJSONString(SummarySourceSystemJson)}}{
+#'
+#'   Create SummarySourceSystem object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of SummarySourceSystem.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

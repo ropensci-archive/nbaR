@@ -14,7 +14,44 @@ FeatureCollection Class
 \section{Fields}{
 
 \describe{
-\item{\code{features}}{}
+\item{\code{crs}}{Crs}
+
+\item{\code{bbox}}{list(numeric)}
+
+\item{\code{features}}{list(Feature)}
 }}
+
+\section{Methods}{
+
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor FeatureCollection object.
+
+}
+\item{\code{$fromList(FeatureCollectionList)}}{
+
+  Create FeatureCollection object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of FeatureCollection.
+
+}
+\item{\code{fromJSONString(FeatureCollectionJson)}}{
+
+  Create FeatureCollection object from list.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of FeatureCollection.
+
+}
+}
+}
 
 \keyword{datasets}

@@ -9,17 +9,49 @@
 
 #' GeoArea Class
 #'
-#' @field sourceSystem
-#' @field sourceSystemId
-#' @field recordURI
-#' @field id
-#' @field areaType
-#' @field locality
-#' @field shape
-#' @field source
-#' @field isoCode
-#' @field countryNL
 #'
+#'
+#' @field sourceSystem  SourceSystem
+#' @field sourceSystemId  character
+#' @field recordURI  character
+#' @field id  character
+#' @field areaType  character
+#' @field locality  character
+#' @field shape  list
+#' @field source  character
+#' @field isoCode  character
+#' @field countryNL  character
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor GeoArea object.
+#'
+#' }
+#' \item{\code{$fromList(GeoAreaList)}}{
+#'
+#'   Create GeoArea object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of GeoArea.
+#'
+#' }
+#' \item{\code{fromJSONString(GeoAreaJson)}}{
+#'
+#'   Create GeoArea object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of GeoArea.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export

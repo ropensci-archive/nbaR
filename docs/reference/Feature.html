@@ -136,7 +136,22 @@
 
     
     <dl class='dl-horizontal'>
-<dt><code>id</code></dt><dd><p></p></dd>
+<dt><code>crs</code></dt><dd><p>Crs</p></dd>
+    <dt><code>bbox</code></dt><dd><p>list(numeric)</p></dd>
+    <dt><code>properties</code></dt><dd><p>list</p></dd>
+    <dt><code>geometry</code></dt><dd><p>list</p></dd>
+    <dt><code>id</code></dt><dd><p>character</p></dd>
+</dl>
+    
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
+
+    
+    <dl class='dl-horizontal'>
+    <dt><code>$new()</code></dt><dd><p>Constructor Feature object.</p></dd>
+<dt><code>$fromList(FeatureList)</code></dt><dd><p>Create Feature object from list.</p></dd>
+    <dt><code>$toList()</code></dt><dd><p>Get list representation of Feature.</p></dd>
+<dt><code>fromJSONString(FeatureJson)</code></dt><dd><p>Create Feature object from list.</p></dd>
+<dt><code>toJSONString(pretty=TRUE)</code></dt><dd><p>Get JSON representation of Feature.</p></dd>
 </dl>
     
 
@@ -148,6 +163,8 @@
       <li><a href="#format">Format</a></li>
 
       <li><a href="#fields">Fields</a></li>
+
+      <li><a href="#methods">Methods</a></li>
           </ul>
 
   </div>

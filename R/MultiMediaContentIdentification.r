@@ -9,17 +9,49 @@
 
 #' MultiMediaContentIdentification Class
 #'
-#' @field taxonRank
-#' @field scientificName
-#' @field typeStatus
-#' @field dateIdentified
-#' @field defaultClassification
-#' @field systemClassification
-#' @field vernacularNames
-#' @field identificationQualifiers
-#' @field identifiers
-#' @field taxonomicEnrichments
 #'
+#'
+#' @field taxonRank  character
+#' @field scientificName  ScientificName
+#' @field typeStatus  character
+#' @field dateIdentified  character
+#' @field defaultClassification  DefaultClassification
+#' @field systemClassification  list(Monomial)
+#' @field vernacularNames  list(VernacularName)
+#' @field identificationQualifiers  list(character)
+#' @field identifiers  list(Agent)
+#' @field taxonomicEnrichments  list(TaxonomicEnrichment)
+#'
+#' @section Methods:
+#' \describe{
+#'
+#' \item{\code{$new()}}{
+#'
+#'   Constructor MultiMediaContentIdentification object.
+#'
+#' }
+#' \item{\code{$fromList(MultiMediaContentIdentificationList)}}{
+#'
+#'   Create MultiMediaContentIdentification object from list.
+#'
+#' }
+#'
+#' \item{\code{$toList()}}{
+#'
+#'   Get list representation of MultiMediaContentIdentification.
+#'
+#' }
+#' \item{\code{fromJSONString(MultiMediaContentIdentificationJson)}}{
+#'
+#'   Create MultiMediaContentIdentification object from list.
+#'
+#' }
+#' \item{\code{toJSONString(pretty=TRUE)}}{
+#'
+#'   Get JSON representation of MultiMediaContentIdentification.
+#'
+#' }
+#' }
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
