@@ -1,5 +1,5 @@
 ---
-title: "Calibrating molecular phylogeny of the sharks"
+title: "Calibrating a molecular phylogeny of the sharks"
 author: "Hannes Hettling, Rutger Vos"
 date: "`r format(Sys.time(), '%b %d, %Y')`"
 bibliography: bibliography.bib
@@ -14,7 +14,7 @@ output:
       collapsed: false
 
 vignette: >
-  %\VignetteIndexEntry{nbaR: calibrating a shark phylogeny}
+  %\VignetteIndexEntry{nbaR: R access to the Netherlands Biodiversity API}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
