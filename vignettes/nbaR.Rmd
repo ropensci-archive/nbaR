@@ -64,7 +64,7 @@ the object's JSON representation and the object's data as a list datatype, respe
 
 ```{r}
 # load nbaR
-library('nbaR')                                        
+library(nbaR) 
 
 # instanciate specimen object
 spec <- Specimen$new()
