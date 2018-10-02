@@ -22,6 +22,11 @@
       "givenName": "Hannes",
       "familyName": "Hettling",
       "email": "hannes.hettling@naturalis.nl"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Rutger",
+      "familyName": "Vos"
     }
   ],
   "maintainer": [
@@ -116,7 +121,7 @@
   ],
   "codeRepository": "https://github.com/naturalis/nbaR",
   "readme": "https://github.com/naturalis/nbaR/blob/master/README.md",
-  "fileSize": "20028.223KB",
+  "fileSize": "1967.062KB",
   "contIntegration": [
     "https://travis-ci.org/naturalis/nbaR",
     "https://coveralls.io/github/naturalis/nbaR?branch=master"
