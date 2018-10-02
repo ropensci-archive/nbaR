@@ -1,4 +1,5 @@
 #' @importFrom stats aggregate complete.cases
+#' @importFrom ape getMRCA
 
 #' @name geo_age
 #' @family utils
