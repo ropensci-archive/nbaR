@@ -123,6 +123,7 @@ chronos_calib <- function(specimens, tree, level = "genus") {
   calib
 }
 
+#' @noRd
 get_higher_taxon <- function(genus, specificEpithet, rank) {
   tc <- TaxonClient$new(basePath = "http://145.136.242.167:8080/v2")
   res <- tc$query(queryParams = list(acceptedName.genusOrMonomial = genus, acceptedName.specificEpithet = specificEpithet))

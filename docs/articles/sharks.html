@@ -85,7 +85,7 @@
       <h1>Calibrating a molecular phylogeny of the sharks</h1>
                         <h4 class="author">Hannes Hettling, Rutger Vos</h4>
             
-            <h4 class="date">Aug 29, 2018</h4>
+            <h4 class="date">Oct 02, 2018</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/naturalis/nbaR/blob/master/vignettes/sharks.Rmd"><code>vignettes/sharks.Rmd</code></a></small>
       <div class="hidden name"><code>sharks.Rmd</code></div>
@@ -165,8 +165,8 @@
 ## [10] "Ypresian"                                         
 ## [11] "Recent"                                           
 ## [12] "Upper Miocene"                                    
-## [13] "Eocene"                                           
-## [14] "Pleistocene"                                      
+## [13] "Pleistocene"                                      
+## [14] "Eocene"                                           
 ## [15] "Unindentified Age"                                
 ## [16] "Pliocene"                                         
 ## [17] "B.Mioceen"                                        
@@ -178,26 +178,26 @@
 ## [23] "Early Miocene"                                    
 ## [24] "Upper Eocene"                                     
 ## [25] "Oligoceen, Rupelien"                              
-## [26] "Paleocene"                                        
-## [27] "Tertiair"                                         
-## [28] "M.mioceen"                                        
-## [29] "Onder-Plioceen"                                   
+## [26] "Tertiair"                                         
+## [27] "Onder-Plioceen"                                   
+## [28] "Paleocene"                                        
+## [29] "M.mioceen"                                        
 ## [30] "Mioceen?"                                         
-## [31] "Lower Miocene?"                                   
-## [32] "Maastrichtian"                                    
+## [31] "Maastrichtian"                                    
+## [32] "Lower Miocene?"                                   
 ## [33] "Recent?"                                          
 ## [34] "A. karsteni - Niso sp. Ass. Zone"                 
-## [35] "Oligoceen"                                        
-## [36] "Plio-Pleistocene?"                                
-## [37] "Lower Rupelian"                                   
-## [38] "Plio-Pleistoceen"                                 
-## [39] "Unindentified A"                                  
+## [35] "Plio-Pleistocene?"                                
+## [36] "Oligoceen"                                        
+## [37] "Plio-Pleistoceen"                                 
+## [38] "Unindentified A"                                  
+## [39] "Lower Rupelian"                                   
 ## [40] "Cenomanian"                                       
 ## [41] "Unspecified Age"                                  
-## [42] "? Kwartaire afzetting op zanden van Grimmertingen"
-## [43] "M.Miocen"                                         
-## [44] "Pliocene?"                                        
-## [45] "Middle Miocen"</code></pre>
+## [42] "M.Miocen"                                         
+## [43] "? Kwartaire afzetting op zanden van Grimmertingen"
+## [44] "Middle Miocen"                                    
+## [45] "Pliocene?"</code></pre>
 <p><strong>Caution</strong>: As you see above, there can be more than one chronoStratigraphy assigned with a specimen. Check how many we have per specimen:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">unique</span>(<span class="kw">sapply</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet, <span class="cf">function</span>(x)<span class="kw">length</span>(x<span class="op">$</span>item<span class="op">$</span>gatheringEvent<span class="op">$</span>chronoStratigraphy)))</a></code></pre></div>
 <pre><code>## [1] 1</code></pre>
@@ -256,16 +256,16 @@
 ## 7   Palaeorhincodon           wardi            &lt;NA&gt;   Middle Eocene
 ## 8     Pristiophorus             sp.            &lt;NA&gt;         Mioceen
 ## 9     Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
-## 10    Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
-## 11    Pristiophorus      schroederi         Miocene         Miocene
+## 10    Pristiophorus      schroederi         Miocene         Miocene
+## 11    Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
 ## 12    Chiloscyllium         minutum            &lt;NA&gt;            &lt;NA&gt;
-## 13        Notidanus     primigenius            &lt;NA&gt;   Lower Miocene
-## 14     Notorhynchus     primigenius            &lt;NA&gt;         Mioceen
-## 15        Hexanchus     primigenius         Miocene         Miocene
+## 13     Notorhynchus     primigenius            &lt;NA&gt;         Mioceen
+## 14        Hexanchus     primigenius         Miocene         Miocene
+## 15        Notidanus     primigenius            &lt;NA&gt;   Lower Miocene
 ## 16    Pristiophorus      schroederi        Pliocene         Miocene
-## 17     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
+## 17     Heterodontus        vincenti            &lt;NA&gt;   Middle Eocene
 ## 18     Heterodontus        vincenti            &lt;NA&gt;   Middle Eocene
-## 19     Heterodontus        vincenti            &lt;NA&gt;   Middle Eocene
+## 19     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
 ## 20     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
 ## 21     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
 ## 22    Pristiophorus      schroederi        Pliocene            &lt;NA&gt;
@@ -273,30 +273,30 @@
 ## 24    Pristiophorus      schroederi        Pliocene         Miocene
 ## 25    Pristiophorus      schroederi        Pliocene         Miocene
 ## 26    Pristiophorus      schroederi        Pliocene         Miocene
-## 27    Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
-## 28   Pristiophorus?      schroederi        Pliocene         Miocene
-## 29   Pristiophorus?            &lt;NA&gt;         Miocene         Miocene
-## 30    Pristiophorus     rupeliensis            &lt;NA&gt;        Rupelian
-## 31    Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
+## 27   Pristiophorus?            &lt;NA&gt;         Miocene         Miocene
+## 28    Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
+## 29   Pristiophorus?      schroederi        Pliocene         Miocene
+## 30    Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
+## 31    Pristiophorus     rupeliensis            &lt;NA&gt;        Rupelian
 ## 32    Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
 ## 33    Pristiophorus             sp.            &lt;NA&gt;         Mioceen
 ## 34    Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
 ## 35    Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
 ## 36    Pristiophorus      schroederi        Pliocene         Miocene
-## 37     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
-## 38     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
-## 39     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
-## 40    Pristiophorus             sp.            &lt;NA&gt;         Miocene
-## 41    Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
-## 42    Pristiophorus             sp.            &lt;NA&gt;         Mioceen
+## 37    Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
+## 38    Pristiophorus             sp.            &lt;NA&gt;         Miocene
+## 39    Pristiophorus             sp.            &lt;NA&gt;         Mioceen
+## 40     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
+## 41     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
+## 42     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
 ## 43     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
 ## 44     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
 ## 45     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
-## 46         Squatina      sp. indet.            &lt;NA&gt;  Middle Miocene
-## 47         Squatina            &lt;NA&gt;            &lt;NA&gt;         Miocene
-## 48         Squatina           prima            &lt;NA&gt; Unspecified age
+## 46         Squatina         biforis            &lt;NA&gt;  Middle Miocene
+## 47         Squatina             sp.        Pliocene            &lt;NA&gt;
+## 48         Squatina         biforis            &lt;NA&gt;  Middle Miocene
 ## 49         Squatina         biforis            &lt;NA&gt;  Middle Miocene
-## 50         Squatina             sp.        Pliocene            &lt;NA&gt;
+## 50         Squatina           prima            &lt;NA&gt; Unspecified age
 ##    young_age old_age
 ## 1         NA   23.03
 ## 2         NA   15.97
@@ -307,16 +307,16 @@
 ## 7         NA   48.60
 ## 8         NA      NA
 ## 9         NA   33.90
-## 10        NA   33.90
-## 11      5.33   23.03
+## 10      5.33   23.03
+## 11        NA   33.90
 ## 12        NA      NA
-## 13        NA   23.03
-## 14        NA      NA
-## 15      5.33   23.03
+## 13        NA      NA
+## 14      5.33   23.03
+## 15        NA   23.03
 ## 16      2.59   23.03
-## 17        NA      NA
+## 17        NA   48.60
 ## 18        NA   48.60
-## 19        NA   48.60
+## 19        NA      NA
 ## 20        NA      NA
 ## 21        NA      NA
 ## 22      2.59      NA
@@ -324,9 +324,9 @@
 ## 24      2.59   23.03
 ## 25      2.59   23.03
 ## 26      2.59   23.03
-## 27        NA   33.90
-## 28      2.59   23.03
-## 29      5.33   23.03
+## 27      5.33   23.03
+## 28        NA   33.90
+## 29      2.59   23.03
 ## 30        NA   33.90
 ## 31        NA   33.90
 ## 32        NA   33.90
@@ -334,20 +334,20 @@
 ## 34        NA   33.90
 ## 35        NA   33.90
 ## 36      2.59   23.03
-## 37        NA      NA
-## 38        NA      NA
+## 37        NA   33.90
+## 38        NA   23.03
 ## 39        NA      NA
-## 40        NA   23.03
-## 41        NA   33.90
+## 40        NA      NA
+## 41        NA      NA
 ## 42        NA      NA
 ## 43        NA      NA
 ## 44        NA      NA
 ## 45        NA      NA
 ## 46        NA   15.97
-## 47        NA   23.03
-## 48        NA      NA
+## 47      2.59      NA
+## 48        NA   15.97
 ## 49        NA   15.97
-## 50      2.59      NA</code></pre>
+## 50        NA      NA</code></pre>
 </div>
 </div>
 <div id="calibrating-the-phylogeny" class="section level1">
@@ -393,10 +393,10 @@
 ## "Oligoceen, Rupelien" from earthlifeconsortium.org</code></pre>
 <pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo unit
 ## "Tertiair" from earthlifeconsortium.org</code></pre>
-<pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo unit
-## "M.mioceen" from earthlifeconsortium.org</code></pre>
 <pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo unit "Onder-
 ## Plioceen" from earthlifeconsortium.org</code></pre>
+<pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo unit
+## "M.mioceen" from earthlifeconsortium.org</code></pre>
 <pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo unit
 ## "Mioceen?" from earthlifeconsortium.org</code></pre>
 <pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo unit "Lower
@@ -407,26 +407,26 @@
 ## geo unit "A. karsteni - Niso sp. Ass. Zone" from earthlifeconsortium.org</code></pre>
 <pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo unit "A.
 ## karsteni - Niso sp. Ass. Zone" from earthlifeconsortium.org</code></pre>
-<pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo unit
-## "Oligoceen" from earthlifeconsortium.org</code></pre>
 <pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo unit "Plio-
 ## Pleistocene?" from earthlifeconsortium.org</code></pre>
-<pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo unit "Lower
-## Rupelian" from earthlifeconsortium.org</code></pre>
+<pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo unit
+## "Oligoceen" from earthlifeconsortium.org</code></pre>
 <pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo unit "Plio-
 ## Pleistoceen" from earthlifeconsortium.org</code></pre>
 <pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo unit
 ## "Unindentified A" from earthlifeconsortium.org</code></pre>
+<pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo unit "Lower
+## Rupelian" from earthlifeconsortium.org</code></pre>
 <pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo unit
 ## "Unspecified Age" from earthlifeconsortium.org</code></pre>
+<pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo unit
+## "M.Miocen" from earthlifeconsortium.org</code></pre>
 <pre><code>## Warning in value[[3L]](cond): Timeout reached while retreiving values
 ## for geo unit "? Kwartaire afzetting op zanden van Grimmertingen" from
 ## earthlifeconsortium.org</code></pre>
 <pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo
 ## unit "? Kwartaire afzetting op zanden van Grimmertingen" from
 ## earthlifeconsortium.org</code></pre>
-<pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo unit
-## "M.Miocen" from earthlifeconsortium.org</code></pre>
 <pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo unit "Middle
 ## Miocen" from earthlifeconsortium.org</code></pre>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">calibration_table</a></code></pre></div>
