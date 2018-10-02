@@ -1,7 +1,8 @@
 Package: {{{packageName}}}
 Title: R Package Client for the {{{appName}}}
 Version: {{packageVersion}}
-Authors@R: person("{{{authorFirstName}}}", "{{{authorLastName}}}", email = "{{{authorEmail}}}", role = c("aut", "cre"))
+Authors@R: c(person("{{{authorFirstName}}}", "{{{authorLastName}}}", email = "{{{authorEmail}}}", role = c("aut", "cre")),
+             person("Rutger", "Vos", role="aut"))
 Maintainer: {{{authorFirstName}}} {{{authorLastName}}} <{{{authorEmail}}}>
 Description: {{{appDescription}}}{{^appDescription}}R Package Client for {{{appName}}}{{/appDescription}}.
     {{{extendedDescription}}}
