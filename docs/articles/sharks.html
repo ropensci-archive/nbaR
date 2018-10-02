@@ -218,7 +218,7 @@
 <a class="sourceLine" id="cb15-3" data-line-number="3">name</a></code></pre></div>
 <pre><code>## NULL</code></pre>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">## get the lower and upper bounds for this division</a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw">geo_age</span>(name)</a></code></pre></div>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw"><a href="../reference/geo_age.html">geo_age</a></span>(name)</a></code></pre></div>
 <pre><code>## data frame with 0 columns and 2 rows</code></pre>
 <p>We can now make a table with all interesting data, below this is done for the first 50 specimen objetcs:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">## Get genus, species and chrono information from specimen records</a>
@@ -236,7 +236,7 @@
 <a class="sourceLine" id="cb19-13" data-line-number="13">})))</a>
 <a class="sourceLine" id="cb19-14" data-line-number="14"></a>
 <a class="sourceLine" id="cb19-15" data-line-number="15">## Get absolute ages from earth life consortium</a>
-<a class="sourceLine" id="cb19-16" data-line-number="16">times &lt;-<span class="st"> </span><span class="kw">geo_age</span>(<span class="kw">unique</span>(<span class="kw">c</span>(<span class="kw">as.character</span>(data<span class="op">$</span>youngChronoName), <span class="kw">as.character</span>(data<span class="op">$</span>oldChronoName))))</a></code></pre></div>
+<a class="sourceLine" id="cb19-16" data-line-number="16">times &lt;-<span class="st"> </span><span class="kw"><a href="../reference/geo_age.html">geo_age</a></span>(<span class="kw">unique</span>(<span class="kw">c</span>(<span class="kw">as.character</span>(data<span class="op">$</span>youngChronoName), <span class="kw">as.character</span>(data<span class="op">$</span>oldChronoName))))</a></code></pre></div>
 <pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo unit
 ## "Mioceen" from earthlifeconsortium.org</code></pre>
 <pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo unit
@@ -366,7 +366,7 @@
 <p><img src="sharks_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 <p>Now we use <code>chronos_calib</code> to get the table at the genus level. <code>chronos_calib</code> also selects the nodes in the tree that will be calibrated. This is done by selecting the most recent common ancestor (mrca) of the species for which the data are averaged.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">## make calibration table on genus level</a>
-<a class="sourceLine" id="cb25-2" data-line-number="2">calibration_table &lt;-<span class="st"> </span><span class="kw">chronos_calib</span>(specimens, tree, <span class="st">"genus"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb25-2" data-line-number="2">calibration_table &lt;-<span class="st"> </span><span class="kw"><a href="../reference/chronos_calib.html">chronos_calib</a></span>(specimens, tree, <span class="st">"genus"</span>)</a></code></pre></div>
 <pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo unit
 ## "Pliocene?" from earthlifeconsortium.org</code></pre>
 <pre><code>## Warning in FUN(X[[i]], ...): Could not retreive values for geo unit
@@ -497,7 +497,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Hannes Hettling.</p>
+  <p>Developed by Hannes Hettling, Rutger Vos.</p>
 </div>
 
 <div class="pkgdown">
