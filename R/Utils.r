@@ -1,5 +1,5 @@
 #' @importFrom stats aggregate complete.cases
-#' @importFrom ape getMRCA
+#' @importFrom ape getMRCA read.nexus
 
 #' @name geo_age
 #' @family utils
@@ -9,7 +9,7 @@
 #' upper and lower bound for a geological age range (e.g. 'miocene').
 #' Unit can be can be Eon, Era, System/Period, Series/Epoch.
 #' Returns a list with items early_age and late_age. Gives a warning
-#' if age range no found or if the API call times out. 
+#' if age range no found or if the API call times out.
 #' @return list
 #' @param geo_time character giving a Geological timespan
 #' @examples
@@ -20,7 +20,7 @@ geo_age <- function(geo_time) {
 }
 
 #' @noRd
-#' Internal Function to get a geological age range from unit. 
+#' Internal Function to get a geological age range from unit.
 .geo_age <- function(geo_time) {
   if (is.null(geo_time)) {
     return(list(early_age = NA, late_age = NA))
@@ -83,6 +83,7 @@ geo_age <- function(geo_time) {
 #' sc <- SpecimenClient$new()
 #' sp <- sc$find_by_unit_id("RGM.156532")$content
 #' # load tree
+#' library('ape')
 #' path <- system.file('extdata', 'shark_tree.nex', package='nbaR')
 #' tree <- read.nexus(path)
 #' # make calibration table

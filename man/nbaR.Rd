@@ -4,6 +4,7 @@
 \name{nbaR}
 \alias{nbaR}
 \alias{nbaR-package}
+\alias{nbaR-package}
 \title{nbaR : R Package Client for the Netherlands Biodiversity API}
 \description{
 nbaR : R Package Client for the Netherlands Biodiversity API
