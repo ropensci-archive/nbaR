@@ -33,6 +33,8 @@
 <meta property="og:title" content="Make calibration table — chronos_calib" />
 
 <meta property="og:description" content="Make calibration table compatible with ape's 'chronos'" />
+
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -93,6 +95,9 @@
       <a href="../articles/tomato.html">The oldest tomato specimen in the world</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -161,9 +166,12 @@ function from the 'ape' package. This can be done for various taxonomic levels</
 <span class='no'>sc</span> <span class='kw'>&lt;-</span> <span class='no'>SpecimenClient</span>$<span class='fu'>new</span>()
 <span class='no'>sp</span> <span class='kw'>&lt;-</span> <span class='no'>sc</span>$<span class='fu'>find_by_unit_id</span>(<span class='st'>"RGM.156532"</span>)$<span class='no'>content</span>
 <span class='co'># load tree</span>
+<span class='fu'>library</span>(<span class='st'>'ape'</span>)
 <span class='no'>path</span> <span class='kw'>&lt;-</span> <span class='fu'>system.file</span>(<span class='st'>'extdata'</span>, <span class='st'>'shark_tree.nex'</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>'nbaR'</span>)
-<span class='no'>tree</span> <span class='kw'>&lt;-</span> <span class='fu'>read.nexus</span>(<span class='no'>path</span>)</div><div class='output co'>#&gt; <span class='error'>Error in read.nexus(path): could not find function "read.nexus"</span></div><div class='input'><span class='co'># make calibration table</span>
-<span class='fu'>chronos_calib</span>(<span class='no'>sp</span>, <span class='no'>tree</span>, <span class='st'>"genus"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in strsplit(tree$tip.label, "_"): object 'tree' not found</span></div></pre>
+<span class='no'>tree</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/ape/topics/read.nexus'>read.nexus</a></span>(<span class='no'>path</span>)
+<span class='co'># make calibration table</span>
+<span class='fu'>chronos_calib</span>(<span class='no'>sp</span>, <span class='no'>tree</span>, <span class='st'>"genus"</span>)</div><div class='output co'>#&gt;   node age.min age.max soft.bounds  taxon
+#&gt; 1  320    5.33   15.97       FALSE Isurus</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
