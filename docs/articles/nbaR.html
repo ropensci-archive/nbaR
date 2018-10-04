@@ -11,6 +11,7 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="nbaR: R access to the Netherlands Biodiversity API">
 <meta property="og:description" content="">
+<meta property="og:image" content="/logo.png">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -62,6 +63,9 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -85,7 +89,7 @@
       <h1>nbaR: R access to the Netherlands Biodiversity API</h1>
                         <h4 class="author">Hannes Hettling</h4>
             
-            <h4 class="date">Oct 02, 2018</h4>
+            <h4 class="date">Oct 04, 2018</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/naturalis/nbaR/blob/master/vignettes/nbaR.Rmd"><code>vignettes/nbaR.Rmd</code></a></small>
       <div class="hidden name"><code>nbaR.Rmd</code></div>
@@ -703,24 +707,24 @@ we can combine the latter condition with an additional one using the method <cod
 <a class="sourceLine" id="cb54-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
 <a class="sourceLine" id="cb54-3" data-line-number="3">sc<span class="op">$</span><span class="kw">dwca_get_data_set</span>(<span class="st">'porifera'</span>, <span class="dt">filename=</span>filename)                                                                               </a></code></pre></div>
 <pre><code>## 
-Downloading: 12 kB     
-Downloading: 12 kB     
+Downloading: 8 kB     
+Downloading: 8 kB     
 Downloading: 16 kB     
 Downloading: 16 kB     
 Downloading: 16 kB     
 Downloading: 16 kB     
-Downloading: 33 kB     
-Downloading: 33 kB     
-Downloading: 41 kB     
-Downloading: 41 kB     
+Downloading: 23 kB     
+Downloading: 23 kB     
+Downloading: 40 kB     
+Downloading: 40 kB     
 Downloading: 49 kB     
 Downloading: 49 kB     
 Downloading: 49 kB     
 Downloading: 49 kB     
-Downloading: 58 kB     
-Downloading: 58 kB     
-Downloading: 74 kB     
-Downloading: 74 kB     
+Downloading: 56 kB     
+Downloading: 56 kB     
+Downloading: 71 kB     
+Downloading: 71 kB     
 Downloading: 82 kB     
 Downloading: 82 kB     
 Downloading: 82 kB     
@@ -743,26 +747,22 @@ Downloading: 140 kB
 Downloading: 140 kB     
 Downloading: 150 kB     
 Downloading: 150 kB     
-Downloading: 160 kB     
-Downloading: 160 kB     
 Downloading: 170 kB     
 Downloading: 170 kB     
 Downloading: 170 kB     
 Downloading: 170 kB     
-Downloading: 180 kB     
-Downloading: 180 kB     
-Downloading: 200 kB     
-Downloading: 200 kB     
+Downloading: 170 kB     
+Downloading: 170 kB     
+Downloading: 190 kB     
+Downloading: 190 kB     
 Downloading: 200 kB     
 Downloading: 200 kB     
 Downloading: 200 kB     
 Downloading: 200 kB     
 Downloading: 210 kB     
 Downloading: 210 kB     
-Downloading: 230 kB     
-Downloading: 230 kB     
-Downloading: 230 kB     
-Downloading: 230 kB     
+Downloading: 220 kB     
+Downloading: 220 kB     
 Downloading: 230 kB     
 Downloading: 230 kB     
 Downloading: 240 kB     
@@ -775,6 +775,8 @@ Downloading: 250 kB
 Downloading: 250 kB     
 Downloading: 250 kB     
 Downloading: 250 kB     
+Downloading: 260 kB     
+Downloading: 260 kB     
 Downloading: 270 kB     
 Downloading: 270 kB     
 Downloading: 280 kB     
@@ -783,14 +785,16 @@ Downloading: 290 kB
 Downloading: 290 kB     
 Downloading: 290 kB     
 Downloading: 290 kB     
-Downloading: 300 kB     
-Downloading: 300 kB     
+Downloading: 290 kB     
+Downloading: 290 kB     
+Downloading: 310 kB     
+Downloading: 310 kB     
 Downloading: 320 kB     
 Downloading: 320 kB     
 Downloading: 320 kB     
 Downloading: 320 kB     
-Downloading: 320 kB     
-Downloading: 320 kB     
+Downloading: 330 kB     
+Downloading: 330 kB     
 Downloading: 330 kB     
 Downloading: 330 kB     
 Downloading: 350 kB     
@@ -805,16 +809,16 @@ Downloading: 370 kB
 Downloading: 370 kB     
 Downloading: 370 kB     
 Downloading: 370 kB     
-Downloading: 380 kB     
-Downloading: 380 kB     
+Downloading: 370 kB     
+Downloading: 370 kB     
 Downloading: 390 kB     
 Downloading: 390 kB     
 Downloading: 400 kB     
 Downloading: 400 kB     
 Downloading: 400 kB     
 Downloading: 400 kB     
-Downloading: 420 kB     
-Downloading: 420 kB     
+Downloading: 410 kB     
+Downloading: 410 kB     
 Downloading: 430 kB     
 Downloading: 430 kB     
 Downloading: 430 kB     
@@ -829,8 +833,6 @@ Downloading: 470 kB
 Downloading: 470 kB     
 Downloading: 470 kB     
 Downloading: 470 kB     
-Downloading: 470 kB     
-Downloading: 470 kB     
 Downloading: 480 kB     
 Downloading: 480 kB     
 Downloading: 490 kB     
@@ -839,8 +841,8 @@ Downloading: 490 kB
 Downloading: 490 kB     
 Downloading: 500 kB     
 Downloading: 500 kB     
-Downloading: 510 kB     
-Downloading: 510 kB     
+Downloading: 520 kB     
+Downloading: 520 kB     
 Downloading: 520 kB     
 Downloading: 520 kB     
 Downloading: 520 kB     
@@ -855,12 +857,10 @@ Downloading: 550 kB
 Downloading: 550 kB     
 Downloading: 560 kB     
 Downloading: 560 kB     
-Downloading: 570 kB     
-Downloading: 570 kB     
 Downloading: 580 kB     
 Downloading: 580 kB     
-Downloading: 580 kB     
-Downloading: 580 kB     
+Downloading: 590 kB     
+Downloading: 590 kB     
 Downloading: 590 kB     
 Downloading: 590 kB     
 Downloading: 590 kB     
@@ -871,6 +871,8 @@ Downloading: 600 kB
 Downloading: 600 kB     
 Downloading: 610 kB     
 Downloading: 610 kB     
+Downloading: 620 kB     
+Downloading: 620 kB     
 Downloading: 630 kB     
 Downloading: 630 kB     
 Downloading: 630 kB     
@@ -885,10 +887,12 @@ Downloading: 670 kB
 Downloading: 670 kB     
 Downloading: 670 kB     
 Downloading: 670 kB     
-Downloading: 670 kB     
-Downloading: 670 kB     
-Downloading: 690 kB     
-Downloading: 690 kB     
+Downloading: 680 kB     
+Downloading: 680 kB     
+Downloading: 680 kB     
+Downloading: 680 kB     
+Downloading: 700 kB     
+Downloading: 700 kB     
 Downloading: 700 kB     
 Downloading: 700 kB     
 Downloading: 700 kB     
@@ -899,8 +903,8 @@ Downloading: 720 kB
 Downloading: 720 kB     
 Downloading: 720 kB     
 Downloading: 720 kB     
-Downloading: 720 kB     
-Downloading: 720 kB     
+Downloading: 730 kB     
+Downloading: 730 kB     
 Downloading: 740 kB     
 Downloading: 740 kB     
 Downloading: 750 kB     
@@ -915,8 +919,8 @@ Downloading: 780 kB
 Downloading: 780 kB     
 Downloading: 790 kB     
 Downloading: 790 kB     
-Downloading: 800 kB     
-Downloading: 800 kB     
+Downloading: 790 kB     
+Downloading: 790 kB     
 Downloading: 800 kB     
 Downloading: 800 kB     
 Downloading: 800 kB     
@@ -953,22 +957,22 @@ Downloading: 920 kB
 Downloading: 920 kB     
 Downloading: 930 kB     
 Downloading: 930 kB     
+Downloading: 940 kB     
+Downloading: 940 kB     
 Downloading: 950 kB     
 Downloading: 950 kB     
 Downloading: 950 kB     
 Downloading: 950 kB     
-Downloading: 950 kB     
-Downloading: 950 kB     
+Downloading: 960 kB     
+Downloading: 960 kB     
 Downloading: 970 kB     
 Downloading: 970 kB     
-Downloading: 980 kB     
-Downloading: 980 kB     
 Downloading: 990 kB     
 Downloading: 990 kB     
 Downloading: 990 kB     
 Downloading: 990 kB     
-Downloading: 1,000 kB     
-Downloading: 1,000 kB     
+Downloading: 990 kB     
+Downloading: 990 kB     
 Downloading: 1 MB     
 Downloading: 1 MB     
 Downloading: 1 MB     
@@ -1011,6 +1015,8 @@ Downloading: 1.1 MB
 Downloading: 1.1 MB     
 Downloading: 1.1 MB     
 Downloading: 1.1 MB     
+Downloading: 1.2 MB     
+Downloading: 1.2 MB     
 Downloading: 1.2 MB     
 Downloading: 1.2 MB     
 Downloading: 1.2 MB     
@@ -1047,7 +1053,7 @@ Downloading: 1.3 MB
 Downloading: 1.3 MB     
 Downloading: 1.3 MB     
 Downloading: 1.3 MB</code></pre>
-<pre><code>## Query result written to /tmp/RtmpgHgCYT/file6a3a320c848c.zip</code></pre>
+<pre><code>## Query result written to /tmp/RtmpKmAHz3/file3289afc51ac.zip</code></pre>
 <pre><code>## &lt;Response&gt;
 ##   Public:
 ##     clone: function (deep = FALSE) 
@@ -1068,7 +1074,7 @@ Downloading: 2.7 kB
 Downloading: 2.7 kB     
 Downloading: 2.7 kB     
 Downloading: 2.7 kB</code></pre>
-<pre><code>## Query result written to /tmp/RtmpgHgCYT/file6a3a3411fd39.zip</code></pre>
+<pre><code>## Query result written to /tmp/RtmpKmAHz3/file328965c20473.zip</code></pre>
 <pre><code>## &lt;Response&gt;
 ##   Public:
 ##     clone: function (deep = FALSE) 
@@ -1361,30 +1367,28 @@ Downloading: 8 kB
 Downloading: 8 kB     
 Downloading: 16 kB     
 Downloading: 16 kB     
+Downloading: 23 kB     
+Downloading: 23 kB     
 Downloading: 33 kB     
 Downloading: 33 kB     
 Downloading: 33 kB     
 Downloading: 33 kB     
-Downloading: 33 kB     
-Downloading: 33 kB     
-Downloading: 50 kB     
-Downloading: 50 kB     
+Downloading: 40 kB     
+Downloading: 40 kB     
+Downloading: 57 kB     
+Downloading: 57 kB     
 Downloading: 66 kB     
 Downloading: 66 kB     
-Downloading: 66 kB     
-Downloading: 66 kB     
-Downloading: 66 kB     
-Downloading: 66 kB     
-Downloading: 78 kB     
-Downloading: 78 kB     
+Downloading: 76 kB     
+Downloading: 76 kB     
 Downloading: 83 kB     
 Downloading: 83 kB     
 Downloading: 83 kB     
 Downloading: 83 kB     
-Downloading: 99 kB     
-Downloading: 99 kB     
-Downloading: 120 kB     
-Downloading: 120 kB     
+Downloading: 96 kB     
+Downloading: 96 kB     
+Downloading: 110 kB     
+Downloading: 110 kB     
 Downloading: 120 kB     
 Downloading: 120 kB     
 Downloading: 120 kB     
@@ -1395,28 +1399,28 @@ Downloading: 130 kB
 Downloading: 130 kB     
 Downloading: 130 kB     
 Downloading: 130 kB     
-Downloading: 140 kB     
-Downloading: 140 kB     
 Downloading: 150 kB     
 Downloading: 150 kB     
 Downloading: 170 kB     
 Downloading: 170 kB     
 Downloading: 170 kB     
 Downloading: 170 kB     
+Downloading: 170 kB     
+Downloading: 170 kB     
+Downloading: 170 kB     
+Downloading: 170 kB     
 Downloading: 180 kB     
 Downloading: 180 kB     
 Downloading: 180 kB     
 Downloading: 180 kB     
-Downloading: 180 kB     
-Downloading: 180 kB     
-Downloading: 200 kB     
-Downloading: 200 kB     
-Downloading: 200 kB     
-Downloading: 200 kB     
+Downloading: 190 kB     
+Downloading: 190 kB     
 Downloading: 210 kB     
 Downloading: 210 kB     
-Downloading: 210 kB     
-Downloading: 210 kB     
+Downloading: 220 kB     
+Downloading: 220 kB     
+Downloading: 220 kB     
+Downloading: 220 kB     
 Downloading: 230 kB     
 Downloading: 230 kB     
 Downloading: 230 kB     
@@ -1425,48 +1429,50 @@ Downloading: 230 kB
 Downloading: 230 kB     
 Downloading: 240 kB     
 Downloading: 240 kB     
-Downloading: 260 kB     
-Downloading: 260 kB     
-Downloading: 260 kB     
-Downloading: 260 kB     
-Downloading: 260 kB     
-Downloading: 260 kB     
+Downloading: 250 kB     
+Downloading: 250 kB     
+Downloading: 270 kB     
+Downloading: 270 kB     
+Downloading: 270 kB     
+Downloading: 270 kB     
 Downloading: 270 kB     
 Downloading: 270 kB     
 Downloading: 280 kB     
 Downloading: 280 kB     
 Downloading: 280 kB     
 Downloading: 280 kB     
-Downloading: 290 kB     
-Downloading: 290 kB     
 Downloading: 300 kB     
 Downloading: 300 kB     
 Downloading: 310 kB     
 Downloading: 310 kB     
 Downloading: 310 kB     
 Downloading: 310 kB     
+Downloading: 310 kB     
+Downloading: 310 kB     
 Downloading: 330 kB     
 Downloading: 330 kB     
 Downloading: 330 kB     
 Downloading: 330 kB     
 Downloading: 330 kB     
 Downloading: 330 kB     
-Downloading: 330 kB     
-Downloading: 330 kB     
-Downloading: 350 kB     
-Downloading: 350 kB     
+Downloading: 340 kB     
+Downloading: 340 kB     
 Downloading: 360 kB     
 Downloading: 360 kB     
+Downloading: 360 kB     
+Downloading: 360 kB     
+Downloading: 360 kB     
+Downloading: 360 kB     
+Downloading: 370 kB     
+Downloading: 370 kB     
 Downloading: 380 kB     
 Downloading: 380 kB     
 Downloading: 380 kB     
 Downloading: 380 kB     
-Downloading: 380 kB     
-Downloading: 380 kB     
+Downloading: 390 kB     
+Downloading: 390 kB     
 Downloading: 400 kB     
 Downloading: 400 kB     
-Downloading: 410 kB     
-Downloading: 410 kB     
 Downloading: 410 kB     
 Downloading: 410 kB     
 Downloading: 410 kB     
@@ -1477,38 +1483,36 @@ Downloading: 430 kB
 Downloading: 430 kB     
 Downloading: 430 kB     
 Downloading: 430 kB     
-Downloading: 430 kB     
-Downloading: 430 kB     
+Downloading: 440 kB     
+Downloading: 440 kB     
 Downloading: 450 kB     
 Downloading: 450 kB     
 Downloading: 460 kB     
 Downloading: 460 kB     
-Downloading: 460 kB     
-Downloading: 460 kB     
+Downloading: 470 kB     
+Downloading: 470 kB     
 Downloading: 480 kB     
 Downloading: 480 kB     
 Downloading: 480 kB     
 Downloading: 480 kB     
-Downloading: 480 kB     
-Downloading: 480 kB     
-Downloading: 500 kB     
-Downloading: 500 kB     
+Downloading: 490 kB     
+Downloading: 490 kB     
 Downloading: 510 kB     
 Downloading: 510 kB     
 Downloading: 510 kB     
 Downloading: 510 kB     
 Downloading: 510 kB     
 Downloading: 510 kB     
-Downloading: 530 kB     
-Downloading: 530 kB     
+Downloading: 520 kB     
+Downloading: 520 kB     
 Downloading: 530 kB     
 Downloading: 530 kB     
 Downloading: 530 kB     
 Downloading: 530 kB     
 Downloading: 540 kB     
 Downloading: 540 kB     
-Downloading: 550 kB     
-Downloading: 550 kB     
+Downloading: 560 kB     
+Downloading: 560 kB     
 Downloading: 560 kB     
 Downloading: 560 kB     
 Downloading: 560 kB     
@@ -1527,18 +1531,22 @@ Downloading: 610 kB
 Downloading: 610 kB     
 Downloading: 610 kB     
 Downloading: 610 kB     
-Downloading: 620 kB     
-Downloading: 620 kB     
 Downloading: 630 kB     
 Downloading: 630 kB     
 Downloading: 630 kB     
 Downloading: 630 kB     
+Downloading: 630 kB     
+Downloading: 630 kB     
+Downloading: 640 kB     
+Downloading: 640 kB     
 Downloading: 650 kB     
 Downloading: 650 kB     
 Downloading: 660 kB     
 Downloading: 660 kB     
 Downloading: 660 kB     
 Downloading: 660 kB     
+Downloading: 670 kB     
+Downloading: 670 kB     
 Downloading: 680 kB     
 Downloading: 680 kB     
 Downloading: 680 kB     
@@ -1551,16 +1559,14 @@ Downloading: 710 kB
 Downloading: 710 kB     
 Downloading: 710 kB     
 Downloading: 710 kB     
-Downloading: 710 kB     
-Downloading: 710 kB     
+Downloading: 720 kB     
+Downloading: 720 kB     
 Downloading: 730 kB     
 Downloading: 730 kB     
 Downloading: 730 kB     
 Downloading: 730 kB     
-Downloading: 730 kB     
-Downloading: 730 kB     
-Downloading: 750 kB     
-Downloading: 750 kB     
+Downloading: 740 kB     
+Downloading: 740 kB     
 Downloading: 750 kB     
 Downloading: 750 kB     
 Downloading: 750 kB     
@@ -1573,28 +1579,30 @@ Downloading: 780 kB
 Downloading: 780 kB     
 Downloading: 780 kB     
 Downloading: 780 kB     
-Downloading: 780 kB     
-Downloading: 780 kB     
+Downloading: 790 kB     
+Downloading: 790 kB     
 Downloading: 800 kB     
 Downloading: 800 kB     
 Downloading: 800 kB     
 Downloading: 800 kB     
 Downloading: 810 kB     
 Downloading: 810 kB     
+Downloading: 820 kB     
+Downloading: 820 kB     
 Downloading: 830 kB     
 Downloading: 830 kB     
 Downloading: 830 kB     
 Downloading: 830 kB     
-Downloading: 830 kB     
-Downloading: 830 kB     
-Downloading: 850 kB     
-Downloading: 850 kB     
+Downloading: 840 kB     
+Downloading: 840 kB     
 Downloading: 860 kB     
 Downloading: 860 kB     
 Downloading: 860 kB     
 Downloading: 860 kB     
 Downloading: 860 kB     
 Downloading: 860 kB     
+Downloading: 870 kB     
+Downloading: 870 kB     
 Downloading: 880 kB     
 Downloading: 880 kB     
 Downloading: 880 kB     
@@ -1605,10 +1613,14 @@ Downloading: 910 kB
 Downloading: 910 kB     
 Downloading: 910 kB     
 Downloading: 910 kB     
+Downloading: 910 kB     
+Downloading: 910 kB     
 Downloading: 920 kB     
 Downloading: 920 kB     
 Downloading: 940 kB     
 Downloading: 940 kB     
+Downloading: 950 kB     
+Downloading: 950 kB     
 Downloading: 950 kB     
 Downloading: 950 kB     
 Downloading: 960 kB     
@@ -1617,12 +1629,8 @@ Downloading: 960 kB
 Downloading: 960 kB     
 Downloading: 960 kB     
 Downloading: 960 kB     
-Downloading: 970 kB     
-Downloading: 970 kB     
 Downloading: 980 kB     
 Downloading: 980 kB     
-Downloading: 990 kB     
-Downloading: 990 kB     
 Downloading: 1,000 kB     
 Downloading: 1,000 kB     
 Downloading: 1,000 kB     
@@ -1641,10 +1649,10 @@ Downloading: 1 MB
 Downloading: 1 MB     
 Downloading: 1 MB     
 Downloading: 1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
+Downloading: 1 MB     
+Downloading: 1 MB     
+Downloading: 1 MB     
+Downloading: 1 MB     
 Downloading: 1.1 MB     
 Downloading: 1.1 MB     
 Downloading: 1.1 MB     
@@ -1699,6 +1707,8 @@ Downloading: 1.2 MB
 Downloading: 1.2 MB     
 Downloading: 1.2 MB     
 Downloading: 1.2 MB     
+Downloading: 1.2 MB     
+Downloading: 1.2 MB     
 Downloading: 1.3 MB     
 Downloading: 1.3 MB     
 Downloading: 1.3 MB     
@@ -1725,6 +1735,8 @@ Downloading: 1.3 MB
 Downloading: 1.3 MB     
 Downloading: 1.3 MB     
 Downloading: 1.3 MB     
+Downloading: 1.3 MB     
+Downloading: 1.3 MB     
 Downloading: 1.4 MB     
 Downloading: 1.4 MB     
 Downloading: 1.4 MB     
@@ -1751,10 +1763,6 @@ Downloading: 1.4 MB
 Downloading: 1.4 MB     
 Downloading: 1.4 MB     
 Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
 Downloading: 1.5 MB     
 Downloading: 1.5 MB     
 Downloading: 1.5 MB     
@@ -1839,8 +1847,8 @@ Downloading: 1.7 MB
 Downloading: 1.7 MB     
 Downloading: 1.7 MB     
 Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
+Downloading: 1.8 MB     
+Downloading: 1.8 MB     
 Downloading: 1.8 MB     
 Downloading: 1.8 MB     
 Downloading: 1.8 MB     
@@ -1959,7 +1967,7 @@ Downloading: 2.2 MB
 Downloading: 2.2 MB     
 Downloading: 2.2 MB     
 Downloading: 2.2 MB</code></pre>
-<pre><code>## Query result written to /tmp/RtmpgHgCYT/file6a3a220f3a0.zip</code></pre>
+<pre><code>## Query result written to /tmp/RtmpKmAHz3/file328997326d7.zip</code></pre>
 <pre><code>## &lt;Response&gt;
 ##   Public:
 ##     clone: function (deep = FALSE) 
@@ -1976,23 +1984,27 @@ Downloading: 2.2 MB</code></pre>
 <a class="sourceLine" id="cb94-3" data-line-number="3">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"defaultClassification.genus"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Clematis"</span>)))</a>
 <a class="sourceLine" id="cb94-4" data-line-number="4">tc<span class="op">$</span><span class="kw">dwca_query</span>(<span class="dt">querySpec=</span>qs, <span class="dt">filename=</span>filename)</a></code></pre></div>
 <pre><code>## 
-Downloading: 11 kB     
-Downloading: 11 kB     
+Downloading: 5.1 kB     
+Downloading: 5.1 kB     
 Downloading: 16 kB     
 Downloading: 16 kB     
+Downloading: 25 kB     
+Downloading: 25 kB     
 Downloading: 33 kB     
 Downloading: 33 kB     
-Downloading: 33 kB     
-Downloading: 33 kB     
+Downloading: 34 kB     
+Downloading: 34 kB     
 Downloading: 43 kB     
 Downloading: 43 kB     
+Downloading: 53 kB     
+Downloading: 53 kB     
 Downloading: 57 kB     
 Downloading: 57 kB     
 Downloading: 57 kB     
 Downloading: 57 kB     
 Downloading: 57 kB     
 Downloading: 57 kB</code></pre>
-<pre><code>## Query result written to /tmp/RtmpgHgCYT/file6a3a1deb8b98.zip</code></pre>
+<pre><code>## Query result written to /tmp/RtmpKmAHz3/file328962e7b87b.zip</code></pre>
 <pre><code>## &lt;Response&gt;
 ##   Public:
 ##     clone: function (deep = FALSE) 
