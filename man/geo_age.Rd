@@ -28,3 +28,4 @@ geo_age('lower miocene')
 \seealso{
 Other utils: \code{\link{chronos_calib}}
 }
+\concept{utils}

@@ -35,3 +35,4 @@ chronos_calib(sp, tree, "genus")
 \seealso{
 Other utils: \code{\link{geo_age}}
 }
+\concept{utils}
