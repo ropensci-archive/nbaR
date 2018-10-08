@@ -1,6 +1,5 @@
 ---
 title: "The oldest tomato specimen in the world"
-author: "Hannes Hettling, Rutger Vos"
 date: "`r format(Sys.time(), '%b %d, %Y')`"
 output:
   html_document:

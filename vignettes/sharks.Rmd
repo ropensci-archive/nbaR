@@ -1,6 +1,5 @@
 ---
 title: "Calibrating a molecular phylogeny of the sharks"
-author: "Hannes Hettling, Rutger Vos"
 date: "`r format(Sys.time(), '%b %d, %Y')`"
 bibliography: bibliography.bib
 output:
@@ -20,21 +19,20 @@ vignette: >
 ---
 
 # Background
-The time-calibration of molecular phylogenies, i.e. assigning absolute ages to nodes
-in the phylogeny is an essential tool in phylogenetic comparative analyses.
-Time-calibration can be accomplished with e.g. data from fossil specimen with an
-assigned age that are in a known taxonomic group. Specimen ages can be determined by
-e.g. carbon dating or stratigraphic methods. Node can then be assigned using Baeysian or
+The time-calibration of molecular phylogenies is essential to many phylogenetic comparative analyses.
+Time-calibration can be accomplished with e.g. data from fossil specimen that can be assigned to a certain 
+taxonomic group. Specimen ages can be determined by
+e.g. carbon dating or stratigraphic methods. Node ages are usually assigned using Baeysian or
 Maximum-Likelihood methods.
-At Naturalis, quite a few of our specimen records hold chronographic information.
 
+Some of the specimen records at Naturalis hold stratigraphic information.
 Here we will demonstrate how to extract this data using `nbaR` and
 how to create input for the popular tree-calibration function `chronos` from the phylogenetic analysis
 package `ape`.
 
 ## The phylogeny
 As input, we will use a species-level molecular shark phylogeny published by
-[Vélez-Zuazo and Agnarsson (2012) @VELEZZUAZO2011207].
+[@VELEZZUAZO2011207].
 
 The phylogeny is a majority-rule consensus tree inferred from molecular markers using
 Bayesian inference and comprises 229 species in all eight orders of the sharks (superorder *Selachimorpha*):
@@ -45,7 +43,7 @@ The non-ultrametric tree in the above figure is not time-calibrated, the branch 
 represent molecular distances.
 
 # Getting chronological data with nbaR
-Chronological association is associated with `Specimen` data, we thus instanciate
+Chronological association is associated with `Specimen` data, we thus instantiate
 a `SpecimenClient`:
 
 ```{r}
@@ -73,8 +71,8 @@ using the operator `IN`:
 qc <- QueryCondition$new(field="identifications.defaultClassification.order", operator="IN", value=shark_orders)
 ```
 
-For many specimen, chronological information is available in the fiels `gatheringEvent.chronoStratigraphy.youngChronoName`
-and `gatheringEvent.chronoStratigraphy.oldChronoName` which represent the upper- and lower time bounds, respectively.
+For many specimen, chronological information is available in the fields `gatheringEvent.chronoStratigraphy.youngChronoName`
+and `gatheringEvent.chronoStratigraphy.oldChronoName` which represent upper- and lower time bounds, respectively.
 Below, we will formulate a `QueryCondition` that requires either one of these fields to be non-empty:
 
 ```{r}
@@ -99,13 +97,13 @@ res$content$totalSize
 
 ## Exploring the data
 
-Now we can explore the data a bit:
+Now we can explore the data:
 
 ```{r}
 ## load all specimens
 specimens <- lapply(res$content$resultSet, function(x)x$item)
 
-## whats in youngCronoName and oldChronoName?
+## check the fields youngCronoName and oldChronoName
 unique(unlist(lapply(specimens, function(x)x$gatheringEvent$chronoStratigraphy[[1]]$youngChronoName)))
 unique(unlist(lapply(specimens, function(x)x$gatheringEvent$chronoStratigraphy[[1]]$oldChronoName)))
 ```
@@ -117,7 +115,7 @@ specimen. Check how many we have per specimen:
 unique(sapply(res$content$resultSet, function(x)length(x$item$gatheringEvent$chronoStratigraphy)))
 ```
 
-Ok, each `gatheringEvent` in each `Specimen` has only one `chronoStratigraphy`. We thus do not miss data by taking
+Each `gatheringEvent` in each `Specimen` has only one `chronoStratigraphy`. We thus do not miss data by taking
 the first one (`chronoStratigraphy[[1]]`).
 
 Let's further expleore the data. To see what part of the animals were preserved, we can look into
@@ -137,7 +135,7 @@ This is possible using the *conventience function* `get_age`. For example
 
 ```{r}
 ## get the upper chrono name for the first specimen
-name <- specimens[[1]]$gatheringEvent$chronoStratigraphy[[1]]$oldChronoNam
+name <- specimens[[1]]$gatheringEvent$chronoStratigraphy[[1]]$oldChronoName
 name
 
 ## get the lower and upper bounds for this division
@@ -205,17 +203,18 @@ selecting the most recent common ancestor (mrca) of the species for which the da
 ```{r}
 ## make calibration table on genus level
 calibration_table <- chronos_calib(specimens, tree, "genus")
-calibration_table
 ```
 
 **Note**: This function can produce many warnings, a worning is emitted
 whenever, for some geological division, no data can be obtained from the
 earth life consortium. This can be due to misspellings or words in foreign languages.
 
+The calibration table looks as follows:
+
 ```{r}
-## print the warnings
-warnings()
+calibration_table
 ```
+
 
 **Note**: It is essential to thoroughly evaluate the calibration table! In this example,
 for example, the genus *Squatina* is non-monophyletic and one species is
