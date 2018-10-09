@@ -30,7 +30,7 @@ using the *swagger file* contatining the API specification,
 a *codegen engine*, and a number of template files. The below figure shows a
 schematic overwiev of the swagger codegen process:
 
-![]https://raw.githubusercontent.com/naturalis/nbaR/master/other/img/nbaR_codegen.png
+![](https://raw.githubusercontent.com/naturalis/nbaR/master/other/img/nbaR_codegen.png)
 
 ## Templates
 R package file templates were taken from Swagger codegen and were adapted for this client.
