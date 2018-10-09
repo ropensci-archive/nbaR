@@ -42,8 +42,3 @@ in this project can be found [here](https://github.com/naturalis/nbaR/tree/maste
 ## Support
 Bug reports, questions or suggestions can be submitted to the [issue tracker](https://github.com/naturalis/nbaR/issues/new)
 or via mail to nba@naturalis.nl
-
-
-
-Bug reports, questions or suggestions can be submitted to the [issue tracker](https://github.com/naturalis/nbaR/issues/new)
-or via mail to nba@naturalis.nl
