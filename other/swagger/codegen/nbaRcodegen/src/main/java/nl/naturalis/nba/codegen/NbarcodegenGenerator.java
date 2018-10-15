@@ -136,6 +136,7 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 
 	}
 
+	
 	    @Override
 	    public void processOpts() {
 	        super.processOpts();
@@ -183,7 +184,6 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 	@Override
 	public String toModelTestFilename(String name)
 	{
-		System.out.println("toModelTestFilename");
 		return ("test-" + name);
 	}
 	
