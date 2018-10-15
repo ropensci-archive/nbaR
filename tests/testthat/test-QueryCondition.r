@@ -15,10 +15,17 @@ args[["operator"]] <- paste(sample(
   c(LETTERS, letters),
   sample(1:20, 1)
 ), collapse = "")
-randomList <- lapply(1:sample(1:10, 1), function(x) QueryCondition$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) QueryCondition$new()
+)
 args[["and"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) QueryCondition$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) QueryCondition$new()
+)
 args[["or"]] <- randomList
+args[["constantScore"]] <- sample(c(TRUE, FALSE), 1)
 args[["boost"]] <- runif(1)
 
 # make QueryCondition object without and with args

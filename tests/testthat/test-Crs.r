@@ -11,6 +11,14 @@ args[["type"]] <- paste(sample(
   c(LETTERS, letters),
   sample(1:20, 1)
 ), collapse = "")
+randomList <- as.list(mapply(
+  function(x, y) {
+    a <- list()
+    a[[x]] <- y
+  },
+  c("A", "B"), c("a", "b")
+))
+args[["properties"]] <- randomList
 
 # make Crs object without and with args
 objEmpty <- Crs$new()

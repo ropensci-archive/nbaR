@@ -38,17 +38,35 @@ args[["occurrenceStatusVerbatim"]] <- paste(sample(
 ), collapse = "")
 args[["acceptedName"]] <- ScientificName$new()
 args[["defaultClassification"]] <- DefaultClassification$new()
-randomList <- lapply(1:sample(1:10, 1), function(x) Monomial$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) Monomial$new()
+)
 args[["systemClassification"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) ScientificName$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) ScientificName$new()
+)
 args[["synonyms"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) VernacularName$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) VernacularName$new()
+)
 args[["vernacularNames"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) TaxonDescription$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) TaxonDescription$new()
+)
 args[["descriptions"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) Reference$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) Reference$new()
+)
 args[["references"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) Expert$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) Expert$new()
+)
 args[["experts"]] <- randomList
 args[["validName"]] <- ScientificName$new()
 

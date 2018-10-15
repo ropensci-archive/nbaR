@@ -98,11 +98,20 @@ args[["previousUnitsText"]] <- paste(sample(
   sample(1:20, 1)
 ), collapse = "")
 args[["numberOfSpecimen"]] <- sample(0:10, 1)
+args[["fromCaptivity"]] <- sample(c(TRUE, FALSE), 1)
+args[["objectPublic"]] <- sample(c(TRUE, FALSE), 1)
+args[["multiMediaPublic"]] <- sample(c(TRUE, FALSE), 1)
 args[["acquiredFrom"]] <- Agent$new()
 args[["gatheringEvent"]] <- GatheringEvent$new()
-randomList <- lapply(1:sample(1:10, 1), function(x) SpecimenIdentification$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) SpecimenIdentification$new()
+)
 args[["identifications"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) ServiceAccessPoint$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) ServiceAccessPoint$new()
+)
 args[["associatedMultiMediaUris"]] <- randomList
 randomList <- lapply(
   1:sample(5:10, 1),

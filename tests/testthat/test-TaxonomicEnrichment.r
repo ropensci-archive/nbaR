@@ -7,9 +7,15 @@ context("Testing class TaxonomicEnrichment")
 
 # Make a list with random arguments for all fields in the class
 args <- list()
-randomList <- lapply(1:sample(1:10, 1), function(x) SummaryVernacularName$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) SummaryVernacularName$new()
+)
 args[["vernacularNames"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) SummaryScientificName$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) SummaryScientificName$new()
+)
 args[["synonyms"]] <- randomList
 args[["sourceSystem"]] <- SummarySourceSystem$new()
 args[["taxonId"]] <- paste(sample(

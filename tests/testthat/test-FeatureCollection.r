@@ -13,7 +13,10 @@ randomList <- lapply(
   function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
 )
 args[["bbox"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) Feature$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) Feature$new()
+)
 args[["features"]] <- randomList
 
 # make FeatureCollection object without and with args

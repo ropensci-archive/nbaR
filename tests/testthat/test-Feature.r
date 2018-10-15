@@ -13,6 +13,14 @@ randomList <- lapply(
   function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
 )
 args[["bbox"]] <- randomList
+randomList <- as.list(mapply(
+  function(x, y) {
+    a <- list()
+    a[[x]] <- y
+  },
+  c("A", "B"), c("a", "b")
+))
+args[["properties"]] <- randomList
 args[["id"]] <- paste(sample(
   c(LETTERS, letters),
   sample(1:20, 1)

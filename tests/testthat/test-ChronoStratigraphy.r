@@ -59,6 +59,7 @@ args[["oldDatingQualifier"]] <- paste(sample(
   c(LETTERS, letters),
   sample(1:20, 1)
 ), collapse = "")
+args[["chronoPreferredFlag"]] <- sample(c(TRUE, FALSE), 1)
 args[["oldRegionalSubstage"]] <- paste(sample(
   c(LETTERS, letters),
   sample(1:20, 1)

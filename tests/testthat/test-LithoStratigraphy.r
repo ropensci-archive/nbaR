@@ -11,6 +11,7 @@ args[["qualifier"]] <- paste(sample(
   c(LETTERS, letters),
   sample(1:20, 1)
 ), collapse = "")
+args[["preferredFlag"]] <- sample(c(TRUE, FALSE), 1)
 args[["member2"]] <- paste(sample(
   c(LETTERS, letters),
   sample(1:20, 1)

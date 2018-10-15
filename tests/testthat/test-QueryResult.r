@@ -8,7 +8,10 @@ context("Testing class QueryResult")
 # Make a list with random arguments for all fields in the class
 args <- list()
 args[["totalSize"]] <- runif(1)
-randomList <- lapply(1:sample(1:10, 1), function(x) QueryResultItemObject$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) QueryResultItemObject$new()
+)
 args[["resultSet"]] <- randomList
 
 # make QueryResult object without and with args

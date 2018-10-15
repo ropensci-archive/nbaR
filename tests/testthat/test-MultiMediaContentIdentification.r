@@ -22,18 +22,30 @@ randomDate <- as.character(sample(seq(as.Date("1600/01/01"),
 ), 1))
 args[["dateIdentified"]] <- randomDate
 args[["defaultClassification"]] <- DefaultClassification$new()
-randomList <- lapply(1:sample(1:10, 1), function(x) Monomial$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) Monomial$new()
+)
 args[["systemClassification"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) VernacularName$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) VernacularName$new()
+)
 args[["vernacularNames"]] <- randomList
 randomList <- lapply(
   1:sample(5:10, 1),
   function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
 )
 args[["identificationQualifiers"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) Agent$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) Agent$new()
+)
 args[["identifiers"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) TaxonomicEnrichment$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) TaxonomicEnrichment$new()
+)
 args[["taxonomicEnrichments"]] <- randomList
 
 # make MultiMediaContentIdentification object without and with args

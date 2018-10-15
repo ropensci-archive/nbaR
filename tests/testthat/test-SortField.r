@@ -11,6 +11,7 @@ args[["sortOrder"]] <- paste(sample(
   c(LETTERS, letters),
   sample(1:20, 1)
 ), collapse = "")
+args[["ascending"]] <- sample(c(TRUE, FALSE), 1)
 
 # make SortField object without and with args
 objEmpty <- SortField$new()

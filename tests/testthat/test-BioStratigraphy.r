@@ -35,6 +35,7 @@ args[["bioDatingQualifier"]] <- paste(sample(
   c(LETTERS, letters),
   sample(1:20, 1)
 ), collapse = "")
+args[["bioPreferredFlag"]] <- sample(c(TRUE, FALSE), 1)
 args[["rangePosition"]] <- paste(sample(
   c(LETTERS, letters),
   sample(1:20, 1)

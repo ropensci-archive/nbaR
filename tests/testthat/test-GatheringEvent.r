@@ -85,21 +85,45 @@ args[["depthUnitOfMeasurement"]] <- paste(sample(
   c(LETTERS, letters),
   sample(1:20, 1)
 ), collapse = "")
-randomList <- lapply(1:sample(1:10, 1), function(x) Person$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) Person$new()
+)
 args[["gatheringPersons"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) Organization$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) Organization$new()
+)
 args[["gatheringOrganizations"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) GatheringSiteCoordinates$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) GatheringSiteCoordinates$new()
+)
 args[["siteCoordinates"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) NamedArea$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) NamedArea$new()
+)
 args[["namedAreas"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) AssociatedTaxon$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) AssociatedTaxon$new()
+)
 args[["associatedTaxa"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) ChronoStratigraphy$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) ChronoStratigraphy$new()
+)
 args[["chronoStratigraphy"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) LithoStratigraphy$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) LithoStratigraphy$new()
+)
 args[["lithoStratigraphy"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) BioStratigraphy$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) BioStratigraphy$new()
+)
 args[["bioStratigraphic"]] <- randomList
 
 # make GatheringEvent object without and with args

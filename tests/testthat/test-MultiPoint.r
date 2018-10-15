@@ -13,7 +13,10 @@ randomList <- lapply(
   function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
 )
 args[["bbox"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) LngLatAlt$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) LngLatAlt$new()
+)
 args[["coordinates"]] <- randomList
 
 # make MultiPoint object without and with args

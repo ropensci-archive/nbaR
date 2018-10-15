@@ -55,9 +55,15 @@ args[["scientificNameGroup"]] <- paste(sample(
   c(LETTERS, letters),
   sample(1:20, 1)
 ), collapse = "")
-randomList <- lapply(1:sample(1:10, 1), function(x) Reference$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) Reference$new()
+)
 args[["references"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) Expert$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) Expert$new()
+)
 args[["experts"]] <- randomList
 
 # make ScientificName object without and with args

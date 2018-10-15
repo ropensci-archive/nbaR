@@ -7,18 +7,25 @@ context("Testing class GroupByScientificNameQuerySpec")
 
 # Make a list with random arguments for all fields in the class
 args <- list()
+args[["constantScore"]] <- sample(c(TRUE, FALSE), 1)
 randomList <- lapply(
   1:sample(5:10, 1),
   function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
 )
 args[["fields"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) QueryCondition$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) QueryCondition$new()
+)
 args[["conditions"]] <- randomList
 args[["logicalOperator"]] <- paste(sample(
   c(LETTERS, letters),
   sample(1:20, 1)
 ), collapse = "")
-randomList <- lapply(1:sample(1:10, 1), function(x) SortField$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) SortField$new()
+)
 args[["sortFields"]] <- randomList
 args[["from"]] <- sample(0:10, 1)
 args[["size"]] <- sample(0:10, 1)
@@ -29,8 +36,12 @@ args[["groupSort"]] <- paste(sample(
 args[["groupFilter"]] <- Filter$new()
 args[["specimensFrom"]] <- sample(0:10, 1)
 args[["specimensSize"]] <- sample(0:10, 1)
-randomList <- lapply(1:sample(1:10, 1), function(x) SortField$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) SortField$new()
+)
 args[["specimensSortFields"]] <- randomList
+args[["noTaxa"]] <- sample(c(TRUE, FALSE), 1)
 
 # make GroupByScientificNameQuerySpec object without and with args
 objEmpty <- GroupByScientificNameQuerySpec$new()

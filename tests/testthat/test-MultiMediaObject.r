@@ -60,7 +60,10 @@ args[["description"]] <- paste(sample(
   c(LETTERS, letters),
   sample(1:20, 1)
 ), collapse = "")
-randomList <- lapply(1:sample(1:10, 1), function(x) ServiceAccessPoint$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) ServiceAccessPoint$new()
+)
 args[["serviceAccessPoints"]] <- randomList
 args[["type"]] <- paste(sample(
   c(LETTERS, letters),
@@ -83,6 +86,7 @@ args[["associatedTaxonReference"]] <- paste(sample(
   c(LETTERS, letters),
   sample(1:20, 1)
 ), collapse = "")
+args[["multiMediaPublic"]] <- sample(c(TRUE, FALSE), 1)
 randomList <- lapply(
   1:sample(5:10, 1),
   function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
@@ -103,9 +107,15 @@ randomList <- lapply(
   function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
 )
 args[["sexes"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) MultiMediaGatheringEvent$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) MultiMediaGatheringEvent$new()
+)
 args[["gatheringEvents"]] <- randomList
-randomList <- lapply(1:sample(1:10, 1), function(x) MultiMediaContentIdentification$new())
+randomList <- lapply(
+  1:sample(1:10, 1),
+  function(x) MultiMediaContentIdentification$new()
+)
 args[["identifications"]] <- randomList
 randomList <- lapply(
   1:sample(5:10, 1),
