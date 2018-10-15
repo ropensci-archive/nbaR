@@ -9,7 +9,7 @@
 #' @title Multimedia operations
 #' @description Client class for nbaR.Multimedia objects
 #'
-#' @field path Stores url path of the request.
+#' @field basePath Stores url path of the request.
 #' @field userAgent Set the user agent of the request.
 #'
 #' @importFrom R6 R6Class
@@ -205,9 +205,8 @@ MultimediaClient <- R6::R6Class(
   "MultimediaClient",
   inherit = ApiClient,
   public = list(
-    userAgent = "Swagger-Codegen/0.0.0/r",
-    initialize = function(basePath) {
-      super$initialize(basePath)
+    initialize = function(basePath, userAgent) {
+      super$initialize(basePath, userAgent)
     },
 
     count = function(

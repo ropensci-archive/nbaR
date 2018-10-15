@@ -27,69 +27,42 @@
 #'
 #' @field basePath specifies the base URL of the API, defaults to
 #'                 http://api.biodiversitydata.nl/v2
-#' @field userAgent Set the user agent of the request.
-#'
+#' @field userAgent Set the user agent of the request, defaults to
+#'                 nbaR/0.0.0
 #' @importFrom R6 R6Class
-#' @importFrom httr add_headers GET POST PUT PATCH HEAD DELETE
+#' @importFrom httr add_headers user_agent GET POST
 #'
 #' @export
 ApiClient <- R6::R6Class(
   "ApiClient",
   public = list(
     basePath = "http://api.biodiversitydata.nl/v2",
-    configuration = NULL,
-    userAgent = NULL,
-    defaultHeaders = NULL,
-    initialize = function(basePath, configuration, defaultHeaders) {
+    userAgent = "nbaR/0.0.0",
+    initialize = function(basePath, userAgent) {
       if (!missing(basePath)) {
         self$basePath <- basePath
       }
-
-      if (!missing(configuration)) {
-        self$configuration <- configuration
+      if (!missing(userAgent)) {
+        self$userAgent <- userAgent
       }
-
-      if (!missing(defaultHeaders)) {
-        self$defaultHeaders <- defaultHeaders
-      }
-
-      self$`userAgent` <- "Swagger-Codegen/0.0.0/r"
     },
     callApi = function(url, method, queryParams, headerParams, body, ...) {
       headers <- httr::add_headers(headerParams)
-
+      ua <- httr::user_agent(self$userAgent)
       if (method == "GET") {
-        httr::GET(url, query = queryParams, headers = headers, ...)
+        httr::GET(url,
+          query = queryParams, ua,
+          headers = headers, ...
+        )
       }
       else if (method == "POST") {
         httr::POST(url,
-          query = queryParams, headers = headers,
-          body = body, ...
+          query = queryParams, ua,
+          headers = headers, body = body, encode = "json", ...
         )
-      }
-      else if (method == "PUT") {
-        httr::PUT(url,
-          query = queryParams, headers = headers,
-          body = body, ...
-        )
-      }
-      else if (method == "PATCH") {
-        httr::PATCH(url,
-          query = queryParams, headers = headers,
-          body = body, ...
-        )
-      }
-      else if (method == "HEAD") {
-        httr::HEAD(url, query = queryParams, headers = headers, ...)
-      }
-      else if (method == "DELETE") {
-        httr::DELETE(url, query = queryParams, headers = headers, ...)
       }
       else {
-        stop(paste(
-          "http method must be",
-          "`GET`, `HEAD`, `POST`, `PATCH`, `PUT` or `DELETE`."
-        ))
+        stop(paste("http method must be `GET` or `POST`."))
       }
     },
     handleError = function(response) {
