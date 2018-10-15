@@ -9,6 +9,9 @@ context("Testing class {{classname}}")
 args <- list()
 {{#vars}}
   {{^isListContainer}}
+    {{#isBoolean}}
+      args[["{{baseName}}"]] <- sample(c(TRUE, FALSE), 1)
+    {{/isBoolean}}
     {{#isInteger}}
       args[["{{baseName}}"]] <- sample(0:10, 1)
     {{/isInteger}}
@@ -46,10 +49,18 @@ args <- list()
       args[["{{baseName}}"]] <- randomList
     {{/isPrimitiveType}}
     {{^isPrimitiveType}}
-      randomList <- lapply(1:sample(1:10, 1), function(x){{datatype}}$new())
+      randomList <- lapply(1:sample(1:10, 1),
+                           function(x){{datatype}}$new())
       args[["{{baseName}}"]] <- randomList
     {{/isPrimitiveType}}
-  {{/isListContainer}}    
+  {{/isListContainer}}
+  {{#isMapContainer}}
+      randomList <- as.list(mapply(function(x,y){
+                                     a=list();a[[x]]=y
+                                   },
+                            c('A', 'B'), c('a', 'b')))
+      args[["{{baseName}}"]] <- randomList                            
+  {{/isMapContainer}}
 {{/vars}}
 
 # make {{classname}} object without and with args
