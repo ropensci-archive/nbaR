@@ -9,7 +9,7 @@ warnings_are_errors: false
 env:
     - BUILD_PKGDOWN="1"
 
-r_binary_packages:
+r_packages:
     - testthat
     - roxygen2
     - remotes
