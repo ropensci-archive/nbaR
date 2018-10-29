@@ -1,4 +1,4 @@
-# R client for the Netherlands Biodiversity API <img src="https://raw.githubusercontent.com/naturalis/nbaR/master/logo.png" height="150" align="right"/>
+# R client for the Netherlands Biodiversity API <img src="https://raw.githubusercontent.com/naturalis/nbaR/master/other/img/logo.png" height="150" align="right"/>
 
 [![Build Status](https://travis-ci.org/naturalis/nbaR.svg?branch=master)](https://travis-ci.org/naturalis/nbaR)
 [![Coverage Status](https://coveralls.io/repos/github/naturalis/nbaR/badge.svg?branch=master)](https://coveralls.io/github/naturalis/nbaR?branch=master)
