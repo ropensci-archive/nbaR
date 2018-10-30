@@ -94,7 +94,6 @@ res <- sc$query(querySpec = qs)
 ## how many hits?
 res$content$totalSize
 ```
-
 ## Exploring the data
 
 Now we can explore the data:
@@ -117,6 +116,33 @@ unique(sapply(res$content$resultSet, function(x)length(x$item$gatheringEvent$chr
 
 Each `gatheringEvent` in each `Specimen` has only one `chronoStratigraphy`. We thus do not miss data by taking
 the first one (`chronoStratigraphy[[1]]`).
+
+Do we have hits for all orders? Below, we make an overview of the field `identifications.defaultClassification.order`
+for all specimen.
+
+```{r}
+## make table with counts for each order
+tab <- table(unlist(lapply(specimens, function(x)x$identifications[[1]]$defaultClassification$order)))
+par(mar=c(5.1, 8, 4.1, 2.1))
+barplot(sort(tab), horiz=T, las=2, xlab="Number of specimens")
+```
+
+**Caution**: There can be multiple identifications for one specimen. Some specimens 
+in our data are for instance assigned to different genera. However, 
+the field `preferred` in an `Identification` object states if this is the most accurate and 
+recent identification. The preferred identification is usually the first in the list of a specimen's identifications.
+It can, however, occur that there are multiple identifications of which none is preferred; it is best to filter them out:
+
+```{r}
+## get the specimens which have a preferred identification
+ident <- sapply(specimens, function(s)any(sapply(s$identifications, function(i)i$preferred)))
+
+## how many do not have a preferred identification?
+sum(!ident)
+
+## filter specimens
+specimens <- specimens[ident]
+```
 
 Let's further expleore the data. To see what part of the animals were preserved, we can look into
 the field `kindOfUnit`:
@@ -196,11 +222,13 @@ tree <- read.nexus(path)
 plot(tree, cex=0.3)
 ```
 
+## Genus level
+
 Now we use `chronos_calib` to get the table at the genus level. `chronos_calib`
 also selects the nodes in the tree that will be calibrated. This is done by
 selecting the most recent common ancestor (mrca) of the species for which the data are averaged.
 
-```{r}
+```{r, warning=FALSE}
 ## make calibration table on genus level
 calibration_table <- chronos_calib(specimens, tree, "genus")
 ```
@@ -223,8 +251,8 @@ for this genus can therefore result in errenous results or in errors using the c
 routine. We will therefore remove the calibration points for genus *Squatina* before calibration:
 
 
-```{r eval=FALSE}
-## clean up: one reogue taxon in genus "Squatina"! Skip this genus
+```{r, eval=FALSE}
+## clean up: one rogue taxon in genus "Squatina"! Skip this genus
 calibration_table <- calibration_table[calibration_table$taxon != "Squatina",]
 
 ## run ape's chronos
@@ -234,8 +262,29 @@ chronogram <- chronos(tree, calibration=calibration_table)
 plot(chronogram, cex=0.3)
 axisPhylo()
 
-## label the mrcas that were used as calibration points
-nodelabels(calibration_table$taxon, calibration_table$node, frame='none', pch='x', cex.tex=0.6)
+## plot calibrated genera
+nodelabels(calibration_table$taxon, calibration_table$node)
+
+```
+
+
+## Family level
+
+We can also calibrate the tree on the family level:
+
+```{r, eval=FALSE}
+## make calibration table on family level
+calibration_table <- chronos_calib(specimens, tree, "family")
+
+## run ape's chronos
+chronogram <- chronos(tree, calibration=calibration_table)
+
+## plot tree with time axis
+plot(chronogram, cex=0.3)
+axisPhylo()
+
+## plot calibrated families
+nodelabels(calibration_table$taxon, calibration_table$node)
 ```
 
 # References

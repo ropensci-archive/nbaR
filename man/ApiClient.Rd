@@ -17,7 +17,8 @@ Generic class for API client calls
 \item{\code{basePath}}{specifies the base URL of the API, defaults to
 http://api.biodiversitydata.nl/v2}
 
-\item{\code{userAgent}}{Set the user agent of the request.}
+\item{\code{userAgent}}{Set the user agent of the request, defaults to
+nbaR/0.0.0}
 }}
 
 \section{Methods}{

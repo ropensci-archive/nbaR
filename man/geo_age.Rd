@@ -24,6 +24,8 @@ if age range no found or if the API call times out.
 }
 \examples{
 geo_age('lower miocene')
+# vectorised
+geo_age(c("Miocene", "Pliocene"))
 }
 \seealso{
 Other utils: \code{\link{chronos_calib}}

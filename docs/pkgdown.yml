@@ -1,6 +1,6 @@
 pandoc: 2.2.1
 pkgdown: 1.1.0.9000
-pkgdown_sha: be03b4b7b3d5203ba67423ff6888ab92f1420b76
+pkgdown_sha: eec35964f8c7a091ff953c7e07b2e285d7475df1
 articles:
   nbaR: nbaR.html
   sharks: sharks.html

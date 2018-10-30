@@ -14,6 +14,8 @@
 #' @param geo_time character giving a Geological timespan
 #' @examples
 #' geo_age('lower miocene')
+#' # vectorised
+#' geo_age(c("Miocene", "Pliocene"))
 #' @export
 geo_age <- function(geo_time) {
   as.data.frame(vapply(geo_time, .geo_age,
@@ -163,7 +165,7 @@ chronos_calib <- function(specimens, tree, level = "genus") {
     tree_taxa <- tree_genera
   } else {
     tree_taxa <- as.character(mapply(function(x, y)
-      get_higher_taxon(x, y, level), tree_genera, tree_species))
+      .get_higher_taxon(x, y, level), tree_genera, tree_species))
   }
   ## filter out taxa that are not in our tree
   data_filtered <- data[data[, level] %in% tree_taxa, ]
@@ -202,7 +204,7 @@ chronos_calib <- function(specimens, tree, level = "genus") {
 #' @noRd
 #' Internal Function to get the higher-level taxon of a species,
 #' given its genus and species name
-get_higher_taxon <- function(genus, specificEpithet, rank) {
+.get_higher_taxon <- function(genus, specificEpithet, rank) {
   tc <- TaxonClient$new()
   res <- tc$query(
     queryParams = list(

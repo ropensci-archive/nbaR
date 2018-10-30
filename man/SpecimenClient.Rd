@@ -14,7 +14,7 @@ Client class for nbaR.Specimen objects
 \section{Fields}{
 
 \describe{
-\item{\code{path}}{Stores url path of the request.}
+\item{\code{basePath}}{Stores url path of the request.}
 
 \item{\code{userAgent}}{Set the user agent of the request.}
 }}
