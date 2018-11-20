@@ -10,7 +10,11 @@ if (grepl("testthat", wd)) {
 }
 
 gc <- GeoClient$new(basePath = "http://api.biodiversitydata.nl/v2")
+if (!gc$ping()) {
+  skip("NBA not available, skipping test")
+}
 
+context("Testing GeoClient query endpoints")
 
 test_that("Query with QuerySpec works", {
   qc <- QueryCondition$new(

@@ -10,6 +10,9 @@ if (grepl("testthat", wd)) {
 }
 
 mc <- MultimediaClient$new(basePath = "http://api.biodiversitydata.nl/v2")
+if (!mc$ping()) {
+  skip("NBA not available, skipping test")
+}
 
 test_that("Query with MultiMediaClient returns multimedia objects", {
   res <- mc$query()

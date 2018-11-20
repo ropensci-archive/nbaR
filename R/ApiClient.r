@@ -88,6 +88,11 @@ ApiClient <- R6::R6Class(
       }
       warning(warningMessage)
       Response$new(responseMessage, response)
+    },
+    ping = function() {
+      url <- paste0(self$basePath, "/ping")
+      res <- self$callApi(url, "GET", NULL, NULL)
+      httr::content(res, encoding = "UTF-8") == "NBA Service is up and running!"
     }
   ),
   private = list(

@@ -10,6 +10,9 @@ if (grepl("testthat", wd)) {
 }
 
 sc <- SpecimenClient$new(basePath = "http://api.biodiversitydata.nl/v2")
+if (!sc$ping()) {
+  skip("NBA not available, skipping test")
+}
 
 context("Testing specimen find functions")
 

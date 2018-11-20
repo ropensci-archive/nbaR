@@ -10,6 +10,9 @@ if (grepl("testthat", wd)) {
 }
 
 tc <- TaxonClient$new()
+if (!tc$ping()) {
+  skip("NBA not available, skipping test")
+}
 
 context("Testing dwca related functions for taxon objects")
 

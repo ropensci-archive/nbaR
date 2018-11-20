@@ -10,6 +10,9 @@ if (grepl("testthat", wd)) {
 }
 
 sc <- SpecimenClient$new()
+if (!sc$ping()) {
+  skip("NBA not available, skipping test")
+}
 
 context("Testing dwca related functions")
 

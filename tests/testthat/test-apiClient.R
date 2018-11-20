@@ -18,8 +18,22 @@ test_that("Constructor works", {
   ac <- ApiClient$new(userAgent = "test/0.0")
 })
 
+ac <- ApiClient$new()
+
+test_that("HandleError function works", {
+  ## make call that produces error
+  res <- ac$callApi(
+    "http://api.biodiversitydata.nl/v2/unknownendpoint", "GET",
+    headerParams = NULL, queryParams = NULL, body = NULL
+  )
+  expect_warning(ac$handleError(res))
+})
+
+if (!ac$ping()) {
+  skip("NBA not available, skipping test")
+}
+
 test_that("CallApi function works", {
-  ac <- ApiClient$new()
   res <- ac$callApi(
     "http://api.biodiversitydata.nl/v2", "GET",
     headerParams = NULL, queryParams = NULL, body = NULL
@@ -28,8 +42,6 @@ test_that("CallApi function works", {
 })
 
 test_that("non-GET requests", {
-  ac <- ApiClient$new()
-
   ## Formulate Query and tranform to list as POST body
   qc <- QueryCondition$new(
     field = "defaultClassification.genus",
@@ -49,14 +61,4 @@ test_that("non-GET requests", {
   expect_error(ac$callApi("http://api.biodiversitydata.nl/v2",
     method = "PUT", headerParams = NULL
   ))
-})
-
-test_that("HandleError function works", {
-  ac <- ApiClient$new()
-  ## make call that produces error
-  res <- ac$callApi(
-    "http://api.biodiversitydata.nl/v2/unknownendpoint", "GET",
-    headerParams = NULL, queryParams = NULL, body = NULL
-  )
-  expect_warning(ac$handleError(res))
 })

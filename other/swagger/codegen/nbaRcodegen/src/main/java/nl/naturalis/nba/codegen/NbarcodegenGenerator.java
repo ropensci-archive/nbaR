@@ -88,7 +88,7 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 		 * be read from. The generator will use the resource stream to
 		 * attempt to read the templates.
 		 */
-		templateDir = "nbaRcodegen";
+		//templateDir = "nbaRcodegen";
 
 	        /*defaultIncludes = new HashSet<String>(
 	                        Arrays.asList(

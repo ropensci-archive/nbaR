@@ -10,6 +10,9 @@ if (grepl("testthat", wd)) {
 }
 
 sc <- SpecimenClient$new()
+if (!sc$ping()) {
+  skip("NBA not available, skipping test")
+}
 
 context("Testing miscellaneous specimen endpoints")
 
@@ -85,9 +88,9 @@ test_that("getDistinctValuesPerGroup works", {
     group = "sourceSystem.code",
     field = "recordBasis"
   )
-  ## Result should be a list with two entries, for BRAHMS and CRS
+  ## Result should be a list with two entries, for BRAHMS and CRS, and XC
   expect_is(res$content, "list")
-  expect_length(res$content, 2)
+  expect_true(length(res$content) > 1)
 })
 
 test_that("getIdsInCollection works", {

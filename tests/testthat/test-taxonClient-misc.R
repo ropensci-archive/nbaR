@@ -10,6 +10,9 @@ if (grepl("testthat", wd)) {
 }
 
 tc <- TaxonClient$new(basePath = "http://api.biodiversitydata.nl/v2")
+if (!tc$ping()) {
+  skip("NBA not available, skipping test")
+}
 
 context("Testing miscellaneous TaxonClient endpoints")
 

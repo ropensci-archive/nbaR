@@ -1,5 +1,3 @@
-^Meta$
-^doc$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^.*\.swagger-codegen-ignore$
@@ -11,4 +9,3 @@
 ^docs$
 ^_pkgdown\.yml$
 ^.gitignore
-^logo.png
