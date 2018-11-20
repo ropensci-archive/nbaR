@@ -350,7 +350,7 @@ Aggregation services group available data according to different criteria.
 
 #### get_distinct_values
 This method takes a specific field as an argument and returns all possible values and the frequency for that 
-field in thy data. Below we get all possible values for the country in which a specimen was collected. 
+field in the data. Below we get all possible values for the country in which a specimen was collected. 
 
 ```{r results='hide'}
 sc$get_distinct_values("gatheringEvent.country")
@@ -526,7 +526,7 @@ Given a string with comma-separated identifiers, returns a list of taxon objects
 
 #### get_distinct_values
 This method takes a specific field as an argument and returns all possible values and the frequency for that 
-field in thy data. Example: get all data source systems for taxon objects: 
+field in the data. Example: get all data source systems for taxon objects: 
 
 ```{r}
 tc$get_distinct_values("sourceSystem.name")$content
