@@ -453,8 +453,8 @@ sc$dwca_get_data_set_names()$content
 
 A dataset can then be downloaded using `dwca_get_data_set`. A filename can be given as argument, 
 if none is given, the DwCA archive is written to *download-YYYY-MM-DDThh:mm.zip* in the current working directory.
-
-```{r}
+	
+```{r results='hide'}
 # download dataset 'porifera' to temporary file
 filename <- tempfile(fileext=".zip")
 sc$dwca_get_data_set('porifera', filename=filename)                                                                               
@@ -464,7 +464,7 @@ sc$dwca_get_data_set('porifera', filename=filename)
 The dynamic download function `dwca_query` allows for download of arbitrary sets, defined by the user's query.
 The arguments to this methods are similar to `query`, plus the filename:
 
-```{r}
+```{r results='hide'}
 # download all specimen of genus 'Hydrochoerus'
 filename <- tempfile(fileext=".zip")
 qs <- QuerySpec$new(conditions=list(QueryCondition$new(field="identifications.defaultClassification.genus", operator="EQUALS", value="Hydrochoerus")))
@@ -595,7 +595,7 @@ tc$dwca_get_data_set_names()$content
 A dataset can then be downloaded using `dwca_get_data_set`. A filename can be given as argument, 
 if none is given, the DwCA archive is written to *download-YYYY-MM-DDThh:mm.zip* in the current working directory.
 
-```{r}
+```{r results='hide'}
 # download dataset 'nsr' to temporary file
 filename <- tempfile(fileext=".zip")
 tc$dwca_get_data_set('nsr', filename=filename)                                                                               
@@ -605,7 +605,7 @@ tc$dwca_get_data_set('nsr', filename=filename)
 The dynamic download function `dwca_query` allows for download of arbitrary sets, defined by the user's query.
 The arguments to this methods are similar to `query`, plus the filename:
 
-```{r}
+```{r results='hide'}
 # download all taxa for genus 'Clematis'
 filename <- tempfile(fileext=".zip")
 qs <- QuerySpec$new(conditions=list(QueryCondition$new(field="defaultClassification.genus", operator="EQUALS", value="Clematis")))
