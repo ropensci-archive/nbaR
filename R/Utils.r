@@ -5,7 +5,7 @@
 #' @family utils
 #' @title Geological Age
 #' @description Get early and late age for geological time span
-#' @details Uses the API from earthlifeconsortium.org to retreive
+#' @details Uses the API from earthlifeconsortium.org to retrieve
 #' upper and lower bound for a geological age range (e.g. 'miocene').
 #' Unit can be can be Eon, Era, System/Period, Series/Epoch.
 #' Returns a list with items early_age and late_age. Gives a warning
@@ -49,7 +49,7 @@ geo_age <- function(geo_time) {
   },
   error = function(cond) {
     warning(
-      "Timeout reached while retreiving values for geo unit \"",
+      "Timeout reached while retrieving values for geo unit \"",
       geo_time, "\" from earthlifeconsortium.org"
     )
     NULL
@@ -58,7 +58,7 @@ geo_age <- function(geo_time) {
 
   if (is.null(res) || res$status_code != 200) {
     warning(
-      "Could not retreive values for geo unit \"",
+      "Could not retrieve values for geo unit \"",
       geo_time, "\" from earthlifeconsortium.org"
     )
     return(list(early_age = NA, late_age = NA))

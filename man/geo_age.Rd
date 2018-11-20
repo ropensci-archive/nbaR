@@ -16,7 +16,7 @@ list
 Get early and late age for geological time span
 }
 \details{
-Uses the API from earthlifeconsortium.org to retreive
+Uses the API from earthlifeconsortium.org to retrieve
 upper and lower bound for a geological age range (e.g. 'miocene').
 Unit can be can be Eon, Era, System/Period, Series/Epoch.
 Returns a list with items early_age and late_age. Gives a warning

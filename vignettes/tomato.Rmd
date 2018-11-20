@@ -45,7 +45,7 @@ res <- sc$get_paths()
 ```
 
 Note that client class methods (and other class members) are accessed with a `$`.
-The respose from the taxon client is stored in `res`, an object of class `Response`.
+The response from the taxon client is stored in `res`, an object of class `Response`.
 Have a look at `?Response` to see what this object contains. But how to get the data?
 It is in the field `content`.
 
@@ -59,10 +59,10 @@ there are two fields that store a vernacular name for a specimen:
 * `identifications.vernacularNames.name`
 * `identifications.taxonomicEnrichments.vernacularNames.name`
 
-The first one is the vernacular name that is exaclty equal to the one in the
+The first one is the vernacular name that is exactly equal to the one in the
 *source database*. Since often, a vernacular name is missing in the source database,
 a *taxonomic enrichment* is performed during the import of the data from the source database
-in whch, using among others the *Catalogue of life*, species names are enriched with synonyms and
+in which, using among others the *Catalogue of life*, species names are enriched with synonyms and
 vernacular names.
 
 ## Simple queries
@@ -157,7 +157,7 @@ We now want to see which one is the oldest specimen. We could, of course
 do the sorting in R
 (e.g. `sort(unlist(lapply(res$content$resultSet, function(x)x$item$gatheringEvent$dateTimeBegin)))`),
 but there is also functionality to do this directly in the query.
-This can be donw with objects of type `?SortField`, which can take a
+This can be done with objects of type `?SortField`, which can take a
 path specifying on what to sort, and whether to sort ascending or
 descending. We will sort our results by the values of the field
 `gatheringEvent.dateTimeBegin`:
@@ -197,25 +197,6 @@ url
 # display image
 library(knitr)
 include_graphics(url)
-```
-
-
-```{r}
-# Solanum lycopersicum
-qc <- QueryCondition$new(field='identifications.defaultClassification.genus', operator='EQUALS', value='Solanum')
-qc2 <- QueryCondition$new(field='identifications.defaultClassification.specificEpithet', operator='EQUALS', value='lycopersicum')
-qc3 <- QueryCondition$new(field='gatheringEvent.siteCoordinates.longitudeDecimal', operator="NOT_EQUALS")
-qc4 <- QueryCondition$new(field='gatheringEvent.siteCoordinates.latitudeDecimal', operator="NOT_EQUALS")
-## qc3 <- QueryCondition$new(field='gatheringEvent.siteCoordinates.geoShape', operator='IN', value='1004000@GEO')
-qs <- QuerySpec$new(conditions=list(qc, qc2, qc3, qc4))
-
-res <- sc$query(querySpec=qs)
-
-#lat <- sapply(res$content$resultSet, function(x)x$item$gatheringEvent$siteCoordinates[[1]]$latitudeDecimal)
-#long <- sapply(res$content$resultSet, function(x)x$item$gatheringEvent$siteCoordinates[[1]]$longitudeDecimal)
-#library('maps')
-#map("world", fill=TRUE, col="white", bg="lightblue", ylim=c(-60, 90), mar=c(0,0,0,0))
-#points(long, lat, col='red', pch=16)
 ```
 
 

@@ -22,8 +22,8 @@ vignette: >
 The time-calibration of molecular phylogenies is essential to many phylogenetic comparative analyses.
 Time-calibration can be accomplished with e.g. data from fossil specimen that can be assigned to a certain 
 taxonomic group. Specimen ages can be determined by
-e.g. carbon dating or stratigraphic methods. Node ages are usually assigned using Baeysian or
-Maximum-Likelihood methods.
+e.g. carbon dating or stratigraphic methods. Node ages are usually assigned using Bayesian or
+maximum-likelihood methods.
 
 Some of the specimen records at Naturalis hold stratigraphic information.
 Here we will demonstrate how to extract this data using `nbaR` and
@@ -71,7 +71,7 @@ using the operator `IN`:
 qc <- QueryCondition$new(field="identifications.defaultClassification.order", operator="IN", value=shark_orders)
 ```
 
-For many specimen, chronological information is available in the fields `gatheringEvent.chronoStratigraphy.youngChronoName`
+For many specimens, chronological information is available in the fields `gatheringEvent.chronoStratigraphy.youngChronoName`
 and `gatheringEvent.chronoStratigraphy.oldChronoName` which represent upper- and lower time bounds, respectively.
 Below, we will formulate a `QueryCondition` that requires either one of these fields to be non-empty:
 
@@ -144,7 +144,7 @@ sum(!ident)
 specimens <- specimens[ident]
 ```
 
-Let's further expleore the data. To see what part of the animals were preserved, we can look into
+Let's further explore the data. To see what part of the animals were preserved, we can look into
 the field `kindOfUnit`:
 
 ```{r}
@@ -157,7 +157,7 @@ Almost all of them are teeth.
 The type of chronostratigraphic data (as shown above) is given in divisions on the geological time scale, e.g. *Miocene*.
 These strings can refer to *eons*, *eras*, *periods*, *epochs* and *ages*. In order to
 translate this into absolute ages, we will use the API of the [Earth Life Consortium](http://earthlifeconsortium.org/).
-This is possible using the *conventience function* `get_age`. For example
+This is possible using the *convenience function* `get_age`. For example
 
 ```{r}
 ## get the upper chrono name for the first specimen
@@ -169,7 +169,7 @@ geo_age(name)
 ```
 
 We can now make a table with all interesting data, below this is done for the
-first 50 specimen objetcs:
+first 50 specimen objects:
 
 ```{r}
 ## Get genus, species and chrono information from specimen records
@@ -198,8 +198,8 @@ data
 
 # Calibrating the phylogeny
 
-Depending on the data, calibration points could be chosen on different taxonomic levels;
-If there are sufficient specimen determined at species level, one could use the upper- and
+Depending on the data, calibration points could be chosen on different taxonomic levels.
+If there are sufficient specimens determined at species level, one could use the upper- and
 lower bounds above. It is also possible to average upper- and lower values for a higher taxonomic
 group, such as genus or family. Since this requires some data cleaning, such as dealing with duplicates,
 missing data, etc,
@@ -233,7 +233,7 @@ selecting the most recent common ancestor (mrca) of the species for which the da
 calibration_table <- chronos_calib(specimens, tree, "genus")
 ```
 
-**Note**: This function can produce many warnings, a worning is emitted
+**Note**: This function can produce many warnings, a warning is emitted
 whenever, for some geological division, no data can be obtained from the
 earth life consortium. This can be due to misspellings or words in foreign languages.
 
@@ -247,7 +247,7 @@ calibration_table
 **Note**: It is essential to thoroughly evaluate the calibration table! In this example,
 for example, the genus *Squatina* is non-monophyletic and one species is
 placed somewhere else in the tree. Calibrating the most recent common ancestor node
-for this genus can therefore result in errenous results or in errors using the calibration
+for this genus can therefore result in errors using the calibration
 routine. We will therefore remove the calibration points for genus *Squatina* before calibration:
 
 
