@@ -199,11 +199,37 @@ library(knitr)
 include_graphics(url)
 ```
 
+# Retrieving specimen records with lat/long coordinates
 
+Geo-referenced specimens are an invaluable resource for biogeographic analyses.
+The below example shows how to extract the tomato specimen (species *Solanum lycopersicum*)
+that are geo referenced. The coordinates, stored in the field *gatheringEvent.siteCoordinates*
+are then extracted and the locations are plotted on a world map.
 
+**Note:** When querying for records with non-empty values for a specific field, 
+we use the operator `NOT_EQUALS` in combination with the value `NULL`. 
 
+```{r}		
+# conditions for specimens for Solanum lycopersicum		
+qc <- QueryCondition$new(field='identifications.defaultClassification.genus', operator='EQUALS', value='Solanum')		
+qc2 <- QueryCondition$new(field='identifications.defaultClassification.specificEpithet', operator='EQUALS', value='lycopersicum')		
 
+# coditions for lat/long coordinates to be present
+qc3 <- QueryCondition$new(field='gatheringEvent.siteCoordinates.longitudeDecimal', operator="NOT_EQUALS", value=NULL)
+qc4 <- QueryCondition$new(field='gatheringEvent.siteCoordinates.latitudeDecimal', operator="NOT_EQUALS", value=NULL)
+qs <- QuerySpec$new(conditions=list(qc, qc2, qc3, qc4), size=1000)
 
+# do query
+res <- sc$query(querySpec=qs)		
 
+# extract coordinates
+lat <- sapply(res$content$resultSet, function(x)x$item$gatheringEvent$siteCoordinates[[1]]$latitudeDecimal)		
+long <- sapply(res$content$resultSet, function(x)x$item$gatheringEvent$siteCoordinates[[1]]$longitudeDecimal)		
+
+#plot on world map
+library('maps')		
+map("world", fill=TRUE, col="white", bg="lightblue", ylim=c(-60, 90), mar=c(0,0,0,0))		
+points(long, lat, col='red', pch=16)		
+ ```
 
 
