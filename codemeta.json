@@ -102,18 +102,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=pkgdown"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "ape",
-      "name": "ape",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=ape"
     }
   ],
   "softwareRequirements": [
@@ -158,15 +146,40 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=R6"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "ape",
+      "name": "ape",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=ape"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "maps",
+      "name": "maps",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=maps"
     }
   ],
   "codeRepository": "https://github.com/naturalis/nbaR",
   "readme": "https://github.com/naturalis/nbaR/blob/master/README.md",
-  "fileSize": "1967.076KB",
+  "fileSize": "25095.563KB",
   "contIntegration": [
     "https://travis-ci.org/naturalis/nbaR",
     "https://coveralls.io/github/naturalis/nbaR?branch=master"
   ],
   "issueTracker": "https://github.com/naturalis/nbaR/issues/new",
-  "developmentStatus": "http://www.repostatus.org/#active"
+  "developmentStatus": "http://www.repostatus.org/#active",
+  "releaseNotes": "https://github.com/naturalis/nbaR/blob/master/NEWS.md"
 }
