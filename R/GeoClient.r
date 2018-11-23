@@ -379,7 +379,8 @@ GeoClient <- R6::R6Class(
         result <- lapply(
           httr::content(response),
           function(x) {
-            returnObject$fromList(x,
+            cl <- returnObject$clone()
+            cl$fromList(x,
               typeMapping = list(item = private$getBaseDataType())
             )
           }

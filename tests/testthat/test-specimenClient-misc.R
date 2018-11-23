@@ -81,6 +81,10 @@ test_that("download endpoint works", {
   for (s in res$content) {
     expect_is(s, "Specimen")
   }
+
+  ## check that all unitIDs are different
+  unitids <- sapply(res$content, function(x) x$unitID)
+  expect_false(any(duplicated(unitids)))
 })
 
 test_that("getDistinctValuesPerGroup works", {
