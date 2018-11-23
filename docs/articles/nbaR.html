@@ -89,7 +89,7 @@
     <div class="page-header toc-ignore">
       <h1>nbaR: R access to the Netherlands Biodiversity API</h1>
             
-            <h4 class="date">Nov 20, 2018</h4>
+            <h4 class="date">Nov 23, 2018</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/naturalis/nbaR/blob/master/vignettes/nbaR.Rmd"><code>vignettes/nbaR.Rmd</code></a></small>
       <div class="hidden name"><code>nbaR.Rmd</code></div>
@@ -391,7 +391,7 @@ we can combine the latter condition with an additional one using the method <cod
 <div id="get_distinct_values" class="section level4">
 <h4 class="hasAnchor">
 <a href="#get_distinct_values" class="anchor"></a>get_distinct_values</h4>
-<p>This method takes a specific field as an argument and returns all possible values and the frequency for that field in thy data. Below we get all possible values for the country in which a specimen was collected.</p>
+<p>This method takes a specific field as an argument and returns all possible values and the frequency for that field in the data. Below we get all possible values for the country in which a specimen was collected.</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">sc<span class="op">$</span><span class="kw">get_distinct_values</span>(<span class="st">"gatheringEvent.country"</span>)</a></code></pre></div>
 <p><strong>Note</strong>: By default, <code>get_distinct_values</code> lists only the first 10 hits. The above query thus does not reflect the distinct values in the hole dataset. This number can be increased with e.g. setting the <code>size</code> parameter in a <code>QuerySpec</code> object passed to the method.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">sc<span class="op">$</span><span class="kw">get_distinct_values</span>(<span class="st">"gatheringEvent.country"</span>, <span class="dt">querySpec=</span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">size=</span><span class="dv">10000</span>))</a></code></pre></div>
@@ -727,367 +727,17 @@ we can combine the latter condition with an additional one using the method <cod
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="co"># download dataset 'porifera' to temporary file</span></a>
 <a class="sourceLine" id="cb54-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
 <a class="sourceLine" id="cb54-3" data-line-number="3">sc<span class="op">$</span><span class="kw">dwca_get_data_set</span>(<span class="st">'porifera'</span>, <span class="dt">filename=</span>filename)                                                                               </a></code></pre></div>
-<pre><code>## 
-Downloading: 16 kB     
-Downloading: 16 kB     
-Downloading: 16 kB     
-Downloading: 16 kB     
-Downloading: 16 kB     
-Downloading: 16 kB     
-Downloading: 31 kB     
-Downloading: 31 kB     
-Downloading: 47 kB     
-Downloading: 47 kB     
-Downloading: 49 kB     
-Downloading: 49 kB     
-Downloading: 49 kB     
-Downloading: 49 kB     
-Downloading: 62 kB     
-Downloading: 62 kB     
-Downloading: 78 kB     
-Downloading: 78 kB     
-Downloading: 82 kB     
-Downloading: 82 kB     
-Downloading: 82 kB     
-Downloading: 82 kB     
-Downloading: 99 kB     
-Downloading: 99 kB     
-Downloading: 120 kB     
-Downloading: 120 kB     
-Downloading: 120 kB     
-Downloading: 120 kB     
-Downloading: 120 kB     
-Downloading: 120 kB     
-Downloading: 130 kB     
-Downloading: 130 kB     
-Downloading: 130 kB     
-Downloading: 130 kB     
-Downloading: 130 kB     
-Downloading: 130 kB     
-Downloading: 150 kB     
-Downloading: 150 kB     
-Downloading: 170 kB     
-Downloading: 170 kB     
-Downloading: 170 kB     
-Downloading: 170 kB     
-Downloading: 170 kB     
-Downloading: 170 kB     
-Downloading: 180 kB     
-Downloading: 180 kB     
-Downloading: 200 kB     
-Downloading: 200 kB     
-Downloading: 200 kB     
-Downloading: 200 kB     
-Downloading: 200 kB     
-Downloading: 200 kB     
-Downloading: 210 kB     
-Downloading: 210 kB     
-Downloading: 230 kB     
-Downloading: 230 kB     
-Downloading: 230 kB     
-Downloading: 230 kB     
-Downloading: 240 kB     
-Downloading: 240 kB     
-Downloading: 240 kB     
-Downloading: 240 kB     
-Downloading: 250 kB     
-Downloading: 250 kB     
-Downloading: 250 kB     
-Downloading: 250 kB     
-Downloading: 250 kB     
-Downloading: 250 kB     
-Downloading: 270 kB     
-Downloading: 270 kB     
-Downloading: 280 kB     
-Downloading: 280 kB     
-Downloading: 290 kB     
-Downloading: 290 kB     
-Downloading: 290 kB     
-Downloading: 290 kB     
-Downloading: 300 kB     
-Downloading: 300 kB     
-Downloading: 320 kB     
-Downloading: 320 kB     
-Downloading: 320 kB     
-Downloading: 320 kB     
-Downloading: 320 kB     
-Downloading: 320 kB     
-Downloading: 330 kB     
-Downloading: 330 kB     
-Downloading: 350 kB     
-Downloading: 350 kB     
-Downloading: 350 kB     
-Downloading: 350 kB     
-Downloading: 370 kB     
-Downloading: 370 kB     
-Downloading: 370 kB     
-Downloading: 370 kB     
-Downloading: 370 kB     
-Downloading: 370 kB     
-Downloading: 380 kB     
-Downloading: 380 kB     
-Downloading: 400 kB     
-Downloading: 400 kB     
-Downloading: 400 kB     
-Downloading: 400 kB     
-Downloading: 400 kB     
-Downloading: 400 kB     
-Downloading: 420 kB     
-Downloading: 420 kB     
-Downloading: 430 kB     
-Downloading: 430 kB     
-Downloading: 430 kB     
-Downloading: 430 kB     
-Downloading: 430 kB     
-Downloading: 430 kB     
-Downloading: 450 kB     
-Downloading: 450 kB     
-Downloading: 470 kB     
-Downloading: 470 kB     
-Downloading: 470 kB     
-Downloading: 470 kB     
-Downloading: 470 kB     
-Downloading: 470 kB     
-Downloading: 480 kB     
-Downloading: 480 kB     
-Downloading: 490 kB     
-Downloading: 490 kB     
-Downloading: 490 kB     
-Downloading: 490 kB     
-Downloading: 500 kB     
-Downloading: 500 kB     
-Downloading: 510 kB     
-Downloading: 510 kB     
-Downloading: 520 kB     
-Downloading: 520 kB     
-Downloading: 520 kB     
-Downloading: 520 kB     
-Downloading: 540 kB     
-Downloading: 540 kB     
-Downloading: 550 kB     
-Downloading: 550 kB     
-Downloading: 550 kB     
-Downloading: 550 kB     
-Downloading: 550 kB     
-Downloading: 550 kB     
-Downloading: 570 kB     
-Downloading: 570 kB     
-Downloading: 580 kB     
-Downloading: 580 kB     
-Downloading: 590 kB     
-Downloading: 590 kB     
-Downloading: 590 kB     
-Downloading: 590 kB     
-Downloading: 600 kB     
-Downloading: 600 kB     
-Downloading: 600 kB     
-Downloading: 600 kB     
-Downloading: 600 kB     
-Downloading: 600 kB     
-Downloading: 620 kB     
-Downloading: 620 kB     
-Downloading: 630 kB     
-Downloading: 630 kB     
-Downloading: 630 kB     
-Downloading: 630 kB     
-Downloading: 630 kB     
-Downloading: 630 kB     
-Downloading: 650 kB     
-Downloading: 650 kB     
-Downloading: 660 kB     
-Downloading: 660 kB     
-Downloading: 670 kB     
-Downloading: 670 kB     
-Downloading: 670 kB     
-Downloading: 670 kB     
-Downloading: 680 kB     
-Downloading: 680 kB     
-Downloading: 700 kB     
-Downloading: 700 kB     
-Downloading: 700 kB     
-Downloading: 700 kB     
-Downloading: 700 kB     
-Downloading: 700 kB     
-Downloading: 720 kB     
-Downloading: 720 kB     
-Downloading: 720 kB     
-Downloading: 720 kB     
-Downloading: 720 kB     
-Downloading: 720 kB     
-Downloading: 730 kB     
-Downloading: 730 kB     
-Downloading: 750 kB     
-Downloading: 750 kB     
-Downloading: 750 kB     
-Downloading: 750 kB     
-Downloading: 750 kB     
-Downloading: 750 kB     
-Downloading: 770 kB     
-Downloading: 770 kB     
-Downloading: 780 kB     
-Downloading: 780 kB     
-Downloading: 780 kB     
-Downloading: 780 kB     
-Downloading: 790 kB     
-Downloading: 790 kB     
-Downloading: 800 kB     
-Downloading: 800 kB     
-Downloading: 800 kB     
-Downloading: 800 kB     
-Downloading: 800 kB     
-Downloading: 800 kB     
-Downloading: 810 kB     
-Downloading: 810 kB     
-Downloading: 820 kB     
-Downloading: 820 kB     
-Downloading: 840 kB     
-Downloading: 840 kB     
-Downloading: 840 kB     
-Downloading: 840 kB     
-Downloading: 850 kB     
-Downloading: 850 kB     
-Downloading: 870 kB     
-Downloading: 870 kB     
-Downloading: 870 kB     
-Downloading: 870 kB     
-Downloading: 870 kB     
-Downloading: 870 kB     
-Downloading: 880 kB     
-Downloading: 880 kB     
-Downloading: 900 kB     
-Downloading: 900 kB     
-Downloading: 900 kB     
-Downloading: 900 kB     
-Downloading: 900 kB     
-Downloading: 900 kB     
-Downloading: 920 kB     
-Downloading: 920 kB     
-Downloading: 920 kB     
-Downloading: 920 kB     
-Downloading: 920 kB     
-Downloading: 920 kB     
-Downloading: 930 kB     
-Downloading: 930 kB     
-Downloading: 950 kB     
-Downloading: 950 kB     
-Downloading: 950 kB     
-Downloading: 950 kB     
-Downloading: 950 kB     
-Downloading: 950 kB     
-Downloading: 970 kB     
-Downloading: 970 kB     
-Downloading: 990 kB     
-Downloading: 990 kB     
-Downloading: 990 kB     
-Downloading: 990 kB     
-Downloading: 990 kB     
-Downloading: 990 kB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB</code></pre>
-<pre><code>## Query result written to /tmp/RtmpZMYiW8/file35f04a43ee4.zip</code></pre>
-<pre><code>## &lt;Response&gt;
-##   Public:
-##     clone: function (deep = FALSE) 
-##     content: NULL
-##     initialize: function (content, response) 
-##     response: response</code></pre>
+<pre><code>## Query result written to /tmp/RtmpGNWR3p/file1bfd37feeb9d.zip</code></pre>
 </div>
 <div id="dynamic-download" class="section level4">
 <h4 class="hasAnchor">
 <a href="#dynamic-download" class="anchor"></a>Dynamic download</h4>
 <p>The dynamic download function <code>dwca_query</code> allows for download of arbitrary sets, defined by the user’s query. The arguments to this methods are similar to <code>query</code>, plus the filename:</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="co"># download all specimen of genus 'Hydrochoerus'</span></a>
-<a class="sourceLine" id="cb58-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
-<a class="sourceLine" id="cb58-3" data-line-number="3">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"identifications.defaultClassification.genus"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Hydrochoerus"</span>)))</a>
-<a class="sourceLine" id="cb58-4" data-line-number="4">sc<span class="op">$</span><span class="kw">dwca_query</span>(<span class="dt">querySpec=</span>qs, <span class="dt">filename=</span>filename)</a></code></pre></div>
-<pre><code>## 
-Downloading: 2.7 kB     
-Downloading: 2.7 kB     
-Downloading: 2.7 kB     
-Downloading: 2.7 kB</code></pre>
-<pre><code>## Query result written to /tmp/RtmpZMYiW8/file35f03ea3068f.zip</code></pre>
-<pre><code>## &lt;Response&gt;
-##   Public:
-##     clone: function (deep = FALSE) 
-##     content: NULL
-##     initialize: function (content, response) 
-##     response: response</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="co"># download all specimen of genus 'Hydrochoerus'</span></a>
+<a class="sourceLine" id="cb56-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
+<a class="sourceLine" id="cb56-3" data-line-number="3">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"identifications.defaultClassification.genus"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Hydrochoerus"</span>)))</a>
+<a class="sourceLine" id="cb56-4" data-line-number="4">sc<span class="op">$</span><span class="kw">dwca_query</span>(<span class="dt">querySpec=</span>qs, <span class="dt">filename=</span>filename)</a></code></pre></div>
+<pre><code>## Query result written to /tmp/RtmpGNWR3p/file1bfd32295e88.zip</code></pre>
 </div>
 </div>
 </div>
@@ -1101,12 +751,12 @@ Downloading: 2.7 kB</code></pre>
 <h4 class="hasAnchor">
 <a href="#query-1" class="anchor"></a>query</h4>
 <p>Query for taxon document with given search criteria. Example:</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="co"># query for taxa of genus 'Sedum' that are in the Netherlands Soortenregister (NSR)</span></a>
-<a class="sourceLine" id="cb62-2" data-line-number="2">tc &lt;-<span class="st"> </span>TaxonClient<span class="op">$</span><span class="kw">new</span>()</a>
-<a class="sourceLine" id="cb62-3" data-line-number="3">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"acceptedName.genusOrMonomial"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Sedum"</span>)</a>
-<a class="sourceLine" id="cb62-4" data-line-number="4">qc2 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"sourceSystem.code"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"NSR"</span>)</a>
-<a class="sourceLine" id="cb62-5" data-line-number="5">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc, qc2))</a>
-<a class="sourceLine" id="cb62-6" data-line-number="6">tc<span class="op">$</span><span class="kw">query</span>(qs)</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="co"># query for taxa of genus 'Sedum' that are in the Netherlands Soortenregister (NSR)</span></a>
+<a class="sourceLine" id="cb58-2" data-line-number="2">tc &lt;-<span class="st"> </span>TaxonClient<span class="op">$</span><span class="kw">new</span>()</a>
+<a class="sourceLine" id="cb58-3" data-line-number="3">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"acceptedName.genusOrMonomial"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Sedum"</span>)</a>
+<a class="sourceLine" id="cb58-4" data-line-number="4">qc2 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"sourceSystem.code"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"NSR"</span>)</a>
+<a class="sourceLine" id="cb58-5" data-line-number="5">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc, qc2))</a>
+<a class="sourceLine" id="cb58-6" data-line-number="6">tc<span class="op">$</span><span class="kw">query</span>(qs)</a></code></pre></div>
 </div>
 <div id="download_query-1" class="section level4">
 <h4 class="hasAnchor">
@@ -1121,11 +771,11 @@ Downloading: 2.7 kB</code></pre>
 <h4 class="hasAnchor">
 <a href="#count-1" class="anchor"></a>count</h4>
 <p>For a given query, do not return <code>Taxon</code> objects but the mere count. Example</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="co"># get counts for taxa of genus 'Sedum' that are in the Netherlands Soortenregister (NSR)</span></a>
-<a class="sourceLine" id="cb63-2" data-line-number="2">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"acceptedName.genusOrMonomial"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Sedum"</span>)</a>
-<a class="sourceLine" id="cb63-3" data-line-number="3">qc2 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"sourceSystem.code"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"NSR"</span>)</a>
-<a class="sourceLine" id="cb63-4" data-line-number="4">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc, qc2))</a>
-<a class="sourceLine" id="cb63-5" data-line-number="5">tc<span class="op">$</span><span class="kw">count</span>(qs)</a></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="co"># get counts for taxa of genus 'Sedum' that are in the Netherlands Soortenregister (NSR)</span></a>
+<a class="sourceLine" id="cb59-2" data-line-number="2">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"acceptedName.genusOrMonomial"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Sedum"</span>)</a>
+<a class="sourceLine" id="cb59-3" data-line-number="3">qc2 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"sourceSystem.code"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"NSR"</span>)</a>
+<a class="sourceLine" id="cb59-4" data-line-number="4">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc, qc2))</a>
+<a class="sourceLine" id="cb59-5" data-line-number="5">tc<span class="op">$</span><span class="kw">count</span>(qs)</a></code></pre></div>
 <pre><code>## &lt;Response&gt;
 ##   Public:
 ##     clone: function (deep = FALSE) 
@@ -1137,7 +787,7 @@ Downloading: 2.7 kB</code></pre>
 <h4 class="hasAnchor">
 <a href="#find-1" class="anchor"></a>find</h4>
 <p>Returns a taxon object given its identifier:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">tc<span class="op">$</span><span class="kw">find</span>(<span class="st">"27706109@COL"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1">tc<span class="op">$</span><span class="kw">find</span>(<span class="st">"27706109@COL"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## &lt;Taxon&gt;
 ##   Public:
 ##     acceptedName: ScientificName, R6
@@ -1168,8 +818,8 @@ Downloading: 2.7 kB</code></pre>
 <h4 class="hasAnchor">
 <a href="#find_by_ids-1" class="anchor"></a>find_by_ids</h4>
 <p>Given a string with comma-separated identifiers, returns a list of taxon objects:</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">    ids &lt;-<span class="st"> "27706109@COL,27704140@COL,27706110@COL,27706111@COL,27706108@COL"</span></a>
-<a class="sourceLine" id="cb67-2" data-line-number="2">    res &lt;-<span class="st"> </span>tc<span class="op">$</span><span class="kw">find_by_ids</span>(ids)</a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">    ids &lt;-<span class="st"> "27706109@COL,27704140@COL,27706110@COL,27706111@COL,27706108@COL"</span></a>
+<a class="sourceLine" id="cb63-2" data-line-number="2">    res &lt;-<span class="st"> </span>tc<span class="op">$</span><span class="kw">find_by_ids</span>(ids)</a></code></pre></div>
 </div>
 </div>
 <div id="aggregation-services-1" class="section level3">
@@ -1178,8 +828,8 @@ Downloading: 2.7 kB</code></pre>
 <div id="get_distinct_values-1" class="section level4">
 <h4 class="hasAnchor">
 <a href="#get_distinct_values-1" class="anchor"></a>get_distinct_values</h4>
-<p>This method takes a specific field as an argument and returns all possible values and the frequency for that field in thy data. Example: get all data source systems for taxon objects:</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1">tc<span class="op">$</span><span class="kw">get_distinct_values</span>(<span class="st">"sourceSystem.name"</span>)<span class="op">$</span>content</a></code></pre></div>
+<p>This method takes a specific field as an argument and returns all possible values and the frequency for that field in the data. Example: get all data source systems for taxon objects:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">tc<span class="op">$</span><span class="kw">get_distinct_values</span>(<span class="st">"sourceSystem.name"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## $`Species 2000 - Catalogue Of Life`
 ## [1] 1865315
 ## 
@@ -1191,8 +841,8 @@ Downloading: 2.7 kB</code></pre>
 <h3 class="hasAnchor">
 <a href="#metadata-services-1" class="anchor"></a>Metadata services</h3>
 <p>Taxon Metadata services include the same standard metadata services as for the other data types:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="co"># get all paths for the Taxon datatype </span></a>
-<a class="sourceLine" id="cb70-2" data-line-number="2">tc<span class="op">$</span><span class="kw">get_paths</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="co"># get all paths for the Taxon datatype </span></a>
+<a class="sourceLine" id="cb66-2" data-line-number="2">tc<span class="op">$</span><span class="kw">get_paths</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>##  [1] "sourceSystem.code"                                       
 ##  [2] "sourceSystem.name"                                       
 ##  [3] "sourceSystemId"                                          
@@ -1292,8 +942,8 @@ Downloading: 2.7 kB</code></pre>
 ## [97] "experts.fullName"                                        
 ## [98] "experts.organization.agentText"                          
 ## [99] "experts.organization.name"</code></pre>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="co"># get info e.g. for field collectionType</span></a>
-<a class="sourceLine" id="cb72-2" data-line-number="2">tc<span class="op">$</span><span class="kw">get_field_info</span>()<span class="op">$</span>content<span class="op">$</span>synonyms.author</a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="co"># get info e.g. for field collectionType</span></a>
+<a class="sourceLine" id="cb68-2" data-line-number="2">tc<span class="op">$</span><span class="kw">get_field_info</span>()<span class="op">$</span>content<span class="op">$</span>synonyms.author</a></code></pre></div>
 <pre><code>## $indexed
 ## [1] TRUE
 ## 
@@ -1306,39 +956,39 @@ Downloading: 2.7 kB</code></pre>
 ##  [7] "IN"                 "NOT_IN"             "MATCHES"           
 ## [10] "NOT_MATCHES"        "STARTS_WITH"        "NOT_STARTS_WITH"   
 ## [13] "STARTS_WITH_IC"     "NOT_STARTS_WITH_IC"</code></pre>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="co"># get all settings</span></a>
-<a class="sourceLine" id="cb74-2" data-line-number="2">tc<span class="op">$</span><span class="kw">get_settings</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="co"># get all settings</span></a>
+<a class="sourceLine" id="cb70-2" data-line-number="2">tc<span class="op">$</span><span class="kw">get_settings</span>()</a></code></pre></div>
 <pre><code>## &lt;Response&gt;
 ##   Public:
 ##     clone: function (deep = FALSE) 
 ##     content: list
 ##     initialize: function (content, response) 
 ##     response: response</code></pre>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="co"># get specific setting</span></a>
-<a class="sourceLine" id="cb76-2" data-line-number="2">tc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"index.max_result_window"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="co"># get specific setting</span></a>
+<a class="sourceLine" id="cb72-2" data-line-number="2">tc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"index.max_result_window"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 50000</code></pre>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="co"># check if operator is allowed</span></a>
-<a class="sourceLine" id="cb78-2" data-line-number="2">tc<span class="op">$</span><span class="kw">is_operator_allowed</span>(<span class="st">"synonyms.author"</span>, <span class="st">"EQUALS"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="co"># check if operator is allowed</span></a>
+<a class="sourceLine" id="cb74-2" data-line-number="2">tc<span class="op">$</span><span class="kw">is_operator_allowed</span>(<span class="st">"synonyms.author"</span>, <span class="st">"EQUALS"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <div id="available-paths-and-fields-1" class="section level4">
 <h4 class="hasAnchor">
 <a href="#available-paths-and-fields-1" class="anchor"></a>Available paths and fields</h4>
 <p>All fields can be retrieved with <code>get_paths</code> and specific information on the fields, such as allowed operators etc. with <code>get_field_info</code></p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1">tc<span class="op">$</span><span class="kw">get_paths</span>()<span class="op">$</span>content</a>
-<a class="sourceLine" id="cb80-2" data-line-number="2">tc<span class="op">$</span><span class="kw">get_field_info</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1">tc<span class="op">$</span><span class="kw">get_paths</span>()<span class="op">$</span>content</a>
+<a class="sourceLine" id="cb76-2" data-line-number="2">tc<span class="op">$</span><span class="kw">get_field_info</span>()<span class="op">$</span>content</a></code></pre></div>
 </div>
 <div id="settings-1" class="section level4">
 <h4 class="hasAnchor">
 <a href="#settings-1" class="anchor"></a>Settings</h4>
 <p>Multimedia-specific settings can be retrieved with <code>get_settings</code> and a specific setting with <code>get_setting</code>:</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1">tc<span class="op">$</span><span class="kw">get_settings</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1">tc<span class="op">$</span><span class="kw">get_settings</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## $index.max_result_window
 ## [1] 50000
 ## 
 ## $taxon.group_by_scientific_name.max_num_buckets
 ## [1] 10000</code></pre>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1">tc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"index.max_result_window"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1">tc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"index.max_result_window"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 50000</code></pre>
 </div>
@@ -1346,7 +996,7 @@ Downloading: 2.7 kB</code></pre>
 <h4 class="hasAnchor">
 <a href="#operators-1" class="anchor"></a>Operators</h4>
 <p>To test if a certain operator can be used for a mutimedia query:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1">tc<span class="op">$</span><span class="kw">is_operator_allowed</span>(<span class="st">"identifications.defaultClassification.genus"</span>, <span class="st">"STARTS_WITH"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1">tc<span class="op">$</span><span class="kw">is_operator_allowed</span>(<span class="st">"identifications.defaultClassification.genus"</span>, <span class="st">"STARTS_WITH"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## Warning in self$handleError(response): Status code:500
 ## Internal Server Error
 ## Exception: Invalid element "identifications" in path "identifications.defaultClassification.genus"
@@ -1363,605 +1013,23 @@ Downloading: 2.7 kB</code></pre>
 <h4 class="hasAnchor">
 <a href="#static-download-1" class="anchor"></a>Static download</h4>
 <p>Static download services offer the download of predefined datasets. The sets that are available for download can be queried with <code>dwca_get_data_set_names</code>:</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1">tc<span class="op">$</span><span class="kw">dwca_get_data_set_names</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1">tc<span class="op">$</span><span class="kw">dwca_get_data_set_names</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [1] "nsr"</code></pre>
 <p>A dataset can then be downloaded using <code>dwca_get_data_set</code>. A filename can be given as argument, if none is given, the DwCA archive is written to <em>download-YYYY-MM-DDThh:mm.zip</em> in the current working directory.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1"><span class="co"># download dataset 'nsr' to temporary file</span></a>
-<a class="sourceLine" id="cb90-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
-<a class="sourceLine" id="cb90-3" data-line-number="3">tc<span class="op">$</span><span class="kw">dwca_get_data_set</span>(<span class="st">'nsr'</span>, <span class="dt">filename=</span>filename)                                                                               </a></code></pre></div>
-<pre><code>## 
-Downloading: 16 kB     
-Downloading: 16 kB     
-Downloading: 16 kB     
-Downloading: 16 kB     
-Downloading: 33 kB     
-Downloading: 33 kB     
-Downloading: 33 kB     
-Downloading: 33 kB     
-Downloading: 33 kB     
-Downloading: 33 kB     
-Downloading: 46 kB     
-Downloading: 46 kB     
-Downloading: 62 kB     
-Downloading: 62 kB     
-Downloading: 66 kB     
-Downloading: 66 kB     
-Downloading: 82 kB     
-Downloading: 82 kB     
-Downloading: 83 kB     
-Downloading: 83 kB     
-Downloading: 83 kB     
-Downloading: 83 kB     
-Downloading: 99 kB     
-Downloading: 99 kB     
-Downloading: 120 kB     
-Downloading: 120 kB     
-Downloading: 120 kB     
-Downloading: 120 kB     
-Downloading: 130 kB     
-Downloading: 130 kB     
-Downloading: 130 kB     
-Downloading: 130 kB     
-Downloading: 130 kB     
-Downloading: 130 kB     
-Downloading: 150 kB     
-Downloading: 150 kB     
-Downloading: 160 kB     
-Downloading: 160 kB     
-Downloading: 170 kB     
-Downloading: 170 kB     
-Downloading: 180 kB     
-Downloading: 180 kB     
-Downloading: 180 kB     
-Downloading: 180 kB     
-Downloading: 180 kB     
-Downloading: 180 kB     
-Downloading: 200 kB     
-Downloading: 200 kB     
-Downloading: 210 kB     
-Downloading: 210 kB     
-Downloading: 220 kB     
-Downloading: 220 kB     
-Downloading: 230 kB     
-Downloading: 230 kB     
-Downloading: 230 kB     
-Downloading: 230 kB     
-Downloading: 250 kB     
-Downloading: 250 kB     
-Downloading: 260 kB     
-Downloading: 260 kB     
-Downloading: 260 kB     
-Downloading: 260 kB     
-Downloading: 260 kB     
-Downloading: 260 kB     
-Downloading: 280 kB     
-Downloading: 280 kB     
-Downloading: 280 kB     
-Downloading: 280 kB     
-Downloading: 300 kB     
-Downloading: 300 kB     
-Downloading: 310 kB     
-Downloading: 310 kB     
-Downloading: 310 kB     
-Downloading: 310 kB     
-Downloading: 310 kB     
-Downloading: 310 kB     
-Downloading: 330 kB     
-Downloading: 330 kB     
-Downloading: 330 kB     
-Downloading: 330 kB     
-Downloading: 340 kB     
-Downloading: 340 kB     
-Downloading: 360 kB     
-Downloading: 360 kB     
-Downloading: 360 kB     
-Downloading: 360 kB     
-Downloading: 380 kB     
-Downloading: 380 kB     
-Downloading: 380 kB     
-Downloading: 380 kB     
-Downloading: 380 kB     
-Downloading: 380 kB     
-Downloading: 390 kB     
-Downloading: 390 kB     
-Downloading: 410 kB     
-Downloading: 410 kB     
-Downloading: 410 kB     
-Downloading: 410 kB     
-Downloading: 430 kB     
-Downloading: 430 kB     
-Downloading: 430 kB     
-Downloading: 430 kB     
-Downloading: 430 kB     
-Downloading: 430 kB     
-Downloading: 450 kB     
-Downloading: 450 kB     
-Downloading: 460 kB     
-Downloading: 460 kB     
-Downloading: 460 kB     
-Downloading: 460 kB     
-Downloading: 460 kB     
-Downloading: 460 kB     
-Downloading: 480 kB     
-Downloading: 480 kB     
-Downloading: 480 kB     
-Downloading: 480 kB     
-Downloading: 500 kB     
-Downloading: 500 kB     
-Downloading: 510 kB     
-Downloading: 510 kB     
-Downloading: 510 kB     
-Downloading: 510 kB     
-Downloading: 510 kB     
-Downloading: 510 kB     
-Downloading: 530 kB     
-Downloading: 530 kB     
-Downloading: 530 kB     
-Downloading: 530 kB     
-Downloading: 550 kB     
-Downloading: 550 kB     
-Downloading: 560 kB     
-Downloading: 560 kB     
-Downloading: 560 kB     
-Downloading: 560 kB     
-Downloading: 560 kB     
-Downloading: 560 kB     
-Downloading: 580 kB     
-Downloading: 580 kB     
-Downloading: 580 kB     
-Downloading: 580 kB     
-Downloading: 600 kB     
-Downloading: 600 kB     
-Downloading: 610 kB     
-Downloading: 610 kB     
-Downloading: 610 kB     
-Downloading: 610 kB     
-Downloading: 620 kB     
-Downloading: 620 kB     
-Downloading: 630 kB     
-Downloading: 630 kB     
-Downloading: 630 kB     
-Downloading: 630 kB     
-Downloading: 630 kB     
-Downloading: 630 kB     
-Downloading: 650 kB     
-Downloading: 650 kB     
-Downloading: 660 kB     
-Downloading: 660 kB     
-Downloading: 660 kB     
-Downloading: 660 kB     
-Downloading: 680 kB     
-Downloading: 680 kB     
-Downloading: 680 kB     
-Downloading: 680 kB     
-Downloading: 680 kB     
-Downloading: 680 kB     
-Downloading: 690 kB     
-Downloading: 690 kB     
-Downloading: 710 kB     
-Downloading: 710 kB     
-Downloading: 710 kB     
-Downloading: 710 kB     
-Downloading: 720 kB     
-Downloading: 720 kB     
-Downloading: 730 kB     
-Downloading: 730 kB     
-Downloading: 730 kB     
-Downloading: 730 kB     
-Downloading: 750 kB     
-Downloading: 750 kB     
-Downloading: 760 kB     
-Downloading: 760 kB     
-Downloading: 760 kB     
-Downloading: 760 kB     
-Downloading: 780 kB     
-Downloading: 780 kB     
-Downloading: 780 kB     
-Downloading: 780 kB     
-Downloading: 780 kB     
-Downloading: 780 kB     
-Downloading: 800 kB     
-Downloading: 800 kB     
-Downloading: 800 kB     
-Downloading: 800 kB     
-Downloading: 800 kB     
-Downloading: 800 kB     
-Downloading: 810 kB     
-Downloading: 810 kB     
-Downloading: 830 kB     
-Downloading: 830 kB     
-Downloading: 830 kB     
-Downloading: 830 kB     
-Downloading: 850 kB     
-Downloading: 850 kB     
-Downloading: 860 kB     
-Downloading: 860 kB     
-Downloading: 860 kB     
-Downloading: 860 kB     
-Downloading: 860 kB     
-Downloading: 860 kB     
-Downloading: 880 kB     
-Downloading: 880 kB     
-Downloading: 880 kB     
-Downloading: 880 kB     
-Downloading: 880 kB     
-Downloading: 880 kB     
-Downloading: 890 kB     
-Downloading: 890 kB     
-Downloading: 910 kB     
-Downloading: 910 kB     
-Downloading: 910 kB     
-Downloading: 910 kB     
-Downloading: 910 kB     
-Downloading: 910 kB     
-Downloading: 930 kB     
-Downloading: 930 kB     
-Downloading: 950 kB     
-Downloading: 950 kB     
-Downloading: 950 kB     
-Downloading: 950 kB     
-Downloading: 950 kB     
-Downloading: 950 kB     
-Downloading: 960 kB     
-Downloading: 960 kB     
-Downloading: 960 kB     
-Downloading: 960 kB     
-Downloading: 960 kB     
-Downloading: 960 kB     
-Downloading: 980 kB     
-Downloading: 980 kB     
-Downloading: 1,000 kB     
-Downloading: 1,000 kB     
-Downloading: 1,000 kB     
-Downloading: 1,000 kB     
-Downloading: 1,000 kB     
-Downloading: 1,000 kB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.1 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.2 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.3 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.4 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.5 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.6 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.7 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.8 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 1.9 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2 MB     
-Downloading: 2.1 MB     
-Downloading: 2.1 MB     
-Downloading: 2.1 MB     
-Downloading: 2.1 MB     
-Downloading: 2.1 MB     
-Downloading: 2.1 MB     
-Downloading: 2.1 MB     
-Downloading: 2.1 MB     
-Downloading: 2.1 MB     
-Downloading: 2.1 MB     
-Downloading: 2.1 MB     
-Downloading: 2.1 MB     
-Downloading: 2.1 MB     
-Downloading: 2.1 MB     
-Downloading: 2.1 MB     
-Downloading: 2.1 MB     
-Downloading: 2.1 MB     
-Downloading: 2.1 MB     
-Downloading: 2.1 MB     
-Downloading: 2.1 MB     
-Downloading: 2.2 MB     
-Downloading: 2.2 MB     
-Downloading: 2.2 MB     
-Downloading: 2.2 MB     
-Downloading: 2.2 MB     
-Downloading: 2.2 MB     
-Downloading: 2.2 MB     
-Downloading: 2.2 MB     
-Downloading: 2.2 MB     
-Downloading: 2.2 MB     
-Downloading: 2.2 MB     
-Downloading: 2.2 MB     
-Downloading: 2.2 MB     
-Downloading: 2.2 MB     
-Downloading: 2.2 MB     
-Downloading: 2.2 MB</code></pre>
-<pre><code>## Query result written to /tmp/RtmpZMYiW8/file35f022892ca1.zip</code></pre>
-<pre><code>## &lt;Response&gt;
-##   Public:
-##     clone: function (deep = FALSE) 
-##     content: NULL
-##     initialize: function (content, response) 
-##     response: response</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="co"># download dataset 'nsr' to temporary file</span></a>
+<a class="sourceLine" id="cb86-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
+<a class="sourceLine" id="cb86-3" data-line-number="3">tc<span class="op">$</span><span class="kw">dwca_get_data_set</span>(<span class="st">'nsr'</span>, <span class="dt">filename=</span>filename)                                                                               </a></code></pre></div>
+<pre><code>## Query result written to /tmp/RtmpGNWR3p/file1bfd588a545f.zip</code></pre>
 </div>
 <div id="dynamic-download-1" class="section level4">
 <h4 class="hasAnchor">
 <a href="#dynamic-download-1" class="anchor"></a>Dynamic download</h4>
 <p>The dynamic download function <code>dwca_query</code> allows for download of arbitrary sets, defined by the user’s query. The arguments to this methods are similar to <code>query</code>, plus the filename:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1"><span class="co"># download all taxa for genus 'Clematis'</span></a>
-<a class="sourceLine" id="cb94-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
-<a class="sourceLine" id="cb94-3" data-line-number="3">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"defaultClassification.genus"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Clematis"</span>)))</a>
-<a class="sourceLine" id="cb94-4" data-line-number="4">tc<span class="op">$</span><span class="kw">dwca_query</span>(<span class="dt">querySpec=</span>qs, <span class="dt">filename=</span>filename)</a></code></pre></div>
-<pre><code>## 
-Downloading: 16 kB     
-Downloading: 16 kB     
-Downloading: 16 kB     
-Downloading: 16 kB     
-Downloading: 33 kB     
-Downloading: 33 kB     
-Downloading: 33 kB     
-Downloading: 33 kB     
-Downloading: 43 kB     
-Downloading: 43 kB     
-Downloading: 57 kB     
-Downloading: 57 kB     
-Downloading: 57 kB     
-Downloading: 57 kB     
-Downloading: 57 kB     
-Downloading: 57 kB</code></pre>
-<pre><code>## Query result written to /tmp/RtmpZMYiW8/file35f016874195.zip</code></pre>
-<pre><code>## &lt;Response&gt;
-##   Public:
-##     clone: function (deep = FALSE) 
-##     content: NULL
-##     initialize: function (content, response) 
-##     response: response</code></pre>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1"><span class="co"># download all taxa for genus 'Clematis'</span></a>
+<a class="sourceLine" id="cb88-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
+<a class="sourceLine" id="cb88-3" data-line-number="3">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"defaultClassification.genus"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Clematis"</span>)))</a>
+<a class="sourceLine" id="cb88-4" data-line-number="4">tc<span class="op">$</span><span class="kw">dwca_query</span>(<span class="dt">querySpec=</span>qs, <span class="dt">filename=</span>filename)</a></code></pre></div>
+<pre><code>## Query result written to /tmp/RtmpGNWR3p/file1bfd4d924ada.zip</code></pre>
 </div>
 </div>
 </div>
@@ -1972,16 +1040,16 @@ Downloading: 57 kB</code></pre>
 <h3 class="hasAnchor">
 <a href="#query-services-2" class="anchor"></a>Query Services</h3>
 <p>The GeoArea query service allows for detailed search within the fields of a GeoArea object. As for the other data types, query parameters can be either given as a <code>list</code> or as a <code>QuerySpec</code> object. Below, we make a simple query to get the <code>GeoArea</code> object for the Netherlands:</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1"><span class="co"># instantiate client for geo areas</span></a>
-<a class="sourceLine" id="cb98-2" data-line-number="2">gc &lt;-<span class="st"> </span>GeoClient<span class="op">$</span><span class="kw">new</span>()</a>
-<a class="sourceLine" id="cb98-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb98-4" data-line-number="4"><span class="co"># query for GeoArea of the Netherlands</span></a>
-<a class="sourceLine" id="cb98-5" data-line-number="5">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"locality"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Netherlands"</span>)</a>
-<a class="sourceLine" id="cb98-6" data-line-number="6">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc))</a>
-<a class="sourceLine" id="cb98-7" data-line-number="7">res &lt;-<span class="st"> </span>gc<span class="op">$</span><span class="kw">query</span>(qs)</a>
-<a class="sourceLine" id="cb98-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb98-9" data-line-number="9"><span class="co"># get item</span></a>
-<a class="sourceLine" id="cb98-10" data-line-number="10">res<span class="op">$</span>content<span class="op">$</span>resultSet[[<span class="dv">1</span>]]<span class="op">$</span>item</a></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1"><span class="co"># instantiate client for geo areas</span></a>
+<a class="sourceLine" id="cb90-2" data-line-number="2">gc &lt;-<span class="st"> </span>GeoClient<span class="op">$</span><span class="kw">new</span>()</a>
+<a class="sourceLine" id="cb90-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb90-4" data-line-number="4"><span class="co"># query for GeoArea of the Netherlands</span></a>
+<a class="sourceLine" id="cb90-5" data-line-number="5">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"locality"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Netherlands"</span>)</a>
+<a class="sourceLine" id="cb90-6" data-line-number="6">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc))</a>
+<a class="sourceLine" id="cb90-7" data-line-number="7">res &lt;-<span class="st"> </span>gc<span class="op">$</span><span class="kw">query</span>(qs)</a>
+<a class="sourceLine" id="cb90-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb90-9" data-line-number="9"><span class="co"># get item</span></a>
+<a class="sourceLine" id="cb90-10" data-line-number="10">res<span class="op">$</span>content<span class="op">$</span>resultSet[[<span class="dv">1</span>]]<span class="op">$</span>item</a></code></pre></div>
 <pre><code>## &lt;GeoArea&gt;
 ##   Public:
 ##     areaType: Country
@@ -2008,18 +1076,18 @@ Downloading: 57 kB</code></pre>
 <h4 class="hasAnchor">
 <a href="#get_geo_json_for_locality" class="anchor"></a>get_geo_json_for_locality</h4>
 <p>This is a convenience function to directly extract the a GeoJSON object for a specific locality. <a href="https://en.wikipedia.org/wiki/GeoJSON">GeoJSON</a> is a popular format for storing geographical point- and polygon data. To e.g. extract the GeoJSON polygon representation for the Netherlands:</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1">loc &lt;-<span class="st"> "Netherlands"</span></a>
-<a class="sourceLine" id="cb100-2" data-line-number="2">res &lt;-<span class="st"> </span>gc<span class="op">$</span><span class="kw">get_geo_json_for_locality</span>(loc)</a></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1">loc &lt;-<span class="st"> "Netherlands"</span></a>
+<a class="sourceLine" id="cb92-2" data-line-number="2">res &lt;-<span class="st"> </span>gc<span class="op">$</span><span class="kw">get_geo_json_for_locality</span>(loc)</a></code></pre></div>
 <p>Results are returned as a <code>list</code> by default, but can be easily converted to a JSON string, e.g.</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">jsonlite<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">toJSON</a></span>(res<span class="op">$</span>content)</a></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1">jsonlite<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">toJSON</a></span>(res<span class="op">$</span>content)</a></code></pre></div>
 </div>
 <div id="count-2" class="section level4">
 <h4 class="hasAnchor">
 <a href="#count-2" class="anchor"></a>count</h4>
 <p>For any given query (with <code>QuerySpec</code> or not), returns the count of matches instead of <code>GeoArea</code> objects:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="co"># return count of all GeoAreas</span></a>
-<a class="sourceLine" id="cb102-2" data-line-number="2">res &lt;-<span class="st"> </span>gc<span class="op">$</span><span class="kw">count</span>()</a>
-<a class="sourceLine" id="cb102-3" data-line-number="3">res<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1"><span class="co"># return count of all GeoAreas</span></a>
+<a class="sourceLine" id="cb94-2" data-line-number="2">res &lt;-<span class="st"> </span>gc<span class="op">$</span><span class="kw">count</span>()</a>
+<a class="sourceLine" id="cb94-3" data-line-number="3">res<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [1] 1654</code></pre>
 </div>
 </div>
@@ -2030,7 +1098,7 @@ Downloading: 57 kB</code></pre>
 <h4 class="hasAnchor">
 <a href="#get_distinct_values-2" class="anchor"></a>get_distinct_values</h4>
 <p>This function returns all values present for a certain field, and their counts:</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1">gc<span class="op">$</span><span class="kw">get_distinct_values</span>(<span class="st">"areaType"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1">gc<span class="op">$</span><span class="kw">get_distinct_values</span>(<span class="st">"areaType"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## $Nature
 ## [1] 987
 ## 
@@ -2048,14 +1116,14 @@ Downloading: 57 kB</code></pre>
 <h3 class="hasAnchor">
 <a href="#metadata-services-2" class="anchor"></a>Metadata services</h3>
 <p>Geo Metadata services include the same standard metadata services as for the other data types:</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="co"># get all paths for the GeoArea datatype </span></a>
-<a class="sourceLine" id="cb106-2" data-line-number="2">gc<span class="op">$</span><span class="kw">get_paths</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1"><span class="co"># get all paths for the GeoArea datatype </span></a>
+<a class="sourceLine" id="cb98-2" data-line-number="2">gc<span class="op">$</span><span class="kw">get_paths</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>##  [1] "sourceSystem.code" "sourceSystem.name" "sourceSystemId"   
 ##  [4] "recordURI"         "areaType"          "locality"         
 ##  [7] "shape"             "source"            "isoCode"          
 ## [10] "countryNL"</code></pre>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1"><span class="co"># get info e.g. for field 'areaType'</span></a>
-<a class="sourceLine" id="cb108-2" data-line-number="2">gc<span class="op">$</span><span class="kw">get_field_info</span>()<span class="op">$</span>content<span class="op">$</span>areaType</a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1"><span class="co"># get info e.g. for field 'areaType'</span></a>
+<a class="sourceLine" id="cb100-2" data-line-number="2">gc<span class="op">$</span><span class="kw">get_field_info</span>()<span class="op">$</span>content<span class="op">$</span>areaType</a></code></pre></div>
 <pre><code>## $indexed
 ## [1] TRUE
 ## 
@@ -2067,20 +1135,20 @@ Downloading: 57 kB</code></pre>
 ##  [4] "NOT_EQUALS_IC"      "IN"                 "NOT_IN"            
 ##  [7] "MATCHES"            "NOT_MATCHES"        "STARTS_WITH"       
 ## [10] "NOT_STARTS_WITH"    "STARTS_WITH_IC"     "NOT_STARTS_WITH_IC"</code></pre>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1"><span class="co"># get all settings</span></a>
-<a class="sourceLine" id="cb110-2" data-line-number="2">gc<span class="op">$</span><span class="kw">get_settings</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="co"># get all settings</span></a>
+<a class="sourceLine" id="cb102-2" data-line-number="2">gc<span class="op">$</span><span class="kw">get_settings</span>()</a></code></pre></div>
 <pre><code>## &lt;Response&gt;
 ##   Public:
 ##     clone: function (deep = FALSE) 
 ##     content: list
 ##     initialize: function (content, response) 
 ##     response: response</code></pre>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1"><span class="co"># get specific setting</span></a>
-<a class="sourceLine" id="cb112-2" data-line-number="2">gc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"index.max_result_window"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1"><span class="co"># get specific setting</span></a>
+<a class="sourceLine" id="cb104-2" data-line-number="2">gc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"index.max_result_window"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 50000</code></pre>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1"><span class="co"># check if operator is allowed</span></a>
-<a class="sourceLine" id="cb114-2" data-line-number="2">gc<span class="op">$</span><span class="kw">is_operator_allowed</span>(<span class="st">"locality"</span>, <span class="st">"STARTS_WITH"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="co"># check if operator is allowed</span></a>
+<a class="sourceLine" id="cb106-2" data-line-number="2">gc<span class="op">$</span><span class="kw">is_operator_allowed</span>(<span class="st">"locality"</span>, <span class="st">"STARTS_WITH"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 </div>
@@ -2088,13 +1156,13 @@ Downloading: 57 kB</code></pre>
 <h2 class="hasAnchor">
 <a href="#multimedia-services" class="anchor"></a>Multimedia services</h2>
 <p>Multimedia services are accessible with a <code>MultimediaClient</code>, instantiated as follows:</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1">mc &lt;-<span class="st"> </span>MultimediaClient<span class="op">$</span><span class="kw">new</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1">mc &lt;-<span class="st"> </span>MultimediaClient<span class="op">$</span><span class="kw">new</span>()</a></code></pre></div>
 <div id="query-services-3" class="section level3">
 <h3 class="hasAnchor">
 <a href="#query-services-3" class="anchor"></a>Query Services</h3>
 <p>As for the other data types, the <code>query</code> method enables simple and complex queries using a list or a <code>QuerySpec</code> object to specify query parameters.</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1"><span class="co"># example of multimedia query passing parameters as a list</span></a>
-<a class="sourceLine" id="cb117-2" data-line-number="2">mc<span class="op">$</span><span class="kw">query</span>(<span class="dt">queryParams=</span><span class="kw">list</span>(<span class="dt">collectionType=</span><span class="st">'Cnidaria'</span>))<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="co"># example of multimedia query passing parameters as a list</span></a>
+<a class="sourceLine" id="cb109-2" data-line-number="2">mc<span class="op">$</span><span class="kw">query</span>(<span class="dt">queryParams=</span><span class="kw">list</span>(<span class="dt">collectionType=</span><span class="st">'Cnidaria'</span>))<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## &lt;QueryResult&gt;
 ##   Public:
 ##     clone: function (deep = FALSE) 
@@ -2105,14 +1173,14 @@ Downloading: 57 kB</code></pre>
 ##     toJSONString: function (pretty = TRUE) 
 ##     toList: function () 
 ##     totalSize: 42257</code></pre>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="co"># example of multimedia query using QuerySpec: get the first 100</span></a>
-<a class="sourceLine" id="cb119-2" data-line-number="2"><span class="co"># multimedia items associated with a specimen with name starting with "Ba"</span></a>
-<a class="sourceLine" id="cb119-3" data-line-number="3">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"identifications.scientificName.fullScientificName"</span>, <span class="dt">operator=</span><span class="st">"STARTS_WITH"</span>, <span class="dt">value=</span><span class="st">"Qu"</span>)</a>
-<a class="sourceLine" id="cb119-4" data-line-number="4">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc), <span class="dt">size=</span><span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb119-5" data-line-number="5">res &lt;-<span class="st"> </span>mc<span class="op">$</span><span class="kw">query</span>(qs)</a>
-<a class="sourceLine" id="cb119-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb119-7" data-line-number="7"><span class="co"># check if scientific names indeed start with 'Qu'</span></a>
-<a class="sourceLine" id="cb119-8" data-line-number="8"><span class="kw">sapply</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet, <span class="cf">function</span>(x)x<span class="op">$</span>item<span class="op">$</span>identifications[[<span class="dv">1</span>]]<span class="op">$</span>scientificName<span class="op">$</span>fullScientificName)</a></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1"><span class="co"># example of multimedia query using QuerySpec: get the first 100</span></a>
+<a class="sourceLine" id="cb111-2" data-line-number="2"><span class="co"># multimedia items associated with a specimen with name starting with "Ba"</span></a>
+<a class="sourceLine" id="cb111-3" data-line-number="3">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"identifications.scientificName.fullScientificName"</span>, <span class="dt">operator=</span><span class="st">"STARTS_WITH"</span>, <span class="dt">value=</span><span class="st">"Qu"</span>)</a>
+<a class="sourceLine" id="cb111-4" data-line-number="4">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc), <span class="dt">size=</span><span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb111-5" data-line-number="5">res &lt;-<span class="st"> </span>mc<span class="op">$</span><span class="kw">query</span>(qs)</a>
+<a class="sourceLine" id="cb111-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb111-7" data-line-number="7"><span class="co"># check if scientific names indeed start with 'Qu'</span></a>
+<a class="sourceLine" id="cb111-8" data-line-number="8"><span class="kw">sapply</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet, <span class="cf">function</span>(x)x<span class="op">$</span>item<span class="op">$</span>identifications[[<span class="dv">1</span>]]<span class="op">$</span>scientificName<span class="op">$</span>fullScientificName)</a></code></pre></div>
 <pre><code>##   [1] "Quercus rubra L."                          
 ##   [2] "Quercus rubra L."                          
 ##   [3] "Quercus rubra L."                          
@@ -2221,8 +1289,8 @@ Downloading: 57 kB</code></pre>
 <h4 class="hasAnchor">
 <a href="#count-3" class="anchor"></a>count</h4>
 <p>As for the other data types, a <code>count</code> function returns counts instead of the actual objects:</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1"><span class="co"># count all multimedia documents</span></a>
-<a class="sourceLine" id="cb121-2" data-line-number="2">mc<span class="op">$</span><span class="kw">count</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1"><span class="co"># count all multimedia documents</span></a>
+<a class="sourceLine" id="cb113-2" data-line-number="2">mc<span class="op">$</span><span class="kw">count</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [1] 5639336</code></pre>
 </div>
 </div>
@@ -2233,7 +1301,7 @@ Downloading: 57 kB</code></pre>
 <h4 class="hasAnchor">
 <a href="#get_distinct_values-3" class="anchor"></a>get_distinct_values</h4>
 <p>This function returns all values present for a certain field, and their counts. Example: retrieve all different licenses and their counts"</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_distinct_values</span>(<span class="st">"license"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_distinct_values</span>(<span class="st">"license"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## $`CC0 4.0`
 ## [1] 5302259
 ## 
@@ -2272,17 +1340,17 @@ Downloading: 57 kB</code></pre>
 <h4 class="hasAnchor">
 <a href="#available-paths-and-fields-2" class="anchor"></a>Available paths and fields</h4>
 <p>All fields can be retrieved with <code>get_paths</code> and specific information on the fields, such as allowed operators etc. with <code>get_field_info</code></p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_paths</span>()<span class="op">$</span>content</a>
-<a class="sourceLine" id="cb125-2" data-line-number="2">mc<span class="op">$</span><span class="kw">get_field_info</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_paths</span>()<span class="op">$</span>content</a>
+<a class="sourceLine" id="cb117-2" data-line-number="2">mc<span class="op">$</span><span class="kw">get_field_info</span>()<span class="op">$</span>content</a></code></pre></div>
 </div>
 <div id="settings-2" class="section level4">
 <h4 class="hasAnchor">
 <a href="#settings-2" class="anchor"></a>Settings</h4>
 <p>Multimedia-specific settings can be retrieved with <code>get_settings</code> and a specific setting with <code>get_setting</code>:</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_settings</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_settings</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## $index.max_result_window
 ## [1] 50000</code></pre>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"index.max_result_window"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"index.max_result_window"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 50000</code></pre>
 </div>
@@ -2290,7 +1358,7 @@ Downloading: 57 kB</code></pre>
 <h4 class="hasAnchor">
 <a href="#operators-2" class="anchor"></a>Operators</h4>
 <p>To test if a certain operator can be used for a mutimedia query:</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1">mc<span class="op">$</span><span class="kw">is_operator_allowed</span>(<span class="st">"identifications.scientificName.fullScientificName"</span>, <span class="st">"STARTS_WITH"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">mc<span class="op">$</span><span class="kw">is_operator_allowed</span>(<span class="st">"identifications.scientificName.fullScientificName"</span>, <span class="st">"STARTS_WITH"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 </div>
@@ -2299,30 +1367,30 @@ Downloading: 57 kB</code></pre>
 <h2 class="hasAnchor">
 <a href="#metadata-services-4" class="anchor"></a>Metadata services</h2>
 <p>Metadata services provide miscellaneous information about the data available via the NBA. Note that there is also type-specific metadata for each data type (e.g. <code>Specimen</code>) which can be retrieved with the specific client of that class. Here we show the available methods for the <code>MetadataClient</code> which gives general, non-type specific metadata. The client is instantiated in the standard way:</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1">mc &lt;-<span class="st"> </span>MetadataClient<span class="op">$</span><span class="kw">new</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1">mc &lt;-<span class="st"> </span>MetadataClient<span class="op">$</span><span class="kw">new</span>()</a></code></pre></div>
 <div id="controlled-vocabularies" class="section level4">
 <h4 class="hasAnchor">
 <a href="#controlled-vocabularies" class="anchor"></a>Controlled vocabularies</h4>
 <p>The vocabularies for some fields are controlled by dictionaries with allowed values. For the sex of a museum specimen, for instance, only the terms <em>male</em>, <em>female</em>, <em>mixed</em> and <em>hermaphrodite</em> are allowed to be assigned to the specimen. The fields for which controlled lists are available can be retrieved as follows:</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_controlled_lists</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_controlled_lists</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [1] "AreaClass"          "License"            "LicenseType"       
 ## [4] "RelationType"       "Sex"                "SpatialDatum"      
 ## [7] "SpecimenTypeStatus" "TaxonomicStatus"</code></pre>
 <p>and for each field that has a controlled vocabulary, there is a separate function to retrieve the allowed values:</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_controlled_list_taxonomic_status</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_controlled_list_taxonomic_status</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [1] "accepted name"               "synonym"                    
 ## [3] "basionym"                    "homonym"                    
 ## [5] "ambiguous synonym"           "misapplied name"            
 ## [7] "misspelled name"             "provisionally accepted name"</code></pre>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_controlled_list_specimen_type_status</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_controlled_list_specimen_type_status</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>##  [1] "allotype"      "epitype"       "hapantotype"   "holotype"     
 ##  [5] "isoepitype"    "isolectotype"  "isoneotype"    "isosyntype"   
 ##  [9] "isotype"       "lectotype"     "neotype"       "paratype"     
 ## [13] "paralectotype" "syntype"       "topotype"      "type"</code></pre>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_controlled_list_sex</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_controlled_list_sex</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [1] "male"          "female"        "mixed"         "hermaphrodite"
 ## [5] "unknowable"    "undetermined"</code></pre>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_controlled_list_phase_or_stage</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_controlled_list_phase_or_stage</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## No encoding supplied: defaulting to UTF-8.
 ## No encoding supplied: defaulting to UTF-8.
 ## No encoding supplied: defaulting to UTF-8.</code></pre>
@@ -2338,7 +1406,7 @@ Downloading: 57 kB</code></pre>
 <h5 class="hasAnchor">
 <a href="#dates" class="anchor"></a>Dates</h5>
 <p>To maintain data integrity, dates have to be coded in specific formats in our systems. For instance, <em>yyyy-MM-dd</em> is a valid format. Allowed formats can be retrieved as follows:</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_allowed_date_formats</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1">mc<span class="op">$</span><span class="kw">get_allowed_date_formats</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [1] "yyyy-MM-dd'T'HH:mm:ssZ"         "yyyy-MM-dd'T'HH:mm[:ss][.SSS]Z"
 ## [3] "yyyy-MM-dd'T'HH:mm[:ss]"        "yyyy-MM-dd HH:mm[:ss]"         
 ## [5] "yyyy-MM-dd"                     "yyyy-MM"                       
@@ -2348,8 +1416,8 @@ Downloading: 57 kB</code></pre>
 <h5 class="hasAnchor">
 <a href="#services-list" class="anchor"></a>Services list</h5>
 <p>The method <code>get_rest_services</code> returns a list of all services in the NBA as objects of type <code>RestService</code>.</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1"><span class="co"># get the endPoint of the first rest service in the services list</span></a>
-<a class="sourceLine" id="cb147-2" data-line-number="2">mc<span class="op">$</span><span class="kw">get_rest_services</span>()<span class="op">$</span>content[[<span class="dv">1</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1"><span class="co"># get the endPoint of the first rest service in the services list</span></a>
+<a class="sourceLine" id="cb139-2" data-line-number="2">mc<span class="op">$</span><span class="kw">get_rest_services</span>()<span class="op">$</span>content[[<span class="dv">1</span>]]</a></code></pre></div>
 <pre><code>## &lt;RestService&gt;
 ##   Public:
 ##     clone: function (deep = FALSE) 
@@ -2368,15 +1436,15 @@ Downloading: 57 kB</code></pre>
 <h5 class="hasAnchor">
 <a href="#settings-3" class="anchor"></a>Settings</h5>
 <p>Similar to the document-specific metadata services, we can get general settings with the <code>MetaDataClient</code>:</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1"><span class="co">#get all settings</span></a>
-<a class="sourceLine" id="cb149-2" data-line-number="2">mc<span class="op">$</span><span class="kw">get_settings</span>()<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1"><span class="co">#get all settings</span></a>
+<a class="sourceLine" id="cb141-2" data-line-number="2">mc<span class="op">$</span><span class="kw">get_settings</span>()<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## $operator.contains.min_term_length
 ## [1] 3
 ## 
 ## $operator.contains.max_term_length
 ## [1] 15</code></pre>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1"><span class="co"># get value for specific setting</span></a>
-<a class="sourceLine" id="cb151-2" data-line-number="2">mc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"operator.contains.min_term_length"</span>)<span class="op">$</span>content</a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1"><span class="co"># get value for specific setting</span></a>
+<a class="sourceLine" id="cb143-2" data-line-number="2">mc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"operator.contains.min_term_length"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 3</code></pre>
 </div>

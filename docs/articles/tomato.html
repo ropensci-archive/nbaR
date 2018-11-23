@@ -89,7 +89,7 @@
     <div class="page-header toc-ignore">
       <h1>The oldest tomato specimen in the world</h1>
             
-            <h4 class="date">Nov 20, 2018</h4>
+            <h4 class="date">Nov 23, 2018</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/naturalis/nbaR/blob/master/vignettes/tomato.Rmd"><code>vignettes/tomato.Rmd</code></a></small>
       <div class="hidden name"><code>tomato.Rmd</code></div>
@@ -110,7 +110,7 @@
 <a class="sourceLine" id="cb1-2" data-line-number="2">sc &lt;-<span class="st"> </span>SpecimenClient<span class="op">$</span><span class="kw">new</span>()</a></code></pre></div>
 <p>To get an overview of what we can do with such a client, <code><a href="../reference/SpecimenClient.html">?SpecimenClient</a></code> will give us some description and list all the methods that are available for this client. To get an overview of what nbaR stores in a <code>Specimen</code> object, we could use the function <code>get_paths</code>, which lists everything that can be queried for a specimen:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">res &lt;-<span class="st"> </span>sc<span class="op">$</span><span class="kw">get_paths</span>()</a></code></pre></div>
-<p>Note that client class methods (and other class members) are accessed with a <code>$</code>. The respose from the taxon client is stored in <code>res</code>, an object of class <code>Response</code>. Have a look at <code><a href="../reference/Response.html">?Response</a></code> to see what this object contains. But how to get the data? It is in the field <code>content</code>.</p>
+<p>Note that client class methods (and other class members) are accessed with a <code>$</code>. The response from the taxon client is stored in <code>res</code>, an object of class <code>Response</code>. Have a look at <code><a href="../reference/Response.html">?Response</a></code> to see what this object contains. But how to get the data? It is in the field <code>content</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">res<span class="op">$</span>content</a></code></pre></div>
 <pre><code>##   [1] "sourceSystem.code"                                                              
 ##   [2] "sourceSystem.name"                                                              
@@ -339,7 +339,7 @@
 <li><code>identifications.vernacularNames.name</code></li>
 <li><code>identifications.taxonomicEnrichments.vernacularNames.name</code></li>
 </ul>
-<p>The first one is the vernacular name that is exaclty equal to the one in the <em>source database</em>. Since often, a vernacular name is missing in the source database, a <em>taxonomic enrichment</em> is performed during the import of the data from the source database in whch, using among others the <em>Catalogue of life</em>, species names are enriched with synonyms and vernacular names.</p>
+<p>The first one is the vernacular name that is exactly equal to the one in the <em>source database</em>. Since often, a vernacular name is missing in the source database, a <em>taxonomic enrichment</em> is performed during the import of the data from the source database in which, using among others the <em>Catalogue of life</em>, species names are enriched with synonyms and vernacular names.</p>
 </div>
 <div id="simple-queries" class="section level2">
 <h2 class="hasAnchor">
@@ -405,7 +405,7 @@
 <div id="sorting" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sorting" class="anchor"></a>Sorting</h2>
-<p>We now want to see which one is the oldest specimen. We could, of course do the sorting in R (e.g. <code>sort(unlist(lapply(res$content$resultSet, function(x)x$item$gatheringEvent$dateTimeBegin)))</code>), but there is also functionality to do this directly in the query. This can be donw with objects of type <code><a href="../reference/SortField.html">?SortField</a></code>, which can take a path specifying on what to sort, and whether to sort ascending or descending. We will sort our results by the values of the field <code>gatheringEvent.dateTimeBegin</code>:</p>
+<p>We now want to see which one is the oldest specimen. We could, of course do the sorting in R (e.g. <code>sort(unlist(lapply(res$content$resultSet, function(x)x$item$gatheringEvent$dateTimeBegin)))</code>), but there is also functionality to do this directly in the query. This can be done with objects of type <code><a href="../reference/SortField.html">?SortField</a></code>, which can take a path specifying on what to sort, and whether to sort ascending or descending. We will sort our results by the values of the field <code>gatheringEvent.dateTimeBegin</code>:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># specify field to sort</span></a>
 <a class="sourceLine" id="cb19-2" data-line-number="2">sf &lt;-<span class="st"> </span>SortField<span class="op">$</span><span class="kw">new</span>(<span class="dt">path=</span><span class="st">"gatheringEvent.dateTimeBegin"</span>, <span class="dt">sortOrder=</span><span class="st">"asc"</span>)</a>
 <a class="sourceLine" id="cb19-3" data-line-number="3"></a>
@@ -433,22 +433,34 @@
 <a class="sourceLine" id="cb24-2" data-line-number="2"><span class="kw">library</span>(knitr)</a>
 <a class="sourceLine" id="cb24-3" data-line-number="3"><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/include_graphics">include_graphics</a></span>(url)</a></code></pre></div>
 <p><img src="http://medialib.naturalis.nl/file/id/L.2111092/format/large"><!-- --></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="co"># Solanum lycopersicum</span></a>
-<a class="sourceLine" id="cb25-2" data-line-number="2">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">'identifications.defaultClassification.genus'</span>, <span class="dt">operator=</span><span class="st">'EQUALS'</span>, <span class="dt">value=</span><span class="st">'Solanum'</span>)</a>
-<a class="sourceLine" id="cb25-3" data-line-number="3">qc2 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">'identifications.defaultClassification.specificEpithet'</span>, <span class="dt">operator=</span><span class="st">'EQUALS'</span>, <span class="dt">value=</span><span class="st">'lycopersicum'</span>)</a>
-<a class="sourceLine" id="cb25-4" data-line-number="4">qc3 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">'gatheringEvent.siteCoordinates.longitudeDecimal'</span>, <span class="dt">operator=</span><span class="st">"NOT_EQUALS"</span>)</a>
-<a class="sourceLine" id="cb25-5" data-line-number="5">qc4 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">'gatheringEvent.siteCoordinates.latitudeDecimal'</span>, <span class="dt">operator=</span><span class="st">"NOT_EQUALS"</span>)</a>
-<a class="sourceLine" id="cb25-6" data-line-number="6">## qc3 &lt;- QueryCondition$new(field='gatheringEvent.siteCoordinates.geoShape', operator='IN', value='1004000@GEO')</a>
-<a class="sourceLine" id="cb25-7" data-line-number="7">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc, qc2, qc3, qc4))</a>
-<a class="sourceLine" id="cb25-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb25-9" data-line-number="9">res &lt;-<span class="st"> </span>sc<span class="op">$</span><span class="kw">query</span>(<span class="dt">querySpec=</span>qs)</a>
-<a class="sourceLine" id="cb25-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb25-11" data-line-number="11"><span class="co">#lat &lt;- sapply(res$content$resultSet, function(x)x$item$gatheringEvent$siteCoordinates[[1]]$latitudeDecimal)</span></a>
-<a class="sourceLine" id="cb25-12" data-line-number="12"><span class="co">#long &lt;- sapply(res$content$resultSet, function(x)x$item$gatheringEvent$siteCoordinates[[1]]$longitudeDecimal)</span></a>
-<a class="sourceLine" id="cb25-13" data-line-number="13"><span class="co">#library('maps')</span></a>
-<a class="sourceLine" id="cb25-14" data-line-number="14"><span class="co">#map("world", fill=TRUE, col="white", bg="lightblue", ylim=c(-60, 90), mar=c(0,0,0,0))</span></a>
-<a class="sourceLine" id="cb25-15" data-line-number="15"><span class="co">#points(long, lat, col='red', pch=16)</span></a></code></pre></div>
 </div>
+</div>
+<div id="retrieving-specimen-records-with-latlong-coordinates" class="section level1">
+<h1 class="hasAnchor">
+<a href="#retrieving-specimen-records-with-latlong-coordinates" class="anchor"></a>Retrieving specimen records with lat/long coordinates</h1>
+<p>Geo-referenced specimens are an invaluable resource for biogeographic analyses. The below example shows how to extract the tomato specimen (species <em>Solanum lycopersicum</em>) that are geo referenced. The coordinates, stored in the field <em>gatheringEvent.siteCoordinates</em> are then extracted and the locations are plotted on a world map.</p>
+<p><strong>Note:</strong> When querying for records with non-empty values for a specific field, we use the operator <code>NOT_EQUALS</code> in combination with the value <code>NULL</code>.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="co"># conditions for specimens for Solanum lycopersicum     </span></a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">'identifications.defaultClassification.genus'</span>, <span class="dt">operator=</span><span class="st">'EQUALS'</span>, <span class="dt">value=</span><span class="st">'Solanum'</span>)       </a>
+<a class="sourceLine" id="cb25-3" data-line-number="3">qc2 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">'identifications.defaultClassification.specificEpithet'</span>, <span class="dt">operator=</span><span class="st">'EQUALS'</span>, <span class="dt">value=</span><span class="st">'lycopersicum'</span>)       </a>
+<a class="sourceLine" id="cb25-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb25-5" data-line-number="5"><span class="co"># coditions for lat/long coordinates to be present</span></a>
+<a class="sourceLine" id="cb25-6" data-line-number="6">qc3 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">'gatheringEvent.siteCoordinates.longitudeDecimal'</span>, <span class="dt">operator=</span><span class="st">"NOT_EQUALS"</span>, <span class="dt">value=</span><span class="ot">NULL</span>)</a>
+<a class="sourceLine" id="cb25-7" data-line-number="7">qc4 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">'gatheringEvent.siteCoordinates.latitudeDecimal'</span>, <span class="dt">operator=</span><span class="st">"NOT_EQUALS"</span>, <span class="dt">value=</span><span class="ot">NULL</span>)</a>
+<a class="sourceLine" id="cb25-8" data-line-number="8">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc, qc2, qc3, qc4), <span class="dt">size=</span><span class="dv">1000</span>)</a>
+<a class="sourceLine" id="cb25-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb25-10" data-line-number="10"><span class="co"># do query</span></a>
+<a class="sourceLine" id="cb25-11" data-line-number="11">res &lt;-<span class="st"> </span>sc<span class="op">$</span><span class="kw">query</span>(<span class="dt">querySpec=</span>qs)       </a>
+<a class="sourceLine" id="cb25-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb25-13" data-line-number="13"><span class="co"># extract coordinates</span></a>
+<a class="sourceLine" id="cb25-14" data-line-number="14">lat &lt;-<span class="st"> </span><span class="kw">sapply</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet, <span class="cf">function</span>(x)x<span class="op">$</span>item<span class="op">$</span>gatheringEvent<span class="op">$</span>siteCoordinates[[<span class="dv">1</span>]]<span class="op">$</span>latitudeDecimal)     </a>
+<a class="sourceLine" id="cb25-15" data-line-number="15">long &lt;-<span class="st"> </span><span class="kw">sapply</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet, <span class="cf">function</span>(x)x<span class="op">$</span>item<span class="op">$</span>gatheringEvent<span class="op">$</span>siteCoordinates[[<span class="dv">1</span>]]<span class="op">$</span>longitudeDecimal)       </a>
+<a class="sourceLine" id="cb25-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb25-17" data-line-number="17"><span class="co">#plot on world map</span></a>
+<a class="sourceLine" id="cb25-18" data-line-number="18"><span class="kw">library</span>(<span class="st">'maps'</span>)     </a>
+<a class="sourceLine" id="cb25-19" data-line-number="19"><span class="kw"><a href="http://www.rdocumentation.org/packages/maps/topics/map">map</a></span>(<span class="st">"world"</span>, <span class="dt">fill=</span><span class="ot">TRUE</span>, <span class="dt">col=</span><span class="st">"white"</span>, <span class="dt">bg=</span><span class="st">"lightblue"</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">60</span>, <span class="dv">90</span>), <span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))       </a>
+<a class="sourceLine" id="cb25-20" data-line-number="20"><span class="kw">points</span>(long, lat, <span class="dt">col=</span><span class="st">'red'</span>, <span class="dt">pch=</span><span class="dv">16</span>)        </a></code></pre></div>
+<p><img src="tomato_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
 </div>
   </div>
 
@@ -466,6 +478,7 @@
       <li><a href="#multimedia-content">Multimedia content</a></li>
       </ul>
 </li>
+      <li><a href="#retrieving-specimen-records-with-latlong-coordinates">Retrieving specimen records with lat/long coordinates</a></li>
       </ul>
 </div>
       </div>
