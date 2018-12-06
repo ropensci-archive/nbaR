@@ -94,6 +94,18 @@ res <- sc$query(querySpec = qs)
 ## how many hits?
 res$content$totalSize
 ```
+
+**Note**: By default, a query returns only data for the first 10 hits. 
+Above, we set the `size` parameter to the QuerySpec constructor to allow the download of 
+up to 5000 values This number was based on the prior knowloedge that there are less
+than 5000 records for our query; We advise to always check the length of the resultSet
+against the `totalSize` of a `QueryResult` to make sure that all records are downloaded, 
+e.g.
+
+```{r}
+length(res$content$resultSet) == res$content$totalSize
+```
+
 ## Exploring the data
 
 Now we can explore the data:
