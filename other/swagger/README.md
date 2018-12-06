@@ -21,14 +21,14 @@ Swagger parses the annotations and stores a meta-description of the entire API
 into a single `json` or `yaml` file. The NBA is specified by the *swagger file*
 reachable via this endpoint: http://api.biodiversitydata.nl/v2/reference-doc
 We use this description, among others, to auto-generate endpoint documentation
-for the NAB: http://docs.biodiversitydata.nl/endpoints-reference/
+for the NBA: http://docs.biodiversitydata.nl/endpoints-reference/
 
 ## Swagger codegen
 The [Swagger codegen project](https://github.com/swagger-api/swagger-codegen)
 allows for automatic generation of API client code
-using the *swagger file* contatining the API specification, 
+using the *swagger file* containing the API specification, 
 a *codegen engine*, and a number of template files. The below figure shows a
-schematic overwiev of the swagger codegen process:
+schematic overview of the swagger codegen process:
 
 ![](https://raw.githubusercontent.com/naturalis/nbaR/master/other/img/nbaR_codegen.png)
 
