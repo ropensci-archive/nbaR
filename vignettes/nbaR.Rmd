@@ -191,28 +191,35 @@ q3$or <- list(QueryCondition$new(field = "identifications.taxonRank",
                                 value="subspecies"))
 
 # build QuerySpec from QueryConditions
-qs <-QuerySpec$new(conditions=list(q1, q2, q3))
+qs <- QuerySpec$new(conditions=list(q1, q2, q3))
 
 # call API
 res <-client$query(querySpec=qs)
 ```
 
+### Size of the query result set
+By default, the NBA returns the first 10 hits for a given query. 
+In, for instance, a query without parameters has many hits
 
 ```{r}
-# get 1000 specimen items from plant order 'Gentianales'
-qc <- QueryCondition$new(field = "identifications.defaultClassification.order",
-                         operator="EQUALS",
-                         value="Gentianales")
-qs <- QuerySpec$new(conditions=list(qc), size=1000)
-res <- client$query(querySpec=qs)
+res <- client$query()
+res$content$totalSize
+```
 
-# extract orders from first identification of each specimen
-families <- unlist(sapply(res$content$resultSet,
-                          function(x)x$item$identifications[[1]]$defaultClassification$family))
-# plot frequencies
-barplot(table(families), horiz=T,
-        col=rainbow(length(unique(families))),
-        las=2, xlab="frequency", cex.names=0.5)
+but only the first 10 are returned in the `resultSet`: 
+
+```{r}
+length(res$content$resultSet)
+```
+
+In order to increase the size of a `resultSet`, a `size` parameter can be
+passed to the constructor of a `QuerySpec` object. Below, we will get
+the first 1000 records of the query above:
+
+```{r}
+qs <- QuerySpec$new(size=1000)
+res <- client$query(querySpec=qs)
+length(res$content$resultSet)
 ```
 
 # Services examples
