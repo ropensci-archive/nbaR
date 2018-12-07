@@ -24,6 +24,7 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -37,6 +38,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ field } : name of field in taxon object
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -50,6 +52,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ group } : name of field in the geo area object to group by \item \code{ field } : name of field in the geo area object
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -63,6 +66,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ id } : id of geo area
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -76,6 +80,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ ids } : ids of multiple geo areas, separated by comma
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -89,6 +94,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ field } : name of field in geo area object
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -102,6 +108,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ group } : name of field in the geo area object to group by \item \code{ field } : name of field in the geo area object
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -114,6 +121,7 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -128,6 +136,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ locality } :
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -140,6 +149,7 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -154,6 +164,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ name } : name of setting
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -166,6 +177,7 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -180,6 +192,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ field } : Field in geo area document \item \code{ operator } : operator
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -193,6 +206,7 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -258,7 +272,9 @@ GeoClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/geo/countDistinctValues/{field}"
+
       if (!missing(`field`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
       }
 
@@ -287,11 +303,15 @@ GeoClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/geo/countDistinctValuesPerGroup/{group}/{field}"
+
       if (!missing(`group`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
       }
 
+
       if (!missing(`field`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
       }
 
@@ -319,7 +339,9 @@ GeoClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/geo/find/{id}"
+
       if (!missing(`id`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "id", "\\}"), `id`, urlPath)
       }
 
@@ -356,7 +378,14 @@ GeoClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/geo/findByIds/{ids}"
+
       if (!missing(`ids`)) {
+        ## build URL for path param
+        ## input can be vector or string with comma separated items
+        ## API takes string, so translate vector, if present
+        if (length(`ids`) > 1) {
+          ids <- paste(ids, collapse = ",")
+        }
         urlPath <- gsub(paste0("\\{", "ids", "\\}"), `ids`, urlPath)
       }
 
@@ -394,7 +423,9 @@ GeoClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/geo/getDistinctValues/{field}"
+
       if (!missing(`field`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
       }
 
@@ -423,11 +454,15 @@ GeoClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/geo/getDistinctValuesPerGroup/{group}/{field}"
+
       if (!missing(`group`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
       }
 
+
       if (!missing(`field`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
       }
 
@@ -478,7 +513,9 @@ GeoClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/geo/getGeoJsonForLocality/{locality}"
+
       if (!missing(`locality`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "locality", "\\}"), `locality`, urlPath)
       }
 
@@ -529,7 +566,9 @@ GeoClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/geo/metadata/getSetting/{name}"
+
       if (!missing(`name`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
       }
 
@@ -581,11 +620,15 @@ GeoClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/geo/metadata/isOperatorAllowed/{field}/{operator}"
+
       if (!missing(`field`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
       }
 
+
       if (!missing(`operator`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "operator", "\\}"), `operator`, urlPath)
       }
 

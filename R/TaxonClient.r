@@ -24,6 +24,7 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -37,6 +38,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ field } : name of field in the taxon object
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -50,6 +52,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ group } : name of field in the taxon object you want to group by \item \code{ field } : name of field in the taxon object
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -63,6 +66,7 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -76,6 +80,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ dataset } : name of dataset
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -88,6 +93,7 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -102,6 +108,7 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -115,6 +122,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ id } : id of taxon
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -128,6 +136,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ ids } : ids of multiple taxa, separated by comma
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -141,6 +150,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ field } : name of field in a taxon object
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -154,6 +164,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ group } : name of field in the taxon object you want to group by \item \code{ field } : name of field in the taxon object
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -166,6 +177,7 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -180,6 +192,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -193,6 +206,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ name } : name of setting
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -205,6 +219,7 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -219,6 +234,7 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -232,6 +248,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ field } : specimen document field \item \code{ operator } : operator
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -245,6 +262,7 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -310,7 +328,9 @@ TaxonClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/taxon/countDistinctValues/{field}"
+
       if (!missing(`field`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
       }
 
@@ -339,11 +359,15 @@ TaxonClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/taxon/countDistinctValuesPerGroup/{group}/{field}"
+
       if (!missing(`group`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
       }
 
+
       if (!missing(`field`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
       }
 
@@ -428,7 +452,9 @@ TaxonClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/taxon/dwca/getDataSet/{dataset}"
+
       if (!missing(`dataset`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "dataset", "\\}"), `dataset`, urlPath)
       }
 
@@ -532,7 +558,9 @@ TaxonClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/taxon/find/{id}"
+
       if (!missing(`id`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "id", "\\}"), `id`, urlPath)
       }
 
@@ -569,7 +597,14 @@ TaxonClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/taxon/findByIds/{ids}"
+
       if (!missing(`ids`)) {
+        ## build URL for path param
+        ## input can be vector or string with comma separated items
+        ## API takes string, so translate vector, if present
+        if (length(`ids`) > 1) {
+          ids <- paste(ids, collapse = ",")
+        }
         urlPath <- gsub(paste0("\\{", "ids", "\\}"), `ids`, urlPath)
       }
 
@@ -607,7 +642,9 @@ TaxonClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/taxon/getDistinctValues/{field}"
+
       if (!missing(`field`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
       }
 
@@ -636,11 +673,15 @@ TaxonClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/taxon/getDistinctValuesPerGroup/{group}/{field}"
+
       if (!missing(`group`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
       }
 
+
       if (!missing(`field`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
       }
 
@@ -714,7 +755,9 @@ TaxonClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/taxon/metadata/getSetting/{name}"
+
       if (!missing(`name`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
       }
 
@@ -818,11 +861,15 @@ TaxonClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/taxon/metadata/isOperatorAllowed/{field}/{operator}"
+
       if (!missing(`field`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
       }
 
+
       if (!missing(`operator`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "operator", "\\}"), `operator`, urlPath)
       }
 

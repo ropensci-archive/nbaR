@@ -19,6 +19,7 @@
 #'     Parameters:
 #'     \itemize{
 #'         {{#queryParams}}\item \code{ {{paramName}} } : {{description}} {{/queryParams}}
+#'         {{#pathParams}}\item \code{ {{paramName}} } : {{description}} {{/pathParams}}
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -108,7 +109,16 @@
         urlPath <- "{{path}}"
         {{#hasPathParams}}
           {{#pathParams}}
+            
         if (!missing(`{{baseName}}`)) {
+            ## build URL for path param
+            {{#isContainer}}
+            ## input can be vector or string with comma separated items
+            ## API takes string, so translate vector, if present
+            if (length(`{{baseName}}`) > 1) {
+                {{baseName}} <- paste({{baseName}}, collapse=",")
+            }
+            {{/isContainer}}
             urlPath <- gsub(paste0("\\{", "{{baseName}}", "\\}"), `{{baseName}}`, urlPath)
         }
 

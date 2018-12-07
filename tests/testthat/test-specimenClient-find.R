@@ -44,6 +44,15 @@ test_that("find_by_ids() function works", {
   expect_is(res$content, "list")
   expect_length(res$content, 1)
   expect_is(res$content[[1]], "Specimen")
+
+  ## check if find_by_ids works with vector instead of string
+  ids_vec <- c("RMNH.INS.657083@CRS", "L.1589244@BRAHMS")
+  res <- sc$find_by_ids(ids_vec)
+  expect_is(res$content, "list")
+  expect_length(res$content, 2)
+  for (i in seq_along(res$content)) {
+    expect_is(res$content[[i]], "Specimen")
+  }
 })
 
 test_that("find_by_unit_id works", {

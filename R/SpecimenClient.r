@@ -24,6 +24,7 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -37,6 +38,7 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'         \item \code{ field } : Name of field in the specimen object
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -50,6 +52,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ group } : Name of field in the specimen object you want to group by \item \code{ field } : Name of field in the specimen object
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -63,6 +66,7 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -76,6 +80,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ dataset } : name of dataset
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -88,6 +93,7 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -102,6 +108,7 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -115,6 +122,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ unit_id } : the unitID of the specimen to query
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -128,6 +136,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ id } : id of specimen
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -141,6 +150,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ ids } : ids of multiple specimen, separated by comma
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -154,6 +164,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ unit_id } : the unitID of the specimen to query
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -167,6 +178,7 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'         \item \code{ field } : Name of field in specimen object
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -180,6 +192,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ group } : Name of field in the specimen object you want to group by \item \code{ field } : Name of field in the specimen object
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -192,6 +205,7 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -206,6 +220,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ name } : name of dataset
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -218,6 +233,7 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -232,6 +248,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -245,6 +262,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ name } : name of setting
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -257,6 +275,7 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -271,6 +290,7 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -284,6 +304,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ field } : specimen document field \item \code{ operator } : operator
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -297,6 +318,7 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -382,7 +404,9 @@ SpecimenClient <- R6::R6Class(
       )
 
       urlPath <- "/specimen/countDistinctValues/{field}"
+
       if (!missing(`field`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
       }
 
@@ -411,11 +435,15 @@ SpecimenClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/countDistinctValuesPerGroup/{group}/{field}"
+
       if (!missing(`group`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
       }
 
+
       if (!missing(`field`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
       }
 
@@ -500,7 +528,9 @@ SpecimenClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/dwca/getDataSet/{dataset}"
+
       if (!missing(`dataset`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "dataset", "\\}"), `dataset`, urlPath)
       }
 
@@ -604,7 +634,9 @@ SpecimenClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/exists/{unitID}"
+
       if (!missing(`unitID`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "unitID", "\\}"), `unitID`, urlPath)
       }
 
@@ -632,7 +664,9 @@ SpecimenClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/find/{id}"
+
       if (!missing(`id`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "id", "\\}"), `id`, urlPath)
       }
 
@@ -669,7 +703,14 @@ SpecimenClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/findByIds/{ids}"
+
       if (!missing(`ids`)) {
+        ## build URL for path param
+        ## input can be vector or string with comma separated items
+        ## API takes string, so translate vector, if present
+        if (length(`ids`) > 1) {
+          ids <- paste(ids, collapse = ",")
+        }
         urlPath <- gsub(paste0("\\{", "ids", "\\}"), `ids`, urlPath)
       }
 
@@ -707,7 +748,9 @@ SpecimenClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/findByUnitID/{unitID}"
+
       if (!missing(`unitID`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "unitID", "\\}"), `unitID`, urlPath)
       }
 
@@ -765,7 +808,9 @@ SpecimenClient <- R6::R6Class(
       )
 
       urlPath <- "/specimen/getDistinctValues/{field}"
+
       if (!missing(`field`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
       }
 
@@ -794,11 +839,15 @@ SpecimenClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/getDistinctValuesPerGroup/{group}/{field}"
+
       if (!missing(`group`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
       }
 
+
       if (!missing(`field`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
       }
 
@@ -849,7 +898,9 @@ SpecimenClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/getIdsInCollection/{name}"
+
       if (!missing(`name`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
       }
 
@@ -923,7 +974,9 @@ SpecimenClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/metadata/getSetting/{name}"
+
       if (!missing(`name`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
       }
 
@@ -1027,11 +1080,15 @@ SpecimenClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/metadata/isOperatorAllowed/{field}/{operator}"
+
       if (!missing(`field`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
       }
 
+
       if (!missing(`operator`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "operator", "\\}"), `operator`, urlPath)
       }
 

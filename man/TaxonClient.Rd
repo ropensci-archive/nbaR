@@ -30,6 +30,7 @@ Client class for nbaR.Taxon objects
     Parameters:
     \itemize{
         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -43,6 +44,7 @@ Client class for nbaR.Taxon objects
     Parameters:
     \itemize{
 
+        \item \code{ field } : name of field in the taxon object
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -56,6 +58,7 @@ Client class for nbaR.Taxon objects
     Parameters:
     \itemize{
 
+        \item \code{ group } : name of field in the taxon object you want to group by \item \code{ field } : name of field in the taxon object
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -69,6 +72,7 @@ Client class for nbaR.Taxon objects
     Parameters:
     \itemize{
         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -82,6 +86,7 @@ Client class for nbaR.Taxon objects
     Parameters:
     \itemize{
 
+        \item \code{ dataset } : name of dataset
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -94,6 +99,7 @@ Client class for nbaR.Taxon objects
 
     Parameters:
     \itemize{
+
 
         \item \code{ ... } : additional parameters passed to httr::GET
     }
@@ -108,6 +114,7 @@ Client class for nbaR.Taxon objects
     Parameters:
     \itemize{
         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -121,6 +128,7 @@ Client class for nbaR.Taxon objects
     Parameters:
     \itemize{
 
+        \item \code{ id } : id of taxon
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -134,6 +142,7 @@ Client class for nbaR.Taxon objects
     Parameters:
     \itemize{
 
+        \item \code{ ids } : ids of multiple taxa, separated by comma
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -147,6 +156,7 @@ Client class for nbaR.Taxon objects
     Parameters:
     \itemize{
 
+        \item \code{ field } : name of field in a taxon object
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -160,6 +170,7 @@ Client class for nbaR.Taxon objects
     Parameters:
     \itemize{
 
+        \item \code{ group } : name of field in the taxon object you want to group by \item \code{ field } : name of field in the taxon object
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -172,6 +183,7 @@ Client class for nbaR.Taxon objects
 
     Parameters:
     \itemize{
+
 
         \item \code{ ... } : additional parameters passed to httr::GET
     }
@@ -186,6 +198,7 @@ Client class for nbaR.Taxon objects
     Parameters:
     \itemize{
 
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -199,6 +212,7 @@ Client class for nbaR.Taxon objects
     Parameters:
     \itemize{
 
+        \item \code{ name } : name of setting
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -211,6 +225,7 @@ Client class for nbaR.Taxon objects
 
     Parameters:
     \itemize{
+
 
         \item \code{ ... } : additional parameters passed to httr::GET
     }
@@ -225,6 +240,7 @@ Client class for nbaR.Taxon objects
     Parameters:
     \itemize{
         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -238,6 +254,7 @@ Client class for nbaR.Taxon objects
     Parameters:
     \itemize{
 
+        \item \code{ field } : specimen document field \item \code{ operator } : operator
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -251,6 +268,7 @@ Client class for nbaR.Taxon objects
     Parameters:
     \itemize{
         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:

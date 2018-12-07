@@ -24,6 +24,7 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -37,6 +38,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ field } : Name of field in taxon object
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -50,6 +52,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ group } : name of field in the multimedia object you want to group by \item \code{ field } : name of field in the multimedia object
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -63,6 +66,7 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ collection_type } : Example query param
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -76,6 +80,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ id } : id of multimedia document
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -89,6 +94,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ ids } : ids of multiple multimedia documents, separated by comma
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -102,6 +108,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ field } : field
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -115,6 +122,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ group } : name of field in the multimedia object you want to group by \item \code{ field } : name of field in the multimedia object
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -127,6 +135,7 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -141,6 +150,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -154,6 +164,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ name } : name of setting
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -166,6 +177,7 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -180,6 +192,7 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'         \item \code{ field } : multimedia document field \item \code{ operator } : operator
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -193,6 +206,7 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -258,7 +272,9 @@ MultimediaClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/multimedia/countDistinctValues/{field}"
+
       if (!missing(`field`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
       }
 
@@ -287,11 +303,15 @@ MultimediaClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/multimedia/countDistinctValuesPerGroup/{group}/{field}"
+
       if (!missing(`group`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
       }
 
+
       if (!missing(`field`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
       }
 
@@ -362,7 +382,9 @@ MultimediaClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/multimedia/find/{id}"
+
       if (!missing(`id`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "id", "\\}"), `id`, urlPath)
       }
 
@@ -399,7 +421,14 @@ MultimediaClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/multimedia/findByIds/{ids}"
+
       if (!missing(`ids`)) {
+        ## build URL for path param
+        ## input can be vector or string with comma separated items
+        ## API takes string, so translate vector, if present
+        if (length(`ids`) > 1) {
+          ids <- paste(ids, collapse = ",")
+        }
         urlPath <- gsub(paste0("\\{", "ids", "\\}"), `ids`, urlPath)
       }
 
@@ -437,7 +466,9 @@ MultimediaClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/multimedia/getDistinctValues/{field}"
+
       if (!missing(`field`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
       }
 
@@ -466,11 +497,15 @@ MultimediaClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/multimedia/getDistinctValuesPerGroup/{group}/{field}"
+
       if (!missing(`group`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
       }
 
+
       if (!missing(`field`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
       }
 
@@ -544,7 +579,9 @@ MultimediaClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/multimedia/metadata/getSetting/{name}"
+
       if (!missing(`name`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
       }
 
@@ -596,11 +633,15 @@ MultimediaClient <- R6::R6Class(
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/multimedia/metadata/isOperatorAllowed/{field}/{operator}"
+
       if (!missing(`field`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
       }
 
+
       if (!missing(`operator`)) {
+        ## build URL for path param
         urlPath <- gsub(paste0("\\{", "operator", "\\}"), `operator`, urlPath)
       }
 
