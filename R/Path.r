@@ -89,8 +89,9 @@ Path <- R6::R6Class(
         PathJson,
         simplifyVector = FALSE
       )
-      self[["purePath"]] <-
-        PathList[["purePath"]]
+      self <- self$fromList(PathList)
+      #        self[["purePath"]] <-
+      #                PathList[["purePath"]]
       invisible(self)
     }
   )

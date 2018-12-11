@@ -105,10 +105,11 @@ Crs <- R6::R6Class(
         CrsJson,
         simplifyVector = FALSE
       )
-      self[["type"]] <-
-        CrsList[["type"]]
-      self[["properties"]] <-
-        CrsList[["properties"]]
+      self <- self$fromList(CrsList)
+      #        self[["type"]] <-
+      #                CrsList[["type"]]
+      #        self[["properties"]] <-
+      #                CrsList[["properties"]]
       invisible(self)
     }
   )

@@ -109,10 +109,11 @@ SummaryVernacularName <- R6::R6Class(
         SummaryVernacularNameJson,
         simplifyVector = FALSE
       )
-      self[["name"]] <-
-        SummaryVernacularNameList[["name"]]
-      self[["language"]] <-
-        SummaryVernacularNameList[["language"]]
+      self <- self$fromList(SummaryVernacularNameList)
+      #        self[["name"]] <-
+      #                SummaryVernacularNameList[["name"]]
+      #        self[["language"]] <-
+      #                SummaryVernacularNameList[["language"]]
       invisible(self)
     }
   )

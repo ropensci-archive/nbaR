@@ -156,22 +156,21 @@ Reference <- R6::R6Class(
         ReferenceJson,
         simplifyVector = FALSE
       )
-      self[["titleCitation"]] <-
-        ReferenceList[["titleCitation"]]
-      self[["citationDetail"]] <-
-        ReferenceList[["citationDetail"]]
-      self[["uri"]] <-
-        ReferenceList[["uri"]]
-      self[["author"]] <-
-        Person$new()$fromJSONString(
-          jsonlite::toJSON(
-            ReferenceList[["author"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      self[["publicationDate"]] <-
-        ReferenceList[["publicationDate"]]
+      self <- self$fromList(ReferenceList)
+      #        self[["titleCitation"]] <-
+      #                ReferenceList[["titleCitation"]]
+      #        self[["citationDetail"]] <-
+      #                ReferenceList[["citationDetail"]]
+      #        self[["uri"]] <-
+      #                ReferenceList[["uri"]]
+      #           self[["author"]] <-
+      #              Person$new()$fromJSONString(
+      #                  jsonlite::toJSON(
+      #                      ReferenceList[["author"]],
+      #                      auto_unbox = TRUE),
+      #                  typeMapping = typeMapping)
+      #        self[["publicationDate"]] <-
+      #                ReferenceList[["publicationDate"]]
       invisible(self)
     }
   )

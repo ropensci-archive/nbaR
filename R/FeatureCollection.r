@@ -138,28 +138,22 @@ FeatureCollection <- R6::R6Class(
         FeatureCollectionJson,
         simplifyVector = FALSE
       )
-      self[["crs"]] <-
-        Crs$new()$fromJSONString(
-          jsonlite::toJSON(
-            FeatureCollectionList[["crs"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      self[["bbox"]] <-
-        FeatureCollectionList[["bbox"]]
-      self[["features"]] <- lapply(
-        FeatureCollectionList[["features"]],
-        function(x) {
-          Feature$new()$fromJSONString(
-            jsonlite::toJSON(
-              x,
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-        }
-      )
+      self <- self$fromList(FeatureCollectionList)
+      #           self[["crs"]] <-
+      #              Crs$new()$fromJSONString(
+      #                  jsonlite::toJSON(
+      #                      FeatureCollectionList[["crs"]],
+      #                      auto_unbox = TRUE),
+      #                  typeMapping = typeMapping)
+      #        self[["bbox"]] <-
+      #                FeatureCollectionList[["bbox"]]
+      #      self[["features"]] <- lapply(FeatureCollectionList[["features"]],
+      #                                       function(x) {
+      #                                           Feature$new()$fromJSONString(
+      #                                               jsonlite::toJSON(
+      #                                                   x,
+      #                                                   auto_unbox = TRUE),
+      #                                               typeMapping = typeMapping)})
       invisible(self)
     }
   )

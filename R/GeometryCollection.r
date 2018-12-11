@@ -132,18 +132,17 @@ GeometryCollection <- R6::R6Class(
         GeometryCollectionJson,
         simplifyVector = FALSE
       )
-      self[["crs"]] <-
-        Crs$new()$fromJSONString(
-          jsonlite::toJSON(
-            GeometryCollectionList[["crs"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      self[["bbox"]] <-
-        GeometryCollectionList[["bbox"]]
-      self[["geometries"]] <-
-        GeometryCollectionList[["geometries"]]
+      self <- self$fromList(GeometryCollectionList)
+      #           self[["crs"]] <-
+      #              Crs$new()$fromJSONString(
+      #                  jsonlite::toJSON(
+      #                      GeometryCollectionList[["crs"]],
+      #                      auto_unbox = TRUE),
+      #                  typeMapping = typeMapping)
+      #        self[["bbox"]] <-
+      #                GeometryCollectionList[["bbox"]]
+      #        self[["geometries"]] <-
+      #                GeometryCollectionList[["geometries"]]
       invisible(self)
     }
   )

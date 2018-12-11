@@ -109,10 +109,11 @@ Organization <- R6::R6Class(
         OrganizationJson,
         simplifyVector = FALSE
       )
-      self[["agentText"]] <-
-        OrganizationList[["agentText"]]
-      self[["name"]] <-
-        OrganizationList[["name"]]
+      self <- self$fromList(OrganizationList)
+      #        self[["agentText"]] <-
+      #                OrganizationList[["agentText"]]
+      #        self[["name"]] <-
+      #                OrganizationList[["name"]]
       invisible(self)
     }
   )

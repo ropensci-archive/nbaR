@@ -173,36 +173,27 @@ VernacularName <- R6::R6Class(
         VernacularNameJson,
         simplifyVector = FALSE
       )
-      self[["name"]] <-
-        VernacularNameList[["name"]]
-      self[["language"]] <-
-        VernacularNameList[["language"]]
-      self[["preferred"]] <-
-        VernacularNameList[["preferred"]]
-      self[["references"]] <- lapply(
-        VernacularNameList[["references"]],
-        function(x) {
-          Reference$new()$fromJSONString(
-            jsonlite::toJSON(
-              x,
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-        }
-      )
-      self[["experts"]] <- lapply(
-        VernacularNameList[["experts"]],
-        function(x) {
-          Expert$new()$fromJSONString(
-            jsonlite::toJSON(
-              x,
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-        }
-      )
+      self <- self$fromList(VernacularNameList)
+      #        self[["name"]] <-
+      #                VernacularNameList[["name"]]
+      #        self[["language"]] <-
+      #                VernacularNameList[["language"]]
+      #        self[["preferred"]] <-
+      #                VernacularNameList[["preferred"]]
+      #      self[["references"]] <- lapply(VernacularNameList[["references"]],
+      #                                       function(x) {
+      #                                           Reference$new()$fromJSONString(
+      #                                               jsonlite::toJSON(
+      #                                                   x,
+      #                                                   auto_unbox = TRUE),
+      #                                               typeMapping = typeMapping)})
+      #      self[["experts"]] <- lapply(VernacularNameList[["experts"]],
+      #                                       function(x) {
+      #                                           Expert$new()$fromJSONString(
+      #                                               jsonlite::toJSON(
+      #                                                   x,
+      #                                                   auto_unbox = TRUE),
+      #                                               typeMapping = typeMapping)})
       invisible(self)
     }
   )

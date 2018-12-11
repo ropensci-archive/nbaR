@@ -132,18 +132,17 @@ MultiPolygon <- R6::R6Class(
         MultiPolygonJson,
         simplifyVector = FALSE
       )
-      self[["crs"]] <-
-        Crs$new()$fromJSONString(
-          jsonlite::toJSON(
-            MultiPolygonList[["crs"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      self[["bbox"]] <-
-        MultiPolygonList[["bbox"]]
-      self[["coordinates"]] <-
-        MultiPolygonList[["coordinates"]]
+      self <- self$fromList(MultiPolygonList)
+      #           self[["crs"]] <-
+      #              Crs$new()$fromJSONString(
+      #                  jsonlite::toJSON(
+      #                      MultiPolygonList[["crs"]],
+      #                      auto_unbox = TRUE),
+      #                  typeMapping = typeMapping)
+      #        self[["bbox"]] <-
+      #                MultiPolygonList[["bbox"]]
+      #        self[["coordinates"]] <-
+      #                MultiPolygonList[["coordinates"]]
       invisible(self)
     }
   )

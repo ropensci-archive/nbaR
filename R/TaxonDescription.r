@@ -125,12 +125,13 @@ TaxonDescription <- R6::R6Class(
         TaxonDescriptionJson,
         simplifyVector = FALSE
       )
-      self[["category"]] <-
-        TaxonDescriptionList[["category"]]
-      self[["description"]] <-
-        TaxonDescriptionList[["description"]]
-      self[["language"]] <-
-        TaxonDescriptionList[["language"]]
+      self <- self$fromList(TaxonDescriptionList)
+      #        self[["category"]] <-
+      #                TaxonDescriptionList[["category"]]
+      #        self[["description"]] <-
+      #                TaxonDescriptionList[["description"]]
+      #        self[["language"]] <-
+      #                TaxonDescriptionList[["language"]]
       invisible(self)
     }
   )

@@ -189,20 +189,21 @@ Iptc4xmpExt <- R6::R6Class(
         Iptc4xmpExtJson,
         simplifyVector = FALSE
       )
-      self[["locationShown"]] <-
-        Iptc4xmpExtList[["locationShown"]]
-      self[["worldRegion"]] <-
-        Iptc4xmpExtList[["worldRegion"]]
-      self[["countryCode"]] <-
-        Iptc4xmpExtList[["countryCode"]]
-      self[["countryName"]] <-
-        Iptc4xmpExtList[["countryName"]]
-      self[["provinceState"]] <-
-        Iptc4xmpExtList[["provinceState"]]
-      self[["city"]] <-
-        Iptc4xmpExtList[["city"]]
-      self[["sublocation"]] <-
-        Iptc4xmpExtList[["sublocation"]]
+      self <- self$fromList(Iptc4xmpExtList)
+      #        self[["locationShown"]] <-
+      #                Iptc4xmpExtList[["locationShown"]]
+      #        self[["worldRegion"]] <-
+      #                Iptc4xmpExtList[["worldRegion"]]
+      #        self[["countryCode"]] <-
+      #                Iptc4xmpExtList[["countryCode"]]
+      #        self[["countryName"]] <-
+      #                Iptc4xmpExtList[["countryName"]]
+      #        self[["provinceState"]] <-
+      #                Iptc4xmpExtList[["provinceState"]]
+      #        self[["city"]] <-
+      #                Iptc4xmpExtList[["city"]]
+      #        self[["sublocation"]] <-
+      #                Iptc4xmpExtList[["sublocation"]]
       invisible(self)
     }
   )

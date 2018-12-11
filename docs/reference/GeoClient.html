@@ -163,6 +163,7 @@
   .
     Parameters:
     <ul>
+<li><p><code> field </code> : name of field in taxon object</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -171,6 +172,8 @@
   .
     Parameters:
     <ul>
+<li><p><code> group </code> : name of field in the geo area object to group by</p></li>
+<li><p><code> field </code> : name of field in the geo area object</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -179,6 +182,7 @@
   Returns a GEO object containing a GEO json polygon.
     Parameters:
     <ul>
+<li><p><code> id </code> : id of geo area</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -187,6 +191,7 @@
   Given multiple ids, returns a list of geo area objects.
     Parameters:
     <ul>
+<li><p><code> ids </code> : ids of multiple geo areas, separated by comma</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -195,6 +200,7 @@
   A list of all fields for geo area documents can be retrieved with /metadata/getFieldInfo.
     Parameters:
     <ul>
+<li><p><code> field </code> : name of field in geo area object</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -203,6 +209,8 @@
   .
     Parameters:
     <ul>
+<li><p><code> group </code> : name of field in the geo area object to group by</p></li>
+<li><p><code> field </code> : name of field in the geo area object</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -219,6 +227,7 @@
   Returns a GeoJson polygon.
     Parameters:
     <ul>
+<li><p><code> locality </code> :</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -235,6 +244,7 @@
   All settings can be queried with /metadata/getSettings.
     Parameters:
     <ul>
+<li><p><code> name </code> : name of setting</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -251,6 +261,8 @@
   See also metadata/getFieldInfo.
     Parameters:
     <ul>
+<li><p><code> field </code> : Field in geo area document</p></li>
+<li><p><code> operator </code> : operator</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:

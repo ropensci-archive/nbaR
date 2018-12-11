@@ -313,36 +313,37 @@ BioStratigraphy <- R6::R6Class(
         BioStratigraphyJson,
         simplifyVector = FALSE
       )
-      self[["youngBioDatingQualifier"]] <-
-        BioStratigraphyList[["youngBioDatingQualifier"]]
-      self[["youngBioName"]] <-
-        BioStratigraphyList[["youngBioName"]]
-      self[["youngFossilZone"]] <-
-        BioStratigraphyList[["youngFossilZone"]]
-      self[["youngFossilSubZone"]] <-
-        BioStratigraphyList[["youngFossilSubZone"]]
-      self[["youngBioCertainty"]] <-
-        BioStratigraphyList[["youngBioCertainty"]]
-      self[["youngStratType"]] <-
-        BioStratigraphyList[["youngStratType"]]
-      self[["bioDatingQualifier"]] <-
-        BioStratigraphyList[["bioDatingQualifier"]]
-      self[["bioPreferredFlag"]] <-
-        BioStratigraphyList[["bioPreferredFlag"]]
-      self[["rangePosition"]] <-
-        BioStratigraphyList[["rangePosition"]]
-      self[["oldBioName"]] <-
-        BioStratigraphyList[["oldBioName"]]
-      self[["bioIdentifier"]] <-
-        BioStratigraphyList[["bioIdentifier"]]
-      self[["oldFossilzone"]] <-
-        BioStratigraphyList[["oldFossilzone"]]
-      self[["oldFossilSubzone"]] <-
-        BioStratigraphyList[["oldFossilSubzone"]]
-      self[["oldBioCertainty"]] <-
-        BioStratigraphyList[["oldBioCertainty"]]
-      self[["oldBioStratType"]] <-
-        BioStratigraphyList[["oldBioStratType"]]
+      self <- self$fromList(BioStratigraphyList)
+      #        self[["youngBioDatingQualifier"]] <-
+      #                BioStratigraphyList[["youngBioDatingQualifier"]]
+      #        self[["youngBioName"]] <-
+      #                BioStratigraphyList[["youngBioName"]]
+      #        self[["youngFossilZone"]] <-
+      #                BioStratigraphyList[["youngFossilZone"]]
+      #        self[["youngFossilSubZone"]] <-
+      #                BioStratigraphyList[["youngFossilSubZone"]]
+      #        self[["youngBioCertainty"]] <-
+      #                BioStratigraphyList[["youngBioCertainty"]]
+      #        self[["youngStratType"]] <-
+      #                BioStratigraphyList[["youngStratType"]]
+      #        self[["bioDatingQualifier"]] <-
+      #                BioStratigraphyList[["bioDatingQualifier"]]
+      #        self[["bioPreferredFlag"]] <-
+      #                BioStratigraphyList[["bioPreferredFlag"]]
+      #        self[["rangePosition"]] <-
+      #                BioStratigraphyList[["rangePosition"]]
+      #        self[["oldBioName"]] <-
+      #                BioStratigraphyList[["oldBioName"]]
+      #        self[["bioIdentifier"]] <-
+      #                BioStratigraphyList[["bioIdentifier"]]
+      #        self[["oldFossilzone"]] <-
+      #                BioStratigraphyList[["oldFossilzone"]]
+      #        self[["oldFossilSubzone"]] <-
+      #                BioStratigraphyList[["oldFossilSubzone"]]
+      #        self[["oldBioCertainty"]] <-
+      #                BioStratigraphyList[["oldBioCertainty"]]
+      #        self[["oldBioStratType"]] <-
+      #                BioStratigraphyList[["oldBioStratType"]]
       invisible(self)
     }
   )

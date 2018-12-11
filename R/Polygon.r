@@ -132,18 +132,17 @@ Polygon <- R6::R6Class(
         PolygonJson,
         simplifyVector = FALSE
       )
-      self[["crs"]] <-
-        Crs$new()$fromJSONString(
-          jsonlite::toJSON(
-            PolygonList[["crs"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      self[["bbox"]] <-
-        PolygonList[["bbox"]]
-      self[["coordinates"]] <-
-        PolygonList[["coordinates"]]
+      self <- self$fromList(PolygonList)
+      #           self[["crs"]] <-
+      #              Crs$new()$fromJSONString(
+      #                  jsonlite::toJSON(
+      #                      PolygonList[["crs"]],
+      #                      auto_unbox = TRUE),
+      #                  typeMapping = typeMapping)
+      #        self[["bbox"]] <-
+      #                PolygonList[["bbox"]]
+      #        self[["coordinates"]] <-
+      #                PolygonList[["coordinates"]]
       invisible(self)
     }
   )

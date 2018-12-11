@@ -157,16 +157,17 @@ RestService <- R6::R6Class(
         RestServiceJson,
         simplifyVector = FALSE
       )
-      self[["endPoint"]] <-
-        RestServiceList[["endPoint"]]
-      self[["method"]] <-
-        RestServiceList[["method"]]
-      self[["consumes"]] <-
-        RestServiceList[["consumes"]]
-      self[["produces"]] <-
-        RestServiceList[["produces"]]
-      self[["url"]] <-
-        RestServiceList[["url"]]
+      self <- self$fromList(RestServiceList)
+      #        self[["endPoint"]] <-
+      #                RestServiceList[["endPoint"]]
+      #        self[["method"]] <-
+      #                RestServiceList[["method"]]
+      #        self[["consumes"]] <-
+      #                RestServiceList[["consumes"]]
+      #        self[["produces"]] <-
+      #                RestServiceList[["produces"]]
+      #        self[["url"]] <-
+      #                RestServiceList[["url"]]
       invisible(self)
     }
   )

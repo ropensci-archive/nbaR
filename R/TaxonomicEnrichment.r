@@ -160,40 +160,29 @@ TaxonomicEnrichment <- R6::R6Class(
         TaxonomicEnrichmentJson,
         simplifyVector = FALSE
       )
-      self[["vernacularNames"]] <- lapply(
-        TaxonomicEnrichmentList[["vernacularNames"]],
-        function(x) {
-          SummaryVernacularName$new()$fromJSONString(
-            jsonlite::toJSON(
-              x,
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-        }
-      )
-      self[["synonyms"]] <- lapply(
-        TaxonomicEnrichmentList[["synonyms"]],
-        function(x) {
-          SummaryScientificName$new()$fromJSONString(
-            jsonlite::toJSON(
-              x,
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-        }
-      )
-      self[["sourceSystem"]] <-
-        SummarySourceSystem$new()$fromJSONString(
-          jsonlite::toJSON(
-            TaxonomicEnrichmentList[["sourceSystem"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      self[["taxonId"]] <-
-        TaxonomicEnrichmentList[["taxonId"]]
+      self <- self$fromList(TaxonomicEnrichmentList)
+      #      self[["vernacularNames"]] <- lapply(TaxonomicEnrichmentList[["vernacularNames"]],
+      #                                       function(x) {
+      #                                           SummaryVernacularName$new()$fromJSONString(
+      #                                               jsonlite::toJSON(
+      #                                                   x,
+      #                                                   auto_unbox = TRUE),
+      #                                               typeMapping = typeMapping)})
+      #      self[["synonyms"]] <- lapply(TaxonomicEnrichmentList[["synonyms"]],
+      #                                       function(x) {
+      #                                           SummaryScientificName$new()$fromJSONString(
+      #                                               jsonlite::toJSON(
+      #                                                   x,
+      #                                                   auto_unbox = TRUE),
+      #                                               typeMapping = typeMapping)})
+      #           self[["sourceSystem"]] <-
+      #              SummarySourceSystem$new()$fromJSONString(
+      #                  jsonlite::toJSON(
+      #                      TaxonomicEnrichmentList[["sourceSystem"]],
+      #                      auto_unbox = TRUE),
+      #                  typeMapping = typeMapping)
+      #        self[["taxonId"]] <-
+      #                TaxonomicEnrichmentList[["taxonId"]]
       invisible(self)
     }
   )

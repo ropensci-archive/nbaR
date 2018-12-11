@@ -132,18 +132,17 @@ MultiLineString <- R6::R6Class(
         MultiLineStringJson,
         simplifyVector = FALSE
       )
-      self[["crs"]] <-
-        Crs$new()$fromJSONString(
-          jsonlite::toJSON(
-            MultiLineStringList[["crs"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      self[["bbox"]] <-
-        MultiLineStringList[["bbox"]]
-      self[["coordinates"]] <-
-        MultiLineStringList[["coordinates"]]
+      self <- self$fromList(MultiLineStringList)
+      #           self[["crs"]] <-
+      #              Crs$new()$fromJSONString(
+      #                  jsonlite::toJSON(
+      #                      MultiLineStringList[["crs"]],
+      #                      auto_unbox = TRUE),
+      #                  typeMapping = typeMapping)
+      #        self[["bbox"]] <-
+      #                MultiLineStringList[["bbox"]]
+      #        self[["coordinates"]] <-
+      #                MultiLineStringList[["coordinates"]]
       invisible(self)
     }
   )

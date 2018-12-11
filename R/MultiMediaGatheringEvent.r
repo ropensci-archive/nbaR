@@ -604,148 +604,107 @@ MultiMediaGatheringEvent <- R6::R6Class(
         MultiMediaGatheringEventJson,
         simplifyVector = FALSE
       )
-      self[["projectTitle"]] <-
-        MultiMediaGatheringEventList[["projectTitle"]]
-      self[["worldRegion"]] <-
-        MultiMediaGatheringEventList[["worldRegion"]]
-      self[["continent"]] <-
-        MultiMediaGatheringEventList[["continent"]]
-      self[["country"]] <-
-        MultiMediaGatheringEventList[["country"]]
-      self[["iso3166Code"]] <-
-        MultiMediaGatheringEventList[["iso3166Code"]]
-      self[["provinceState"]] <-
-        MultiMediaGatheringEventList[["provinceState"]]
-      self[["island"]] <-
-        MultiMediaGatheringEventList[["island"]]
-      self[["locality"]] <-
-        MultiMediaGatheringEventList[["locality"]]
-      self[["city"]] <-
-        MultiMediaGatheringEventList[["city"]]
-      self[["sublocality"]] <-
-        MultiMediaGatheringEventList[["sublocality"]]
-      self[["localityText"]] <-
-        MultiMediaGatheringEventList[["localityText"]]
-      self[["dateTimeBegin"]] <-
-        MultiMediaGatheringEventList[["dateTimeBegin"]]
-      self[["dateTimeEnd"]] <-
-        MultiMediaGatheringEventList[["dateTimeEnd"]]
-      self[["method"]] <-
-        MultiMediaGatheringEventList[["method"]]
-      self[["altitude"]] <-
-        MultiMediaGatheringEventList[["altitude"]]
-      self[["altitudeUnifOfMeasurement"]] <-
-        MultiMediaGatheringEventList[["altitudeUnifOfMeasurement"]]
-      self[["biotopeText"]] <-
-        MultiMediaGatheringEventList[["biotopeText"]]
-      self[["depth"]] <-
-        MultiMediaGatheringEventList[["depth"]]
-      self[["depthUnitOfMeasurement"]] <-
-        MultiMediaGatheringEventList[["depthUnitOfMeasurement"]]
-      self[["gatheringPersons"]] <- lapply(
-        MultiMediaGatheringEventList[["gatheringPersons"]],
-        function(x) {
-          Person$new()$fromJSONString(
-            jsonlite::toJSON(
-              x,
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-        }
-      )
-      self[["gatheringOrganizations"]] <- lapply(
-        MultiMediaGatheringEventList[["gatheringOrganizations"]],
-        function(x) {
-          Organization$new()$fromJSONString(
-            jsonlite::toJSON(
-              x,
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-        }
-      )
-      self[["siteCoordinates"]] <- lapply(
-        MultiMediaGatheringEventList[["siteCoordinates"]],
-        function(x) {
-          GatheringSiteCoordinates$new()$fromJSONString(
-            jsonlite::toJSON(
-              x,
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-        }
-      )
-      self[["namedAreas"]] <- lapply(
-        MultiMediaGatheringEventList[["namedAreas"]],
-        function(x) {
-          NamedArea$new()$fromJSONString(
-            jsonlite::toJSON(
-              x,
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-        }
-      )
-      self[["associatedTaxa"]] <- lapply(
-        MultiMediaGatheringEventList[["associatedTaxa"]],
-        function(x) {
-          AssociatedTaxon$new()$fromJSONString(
-            jsonlite::toJSON(
-              x,
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-        }
-      )
-      self[["chronoStratigraphy"]] <- lapply(
-        MultiMediaGatheringEventList[["chronoStratigraphy"]],
-        function(x) {
-          ChronoStratigraphy$new()$fromJSONString(
-            jsonlite::toJSON(
-              x,
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-        }
-      )
-      self[["lithoStratigraphy"]] <- lapply(
-        MultiMediaGatheringEventList[["lithoStratigraphy"]],
-        function(x) {
-          LithoStratigraphy$new()$fromJSONString(
-            jsonlite::toJSON(
-              x,
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-        }
-      )
-      self[["iptc"]] <-
-        Iptc4xmpExt$new()$fromJSONString(
-          jsonlite::toJSON(
-            MultiMediaGatheringEventList[["iptc"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      self[["bioStratigraphic"]] <- lapply(
-        MultiMediaGatheringEventList[["bioStratigraphic"]],
-        function(x) {
-          BioStratigraphy$new()$fromJSONString(
-            jsonlite::toJSON(
-              x,
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-        }
-      )
+      self <- self$fromList(MultiMediaGatheringEventList)
+      #        self[["projectTitle"]] <-
+      #                MultiMediaGatheringEventList[["projectTitle"]]
+      #        self[["worldRegion"]] <-
+      #                MultiMediaGatheringEventList[["worldRegion"]]
+      #        self[["continent"]] <-
+      #                MultiMediaGatheringEventList[["continent"]]
+      #        self[["country"]] <-
+      #                MultiMediaGatheringEventList[["country"]]
+      #        self[["iso3166Code"]] <-
+      #                MultiMediaGatheringEventList[["iso3166Code"]]
+      #        self[["provinceState"]] <-
+      #                MultiMediaGatheringEventList[["provinceState"]]
+      #        self[["island"]] <-
+      #                MultiMediaGatheringEventList[["island"]]
+      #        self[["locality"]] <-
+      #                MultiMediaGatheringEventList[["locality"]]
+      #        self[["city"]] <-
+      #                MultiMediaGatheringEventList[["city"]]
+      #        self[["sublocality"]] <-
+      #                MultiMediaGatheringEventList[["sublocality"]]
+      #        self[["localityText"]] <-
+      #                MultiMediaGatheringEventList[["localityText"]]
+      #        self[["dateTimeBegin"]] <-
+      #                MultiMediaGatheringEventList[["dateTimeBegin"]]
+      #        self[["dateTimeEnd"]] <-
+      #                MultiMediaGatheringEventList[["dateTimeEnd"]]
+      #        self[["method"]] <-
+      #                MultiMediaGatheringEventList[["method"]]
+      #        self[["altitude"]] <-
+      #                MultiMediaGatheringEventList[["altitude"]]
+      #        self[["altitudeUnifOfMeasurement"]] <-
+      #                MultiMediaGatheringEventList[["altitudeUnifOfMeasurement"]]
+      #        self[["biotopeText"]] <-
+      #                MultiMediaGatheringEventList[["biotopeText"]]
+      #        self[["depth"]] <-
+      #                MultiMediaGatheringEventList[["depth"]]
+      #        self[["depthUnitOfMeasurement"]] <-
+      #                MultiMediaGatheringEventList[["depthUnitOfMeasurement"]]
+      #      self[["gatheringPersons"]] <- lapply(MultiMediaGatheringEventList[["gatheringPersons"]],
+      #                                       function(x) {
+      #                                           Person$new()$fromJSONString(
+      #                                               jsonlite::toJSON(
+      #                                                   x,
+      #                                                   auto_unbox = TRUE),
+      #                                               typeMapping = typeMapping)})
+      #      self[["gatheringOrganizations"]] <- lapply(MultiMediaGatheringEventList[["gatheringOrganizations"]],
+      #                                       function(x) {
+      #                                           Organization$new()$fromJSONString(
+      #                                               jsonlite::toJSON(
+      #                                                   x,
+      #                                                   auto_unbox = TRUE),
+      #                                               typeMapping = typeMapping)})
+      #      self[["siteCoordinates"]] <- lapply(MultiMediaGatheringEventList[["siteCoordinates"]],
+      #                                       function(x) {
+      #                                           GatheringSiteCoordinates$new()$fromJSONString(
+      #                                               jsonlite::toJSON(
+      #                                                   x,
+      #                                                   auto_unbox = TRUE),
+      #                                               typeMapping = typeMapping)})
+      #      self[["namedAreas"]] <- lapply(MultiMediaGatheringEventList[["namedAreas"]],
+      #                                       function(x) {
+      #                                           NamedArea$new()$fromJSONString(
+      #                                               jsonlite::toJSON(
+      #                                                   x,
+      #                                                   auto_unbox = TRUE),
+      #                                               typeMapping = typeMapping)})
+      #      self[["associatedTaxa"]] <- lapply(MultiMediaGatheringEventList[["associatedTaxa"]],
+      #                                       function(x) {
+      #                                           AssociatedTaxon$new()$fromJSONString(
+      #                                               jsonlite::toJSON(
+      #                                                   x,
+      #                                                   auto_unbox = TRUE),
+      #                                               typeMapping = typeMapping)})
+      #      self[["chronoStratigraphy"]] <- lapply(MultiMediaGatheringEventList[["chronoStratigraphy"]],
+      #                                       function(x) {
+      #                                           ChronoStratigraphy$new()$fromJSONString(
+      #                                               jsonlite::toJSON(
+      #                                                   x,
+      #                                                   auto_unbox = TRUE),
+      #                                               typeMapping = typeMapping)})
+      #      self[["lithoStratigraphy"]] <- lapply(MultiMediaGatheringEventList[["lithoStratigraphy"]],
+      #                                       function(x) {
+      #                                           LithoStratigraphy$new()$fromJSONString(
+      #                                               jsonlite::toJSON(
+      #                                                   x,
+      #                                                   auto_unbox = TRUE),
+      #                                               typeMapping = typeMapping)})
+      #           self[["iptc"]] <-
+      #              Iptc4xmpExt$new()$fromJSONString(
+      #                  jsonlite::toJSON(
+      #                      MultiMediaGatheringEventList[["iptc"]],
+      #                      auto_unbox = TRUE),
+      #                  typeMapping = typeMapping)
+      #      self[["bioStratigraphic"]] <- lapply(MultiMediaGatheringEventList[["bioStratigraphic"]],
+      #                                       function(x) {
+      #                                           BioStratigraphy$new()$fromJSONString(
+      #                                               jsonlite::toJSON(
+      #                                                   x,
+      #                                                   auto_unbox = TRUE),
+      #                                               typeMapping = typeMapping)})
       invisible(self)
     }
   )

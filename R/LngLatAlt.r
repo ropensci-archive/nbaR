@@ -145,14 +145,15 @@ LngLatAlt <- R6::R6Class(
         LngLatAltJson,
         simplifyVector = FALSE
       )
-      self[["longitude"]] <-
-        LngLatAltList[["longitude"]]
-      self[["latitude"]] <-
-        LngLatAltList[["latitude"]]
-      self[["altitude"]] <-
-        LngLatAltList[["altitude"]]
-      self[["additionalElements"]] <-
-        LngLatAltList[["additionalElements"]]
+      self <- self$fromList(LngLatAltList)
+      #        self[["longitude"]] <-
+      #                LngLatAltList[["longitude"]]
+      #        self[["latitude"]] <-
+      #                LngLatAltList[["latitude"]]
+      #        self[["altitude"]] <-
+      #                LngLatAltList[["altitude"]]
+      #        self[["additionalElements"]] <-
+      #                LngLatAltList[["additionalElements"]]
       invisible(self)
     }
   )

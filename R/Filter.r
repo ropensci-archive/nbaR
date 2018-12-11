@@ -149,14 +149,15 @@ Filter <- R6::R6Class(
         FilterJson,
         simplifyVector = FALSE
       )
-      self[["acceptRegexp"]] <-
-        FilterList[["acceptRegexp"]]
-      self[["rejectRegexp"]] <-
-        FilterList[["rejectRegexp"]]
-      self[["acceptValues"]] <-
-        FilterList[["acceptValues"]]
-      self[["rejectValues"]] <-
-        FilterList[["rejectValues"]]
+      self <- self$fromList(FilterList)
+      #        self[["acceptRegexp"]] <-
+      #                FilterList[["acceptRegexp"]]
+      #        self[["rejectRegexp"]] <-
+      #                FilterList[["rejectRegexp"]]
+      #        self[["acceptValues"]] <-
+      #                FilterList[["acceptValues"]]
+      #        self[["rejectValues"]] <-
+      #                FilterList[["rejectValues"]]
       invisible(self)
     }
   )

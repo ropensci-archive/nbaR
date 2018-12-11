@@ -112,16 +112,15 @@ GeoJsonObject <- R6::R6Class(
         GeoJsonObjectJson,
         simplifyVector = FALSE
       )
-      self[["crs"]] <-
-        Crs$new()$fromJSONString(
-          jsonlite::toJSON(
-            GeoJsonObjectList[["crs"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      self[["bbox"]] <-
-        GeoJsonObjectList[["bbox"]]
+      self <- self$fromList(GeoJsonObjectList)
+      #           self[["crs"]] <-
+      #              Crs$new()$fromJSONString(
+      #                  jsonlite::toJSON(
+      #                      GeoJsonObjectList[["crs"]],
+      #                      auto_unbox = TRUE),
+      #                  typeMapping = typeMapping)
+      #        self[["bbox"]] <-
+      #                GeoJsonObjectList[["bbox"]]
       invisible(self)
     }
   )

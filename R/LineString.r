@@ -138,28 +138,22 @@ LineString <- R6::R6Class(
         LineStringJson,
         simplifyVector = FALSE
       )
-      self[["crs"]] <-
-        Crs$new()$fromJSONString(
-          jsonlite::toJSON(
-            LineStringList[["crs"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      self[["bbox"]] <-
-        LineStringList[["bbox"]]
-      self[["coordinates"]] <- lapply(
-        LineStringList[["coordinates"]],
-        function(x) {
-          LngLatAlt$new()$fromJSONString(
-            jsonlite::toJSON(
-              x,
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-        }
-      )
+      self <- self$fromList(LineStringList)
+      #           self[["crs"]] <-
+      #              Crs$new()$fromJSONString(
+      #                  jsonlite::toJSON(
+      #                      LineStringList[["crs"]],
+      #                      auto_unbox = TRUE),
+      #                  typeMapping = typeMapping)
+      #        self[["bbox"]] <-
+      #                LineStringList[["bbox"]]
+      #      self[["coordinates"]] <- lapply(LineStringList[["coordinates"]],
+      #                                       function(x) {
+      #                                           LngLatAlt$new()$fromJSONString(
+      #                                               jsonlite::toJSON(
+      #                                                   x,
+      #                                                   auto_unbox = TRUE),
+      #                                               typeMapping = typeMapping)})
       invisible(self)
     }
   )

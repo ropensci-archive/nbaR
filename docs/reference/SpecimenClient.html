@@ -164,6 +164,7 @@
     Parameters:
     <ul>
 <li><p><code> query_spec </code> : Object of type QuerySpec or its JSON representation</p></li>
+<li><p><code> field </code> : Name of field in the specimen object</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -172,6 +173,8 @@
   .
     Parameters:
     <ul>
+<li><p><code> group </code> : Name of field in the specimen object you want to group by</p></li>
+<li><p><code> field </code> : Name of field in the specimen object</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -189,6 +192,7 @@
   Available datasets can be queried with /specimen/dwca/getDataSetNames. Response saved to &amp;lt;datasetname&amp;gt;-&amp;lt;yyyymmdd&amp;gt;.dwca.zip.
     Parameters:
     <ul>
+<li><p><code> dataset </code> : name of dataset</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -214,6 +218,7 @@
   Returns either true or false.
     Parameters:
     <ul>
+<li><p><code> unit_id </code> : the unitID of the specimen to query</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -222,6 +227,7 @@
   If found, returns a single specimen.
     Parameters:
     <ul>
+<li><p><code> id </code> : id of specimen</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -230,6 +236,7 @@
   Given multiple ids, returns a list of specimen.
     Parameters:
     <ul>
+<li><p><code> ids </code> : ids of multiple specimen, separated by comma</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -238,6 +245,7 @@
   Get a specimen by its unitID. Returns a list of specimens since unitIDs are not strictly unique.
     Parameters:
     <ul>
+<li><p><code> unit_id </code> : the unitID of the specimen to query</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -247,6 +255,7 @@
     Parameters:
     <ul>
 <li><p><code> query_spec </code> : Object of type QuerySpec or its JSON representation</p></li>
+<li><p><code> field </code> : Name of field in specimen object</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -255,6 +264,8 @@
   .
     Parameters:
     <ul>
+<li><p><code> group </code> : Name of field in the specimen object you want to group by</p></li>
+<li><p><code> field </code> : Name of field in the specimen object</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -271,6 +282,7 @@
   Available collections can be queried with /getNamedCollections.
     Parameters:
     <ul>
+<li><p><code> name </code> : name of dataset</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -295,6 +307,7 @@
   All settings can be queried with /metadata/getSettings.
     Parameters:
     <ul>
+<li><p><code> name </code> : name of setting</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -320,6 +333,8 @@
   See also metadata/getFieldInfo.
     Parameters:
     <ul>
+<li><p><code> field </code> : specimen document field</p></li>
+<li><p><code> operator </code> : operator</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:

@@ -119,20 +119,16 @@ QueryResult <- R6::R6Class(
         QueryResultJson,
         simplifyVector = FALSE
       )
-      self[["totalSize"]] <-
-        QueryResultList[["totalSize"]]
-      self[["resultSet"]] <- lapply(
-        QueryResultList[["resultSet"]],
-        function(x) {
-          QueryResultItemObject$new()$fromJSONString(
-            jsonlite::toJSON(
-              x,
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-        }
-      )
+      self <- self$fromList(QueryResultList)
+      #        self[["totalSize"]] <-
+      #                QueryResultList[["totalSize"]]
+      #      self[["resultSet"]] <- lapply(QueryResultList[["resultSet"]],
+      #                                       function(x) {
+      #                                           QueryResultItemObject$new()$fromJSONString(
+      #                                               jsonlite::toJSON(
+      #                                                   x,
+      #                                                   auto_unbox = TRUE),
+      #                                               typeMapping = typeMapping)})
       invisible(self)
     }
   )

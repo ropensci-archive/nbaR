@@ -109,10 +109,11 @@ Monomial <- R6::R6Class(
         MonomialJson,
         simplifyVector = FALSE
       )
-      self[["rank"]] <-
-        MonomialList[["rank"]]
-      self[["name"]] <-
-        MonomialList[["name"]]
+      self <- self$fromList(MonomialList)
+      #        self[["rank"]] <-
+      #                MonomialList[["rank"]]
+      #        self[["name"]] <-
+      #                MonomialList[["name"]]
       invisible(self)
     }
   )

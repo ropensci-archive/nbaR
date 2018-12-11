@@ -489,58 +489,59 @@ ChronoStratigraphy <- R6::R6Class(
         ChronoStratigraphyJson,
         simplifyVector = FALSE
       )
-      self[["youngRegionalSubstage"]] <-
-        ChronoStratigraphyList[["youngRegionalSubstage"]]
-      self[["youngRegionalStage"]] <-
-        ChronoStratigraphyList[["youngRegionalStage"]]
-      self[["youngRegionalSeries"]] <-
-        ChronoStratigraphyList[["youngRegionalSeries"]]
-      self[["youngDatingQualifier"]] <-
-        ChronoStratigraphyList[["youngDatingQualifier"]]
-      self[["youngInternSystem"]] <-
-        ChronoStratigraphyList[["youngInternSystem"]]
-      self[["youngInternSubstage"]] <-
-        ChronoStratigraphyList[["youngInternSubstage"]]
-      self[["youngInternStage"]] <-
-        ChronoStratigraphyList[["youngInternStage"]]
-      self[["youngInternSeries"]] <-
-        ChronoStratigraphyList[["youngInternSeries"]]
-      self[["youngInternErathem"]] <-
-        ChronoStratigraphyList[["youngInternErathem"]]
-      self[["youngInternEonothem"]] <-
-        ChronoStratigraphyList[["youngInternEonothem"]]
-      self[["youngChronoName"]] <-
-        ChronoStratigraphyList[["youngChronoName"]]
-      self[["youngCertainty"]] <-
-        ChronoStratigraphyList[["youngCertainty"]]
-      self[["oldDatingQualifier"]] <-
-        ChronoStratigraphyList[["oldDatingQualifier"]]
-      self[["chronoPreferredFlag"]] <-
-        ChronoStratigraphyList[["chronoPreferredFlag"]]
-      self[["oldRegionalSubstage"]] <-
-        ChronoStratigraphyList[["oldRegionalSubstage"]]
-      self[["oldRegionalStage"]] <-
-        ChronoStratigraphyList[["oldRegionalStage"]]
-      self[["oldRegionalSeries"]] <-
-        ChronoStratigraphyList[["oldRegionalSeries"]]
-      self[["oldInternSystem"]] <-
-        ChronoStratigraphyList[["oldInternSystem"]]
-      self[["oldInternSubstage"]] <-
-        ChronoStratigraphyList[["oldInternSubstage"]]
-      self[["oldInternStage"]] <-
-        ChronoStratigraphyList[["oldInternStage"]]
-      self[["oldInternSeries"]] <-
-        ChronoStratigraphyList[["oldInternSeries"]]
-      self[["oldInternErathem"]] <-
-        ChronoStratigraphyList[["oldInternErathem"]]
-      self[["oldInternEonothem"]] <-
-        ChronoStratigraphyList[["oldInternEonothem"]]
-      self[["oldChronoName"]] <-
-        ChronoStratigraphyList[["oldChronoName"]]
-      self[["chronoIdentifier"]] <-
-        ChronoStratigraphyList[["chronoIdentifier"]]
-      self[["oldCertainty"]] <-
-        ChronoStratigraphyList[["oldCertainty"]]
+      self <- self$fromList(ChronoStratigraphyList)
+      #        self[["youngRegionalSubstage"]] <-
+      #                ChronoStratigraphyList[["youngRegionalSubstage"]]
+      #        self[["youngRegionalStage"]] <-
+      #                ChronoStratigraphyList[["youngRegionalStage"]]
+      #        self[["youngRegionalSeries"]] <-
+      #                ChronoStratigraphyList[["youngRegionalSeries"]]
+      #        self[["youngDatingQualifier"]] <-
+      #                ChronoStratigraphyList[["youngDatingQualifier"]]
+      #        self[["youngInternSystem"]] <-
+      #                ChronoStratigraphyList[["youngInternSystem"]]
+      #        self[["youngInternSubstage"]] <-
+      #                ChronoStratigraphyList[["youngInternSubstage"]]
+      #        self[["youngInternStage"]] <-
+      #                ChronoStratigraphyList[["youngInternStage"]]
+      #        self[["youngInternSeries"]] <-
+      #                ChronoStratigraphyList[["youngInternSeries"]]
+      #        self[["youngInternErathem"]] <-
+      #                ChronoStratigraphyList[["youngInternErathem"]]
+      #        self[["youngInternEonothem"]] <-
+      #                ChronoStratigraphyList[["youngInternEonothem"]]
+      #        self[["youngChronoName"]] <-
+      #                ChronoStratigraphyList[["youngChronoName"]]
+      #        self[["youngCertainty"]] <-
+      #                ChronoStratigraphyList[["youngCertainty"]]
+      #        self[["oldDatingQualifier"]] <-
+      #                ChronoStratigraphyList[["oldDatingQualifier"]]
+      #        self[["chronoPreferredFlag"]] <-
+      #                ChronoStratigraphyList[["chronoPreferredFlag"]]
+      #        self[["oldRegionalSubstage"]] <-
+      #                ChronoStratigraphyList[["oldRegionalSubstage"]]
+      #        self[["oldRegionalStage"]] <-
+      #                ChronoStratigraphyList[["oldRegionalStage"]]
+      #        self[["oldRegionalSeries"]] <-
+      #                ChronoStratigraphyList[["oldRegionalSeries"]]
+      #        self[["oldInternSystem"]] <-
+      #                ChronoStratigraphyList[["oldInternSystem"]]
+      #        self[["oldInternSubstage"]] <-
+      #                ChronoStratigraphyList[["oldInternSubstage"]]
+      #        self[["oldInternStage"]] <-
+      #                ChronoStratigraphyList[["oldInternStage"]]
+      #        self[["oldInternSeries"]] <-
+      #                ChronoStratigraphyList[["oldInternSeries"]]
+      #        self[["oldInternErathem"]] <-
+      #                ChronoStratigraphyList[["oldInternErathem"]]
+      #        self[["oldInternEonothem"]] <-
+      #                ChronoStratigraphyList[["oldInternEonothem"]]
+      #        self[["oldChronoName"]] <-
+      #                ChronoStratigraphyList[["oldChronoName"]]
+      #        self[["chronoIdentifier"]] <-
+      #                ChronoStratigraphyList[["chronoIdentifier"]]
+      #        self[["oldCertainty"]] <-
+      #                ChronoStratigraphyList[["oldCertainty"]]
       invisible(self)
     }
   )

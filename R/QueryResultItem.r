@@ -105,10 +105,11 @@ QueryResultItem <- R6::R6Class(
         QueryResultItemJson,
         simplifyVector = FALSE
       )
-      self[["score"]] <-
-        QueryResultItemList[["score"]]
-      self[["item"]] <-
-        QueryResultItemList[["item"]]
+      self <- self$fromList(QueryResultItemList)
+      #        self[["score"]] <-
+      #                QueryResultItemList[["score"]]
+      #        self[["item"]] <-
+      #                QueryResultItemList[["item"]]
       invisible(self)
     }
   )

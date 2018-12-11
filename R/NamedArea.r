@@ -109,10 +109,11 @@ NamedArea <- R6::R6Class(
         NamedAreaJson,
         simplifyVector = FALSE
       )
-      self[["areaClass"]] <-
-        NamedAreaList[["areaClass"]]
-      self[["areaName"]] <-
-        NamedAreaList[["areaName"]]
+      self <- self$fromList(NamedAreaList)
+      #        self[["areaClass"]] <-
+      #                NamedAreaList[["areaClass"]]
+      #        self[["areaName"]] <-
+      #                NamedAreaList[["areaName"]]
       invisible(self)
     }
   )

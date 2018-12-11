@@ -124,18 +124,17 @@ Expert <- R6::R6Class(
         ExpertJson,
         simplifyVector = FALSE
       )
-      self[["agentText"]] <-
-        ExpertList[["agentText"]]
-      self[["fullName"]] <-
-        ExpertList[["fullName"]]
-      self[["organization"]] <-
-        Organization$new()$fromJSONString(
-          jsonlite::toJSON(
-            ExpertList[["organization"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
+      self <- self$fromList(ExpertList)
+      #        self[["agentText"]] <-
+      #                ExpertList[["agentText"]]
+      #        self[["fullName"]] <-
+      #                ExpertList[["fullName"]]
+      #           self[["organization"]] <-
+      #              Organization$new()$fromJSONString(
+      #                  jsonlite::toJSON(
+      #                      ExpertList[["organization"]],
+      #                      auto_unbox = TRUE),
+      #                  typeMapping = typeMapping)
       invisible(self)
     }
   )

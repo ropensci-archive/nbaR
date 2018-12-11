@@ -125,12 +125,13 @@ ServiceAccessPoint <- R6::R6Class(
         ServiceAccessPointJson,
         simplifyVector = FALSE
       )
-      self[["accessUri"]] <-
-        ServiceAccessPointList[["accessUri"]]
-      self[["format"]] <-
-        ServiceAccessPointList[["format"]]
-      self[["variant"]] <-
-        ServiceAccessPointList[["variant"]]
+      self <- self$fromList(ServiceAccessPointList)
+      #        self[["accessUri"]] <-
+      #                ServiceAccessPointList[["accessUri"]]
+      #        self[["format"]] <-
+      #                ServiceAccessPointList[["format"]]
+      #        self[["variant"]] <-
+      #                ServiceAccessPointList[["variant"]]
       invisible(self)
     }
   )

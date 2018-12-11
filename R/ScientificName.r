@@ -321,54 +321,45 @@ ScientificName <- R6::R6Class(
         ScientificNameJson,
         simplifyVector = FALSE
       )
-      self[["fullScientificName"]] <-
-        ScientificNameList[["fullScientificName"]]
-      self[["taxonomicStatus"]] <-
-        ScientificNameList[["taxonomicStatus"]]
-      self[["genusOrMonomial"]] <-
-        ScientificNameList[["genusOrMonomial"]]
-      self[["subgenus"]] <-
-        ScientificNameList[["subgenus"]]
-      self[["specificEpithet"]] <-
-        ScientificNameList[["specificEpithet"]]
-      self[["infraspecificEpithet"]] <-
-        ScientificNameList[["infraspecificEpithet"]]
-      self[["infraspecificMarker"]] <-
-        ScientificNameList[["infraspecificMarker"]]
-      self[["nameAddendum"]] <-
-        ScientificNameList[["nameAddendum"]]
-      self[["authorshipVerbatim"]] <-
-        ScientificNameList[["authorshipVerbatim"]]
-      self[["author"]] <-
-        ScientificNameList[["author"]]
-      self[["year"]] <-
-        ScientificNameList[["year"]]
-      self[["scientificNameGroup"]] <-
-        ScientificNameList[["scientificNameGroup"]]
-      self[["references"]] <- lapply(
-        ScientificNameList[["references"]],
-        function(x) {
-          Reference$new()$fromJSONString(
-            jsonlite::toJSON(
-              x,
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-        }
-      )
-      self[["experts"]] <- lapply(
-        ScientificNameList[["experts"]],
-        function(x) {
-          Expert$new()$fromJSONString(
-            jsonlite::toJSON(
-              x,
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-        }
-      )
+      self <- self$fromList(ScientificNameList)
+      #        self[["fullScientificName"]] <-
+      #                ScientificNameList[["fullScientificName"]]
+      #        self[["taxonomicStatus"]] <-
+      #                ScientificNameList[["taxonomicStatus"]]
+      #        self[["genusOrMonomial"]] <-
+      #                ScientificNameList[["genusOrMonomial"]]
+      #        self[["subgenus"]] <-
+      #                ScientificNameList[["subgenus"]]
+      #        self[["specificEpithet"]] <-
+      #                ScientificNameList[["specificEpithet"]]
+      #        self[["infraspecificEpithet"]] <-
+      #                ScientificNameList[["infraspecificEpithet"]]
+      #        self[["infraspecificMarker"]] <-
+      #                ScientificNameList[["infraspecificMarker"]]
+      #        self[["nameAddendum"]] <-
+      #                ScientificNameList[["nameAddendum"]]
+      #        self[["authorshipVerbatim"]] <-
+      #                ScientificNameList[["authorshipVerbatim"]]
+      #        self[["author"]] <-
+      #                ScientificNameList[["author"]]
+      #        self[["year"]] <-
+      #                ScientificNameList[["year"]]
+      #        self[["scientificNameGroup"]] <-
+      #                ScientificNameList[["scientificNameGroup"]]
+      #      self[["references"]] <- lapply(ScientificNameList[["references"]],
+      #                                       function(x) {
+      #                                           Reference$new()$fromJSONString(
+      #                                               jsonlite::toJSON(
+      #                                                   x,
+      #                                                   auto_unbox = TRUE),
+      #                                               typeMapping = typeMapping)})
+      #      self[["experts"]] <- lapply(ScientificNameList[["experts"]],
+      #                                       function(x) {
+      #                                           Expert$new()$fromJSONString(
+      #                                               jsonlite::toJSON(
+      #                                                   x,
+      #                                                   auto_unbox = TRUE),
+      #                                               typeMapping = typeMapping)})
       invisible(self)
     }
   )

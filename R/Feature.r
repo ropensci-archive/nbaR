@@ -152,22 +152,21 @@ Feature <- R6::R6Class(
         FeatureJson,
         simplifyVector = FALSE
       )
-      self[["crs"]] <-
-        Crs$new()$fromJSONString(
-          jsonlite::toJSON(
-            FeatureList[["crs"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      self[["bbox"]] <-
-        FeatureList[["bbox"]]
-      self[["properties"]] <-
-        FeatureList[["properties"]]
-      self[["geometry"]] <-
-        FeatureList[["geometry"]]
-      self[["id"]] <-
-        FeatureList[["id"]]
+      self <- self$fromList(FeatureList)
+      #           self[["crs"]] <-
+      #              Crs$new()$fromJSONString(
+      #                  jsonlite::toJSON(
+      #                      FeatureList[["crs"]],
+      #                      auto_unbox = TRUE),
+      #                  typeMapping = typeMapping)
+      #        self[["bbox"]] <-
+      #                FeatureList[["bbox"]]
+      #        self[["properties"]] <-
+      #                FeatureList[["properties"]]
+      #        self[["geometry"]] <-
+      #                FeatureList[["geometry"]]
+      #        self[["id"]] <-
+      #                FeatureList[["id"]]
       invisible(self)
     }
   )

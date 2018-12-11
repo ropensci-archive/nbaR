@@ -163,6 +163,7 @@
   .
     Parameters:
     <ul>
+<li><p><code> field </code> : name of field in the taxon object</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -171,6 +172,8 @@
   .
     Parameters:
     <ul>
+<li><p><code> group </code> : name of field in the taxon object you want to group by</p></li>
+<li><p><code> field </code> : name of field in the taxon object</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -188,6 +191,7 @@
   Available datasets can be queried with /taxon/dwca/getDataSetNames. Response saved to &amp;lt;datasetname&amp;gt;-&amp;lt;yyyymmdd&amp;gt;.dwca.zip.
     Parameters:
     <ul>
+<li><p><code> dataset </code> : name of dataset</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -213,6 +217,7 @@
   If found, returns a single taxon.
     Parameters:
     <ul>
+<li><p><code> id </code> : id of taxon</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -221,6 +226,7 @@
   Given multiple ids, returns a list of taxa.
     Parameters:
     <ul>
+<li><p><code> ids </code> : ids of multiple taxa, separated by comma</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -229,6 +235,7 @@
   A list of all fields for taxon documents can be retrieved with /metadata/getFieldInfo.
     Parameters:
     <ul>
+<li><p><code> field </code> : name of field in a taxon object</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -237,6 +244,8 @@
   .
     Parameters:
     <ul>
+<li><p><code> group </code> : name of field in the taxon object you want to group by</p></li>
+<li><p><code> field </code> : name of field in the taxon object</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -261,6 +270,7 @@
   All settings can be queried with /metadata/getSettings.
     Parameters:
     <ul>
+<li><p><code> name </code> : name of setting</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:
@@ -286,6 +296,8 @@
   See also metadata/getFieldInfo.
     Parameters:
     <ul>
+<li><p><code> field </code> : specimen document field</p></li>
+<li><p><code> operator </code> : operator</p></li>
 <li><p><code> ... </code> : additional parameters passed to httr::GET</p></li>
 </ul>
     Returns:

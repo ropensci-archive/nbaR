@@ -109,10 +109,11 @@ SourceSystem <- R6::R6Class(
         SourceSystemJson,
         simplifyVector = FALSE
       )
-      self[["code"]] <-
-        SourceSystemList[["code"]]
-      self[["name"]] <-
-        SourceSystemList[["name"]]
+      self <- self$fromList(SourceSystemList)
+      #        self[["code"]] <-
+      #                SourceSystemList[["code"]]
+      #        self[["name"]] <-
+      #                SourceSystemList[["name"]]
       invisible(self)
     }
   )

@@ -232,32 +232,31 @@ GeoArea <- R6::R6Class(
         GeoAreaJson,
         simplifyVector = FALSE
       )
-      self[["sourceSystem"]] <-
-        SourceSystem$new()$fromJSONString(
-          jsonlite::toJSON(
-            GeoAreaList[["sourceSystem"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      self[["sourceSystemId"]] <-
-        GeoAreaList[["sourceSystemId"]]
-      self[["recordURI"]] <-
-        GeoAreaList[["recordURI"]]
-      self[["id"]] <-
-        GeoAreaList[["id"]]
-      self[["areaType"]] <-
-        GeoAreaList[["areaType"]]
-      self[["locality"]] <-
-        GeoAreaList[["locality"]]
-      self[["shape"]] <-
-        GeoAreaList[["shape"]]
-      self[["source"]] <-
-        GeoAreaList[["source"]]
-      self[["isoCode"]] <-
-        GeoAreaList[["isoCode"]]
-      self[["countryNL"]] <-
-        GeoAreaList[["countryNL"]]
+      self <- self$fromList(GeoAreaList)
+      #           self[["sourceSystem"]] <-
+      #              SourceSystem$new()$fromJSONString(
+      #                  jsonlite::toJSON(
+      #                      GeoAreaList[["sourceSystem"]],
+      #                      auto_unbox = TRUE),
+      #                  typeMapping = typeMapping)
+      #        self[["sourceSystemId"]] <-
+      #                GeoAreaList[["sourceSystemId"]]
+      #        self[["recordURI"]] <-
+      #                GeoAreaList[["recordURI"]]
+      #        self[["id"]] <-
+      #                GeoAreaList[["id"]]
+      #        self[["areaType"]] <-
+      #                GeoAreaList[["areaType"]]
+      #        self[["locality"]] <-
+      #                GeoAreaList[["locality"]]
+      #        self[["shape"]] <-
+      #                GeoAreaList[["shape"]]
+      #        self[["source"]] <-
+      #                GeoAreaList[["source"]]
+      #        self[["isoCode"]] <-
+      #                GeoAreaList[["isoCode"]]
+      #        self[["countryNL"]] <-
+      #                GeoAreaList[["countryNL"]]
       invisible(self)
     }
   )

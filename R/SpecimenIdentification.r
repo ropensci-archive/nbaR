@@ -387,92 +387,69 @@ SpecimenIdentification <- R6::R6Class(
         SpecimenIdentificationJson,
         simplifyVector = FALSE
       )
-      self[["taxonRank"]] <-
-        SpecimenIdentificationList[["taxonRank"]]
-      self[["scientificName"]] <-
-        ScientificName$new()$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenIdentificationList[["scientificName"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      self[["typeStatus"]] <-
-        SpecimenIdentificationList[["typeStatus"]]
-      self[["dateIdentified"]] <-
-        SpecimenIdentificationList[["dateIdentified"]]
-      self[["defaultClassification"]] <-
-        DefaultClassification$new()$fromJSONString(
-          jsonlite::toJSON(
-            SpecimenIdentificationList[["defaultClassification"]],
-            auto_unbox = TRUE
-          ),
-          typeMapping = typeMapping
-        )
-      self[["systemClassification"]] <- lapply(
-        SpecimenIdentificationList[["systemClassification"]],
-        function(x) {
-          Monomial$new()$fromJSONString(
-            jsonlite::toJSON(
-              x,
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-        }
-      )
-      self[["vernacularNames"]] <- lapply(
-        SpecimenIdentificationList[["vernacularNames"]],
-        function(x) {
-          VernacularName$new()$fromJSONString(
-            jsonlite::toJSON(
-              x,
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-        }
-      )
-      self[["identificationQualifiers"]] <-
-        SpecimenIdentificationList[["identificationQualifiers"]]
-      self[["identifiers"]] <- lapply(
-        SpecimenIdentificationList[["identifiers"]],
-        function(x) {
-          Agent$new()$fromJSONString(
-            jsonlite::toJSON(
-              x,
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-        }
-      )
-      self[["taxonomicEnrichments"]] <- lapply(
-        SpecimenIdentificationList[["taxonomicEnrichments"]],
-        function(x) {
-          TaxonomicEnrichment$new()$fromJSONString(
-            jsonlite::toJSON(
-              x,
-              auto_unbox = TRUE
-            ),
-            typeMapping = typeMapping
-          )
-        }
-      )
-      self[["preferred"]] <-
-        SpecimenIdentificationList[["preferred"]]
-      self[["verificationStatus"]] <-
-        SpecimenIdentificationList[["verificationStatus"]]
-      self[["rockType"]] <-
-        SpecimenIdentificationList[["rockType"]]
-      self[["associatedFossilAssemblage"]] <-
-        SpecimenIdentificationList[["associatedFossilAssemblage"]]
-      self[["rockMineralUsage"]] <-
-        SpecimenIdentificationList[["rockMineralUsage"]]
-      self[["associatedMineralName"]] <-
-        SpecimenIdentificationList[["associatedMineralName"]]
-      self[["remarks"]] <-
-        SpecimenIdentificationList[["remarks"]]
+      self <- self$fromList(SpecimenIdentificationList)
+      #        self[["taxonRank"]] <-
+      #                SpecimenIdentificationList[["taxonRank"]]
+      #           self[["scientificName"]] <-
+      #              ScientificName$new()$fromJSONString(
+      #                  jsonlite::toJSON(
+      #                      SpecimenIdentificationList[["scientificName"]],
+      #                      auto_unbox = TRUE),
+      #                  typeMapping = typeMapping)
+      #        self[["typeStatus"]] <-
+      #                SpecimenIdentificationList[["typeStatus"]]
+      #        self[["dateIdentified"]] <-
+      #                SpecimenIdentificationList[["dateIdentified"]]
+      #           self[["defaultClassification"]] <-
+      #              DefaultClassification$new()$fromJSONString(
+      #                  jsonlite::toJSON(
+      #                      SpecimenIdentificationList[["defaultClassification"]],
+      #                      auto_unbox = TRUE),
+      #                  typeMapping = typeMapping)
+      #      self[["systemClassification"]] <- lapply(SpecimenIdentificationList[["systemClassification"]],
+      #                                       function(x) {
+      #                                           Monomial$new()$fromJSONString(
+      #                                               jsonlite::toJSON(
+      #                                                   x,
+      #                                                   auto_unbox = TRUE),
+      #                                               typeMapping = typeMapping)})
+      #      self[["vernacularNames"]] <- lapply(SpecimenIdentificationList[["vernacularNames"]],
+      #                                       function(x) {
+      #                                           VernacularName$new()$fromJSONString(
+      #                                               jsonlite::toJSON(
+      #                                                   x,
+      #                                                   auto_unbox = TRUE),
+      #                                               typeMapping = typeMapping)})
+      #        self[["identificationQualifiers"]] <-
+      #                SpecimenIdentificationList[["identificationQualifiers"]]
+      #      self[["identifiers"]] <- lapply(SpecimenIdentificationList[["identifiers"]],
+      #                                       function(x) {
+      #                                           Agent$new()$fromJSONString(
+      #                                               jsonlite::toJSON(
+      #                                                   x,
+      #                                                   auto_unbox = TRUE),
+      #                                               typeMapping = typeMapping)})
+      #      self[["taxonomicEnrichments"]] <- lapply(SpecimenIdentificationList[["taxonomicEnrichments"]],
+      #                                       function(x) {
+      #                                           TaxonomicEnrichment$new()$fromJSONString(
+      #                                               jsonlite::toJSON(
+      #                                                   x,
+      #                                                   auto_unbox = TRUE),
+      #                                               typeMapping = typeMapping)})
+      #        self[["preferred"]] <-
+      #                SpecimenIdentificationList[["preferred"]]
+      #        self[["verificationStatus"]] <-
+      #                SpecimenIdentificationList[["verificationStatus"]]
+      #        self[["rockType"]] <-
+      #                SpecimenIdentificationList[["rockType"]]
+      #        self[["associatedFossilAssemblage"]] <-
+      #                SpecimenIdentificationList[["associatedFossilAssemblage"]]
+      #        self[["rockMineralUsage"]] <-
+      #                SpecimenIdentificationList[["rockMineralUsage"]]
+      #        self[["associatedMineralName"]] <-
+      #                SpecimenIdentificationList[["associatedMineralName"]]
+      #        self[["remarks"]] <-
+      #                SpecimenIdentificationList[["remarks"]]
       invisible(self)
     }
   )

@@ -253,28 +253,29 @@ DefaultClassification <- R6::R6Class(
         DefaultClassificationJson,
         simplifyVector = FALSE
       )
-      self[["kingdom"]] <-
-        DefaultClassificationList[["kingdom"]]
-      self[["phylum"]] <-
-        DefaultClassificationList[["phylum"]]
-      self[["className"]] <-
-        DefaultClassificationList[["className"]]
-      self[["order"]] <-
-        DefaultClassificationList[["order"]]
-      self[["superFamily"]] <-
-        DefaultClassificationList[["superFamily"]]
-      self[["family"]] <-
-        DefaultClassificationList[["family"]]
-      self[["genus"]] <-
-        DefaultClassificationList[["genus"]]
-      self[["subgenus"]] <-
-        DefaultClassificationList[["subgenus"]]
-      self[["specificEpithet"]] <-
-        DefaultClassificationList[["specificEpithet"]]
-      self[["infraspecificEpithet"]] <-
-        DefaultClassificationList[["infraspecificEpithet"]]
-      self[["infraspecificRank"]] <-
-        DefaultClassificationList[["infraspecificRank"]]
+      self <- self$fromList(DefaultClassificationList)
+      #        self[["kingdom"]] <-
+      #                DefaultClassificationList[["kingdom"]]
+      #        self[["phylum"]] <-
+      #                DefaultClassificationList[["phylum"]]
+      #        self[["className"]] <-
+      #                DefaultClassificationList[["className"]]
+      #        self[["order"]] <-
+      #                DefaultClassificationList[["order"]]
+      #        self[["superFamily"]] <-
+      #                DefaultClassificationList[["superFamily"]]
+      #        self[["family"]] <-
+      #                DefaultClassificationList[["family"]]
+      #        self[["genus"]] <-
+      #                DefaultClassificationList[["genus"]]
+      #        self[["subgenus"]] <-
+      #                DefaultClassificationList[["subgenus"]]
+      #        self[["specificEpithet"]] <-
+      #                DefaultClassificationList[["specificEpithet"]]
+      #        self[["infraspecificEpithet"]] <-
+      #                DefaultClassificationList[["infraspecificEpithet"]]
+      #        self[["infraspecificRank"]] <-
+      #                DefaultClassificationList[["infraspecificRank"]]
       invisible(self)
     }
   )

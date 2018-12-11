@@ -345,40 +345,41 @@ LithoStratigraphy <- R6::R6Class(
         LithoStratigraphyJson,
         simplifyVector = FALSE
       )
-      self[["qualifier"]] <-
-        LithoStratigraphyList[["qualifier"]]
-      self[["preferredFlag"]] <-
-        LithoStratigraphyList[["preferredFlag"]]
-      self[["member2"]] <-
-        LithoStratigraphyList[["member2"]]
-      self[["member"]] <-
-        LithoStratigraphyList[["member"]]
-      self[["informalName2"]] <-
-        LithoStratigraphyList[["informalName2"]]
-      self[["informalName"]] <-
-        LithoStratigraphyList[["informalName"]]
-      self[["importedName2"]] <-
-        LithoStratigraphyList[["importedName2"]]
-      self[["importedName1"]] <-
-        LithoStratigraphyList[["importedName1"]]
-      self[["lithoIdentifier"]] <-
-        LithoStratigraphyList[["lithoIdentifier"]]
-      self[["formation2"]] <-
-        LithoStratigraphyList[["formation2"]]
-      self[["formationGroup2"]] <-
-        LithoStratigraphyList[["formationGroup2"]]
-      self[["formationGroup"]] <-
-        LithoStratigraphyList[["formationGroup"]]
-      self[["formation"]] <-
-        LithoStratigraphyList[["formation"]]
-      self[["certainty2"]] <-
-        LithoStratigraphyList[["certainty2"]]
-      self[["certainty"]] <-
-        LithoStratigraphyList[["certainty"]]
-      self[["bed2"]] <-
-        LithoStratigraphyList[["bed2"]]
-      self[["bed"]] <-
-        LithoStratigraphyList[["bed"]]
+      self <- self$fromList(LithoStratigraphyList)
+      #        self[["qualifier"]] <-
+      #                LithoStratigraphyList[["qualifier"]]
+      #        self[["preferredFlag"]] <-
+      #                LithoStratigraphyList[["preferredFlag"]]
+      #        self[["member2"]] <-
+      #                LithoStratigraphyList[["member2"]]
+      #        self[["member"]] <-
+      #                LithoStratigraphyList[["member"]]
+      #        self[["informalName2"]] <-
+      #                LithoStratigraphyList[["informalName2"]]
+      #        self[["informalName"]] <-
+      #                LithoStratigraphyList[["informalName"]]
+      #        self[["importedName2"]] <-
+      #                LithoStratigraphyList[["importedName2"]]
+      #        self[["importedName1"]] <-
+      #                LithoStratigraphyList[["importedName1"]]
+      #        self[["lithoIdentifier"]] <-
+      #                LithoStratigraphyList[["lithoIdentifier"]]
+      #        self[["formation2"]] <-
+      #                LithoStratigraphyList[["formation2"]]
+      #        self[["formationGroup2"]] <-
+      #                LithoStratigraphyList[["formationGroup2"]]
+      #        self[["formationGroup"]] <-
+      #                LithoStratigraphyList[["formationGroup"]]
+      #        self[["formation"]] <-
+      #                LithoStratigraphyList[["formation"]]
+      #        self[["certainty2"]] <-
+      #                LithoStratigraphyList[["certainty2"]]
+      #        self[["certainty"]] <-
+      #                LithoStratigraphyList[["certainty"]]
+      #        self[["bed2"]] <-
+      #                LithoStratigraphyList[["bed2"]]
+      #        self[["bed"]] <-
+      #                LithoStratigraphyList[["bed"]]
       invisible(self)
     }
   )

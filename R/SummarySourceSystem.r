@@ -93,8 +93,9 @@ SummarySourceSystem <- R6::R6Class(
         SummarySourceSystemJson,
         simplifyVector = FALSE
       )
-      self[["code"]] <-
-        SummarySourceSystemList[["code"]]
+      self <- self$fromList(SummarySourceSystemList)
+      #        self[["code"]] <-
+      #                SummarySourceSystemList[["code"]]
       invisible(self)
     }
   )
