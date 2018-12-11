@@ -150,14 +150,6 @@ Filter <- R6::R6Class(
         simplifyVector = FALSE
       )
       self <- self$fromList(FilterList)
-      #        self[["acceptRegexp"]] <-
-      #                FilterList[["acceptRegexp"]]
-      #        self[["rejectRegexp"]] <-
-      #                FilterList[["rejectRegexp"]]
-      #        self[["acceptValues"]] <-
-      #                FilterList[["acceptValues"]]
-      #        self[["rejectValues"]] <-
-      #                FilterList[["rejectValues"]]
       invisible(self)
     }
   )

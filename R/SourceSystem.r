@@ -110,10 +110,6 @@ SourceSystem <- R6::R6Class(
         simplifyVector = FALSE
       )
       self <- self$fromList(SourceSystemList)
-      #        self[["code"]] <-
-      #                SourceSystemList[["code"]]
-      #        self[["name"]] <-
-      #                SourceSystemList[["name"]]
       invisible(self)
     }
   )

@@ -118,12 +118,6 @@ SortField <- R6::R6Class(
         simplifyVector = FALSE
       )
       self <- self$fromList(SortFieldList)
-      #        self[["path"]] <-
-      #                SortFieldList[["path"]]
-      #        self[["sortOrder"]] <-
-      #                SortFieldList[["sortOrder"]]
-      #        self[["ascending"]] <-
-      #                SortFieldList[["ascending"]]
       invisible(self)
     }
   )

@@ -210,30 +210,6 @@ QuerySpec <- R6::R6Class(
         simplifyVector = FALSE
       )
       self <- self$fromList(QuerySpecList)
-      #        self[["constantScore"]] <-
-      #                QuerySpecList[["constantScore"]]
-      #        self[["fields"]] <-
-      #                QuerySpecList[["fields"]]
-      #      self[["conditions"]] <- lapply(QuerySpecList[["conditions"]],
-      #                                       function(x) {
-      #                                           QueryCondition$new()$fromJSONString(
-      #                                               jsonlite::toJSON(
-      #                                                   x,
-      #                                                   auto_unbox = TRUE),
-      #                                               typeMapping = typeMapping)})
-      #        self[["logicalOperator"]] <-
-      #                QuerySpecList[["logicalOperator"]]
-      #      self[["sortFields"]] <- lapply(QuerySpecList[["sortFields"]],
-      #                                       function(x) {
-      #                                           SortField$new()$fromJSONString(
-      #                                               jsonlite::toJSON(
-      #                                                   x,
-      #                                                   auto_unbox = TRUE),
-      #                                               typeMapping = typeMapping)})
-      #        self[["from"]] <-
-      #                QuerySpecList[["from"]]
-      #        self[["size"]] <-
-      #                QuerySpecList[["size"]]
       invisible(self)
     }
   )

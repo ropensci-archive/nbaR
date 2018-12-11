@@ -186,66 +186,6 @@
           {{classname}}Json,
           simplifyVector = FALSE)
       self <- self$fromList({{classname}}List)
-      {{#vars}}
-      {{#isPrimitiveType}}
-      {{#needsTypeMapping}}
-#      if (is.null(typeMapping[["{{baseName}}"]])) {
-#            self[["{{baseName}}"]] <-
-#                {{classname}}List[["{{baseName}}"]]
-#      } else {
-#          obj <- eval(parse(
-#              text = paste0(typeMapping[["{{baseName}}"]], "$new()")))
-#          self[["{{baseName}}"]] <- obj$fromJSONString(
-#              jsonlite::toJSON(
-#                  {{classname}}List[["{{baseName}}"]], auto_unbox = TRUE),
-#              typeMapping = typeMapping)
-#      }
-      {{/needsTypeMapping}}
-      {{^needsTypeMapping}}
-#        self[["{{baseName}}"]] <-
-#                {{classname}}List[["{{baseName}}"]]
-      {{/needsTypeMapping}}  
-      {{/isPrimitiveType}}
-      {{^isPrimitiveType}}
-      {{#isListContainer}}
-#      self[["{{baseName}}"]] <- lapply({{classname}}List[["{{baseName}}"]],
-#                                       function(x) {
-#                                           {{datatype}}$new()$fromJSONString(
-#                                               jsonlite::toJSON(
-#                                                   x,
-#                                                   auto_unbox = TRUE),
-#                                               typeMapping = typeMapping)})
-      {{/isListContainer}}
-      {{^isListContainer}}
-      {{#needsTypeMapping}}
-#        if (is.null(typeMapping[["{{baseName}}"]])) {
-#          self[["{{baseName}}"]] <-
-#              {{datatype}}$new()$fromJSONString(
-#                  jsonlite::toJSON(
-#                      {{classname}}List[["{{baseName}}"]],
-#                      auto_unbox = TRUE),
-#                  typeMapping = typeMapping)
-#      } else {
-#          obj <- eval(parse(
-#              text = paste0(typeMapping[["{{baseName}}"]], "$new()")))
-#          self[["{{baseName}}"]] <- obj$fromJSONString(
-#              jsonlite::toJSON(
-#                  {{classname}}List[["{{baseName}}"]],
-#                  auto_unbox = TRUE),
-#              typeMapping=typeMapping)
-#      }
-      {{/needsTypeMapping}}
-#           self[["{{baseName}}"]] <-
-#              {{datatype}}$new()$fromJSONString(
-#                  jsonlite::toJSON(
-#                      {{classname}}List[["{{baseName}}"]],
-#                      auto_unbox = TRUE),
-#                  typeMapping = typeMapping)
-      {{^needsTypeMapping}}
-      {{/needsTypeMapping}}
-      {{/isListContainer}}
-      {{/isPrimitiveType}}
-      {{/vars}}
       invisible(self)
     }
   )

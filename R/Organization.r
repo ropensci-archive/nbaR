@@ -110,10 +110,6 @@ Organization <- R6::R6Class(
         simplifyVector = FALSE
       )
       self <- self$fromList(OrganizationList)
-      #        self[["agentText"]] <-
-      #                OrganizationList[["agentText"]]
-      #        self[["name"]] <-
-      #                OrganizationList[["name"]]
       invisible(self)
     }
   )

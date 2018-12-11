@@ -106,10 +106,6 @@ Crs <- R6::R6Class(
         simplifyVector = FALSE
       )
       self <- self$fromList(CrsList)
-      #        self[["type"]] <-
-      #                CrsList[["type"]]
-      #        self[["properties"]] <-
-      #                CrsList[["properties"]]
       invisible(self)
     }
   )

@@ -214,32 +214,6 @@ QueryCondition <- R6::R6Class(
         simplifyVector = FALSE
       )
       self <- self$fromList(QueryConditionList)
-      #        self[["not"]] <-
-      #                QueryConditionList[["not"]]
-      #        self[["field"]] <-
-      #                QueryConditionList[["field"]]
-      #        self[["operator"]] <-
-      #                QueryConditionList[["operator"]]
-      #        self[["value"]] <-
-      #                QueryConditionList[["value"]]
-      #      self[["and"]] <- lapply(QueryConditionList[["and"]],
-      #                                       function(x) {
-      #                                           QueryCondition$new()$fromJSONString(
-      #                                               jsonlite::toJSON(
-      #                                                   x,
-      #                                                   auto_unbox = TRUE),
-      #                                               typeMapping = typeMapping)})
-      #      self[["or"]] <- lapply(QueryConditionList[["or"]],
-      #                                       function(x) {
-      #                                           QueryCondition$new()$fromJSONString(
-      #                                               jsonlite::toJSON(
-      #                                                   x,
-      #                                                   auto_unbox = TRUE),
-      #                                               typeMapping = typeMapping)})
-      #        self[["constantScore"]] <-
-      #                QueryConditionList[["constantScore"]]
-      #        self[["boost"]] <-
-      #                QueryConditionList[["boost"]]
       invisible(self)
     }
   )

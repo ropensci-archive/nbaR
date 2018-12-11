@@ -128,20 +128,6 @@ Point <- R6::R6Class(
         simplifyVector = FALSE
       )
       self <- self$fromList(PointList)
-      #           self[["crs"]] <-
-      #              Crs$new()$fromJSONString(
-      #                  jsonlite::toJSON(
-      #                      PointList[["crs"]],
-      #                      auto_unbox = TRUE),
-      #                  typeMapping = typeMapping)
-      #        self[["bbox"]] <-
-      #                PointList[["bbox"]]
-      #           self[["coordinates"]] <-
-      #              LngLatAlt$new()$fromJSONString(
-      #                  jsonlite::toJSON(
-      #                      PointList[["coordinates"]],
-      #                      auto_unbox = TRUE),
-      #                  typeMapping = typeMapping)
       invisible(self)
     }
   )

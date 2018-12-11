@@ -280,54 +280,6 @@ MultiMediaContentIdentification <- R6::R6Class(
         simplifyVector = FALSE
       )
       self <- self$fromList(MultiMediaContentIdentificationList)
-      #        self[["taxonRank"]] <-
-      #                MultiMediaContentIdentificationList[["taxonRank"]]
-      #           self[["scientificName"]] <-
-      #              ScientificName$new()$fromJSONString(
-      #                  jsonlite::toJSON(
-      #                      MultiMediaContentIdentificationList[["scientificName"]],
-      #                      auto_unbox = TRUE),
-      #                  typeMapping = typeMapping)
-      #        self[["typeStatus"]] <-
-      #                MultiMediaContentIdentificationList[["typeStatus"]]
-      #        self[["dateIdentified"]] <-
-      #                MultiMediaContentIdentificationList[["dateIdentified"]]
-      #           self[["defaultClassification"]] <-
-      #              DefaultClassification$new()$fromJSONString(
-      #                  jsonlite::toJSON(
-      #                      MultiMediaContentIdentificationList[["defaultClassification"]],
-      #                      auto_unbox = TRUE),
-      #                  typeMapping = typeMapping)
-      #      self[["systemClassification"]] <- lapply(MultiMediaContentIdentificationList[["systemClassification"]],
-      #                                       function(x) {
-      #                                           Monomial$new()$fromJSONString(
-      #                                               jsonlite::toJSON(
-      #                                                   x,
-      #                                                   auto_unbox = TRUE),
-      #                                               typeMapping = typeMapping)})
-      #      self[["vernacularNames"]] <- lapply(MultiMediaContentIdentificationList[["vernacularNames"]],
-      #                                       function(x) {
-      #                                           VernacularName$new()$fromJSONString(
-      #                                               jsonlite::toJSON(
-      #                                                   x,
-      #                                                   auto_unbox = TRUE),
-      #                                               typeMapping = typeMapping)})
-      #        self[["identificationQualifiers"]] <-
-      #                MultiMediaContentIdentificationList[["identificationQualifiers"]]
-      #      self[["identifiers"]] <- lapply(MultiMediaContentIdentificationList[["identifiers"]],
-      #                                       function(x) {
-      #                                           Agent$new()$fromJSONString(
-      #                                               jsonlite::toJSON(
-      #                                                   x,
-      #                                                   auto_unbox = TRUE),
-      #                                               typeMapping = typeMapping)})
-      #      self[["taxonomicEnrichments"]] <- lapply(MultiMediaContentIdentificationList[["taxonomicEnrichments"]],
-      #                                       function(x) {
-      #                                           TaxonomicEnrichment$new()$fromJSONString(
-      #                                               jsonlite::toJSON(
-      #                                                   x,
-      #                                                   auto_unbox = TRUE),
-      #                                               typeMapping = typeMapping)})
       invisible(self)
     }
   )

@@ -94,8 +94,6 @@ SummarySourceSystem <- R6::R6Class(
         simplifyVector = FALSE
       )
       self <- self$fromList(SummarySourceSystemList)
-      #        self[["code"]] <-
-      #                SummarySourceSystemList[["code"]]
       invisible(self)
     }
   )

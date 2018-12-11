@@ -254,28 +254,6 @@ DefaultClassification <- R6::R6Class(
         simplifyVector = FALSE
       )
       self <- self$fromList(DefaultClassificationList)
-      #        self[["kingdom"]] <-
-      #                DefaultClassificationList[["kingdom"]]
-      #        self[["phylum"]] <-
-      #                DefaultClassificationList[["phylum"]]
-      #        self[["className"]] <-
-      #                DefaultClassificationList[["className"]]
-      #        self[["order"]] <-
-      #                DefaultClassificationList[["order"]]
-      #        self[["superFamily"]] <-
-      #                DefaultClassificationList[["superFamily"]]
-      #        self[["family"]] <-
-      #                DefaultClassificationList[["family"]]
-      #        self[["genus"]] <-
-      #                DefaultClassificationList[["genus"]]
-      #        self[["subgenus"]] <-
-      #                DefaultClassificationList[["subgenus"]]
-      #        self[["specificEpithet"]] <-
-      #                DefaultClassificationList[["specificEpithet"]]
-      #        self[["infraspecificEpithet"]] <-
-      #                DefaultClassificationList[["infraspecificEpithet"]]
-      #        self[["infraspecificRank"]] <-
-      #                DefaultClassificationList[["infraspecificRank"]]
       invisible(self)
     }
   )

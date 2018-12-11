@@ -190,20 +190,6 @@ SummaryScientificName <- R6::R6Class(
         simplifyVector = FALSE
       )
       self <- self$fromList(SummaryScientificNameList)
-      #        self[["fullScientificName"]] <-
-      #                SummaryScientificNameList[["fullScientificName"]]
-      #        self[["taxonomicStatus"]] <-
-      #                SummaryScientificNameList[["taxonomicStatus"]]
-      #        self[["genusOrMonomial"]] <-
-      #                SummaryScientificNameList[["genusOrMonomial"]]
-      #        self[["subgenus"]] <-
-      #                SummaryScientificNameList[["subgenus"]]
-      #        self[["specificEpithet"]] <-
-      #                SummaryScientificNameList[["specificEpithet"]]
-      #        self[["infraspecificEpithet"]] <-
-      #                SummaryScientificNameList[["infraspecificEpithet"]]
-      #        self[["authorshipVerbatim"]] <-
-      #                SummaryScientificNameList[["authorshipVerbatim"]]
       invisible(self)
     }
   )

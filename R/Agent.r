@@ -94,8 +94,6 @@ Agent <- R6::R6Class(
         simplifyVector = FALSE
       )
       self <- self$fromList(AgentList)
-      #        self[["agentText"]] <-
-      #                AgentList[["agentText"]]
       invisible(self)
     }
   )

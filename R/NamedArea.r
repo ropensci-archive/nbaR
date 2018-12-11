@@ -110,10 +110,6 @@ NamedArea <- R6::R6Class(
         simplifyVector = FALSE
       )
       self <- self$fromList(NamedAreaList)
-      #        self[["areaClass"]] <-
-      #                NamedAreaList[["areaClass"]]
-      #        self[["areaName"]] <-
-      #                NamedAreaList[["areaName"]]
       invisible(self)
     }
   )

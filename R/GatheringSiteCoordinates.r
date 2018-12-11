@@ -205,26 +205,6 @@ GatheringSiteCoordinates <- R6::R6Class(
         simplifyVector = FALSE
       )
       self <- self$fromList(GatheringSiteCoordinatesList)
-      #        self[["longitudeDecimal"]] <-
-      #                GatheringSiteCoordinatesList[["longitudeDecimal"]]
-      #        self[["latitudeDecimal"]] <-
-      #                GatheringSiteCoordinatesList[["latitudeDecimal"]]
-      #        self[["gridCellSystem"]] <-
-      #                GatheringSiteCoordinatesList[["gridCellSystem"]]
-      #        self[["gridLatitudeDecimal"]] <-
-      #                GatheringSiteCoordinatesList[["gridLatitudeDecimal"]]
-      #        self[["gridLongitudeDecimal"]] <-
-      #                GatheringSiteCoordinatesList[["gridLongitudeDecimal"]]
-      #        self[["gridCellCode"]] <-
-      #                GatheringSiteCoordinatesList[["gridCellCode"]]
-      #        self[["gridQualifier"]] <-
-      #                GatheringSiteCoordinatesList[["gridQualifier"]]
-      #           self[["geoShape"]] <-
-      #              Point$new()$fromJSONString(
-      #                  jsonlite::toJSON(
-      #                      GatheringSiteCoordinatesList[["geoShape"]],
-      #                      auto_unbox = TRUE),
-      #                  typeMapping = typeMapping)
       invisible(self)
     }
   )

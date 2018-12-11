@@ -125,16 +125,6 @@ Person <- R6::R6Class(
         simplifyVector = FALSE
       )
       self <- self$fromList(PersonList)
-      #        self[["agentText"]] <-
-      #                PersonList[["agentText"]]
-      #        self[["fullName"]] <-
-      #                PersonList[["fullName"]]
-      #           self[["organization"]] <-
-      #              Organization$new()$fromJSONString(
-      #                  jsonlite::toJSON(
-      #                      PersonList[["organization"]],
-      #                      auto_unbox = TRUE),
-      #                  typeMapping = typeMapping)
       invisible(self)
     }
   )

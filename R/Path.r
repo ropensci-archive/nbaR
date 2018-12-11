@@ -90,8 +90,6 @@ Path <- R6::R6Class(
         simplifyVector = FALSE
       )
       self <- self$fromList(PathList)
-      #        self[["purePath"]] <-
-      #                PathList[["purePath"]]
       invisible(self)
     }
   )

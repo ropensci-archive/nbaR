@@ -110,10 +110,6 @@ AssociatedTaxon <- R6::R6Class(
         simplifyVector = FALSE
       )
       self <- self$fromList(AssociatedTaxonList)
-      #        self[["name"]] <-
-      #                AssociatedTaxonList[["name"]]
-      #        self[["relationType"]] <-
-      #                AssociatedTaxonList[["relationType"]]
       invisible(self)
     }
   )

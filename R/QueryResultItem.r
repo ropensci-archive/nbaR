@@ -106,10 +106,6 @@ QueryResultItem <- R6::R6Class(
         simplifyVector = FALSE
       )
       self <- self$fromList(QueryResultItemList)
-      #        self[["score"]] <-
-      #                QueryResultItemList[["score"]]
-      #        self[["item"]] <-
-      #                QueryResultItemList[["item"]]
       invisible(self)
     }
   )
