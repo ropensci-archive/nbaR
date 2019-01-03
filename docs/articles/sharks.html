@@ -89,7 +89,7 @@
     <div class="page-header toc-ignore">
       <h1>Calibrating a molecular phylogeny of the sharks</h1>
             
-            <h4 class="date">Dec 11, 2018</h4>
+            <h4 class="date">Jan 03, 2019</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/naturalis/nbaR/blob/master/vignettes/sharks.Rmd"><code>vignettes/sharks.Rmd</code></a></small>
       <div class="hidden name"><code>sharks.Rmd</code></div>
@@ -158,22 +158,22 @@
 <a class="sourceLine" id="cb9-5" data-line-number="5"><span class="kw">unique</span>(<span class="kw">unlist</span>(<span class="kw">lapply</span>(specimens, <span class="cf">function</span>(x)x<span class="op">$</span>gatheringEvent<span class="op">$</span>chronoStratigraphy[[<span class="dv">1</span>]]<span class="op">$</span>youngChronoName)))</a></code></pre></div>
 <pre><code>##  [1] "Miocene"        "Pliocene"       "Upper Miocene"  "Pleistocene"   
 ##  [5] "Oligocene"      "Cretaceous"     "Chattian"       "Middle Miocene"
-##  [9] "Paleocene"      "Lower Miocene"  "Maastrichtian"  "Pliocene?"</code></pre>
+##  [9] "Lower Miocene"  "Paleocene"      "Maastrichtian"  "Pliocene?"</code></pre>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">unique</span>(<span class="kw">unlist</span>(<span class="kw">lapply</span>(specimens, <span class="cf">function</span>(x)x<span class="op">$</span>gatheringEvent<span class="op">$</span>chronoStratigraphy[[<span class="dv">1</span>]]<span class="op">$</span>oldChronoName)))</a></code></pre></div>
 <pre><code>##  [1] "Neogene"                                          
 ##  [2] "Middle Miocene"                                   
 ##  [3] "Middle Eocene"                                    
 ##  [4] "Mioceen"                                          
-##  [5] "Miocene"                                          
-##  [6] "Oligocene"                                        
+##  [5] "Oligocene"                                        
+##  [6] "Miocene"                                          
 ##  [7] "Lower Miocene"                                    
 ##  [8] "Rupelian"                                         
 ##  [9] "Unspecified age"                                  
 ## [10] "Ypresian"                                         
 ## [11] "Recent"                                           
 ## [12] "Upper Miocene"                                    
-## [13] "Eocene"                                           
-## [14] "Pleistocene"                                      
+## [13] "Pleistocene"                                      
+## [14] "Eocene"                                           
 ## [15] "Unindentified Age"                                
 ## [16] "Pliocene"                                         
 ## [17] "B.Mioceen"                                        
@@ -194,15 +194,15 @@
 ## [32] "Maastrichtian"                                    
 ## [33] "Recent?"                                          
 ## [34] "A. karsteni - Niso sp. Ass. Zone"                 
-## [35] "Plio-Pleistocene?"                                
-## [36] "Oligoceen"                                        
-## [37] "Plio-Pleistoceen"                                 
+## [35] "Oligoceen"                                        
+## [36] "Plio-Pleistocene?"                                
+## [37] "Unindentified A"                                  
 ## [38] "Lower Rupelian"                                   
-## [39] "Unindentified A"                                  
+## [39] "Plio-Pleistoceen"                                 
 ## [40] "Unspecified Age"                                  
 ## [41] "Cenomanian"                                       
-## [42] "? Kwartaire afzetting op zanden van Grimmertingen"
-## [43] "M.Miocen"                                         
+## [42] "M.Miocen"                                         
+## [43] "? Kwartaire afzetting op zanden van Grimmertingen"
 ## [44] "Pliocene?"                                        
 ## [45] "Middle Miocen"</code></pre>
 <p><strong>Caution</strong>: As you see above, there can be more than one chronoStratigraphy assigned with a specimen. Check how many we have per specimen:</p>
@@ -279,12 +279,12 @@
 ## 6   Palaeorhincodon           wardi            &lt;NA&gt;   Middle Eocene
 ## 7   Palaeorhincodon           wardi            &lt;NA&gt;   Middle Eocene
 ## 8     Pristiophorus             sp.            &lt;NA&gt;         Mioceen
-## 9     Pristiophorus      schroederi         Miocene         Miocene
+## 9     Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
 ## 10    Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
-## 11    Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
+## 11    Pristiophorus      schroederi         Miocene         Miocene
 ## 12    Chiloscyllium         minutum            &lt;NA&gt;            &lt;NA&gt;
-## 13        Hexanchus     primigenius         Miocene         Miocene
-## 14        Notidanus     primigenius            &lt;NA&gt;   Lower Miocene
+## 13        Notidanus     primigenius            &lt;NA&gt;   Lower Miocene
+## 14        Hexanchus     primigenius         Miocene         Miocene
 ## 15     Notorhynchus     primigenius            &lt;NA&gt;         Mioceen
 ## 16    Pristiophorus      schroederi        Pliocene         Miocene
 ## 17     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
@@ -295,31 +295,31 @@
 ## 22    Pristiophorus      schroederi        Pliocene            &lt;NA&gt;
 ## 23    Pristiophorus      schroederi        Pliocene         Miocene
 ## 24    Pristiophorus             sp.            &lt;NA&gt;         Mioceen
-## 25    Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
-## 26   Pristiophorus?      schroederi        Pliocene         Miocene
-## 27   Pristiophorus?            &lt;NA&gt;         Miocene         Miocene
+## 25   Pristiophorus?            &lt;NA&gt;         Miocene         Miocene
+## 26    Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
+## 27   Pristiophorus?      schroederi        Pliocene         Miocene
 ## 28    Pristiophorus      schroederi        Pliocene         Miocene
 ## 29    Pristiophorus      schroederi        Pliocene         Miocene
-## 30    Pristiophorus     rupeliensis            &lt;NA&gt;        Rupelian
-## 31    Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
+## 30    Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
+## 31    Pristiophorus     rupeliensis            &lt;NA&gt;        Rupelian
 ## 32    Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
 ## 33    Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
 ## 34    Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
 ## 35    Pristiophorus             sp.            &lt;NA&gt;         Mioceen
 ## 36    Pristiophorus      schroederi        Pliocene         Miocene
-## 37    Pristiophorus             sp.            &lt;NA&gt;         Miocene
-## 38    Pristiophorus             sp.            &lt;NA&gt;         Mioceen
-## 39    Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
-## 40     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
-## 41     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
-## 42     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
+## 37     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
+## 38     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
+## 39     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
+## 40    Pristiophorus             sp.            &lt;NA&gt;         Miocene
+## 41    Pristiophorus     rupeliensis            &lt;NA&gt;       Oligocene
+## 42    Pristiophorus             sp.            &lt;NA&gt;         Mioceen
 ## 43     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
 ## 44     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
 ## 45     Heterodontus            &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;
-## 46         Squatina         biforis            &lt;NA&gt;  Middle Miocene
+## 46         Squatina           prima            &lt;NA&gt; Unspecified age
 ## 47         Squatina         biforis            &lt;NA&gt;  Middle Miocene
-## 48         Squatina           prima            &lt;NA&gt; Unspecified age
-## 49         Squatina      sp. indet.            &lt;NA&gt;  Middle Miocene
+## 48         Squatina             sp.        Pliocene            &lt;NA&gt;
+## 49         Squatina         biforis            &lt;NA&gt;  Middle Miocene
 ## 50         Squatina         biforis            &lt;NA&gt;  Middle Miocene
 ##    young_age old_age
 ## 1         NA   23.03
@@ -330,12 +330,12 @@
 ## 6         NA   48.60
 ## 7         NA   48.60
 ## 8         NA      NA
-## 9       5.33   23.03
+## 9         NA   33.90
 ## 10        NA   33.90
-## 11        NA   33.90
+## 11      5.33   23.03
 ## 12        NA      NA
-## 13      5.33   23.03
-## 14        NA   23.03
+## 13        NA   23.03
+## 14      5.33   23.03
 ## 15        NA      NA
 ## 16      2.59   23.03
 ## 17        NA      NA
@@ -346,9 +346,9 @@
 ## 22      2.59      NA
 ## 23      2.59   23.03
 ## 24        NA      NA
-## 25        NA   33.90
-## 26      2.59   23.03
-## 27      5.33   23.03
+## 25      5.33   23.03
+## 26        NA   33.90
+## 27      2.59   23.03
 ## 28      2.59   23.03
 ## 29      2.59   23.03
 ## 30        NA   33.90
@@ -358,18 +358,18 @@
 ## 34        NA   33.90
 ## 35        NA      NA
 ## 36      2.59   23.03
-## 37        NA   23.03
+## 37        NA      NA
 ## 38        NA      NA
-## 39        NA   33.90
-## 40        NA      NA
-## 41        NA      NA
+## 39        NA      NA
+## 40        NA   23.03
+## 41        NA   33.90
 ## 42        NA      NA
 ## 43        NA      NA
 ## 44        NA      NA
 ## 45        NA      NA
-## 46        NA   15.97
+## 46        NA      NA
 ## 47        NA   15.97
-## 48        NA      NA
+## 48      2.59      NA
 ## 49        NA   15.97
 ## 50        NA   15.97</code></pre>
 </div>

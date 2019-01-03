@@ -24,6 +24,7 @@ geo_age <- function(geo_time) {
 }
 
 #' @noRd
+#' @param geo_time character giving a Geological timespan
 #' Internal Function to get a geological age range from unit,
 #' calling the API from earthlifeconsortium
 .geo_age <- function(geo_time) {
@@ -79,8 +80,10 @@ geo_age <- function(geo_time) {
 #' @description Make calibration table compatible with ape's 'chronos'
 #' @details Given a list of specimen objects, and a phylogenetic tree,
 #' makes a calibration table that is compatible with the 'chronos'
-#' function from the 'ape' package. This can be done for various taxonomic levels
-#' @param specimens list of objects of class Specimen, must have chronostratigraphy information
+#' function from the 'ape' package. This can be done for various
+#' taxonomic levels
+#' @param specimens list of objects of class Specimen, must have
+#' chronostratigraphy information
 #' @param tree object of class 'phylo'
 #' @param level character giving taxonomic level
 #' @examples
@@ -202,6 +205,9 @@ chronos_calib <- function(specimens, tree, level = "genus") {
 }
 
 #' @noRd
+#' @param genus genus of the taxon to get higher level for
+#' @param specificEpithet species of the taxon to get higher level for
+#' @param rank rank to be returned
 #' Internal Function to get the higher-level taxon of a species,
 #' given its genus and species name
 .get_higher_taxon <- function(genus, specificEpithet, rank) {

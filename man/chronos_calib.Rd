@@ -7,7 +7,8 @@
 chronos_calib(specimens, tree, level = "genus")
 }
 \arguments{
-\item{specimens}{list of objects of class Specimen, must have chronostratigraphy information}
+\item{specimens}{list of objects of class Specimen, must have
+chronostratigraphy information}
 
 \item{tree}{object of class 'phylo'}
 
@@ -19,7 +20,8 @@ Make calibration table compatible with ape's 'chronos'
 \details{
 Given a list of specimen objects, and a phylogenetic tree,
 makes a calibration table that is compatible with the 'chronos'
-function from the 'ape' package. This can be done for various taxonomic levels
+function from the 'ape' package. This can be done for various
+taxonomic levels
 }
 \examples{
 # get specimen with chronostratigraphic data
