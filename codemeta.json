@@ -158,11 +158,23 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=ape"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "maps",
+      "name": "maps",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=maps"
     }
   ],
   "codeRepository": "https://github.com/naturalis/nbaR",
   "readme": "https://github.com/naturalis/nbaR/blob/master/README.md",
-  "fileSize": "28220.95KB",
+  "fileSize": "10863.891KB",
   "contIntegration": [
     "https://travis-ci.org/naturalis/nbaR",
     "https://coveralls.io/github/naturalis/nbaR?branch=master"
