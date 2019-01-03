@@ -59,8 +59,8 @@ geo_age <- function(geo_time) {
 
   if (is.null(res) || res$status_code != 200) {
     warning(
-      "Could not retrieve values for geo unit \"",
-      geo_time, "\" from earthlifeconsortium.org"
+      "Could not retrieve time values for geo unit \"",
+      geo_time, "\" from earthlifeconsortium.org, returning NA"
     )
     return(list(early_age = NA, late_age = NA))
   }
