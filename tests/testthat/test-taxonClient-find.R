@@ -17,17 +17,17 @@ if (!tc$ping()) {
 context("Testing taxon find functions")
 
 test_that("find function works", {
-  id <- "27706109@COL"
-  res <- tc$find("27706109@COL")
+  id <- "AHCYFBRDJBG@NSR"
+  res <- tc$find(id)
   expect_is(res$content, "Taxon")
   expect_equal(id, res$content$id)
 })
 
 test_that("findByIds works", {
-  ids <- "27706109@COL,27704140@COL,27706110@COL,27706111@COL,27706108@COL"
+  ids <- "42131338@COL,42131574@COL,42131573@COL"
   res <- tc$find_by_ids(ids)
   expect_is(res$content, "list")
-  expect_length(res$content, 5)
+  expect_length(res$content, 3)
   for (i in seq_along(res$content)) {
     expect_is(res$content[[i]], "Taxon")
   }
