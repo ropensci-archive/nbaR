@@ -221,7 +221,8 @@ Specimen <- R6::R6Class(
           `previousSourceID`,
           function(x) stopifnot(is.character(x))
         )
-        self[["previousSourceID"]] <- `previousSourceID`
+        ## omit names as they should not be part of JSON representation
+        self[["previousSourceID"]] <- unname(`previousSourceID`)
       }
       if (!missing(`owner`)) {
         stopifnot(
@@ -340,7 +341,8 @@ Specimen <- R6::R6Class(
           `identifications`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["identifications"]] <- `identifications`
+        ## omit names as they should not be part of JSON representation
+        self[["identifications"]] <- unname(`identifications`)
       }
       if (!missing(`associatedMultiMediaUris`)) {
         stopifnot(
@@ -351,7 +353,8 @@ Specimen <- R6::R6Class(
           `associatedMultiMediaUris`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["associatedMultiMediaUris"]] <- `associatedMultiMediaUris`
+        ## omit names as they should not be part of JSON representation
+        self[["associatedMultiMediaUris"]] <- unname(`associatedMultiMediaUris`)
       }
       if (!missing(`theme`)) {
         stopifnot(
@@ -362,7 +365,8 @@ Specimen <- R6::R6Class(
           `theme`,
           function(x) stopifnot(is.character(x))
         )
-        self[["theme"]] <- `theme`
+        ## omit names as they should not be part of JSON representation
+        self[["theme"]] <- unname(`theme`)
       }
     },
     toList = function() {

@@ -87,6 +87,7 @@
         {{^isPrimitiveType}}
         stopifnot(R6::is.R6(`{{baseName}}`))
         {{/isPrimitiveType}}
+        self[["{{baseName}}"]] <- `{{baseName}}`
         {{/isListContainer}}
         {{#isListContainer}}
         {{#isPrimitiveType}}
@@ -101,8 +102,9 @@
         lapply(`{{baseName}}`,
                function(x) stopifnot(R6::is.R6(x)))
         {{/isPrimitiveType}}
+        ## omit names as they should not be part of JSON representation
+        self[["{{baseName}}"]] <- unname(`{{baseName}}`)
         {{/isListContainer}}
-        self[["{{baseName}}"]] <- `{{baseName}}`
       }
     {{/vars}}
     },

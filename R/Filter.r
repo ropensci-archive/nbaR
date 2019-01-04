@@ -84,7 +84,8 @@ Filter <- R6::R6Class(
           `acceptValues`,
           function(x) stopifnot(is.character(x))
         )
-        self[["acceptValues"]] <- `acceptValues`
+        ## omit names as they should not be part of JSON representation
+        self[["acceptValues"]] <- unname(`acceptValues`)
       }
       if (!missing(`rejectValues`)) {
         stopifnot(
@@ -95,7 +96,8 @@ Filter <- R6::R6Class(
           `rejectValues`,
           function(x) stopifnot(is.character(x))
         )
-        self[["rejectValues"]] <- `rejectValues`
+        ## omit names as they should not be part of JSON representation
+        self[["rejectValues"]] <- unname(`rejectValues`)
       }
     },
     toList = function() {

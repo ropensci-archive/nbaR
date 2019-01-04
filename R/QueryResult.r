@@ -71,7 +71,8 @@ QueryResult <- R6::R6Class(
           `resultSet`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["resultSet"]] <- `resultSet`
+        ## omit names as they should not be part of JSON representation
+        self[["resultSet"]] <- unname(`resultSet`)
       }
     },
     toList = function() {

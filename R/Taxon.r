@@ -170,7 +170,8 @@ Taxon <- R6::R6Class(
           `systemClassification`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["systemClassification"]] <- `systemClassification`
+        ## omit names as they should not be part of JSON representation
+        self[["systemClassification"]] <- unname(`systemClassification`)
       }
       if (!missing(`synonyms`)) {
         stopifnot(
@@ -181,7 +182,8 @@ Taxon <- R6::R6Class(
           `synonyms`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["synonyms"]] <- `synonyms`
+        ## omit names as they should not be part of JSON representation
+        self[["synonyms"]] <- unname(`synonyms`)
       }
       if (!missing(`vernacularNames`)) {
         stopifnot(
@@ -192,7 +194,8 @@ Taxon <- R6::R6Class(
           `vernacularNames`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["vernacularNames"]] <- `vernacularNames`
+        ## omit names as they should not be part of JSON representation
+        self[["vernacularNames"]] <- unname(`vernacularNames`)
       }
       if (!missing(`descriptions`)) {
         stopifnot(
@@ -203,7 +206,8 @@ Taxon <- R6::R6Class(
           `descriptions`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["descriptions"]] <- `descriptions`
+        ## omit names as they should not be part of JSON representation
+        self[["descriptions"]] <- unname(`descriptions`)
       }
       if (!missing(`references`)) {
         stopifnot(
@@ -214,7 +218,8 @@ Taxon <- R6::R6Class(
           `references`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["references"]] <- `references`
+        ## omit names as they should not be part of JSON representation
+        self[["references"]] <- unname(`references`)
       }
       if (!missing(`experts`)) {
         stopifnot(
@@ -225,7 +230,8 @@ Taxon <- R6::R6Class(
           `experts`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["experts"]] <- `experts`
+        ## omit names as they should not be part of JSON representation
+        self[["experts"]] <- unname(`experts`)
       }
       if (!missing(`validName`)) {
         stopifnot(R6::is.R6(`validName`))

@@ -82,7 +82,8 @@ QuerySpec <- R6::R6Class(
           `fields`,
           function(x) stopifnot(is.character(x))
         )
-        self[["fields"]] <- `fields`
+        ## omit names as they should not be part of JSON representation
+        self[["fields"]] <- unname(`fields`)
       }
       if (!missing(`conditions`)) {
         stopifnot(
@@ -93,7 +94,8 @@ QuerySpec <- R6::R6Class(
           `conditions`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["conditions"]] <- `conditions`
+        ## omit names as they should not be part of JSON representation
+        self[["conditions"]] <- unname(`conditions`)
       }
       if (!missing(`logicalOperator`)) {
         stopifnot(
@@ -111,7 +113,8 @@ QuerySpec <- R6::R6Class(
           `sortFields`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["sortFields"]] <- `sortFields`
+        ## omit names as they should not be part of JSON representation
+        self[["sortFields"]] <- unname(`sortFields`)
       }
       if (!missing(`from`)) {
         stopifnot(

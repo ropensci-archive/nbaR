@@ -272,7 +272,8 @@ GatheringEvent <- R6::R6Class(
           `gatheringPersons`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["gatheringPersons"]] <- `gatheringPersons`
+        ## omit names as they should not be part of JSON representation
+        self[["gatheringPersons"]] <- unname(`gatheringPersons`)
       }
       if (!missing(`gatheringOrganizations`)) {
         stopifnot(
@@ -283,7 +284,8 @@ GatheringEvent <- R6::R6Class(
           `gatheringOrganizations`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["gatheringOrganizations"]] <- `gatheringOrganizations`
+        ## omit names as they should not be part of JSON representation
+        self[["gatheringOrganizations"]] <- unname(`gatheringOrganizations`)
       }
       if (!missing(`siteCoordinates`)) {
         stopifnot(
@@ -294,7 +296,8 @@ GatheringEvent <- R6::R6Class(
           `siteCoordinates`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["siteCoordinates"]] <- `siteCoordinates`
+        ## omit names as they should not be part of JSON representation
+        self[["siteCoordinates"]] <- unname(`siteCoordinates`)
       }
       if (!missing(`namedAreas`)) {
         stopifnot(
@@ -305,7 +308,8 @@ GatheringEvent <- R6::R6Class(
           `namedAreas`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["namedAreas"]] <- `namedAreas`
+        ## omit names as they should not be part of JSON representation
+        self[["namedAreas"]] <- unname(`namedAreas`)
       }
       if (!missing(`associatedTaxa`)) {
         stopifnot(
@@ -316,7 +320,8 @@ GatheringEvent <- R6::R6Class(
           `associatedTaxa`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["associatedTaxa"]] <- `associatedTaxa`
+        ## omit names as they should not be part of JSON representation
+        self[["associatedTaxa"]] <- unname(`associatedTaxa`)
       }
       if (!missing(`chronoStratigraphy`)) {
         stopifnot(
@@ -327,7 +332,8 @@ GatheringEvent <- R6::R6Class(
           `chronoStratigraphy`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["chronoStratigraphy"]] <- `chronoStratigraphy`
+        ## omit names as they should not be part of JSON representation
+        self[["chronoStratigraphy"]] <- unname(`chronoStratigraphy`)
       }
       if (!missing(`lithoStratigraphy`)) {
         stopifnot(
@@ -338,7 +344,8 @@ GatheringEvent <- R6::R6Class(
           `lithoStratigraphy`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["lithoStratigraphy"]] <- `lithoStratigraphy`
+        ## omit names as they should not be part of JSON representation
+        self[["lithoStratigraphy"]] <- unname(`lithoStratigraphy`)
       }
       if (!missing(`bioStratigraphic`)) {
         stopifnot(
@@ -349,7 +356,8 @@ GatheringEvent <- R6::R6Class(
           `bioStratigraphic`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["bioStratigraphic"]] <- `bioStratigraphic`
+        ## omit names as they should not be part of JSON representation
+        self[["bioStratigraphic"]] <- unname(`bioStratigraphic`)
       }
     },
     toList = function() {

@@ -25,7 +25,6 @@ Imports:
     jsonlite,
     httr,
     R6,
-    ape,
-	maps
+    ape
 RoxygenNote: 6.1.0
 VignetteBuilder: knitr

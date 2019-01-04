@@ -68,7 +68,8 @@ GeoJsonObject <- R6::R6Class(
           `bbox`,
           function(x) stopifnot(is.character(x))
         )
-        self[["bbox"]] <- `bbox`
+        ## omit names as they should not be part of JSON representation
+        self[["bbox"]] <- unname(`bbox`)
       }
     },
     toList = function() {

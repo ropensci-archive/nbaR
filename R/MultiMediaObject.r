@@ -246,7 +246,8 @@ MultiMediaObject <- R6::R6Class(
           `serviceAccessPoints`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["serviceAccessPoints"]] <- `serviceAccessPoints`
+        ## omit names as they should not be part of JSON representation
+        self[["serviceAccessPoints"]] <- unname(`serviceAccessPoints`)
       }
       if (!missing(`type`)) {
         stopifnot(
@@ -302,7 +303,8 @@ MultiMediaObject <- R6::R6Class(
           `subjectParts`,
           function(x) stopifnot(is.character(x))
         )
-        self[["subjectParts"]] <- `subjectParts`
+        ## omit names as they should not be part of JSON representation
+        self[["subjectParts"]] <- unname(`subjectParts`)
       }
       if (!missing(`subjectOrientations`)) {
         stopifnot(
@@ -313,7 +315,8 @@ MultiMediaObject <- R6::R6Class(
           `subjectOrientations`,
           function(x) stopifnot(is.character(x))
         )
-        self[["subjectOrientations"]] <- `subjectOrientations`
+        ## omit names as they should not be part of JSON representation
+        self[["subjectOrientations"]] <- unname(`subjectOrientations`)
       }
       if (!missing(`phasesOrStages`)) {
         stopifnot(
@@ -324,7 +327,8 @@ MultiMediaObject <- R6::R6Class(
           `phasesOrStages`,
           function(x) stopifnot(is.character(x))
         )
-        self[["phasesOrStages"]] <- `phasesOrStages`
+        ## omit names as they should not be part of JSON representation
+        self[["phasesOrStages"]] <- unname(`phasesOrStages`)
       }
       if (!missing(`sexes`)) {
         stopifnot(
@@ -335,7 +339,8 @@ MultiMediaObject <- R6::R6Class(
           `sexes`,
           function(x) stopifnot(is.character(x))
         )
-        self[["sexes"]] <- `sexes`
+        ## omit names as they should not be part of JSON representation
+        self[["sexes"]] <- unname(`sexes`)
       }
       if (!missing(`gatheringEvents`)) {
         stopifnot(
@@ -346,7 +351,8 @@ MultiMediaObject <- R6::R6Class(
           `gatheringEvents`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["gatheringEvents"]] <- `gatheringEvents`
+        ## omit names as they should not be part of JSON representation
+        self[["gatheringEvents"]] <- unname(`gatheringEvents`)
       }
       if (!missing(`identifications`)) {
         stopifnot(
@@ -357,7 +363,8 @@ MultiMediaObject <- R6::R6Class(
           `identifications`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["identifications"]] <- `identifications`
+        ## omit names as they should not be part of JSON representation
+        self[["identifications"]] <- unname(`identifications`)
       }
       if (!missing(`theme`)) {
         stopifnot(
@@ -368,7 +375,8 @@ MultiMediaObject <- R6::R6Class(
           `theme`,
           function(x) stopifnot(is.character(x))
         )
-        self[["theme"]] <- `theme`
+        ## omit names as they should not be part of JSON representation
+        self[["theme"]] <- unname(`theme`)
       }
       if (!missing(`associatedSpecimen`)) {
         stopifnot(R6::is.R6(`associatedSpecimen`))

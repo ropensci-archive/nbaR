@@ -70,7 +70,8 @@ TaxonomicEnrichment <- R6::R6Class(
           `vernacularNames`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["vernacularNames"]] <- `vernacularNames`
+        ## omit names as they should not be part of JSON representation
+        self[["vernacularNames"]] <- unname(`vernacularNames`)
       }
       if (!missing(`synonyms`)) {
         stopifnot(
@@ -81,7 +82,8 @@ TaxonomicEnrichment <- R6::R6Class(
           `synonyms`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["synonyms"]] <- `synonyms`
+        ## omit names as they should not be part of JSON representation
+        self[["synonyms"]] <- unname(`synonyms`)
       }
       if (!missing(`sourceSystem`)) {
         stopifnot(R6::is.R6(`sourceSystem`))

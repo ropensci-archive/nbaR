@@ -102,7 +102,8 @@ QueryCondition <- R6::R6Class(
           `and`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["and"]] <- `and`
+        ## omit names as they should not be part of JSON representation
+        self[["and"]] <- unname(`and`)
       }
       if (!missing(`or`)) {
         stopifnot(
@@ -113,7 +114,8 @@ QueryCondition <- R6::R6Class(
           `or`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["or"]] <- `or`
+        ## omit names as they should not be part of JSON representation
+        self[["or"]] <- unname(`or`)
       }
       if (!missing(`constantScore`)) {
         self[["constantScore"]] <- `constantScore`

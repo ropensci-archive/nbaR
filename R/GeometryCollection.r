@@ -71,7 +71,8 @@ GeometryCollection <- R6::R6Class(
           `bbox`,
           function(x) stopifnot(is.character(x))
         )
-        self[["bbox"]] <- `bbox`
+        ## omit names as they should not be part of JSON representation
+        self[["bbox"]] <- unname(`bbox`)
       }
       if (!missing(`geometries`)) {
         stopifnot(
@@ -82,7 +83,8 @@ GeometryCollection <- R6::R6Class(
           `geometries`,
           function(x) stopifnot(is.character(x))
         )
-        self[["geometries"]] <- `geometries`
+        ## omit names as they should not be part of JSON representation
+        self[["geometries"]] <- unname(`geometries`)
       }
     },
     toList = function() {

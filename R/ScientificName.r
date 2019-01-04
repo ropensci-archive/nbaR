@@ -184,7 +184,8 @@ ScientificName <- R6::R6Class(
           `references`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["references"]] <- `references`
+        ## omit names as they should not be part of JSON representation
+        self[["references"]] <- unname(`references`)
       }
       if (!missing(`experts`)) {
         stopifnot(
@@ -195,7 +196,8 @@ ScientificName <- R6::R6Class(
           `experts`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["experts"]] <- `experts`
+        ## omit names as they should not be part of JSON representation
+        self[["experts"]] <- unname(`experts`)
       }
     },
     toList = function() {

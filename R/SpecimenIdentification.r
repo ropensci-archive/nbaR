@@ -138,7 +138,8 @@ SpecimenIdentification <- R6::R6Class(
           `systemClassification`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["systemClassification"]] <- `systemClassification`
+        ## omit names as they should not be part of JSON representation
+        self[["systemClassification"]] <- unname(`systemClassification`)
       }
       if (!missing(`vernacularNames`)) {
         stopifnot(
@@ -149,7 +150,8 @@ SpecimenIdentification <- R6::R6Class(
           `vernacularNames`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["vernacularNames"]] <- `vernacularNames`
+        ## omit names as they should not be part of JSON representation
+        self[["vernacularNames"]] <- unname(`vernacularNames`)
       }
       if (!missing(`identificationQualifiers`)) {
         stopifnot(
@@ -160,7 +162,8 @@ SpecimenIdentification <- R6::R6Class(
           `identificationQualifiers`,
           function(x) stopifnot(is.character(x))
         )
-        self[["identificationQualifiers"]] <- `identificationQualifiers`
+        ## omit names as they should not be part of JSON representation
+        self[["identificationQualifiers"]] <- unname(`identificationQualifiers`)
       }
       if (!missing(`identifiers`)) {
         stopifnot(
@@ -171,7 +174,8 @@ SpecimenIdentification <- R6::R6Class(
           `identifiers`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["identifiers"]] <- `identifiers`
+        ## omit names as they should not be part of JSON representation
+        self[["identifiers"]] <- unname(`identifiers`)
       }
       if (!missing(`taxonomicEnrichments`)) {
         stopifnot(
@@ -182,7 +186,8 @@ SpecimenIdentification <- R6::R6Class(
           `taxonomicEnrichments`,
           function(x) stopifnot(R6::is.R6(x))
         )
-        self[["taxonomicEnrichments"]] <- `taxonomicEnrichments`
+        ## omit names as they should not be part of JSON representation
+        self[["taxonomicEnrichments"]] <- unname(`taxonomicEnrichments`)
       }
       if (!missing(`preferred`)) {
         self[["preferred"]] <- `preferred`

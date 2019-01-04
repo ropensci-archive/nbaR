@@ -91,7 +91,8 @@ LngLatAlt <- R6::R6Class(
           `additionalElements`,
           function(x) stopifnot(is.character(x))
         )
-        self[["additionalElements"]] <- `additionalElements`
+        ## omit names as they should not be part of JSON representation
+        self[["additionalElements"]] <- unname(`additionalElements`)
       }
     },
     toList = function() {
