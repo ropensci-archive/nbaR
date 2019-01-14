@@ -1,0 +1,43 @@
+{{>partial_header}}
+#' @title {{baseName}} client wrapper
+#' for {{importPath}} objects
+
+
+{{#operations}}
+  {{#operation}}
+    {{classVarName}}_{{operationId}} <- function(
+    {{#allParams}}
+      {{#isPrimitiveType}}
+        {{baseName}} = NULL,
+      {{/isPrimitiveType}}
+      {{^isPrimitiveType}}
+        {{#isListContainer}}
+          {{baseName}} = NULL,
+        {{/isListContainer}}
+      {{/isPrimitiveType}}
+    {{/allParams}}
+    {{#hasQueryParams}}
+      queryParams = list(),
+    {{/hasQueryParams}}
+    {{#isResponseFile}}
+      filename = format(Sys.time(),
+      "download-%Y-%m-%dT%H:%m.zip"),
+    {{/isResponseFile}} ...) {
+    sc <- SpecimenClient$new()
+    res <- sc${{operationId}}(
+    {{#allParams}}
+      {{#isPrimitiveType}}
+        {{baseName}},
+      {{/isPrimitiveType}}
+      {{^isPrimitiveType}}
+        {{#isListContainer}}
+          {{baseName}},
+        {{/isListContainer}}
+      {{/isPrimitiveType}}
+    {{/allParams}}
+    {{#hasQueryParams}} queryParams=queryParams, {{/hasQueryParams}}
+      ...)
+      return(res$content)    
+      }
+  {{/operation}}
+{{/operations}}
