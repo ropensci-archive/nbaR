@@ -69,6 +69,11 @@ test_that("Query with query params works", {
   res1 <- sc$query(queryParams = qp)
   res2 <- sc$query(querySpec = qs)
   expect_equivalent(res1$content$resultSet, res2$content$resultSet)
+
+  ## test if query params work as a vector
+  qpvec <- c("identifications.defaultClassification.genus" = "Passiflora")
+  res3 <- sc$query(queryParams = qpvec)
+  expect_equivalent(res1$content$resultSet, res3$content$resultSet)
 })
 
 test_that("Nested query works", {

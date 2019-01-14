@@ -89,7 +89,7 @@
     <div class="page-header toc-ignore">
       <h1>Calibrating a molecular phylogeny of the sharks</h1>
             
-            <h4 class="date">Jan 04, 2019</h4>
+            <h4 class="date">Jan 14, 2019</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/naturalis/nbaR/blob/master/vignettes/sharks.Rmd"><code>vignettes/sharks.Rmd</code></a></small>
       <div class="hidden name"><code>sharks.Rmd</code></div>
@@ -261,10 +261,10 @@
 <a class="sourceLine" id="cb25-14" data-line-number="14"></a>
 <a class="sourceLine" id="cb25-15" data-line-number="15">## Get absolute ages from earth life consortium</a>
 <a class="sourceLine" id="cb25-16" data-line-number="16">times &lt;-<span class="st"> </span><span class="kw"><a href="../reference/geo_age.html">geo_age</a></span>(<span class="kw">unique</span>(<span class="kw">c</span>(<span class="kw">as.character</span>(data<span class="op">$</span>youngChronoName), <span class="kw">as.character</span>(data<span class="op">$</span>oldChronoName))))</a></code></pre></div>
-<pre><code>## Warning in FUN(X[[i]], ...): Could not retrieve values for geo unit
-## "Mioceen" from earthlifeconsortium.org</code></pre>
-<pre><code>## Warning in FUN(X[[i]], ...): Could not retrieve values for geo unit
-## "Unspecified age" from earthlifeconsortium.org</code></pre>
+<pre><code>## Warning in FUN(X[[i]], ...): Could not retrieve time values for geo unit
+## "Mioceen" from earthlifeconsortium.org, returning NA</code></pre>
+<pre><code>## Warning in FUN(X[[i]], ...): Could not retrieve time values for geo unit
+## "Unspecified age" from earthlifeconsortium.org, returning NA</code></pre>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">## add upper and lower bounds to ages</a>
 <a class="sourceLine" id="cb28-2" data-line-number="2">data<span class="op">$</span>young_age &lt;-<span class="st"> </span><span class="kw">sapply</span>(data<span class="op">$</span>youngChronoName, <span class="cf">function</span>(x)<span class="kw">ifelse</span>(<span class="kw">is.na</span>(x), <span class="ot">NA</span>, <span class="kw">unlist</span>(times[<span class="st">'late_age'</span>, <span class="kw">as.character</span>(x)])))</a>
 <a class="sourceLine" id="cb28-3" data-line-number="3">data<span class="op">$</span>old_age &lt;-<span class="st"> </span><span class="kw">sapply</span>(data<span class="op">$</span>oldChronoName, <span class="cf">function</span>(x)<span class="kw">ifelse</span>(<span class="kw">is.na</span>(x), <span class="ot">NA</span>, <span class="kw">unlist</span>(times[<span class="st">'early_age'</span>, <span class="kw">as.character</span>(x)])))</a>

@@ -1,5 +1,6 @@
 package nl.naturalis.nba.codegen;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -14,6 +15,7 @@ import io.swagger.codegen.CodegenConfig;
 import io.swagger.codegen.CodegenConstants;
 import io.swagger.codegen.CodegenModel;
 import io.swagger.codegen.CodegenOperation;
+import io.swagger.codegen.CodegenParameter;
 import io.swagger.codegen.CodegenProperty;
 import io.swagger.codegen.DefaultCodegen;
 import io.swagger.codegen.SupportingFile;
@@ -81,7 +83,10 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 
 		this.testPackage = "tests/testthat";
 		
+		
 		modelTestTemplateFiles.put("model_test.mustache", ".r");
+		apiTemplateFiles.put("api_wrapper.mustache", ".r");
+		
 
 		/**
 		 * Template Location. This is the location which templates will
@@ -221,6 +226,23 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 		return initialCaps(name) + "Client";
 	}
 	
+	/*
+	 * Overridden to make distinction  between api-wrapper files and api files.
+	 * Since we put them into the 'apiTemplateFiles' above, files would otherwise be overwritten
+	 * The distinction is determined by the template filename ('api_wrapper.mustache' for)
+	 * XXX This could also be adapted in Generator.java
+	 */	
+	@Override
+	public String apiFilename(String templateName, String tag) {
+		String suffix = apiTemplateFiles().get(templateName);
+		String af = "";
+		if (templateName == "api_wrapper.mustache") {
+			af = apiFileFolder() + File.separator + toApiFilename(tag) + "-wrapper" + suffix;
+		} else {		
+			af = apiFileFolder() + File.separator + toApiFilename(tag) + suffix;
+		}
+		return af;
+	}
 	
 	/*
 	 * Overridden to clean up operationID from suffixes like _http_get2 etc
@@ -262,7 +284,18 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 				CodegenOperation operation = it.next();
 				if (operation.httpMethod.equals("POST")) {
 					it.remove();
+				}				
+				// label QuerySpec params
+				/* List<CodegenParameter> par = operation.allParams;
+				for (Iterator<CodegenParameter> it2 = par.iterator(); it2.hasNext();) {
+					CodegenParameter p = it2.next();
+					if (p.baseName == "querySpec") {
+						//p. = true;
+					
+					}
+					
 				}
+				*/
 			}
 		}
 		return objs;
@@ -323,5 +356,5 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 		co.operationIdSnakeCase = DefaultCodegen.underscore(uniqueName);
 		opList.add(co);
 		co.baseName = tag;
-	}
+	}	
 }

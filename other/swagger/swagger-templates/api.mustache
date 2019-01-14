@@ -19,7 +19,9 @@
 #'     Parameters:
 #'     \itemize{
 #'         {{#queryParams}}\item \code{ {{paramName}} } : {{description}} {{/queryParams}}
+#'         {{#hasQueryParams}}\item \code{ queryParams } : named list or vector with query parameters {{/hasQueryParams}}
 #'         {{#pathParams}}\item \code{ {{paramName}} } : {{description}} {{/pathParams}}
+#'         {{#isResponseFile}}\item \code{ filename } : location to save data, defaults to \code{format(Sys.time(),"download-%Y-%m-%dT%H:%m.zip")} {{/isResponseFile}}
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -126,7 +128,7 @@
         {{/hasPathParams}}
         response <- self$callApi(url = paste0(self$basePath, urlPath),
                                  method = "{{httpMethod}}",
-                                 queryParams = queryParams,
+                                 queryParams = as.list(queryParams),
                                  headerParams = headerParams,
                                  body = body,
                                  {{#isResponseFile}}
