@@ -24,6 +24,8 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'         \item \code{ queryParams } : named list or vector with query parameters
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -38,7 +40,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ field } : name of field in the taxon object
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -52,7 +56,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ group } : name of field in the taxon object you want to group by \item \code{ field } : name of field in the taxon object
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -66,6 +72,8 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'         \item \code{ queryParams } : named list or vector with query parameters
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -80,7 +88,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ dataset } : name of dataset
+#'         \item \code{ filename } : location to save data, defaults to \code{format(Sys.time(),"download-%Y-%m-%dT%H:%m.zip")}
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -93,6 +103,8 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
+#'
 #'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
@@ -108,7 +120,9 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'         \item \code{ queryParams } : named list or vector with query parameters
 #'
+#'         \item \code{ filename } : location to save data, defaults to \code{format(Sys.time(),"download-%Y-%m-%dT%H:%m.zip")}
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -122,7 +136,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ id } : id of taxon
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -136,7 +152,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ ids } : ids of multiple taxa, separated by comma
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -150,7 +168,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ field } : name of field in a taxon object
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -164,7 +184,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ group } : name of field in the taxon object you want to group by \item \code{ field } : name of field in the taxon object
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -177,6 +199,8 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
+#'
 #'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
@@ -193,6 +217,8 @@
 #'     \itemize{
 #'
 #'
+#'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -206,7 +232,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ name } : name of setting
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -219,6 +247,8 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
+#'
 #'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
@@ -234,6 +264,8 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'         \item \code{ queryParams } : named list or vector with query parameters
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -248,7 +280,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ field } : specimen document field \item \code{ operator } : operator
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -262,6 +296,8 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'         \item \code{ queryParams } : named list or vector with query parameters
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -307,7 +343,7 @@ TaxonClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -337,7 +373,7 @@ TaxonClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -374,7 +410,7 @@ TaxonClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -417,7 +453,7 @@ TaxonClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -461,7 +497,7 @@ TaxonClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         httr::write_disk(filename),
@@ -487,7 +523,7 @@ TaxonClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -534,7 +570,7 @@ TaxonClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         httr::write_disk(filename),
@@ -567,7 +603,7 @@ TaxonClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -611,7 +647,7 @@ TaxonClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -651,7 +687,7 @@ TaxonClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -688,7 +724,7 @@ TaxonClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -711,7 +747,7 @@ TaxonClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -734,7 +770,7 @@ TaxonClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -764,7 +800,7 @@ TaxonClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -787,7 +823,7 @@ TaxonClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -830,7 +866,7 @@ TaxonClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -876,7 +912,7 @@ TaxonClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -919,7 +955,7 @@ TaxonClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...

@@ -24,6 +24,8 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'         \item \code{ queryParams } : named list or vector with query parameters
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -38,7 +40,9 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'         \item \code{ queryParams } : named list or vector with query parameters
 #'         \item \code{ field } : Name of field in the specimen object
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -52,7 +56,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ group } : Name of field in the specimen object you want to group by \item \code{ field } : Name of field in the specimen object
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -66,6 +72,8 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'         \item \code{ queryParams } : named list or vector with query parameters
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -80,7 +88,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ dataset } : name of dataset
+#'         \item \code{ filename } : location to save data, defaults to \code{format(Sys.time(),"download-%Y-%m-%dT%H:%m.zip")}
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -93,6 +103,8 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
+#'
 #'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
@@ -108,7 +120,9 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'         \item \code{ queryParams } : named list or vector with query parameters
 #'
+#'         \item \code{ filename } : location to save data, defaults to \code{format(Sys.time(),"download-%Y-%m-%dT%H:%m.zip")}
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -122,7 +136,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ unit_id } : the unitID of the specimen to query
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -136,7 +152,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ id } : id of specimen
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -150,7 +168,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ ids } : ids of multiple specimen, separated by comma
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -164,7 +184,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ unit_id } : the unitID of the specimen to query
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -178,7 +200,9 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'         \item \code{ queryParams } : named list or vector with query parameters
 #'         \item \code{ field } : Name of field in specimen object
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -192,7 +216,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ group } : Name of field in the specimen object you want to group by \item \code{ field } : Name of field in the specimen object
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -205,6 +231,8 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
+#'
 #'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
@@ -220,7 +248,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ name } : name of dataset
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -233,6 +263,8 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
+#'
 #'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
@@ -249,6 +281,8 @@
 #'     \itemize{
 #'
 #'
+#'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -262,7 +296,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ name } : name of setting
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -275,6 +311,8 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
+#'
 #'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
@@ -290,6 +328,8 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'         \item \code{ queryParams } : named list or vector with query parameters
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -304,7 +344,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ field } : specimen document field \item \code{ operator } : operator
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -318,6 +360,8 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'         \item \code{ queryParams } : named list or vector with query parameters
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -363,7 +407,7 @@ SpecimenClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -413,7 +457,7 @@ SpecimenClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -450,7 +494,7 @@ SpecimenClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -493,7 +537,7 @@ SpecimenClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -537,7 +581,7 @@ SpecimenClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         httr::write_disk(filename),
@@ -563,7 +607,7 @@ SpecimenClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -610,7 +654,7 @@ SpecimenClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         httr::write_disk(filename),
@@ -643,7 +687,7 @@ SpecimenClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -673,7 +717,7 @@ SpecimenClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -717,7 +761,7 @@ SpecimenClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -757,7 +801,7 @@ SpecimenClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -817,7 +861,7 @@ SpecimenClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -854,7 +898,7 @@ SpecimenClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -877,7 +921,7 @@ SpecimenClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -907,7 +951,7 @@ SpecimenClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -930,7 +974,7 @@ SpecimenClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -953,7 +997,7 @@ SpecimenClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -983,7 +1027,7 @@ SpecimenClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -1006,7 +1050,7 @@ SpecimenClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -1049,7 +1093,7 @@ SpecimenClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -1095,7 +1139,7 @@ SpecimenClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -1138,7 +1182,7 @@ SpecimenClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...

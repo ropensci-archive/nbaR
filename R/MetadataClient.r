@@ -25,6 +25,8 @@
 #'     \itemize{
 #'
 #'
+#'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -37,6 +39,8 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
+#'
 #'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
@@ -53,6 +57,8 @@
 #'     \itemize{
 #'
 #'
+#'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -65,6 +71,8 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
+#'
 #'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
@@ -81,6 +89,8 @@
 #'     \itemize{
 #'
 #'
+#'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -93,6 +103,8 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
+#'
 #'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
@@ -109,6 +121,8 @@
 #'     \itemize{
 #'
 #'
+#'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -122,7 +136,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ name } : name of setting
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -137,6 +153,8 @@
 #'     \itemize{
 #'
 #'
+#'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -149,6 +167,8 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
+#'
 #'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
@@ -175,7 +195,7 @@ MetadataClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -198,7 +218,7 @@ MetadataClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -221,7 +241,7 @@ MetadataClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -244,7 +264,7 @@ MetadataClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -267,7 +287,7 @@ MetadataClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -290,7 +310,7 @@ MetadataClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -313,7 +333,7 @@ MetadataClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -353,7 +373,7 @@ MetadataClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -376,7 +396,7 @@ MetadataClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -399,7 +419,7 @@ MetadataClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...

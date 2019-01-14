@@ -24,6 +24,8 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'         \item \code{ queryParams } : named list or vector with query parameters
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -38,7 +40,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ field } : Name of field in taxon object
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -52,7 +56,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ group } : name of field in the multimedia object you want to group by \item \code{ field } : name of field in the multimedia object
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -66,6 +72,8 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ collection_type } : Example query param
+#'         \item \code{ queryParams } : named list or vector with query parameters
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -80,7 +88,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ id } : id of multimedia document
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -94,7 +104,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ ids } : ids of multiple multimedia documents, separated by comma
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -108,7 +120,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ field } : field
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -122,7 +136,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ group } : name of field in the multimedia object you want to group by \item \code{ field } : name of field in the multimedia object
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -135,6 +151,8 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
+#'
 #'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
@@ -151,6 +169,8 @@
 #'     \itemize{
 #'
 #'
+#'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -164,7 +184,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ name } : name of setting
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -177,6 +199,8 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'
+#'
 #'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
@@ -192,7 +216,9 @@
 #'     Parameters:
 #'     \itemize{
 #'
+#'
 #'         \item \code{ field } : multimedia document field \item \code{ operator } : operator
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -206,6 +232,8 @@
 #'     Parameters:
 #'     \itemize{
 #'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+#'         \item \code{ queryParams } : named list or vector with query parameters
+#'
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
@@ -251,7 +279,7 @@ MultimediaClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -281,7 +309,7 @@ MultimediaClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -318,7 +346,7 @@ MultimediaClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -361,7 +389,7 @@ MultimediaClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -391,7 +419,7 @@ MultimediaClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -435,7 +463,7 @@ MultimediaClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -475,7 +503,7 @@ MultimediaClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -512,7 +540,7 @@ MultimediaClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -535,7 +563,7 @@ MultimediaClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -558,7 +586,7 @@ MultimediaClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -588,7 +616,7 @@ MultimediaClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -611,7 +639,7 @@ MultimediaClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -648,7 +676,7 @@ MultimediaClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
@@ -691,7 +719,7 @@ MultimediaClient <- R6::R6Class(
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
         method = "GET",
-        queryParams = queryParams,
+        queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
         ...
