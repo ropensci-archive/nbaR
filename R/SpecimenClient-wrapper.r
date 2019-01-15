@@ -18,7 +18,8 @@ specimen_count <- function(
     queryParams = queryParams,
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 specimen_count_distinct_values <- function(
                                            field = NULL,
@@ -30,7 +31,8 @@ specimen_count_distinct_values <- function(
     queryParams = queryParams,
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 specimen_count_distinct_values_per_group <- function(
                                                      group = NULL,
@@ -43,7 +45,8 @@ specimen_count_distinct_values_per_group <- function(
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 specimen_download_query <- function(
                                     queryParams = list(),
@@ -53,7 +56,12 @@ specimen_download_query <- function(
     queryParams = queryParams,
     ...
   )
-  return(res$content)
+  result <- lapply(res$content, function(x) if (is.object(x)) {
+      x$toList()
+    } else {
+      x
+    })
+  return(result)
 }
 specimen_dwca_get_data_set <- function(
                                        dataset = NULL,
@@ -68,7 +76,7 @@ specimen_dwca_get_data_set <- function(
 
     ...
   )
-  return(res$content)
+  return(result)
 }
 specimen_dwca_get_data_set_names <- function(
                                              ...) {
@@ -76,7 +84,8 @@ specimen_dwca_get_data_set_names <- function(
   res <- sc$dwca_get_data_set_names(
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 specimen_dwca_query <- function(
                                 queryParams = list(),
@@ -90,7 +99,7 @@ specimen_dwca_query <- function(
     queryParams = queryParams,
     ...
   )
-  return(res$content)
+  return(result)
 }
 specimen_exists <- function(
                             unitID = NULL,
@@ -101,7 +110,8 @@ specimen_exists <- function(
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 specimen_find <- function(
                           id = NULL,
@@ -112,7 +122,12 @@ specimen_find <- function(
 
     ...
   )
-  return(res$content)
+  result <- lapply(res$content, function(x) if (is.object(x)) {
+      x$toList()
+    } else {
+      x
+    })
+  return(result)
 }
 specimen_find_by_ids <- function(
                                  ids = NULL,
@@ -123,7 +138,12 @@ specimen_find_by_ids <- function(
 
     ...
   )
-  return(res$content)
+  result <- lapply(res$content, function(x) if (is.object(x)) {
+      x$toList()
+    } else {
+      x
+    })
+  return(result)
 }
 specimen_find_by_unit_id <- function(
                                      unitID = NULL,
@@ -134,7 +154,12 @@ specimen_find_by_unit_id <- function(
 
     ...
   )
-  return(res$content)
+  result <- lapply(res$content, function(x) if (is.object(x)) {
+      x$toList()
+    } else {
+      x
+    })
+  return(result)
 }
 specimen_get_distinct_values <- function(
                                          field = NULL,
@@ -146,7 +171,8 @@ specimen_get_distinct_values <- function(
     queryParams = queryParams,
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 specimen_get_distinct_values_per_group <- function(
                                                    group = NULL,
@@ -159,7 +185,8 @@ specimen_get_distinct_values_per_group <- function(
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 specimen_get_field_info <- function(
                                     ...) {
@@ -167,7 +194,8 @@ specimen_get_field_info <- function(
   res <- sc$get_field_info(
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 specimen_get_ids_in_collection <- function(
                                            name = NULL,
@@ -178,7 +206,8 @@ specimen_get_ids_in_collection <- function(
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 specimen_get_named_collections <- function(
                                            ...) {
@@ -186,7 +215,8 @@ specimen_get_named_collections <- function(
   res <- sc$get_named_collections(
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 specimen_get_paths <- function(
                                ...) {
@@ -194,7 +224,8 @@ specimen_get_paths <- function(
   res <- sc$get_paths(
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 specimen_get_setting <- function(
                                  name = NULL,
@@ -205,7 +236,8 @@ specimen_get_setting <- function(
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 specimen_get_settings <- function(
                                   ...) {
@@ -213,7 +245,8 @@ specimen_get_settings <- function(
   res <- sc$get_settings(
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 specimen_group_by_scientific_name <- function(
                                               queryParams = list(),
@@ -223,7 +256,12 @@ specimen_group_by_scientific_name <- function(
     queryParams = queryParams,
     ...
   )
-  return(res$content)
+  result <- lapply(res$content, function(x) if (is.object(x)) {
+      x$toList()
+    } else {
+      x
+    })
+  return(result)
 }
 specimen_is_operator_allowed <- function(
                                          field = NULL,
@@ -236,7 +274,8 @@ specimen_is_operator_allowed <- function(
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 specimen_query <- function(
                            queryParams = list(),
@@ -246,5 +285,10 @@ specimen_query <- function(
     queryParams = queryParams,
     ...
   )
-  return(res$content)
+  result <- lapply(res$content, function(x) if (is.object(x)) {
+      x$toList()
+    } else {
+      x
+    })
+  return(result)
 }

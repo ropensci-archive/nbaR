@@ -23,7 +23,7 @@
       filename = format(Sys.time(),
       "download-%Y-%m-%dT%H:%m.zip"),
     {{/isResponseFile}} ...) {
-    sc <- SpecimenClient$new()
+    sc <- {{baseName}}Client$new()
     res <- sc${{operationId}}(
     {{#allParams}}
       {{#isPrimitiveType}}
@@ -37,7 +37,15 @@
     {{/allParams}}
     {{#hasQueryParams}} queryParams=queryParams, {{/hasQueryParams}}
       ...)
-      return(res$content)    
-      }
+      {{#returnType}}
+        {{#returnTypeIsPrimitive}}
+          result <- res$content
+        {{/returnTypeIsPrimitive}}          
+        {{^returnTypeIsPrimitive}}
+          result <- lapply(res$content, function(x)if(is.object(x)){x$toList()}else{x})          
+        {{/returnTypeIsPrimitive}}
+      {{/returnType}}
+      return(result)
+  }
   {{/operation}}
 {{/operations}}

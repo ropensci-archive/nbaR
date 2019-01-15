@@ -13,149 +13,175 @@
 geo_count <- function(
                       queryParams = list(),
                       ...) {
-  sc <- SpecimenClient$new()
+  sc <- GeoClient$new()
   res <- sc$count(
     queryParams = queryParams,
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 geo_count_distinct_values <- function(
                                       field = NULL,
                                       ...) {
-  sc <- SpecimenClient$new()
+  sc <- GeoClient$new()
   res <- sc$count_distinct_values(
     field,
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 geo_count_distinct_values_per_group <- function(
                                                 group = NULL,
                                                 field = NULL,
                                                 ...) {
-  sc <- SpecimenClient$new()
+  sc <- GeoClient$new()
   res <- sc$count_distinct_values_per_group(
     group,
     field,
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 geo_find <- function(
                      id = NULL,
                      ...) {
-  sc <- SpecimenClient$new()
+  sc <- GeoClient$new()
   res <- sc$find(
     id,
 
     ...
   )
-  return(res$content)
+  result <- lapply(res$content, function(x) if (is.object(x)) {
+      x$toList()
+    } else {
+      x
+    })
+  return(result)
 }
 geo_find_by_ids <- function(
                             ids = NULL,
                             ...) {
-  sc <- SpecimenClient$new()
+  sc <- GeoClient$new()
   res <- sc$find_by_ids(
     ids,
 
     ...
   )
-  return(res$content)
+  result <- lapply(res$content, function(x) if (is.object(x)) {
+      x$toList()
+    } else {
+      x
+    })
+  return(result)
 }
 geo_get_distinct_values <- function(
                                     field = NULL,
                                     ...) {
-  sc <- SpecimenClient$new()
+  sc <- GeoClient$new()
   res <- sc$get_distinct_values(
     field,
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 geo_get_distinct_values_per_group <- function(
                                               group = NULL,
                                               field = NULL,
                                               ...) {
-  sc <- SpecimenClient$new()
+  sc <- GeoClient$new()
   res <- sc$get_distinct_values_per_group(
     group,
     field,
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 geo_get_field_info <- function(
                                ...) {
-  sc <- SpecimenClient$new()
+  sc <- GeoClient$new()
   res <- sc$get_field_info(
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 geo_get_geo_json_for_locality <- function(
                                           locality = NULL,
                                           ...) {
-  sc <- SpecimenClient$new()
+  sc <- GeoClient$new()
   res <- sc$get_geo_json_for_locality(
     locality,
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 geo_get_paths <- function(
                           ...) {
-  sc <- SpecimenClient$new()
+  sc <- GeoClient$new()
   res <- sc$get_paths(
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 geo_get_setting <- function(
                             name = NULL,
                             ...) {
-  sc <- SpecimenClient$new()
+  sc <- GeoClient$new()
   res <- sc$get_setting(
     name,
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 geo_get_settings <- function(
                              ...) {
-  sc <- SpecimenClient$new()
+  sc <- GeoClient$new()
   res <- sc$get_settings(
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 geo_is_operator_allowed <- function(
                                     field = NULL,
                                     operator = NULL,
                                     ...) {
-  sc <- SpecimenClient$new()
+  sc <- GeoClient$new()
   res <- sc$is_operator_allowed(
     field,
     operator,
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 geo_query <- function(
                       queryParams = list(),
                       ...) {
-  sc <- SpecimenClient$new()
+  sc <- GeoClient$new()
   res <- sc$query(
     queryParams = queryParams,
     ...
   )
-  return(res$content)
+  result <- lapply(res$content, function(x) if (is.object(x)) {
+      x$toList()
+    } else {
+      x
+    })
+  return(result)
 }

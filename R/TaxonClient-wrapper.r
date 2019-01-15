@@ -13,46 +13,54 @@
 taxon_count <- function(
                         queryParams = list(),
                         ...) {
-  sc <- SpecimenClient$new()
+  sc <- TaxonClient$new()
   res <- sc$count(
     queryParams = queryParams,
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 taxon_count_distinct_values <- function(
                                         field = NULL,
                                         ...) {
-  sc <- SpecimenClient$new()
+  sc <- TaxonClient$new()
   res <- sc$count_distinct_values(
     field,
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 taxon_count_distinct_values_per_group <- function(
                                                   group = NULL,
                                                   field = NULL,
                                                   ...) {
-  sc <- SpecimenClient$new()
+  sc <- TaxonClient$new()
   res <- sc$count_distinct_values_per_group(
     group,
     field,
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 taxon_download_query <- function(
                                  queryParams = list(),
                                  ...) {
-  sc <- SpecimenClient$new()
+  sc <- TaxonClient$new()
   res <- sc$download_query(
     queryParams = queryParams,
     ...
   )
-  return(res$content)
+  result <- lapply(res$content, function(x) if (is.object(x)) {
+      x$toList()
+    } else {
+      x
+    })
+  return(result)
 }
 taxon_dwca_get_data_set <- function(
                                     dataset = NULL,
@@ -61,21 +69,22 @@ taxon_dwca_get_data_set <- function(
                                       "download-%Y-%m-%dT%H:%m.zip"
                                     ),
                                     ...) {
-  sc <- SpecimenClient$new()
+  sc <- TaxonClient$new()
   res <- sc$dwca_get_data_set(
     dataset,
 
     ...
   )
-  return(res$content)
+  return(result)
 }
 taxon_dwca_get_data_set_names <- function(
                                           ...) {
-  sc <- SpecimenClient$new()
+  sc <- TaxonClient$new()
   res <- sc$dwca_get_data_set_names(
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 taxon_dwca_query <- function(
                              queryParams = list(),
@@ -84,124 +93,151 @@ taxon_dwca_query <- function(
                                "download-%Y-%m-%dT%H:%m.zip"
                              ),
                              ...) {
-  sc <- SpecimenClient$new()
+  sc <- TaxonClient$new()
   res <- sc$dwca_query(
     queryParams = queryParams,
     ...
   )
-  return(res$content)
+  return(result)
 }
 taxon_find <- function(
                        id = NULL,
                        ...) {
-  sc <- SpecimenClient$new()
+  sc <- TaxonClient$new()
   res <- sc$find(
     id,
 
     ...
   )
-  return(res$content)
+  result <- lapply(res$content, function(x) if (is.object(x)) {
+      x$toList()
+    } else {
+      x
+    })
+  return(result)
 }
 taxon_find_by_ids <- function(
                               ids = NULL,
                               ...) {
-  sc <- SpecimenClient$new()
+  sc <- TaxonClient$new()
   res <- sc$find_by_ids(
     ids,
 
     ...
   )
-  return(res$content)
+  result <- lapply(res$content, function(x) if (is.object(x)) {
+      x$toList()
+    } else {
+      x
+    })
+  return(result)
 }
 taxon_get_distinct_values <- function(
                                       field = NULL,
                                       ...) {
-  sc <- SpecimenClient$new()
+  sc <- TaxonClient$new()
   res <- sc$get_distinct_values(
     field,
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 taxon_get_distinct_values_per_group <- function(
                                                 group = NULL,
                                                 field = NULL,
                                                 ...) {
-  sc <- SpecimenClient$new()
+  sc <- TaxonClient$new()
   res <- sc$get_distinct_values_per_group(
     group,
     field,
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 taxon_get_field_info <- function(
                                  ...) {
-  sc <- SpecimenClient$new()
+  sc <- TaxonClient$new()
   res <- sc$get_field_info(
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 taxon_get_paths <- function(
                             ...) {
-  sc <- SpecimenClient$new()
+  sc <- TaxonClient$new()
   res <- sc$get_paths(
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 taxon_get_setting <- function(
                               name = NULL,
                               ...) {
-  sc <- SpecimenClient$new()
+  sc <- TaxonClient$new()
   res <- sc$get_setting(
     name,
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 taxon_get_settings <- function(
                                ...) {
-  sc <- SpecimenClient$new()
+  sc <- TaxonClient$new()
   res <- sc$get_settings(
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 taxon_group_by_scientific_name <- function(
                                            queryParams = list(),
                                            ...) {
-  sc <- SpecimenClient$new()
+  sc <- TaxonClient$new()
   res <- sc$group_by_scientific_name(
     queryParams = queryParams,
     ...
   )
-  return(res$content)
+  result <- lapply(res$content, function(x) if (is.object(x)) {
+      x$toList()
+    } else {
+      x
+    })
+  return(result)
 }
 taxon_is_operator_allowed <- function(
                                       field = NULL,
                                       operator = NULL,
                                       ...) {
-  sc <- SpecimenClient$new()
+  sc <- TaxonClient$new()
   res <- sc$is_operator_allowed(
     field,
     operator,
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 taxon_query <- function(
                         queryParams = list(),
                         ...) {
-  sc <- SpecimenClient$new()
+  sc <- TaxonClient$new()
   res <- sc$query(
     queryParams = queryParams,
     ...
   )
-  return(res$content)
+  result <- lapply(res$content, function(x) if (is.object(x)) {
+      x$toList()
+    } else {
+      x
+    })
+  return(result)
 }

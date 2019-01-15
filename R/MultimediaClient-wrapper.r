@@ -13,150 +13,175 @@
 multimedia_count <- function(
                              queryParams = list(),
                              ...) {
-  sc <- SpecimenClient$new()
+  sc <- MultimediaClient$new()
   res <- sc$count(
     queryParams = queryParams,
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 multimedia_count_distinct_values <- function(
                                              field = NULL,
                                              ...) {
-  sc <- SpecimenClient$new()
+  sc <- MultimediaClient$new()
   res <- sc$count_distinct_values(
     field,
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 multimedia_count_distinct_values_per_group <- function(
                                                        group = NULL,
                                                        field = NULL,
                                                        ...) {
-  sc <- SpecimenClient$new()
+  sc <- MultimediaClient$new()
   res <- sc$count_distinct_values_per_group(
     group,
     field,
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 multimedia_download_query <- function(
                                       collectionType = NULL,
                                       queryParams = list(),
                                       ...) {
-  sc <- SpecimenClient$new()
+  sc <- MultimediaClient$new()
   res <- sc$download_query(
     collectionType,
     queryParams = queryParams,
     ...
   )
-  return(res$content)
+  return(result)
 }
 multimedia_find <- function(
                             id = NULL,
                             ...) {
-  sc <- SpecimenClient$new()
+  sc <- MultimediaClient$new()
   res <- sc$find(
     id,
 
     ...
   )
-  return(res$content)
+  result <- lapply(res$content, function(x) if (is.object(x)) {
+      x$toList()
+    } else {
+      x
+    })
+  return(result)
 }
 multimedia_find_by_ids <- function(
                                    ids = NULL,
                                    ...) {
-  sc <- SpecimenClient$new()
+  sc <- MultimediaClient$new()
   res <- sc$find_by_ids(
     ids,
 
     ...
   )
-  return(res$content)
+  result <- lapply(res$content, function(x) if (is.object(x)) {
+      x$toList()
+    } else {
+      x
+    })
+  return(result)
 }
 multimedia_get_distinct_values <- function(
                                            field = NULL,
                                            ...) {
-  sc <- SpecimenClient$new()
+  sc <- MultimediaClient$new()
   res <- sc$get_distinct_values(
     field,
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 multimedia_get_distinct_values_per_group <- function(
                                                      group = NULL,
                                                      field = NULL,
                                                      ...) {
-  sc <- SpecimenClient$new()
+  sc <- MultimediaClient$new()
   res <- sc$get_distinct_values_per_group(
     group,
     field,
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 multimedia_get_field_info <- function(
                                       ...) {
-  sc <- SpecimenClient$new()
+  sc <- MultimediaClient$new()
   res <- sc$get_field_info(
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 multimedia_get_paths <- function(
                                  ...) {
-  sc <- SpecimenClient$new()
+  sc <- MultimediaClient$new()
   res <- sc$get_paths(
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 multimedia_get_setting <- function(
                                    name = NULL,
                                    ...) {
-  sc <- SpecimenClient$new()
+  sc <- MultimediaClient$new()
   res <- sc$get_setting(
     name,
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 multimedia_get_settings <- function(
                                     ...) {
-  sc <- SpecimenClient$new()
+  sc <- MultimediaClient$new()
   res <- sc$get_settings(
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 multimedia_is_operator_allowed <- function(
                                            field = NULL,
                                            operator = NULL,
                                            ...) {
-  sc <- SpecimenClient$new()
+  sc <- MultimediaClient$new()
   res <- sc$is_operator_allowed(
     field,
     operator,
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 multimedia_query <- function(
                              queryParams = list(),
                              ...) {
-  sc <- SpecimenClient$new()
+  sc <- MultimediaClient$new()
   res <- sc$query(
     queryParams = queryParams,
     ...
   )
-  return(res$content)
+  result <- lapply(res$content, function(x) if (is.object(x)) {
+      x$toList()
+    } else {
+      x
+    })
+  return(result)
 }

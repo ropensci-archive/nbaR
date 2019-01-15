@@ -12,84 +12,102 @@
 
 metadata_get_allowed_date_formats <- function(
                                               ...) {
-  sc <- SpecimenClient$new()
+  sc <- MetadataClient$new()
   res <- sc$get_allowed_date_formats(
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 metadata_get_controlled_list_phase_or_stage <- function(
                                                         ...) {
-  sc <- SpecimenClient$new()
+  sc <- MetadataClient$new()
   res <- sc$get_controlled_list_phase_or_stage(
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 metadata_get_controlled_list_sex <- function(
                                              ...) {
-  sc <- SpecimenClient$new()
+  sc <- MetadataClient$new()
   res <- sc$get_controlled_list_sex(
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 metadata_get_controlled_list_specimen_type_status <- function(
                                                               ...) {
-  sc <- SpecimenClient$new()
+  sc <- MetadataClient$new()
   res <- sc$get_controlled_list_specimen_type_status(
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 metadata_get_controlled_list_taxonomic_status <- function(
                                                           ...) {
-  sc <- SpecimenClient$new()
+  sc <- MetadataClient$new()
   res <- sc$get_controlled_list_taxonomic_status(
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 metadata_get_controlled_lists <- function(
                                           ...) {
-  sc <- SpecimenClient$new()
+  sc <- MetadataClient$new()
   res <- sc$get_controlled_lists(
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 metadata_get_rest_services <- function(
                                        ...) {
-  sc <- SpecimenClient$new()
+  sc <- MetadataClient$new()
   res <- sc$get_rest_services(
     ...
   )
-  return(res$content)
+  result <- lapply(res$content, function(x) if (is.object(x)) {
+      x$toList()
+    } else {
+      x
+    })
+  return(result)
 }
 metadata_get_setting <- function(
                                  name = NULL,
                                  ...) {
-  sc <- SpecimenClient$new()
+  sc <- MetadataClient$new()
   res <- sc$get_setting(
     name,
 
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 metadata_get_settings <- function(
                                   ...) {
-  sc <- SpecimenClient$new()
+  sc <- MetadataClient$new()
   res <- sc$get_settings(
     ...
   )
-  return(res$content)
+  result <- res$content
+  return(result)
 }
 metadata_get_source_systems <- function(
                                         ...) {
-  sc <- SpecimenClient$new()
+  sc <- MetadataClient$new()
   res <- sc$get_source_systems(
     ...
   )
-  return(res$content)
+  result <- lapply(res$content, function(x) if (is.object(x)) {
+      x$toList()
+    } else {
+      x
+    })
+  return(result)
 }

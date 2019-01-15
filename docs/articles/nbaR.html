@@ -89,7 +89,7 @@
     <div class="page-header toc-ignore">
       <h1>nbaR: R access to the Netherlands Biodiversity API</h1>
             
-            <h4 class="date">Jan 14, 2019</h4>
+            <h4 class="date">Jan 15, 2019</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/naturalis/nbaR/blob/master/vignettes/nbaR.Rmd"><code>vignettes/nbaR.Rmd</code></a></small>
       <div class="hidden name"><code>nbaR.Rmd</code></div>
@@ -728,7 +728,7 @@ we can combine the latter condition with an additional one using the method <cod
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="co"># download dataset 'porifera' to temporary file</span></a>
 <a class="sourceLine" id="cb59-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
 <a class="sourceLine" id="cb59-3" data-line-number="3">sc<span class="op">$</span><span class="kw">dwca_get_data_set</span>(<span class="st">'porifera'</span>, <span class="dt">filename=</span>filename)                                                                               </a></code></pre></div>
-<pre><code>## Query result written to /tmp/RtmpwseQe0/file603f3a873898.zip</code></pre>
+<pre><code>## Query result written to /tmp/RtmpBVrymG/file1705597f29f8.zip</code></pre>
 </div>
 <div id="dynamic-download" class="section level4">
 <h4 class="hasAnchor">
@@ -738,7 +738,7 @@ we can combine the latter condition with an additional one using the method <cod
 <a class="sourceLine" id="cb61-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
 <a class="sourceLine" id="cb61-3" data-line-number="3">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"identifications.defaultClassification.genus"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Hydrochoerus"</span>)))</a>
 <a class="sourceLine" id="cb61-4" data-line-number="4">sc<span class="op">$</span><span class="kw">dwca_query</span>(<span class="dt">querySpec=</span>qs, <span class="dt">filename=</span>filename)</a></code></pre></div>
-<pre><code>## Query result written to /tmp/RtmpwseQe0/file603f156dae7d.zip</code></pre>
+<pre><code>## Query result written to /tmp/RtmpBVrymG/file17052c4a823.zip</code></pre>
 </div>
 </div>
 </div>
@@ -1001,7 +1001,7 @@ we can combine the latter condition with an additional one using the method <cod
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="co"># download dataset 'nsr' to temporary file</span></a>
 <a class="sourceLine" id="cb93-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
 <a class="sourceLine" id="cb93-3" data-line-number="3">tc<span class="op">$</span><span class="kw">dwca_get_data_set</span>(<span class="st">'nsr'</span>, <span class="dt">filename=</span>filename)                                                                               </a></code></pre></div>
-<pre><code>## Query result written to /tmp/RtmpwseQe0/file603f637ab6ae.zip</code></pre>
+<pre><code>## Query result written to /tmp/RtmpBVrymG/file17054af79bcb.zip</code></pre>
 </div>
 <div id="dynamic-download-1" class="section level4">
 <h4 class="hasAnchor">
@@ -1011,7 +1011,7 @@ we can combine the latter condition with an additional one using the method <cod
 <a class="sourceLine" id="cb95-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
 <a class="sourceLine" id="cb95-3" data-line-number="3">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"defaultClassification.genus"</span>, <span class="dt">operator=</span><span class="st">"EQUALS"</span>, <span class="dt">value=</span><span class="st">"Clematis"</span>)))</a>
 <a class="sourceLine" id="cb95-4" data-line-number="4">tc<span class="op">$</span><span class="kw">dwca_query</span>(<span class="dt">querySpec=</span>qs, <span class="dt">filename=</span>filename)</a></code></pre></div>
-<pre><code>## Query result written to /tmp/RtmpwseQe0/file603ff979ba3.zip</code></pre>
+<pre><code>## Query result written to /tmp/RtmpBVrymG/file17051bb28200.zip</code></pre>
 </div>
 </div>
 </div>
