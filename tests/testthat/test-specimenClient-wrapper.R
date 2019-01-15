@@ -13,7 +13,7 @@ context("Testing wrapper functions for specimen client")
 
 test_that("specimen_count works", {
   cnt <- specimen_count()
-  expect_is(cnt, "numeric")
+  expect_true(is.numeric(cnt))
   expect_gt(cnt, 0)
 
   ## test with query param
@@ -33,29 +33,33 @@ test_that("specimen_count works", {
 })
 
 test_that("specimen_count_distinct_values works", {
-    cnt <- specimen_count_distinct_values("sex")
-    expect_is(cnt, "numeric")
-    expect_gt(cnt, 0)
-    
-    ## test with query param
-    qp <- list(sex = "female")
-    cnt2 <- specimen_count_distinct_values("sex", qp)
-    ## should be 1!
-    expect_equal(cnt, 1)
+  cnt <- specimen_count_distinct_values("sex")
+  expect_true(is.numeric(cnt))
+  expect_gt(cnt, 0)
+
+  ## test with query param
+  qp <- list(sex = "female")
+  cnt2 <- specimen_count_distinct_values("sex", qp)
+  ## should be 1!
+  expect_equal(cnt2, 1)
 })
 
-test_that("specimen_count_distinct_values_per_group works", {    
-    ## Note that the count for the inner aggregation is still a bit
-    ## of a mystery, see also
-    ## https://docs.biodiversitydata.nl/en/latest/advanced-queries/#agg
-    res <- specimen_count_distinct_values_per_group("sex", "sourceSystem.code")
-    expect_is(res, "list")
-    expect_gt(length(res), 0)    
+test_that("specimen_count_distinct_values_per_group works", {
+  ## Note that the count for the inner aggregation is still a bit
+  ## of a mystery, see also
+  ## https://docs.biodiversitydata.nl/en/latest/advanced-queries/#agg
+  res <- specimen_count_distinct_values_per_group("sex", "sourceSystem.code")
+  expect_is(res, "list")
+  expect_gt(length(res), 0)
 })
 
 test_that("specimen_download_query works", {
-    qp <- list("identifications.defaultClassification.genus"="Hydrochoerus")
-    res <- specimen_download_query(qp)
-    expect_is(res, "list")
-})
+  qp <- list("identifications.defaultClassification.genus" = "Hydrochoerus")
+  res <- specimen_download_query(qp)
+  expect_is(res, "list")
 
+  ## this should not return objects but the list representation of specimens
+  for (i in seq_along(res)) {
+    expect_is(res[[i]], "list")
+  }
+})
