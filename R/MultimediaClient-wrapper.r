@@ -57,7 +57,6 @@ multimedia_download_query <- function(
     queryParams = queryParams,
     ...
   )
-  return(result)
 }
 multimedia_find <- function(
                             id = NULL,
@@ -68,11 +67,7 @@ multimedia_find <- function(
 
     ...
   )
-  result <- lapply(res$content, function(x) if (is.object(x)) {
-      x$toList()
-    } else {
-      x
-    })
+  result <- .make_list_response(res)
   return(result)
 }
 multimedia_find_by_ids <- function(
@@ -84,11 +79,7 @@ multimedia_find_by_ids <- function(
 
     ...
   )
-  result <- lapply(res$content, function(x) if (is.object(x)) {
-      x$toList()
-    } else {
-      x
-    })
+  result <- .make_list_response(res)
   return(result)
 }
 multimedia_get_distinct_values <- function(
@@ -178,10 +169,35 @@ multimedia_query <- function(
     queryParams = queryParams,
     ...
   )
-  result <- lapply(res$content, function(x) if (is.object(x)) {
-      x$toList()
-    } else {
-      x
-    })
+  result <- .make_list_response(res)
+  return(result)
+}
+
+#' @noRd
+#' @param response Object of class Response
+#' Internal function to convert all (nested) objects
+#' in a response object to lists
+.make_list_response <- function(response) {
+  l <- response$content
+
+  ## Handle return objects of class QueryResult
+  if (class(l)[1] == "QueryResult") {
+    l <- lapply(l$resultSet, function(x) x$item)
+  }
+
+  ## wrapper functions return lists instead of objects
+  if (!is.list(l)) {
+    result <- l$toList()
+  } else {
+    result <- lapply(
+      l,
+      function(x) if (is.object(x)) {
+          x$toList()
+        } else {
+          x
+        }
+    )
+  }
+
   return(result)
 }
