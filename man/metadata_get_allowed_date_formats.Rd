@@ -2,8 +2,7 @@
 % Please edit documentation in R/MetadataClient-wrapper.r
 \name{metadata_get_allowed_date_formats}
 \alias{metadata_get_allowed_date_formats}
-\title{Metadata client wrapper
-for nbaR.Metadata objects}
+\title{Get allowed values for dates in queries}
 \usage{
 metadata_get_allowed_date_formats(...)
 }

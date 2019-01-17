@@ -2,8 +2,7 @@
 % Please edit documentation in R/GeoClient-wrapper.r
 \name{geo_count}
 \alias{geo_count}
-\title{Geo client wrapper
-for nbaR.Geo objects}
+\title{Get the number of geo areas matching a given condition}
 \usage{
 geo_count(queryParams = list(), ...)
 }

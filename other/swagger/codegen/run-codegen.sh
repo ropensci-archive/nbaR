@@ -7,6 +7,8 @@ java -cp nbaRcodegen/target/nbaRcodegen-swagger-codegen-1.0.0.jar:../../../../..
 cd ../../../
 Rscript -e 'styler::style_pkg()' 
 
+## roxygen
+Rscript -e 'roxygen2::roxygenise()'
+
 ## run pkgdown
 Rscript -e 'pkgdown::build_site()'
-

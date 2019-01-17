@@ -2,8 +2,7 @@
 % Please edit documentation in R/MultimediaClient-wrapper.r
 \name{multimedia_count}
 \alias{multimedia_count}
-\title{Multimedia client wrapper
-for nbaR.Multimedia objects}
+\title{Get the number of multimedia documents matching a given condition}
 \usage{
 multimedia_count(queryParams = list(), ...)
 }

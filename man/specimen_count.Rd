@@ -2,8 +2,7 @@
 % Please edit documentation in R/SpecimenClient-wrapper.r
 \name{specimen_count}
 \alias{specimen_count}
-\title{Specimen client wrapper
-for nbaR.Specimen objects}
+\title{Get the number of specimens matching a given condition}
 \usage{
 specimen_count(queryParams = list(), ...)
 }

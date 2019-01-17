@@ -2,8 +2,7 @@
 % Please edit documentation in R/TaxonClient-wrapper.r
 \name{taxon_count}
 \alias{taxon_count}
-\title{Taxon client wrapper
-for nbaR.Taxon objects}
+\title{Get the number of taxa matching a given condition}
 \usage{
 taxon_count(queryParams = list(), ...)
 }
