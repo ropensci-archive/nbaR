@@ -40,7 +40,7 @@
 #' }
 #' \item{\code{fromJSONString(SummaryScientificNameJson)}}{
 #'
-#'   Create SummaryScientificName object from list.
+#'   Create SummaryScientificName object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

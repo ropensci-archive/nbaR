@@ -65,7 +65,7 @@
 #' }
 #' \item{\code{fromJSONString(SpecimenJson)}}{
 #'
-#'   Create Specimen object from list.
+#'   Create Specimen object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

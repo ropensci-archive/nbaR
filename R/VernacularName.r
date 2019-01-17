@@ -38,7 +38,7 @@
 #' }
 #' \item{\code{fromJSONString(VernacularNameJson)}}{
 #'
-#'   Create VernacularName object from list.
+#'   Create VernacularName object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

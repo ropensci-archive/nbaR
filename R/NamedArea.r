@@ -35,7 +35,7 @@
 #' }
 #' \item{\code{fromJSONString(NamedAreaJson)}}{
 #'
-#'   Create NamedArea object from list.
+#'   Create NamedArea object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

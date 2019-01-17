@@ -37,7 +37,7 @@
 #' }
 #' \item{\code{fromJSONString(LngLatAltJson)}}{
 #'
-#'   Create LngLatAlt object from list.
+#'   Create LngLatAlt object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

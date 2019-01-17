@@ -37,7 +37,7 @@
 #' }
 #' \item{\code{fromJSONString(FilterJson)}}{
 #'
-#'   Create Filter object from list.
+#'   Create Filter object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

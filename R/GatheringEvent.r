@@ -60,7 +60,7 @@
 #' }
 #' \item{\code{fromJSONString(GatheringEventJson)}}{
 #'
-#'   Create GatheringEvent object from list.
+#'   Create GatheringEvent object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

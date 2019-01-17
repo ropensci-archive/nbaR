@@ -38,7 +38,7 @@
 #' }
 #' \item{\code{fromJSONString(RestServiceJson)}}{
 #'
-#'   Create RestService object from list.
+#'   Create RestService object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

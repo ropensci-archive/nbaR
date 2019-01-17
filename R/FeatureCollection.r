@@ -36,7 +36,7 @@
 #' }
 #' \item{\code{fromJSONString(FeatureCollectionJson)}}{
 #'
-#'   Create FeatureCollection object from list.
+#'   Create FeatureCollection object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

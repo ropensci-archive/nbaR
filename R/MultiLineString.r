@@ -36,7 +36,7 @@
 #' }
 #' \item{\code{fromJSONString(MultiLineStringJson)}}{
 #'
-#'   Create MultiLineString object from list.
+#'   Create MultiLineString object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

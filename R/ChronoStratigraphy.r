@@ -59,7 +59,7 @@
 #' }
 #' \item{\code{fromJSONString(ChronoStratigraphyJson)}}{
 #'
-#'   Create ChronoStratigraphy object from list.
+#'   Create ChronoStratigraphy object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

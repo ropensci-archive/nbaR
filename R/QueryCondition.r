@@ -41,7 +41,7 @@
 #' }
 #' \item{\code{fromJSONString(QueryConditionJson)}}{
 #'
-#'   Create QueryCondition object from list.
+#'   Create QueryCondition object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

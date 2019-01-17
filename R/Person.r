@@ -36,7 +36,7 @@
 #' }
 #' \item{\code{fromJSONString(PersonJson)}}{
 #'
-#'   Create Person object from list.
+#'   Create Person object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

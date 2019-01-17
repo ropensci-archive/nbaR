@@ -35,7 +35,7 @@
 #' }
 #' \item{\code{fromJSONString(GeoJsonObjectJson)}}{
 #'
-#'   Create GeoJsonObject object from list.
+#'   Create GeoJsonObject object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

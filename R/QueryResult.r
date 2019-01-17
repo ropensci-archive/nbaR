@@ -35,7 +35,7 @@
 #' }
 #' \item{\code{fromJSONString(QueryResultJson)}}{
 #'
-#'   Create QueryResult object from list.
+#'   Create QueryResult object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

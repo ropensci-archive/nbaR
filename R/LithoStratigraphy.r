@@ -50,7 +50,7 @@
 #' }
 #' \item{\code{fromJSONString(LithoStratigraphyJson)}}{
 #'
-#'   Create LithoStratigraphy object from list.
+#'   Create LithoStratigraphy object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

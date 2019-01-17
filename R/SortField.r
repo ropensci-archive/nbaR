@@ -36,7 +36,7 @@
 #' }
 #' \item{\code{fromJSONString(SortFieldJson)}}{
 #'
-#'   Create SortField object from list.
+#'   Create SortField object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

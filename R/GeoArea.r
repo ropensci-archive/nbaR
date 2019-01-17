@@ -43,7 +43,7 @@
 #' }
 #' \item{\code{fromJSONString(GeoAreaJson)}}{
 #'
-#'   Create GeoArea object from list.
+#'   Create GeoArea object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

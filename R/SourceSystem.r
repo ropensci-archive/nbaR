@@ -35,7 +35,7 @@
 #' }
 #' \item{\code{fromJSONString(SourceSystemJson)}}{
 #'
-#'   Create SourceSystem object from list.
+#'   Create SourceSystem object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

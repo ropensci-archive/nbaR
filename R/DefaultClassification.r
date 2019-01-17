@@ -44,7 +44,7 @@
 #' }
 #' \item{\code{fromJSONString(DefaultClassificationJson)}}{
 #'
-#'   Create DefaultClassification object from list.
+#'   Create DefaultClassification object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

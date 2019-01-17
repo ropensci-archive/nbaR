@@ -50,7 +50,7 @@
 #' }
 #' \item{\code{fromJSONString(TaxonJson)}}{
 #'
-#'   Create Taxon object from list.
+#'   Create Taxon object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

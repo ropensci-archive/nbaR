@@ -36,7 +36,7 @@
 #' }
 #' \item{\code{fromJSONString(PointJson)}}{
 #'
-#'   Create Point object from list.
+#'   Create Point object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

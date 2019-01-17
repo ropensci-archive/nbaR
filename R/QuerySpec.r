@@ -40,7 +40,7 @@
 #' }
 #' \item{\code{fromJSONString(QuerySpecJson)}}{
 #'
-#'   Create QuerySpec object from list.
+#'   Create QuerySpec object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{

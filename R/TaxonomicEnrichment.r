@@ -37,7 +37,7 @@
 #' }
 #' \item{\code{fromJSONString(TaxonomicEnrichmentJson)}}{
 #'
-#'   Create TaxonomicEnrichment object from list.
+#'   Create TaxonomicEnrichment object from JSON.
 #'
 #' }
 #' \item{\code{toJSONString(pretty=TRUE)}}{
