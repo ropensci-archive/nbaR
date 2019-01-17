@@ -43,7 +43,7 @@ Polygon Class
 }
 \item{\code{fromJSONString(PolygonJson)}}{
 
-  Create Polygon object from list.
+  Create Polygon object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

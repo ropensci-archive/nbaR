@@ -63,7 +63,7 @@ GroupByScientificNameQuerySpec Class
 }
 \item{\code{fromJSONString(GroupByScientificNameQuerySpecJson)}}{
 
-  Create GroupByScientificNameQuerySpec object from list.
+  Create GroupByScientificNameQuerySpec object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

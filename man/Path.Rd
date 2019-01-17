@@ -39,7 +39,7 @@ Path Class
 }
 \item{\code{fromJSONString(PathJson)}}{
 
-  Create Path object from list.
+  Create Path object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

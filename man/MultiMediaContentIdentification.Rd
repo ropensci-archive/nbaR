@@ -57,7 +57,7 @@ MultiMediaContentIdentification Class
 }
 \item{\code{fromJSONString(MultiMediaContentIdentificationJson)}}{
 
-  Create MultiMediaContentIdentification object from list.
+  Create MultiMediaContentIdentification object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

@@ -41,7 +41,7 @@ AssociatedTaxon Class
 }
 \item{\code{fromJSONString(AssociatedTaxonJson)}}{
 
-  Create AssociatedTaxon object from list.
+  Create AssociatedTaxon object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

@@ -41,7 +41,7 @@ Crs Class
 }
 \item{\code{fromJSONString(CrsJson)}}{
 
-  Create Crs object from list.
+  Create Crs object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

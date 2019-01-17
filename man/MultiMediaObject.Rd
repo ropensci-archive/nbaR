@@ -99,7 +99,7 @@ MultiMediaObject Class
 }
 \item{\code{fromJSONString(MultiMediaObjectJson)}}{
 
-  Create MultiMediaObject object from list.
+  Create MultiMediaObject object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

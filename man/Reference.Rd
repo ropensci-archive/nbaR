@@ -47,7 +47,7 @@ Reference Class
 }
 \item{\code{fromJSONString(ReferenceJson)}}{
 
-  Create Reference object from list.
+  Create Reference object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

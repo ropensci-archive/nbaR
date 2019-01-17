@@ -43,7 +43,7 @@ ServiceAccessPoint Class
 }
 \item{\code{fromJSONString(ServiceAccessPointJson)}}{
 
-  Create ServiceAccessPoint object from list.
+  Create ServiceAccessPoint object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

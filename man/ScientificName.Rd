@@ -65,7 +65,7 @@ ScientificName Class
 }
 \item{\code{fromJSONString(ScientificNameJson)}}{
 
-  Create ScientificName object from list.
+  Create ScientificName object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

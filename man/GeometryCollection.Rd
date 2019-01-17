@@ -43,7 +43,7 @@ GeometryCollection Class
 }
 \item{\code{fromJSONString(GeometryCollectionJson)}}{
 
-  Create GeometryCollection object from list.
+  Create GeometryCollection object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

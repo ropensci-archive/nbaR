@@ -39,7 +39,7 @@ SummarySourceSystem Class
 }
 \item{\code{fromJSONString(SummarySourceSystemJson)}}{
 
-  Create SummarySourceSystem object from list.
+  Create SummarySourceSystem object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

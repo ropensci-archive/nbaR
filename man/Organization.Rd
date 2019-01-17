@@ -41,7 +41,7 @@ Organization Class
 }
 \item{\code{fromJSONString(OrganizationJson)}}{
 
-  Create Organization object from list.
+  Create Organization object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

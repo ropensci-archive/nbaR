@@ -41,7 +41,7 @@ Contains an object returned from a QuerySpec query. Holds an item and a relevanc
 }
 \item{\code{fromJSONString(QueryResultItemJson)}}{
 
-  Create QueryResultItem object from list.
+  Create QueryResultItem object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

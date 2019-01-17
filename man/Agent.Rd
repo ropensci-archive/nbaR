@@ -39,7 +39,7 @@ Agent Class
 }
 \item{\code{fromJSONString(AgentJson)}}{
 
-  Create Agent object from list.
+  Create Agent object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

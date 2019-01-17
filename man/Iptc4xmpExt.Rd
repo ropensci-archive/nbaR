@@ -51,7 +51,7 @@ Iptc4xmpExt Class
 }
 \item{\code{fromJSONString(Iptc4xmpExtJson)}}{
 
-  Create Iptc4xmpExt object from list.
+  Create Iptc4xmpExt object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

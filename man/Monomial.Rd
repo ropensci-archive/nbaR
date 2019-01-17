@@ -41,7 +41,7 @@ Monomial Class
 }
 \item{\code{fromJSONString(MonomialJson)}}{
 
-  Create Monomial object from list.
+  Create Monomial object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

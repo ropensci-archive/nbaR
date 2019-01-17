@@ -41,7 +41,7 @@ SummaryVernacularName Class
 }
 \item{\code{fromJSONString(SummaryVernacularNameJson)}}{
 
-  Create SummaryVernacularName object from list.
+  Create SummaryVernacularName object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

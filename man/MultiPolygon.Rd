@@ -43,7 +43,7 @@ MultiPolygon Class
 }
 \item{\code{fromJSONString(MultiPolygonJson)}}{
 
-  Create MultiPolygon object from list.
+  Create MultiPolygon object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

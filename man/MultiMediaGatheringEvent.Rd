@@ -93,7 +93,7 @@ MultiMediaGatheringEvent Class
 }
 \item{\code{fromJSONString(MultiMediaGatheringEventJson)}}{
 
-  Create MultiMediaGatheringEvent object from list.
+  Create MultiMediaGatheringEvent object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

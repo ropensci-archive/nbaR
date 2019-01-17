@@ -67,7 +67,7 @@ BioStratigraphy Class
 }
 \item{\code{fromJSONString(BioStratigraphyJson)}}{
 
-  Create BioStratigraphy object from list.
+  Create BioStratigraphy object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

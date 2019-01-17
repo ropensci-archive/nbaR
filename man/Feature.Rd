@@ -47,7 +47,7 @@ Feature Class
 }
 \item{\code{fromJSONString(FeatureJson)}}{
 
-  Create Feature object from list.
+  Create Feature object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

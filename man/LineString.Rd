@@ -43,7 +43,7 @@ LineString Class
 }
 \item{\code{fromJSONString(LineStringJson)}}{
 
-  Create LineString object from list.
+  Create LineString object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

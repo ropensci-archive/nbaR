@@ -43,7 +43,7 @@ Expert Class
 }
 \item{\code{fromJSONString(ExpertJson)}}{
 
-  Create Expert object from list.
+  Create Expert object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

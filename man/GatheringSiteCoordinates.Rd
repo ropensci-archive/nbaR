@@ -53,7 +53,7 @@ GatheringSiteCoordinates Class
 }
 \item{\code{fromJSONString(GatheringSiteCoordinatesJson)}}{
 
-  Create GatheringSiteCoordinates object from list.
+  Create GatheringSiteCoordinates object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

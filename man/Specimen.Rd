@@ -101,7 +101,7 @@ This class models a Specimen record. Specimen records constitute the core of dat
 }
 \item{\code{fromJSONString(SpecimenJson)}}{
 
-  Create Specimen object from list.
+  Create Specimen object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

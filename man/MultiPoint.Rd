@@ -43,7 +43,7 @@ MultiPoint Class
 }
 \item{\code{fromJSONString(MultiPointJson)}}{
 
-  Create MultiPoint object from list.
+  Create MultiPoint object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

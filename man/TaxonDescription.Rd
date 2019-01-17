@@ -43,7 +43,7 @@ TaxonDescription Class
 }
 \item{\code{fromJSONString(TaxonDescriptionJson)}}{
 
-  Create TaxonDescription object from list.
+  Create TaxonDescription object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{

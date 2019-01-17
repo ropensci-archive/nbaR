@@ -71,7 +71,7 @@ SpecimenIdentification Class
 }
 \item{\code{fromJSONString(SpecimenIdentificationJson)}}{
 
-  Create SpecimenIdentification object from list.
+  Create SpecimenIdentification object from JSON.
 
 }
 \item{\code{toJSONString(pretty=TRUE)}}{
