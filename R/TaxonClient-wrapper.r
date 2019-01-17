@@ -10,6 +10,16 @@
 #' for nbaR.Taxon objects
 
 
+#' @name taxon_count
+#' @title Get the number of taxa matching a given condition
+#' @description This is a wrapper function for count
+#' from class nbaR.TaxonClient.
+#' @details Conditions given as query parameters or a querySpec JSON
+#' @family nbaR.TaxonClient-wrappers
+#' @return scalar
+#' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
+#' @param ... additional parameters passed to count from class class nbaR.TaxonClient
+#' @export
 taxon_count <- function(
                         queryParams = list(),
                         ...) {
@@ -21,6 +31,16 @@ taxon_count <- function(
   result <- res$content
   return(result)
 }
+#' @name taxon_count_distinct_values
+#' @title Count the distinct number of values that exist for a given field
+#' @description This is a wrapper function for count_distinct_values
+#' from class nbaR.TaxonClient.
+#' @details
+#' @family nbaR.TaxonClient-wrappers
+#' @return scalar
+#' @param field name of field in the taxon object, type:
+#' @param ... additional parameters passed to count_distinct_values from class class nbaR.TaxonClient
+#' @export
 taxon_count_distinct_values <- function(
                                         field = NULL,
                                         ...) {
@@ -33,6 +53,17 @@ taxon_count_distinct_values <- function(
   result <- res$content
   return(result)
 }
+#' @name taxon_count_distinct_values_per_group
+#' @title Count the distinct number of field values that exist per the given field to group by
+#' @description This is a wrapper function for count_distinct_values_per_group
+#' from class nbaR.TaxonClient.
+#' @details
+#' @family nbaR.TaxonClient-wrappers
+#' @return scalar
+#' @param group name of field in the taxon object you want to group by, type:
+#' @param field name of field in the taxon object, type:
+#' @param ... additional parameters passed to count_distinct_values_per_group from class class nbaR.TaxonClient
+#' @export
 taxon_count_distinct_values_per_group <- function(
                                                   group = NULL,
                                                   field = NULL,
@@ -47,6 +78,16 @@ taxon_count_distinct_values_per_group <- function(
   result <- res$content
   return(result)
 }
+#' @name taxon_download_query
+#' @title Dynamic download service: Query for taxa and return result as a stream ...
+#' @description This is a wrapper function for download_query
+#' from class nbaR.TaxonClient.
+#' @details Query with query parameters or querySpec JSON. ...
+#' @family nbaR.TaxonClient-wrappers
+#' @return list
+#' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
+#' @param ... additional parameters passed to download_query from class class nbaR.TaxonClient
+#' @export
 taxon_download_query <- function(
                                  queryParams = list(),
                                  ...) {
@@ -58,6 +99,17 @@ taxon_download_query <- function(
   result <- .make_list_response(res)
   return(result)
 }
+#' @name taxon_dwca_get_data_set
+#' @title Download dataset as Darwin Core Archive File
+#' @description This is a wrapper function for dwca_get_data_set
+#' from class nbaR.TaxonClient.
+#' @details Available datasets can be queried with /taxon/dwca/getDataSetNames. Response saved to &lt;datasetname&gt;-&lt;yyyymmdd&gt;.dwca.zip
+#' @family nbaR.TaxonClient-wrappers
+#' @return
+#' @param dataset name of dataset, type:
+#' @param filename Filename to save results to, defaults to `format(Sys.time(),"download-%Y-%m-%dT%H:%m.zip")`
+#' @param ... additional parameters passed to dwca_get_data_set from class class nbaR.TaxonClient
+#' @export
 taxon_dwca_get_data_set <- function(
                                     dataset = NULL,
                                     filename = format(
@@ -72,6 +124,15 @@ taxon_dwca_get_data_set <- function(
     ...
   )
 }
+#' @name taxon_dwca_get_data_set_names
+#' @title Retrieve the names of all available datasets
+#' @description This is a wrapper function for dwca_get_data_set_names
+#' from class nbaR.TaxonClient.
+#' @details Individual datasets can then be downloaded with /dwca/getDataSet/{dataset}
+#' @family nbaR.TaxonClient-wrappers
+#' @return scalar
+#' @param ... additional parameters passed to dwca_get_data_set_names from class class nbaR.TaxonClient
+#' @export
 taxon_dwca_get_data_set_names <- function(
                                           ...) {
   sc <- TaxonClient$new()
@@ -81,6 +142,17 @@ taxon_dwca_get_data_set_names <- function(
   result <- res$content
   return(result)
 }
+#' @name taxon_dwca_query
+#' @title Dynamic download service: Query for taxa and return result as Darwin Core Archive File
+#' @description This is a wrapper function for dwca_query
+#' from class nbaR.TaxonClient.
+#' @details Query with query parameters or querySpec JSON. Response saved to nba-taxa.dwca.zip
+#' @family nbaR.TaxonClient-wrappers
+#' @return
+#' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
+#' @param filename Filename to save results to, defaults to `format(Sys.time(),"download-%Y-%m-%dT%H:%m.zip")`
+#' @param ... additional parameters passed to dwca_query from class class nbaR.TaxonClient
+#' @export
 taxon_dwca_query <- function(
                              queryParams = list(),
                              filename = format(
@@ -95,6 +167,16 @@ taxon_dwca_query <- function(
     ...
   )
 }
+#' @name taxon_find
+#' @title Find a taxon by id
+#' @description This is a wrapper function for find
+#' from class nbaR.TaxonClient.
+#' @details If found, returns a single taxon
+#' @family nbaR.TaxonClient-wrappers
+#' @return list
+#' @param id id of taxon, type:
+#' @param ... additional parameters passed to find from class class nbaR.TaxonClient
+#' @export
 taxon_find <- function(
                        id = NULL,
                        ...) {
@@ -107,6 +189,16 @@ taxon_find <- function(
   result <- .make_list_response(res)
   return(result)
 }
+#' @name taxon_find_by_ids
+#' @title Find taxa by ids
+#' @description This is a wrapper function for find_by_ids
+#' from class nbaR.TaxonClient.
+#' @details Given multiple ids, returns a list of taxa
+#' @family nbaR.TaxonClient-wrappers
+#' @return list
+#' @param ids ids of multiple taxa, separated by comma, type: character
+#' @param ... additional parameters passed to find_by_ids from class class nbaR.TaxonClient
+#' @export
 taxon_find_by_ids <- function(
                               ids = NULL,
                               ...) {
@@ -119,6 +211,16 @@ taxon_find_by_ids <- function(
   result <- .make_list_response(res)
   return(result)
 }
+#' @name taxon_get_distinct_values
+#' @title Get all different values that can be found for one field
+#' @description This is a wrapper function for get_distinct_values
+#' from class nbaR.TaxonClient.
+#' @details A list of all fields for taxon documents can be retrieved with /metadata/getFieldInfo
+#' @family nbaR.TaxonClient-wrappers
+#' @return scalar
+#' @param field name of field in a taxon object, type:
+#' @param ... additional parameters passed to get_distinct_values from class class nbaR.TaxonClient
+#' @export
 taxon_get_distinct_values <- function(
                                       field = NULL,
                                       ...) {
@@ -131,6 +233,17 @@ taxon_get_distinct_values <- function(
   result <- res$content
   return(result)
 }
+#' @name taxon_get_distinct_values_per_group
+#' @title Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by
+#' @description This is a wrapper function for get_distinct_values_per_group
+#' from class nbaR.TaxonClient.
+#' @details
+#' @family nbaR.TaxonClient-wrappers
+#' @return scalar
+#' @param group name of field in the taxon object you want to group by, type:
+#' @param field name of field in the taxon object, type:
+#' @param ... additional parameters passed to get_distinct_values_per_group from class class nbaR.TaxonClient
+#' @export
 taxon_get_distinct_values_per_group <- function(
                                                 group = NULL,
                                                 field = NULL,
@@ -145,6 +258,15 @@ taxon_get_distinct_values_per_group <- function(
   result <- res$content
   return(result)
 }
+#' @name taxon_get_field_info
+#' @title Returns extended information for each field of a specimen document
+#' @description This is a wrapper function for get_field_info
+#' from class nbaR.TaxonClient.
+#' @details Info consists of whether the fields is indexed, the ElasticSearch datatype and a list of allowed operators
+#' @family nbaR.TaxonClient-wrappers
+#' @return scalar
+#' @param ... additional parameters passed to get_field_info from class class nbaR.TaxonClient
+#' @export
 taxon_get_field_info <- function(
                                  ...) {
   sc <- TaxonClient$new()
@@ -154,6 +276,15 @@ taxon_get_field_info <- function(
   result <- res$content
   return(result)
 }
+#' @name taxon_get_paths
+#' @title Returns the full path of all fields within a document
+#' @description This is a wrapper function for get_paths
+#' from class nbaR.TaxonClient.
+#' @details See also metadata/getFieldInfo for all allowed operators per field
+#' @family nbaR.TaxonClient-wrappers
+#' @return scalar
+#' @param ... additional parameters passed to get_paths from class class nbaR.TaxonClient
+#' @export
 taxon_get_paths <- function(
                             ...) {
   sc <- TaxonClient$new()
@@ -163,6 +294,16 @@ taxon_get_paths <- function(
   result <- res$content
   return(result)
 }
+#' @name taxon_get_setting
+#' @title Get the value of an NBA setting
+#' @description This is a wrapper function for get_setting
+#' from class nbaR.TaxonClient.
+#' @details All settings can be queried with /metadata/getSettings
+#' @family nbaR.TaxonClient-wrappers
+#' @return scalar
+#' @param name name of setting, type:
+#' @param ... additional parameters passed to get_setting from class class nbaR.TaxonClient
+#' @export
 taxon_get_setting <- function(
                               name = NULL,
                               ...) {
@@ -175,6 +316,15 @@ taxon_get_setting <- function(
   result <- res$content
   return(result)
 }
+#' @name taxon_get_settings
+#' @title List all publicly available configuration settings for the NBA
+#' @description This is a wrapper function for get_settings
+#' from class nbaR.TaxonClient.
+#' @details The value of a specific setting can be queried with metadata/getSetting/{name}
+#' @family nbaR.TaxonClient-wrappers
+#' @return scalar
+#' @param ... additional parameters passed to get_settings from class class nbaR.TaxonClient
+#' @export
 taxon_get_settings <- function(
                                ...) {
   sc <- TaxonClient$new()
@@ -184,6 +334,16 @@ taxon_get_settings <- function(
   result <- res$content
   return(result)
 }
+#' @name taxon_group_by_scientific_name
+#' @title Aggregates Taxon and Specimen documents according to their scientific names
+#' @description This is a wrapper function for group_by_scientific_name
+#' from class nbaR.TaxonClient.
+#' @details Returns a list with ScientificNameGroups, which contain Taxon and Specimen documents that share a scientific name
+#' @family nbaR.TaxonClient-wrappers
+#' @return list
+#' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
+#' @param ... additional parameters passed to group_by_scientific_name from class class nbaR.TaxonClient
+#' @export
 taxon_group_by_scientific_name <- function(
                                            queryParams = list(),
                                            ...) {
@@ -195,6 +355,17 @@ taxon_group_by_scientific_name <- function(
   result <- .make_list_response(res)
   return(result)
 }
+#' @name taxon_is_operator_allowed
+#' @title Checks if a given operator is allowed for a given field
+#' @description This is a wrapper function for is_operator_allowed
+#' from class nbaR.TaxonClient.
+#' @details See also metadata/getFieldInfo
+#' @family nbaR.TaxonClient-wrappers
+#' @return scalar
+#' @param field specimen document field, type:
+#' @param operator operator, type:
+#' @param ... additional parameters passed to is_operator_allowed from class class nbaR.TaxonClient
+#' @export
 taxon_is_operator_allowed <- function(
                                       field = NULL,
                                       operator = NULL,
@@ -209,6 +380,16 @@ taxon_is_operator_allowed <- function(
   result <- res$content
   return(result)
 }
+#' @name taxon_query
+#' @title Query for taxa
+#' @description This is a wrapper function for query
+#' from class nbaR.TaxonClient.
+#' @details Search for taxa (GET) using query parameters or a querySpec JSON
+#' @family nbaR.TaxonClient-wrappers
+#' @return list
+#' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
+#' @param ... additional parameters passed to query from class class nbaR.TaxonClient
+#' @export
 taxon_query <- function(
                         queryParams = list(),
                         ...) {

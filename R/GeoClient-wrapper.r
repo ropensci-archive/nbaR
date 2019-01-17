@@ -10,6 +10,16 @@
 #' for nbaR.Geo objects
 
 
+#' @name geo_count
+#' @title Get the number of geo areas matching a given condition
+#' @description This is a wrapper function for count
+#' from class nbaR.GeoClient.
+#' @details Conditions given as query string
+#' @family nbaR.GeoClient-wrappers
+#' @return scalar
+#' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
+#' @param ... additional parameters passed to count from class class nbaR.GeoClient
+#' @export
 geo_count <- function(
                       queryParams = list(),
                       ...) {
@@ -21,6 +31,16 @@ geo_count <- function(
   result <- res$content
   return(result)
 }
+#' @name geo_count_distinct_values
+#' @title Count the distinct number of values that exist for a given field
+#' @description This is a wrapper function for count_distinct_values
+#' from class nbaR.GeoClient.
+#' @details
+#' @family nbaR.GeoClient-wrappers
+#' @return scalar
+#' @param field name of field in taxon object, type:
+#' @param ... additional parameters passed to count_distinct_values from class class nbaR.GeoClient
+#' @export
 geo_count_distinct_values <- function(
                                       field = NULL,
                                       ...) {
@@ -33,6 +53,17 @@ geo_count_distinct_values <- function(
   result <- res$content
   return(result)
 }
+#' @name geo_count_distinct_values_per_group
+#' @title Count the distinct number of field values that exist per the given field to group by
+#' @description This is a wrapper function for count_distinct_values_per_group
+#' from class nbaR.GeoClient.
+#' @details
+#' @family nbaR.GeoClient-wrappers
+#' @return scalar
+#' @param group name of field in the geo area object to group by, type:
+#' @param field name of field in the geo area object, type:
+#' @param ... additional parameters passed to count_distinct_values_per_group from class class nbaR.GeoClient
+#' @export
 geo_count_distinct_values_per_group <- function(
                                                 group = NULL,
                                                 field = NULL,
@@ -47,6 +78,16 @@ geo_count_distinct_values_per_group <- function(
   result <- res$content
   return(result)
 }
+#' @name geo_find
+#' @title Find a GEO area by id
+#' @description This is a wrapper function for find
+#' from class nbaR.GeoClient.
+#' @details Returns a GEO object containing a GEO json polygon
+#' @family nbaR.GeoClient-wrappers
+#' @return list
+#' @param id id of geo area, type:
+#' @param ... additional parameters passed to find from class class nbaR.GeoClient
+#' @export
 geo_find <- function(
                      id = NULL,
                      ...) {
@@ -59,6 +100,16 @@ geo_find <- function(
   result <- .make_list_response(res)
   return(result)
 }
+#' @name geo_find_by_ids
+#' @title Find geo areas by ids
+#' @description This is a wrapper function for find_by_ids
+#' from class nbaR.GeoClient.
+#' @details Given multiple ids, returns a list of geo area objects
+#' @family nbaR.GeoClient-wrappers
+#' @return list
+#' @param ids ids of multiple geo areas, separated by comma, type: character
+#' @param ... additional parameters passed to find_by_ids from class class nbaR.GeoClient
+#' @export
 geo_find_by_ids <- function(
                             ids = NULL,
                             ...) {
@@ -71,6 +122,16 @@ geo_find_by_ids <- function(
   result <- .make_list_response(res)
   return(result)
 }
+#' @name geo_get_distinct_values
+#' @title Get all different values that exist for a field
+#' @description This is a wrapper function for get_distinct_values
+#' from class nbaR.GeoClient.
+#' @details A list of all fields for geo area documents can be retrieved with /metadata/getFieldInfo
+#' @family nbaR.GeoClient-wrappers
+#' @return scalar
+#' @param field name of field in geo area object, type:
+#' @param ... additional parameters passed to get_distinct_values from class class nbaR.GeoClient
+#' @export
 geo_get_distinct_values <- function(
                                     field = NULL,
                                     ...) {
@@ -83,6 +144,17 @@ geo_get_distinct_values <- function(
   result <- res$content
   return(result)
 }
+#' @name geo_get_distinct_values_per_group
+#' @title Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by
+#' @description This is a wrapper function for get_distinct_values_per_group
+#' from class nbaR.GeoClient.
+#' @details
+#' @family nbaR.GeoClient-wrappers
+#' @return scalar
+#' @param group name of field in the geo area object to group by, type:
+#' @param field name of field in the geo area object, type:
+#' @param ... additional parameters passed to get_distinct_values_per_group from class class nbaR.GeoClient
+#' @export
 geo_get_distinct_values_per_group <- function(
                                               group = NULL,
                                               field = NULL,
@@ -97,6 +169,15 @@ geo_get_distinct_values_per_group <- function(
   result <- res$content
   return(result)
 }
+#' @name geo_get_field_info
+#' @title Returns extended information for each field of a specimen document
+#' @description This is a wrapper function for get_field_info
+#' from class nbaR.GeoClient.
+#' @details Info consists of whether the fields is indexed, the ElasticSearch datatype and a list of allowed operators
+#' @family nbaR.GeoClient-wrappers
+#' @return scalar
+#' @param ... additional parameters passed to get_field_info from class class nbaR.GeoClient
+#' @export
 geo_get_field_info <- function(
                                ...) {
   sc <- GeoClient$new()
@@ -106,6 +187,16 @@ geo_get_field_info <- function(
   result <- res$content
   return(result)
 }
+#' @name geo_get_geo_json_for_locality
+#' @title Retrieve a GeoJson object for a given locality
+#' @description This is a wrapper function for get_geo_json_for_locality
+#' from class nbaR.GeoClient.
+#' @details Returns a GeoJson polygon
+#' @family nbaR.GeoClient-wrappers
+#' @return scalar
+#' @param locality , type:
+#' @param ... additional parameters passed to get_geo_json_for_locality from class class nbaR.GeoClient
+#' @export
 geo_get_geo_json_for_locality <- function(
                                           locality = NULL,
                                           ...) {
@@ -118,6 +209,15 @@ geo_get_geo_json_for_locality <- function(
   result <- res$content
   return(result)
 }
+#' @name geo_get_paths
+#' @title Returns the full path of all fields within a document
+#' @description This is a wrapper function for get_paths
+#' from class nbaR.GeoClient.
+#' @details See also metadata/getFieldInfo for all allowed operators per field
+#' @family nbaR.GeoClient-wrappers
+#' @return scalar
+#' @param ... additional parameters passed to get_paths from class class nbaR.GeoClient
+#' @export
 geo_get_paths <- function(
                           ...) {
   sc <- GeoClient$new()
@@ -127,6 +227,16 @@ geo_get_paths <- function(
   result <- res$content
   return(result)
 }
+#' @name geo_get_setting
+#' @title Get the value of an NBA setting
+#' @description This is a wrapper function for get_setting
+#' from class nbaR.GeoClient.
+#' @details All settings can be queried with /metadata/getSettings
+#' @family nbaR.GeoClient-wrappers
+#' @return scalar
+#' @param name name of setting, type:
+#' @param ... additional parameters passed to get_setting from class class nbaR.GeoClient
+#' @export
 geo_get_setting <- function(
                             name = NULL,
                             ...) {
@@ -139,6 +249,15 @@ geo_get_setting <- function(
   result <- res$content
   return(result)
 }
+#' @name geo_get_settings
+#' @title List all publicly available configuration settings for the NBA
+#' @description This is a wrapper function for get_settings
+#' from class nbaR.GeoClient.
+#' @details The value of a specific setting can be queried with metadata/getSetting/{name}
+#' @family nbaR.GeoClient-wrappers
+#' @return scalar
+#' @param ... additional parameters passed to get_settings from class class nbaR.GeoClient
+#' @export
 geo_get_settings <- function(
                              ...) {
   sc <- GeoClient$new()
@@ -148,6 +267,17 @@ geo_get_settings <- function(
   result <- res$content
   return(result)
 }
+#' @name geo_is_operator_allowed
+#' @title Checks if a given operator is allowed for a given field
+#' @description This is a wrapper function for is_operator_allowed
+#' from class nbaR.GeoClient.
+#' @details See also metadata/getFieldInfo
+#' @family nbaR.GeoClient-wrappers
+#' @return scalar
+#' @param field Field in geo area document, type:
+#' @param operator operator, type:
+#' @param ... additional parameters passed to is_operator_allowed from class class nbaR.GeoClient
+#' @export
 geo_is_operator_allowed <- function(
                                     field = NULL,
                                     operator = NULL,
@@ -162,6 +292,16 @@ geo_is_operator_allowed <- function(
   result <- res$content
   return(result)
 }
+#' @name geo_query
+#' @title Query for geo areas
+#' @description This is a wrapper function for query
+#' from class nbaR.GeoClient.
+#' @details Query on searchable fields to retrieve matching geo areas
+#' @family nbaR.GeoClient-wrappers
+#' @return list
+#' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
+#' @param ... additional parameters passed to query from class class nbaR.GeoClient
+#' @export
 geo_query <- function(
                       queryParams = list(),
                       ...) {
