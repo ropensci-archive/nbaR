@@ -5,6 +5,31 @@
 
 {{#operations}}
   {{#operation}}
+    #' @name {{classVarName}}_{{operationId}}
+    #' @title {{summary}}
+    #' @description This is a wrapper function for {{operationId}}
+    #' from class {{importPath}}Client.
+    #' @details {{notes}}
+    #' @family {{importPath}}Client-wrappers
+    #' @return {{#returnType}}{{#returnTypeIsPrimitive}}scalar{{/returnTypeIsPrimitive}}{{^returnTypeIsPrimitive}}list{{/returnTypeIsPrimitive}}{{/returnType}}
+      {{#allParams}}
+        {{#isPrimitiveType}}
+    #' @param {{baseName}} {{description}}, type: {{baseType}}
+        {{/isPrimitiveType}}
+        {{^isPrimitiveType}}
+          {{#isListContainer}}
+    #' @param {{baseName}} {{description}}, type: {{baseType}}
+          {{/isListContainer}}
+        {{/isPrimitiveType}}
+      {{/allParams}}
+      {{#hasQueryParams}}
+    #' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
+      {{/hasQueryParams}}
+      {{#isResponseFile}}
+    #' @param filename Filename to save results to, defaults to `format(Sys.time(),"download-%Y-%m-%dT%H:%m.zip")`
+      {{/isResponseFile}}
+    #' @param ... additional parameters passed to {{operationId}} from class class {{importPath}}Client
+    #' @export
     {{classVarName}}_{{operationId}} <- function(
     {{#allParams}}
       {{#isPrimitiveType}}
