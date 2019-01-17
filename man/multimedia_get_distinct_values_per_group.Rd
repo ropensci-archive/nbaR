@@ -21,6 +21,9 @@ scalar
 This is a wrapper function for get_distinct_values_per_group
 from class nbaR.MultimediaClient.
 }
+\details{
+See also endpoint /getDistinctValues
+}
 \seealso{
 Other nbaR.MultimediaClient-wrappers: \code{\link{multimedia_count_distinct_values_per_group}},
   \code{\link{multimedia_count_distinct_values}},

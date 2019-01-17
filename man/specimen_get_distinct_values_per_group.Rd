@@ -20,6 +20,9 @@ scalar
 This is a wrapper function for get_distinct_values_per_group
 from class nbaR.SpecimenClient.
 }
+\details{
+See also endpoint /getDistinctValues
+}
 \seealso{
 Other nbaR.SpecimenClient-wrappers: \code{\link{specimen_count_distinct_values_per_group}},
   \code{\link{specimen_count_distinct_values}},

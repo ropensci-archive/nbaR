@@ -41,7 +41,7 @@ Client class for nbaR.Multimedia objects
 \item{\code{ count_distinct_values }}{
 
   Count the distinct number of values that exist for a given field;
-  .
+  See also endpoint /getDistinctValues.
 
     Parameters:
     \itemize{
@@ -57,7 +57,7 @@ Client class for nbaR.Multimedia objects
 \item{\code{ count_distinct_values_per_group }}{
 
   Count the distinct number of field values that exist per the given field to group by;
-  .
+  See also endpoint /getDistinctValuesPerGroup.
 
     Parameters:
     \itemize{
@@ -137,7 +137,7 @@ Client class for nbaR.Multimedia objects
 \item{\code{ get_distinct_values_per_group }}{
 
   Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by;
-  .
+  See also endpoint /getDistinctValues.
 
     Parameters:
     \itemize{

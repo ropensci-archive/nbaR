@@ -16,6 +16,9 @@ scalar
 This is a wrapper function for get_controlled_list_taxonomic_status
 from class nbaR.MetadataClient.
 }
+\details{
+See also endpoint /getControlledLists
+}
 \seealso{
 Other nbaR.MetadataClient-wrappers: \code{\link{metadata_get_allowed_date_formats}},
   \code{\link{metadata_get_controlled_list_phase_or_stage}},

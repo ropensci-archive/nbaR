@@ -41,7 +41,7 @@ Client class for nbaR.Metadata objects
 \item{\code{ get_controlled_list_phase_or_stage }}{
 
   Get allowed values for the field &#39;PhaseOrStage&#39; in a specimen document;
-  .
+  See also endpoint /getControlledLists.
 
     Parameters:
     \itemize{
@@ -57,7 +57,7 @@ Client class for nbaR.Metadata objects
 \item{\code{ get_controlled_list_sex }}{
 
   Get allowed values for the field &#39;Sex&#39; in a specimen document;
-  .
+  See also endpoint /getControlledLists.
 
     Parameters:
     \itemize{
@@ -73,7 +73,7 @@ Client class for nbaR.Metadata objects
 \item{\code{ get_controlled_list_specimen_type_status }}{
 
   Get allowed values for the field &#39;SpecimenTypeStatus&#39; in a specimen document;
-  .
+  See also endpoint /getControlledLists.
 
     Parameters:
     \itemize{
@@ -89,7 +89,7 @@ Client class for nbaR.Metadata objects
 \item{\code{ get_controlled_list_taxonomic_status }}{
 
   Get allowed values for the field &#39;TaxonomicStatus&#39; in specimen and taxon documents;
-  .
+  See also endpoint /getControlledLists.
 
     Parameters:
     \itemize{

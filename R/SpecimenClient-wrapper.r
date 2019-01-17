@@ -34,7 +34,7 @@ specimen_count <- function(
 #' @title Count the distinct number of values that exist for a given field
 #' @description This is a wrapper function for count_distinct_values
 #' from class nbaR.SpecimenClient.
-#' @details
+#' @details See also endpoint /getDistinctValues
 #' @family nbaR.SpecimenClient-wrappers
 #' @return scalar
 #' @param field Name of field in the specimen object, type:
@@ -58,7 +58,7 @@ specimen_count_distinct_values <- function(
 #' @title Count the distinct number of field values that exist per the given field to group by
 #' @description This is a wrapper function for count_distinct_values_per_group
 #' from class nbaR.SpecimenClient.
-#' @details
+#' @details See also endpoint /getDistinctValuesPerGroup
 #' @family nbaR.SpecimenClient-wrappers
 #' @return scalar
 #' @param group Name of field in the specimen object you want to group by, type:
@@ -106,7 +106,7 @@ specimen_download_query <- function(
 #' from class nbaR.SpecimenClient.
 #' @details Available datasets can be queried with /specimen/dwca/getDataSetNames. Response saved to &lt;datasetname&gt;-&lt;yyyymmdd&gt;.dwca.zip
 #' @family nbaR.SpecimenClient-wrappers
-#' @return
+
 #' @param dataset name of dataset, type:
 #' @param filename Filename to save results to, defaults to `format(Sys.time(),"download-%Y-%m-%dT%H:%m.zip")`
 #' @param ... additional parameters passed to dwca_get_data_set from class class nbaR.SpecimenClient
@@ -149,7 +149,7 @@ specimen_dwca_get_data_set_names <- function(
 #' from class nbaR.SpecimenClient.
 #' @details Query with query parameters or querySpec JSON. Response saved to nba-specimens.dwca.zip
 #' @family nbaR.SpecimenClient-wrappers
-#' @return
+
 #' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
 #' @param filename Filename to save results to, defaults to `format(Sys.time(),"download-%Y-%m-%dT%H:%m.zip")`
 #' @param ... additional parameters passed to dwca_query from class class nbaR.SpecimenClient
@@ -284,7 +284,7 @@ specimen_get_distinct_values <- function(
 #' @title Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by
 #' @description This is a wrapper function for get_distinct_values_per_group
 #' from class nbaR.SpecimenClient.
-#' @details
+#' @details See also endpoint /getDistinctValues
 #' @family nbaR.SpecimenClient-wrappers
 #' @return scalar
 #' @param group Name of field in the specimen object you want to group by, type:
@@ -349,7 +349,7 @@ specimen_get_ids_in_collection <- function(
 #' @title Retrieve the names of all &#39;special collections&#39; of specimens
 #' @description This is a wrapper function for get_named_collections
 #' from class nbaR.SpecimenClient.
-#' @details
+#' @details See also here: http://bioportal.naturalis.nl/collecties
 #' @family nbaR.SpecimenClient-wrappers
 #' @return scalar
 #' @param ... additional parameters passed to get_named_collections from class class nbaR.SpecimenClient

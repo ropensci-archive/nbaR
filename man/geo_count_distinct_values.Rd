@@ -18,6 +18,9 @@ scalar
 This is a wrapper function for count_distinct_values
 from class nbaR.GeoClient.
 }
+\details{
+Field given as string. See also getDistinctValues
+}
 \seealso{
 Other nbaR.GeoClient-wrappers: \code{\link{geo_count_distinct_values_per_group}},
   \code{\link{geo_count}}, \code{\link{geo_find_by_ids}},

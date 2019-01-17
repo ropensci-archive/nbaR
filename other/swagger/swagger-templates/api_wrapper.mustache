@@ -8,9 +8,9 @@
     #' @title {{summary}}
     #' @description This is a wrapper function for {{operationId}}
     #' from class {{importPath}}Client.
-    #' @details {{notes}}
+    {{#notes}}#' @details {{notes}}{{/notes}}
     #' @family {{importPath}}Client-wrappers
-    #' @return {{#returnType}}{{#returnTypeIsPrimitive}}scalar{{/returnTypeIsPrimitive}}{{^returnTypeIsPrimitive}}list{{/returnTypeIsPrimitive}}{{/returnType}}
+    {{#returnType}}#' @return {{#returnType}}{{#returnTypeIsPrimitive}}scalar{{/returnTypeIsPrimitive}}{{^returnTypeIsPrimitive}}list{{/returnTypeIsPrimitive}}{{/returnType}}{{/returnType}}
       {{#allParams}}
         {{#isPrimitiveType}}
     #' @param {{baseName}} {{description}}, type: {{baseType}}

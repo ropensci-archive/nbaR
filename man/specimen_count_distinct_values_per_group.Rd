@@ -21,6 +21,9 @@ scalar
 This is a wrapper function for count_distinct_values_per_group
 from class nbaR.SpecimenClient.
 }
+\details{
+See also endpoint /getDistinctValuesPerGroup
+}
 \seealso{
 Other nbaR.SpecimenClient-wrappers: \code{\link{specimen_count_distinct_values}},
   \code{\link{specimen_count}},

@@ -20,6 +20,9 @@ scalar
 This is a wrapper function for get_distinct_values_per_group
 from class nbaR.GeoClient.
 }
+\details{
+See also endpoint /getDistinctValues
+}
 \seealso{
 Other nbaR.GeoClient-wrappers: \code{\link{geo_count_distinct_values_per_group}},
   \code{\link{geo_count_distinct_values}},

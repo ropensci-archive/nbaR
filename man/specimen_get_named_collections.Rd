@@ -16,6 +16,9 @@ scalar
 This is a wrapper function for get_named_collections
 from class nbaR.SpecimenClient.
 }
+\details{
+See also here: http://bioportal.naturalis.nl/collecties
+}
 \seealso{
 Other nbaR.SpecimenClient-wrappers: \code{\link{specimen_count_distinct_values_per_group}},
   \code{\link{specimen_count_distinct_values}},

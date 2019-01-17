@@ -34,7 +34,7 @@ geo_count <- function(
 #' @title Count the distinct number of values that exist for a given field
 #' @description This is a wrapper function for count_distinct_values
 #' from class nbaR.GeoClient.
-#' @details
+#' @details Field given as string. See also getDistinctValues
 #' @family nbaR.GeoClient-wrappers
 #' @return scalar
 #' @param field name of field in taxon object, type:
@@ -56,7 +56,7 @@ geo_count_distinct_values <- function(
 #' @title Count the distinct number of field values that exist per the given field to group by
 #' @description This is a wrapper function for count_distinct_values_per_group
 #' from class nbaR.GeoClient.
-#' @details
+#' @details See also endpoint /getDistinctValues. See also getDistinctValuesPerGroup
 #' @family nbaR.GeoClient-wrappers
 #' @return scalar
 #' @param group name of field in the geo area object to group by, type:
@@ -147,7 +147,7 @@ geo_get_distinct_values <- function(
 #' @title Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by
 #' @description This is a wrapper function for get_distinct_values_per_group
 #' from class nbaR.GeoClient.
-#' @details
+#' @details See also endpoint /getDistinctValues
 #' @family nbaR.GeoClient-wrappers
 #' @return scalar
 #' @param group name of field in the geo area object to group by, type:

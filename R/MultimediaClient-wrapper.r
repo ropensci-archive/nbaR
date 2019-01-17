@@ -34,7 +34,7 @@ multimedia_count <- function(
 #' @title Count the distinct number of values that exist for a given field
 #' @description This is a wrapper function for count_distinct_values
 #' from class nbaR.MultimediaClient.
-#' @details
+#' @details See also endpoint /getDistinctValues
 #' @family nbaR.MultimediaClient-wrappers
 #' @return scalar
 #' @param field Name of field in taxon object, type:
@@ -56,7 +56,7 @@ multimedia_count_distinct_values <- function(
 #' @title Count the distinct number of field values that exist per the given field to group by
 #' @description This is a wrapper function for count_distinct_values_per_group
 #' from class nbaR.MultimediaClient.
-#' @details
+#' @details See also endpoint /getDistinctValuesPerGroup
 #' @family nbaR.MultimediaClient-wrappers
 #' @return scalar
 #' @param group name of field in the multimedia object you want to group by, type:
@@ -83,7 +83,7 @@ multimedia_count_distinct_values_per_group <- function(
 #' from class nbaR.MultimediaClient.
 #' @details Query with query parameters or querySpec JSON. ...
 #' @family nbaR.MultimediaClient-wrappers
-#' @return
+
 #' @param collectionType Example query param, type:
 #' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
 #' @param ... additional parameters passed to download_query from class class nbaR.MultimediaClient
@@ -169,7 +169,7 @@ multimedia_get_distinct_values <- function(
 #' @title Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by
 #' @description This is a wrapper function for get_distinct_values_per_group
 #' from class nbaR.MultimediaClient.
-#' @details
+#' @details See also endpoint /getDistinctValues
 #' @family nbaR.MultimediaClient-wrappers
 #' @return scalar
 #' @param group name of field in the multimedia object you want to group by, type:

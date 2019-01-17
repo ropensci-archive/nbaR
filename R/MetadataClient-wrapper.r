@@ -31,7 +31,7 @@ metadata_get_allowed_date_formats <- function(
 #' @title Get allowed values for the field &#39;PhaseOrStage&#39; in a specimen document
 #' @description This is a wrapper function for get_controlled_list_phase_or_stage
 #' from class nbaR.MetadataClient.
-#' @details
+#' @details See also endpoint /getControlledLists
 #' @family nbaR.MetadataClient-wrappers
 #' @return scalar
 #' @param ... additional parameters passed to get_controlled_list_phase_or_stage from class class nbaR.MetadataClient
@@ -49,7 +49,7 @@ metadata_get_controlled_list_phase_or_stage <- function(
 #' @title Get allowed values for the field &#39;Sex&#39; in a specimen document
 #' @description This is a wrapper function for get_controlled_list_sex
 #' from class nbaR.MetadataClient.
-#' @details
+#' @details See also endpoint /getControlledLists
 #' @family nbaR.MetadataClient-wrappers
 #' @return scalar
 #' @param ... additional parameters passed to get_controlled_list_sex from class class nbaR.MetadataClient
@@ -67,7 +67,7 @@ metadata_get_controlled_list_sex <- function(
 #' @title Get allowed values for the field &#39;SpecimenTypeStatus&#39; in a specimen document
 #' @description This is a wrapper function for get_controlled_list_specimen_type_status
 #' from class nbaR.MetadataClient.
-#' @details
+#' @details See also endpoint /getControlledLists
 #' @family nbaR.MetadataClient-wrappers
 #' @return scalar
 #' @param ... additional parameters passed to get_controlled_list_specimen_type_status from class class nbaR.MetadataClient
@@ -85,7 +85,7 @@ metadata_get_controlled_list_specimen_type_status <- function(
 #' @title Get allowed values for the field &#39;TaxonomicStatus&#39; in specimen and taxon documents
 #' @description This is a wrapper function for get_controlled_list_taxonomic_status
 #' from class nbaR.MetadataClient.
-#' @details
+#' @details See also endpoint /getControlledLists
 #' @family nbaR.MetadataClient-wrappers
 #' @return scalar
 #' @param ... additional parameters passed to get_controlled_list_taxonomic_status from class class nbaR.MetadataClient

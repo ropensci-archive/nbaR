@@ -20,6 +20,9 @@ scalar
 This is a wrapper function for count_distinct_values_per_group
 from class nbaR.TaxonClient.
 }
+\details{
+See also endpoint /getDistinctValuesPerGroup
+}
 \seealso{
 Other nbaR.TaxonClient-wrappers: \code{\link{taxon_count_distinct_values}},
   \code{\link{taxon_count}},
