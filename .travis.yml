@@ -14,7 +14,8 @@ r_packages:
     - roxygen2
     - remotes
     - pkgdown
-
+    - maps
+	
 r_github_packages:
     - r-lib/covr
     - ropenscilabs/tic
