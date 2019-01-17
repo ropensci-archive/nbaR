@@ -10,7 +10,7 @@ taxon_dwca_query(queryParams = list(), filename = format(Sys.time(),
 \arguments{
 \item{queryParams}{Named list or vector with names being the fields to be queried and values being the values to match}
 
-\item{filename}{Filename to save results to, defaults to `format(Sys.time(),"download-%Y-%m-%dT%H:%m.zip")`}
+\item{filename}{Filename to save results to, defaults to `format(Sys.time(),"download-\%Y-\%m-\%dT\%H:\%m.zip")`}
 
 \item{...}{additional parameters passed to dwca_query from class class nbaR.TaxonClient}
 }

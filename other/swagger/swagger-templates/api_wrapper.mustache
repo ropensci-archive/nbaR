@@ -25,7 +25,7 @@
     #' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
       {{/hasQueryParams}}
       {{#isResponseFile}}
-    #' @param filename Filename to save results to, defaults to `format(Sys.time(),"download-%Y-%m-%dT%H:%m.zip")`
+    #' @param filename Filename to save results to, defaults to `format(Sys.time(),"download-\%Y-\%m-\%dT\%H:\%m.zip")`
       {{/isResponseFile}}
     #' @param ... additional parameters passed to {{operationId}} from class class {{importPath}}Client
     #' @export

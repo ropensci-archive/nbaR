@@ -10,7 +10,7 @@ specimen_dwca_get_data_set(dataset = NULL,
 \arguments{
 \item{dataset}{name of dataset, type:}
 
-\item{filename}{Filename to save results to, defaults to `format(Sys.time(),"download-%Y-%m-%dT%H:%m.zip")`}
+\item{filename}{Filename to save results to, defaults to `format(Sys.time(),"download-\%Y-\%m-\%dT\%H:\%m.zip")`}
 
 \item{...}{additional parameters passed to dwca_get_data_set from class class nbaR.SpecimenClient}
 }

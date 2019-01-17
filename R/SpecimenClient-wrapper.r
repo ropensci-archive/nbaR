@@ -108,7 +108,7 @@ specimen_download_query <- function(
 #' @family nbaR.SpecimenClient-wrappers
 
 #' @param dataset name of dataset, type:
-#' @param filename Filename to save results to, defaults to `format(Sys.time(),"download-%Y-%m-%dT%H:%m.zip")`
+#' @param filename Filename to save results to, defaults to `format(Sys.time(),"download-\%Y-\%m-\%dT\%H:\%m.zip")`
 #' @param ... additional parameters passed to dwca_get_data_set from class class nbaR.SpecimenClient
 #' @export
 specimen_dwca_get_data_set <- function(
@@ -151,7 +151,7 @@ specimen_dwca_get_data_set_names <- function(
 #' @family nbaR.SpecimenClient-wrappers
 
 #' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
-#' @param filename Filename to save results to, defaults to `format(Sys.time(),"download-%Y-%m-%dT%H:%m.zip")`
+#' @param filename Filename to save results to, defaults to `format(Sys.time(),"download-\%Y-\%m-\%dT\%H:\%m.zip")`
 #' @param ... additional parameters passed to dwca_query from class class nbaR.SpecimenClient
 #' @export
 specimen_dwca_query <- function(

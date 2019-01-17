@@ -33,6 +33,9 @@
 
 
 <meta property="og:title" content="Dynamic download service: Query for taxa and return result as Darwin Core Archive File — taxon_dwca_query" />
+
+<meta property="og:description" content="This is a wrapper function for dwca_query
+from class nbaR.TaxonClient." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -125,7 +128,10 @@
     </div>
 
     <div class="ref-description">
-
+    
+    <p>This is a wrapper function for dwca_query
+from class nbaR.TaxonClient.</p>
+    
     </div>
 
     <pre class="usage"><span class='fu'>taxon_dwca_query</span>(<span class='kw'>queryParams</span> <span class='kw'>=</span> <span class='fu'>list</span>(), <span class='kw'>filename</span> <span class='kw'>=</span> <span class='fu'>format</span>(<span class='fu'>Sys.time</span>(),
@@ -140,10 +146,37 @@
     </tr>
     <tr>
       <th>filename</th>
-      <td><p>Filename to save results to, defaults to `format(Sys.time(),"download-<!-- %Y-%m-%dT%H:%m.zip")`} --></p>
-<p>...additional parameters passed to dwca_query from class class nbaR.TaxonClient</p></td>
+      <td><p>Filename to save results to, defaults to `format(Sys.time(),"download-%Y-%m-%dT%H:%m.zip")`</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>additional parameters passed to dwca_query from class class nbaR.TaxonClient</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Query with query parameters or querySpec JSON. Response saved to nba-taxa.dwca.zip</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other nbaR.TaxonClient-wrappers: <code><a href='taxon_count_distinct_values_per_group.html'>taxon_count_distinct_values_per_group</a></code>,
+  <code><a href='taxon_count_distinct_values.html'>taxon_count_distinct_values</a></code>,
+  <code><a href='taxon_count.html'>taxon_count</a></code>,
+  <code><a href='taxon_download_query.html'>taxon_download_query</a></code>,
+  <code><a href='taxon_dwca_get_data_set_names.html'>taxon_dwca_get_data_set_names</a></code>,
+  <code><a href='taxon_dwca_get_data_set.html'>taxon_dwca_get_data_set</a></code>,
+  <code><a href='taxon_find_by_ids.html'>taxon_find_by_ids</a></code>,
+  <code><a href='taxon_find.html'>taxon_find</a></code>,
+  <code><a href='taxon_get_distinct_values_per_group.html'>taxon_get_distinct_values_per_group</a></code>,
+  <code><a href='taxon_get_distinct_values.html'>taxon_get_distinct_values</a></code>,
+  <code><a href='taxon_get_field_info.html'>taxon_get_field_info</a></code>,
+  <code><a href='taxon_get_paths.html'>taxon_get_paths</a></code>,
+  <code><a href='taxon_get_settings.html'>taxon_get_settings</a></code>,
+  <code><a href='taxon_get_setting.html'>taxon_get_setting</a></code>,
+  <code><a href='taxon_group_by_scientific_name.html'>taxon_group_by_scientific_name</a></code>,
+  <code><a href='taxon_is_operator_allowed.html'>taxon_is_operator_allowed</a></code>,
+  <code><a href='taxon_query.html'>taxon_query</a></code></p></div>
     
 
   </div>
@@ -151,7 +184,11 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+          </ul>
 
   </div>
 </div>
