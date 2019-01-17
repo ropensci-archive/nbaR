@@ -142,8 +142,8 @@ Client class for nbaR.Metadata objects
     Parameters:
     \itemize{
 
-
         \item \code{ name } : name of setting
+
 
         \item \code{ ... } : additional parameters passed to httr::GET
     }

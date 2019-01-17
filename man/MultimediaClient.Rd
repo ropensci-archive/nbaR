@@ -30,8 +30,8 @@ Client class for nbaR.Multimedia objects
     Parameters:
     \itemize{
         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
-        \item \code{ queryParams } : named list or vector with query parameters
 
+        \item \code{ queryParams } : named list or vector with query parameters
 
         \item \code{ ... } : additional parameters passed to httr::GET
     }
@@ -46,8 +46,8 @@ Client class for nbaR.Multimedia objects
     Parameters:
     \itemize{
 
-
         \item \code{ field } : Name of field in taxon object
+
 
         \item \code{ ... } : additional parameters passed to httr::GET
     }
@@ -62,8 +62,8 @@ Client class for nbaR.Multimedia objects
     Parameters:
     \itemize{
 
-
         \item \code{ group } : name of field in the multimedia object you want to group by \item \code{ field } : name of field in the multimedia object
+
 
         \item \code{ ... } : additional parameters passed to httr::GET
     }
@@ -78,8 +78,8 @@ Client class for nbaR.Multimedia objects
     Parameters:
     \itemize{
         \item \code{ collection_type } : Example query param
-        \item \code{ queryParams } : named list or vector with query parameters
 
+        \item \code{ queryParams } : named list or vector with query parameters
 
         \item \code{ ... } : additional parameters passed to httr::GET
     }
@@ -94,8 +94,8 @@ Client class for nbaR.Multimedia objects
     Parameters:
     \itemize{
 
-
         \item \code{ id } : id of multimedia document
+
 
         \item \code{ ... } : additional parameters passed to httr::GET
     }
@@ -110,8 +110,8 @@ Client class for nbaR.Multimedia objects
     Parameters:
     \itemize{
 
-
         \item \code{ ids } : ids of multiple multimedia documents, separated by comma
+
 
         \item \code{ ... } : additional parameters passed to httr::GET
     }
@@ -126,8 +126,8 @@ Client class for nbaR.Multimedia objects
     Parameters:
     \itemize{
 
-
         \item \code{ field } : field
+
 
         \item \code{ ... } : additional parameters passed to httr::GET
     }
@@ -142,8 +142,8 @@ Client class for nbaR.Multimedia objects
     Parameters:
     \itemize{
 
-
         \item \code{ group } : name of field in the multimedia object you want to group by \item \code{ field } : name of field in the multimedia object
+
 
         \item \code{ ... } : additional parameters passed to httr::GET
     }
@@ -190,8 +190,8 @@ Client class for nbaR.Multimedia objects
     Parameters:
     \itemize{
 
-
         \item \code{ name } : name of setting
+
 
         \item \code{ ... } : additional parameters passed to httr::GET
     }
@@ -222,8 +222,8 @@ Client class for nbaR.Multimedia objects
     Parameters:
     \itemize{
 
-
         \item \code{ field } : multimedia document field \item \code{ operator } : operator
+
 
         \item \code{ ... } : additional parameters passed to httr::GET
     }
@@ -238,8 +238,8 @@ Client class for nbaR.Multimedia objects
     Parameters:
     \itemize{
         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
-        \item \code{ queryParams } : named list or vector with query parameters
 
+        \item \code{ queryParams } : named list or vector with query parameters
 
         \item \code{ ... } : additional parameters passed to httr::GET
     }
