@@ -226,5 +226,4 @@ test_that("specimen_query works", {
   queryParams <- c("identifications.defaultClassification.genus" = "Passiflora")
   res <- specimen_query(queryParams)
   expect_length(res, 10)
-
 })
