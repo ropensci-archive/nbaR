@@ -41,10 +41,12 @@ reference:
 - title: Wrappers
   desc: Wrapper functions for convenient access to the NBA	
   contents:
-      - '`specimen_count`'
-      - '`specimen_count_distinct_values`'
-      - '`specimen_count_distinct_values_per_group`'
-      - '`specimen_download_query`'
+      - starts_with("specimen_")
+      - starts_with("taxon_")
+      - starts_with("multimedia_")
+      - starts_with("geo_")
+      - starts_with("metadata_")
+
 - title: Clients
   desc: Clients classes to interact with the NBA
   contents:
