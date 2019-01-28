@@ -136,7 +136,7 @@ for all specimen.
 ## make table with counts for each order
 tab <- table(unlist(lapply(specimens, function(x)x$identifications[[1]]$defaultClassification$order)))
 par(mar=c(5.1, 8, 4.1, 2.1))
-barplot(sort(tab), horiz=T, las=2, xlab="Number of specimens")
+barplot(sort(tab), horiz=TRUE, las=2, xlab="Number of specimens")
 ```
 
 **Caution**: There can be multiple identifications for one specimen. Some specimens 
@@ -169,7 +169,7 @@ Almost all of them are teeth.
 The type of chronostratigraphic data (as shown above) is given in divisions on the geological time scale, e.g. *Miocene*.
 These strings can refer to *eons*, *eras*, *periods*, *epochs* and *ages*. In order to
 translate this into absolute ages, we will use the API of the [Earth Life Consortium](http://earthlifeconsortium.org/).
-This is possible using the *convenience function* `get_age`. For example
+This is possible using the *convenience function* `geo_age`. For example
 
 ```{r}
 ## get the upper chrono name for the first specimen

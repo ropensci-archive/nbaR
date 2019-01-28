@@ -390,9 +390,6 @@ GeoClient <- R6::R6Class(
         returnObject <- GeoArea$new()
         ## if API call result is QueryResult,
         ## list items must be mapped to model class
-        ## if (class(returnObject)[1] == "QueryResult") {
-        ##  returnObject$docType <- private$getBaseDataType()
-        ## }
         result <- returnObject$fromList(
           httr::content(response),
           typeMapping = list(item = private$getBaseDataType())
@@ -720,9 +717,6 @@ GeoClient <- R6::R6Class(
         returnObject <- QueryResult$new()
         ## if API call result is QueryResult,
         ## list items must be mapped to model class
-        ## if (class(returnObject)[1] == "QueryResult") {
-        ##  returnObject$docType <- private$getBaseDataType()
-        ## }
         result <- returnObject$fromList(
           httr::content(response),
           typeMapping = list(item = private$getBaseDataType())

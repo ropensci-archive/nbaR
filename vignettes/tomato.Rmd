@@ -19,10 +19,6 @@ vignette: >
 
 # The 'En Tibi' tomato specimen
 
-For the different data types in the NBA (Specimen, Taxon, Multimedia, Geo),
-there are respective client classes (`SpecimenClient`, `TaxonClient`,
-`MultimediaClient`, `GeoClient`).
-
 ## Using the SpecimenClient
 
 For the different data types in the NBA (Specimen, Taxon, Multimedia, Geo),

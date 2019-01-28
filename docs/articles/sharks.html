@@ -89,7 +89,7 @@
     <div class="page-header toc-ignore">
       <h1>Calibrating a molecular phylogeny of the sharks</h1>
             
-            <h4 class="date">Jan 17, 2019</h4>
+            <h4 class="date">Jan 28, 2019</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/naturalis/nbaR/blob/master/vignettes/sharks.Rmd"><code>vignettes/sharks.Rmd</code></a></small>
       <div class="hidden name"><code>sharks.Rmd</code></div>
@@ -213,7 +213,7 @@
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">## make table with counts for each order</a>
 <a class="sourceLine" id="cb15-2" data-line-number="2">tab &lt;-<span class="st"> </span><span class="kw">table</span>(<span class="kw">unlist</span>(<span class="kw">lapply</span>(specimens, <span class="cf">function</span>(x)x<span class="op">$</span>identifications[[<span class="dv">1</span>]]<span class="op">$</span>defaultClassification<span class="op">$</span>order)))</a>
 <a class="sourceLine" id="cb15-3" data-line-number="3"><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">5.1</span>, <span class="dv">8</span>, <span class="fl">4.1</span>, <span class="fl">2.1</span>))</a>
-<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="kw">barplot</span>(<span class="kw">sort</span>(tab), <span class="dt">horiz=</span>T, <span class="dt">las=</span><span class="dv">2</span>, <span class="dt">xlab=</span><span class="st">"Number of specimens"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="kw">barplot</span>(<span class="kw">sort</span>(tab), <span class="dt">horiz=</span><span class="ot">TRUE</span>, <span class="dt">las=</span><span class="dv">2</span>, <span class="dt">xlab=</span><span class="st">"Number of specimens"</span>)</a></code></pre></div>
 <p><img src="sharks_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 <p><strong>Caution</strong>: There can be multiple identifications for one specimen. Some specimens in our data are for instance assigned to different genera. However, the field <code>preferred</code> in an <code>Identification</code> object states if this is the most accurate and recent identification. The preferred identification is usually the first in the list of a specimen’s identifications. It can, however, occur that there are multiple identifications of which none is preferred; it is best to filter them out:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">## get the specimens which have a preferred identification</a>
@@ -234,7 +234,7 @@
 <div id="getting-absolute-ages" class="section level2">
 <h2 class="hasAnchor">
 <a href="#getting-absolute-ages" class="anchor"></a>Getting absolute ages</h2>
-<p>The type of chronostratigraphic data (as shown above) is given in divisions on the geological time scale, e.g. <em>Miocene</em>. These strings can refer to <em>eons</em>, <em>eras</em>, <em>periods</em>, <em>epochs</em> and <em>ages</em>. In order to translate this into absolute ages, we will use the API of the <a href="http://earthlifeconsortium.org/">Earth Life Consortium</a>. This is possible using the <em>convenience function</em> <code>get_age</code>. For example</p>
+<p>The type of chronostratigraphic data (as shown above) is given in divisions on the geological time scale, e.g. <em>Miocene</em>. These strings can refer to <em>eons</em>, <em>eras</em>, <em>periods</em>, <em>epochs</em> and <em>ages</em>. In order to translate this into absolute ages, we will use the API of the <a href="http://earthlifeconsortium.org/">Earth Life Consortium</a>. This is possible using the <em>convenience function</em> <code>geo_age</code>. For example</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">## get the upper chrono name for the first specimen</a>
 <a class="sourceLine" id="cb21-2" data-line-number="2">name &lt;-<span class="st"> </span>specimens[[<span class="dv">1</span>]]<span class="op">$</span>gatheringEvent<span class="op">$</span>chronoStratigraphy[[<span class="dv">1</span>]]<span class="op">$</span>oldChronoName</a>
 <a class="sourceLine" id="cb21-3" data-line-number="3">name</a></code></pre></div>

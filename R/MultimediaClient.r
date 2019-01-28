@@ -433,9 +433,6 @@ MultimediaClient <- R6::R6Class(
         returnObject <- MultiMediaObject$new()
         ## if API call result is QueryResult,
         ## list items must be mapped to model class
-        ## if (class(returnObject)[1] == "QueryResult") {
-        ##  returnObject$docType <- private$getBaseDataType()
-        ## }
         result <- returnObject$fromList(
           httr::content(response),
           typeMapping = list(item = private$getBaseDataType())
@@ -733,9 +730,6 @@ MultimediaClient <- R6::R6Class(
         returnObject <- QueryResult$new()
         ## if API call result is QueryResult,
         ## list items must be mapped to model class
-        ## if (class(returnObject)[1] == "QueryResult") {
-        ##  returnObject$docType <- private$getBaseDataType()
-        ## }
         result <- returnObject$fromList(
           httr::content(response),
           typeMapping = list(item = private$getBaseDataType())
