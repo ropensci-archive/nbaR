@@ -293,7 +293,7 @@ selecting the most recent common ancestor (mrca) of the species for which the da
 
 ```{r chronos_calib, warning=FALSE}
 ## make calibration table on genus level
-calibration_table <- chronos_calib(specimens, tree, "genus")
+calibration_table <- chronos_calib(specimens, shark_tree, "genus")
 ```
 
 **Note**: This function can produce many warnings, a warning is emitted
