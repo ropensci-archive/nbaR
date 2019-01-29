@@ -279,11 +279,10 @@ parsed using the package `ape`:
 library(ape)
 
 ## read data
-path <- system.file("extdata", "shark_tree.nex", package = "nbaR")
-tree <- read.nexus(path)
+data(shark_tree)
 
 ## plot the tree
-plot(tree, cex = 0.3)
+plot(shark_tree, cex = 0.3)
 ```
 
 ## Genus level
@@ -321,7 +320,7 @@ calibration_table <-
   calibration_table[calibration_table$taxon != "Squatina",]
 
 ## run ape's chronos
-chronogram <- chronos(tree, calibration = calibration_table)
+chronogram <- chronos(shark_tree, calibration = calibration_table)
 
 ## plot tree with time axis
 plot(chronogram, cex = 0.3)
@@ -341,7 +340,7 @@ We can also calibrate the tree on the family level:
 calibration_table <- chronos_calib(specimens, tree, "family")
 
 ## run ape's chronos
-chronogram <- chronos(tree, calibration = calibration_table)
+chronogram <- chronos(shark_tree, calibration = calibration_table)
 
 ## plot tree with time axis
 plot(chronogram, cex = 0.3)
