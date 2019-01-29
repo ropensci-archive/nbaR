@@ -67,7 +67,8 @@ Let's try the first field and query for all `Specimen` records with `identificat
 matching the name `tomato`, we can use the client's `query` function:
 
 ```{r}
-res <- sc$query(queryParams=list(identifications.vernacularNames.name="tomato"))
+res <-
+  sc$query(queryParams = list(identifications.vernacularNames.name = "tomato"))
 ```
 
 Note that the `queryParams` arguments takes a list, so
@@ -81,7 +82,12 @@ No hits, thus no record has the vernacular name equal to `tomato`. We therefore
 search in `identifications.taxonomicEnrichments.vernacularNames.name`:
 
 ```{r}
-res <- sc$query(queryParams=list(identifications.taxonomicEnrichments.vernacularNames.name="tomato"))
+res <-
+  sc$query(
+    queryParams =
+      list(identifications.taxonomicEnrichments.vernacularNames.name =
+             "tomato")
+  )
 # how many hits?
 res$content$totalSize
 ```
@@ -97,7 +103,11 @@ which are very powerful for constructing complex and nested queries.
 A `QueryCondition` can be specified as follows:
 
 ```{r}
-qc <- QueryCondition$new(field="identifications.taxonomicEnrichments.vernacularNames.name", operator="MATCHES", value="tomato")
+qc <-
+  QueryCondition$new(
+    field = "identifications.taxonomicEnrichments.vernacularNames.name",
+    operator = "MATCHES",
+    value = "tomato")
 ```
 
 Note that we use the operator `MATCHES` that does a partial instead of an exact match
@@ -206,26 +216,61 @@ are then extracted and the locations are plotted on a world map.
 we use the operator `NOT_EQUALS` in combination with the value `NULL`. 
 
 ```{r}		
-# conditions for specimens for Solanum lycopersicum		
-qc <- QueryCondition$new(field='identifications.defaultClassification.genus', operator='EQUALS', value='Solanum')		
-qc2 <- QueryCondition$new(field='identifications.defaultClassification.specificEpithet', operator='EQUALS', value='lycopersicum')		
+# conditions for specimens for Solanum lycopersicum
+qc <-
+  QueryCondition$new(field =
+                       'identifications.defaultClassification.genus',
+                     operator =
+                       'EQUALS',
+                     value =
+                       'Solanum')
+qc2 <-
+  QueryCondition$new(field =
+                       'identifications.defaultClassification.specificEpithet',
+                     operator =
+                       'EQUALS',
+                     value = 'lycopersicum')
 
 # coditions for lat/long coordinates to be present
-qc3 <- QueryCondition$new(field='gatheringEvent.siteCoordinates.longitudeDecimal', operator="NOT_EQUALS", value=NULL)
-qc4 <- QueryCondition$new(field='gatheringEvent.siteCoordinates.latitudeDecimal', operator="NOT_EQUALS", value=NULL)
-qs <- QuerySpec$new(conditions=list(qc, qc2, qc3, qc4), size=1000)
+qc3 <-
+  QueryCondition$new(field =
+                       'gatheringEvent.siteCoordinates.longitudeDecimal',
+                     operator =
+                       "NOT_EQUALS",
+                     value =
+                       NULL)
+qc4 <-
+  QueryCondition$new(field =
+                       'gatheringEvent.siteCoordinates.latitudeDecimal',
+                     operator =
+                       "NOT_EQUALS",
+                     value =
+                       NULL)
+qs <-
+  QuerySpec$new(conditions = list(qc, qc2, qc3, qc4), size = 1000)
 
 # do query
-res <- sc$query(querySpec=qs)		
+res <- sc$query(querySpec = qs)
 
 # extract coordinates
-lat <- sapply(res$content$resultSet, function(x)x$item$gatheringEvent$siteCoordinates[[1]]$latitudeDecimal)		
-long <- sapply(res$content$resultSet, function(x)x$item$gatheringEvent$siteCoordinates[[1]]$longitudeDecimal)		
+lat <-
+  sapply(res$content$resultSet, function(x)
+    x$item$gatheringEvent$siteCoordinates[[1]]$latitudeDecimal)
+long <-
+  sapply(res$content$resultSet, function(x)
+    x$item$gatheringEvent$siteCoordinates[[1]]$longitudeDecimal)
 
 #plot on world map
-library('maps')		
-map("world", fill=TRUE, col="white", bg="lightblue", ylim=c(-60, 90), mar=c(0,0,0,0))		
-points(long, lat, col='red', pch=16)		
+library('maps')
+map(
+  "world",
+  fill = TRUE,
+  col = "white",
+  bg = "lightblue",
+  ylim = c(-60, 90),
+  mar = c(0, 0, 0, 0)
+)
+points(long, lat, col = 'red', pch = 16)
  ```
 
 

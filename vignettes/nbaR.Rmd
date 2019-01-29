@@ -12,56 +12,56 @@ output:
       collapsed: false
       
 vignette: >
-  %\VignetteIndexEntry{nbaR: R access to the Netherlands Biodiversity API}
+%\VignetteIndexEntry{nbaR: R access to the Netherlands Biodiversity API}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
----
-
-# Background
-
-## The Netherlands Biodiversity API
-The Netherlands Biodiversity API
-(NBA) facilitates access to the Natural History Collection at 
-Naturalis Biodiversity Center. Next to museum specimen records
-and metadata, access to taxonomic classification and nomenclature,
-to geographical information, and to multimedia files is provided. By
-using the powerful Elasticsearch engine, the NBA facilitates searching
-for collection- and biodiversity data in near real-time. Furthermore,
-by incorporating information from taxonomic databases, taxonomic name
-resolution can be accomplished with the NBA. Persistent Uniform
-Resource Identifiers (PURLs) ensure that each specimen accessible via
-the NBA is represented by a citeable unambiguous web reference. Access
-to our data is provided via a RESTful interface and several clients such
-as the [BioPortal](http://bioportal.naturalis.nl/), a web application
-for browsing biodiversity data that is served by the NBA.  For more
-information about the NBA, please see our
-[detailed documentation](http://docs.biodiversitydata.nl/).
-
-## R access
-The R programming language is established as a common tool in scientific 
-research, with growing adoption by researchers in biodiversity research.
-Hence, to ease the access to the NBA for researchers, we developed this R 
-client.
-
-# Getting started
-
-## Main data types and classes
-The data served by the NBA consists of four main data types:
-
-* Specimen
-* Taxon
-* Multimedia
-* Geo
-
-Additionally, the data type *Metadata* stores miscellaneous
-information about NBA settings. Each of the data types is modelled
-as an `R6` class and therefore has its own members such as fields
-and methods. Documentation about a specific class can be retrieved
-in the standard manner, e.g. `?Specimen`
-Each class of the data model can be instantiated and has a `toJSONString` and `toList` method returning
-the object's JSON representation and the object's data as a list datatype, respectively.
-
-```{r}
+  ---
+  
+  # Background
+  
+  ## The Netherlands Biodiversity API
+  The Netherlands Biodiversity API
+  (NBA) facilitates access to the Natural History Collection at 
+  Naturalis Biodiversity Center. Next to museum specimen records
+  and metadata, access to taxonomic classification and nomenclature,
+  to geographical information, and to multimedia files is provided. By
+  using the powerful Elasticsearch engine, the NBA facilitates searching
+  for collection- and biodiversity data in near real-time. Furthermore,
+  by incorporating information from taxonomic databases, taxonomic name
+  resolution can be accomplished with the NBA. Persistent Uniform
+  Resource Identifiers (PURLs) ensure that each specimen accessible via
+  the NBA is represented by a citeable unambiguous web reference. Access
+  to our data is provided via a RESTful interface and several clients such
+  as the [BioPortal](http://bioportal.naturalis.nl/), a web application
+  for browsing biodiversity data that is served by the NBA.  For more
+  information about the NBA, please see our
+  [detailed documentation](http://docs.biodiversitydata.nl/).
+  
+  ## R access
+  The R programming language is established as a common tool in scientific 
+  research, with growing adoption by researchers in biodiversity research.
+  Hence, to ease the access to the NBA for researchers, we developed this R 
+  client.
+  
+  # Getting started
+  
+  ## Main data types and classes
+  The data served by the NBA consists of four main data types:
+  
+  * Specimen
+  * Taxon
+  * Multimedia
+  * Geo
+  
+  Additionally, the data type *Metadata* stores miscellaneous
+  information about NBA settings. Each of the data types is modelled
+  as an `R6` class and therefore has its own members such as fields
+  and methods. Documentation about a specific class can be retrieved
+  in the standard manner, e.g. `?Specimen`
+  Each class of the data model can be instantiated and has a `toJSONString` and `toList` method returning
+  the object's JSON representation and the object's data as a list datatype, respectively.
+  
+  ```{r}
 # load nbaR
 library(nbaR) 
 
@@ -151,7 +151,10 @@ These fields can be specified in the constructor. If, for example, we want to qu
 
 ```{r}
 # specify search in QueryCondition object
-qc <- QueryCondition$new(field="unitID", operator="EQUALS", value="L.4304195")
+qc <-
+  QueryCondition$new(field = "unitID",
+                     operator = "EQUALS",
+                     value = "L.4304195")
 ```
 
 Note: The function `getFieldInfo` on a certain field lists which operators 
@@ -172,23 +175,26 @@ specimens of sex ** female* and family *Equidae* and of rank *Species*.
 
 ```{r}
 # specify multiple conditions
-q1 <- QueryCondition$new(field = "sex", operator="EQUALS",
-                         value="female")
-q2 <- QueryCondition$new(field="identifications.defaultClassification.family",
-                         operator="EQUALS",
-                         value="Equidae")
-q3 <- QueryCondition$new(field="identifications.taxonRank",
-                         operator="EQUALS", value="species")
+q1 <- QueryCondition$new(field = "sex",
+                         operator = "EQUALS",
+                         value = "female")
+q2 <-
+  QueryCondition$new(field = "identifications.defaultClassification.family",
+                     operator = "EQUALS",
+                     value = "Equidae")
+q3 <- QueryCondition$new(field = "identifications.taxonRank",
+                         operator = "EQUALS",
+                         value = "species")
 ```
 
 Extending the constraint to also include specimens of rank *Subspecies*,  
 we can combine the latter condition with an additional one using the method `or`:
- 
+
 ```{r}
 # logical conjunction using 'or' method
 q3$or <- list(QueryCondition$new(field = "identifications.taxonRank",
-                                operator="EQUALS",
-                                value="subspecies"))
+                                 operator="EQUALS",
+                                 value="subspecies"))
 
 # build QuerySpec from QueryConditions
 qs <- QuerySpec$new(conditions=list(q1, q2, q3))
@@ -246,10 +252,14 @@ can query specimens of the Family *Ebenaceae* that were collected in Europe:
 sc <- SpecimenClient$new()
 
 # specify query params in named list
-qp <- list(identifications.defaultClassification.family="Ebenaceae", gatheringEvent.continent="Europe")
+qp <-
+  list(
+    identifications.defaultClassification.family = "Ebenaceae",
+    gatheringEvent.continent = "Europe"
+  )
 
 # query
-res <- sc$query(queryParams=qp)
+res <- sc$query(queryParams = qp)
 ```
 
 If we now want to know all the countries that the specimens were collected in, we can access the `Specimen` objects in ```res$content$resultSet```
@@ -264,8 +274,11 @@ parameters is for example always `AND`. More complex queries can be accomplished
 
 ```{r}
 # get all specimens with genus name starting with 'Hydro'
-qc <- QueryCondition$new(field="identifications.defaultClassification.genus", operator="STARTS_WITH", value="Hydro")
-qs <- QuerySpec$new(conditions=list(qc))
+qc <-
+  QueryCondition$new(field = "identifications.defaultClassification.genus",
+                     operator = "STARTS_WITH",
+                     value = "Hydro")
+qs <- QuerySpec$new(conditions = list(qc))
 res <- sc$query(qs)
 ```
 
@@ -368,7 +381,8 @@ distinct values in the hole dataset.
 This number can be increased with e.g. setting the `size` parameter in a `QuerySpec` object passed to the method.
 
 ```{r results='hide'}
-sc$get_distinct_values("gatheringEvent.country", querySpec=QuerySpec$new(size=10000))
+sc$get_distinct_values("gatheringEvent.country",
+                       querySpec = QuerySpec$new(size = 10000))
 ```	
 
 #### count_distinct_values
@@ -390,7 +404,8 @@ sc$get_distinct_values_per_group("sourceSystem.name", "gatheringEvent.country")
 If no return of the actual values is needed, a simple count per group is done as follows:
 
 ```{r results='hide'}
-sc$count_distinct_values_per_group("sourceSystem.name", "gatheringEvent.country")$content
+sc$count_distinct_values_per_group("sourceSystem.name",
+                                   "gatheringEvent.country")$content
 ```
 
 ### Metadata services
@@ -439,7 +454,8 @@ sc$get_setting("index.max_result_window")$content
 To test if a certain operator can be used for a multimedia query:
 
 ```{r}
-sc$is_operator_allowed("identifications.defaultClassification.genus", "STARTS_WITH")$content
+sc$is_operator_allowed("identifications.defaultClassification.genus",
+                       "STARTS_WITH")$content
 ```
 
 ### DwCA download services
@@ -460,7 +476,7 @@ sc$dwca_get_data_set_names()$content
 
 A dataset can then be downloaded using `dwca_get_data_set`. A filename can be given as argument, 
 if none is given, the DwCA archive is written to *download-YYYY-MM-DDThh:mm.zip* in the current working directory.
-	
+
 ```{r results='hide'}
 # download dataset 'porifera' to temporary file
 filename <- tempfile(fileext=".zip")
@@ -473,9 +489,16 @@ The arguments to this methods are similar to `query`, plus the filename:
 
 ```{r results='hide'}
 # download all specimen of genus 'Hydrochoerus'
-filename <- tempfile(fileext=".zip")
-qs <- QuerySpec$new(conditions=list(QueryCondition$new(field="identifications.defaultClassification.genus", operator="EQUALS", value="Hydrochoerus")))
-sc$dwca_query(querySpec=qs, filename=filename)
+filename <- tempfile(fileext = ".zip")
+qs <-
+  QuerySpec$new(conditions = list(
+    QueryCondition$new(
+      field = "identifications.defaultClassification.genus",
+      operator = "EQUALS",
+      value = "Hydrochoerus"
+    )
+  ))
+sc$dwca_query(querySpec = qs, filename = filename)
 ```
 
 ## Taxonomic data services {.tabset}
@@ -488,9 +511,15 @@ Query for taxon document with given search criteria. Example:
 ```{r results='hide'}
 # query for taxa of genus 'Sedum' that are in the Netherlands Soortenregister (NSR)
 tc <- TaxonClient$new()
-qc <- QueryCondition$new(field="acceptedName.genusOrMonomial", operator="EQUALS", value="Sedum")
-qc2 <- QueryCondition$new(field="sourceSystem.code", operator="EQUALS", value="NSR")
-qs <- QuerySpec$new(conditions=list(qc, qc2))
+qc <-
+  QueryCondition$new(field = "acceptedName.genusOrMonomial",
+                     operator = "EQUALS",
+                     value = "Sedum")
+qc2 <-
+  QueryCondition$new(field = "sourceSystem.code",
+                     operator = "EQUALS",
+                     value = "NSR")
+qs <- QuerySpec$new(conditions = list(qc, qc2))
 tc$query(qs)
 ```
 
@@ -507,10 +536,17 @@ Unlike `query`, `query_download` returns a list of taxon objects instead of a `R
 For a given query, do not return `Taxon` objects but the mere count. Example
 
 ```{r}
-# get counts for taxa of genus 'Sedum' that are in the Netherlands Soortenregister (NSR)
-qc <- QueryCondition$new(field="acceptedName.genusOrMonomial", operator="EQUALS", value="Sedum")
-qc2 <- QueryCondition$new(field="sourceSystem.code", operator="EQUALS", value="NSR")
-qs <- QuerySpec$new(conditions=list(qc, qc2))
+# get counts for taxa of genus 'Sedum' that are in the
+#  Netherlands Soortenregister (NSR)
+qc <-
+  QueryCondition$new(field = "acceptedName.genusOrMonomial",
+                     operator = "EQUALS",
+                     value = "Sedum")
+qc2 <-
+  QueryCondition$new(field = "sourceSystem.code",
+                     operator = "EQUALS",
+                     value = "NSR")
+qs <- QuerySpec$new(conditions = list(qc, qc2))
 tc$count(qs)
 ```
 
@@ -525,8 +561,8 @@ tc$find("27706109@COL")$content
 Given a string with comma-separated identifiers, returns a list of taxon objects:
 
 ```{r}
-    ids <- "27706109@COL,27704140@COL,27706110@COL,27706111@COL,27706108@COL"
-    res <- tc$find_by_ids(ids)
+ids <- "27706109@COL,27704140@COL,27706110@COL,27706111@COL,27706108@COL"
+res <- tc$find_by_ids(ids)
 ```		
 
 ### Aggregation services
@@ -584,7 +620,8 @@ tc$get_setting("index.max_result_window")$content
 To test if a certain operator can be used for a mutimedia query:
 
 ```{r}
-tc$is_operator_allowed("identifications.defaultClassification.genus", "STARTS_WITH")$content
+tc$is_operator_allowed("identifications.defaultClassification.genus",
+                       "STARTS_WITH")$content
 ```
 
 ### DwCA download services
@@ -614,9 +651,16 @@ The arguments to this methods are similar to `query`, plus the filename:
 
 ```{r results='hide'}
 # download all taxa for genus 'Clematis'
-filename <- tempfile(fileext=".zip")
-qs <- QuerySpec$new(conditions=list(QueryCondition$new(field="defaultClassification.genus", operator="EQUALS", value="Clematis")))
-tc$dwca_query(querySpec=qs, filename=filename)
+filename <- tempfile(fileext = ".zip")
+qs <-
+  QuerySpec$new(conditions = list(
+    QueryCondition$new(
+      field = "defaultClassification.genus",
+      operator = "EQUALS",
+      value = "Clematis"
+    )
+  ))
+tc$dwca_query(querySpec = qs, filename = filename)
 ```
 
 
@@ -634,8 +678,11 @@ Below, we make a simple query to get the `GeoArea` object for the Netherlands:
 gc <- GeoClient$new()
 
 # query for GeoArea of the Netherlands
-qc <- QueryCondition$new(field="locality", operator="EQUALS", value="Netherlands")
-qs <- QuerySpec$new(conditions=list(qc))
+qc <-
+  QueryCondition$new(field = "locality",
+                     operator = "EQUALS",
+                     value = "Netherlands")
+qs <- QuerySpec$new(conditions = list(qc))
 res <- gc$query(qs)
 
 # get item
@@ -717,16 +764,23 @@ using a list or a `QuerySpec` object to specify query parameters.
 
 ```{r}
 # example of multimedia query passing parameters as a list
-mc$query(queryParams=list(collectionType='Cnidaria'))$content
+mc$query(queryParams = list(collectionType = 'Cnidaria'))$content
 
 # example of multimedia query using QuerySpec: get the first 100
 # multimedia items associated with a specimen with name starting with "Ba"
-qc <- QueryCondition$new(field="identifications.scientificName.fullScientificName", operator="STARTS_WITH", value="Qu")
-qs <- QuerySpec$new(conditions=list(qc), size=100)
+qc <-
+  QueryCondition$new(field =
+                       "identifications.scientificName.fullScientificName",
+                     operator =
+                       "STARTS_WITH",
+                     value =
+                       "Qu")
+qs <- QuerySpec$new(conditions = list(qc), size = 100)
 res <- mc$query(qs)
 
 # check if scientific names indeed start with 'Qu'
-sapply(res$content$resultSet, function(x)x$item$identifications[[1]]$scientificName$fullScientificName)
+sapply(res$content$resultSet, function(x)
+  x$item$identifications[[1]]$scientificName$fullScientificName)
 ```
 
 
@@ -776,7 +830,8 @@ mc$get_setting("index.max_result_window")$content
 To test if a certain operator can be used for a mutimedia query:
 
 ```{r}
-mc$is_operator_allowed("identifications.scientificName.fullScientificName", "STARTS_WITH")$content
+mc$is_operator_allowed("identifications.scientificName.fullScientificName",
+                       "STARTS_WITH")$content
 ```
 
 ## Metadata services {.tabset}
