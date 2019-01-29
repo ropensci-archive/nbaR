@@ -3,19 +3,19 @@ title: "Calibrating a molecular phylogeny of the sharks"
 date: "`r format(Sys.time(), '%b %d, %Y')`"
 bibliography: bibliography.bib
 output:
-html_document:
-highlight: tango
-code_folding: show
-theme: sandstone
-toc: true
-toc_depth: 3
-toc_float:
-collapsed: false
+  html_document:
+    highlight: tango
+    code_folding: show
+    theme: sandstone
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
 
 vignette: >
-%\VignetteIndexEntry{nbaR: R access to the Netherlands Biodiversity API}
-%\VignetteEngine{knitr::rmarkdown}
-%\VignetteEncoding{UTF-8}
+  %\VignetteIndexEntry{nbaR: R access to the Netherlands Biodiversity API}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 # Background
