@@ -337,7 +337,7 @@ We can also calibrate the tree on the family level:
 
 ```{r, calib_family, eval=FALSE}
 ## make calibration table on family level
-calibration_table <- chronos_calib(specimens, tree, "family")
+calibration_table <- chronos_calib(specimens, shark_tree, "family")
 
 ## run ape's chronos
 chronogram <- chronos(shark_tree, calibration = calibration_table)
