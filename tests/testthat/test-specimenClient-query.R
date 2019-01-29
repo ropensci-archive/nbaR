@@ -134,9 +134,9 @@ test_that("Nested query works", {
   ## load reference querySpec from file
   test_query <- file.path(data_dir, "nested-query.json")
   json_string <- readChar(test_query, file.info(test_query)$size)
-  ref <- jsonlite::fromJSON(json_string, simplifyVector = F)
+  ref <- jsonlite::fromJSON(json_string, simplifyVector = FALSE)
   ## compare JSON of reference and our querySpec, without regarding the order
-  test <- jsonlite::fromJSON(qs$toJSONString(), simplifyVector = F)
+  test <- jsonlite::fromJSON(qs$toJSONString(), simplifyVector = FALSE)
   flattened1 <- rapply(ref, function(x) x)
   flattened2 <- rapply(test, function(x) x)
   expect_true(all(sort(names(flattened1)) == sort(names(flattened2))))

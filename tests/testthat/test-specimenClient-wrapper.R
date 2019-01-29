@@ -73,7 +73,7 @@ test_that("specimen_dwca_get_data_set works", {
   specimen_dwca_get_data_set(dataset, filename = filename)
   expect_true(file.exists(filename))
   ## check for contents
-  l <- unzip(filename, list = T)
+  l <- unzip(filename, list = TRUE)
   expect_equal(sort(l$Name), sort(c(
     "eml.xml", "meta.xml", "Occurrence.txt"
   )))
@@ -93,7 +93,7 @@ test_that("specimen_dwca_query works", {
   res <- specimen_dwca_query(qp, filename)
   expect_true(file.exists(filename))
   ## check for contents
-  l <- unzip(filename, list = T)
+  l <- unzip(filename, list = TRUE)
   expect_equal(sort(l$Name), sort(c(
     "eml.xml", "meta.xml", "Occurrence.txt"
   )))

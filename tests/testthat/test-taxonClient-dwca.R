@@ -48,7 +48,7 @@ test_that("dwca_query() works", {
   tc$dwca_query(querySpec = qs, filename = filename)
   unzip(filename, exdir = dir)
   tab <- read.table(file.path(dir, "/Taxa.txt"),
-    header = T, sep = ",", fill = T, quote = "\""
+    header = TRUE, sep = ",", fill = TRUE, quote = "\""
   )
   ## can have more entries than queried number
   ## because also synonyms are in there!

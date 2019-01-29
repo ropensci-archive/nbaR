@@ -29,7 +29,7 @@ test_that("dwca_get_data_set() works", {
   sc$dwca_get_data_set(dataset, filename = filename)
   expect_true(file.exists(filename))
   ## check for contents
-  l <- unzip(filename, list = T)
+  l <- unzip(filename, list = TRUE)
   expect_equal(sort(l$Name), sort(c("eml.xml", "meta.xml", "Occurrence.txt")))
   unlink(filename)
 })
@@ -45,7 +45,7 @@ test_that("dwca_query() works", {
   sc$dwca_query(querySpec = qs, filename = filename)
   unzip(filename, exdir = dir)
   tab <- read.table(file.path(dir, "/Occurrence.txt"),
-    header = T, sep = ",", fill = T, quote = "\""
+    header = TRUE, sep = ",", fill = TRUE, quote = "\""
   )
   expect_true(nrow(tab) == size)
   unlink(dir)

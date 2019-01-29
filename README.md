@@ -20,7 +20,7 @@ if(!require(devtools)) { install.packages("devtools") }
 Execute
 ```R
 library(devtools)
-install_github("naturalis/nbaR", build_vignettes=T)
+install_github("naturalis/nbaR", build_vignettes=TRUE)
 ```
 
 ### Using the package
