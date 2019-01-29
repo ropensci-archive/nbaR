@@ -89,7 +89,7 @@
     <div class="page-header toc-ignore">
       <h1>Calibrating a molecular phylogeny of the sharks</h1>
             
-            <h4 class="date">Jan 28, 2019</h4>
+            <h4 class="date">Jan 29, 2019</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/naturalis/nbaR/blob/master/vignettes/sharks.Rmd"><code>vignettes/sharks.Rmd</code></a></small>
       <div class="hidden name"><code>sharks.Rmd</code></div>
@@ -214,7 +214,7 @@
 <a class="sourceLine" id="cb15-2" data-line-number="2">tab &lt;-<span class="st"> </span><span class="kw">table</span>(<span class="kw">unlist</span>(<span class="kw">lapply</span>(specimens, <span class="cf">function</span>(x)x<span class="op">$</span>identifications[[<span class="dv">1</span>]]<span class="op">$</span>defaultClassification<span class="op">$</span>order)))</a>
 <a class="sourceLine" id="cb15-3" data-line-number="3"><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">5.1</span>, <span class="dv">8</span>, <span class="fl">4.1</span>, <span class="fl">2.1</span>))</a>
 <a class="sourceLine" id="cb15-4" data-line-number="4"><span class="kw">barplot</span>(<span class="kw">sort</span>(tab), <span class="dt">horiz=</span><span class="ot">TRUE</span>, <span class="dt">las=</span><span class="dv">2</span>, <span class="dt">xlab=</span><span class="st">"Number of specimens"</span>)</a></code></pre></div>
-<p><img src="sharks_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
+<p><img src="sharks_files/figure-html/plot_orders-1.png" width="700"></p>
 <p><strong>Caution</strong>: There can be multiple identifications for one specimen. Some specimens in our data are for instance assigned to different genera. However, the field <code>preferred</code> in an <code>Identification</code> object states if this is the most accurate and recent identification. The preferred identification is usually the first in the list of a specimen’s identifications. It can, however, occur that there are multiple identifications of which none is preferred; it is best to filter them out:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">## get the specimens which have a preferred identification</a>
 <a class="sourceLine" id="cb16-2" data-line-number="2">ident &lt;-<span class="st"> </span><span class="kw">sapply</span>(specimens, <span class="cf">function</span>(s)<span class="kw">any</span>(<span class="kw">sapply</span>(s<span class="op">$</span>identifications, <span class="cf">function</span>(i)i<span class="op">$</span>preferred)))</a>
@@ -387,7 +387,7 @@
 <a class="sourceLine" id="cb30-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb30-7" data-line-number="7">## plot the tree</a>
 <a class="sourceLine" id="cb30-8" data-line-number="8"><span class="kw">plot</span>(tree, <span class="dt">cex=</span><span class="fl">0.3</span>)</a></code></pre></div>
-<p><img src="sharks_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
+<p><img src="sharks_files/figure-html/read_tree-1.png" width="700"></p>
 <div id="genus-level" class="section level2">
 <h2 class="hasAnchor">
 <a href="#genus-level" class="anchor"></a>Genus level</h2>
@@ -414,31 +414,38 @@
 <a class="sourceLine" id="cb34-2" data-line-number="2">calibration_table &lt;-<span class="st"> </span>calibration_table[calibration_table<span class="op">$</span>taxon <span class="op">!=</span><span class="st"> "Squatina"</span>,]</a>
 <a class="sourceLine" id="cb34-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb34-4" data-line-number="4">## run ape's chronos</a>
-<a class="sourceLine" id="cb34-5" data-line-number="5">chronogram &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/chronos">chronos</a></span>(tree, <span class="dt">calibration=</span>calibration_table)</a>
-<a class="sourceLine" id="cb34-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb34-7" data-line-number="7">## plot tree with time axis</a>
-<a class="sourceLine" id="cb34-8" data-line-number="8"><span class="kw">plot</span>(chronogram, <span class="dt">cex=</span><span class="fl">0.3</span>)</a>
-<a class="sourceLine" id="cb34-9" data-line-number="9"><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/axisPhylo">axisPhylo</a></span>()</a>
-<a class="sourceLine" id="cb34-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb34-11" data-line-number="11">## plot calibrated genera</a>
-<a class="sourceLine" id="cb34-12" data-line-number="12"><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/nodelabels">nodelabels</a></span>(calibration_table<span class="op">$</span>taxon, calibration_table<span class="op">$</span>node)</a></code></pre></div>
+<a class="sourceLine" id="cb34-5" data-line-number="5">chronogram &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/chronos">chronos</a></span>(tree, <span class="dt">calibration=</span>calibration_table)</a></code></pre></div>
+<pre><code>## 
+## Setting initial dates...
+## Fitting in progress... get a first set of estimates
+##          Penalised log-lik = -57.8127 
+## Optimising rates... dates... -57.8127 
+## 
+## Done.</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">## plot tree with time axis</a>
+<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="kw">plot</span>(chronogram, <span class="dt">cex=</span><span class="fl">0.3</span>)</a>
+<a class="sourceLine" id="cb36-3" data-line-number="3"><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/axisPhylo">axisPhylo</a></span>()</a>
+<a class="sourceLine" id="cb36-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb36-5" data-line-number="5">## plot calibrated genera</a>
+<a class="sourceLine" id="cb36-6" data-line-number="6"><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/nodelabels">nodelabels</a></span>(calibration_table<span class="op">$</span>taxon, calibration_table<span class="op">$</span>node)</a></code></pre></div>
+<p><img src="sharks_files/figure-html/plot_calib-1.png" width="700"></p>
 </div>
 <div id="family-level" class="section level2">
 <h2 class="hasAnchor">
 <a href="#family-level" class="anchor"></a>Family level</h2>
 <p>We can also calibrate the tree on the family level:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">## make calibration table on family level</a>
-<a class="sourceLine" id="cb35-2" data-line-number="2">calibration_table &lt;-<span class="st"> </span><span class="kw"><a href="../reference/chronos_calib.html">chronos_calib</a></span>(specimens, tree, <span class="st">"family"</span>)</a>
-<a class="sourceLine" id="cb35-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb35-4" data-line-number="4">## run ape's chronos</a>
-<a class="sourceLine" id="cb35-5" data-line-number="5">chronogram &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/chronos">chronos</a></span>(tree, <span class="dt">calibration=</span>calibration_table)</a>
-<a class="sourceLine" id="cb35-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb35-7" data-line-number="7">## plot tree with time axis</a>
-<a class="sourceLine" id="cb35-8" data-line-number="8"><span class="kw">plot</span>(chronogram, <span class="dt">cex=</span><span class="fl">0.3</span>)</a>
-<a class="sourceLine" id="cb35-9" data-line-number="9"><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/axisPhylo">axisPhylo</a></span>()</a>
-<a class="sourceLine" id="cb35-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb35-11" data-line-number="11">## plot calibrated families</a>
-<a class="sourceLine" id="cb35-12" data-line-number="12"><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/nodelabels">nodelabels</a></span>(calibration_table<span class="op">$</span>taxon, calibration_table<span class="op">$</span>node)</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">## make calibration table on family level</a>
+<a class="sourceLine" id="cb37-2" data-line-number="2">calibration_table &lt;-<span class="st"> </span><span class="kw"><a href="../reference/chronos_calib.html">chronos_calib</a></span>(specimens, tree, <span class="st">"family"</span>)</a>
+<a class="sourceLine" id="cb37-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb37-4" data-line-number="4">## run ape's chronos</a>
+<a class="sourceLine" id="cb37-5" data-line-number="5">chronogram &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/chronos">chronos</a></span>(tree, <span class="dt">calibration=</span>calibration_table)</a>
+<a class="sourceLine" id="cb37-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb37-7" data-line-number="7">## plot tree with time axis</a>
+<a class="sourceLine" id="cb37-8" data-line-number="8"><span class="kw">plot</span>(chronogram, <span class="dt">cex=</span><span class="fl">0.3</span>)</a>
+<a class="sourceLine" id="cb37-9" data-line-number="9"><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/axisPhylo">axisPhylo</a></span>()</a>
+<a class="sourceLine" id="cb37-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb37-11" data-line-number="11">## plot calibrated families</a>
+<a class="sourceLine" id="cb37-12" data-line-number="12"><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/nodelabels">nodelabels</a></span>(calibration_table<span class="op">$</span>taxon, calibration_table<span class="op">$</span>node)</a></code></pre></div>
 </div>
 </div>
 <div id="references" class="section level1 unnumbered">

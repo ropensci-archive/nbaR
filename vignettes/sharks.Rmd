@@ -46,7 +46,7 @@ represent molecular distances.
 Chronological association is associated with `Specimen` data, we thus instantiate
 a `SpecimenClient`:
 
-```{r}
+```{r load_nbaR}
 library(nbaR)
 sc <- SpecimenClient$new()
 ```
@@ -67,7 +67,7 @@ shark_orders <- c("Carcharhiniformes",
 We can then formulate a query condition for specimens that are identified in one of these orders
 using the operator `IN`:
 
-```{r}
+```{r qc_1}
 qc <- QueryCondition$new(field="identifications.defaultClassification.order", operator="IN", value=shark_orders)
 ```
 
@@ -75,7 +75,7 @@ For many specimens, chronological information is available in the fields `gather
 and `gatheringEvent.chronoStratigraphy.oldChronoName` which represent upper- and lower time bounds, respectively.
 Below, we will formulate a `QueryCondition` that requires either one of these fields to be non-empty:
 
-```{r}
+```{r qc_2}
 ## formulate query conditions for fields to be non-empty
 qc2 <- QueryCondition$new(field="gatheringEvent.chronoStratigraphy.youngChronoName", operator="NOT_EQUALS", value="")
 qc3 <- QueryCondition$new(field="gatheringEvent.chronoStratigraphy.oldChronoName", operator="NOT_EQUALS", value="")
@@ -86,7 +86,7 @@ qc2$or <- list(qc3)
 
 Now we can do the query:
 
-```{r}
+```{r do_query}
 ## instantiate QuerySpec, give size
 qs <- QuerySpec$new(conditions=list(qc, qc3), size=5000)
 res <- sc$query(querySpec = qs)
@@ -102,7 +102,7 @@ than 5000 records for our query; We advise to always check the length of the res
 against the `totalSize` of a `QueryResult` to make sure that all records are downloaded, 
 e.g.
 
-```{r}
+```{r check_length}
 length(res$content$resultSet) == res$content$totalSize
 ```
 
@@ -110,7 +110,7 @@ length(res$content$resultSet) == res$content$totalSize
 
 Now we can explore the data:
 
-```{r}
+```{r explore}
 ## load all specimens
 specimens <- lapply(res$content$resultSet, function(x)x$item)
 
@@ -122,7 +122,7 @@ unique(unlist(lapply(specimens, function(x)x$gatheringEvent$chronoStratigraphy[[
 **Caution**: As you see above, there can be more than one chronoStratigraphy assigned with a
 specimen. Check how many we have per specimen:
 
-```{r}
+```{r num_chrono}
 unique(sapply(res$content$resultSet, function(x)length(x$item$gatheringEvent$chronoStratigraphy)))
 ```
 
@@ -132,7 +132,7 @@ the first one (`chronoStratigraphy[[1]]`).
 Do we have hits for all orders? Below, we make an overview of the field `identifications.defaultClassification.order`
 for all specimen.
 
-```{r}
+```{r plot_orders}
 ## make table with counts for each order
 tab <- table(unlist(lapply(specimens, function(x)x$identifications[[1]]$defaultClassification$order)))
 par(mar=c(5.1, 8, 4.1, 2.1))
@@ -145,7 +145,7 @@ the field `preferred` in an `Identification` object states if this is the most a
 recent identification. The preferred identification is usually the first in the list of a specimen's identifications.
 It can, however, occur that there are multiple identifications of which none is preferred; it is best to filter them out:
 
-```{r}
+```{r preferred}
 ## get the specimens which have a preferred identification
 ident <- sapply(specimens, function(s)any(sapply(s$identifications, function(i)i$preferred)))
 
@@ -159,7 +159,7 @@ specimens <- specimens[ident]
 Let's further explore the data. To see what part of the animals were preserved, we can look into
 the field `kindOfUnit`:
 
-```{r}
+```{r kindofunit}
 table(sapply(specimens, `[[`, "kindOfUnit"))
 ```
 
@@ -171,7 +171,7 @@ These strings can refer to *eons*, *eras*, *periods*, *epochs* and *ages*. In or
 translate this into absolute ages, we will use the API of the [Earth Life Consortium](http://earthlifeconsortium.org/).
 This is possible using the *convenience function* `geo_age`. For example
 
-```{r}
+```{r geo_age}
 ## get the upper chrono name for the first specimen
 name <- specimens[[1]]$gatheringEvent$chronoStratigraphy[[1]]$oldChronoName
 name
@@ -183,7 +183,7 @@ geo_age(name)
 We can now make a table with all interesting data, below this is done for the
 first 50 specimen objects:
 
-```{r}
+```{r chrono_name}
 ## Get genus, species and chrono information from specimen records
 data <- as.data.frame(do.call(rbind, lapply(specimens[1:50], function(x) {
     genus <- x$identifications[[1]]$defaultClassification$genus
@@ -223,7 +223,7 @@ from the package `ape`. The function also determines the node which will be cali
 The shark phylogeny comes with the package and can be
 parsed using the package `ape`:
 
-```{r}
+```{r read_tree}
 library(ape)
 
 ## read data
@@ -240,7 +240,7 @@ Now we use `chronos_calib` to get the table at the genus level. `chronos_calib`
 also selects the nodes in the tree that will be calibrated. This is done by
 selecting the most recent common ancestor (mrca) of the species for which the data are averaged.
 
-```{r, warning=FALSE}
+```{r chronos_calib, warning=FALSE}
 ## make calibration table on genus level
 calibration_table <- chronos_calib(specimens, tree, "genus")
 ```
@@ -251,7 +251,7 @@ earth life consortium. This can be due to misspellings or words in foreign langu
 
 The calibration table looks as follows:
 
-```{r}
+```{r table}
 calibration_table
 ```
 
@@ -263,7 +263,7 @@ for this genus can therefore result in errors using the calibration
 routine. We will therefore remove the calibration points for genus *Squatina* before calibration:
 
 
-```{r, eval=FALSE}
+```{r plot_calib}
 ## clean up: one rogue taxon in genus "Squatina"! Skip this genus
 calibration_table <- calibration_table[calibration_table$taxon != "Squatina",]
 
@@ -284,7 +284,7 @@ nodelabels(calibration_table$taxon, calibration_table$node)
 
 We can also calibrate the tree on the family level:
 
-```{r, eval=FALSE}
+```{r, calib_family, eval=FALSE}
 ## make calibration table on family level
 calibration_table <- chronos_calib(specimens, tree, "family")
 
