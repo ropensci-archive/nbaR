@@ -171,10 +171,8 @@ taxonomic levels</p>
 <span class='co'># load tree</span>
 <span class='fu'>library</span>(<span class='st'>'ape'</span>)
 <span class='no'>path</span> <span class='kw'>&lt;-</span> <span class='fu'>system.file</span>(<span class='st'>'extdata'</span>, <span class='st'>'shark_tree.nex'</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>'nbaR'</span>)
-<span class='no'>tree</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/ape/topics/read.nexus'>read.nexus</a></span>(<span class='no'>path</span>)
-<span class='co'># make calibration table</span>
-<span class='fu'>chronos_calib</span>(<span class='no'>sp</span>, <span class='no'>tree</span>, <span class='st'>"genus"</span>)</div><div class='output co'>#&gt;   node age.min age.max soft.bounds  taxon
-#&gt; 1  320    5.33   15.97       FALSE Isurus</div></pre>
+<span class='no'>tree</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/ape/topics/read.nexus'>read.nexus</a></span>(<span class='no'>path</span>)</div><div class='output co'>#&gt; <span class='error'>Error in start:end: argument of length 0</span></div><div class='input'><span class='co'># make calibration table</span>
+<span class='fu'>chronos_calib</span>(<span class='no'>sp</span>, <span class='no'>tree</span>, <span class='st'>"genus"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in strsplit(tree$tip.label, "_"): object 'tree' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

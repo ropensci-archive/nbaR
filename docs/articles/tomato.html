@@ -89,7 +89,7 @@
     <div class="page-header toc-ignore">
       <h1>The oldest tomato specimen in the world</h1>
             
-            <h4 class="date">Jan 29, 2019</h4>
+            <h4 class="date">Feb 12, 2019</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/naturalis/nbaR/blob/master/vignettes/tomato.Rmd"><code>vignettes/tomato.Rmd</code></a></small>
       <div class="hidden name"><code>tomato.Rmd</code></div>
@@ -344,14 +344,20 @@
 <h2 class="hasAnchor">
 <a href="#simple-queries" class="anchor"></a>Simple queries</h2>
 <p>Let’s try the first field and query for all <code>Specimen</code> records with <code>identifications.vernacularNames.name</code> field matching the name <code>tomato</code>, we can use the client’s <code>query</code> function:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">res &lt;-<span class="st"> </span>sc<span class="op">$</span><span class="kw">query</span>(<span class="dt">queryParams=</span><span class="kw">list</span>(<span class="dt">identifications.vernacularNames.name=</span><span class="st">"tomato"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">res &lt;-</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span>sc<span class="op">$</span><span class="kw">query</span>(<span class="dt">queryParams =</span> <span class="kw">list</span>(<span class="dt">identifications.vernacularNames.name =</span> <span class="st">"tomato"</span>))</a></code></pre></div>
 <p>Note that the <code>queryParams</code> arguments takes a list, so we could search for more criteria. How many hits do we got?</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">res<span class="op">$</span>content<span class="op">$</span>totalSize</a></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p>No hits, thus no record has the vernacular name equal to <code>tomato</code>. We therefore search in <code>identifications.taxonomicEnrichments.vernacularNames.name</code>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">res &lt;-<span class="st"> </span>sc<span class="op">$</span><span class="kw">query</span>(<span class="dt">queryParams=</span><span class="kw">list</span>(<span class="dt">identifications.taxonomicEnrichments.vernacularNames.name=</span><span class="st">"tomato"</span>))</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="co"># how many hits?</span></a>
-<a class="sourceLine" id="cb8-3" data-line-number="3">res<span class="op">$</span>content<span class="op">$</span>totalSize</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">res &lt;-</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span>sc<span class="op">$</span><span class="kw">query</span>(</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">    <span class="dt">queryParams =</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">      <span class="kw">list</span>(<span class="dt">identifications.taxonomicEnrichments.vernacularNames.name =</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">             <span class="st">"tomato"</span>)</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">  )</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co"># how many hits?</span></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">res<span class="op">$</span>content<span class="op">$</span>totalSize</a></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p>Again, no hits.</p>
 </div>
@@ -360,7 +366,11 @@
 <a href="#more-complex-queries" class="anchor"></a>More complex queries</h2>
 <p>Let’s try partial matching. For this, we have to make a more complicated query, involving <code>QuerySpec</code> and <code>QueryCondition</code> objects, which are very powerful for constructing complex and nested queries.</p>
 <p>A <code>QueryCondition</code> can be specified as follows:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"identifications.taxonomicEnrichments.vernacularNames.name"</span>, <span class="dt">operator=</span><span class="st">"MATCHES"</span>, <span class="dt">value=</span><span class="st">"tomato"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">qc &lt;-</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">    <span class="dt">field =</span> <span class="st">"identifications.taxonomicEnrichments.vernacularNames.name"</span>,</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">    <span class="dt">operator =</span> <span class="st">"MATCHES"</span>,</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5">    <span class="dt">value =</span> <span class="st">"tomato"</span>)</a></code></pre></div>
 <p>Note that we use the operator <code>MATCHES</code> that does a partial instead of an exact match (which would be <code>EQUALS</code>).</p>
 <p>From one or multiple <code>QueryConditions</code>, a <code>QuerySpec</code> can be created, and used as input for he <code>query</code> function.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc))</a>
@@ -373,23 +383,53 @@
 <pre><code>## [1] 380</code></pre>
 <p>Finally, we have some hits. The content of the response of the <code>query</code> function is always of type <code>QueryResult</code> (see also <code><a href="../reference/QueryResult.html">?QueryResult</a></code>) which has the fields <code>totalSize</code> (as used above) and a <code>resultSet</code>, a list which stores the actual data. From the <code>resultSet</code>, a single <code>Specimen</code> object can be obtained as follows:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># retreive the first Specimen object</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">sp &lt;-<span class="st"> </span>res<span class="op">$</span>content<span class="op">$</span>resultSet[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">sp &lt;-<span class="st"> </span>res<span class="op">$</span>content<span class="op">$</span>resultSet[[<span class="dv">1</span>]]<span class="op">$</span>item</a>
 <a class="sourceLine" id="cb13-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co"># check if it is really a specimen</span></a>
 <a class="sourceLine" id="cb13-5" data-line-number="5"><span class="kw">class</span>(sp)</a></code></pre></div>
-<pre><code>## [1] "QueryResultItemObject" "R6"</code></pre>
+<pre><code>## [1] "Specimen" "R6"</code></pre>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co"># list fields and methods of the object</span></a>
 <a class="sourceLine" id="cb15-2" data-line-number="2">sp</a></code></pre></div>
-<pre><code>## &lt;QueryResultItemObject&gt;
+<pre><code>## &lt;Specimen&gt;
 ##   Public:
+##     acquiredFrom: Agent, R6
+##     assemblageID: 4394584@BRAHMS
+##     associatedMultiMediaUris: list
 ##     clone: function (deep = FALSE) 
-##     fromJSONString: function (QueryResultItemObjectJson, typeMapping = NULL) 
-##     fromList: function (QueryResultItemObjectList, typeMapping = NULL) 
-##     initialize: function (score, item) 
-##     item: Specimen, R6
-##     score: 12.38618
+##     collectionType: Botany
+##     collectorsFieldNumber: Unknown  s.n. 
+##     fromCaptivity: NULL
+##     fromJSONString: function (SpecimenJson, typeMapping = NULL) 
+##     fromList: function (SpecimenList, typeMapping = NULL) 
+##     gatheringEvent: GatheringEvent, R6
+##     id: L.1110630@BRAHMS
+##     identifications: list
+##     initialize: function (sourceSystem, sourceSystemId, recordURI, id, unitID, 
+##     kindOfUnit: NULL
+##     license: CC0 4.0
+##     licenseType: Copyright
+##     multiMediaPublic: NULL
+##     notes: NULL
+##     numberOfSpecimen: NULL
+##     objectPublic: TRUE
+##     owner: Naturalis Biodiversity Center
+##     phaseOrStage: NULL
+##     preparationType: NULL
+##     previousSourceID: NULL
+##     previousUnitsText: NULL
+##     recordBasis: Microscopic slide: Anatomy
+##     recordURI: NULL
+##     sex: NULL
+##     sourceID: Brahms
+##     sourceInstitutionID: Naturalis Biodiversity Center
+##     sourceSystem: SourceSystem, R6
+##     sourceSystemId: L.1110630
+##     theme: NULL
+##     title: NULL
 ##     toJSONString: function (pretty = TRUE) 
-##     toList: function ()</code></pre>
+##     toList: function () 
+##     unitGUID: http://data.biodiversitydata.nl/naturalis/specimen/L.1110630
+##     unitID: L.1110630</code></pre>
 <p><strong>Note:</strong> By default, the NBA (and thus nbaR) returns the first 10 hits. To fetch more records, we need to specify this in the <code>QuerySpec</code> object.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># specify size in QuerySpec obejct</span></a>
 <a class="sourceLine" id="cb17-2" data-line-number="2">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc), <span class="dt">size=</span><span class="dv">1000</span>)</a>
@@ -439,26 +479,61 @@
 <a href="#retrieving-specimen-records-with-latlong-coordinates" class="anchor"></a>Retrieving specimen records with lat/long coordinates</h1>
 <p>Geo-referenced specimens are an invaluable resource for biogeographic analyses. The below example shows how to extract the tomato specimen (species <em>Solanum lycopersicum</em>) that are geo referenced. The coordinates, stored in the field <em>gatheringEvent.siteCoordinates</em> are then extracted and the locations are plotted on a world map.</p>
 <p><strong>Note:</strong> When querying for records with non-empty values for a specific field, we use the operator <code>NOT_EQUALS</code> in combination with the value <code>NULL</code>.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="co"># conditions for specimens for Solanum lycopersicum     </span></a>
-<a class="sourceLine" id="cb25-2" data-line-number="2">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">'identifications.defaultClassification.genus'</span>, <span class="dt">operator=</span><span class="st">'EQUALS'</span>, <span class="dt">value=</span><span class="st">'Solanum'</span>)       </a>
-<a class="sourceLine" id="cb25-3" data-line-number="3">qc2 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">'identifications.defaultClassification.specificEpithet'</span>, <span class="dt">operator=</span><span class="st">'EQUALS'</span>, <span class="dt">value=</span><span class="st">'lycopersicum'</span>)       </a>
-<a class="sourceLine" id="cb25-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb25-5" data-line-number="5"><span class="co"># coditions for lat/long coordinates to be present</span></a>
-<a class="sourceLine" id="cb25-6" data-line-number="6">qc3 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">'gatheringEvent.siteCoordinates.longitudeDecimal'</span>, <span class="dt">operator=</span><span class="st">"NOT_EQUALS"</span>, <span class="dt">value=</span><span class="ot">NULL</span>)</a>
-<a class="sourceLine" id="cb25-7" data-line-number="7">qc4 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">'gatheringEvent.siteCoordinates.latitudeDecimal'</span>, <span class="dt">operator=</span><span class="st">"NOT_EQUALS"</span>, <span class="dt">value=</span><span class="ot">NULL</span>)</a>
-<a class="sourceLine" id="cb25-8" data-line-number="8">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc, qc2, qc3, qc4), <span class="dt">size=</span><span class="dv">1000</span>)</a>
-<a class="sourceLine" id="cb25-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb25-10" data-line-number="10"><span class="co"># do query</span></a>
-<a class="sourceLine" id="cb25-11" data-line-number="11">res &lt;-<span class="st"> </span>sc<span class="op">$</span><span class="kw">query</span>(<span class="dt">querySpec=</span>qs)       </a>
-<a class="sourceLine" id="cb25-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb25-13" data-line-number="13"><span class="co"># extract coordinates</span></a>
-<a class="sourceLine" id="cb25-14" data-line-number="14">lat &lt;-<span class="st"> </span><span class="kw">sapply</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet, <span class="cf">function</span>(x)x<span class="op">$</span>item<span class="op">$</span>gatheringEvent<span class="op">$</span>siteCoordinates[[<span class="dv">1</span>]]<span class="op">$</span>latitudeDecimal)     </a>
-<a class="sourceLine" id="cb25-15" data-line-number="15">long &lt;-<span class="st"> </span><span class="kw">sapply</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet, <span class="cf">function</span>(x)x<span class="op">$</span>item<span class="op">$</span>gatheringEvent<span class="op">$</span>siteCoordinates[[<span class="dv">1</span>]]<span class="op">$</span>longitudeDecimal)       </a>
-<a class="sourceLine" id="cb25-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb25-17" data-line-number="17"><span class="co">#plot on world map</span></a>
-<a class="sourceLine" id="cb25-18" data-line-number="18"><span class="kw">library</span>(<span class="st">'maps'</span>)     </a>
-<a class="sourceLine" id="cb25-19" data-line-number="19"><span class="kw"><a href="http://www.rdocumentation.org/packages/maps/topics/map">map</a></span>(<span class="st">"world"</span>, <span class="dt">fill=</span><span class="ot">TRUE</span>, <span class="dt">col=</span><span class="st">"white"</span>, <span class="dt">bg=</span><span class="st">"lightblue"</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">60</span>, <span class="dv">90</span>), <span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))       </a>
-<a class="sourceLine" id="cb25-20" data-line-number="20"><span class="kw">points</span>(long, lat, <span class="dt">col=</span><span class="st">'red'</span>, <span class="dt">pch=</span><span class="dv">16</span>)        </a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="co"># conditions for specimens for Solanum lycopersicum</span></a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">qc &lt;-</a>
+<a class="sourceLine" id="cb25-3" data-line-number="3"><span class="st">  </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field =</span></a>
+<a class="sourceLine" id="cb25-4" data-line-number="4">                       <span class="st">'identifications.defaultClassification.genus'</span>,</a>
+<a class="sourceLine" id="cb25-5" data-line-number="5">                     <span class="dt">operator =</span></a>
+<a class="sourceLine" id="cb25-6" data-line-number="6">                       <span class="st">'EQUALS'</span>,</a>
+<a class="sourceLine" id="cb25-7" data-line-number="7">                     <span class="dt">value =</span></a>
+<a class="sourceLine" id="cb25-8" data-line-number="8">                       <span class="st">'Solanum'</span>)</a>
+<a class="sourceLine" id="cb25-9" data-line-number="9">qc2 &lt;-</a>
+<a class="sourceLine" id="cb25-10" data-line-number="10"><span class="st">  </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field =</span></a>
+<a class="sourceLine" id="cb25-11" data-line-number="11">                       <span class="st">'identifications.defaultClassification.specificEpithet'</span>,</a>
+<a class="sourceLine" id="cb25-12" data-line-number="12">                     <span class="dt">operator =</span></a>
+<a class="sourceLine" id="cb25-13" data-line-number="13">                       <span class="st">'EQUALS'</span>,</a>
+<a class="sourceLine" id="cb25-14" data-line-number="14">                     <span class="dt">value =</span> <span class="st">'lycopersicum'</span>)</a>
+<a class="sourceLine" id="cb25-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb25-16" data-line-number="16"><span class="co"># coditions for lat/long coordinates to be present</span></a>
+<a class="sourceLine" id="cb25-17" data-line-number="17">qc3 &lt;-</a>
+<a class="sourceLine" id="cb25-18" data-line-number="18"><span class="st">  </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field =</span></a>
+<a class="sourceLine" id="cb25-19" data-line-number="19">                       <span class="st">'gatheringEvent.siteCoordinates.longitudeDecimal'</span>,</a>
+<a class="sourceLine" id="cb25-20" data-line-number="20">                     <span class="dt">operator =</span></a>
+<a class="sourceLine" id="cb25-21" data-line-number="21">                       <span class="st">"NOT_EQUALS"</span>,</a>
+<a class="sourceLine" id="cb25-22" data-line-number="22">                     <span class="dt">value =</span></a>
+<a class="sourceLine" id="cb25-23" data-line-number="23">                       <span class="ot">NULL</span>)</a>
+<a class="sourceLine" id="cb25-24" data-line-number="24">qc4 &lt;-</a>
+<a class="sourceLine" id="cb25-25" data-line-number="25"><span class="st">  </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field =</span></a>
+<a class="sourceLine" id="cb25-26" data-line-number="26">                       <span class="st">'gatheringEvent.siteCoordinates.latitudeDecimal'</span>,</a>
+<a class="sourceLine" id="cb25-27" data-line-number="27">                     <span class="dt">operator =</span></a>
+<a class="sourceLine" id="cb25-28" data-line-number="28">                       <span class="st">"NOT_EQUALS"</span>,</a>
+<a class="sourceLine" id="cb25-29" data-line-number="29">                     <span class="dt">value =</span></a>
+<a class="sourceLine" id="cb25-30" data-line-number="30">                       <span class="ot">NULL</span>)</a>
+<a class="sourceLine" id="cb25-31" data-line-number="31">qs &lt;-</a>
+<a class="sourceLine" id="cb25-32" data-line-number="32"><span class="st">  </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions =</span> <span class="kw">list</span>(qc, qc2, qc3, qc4), <span class="dt">size =</span> <span class="dv">1000</span>)</a>
+<a class="sourceLine" id="cb25-33" data-line-number="33"></a>
+<a class="sourceLine" id="cb25-34" data-line-number="34"><span class="co"># do query</span></a>
+<a class="sourceLine" id="cb25-35" data-line-number="35">res &lt;-<span class="st"> </span>sc<span class="op">$</span><span class="kw">query</span>(<span class="dt">querySpec =</span> qs)</a>
+<a class="sourceLine" id="cb25-36" data-line-number="36"></a>
+<a class="sourceLine" id="cb25-37" data-line-number="37"><span class="co"># extract coordinates</span></a>
+<a class="sourceLine" id="cb25-38" data-line-number="38">lat &lt;-</a>
+<a class="sourceLine" id="cb25-39" data-line-number="39"><span class="st">  </span><span class="kw">sapply</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet, <span class="cf">function</span>(x)</a>
+<a class="sourceLine" id="cb25-40" data-line-number="40">    x<span class="op">$</span>item<span class="op">$</span>gatheringEvent<span class="op">$</span>siteCoordinates[[<span class="dv">1</span>]]<span class="op">$</span>latitudeDecimal)</a>
+<a class="sourceLine" id="cb25-41" data-line-number="41">long &lt;-</a>
+<a class="sourceLine" id="cb25-42" data-line-number="42"><span class="st">  </span><span class="kw">sapply</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet, <span class="cf">function</span>(x)</a>
+<a class="sourceLine" id="cb25-43" data-line-number="43">    x<span class="op">$</span>item<span class="op">$</span>gatheringEvent<span class="op">$</span>siteCoordinates[[<span class="dv">1</span>]]<span class="op">$</span>longitudeDecimal)</a>
+<a class="sourceLine" id="cb25-44" data-line-number="44"></a>
+<a class="sourceLine" id="cb25-45" data-line-number="45"><span class="co">#plot on world map</span></a>
+<a class="sourceLine" id="cb25-46" data-line-number="46"><span class="kw">library</span>(<span class="st">'maps'</span>)</a>
+<a class="sourceLine" id="cb25-47" data-line-number="47"><span class="kw"><a href="http://www.rdocumentation.org/packages/maps/topics/map">map</a></span>(</a>
+<a class="sourceLine" id="cb25-48" data-line-number="48">  <span class="st">"world"</span>,</a>
+<a class="sourceLine" id="cb25-49" data-line-number="49">  <span class="dt">fill =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb25-50" data-line-number="50">  <span class="dt">col =</span> <span class="st">"white"</span>,</a>
+<a class="sourceLine" id="cb25-51" data-line-number="51">  <span class="dt">bg =</span> <span class="st">"lightblue"</span>,</a>
+<a class="sourceLine" id="cb25-52" data-line-number="52">  <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">60</span>, <span class="dv">90</span>),</a>
+<a class="sourceLine" id="cb25-53" data-line-number="53">  <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb25-54" data-line-number="54">)</a>
+<a class="sourceLine" id="cb25-55" data-line-number="55"><span class="kw">points</span>(long, lat, <span class="dt">col =</span> <span class="st">'red'</span>, <span class="dt">pch =</span> <span class="dv">16</span>)</a></code></pre></div>
 <p><img src="tomato_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
 </div>
   </div>

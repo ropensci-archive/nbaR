@@ -150,6 +150,9 @@ These fields can be specified in the constructor. If, for example, we want to qu
 *L.4304195*, a `QueryCondition` would look as follows:
 
 ```{r}
+# make specimen client instance
+client <- SpecimenClient$new()
+
 # specify search in QueryCondition object
 qc <-
   QueryCondition$new(field = "unitID",
@@ -157,8 +160,12 @@ qc <-
                      value = "L.4304195")
 ```
 
-Note: The function `getFieldInfo` on a certain field lists which operators 
-are allowed for that field (e.g. ```sc$get_field_info()$content$unitID$allowedOperators```).
+Note: The function `get_field_info` on a certain field lists which operators 
+are allowed for that field e.g. for the field `unitID` : 
+
+```{r}
+client$get_field_info()$content$unitID$allowedOperators
+```
 
 Now, a `QuerySpec` object can be assembled with the `QueryCondition`(s) passed as a list:
 

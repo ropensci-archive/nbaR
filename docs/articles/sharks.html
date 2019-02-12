@@ -89,7 +89,7 @@
     <div class="page-header toc-ignore">
       <h1>Calibrating a molecular phylogeny of the sharks</h1>
             
-            <h4 class="date">Jan 29, 2019</h4>
+            <h4 class="date">Feb 12, 2019</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/naturalis/nbaR/blob/master/vignettes/sharks.Rmd"><code>vignettes/sharks.Rmd</code></a></small>
       <div class="hidden name"><code>sharks.Rmd</code></div>
@@ -119,26 +119,39 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(nbaR)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">sc &lt;-<span class="st"> </span>SpecimenClient<span class="op">$</span><span class="kw">new</span>()</a></code></pre></div>
 <p>In total, there are <a href="https://en.wikipedia.org/wiki/Shark">eight extant shark orders</a>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">shark_orders &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"Carcharhiniformes"</span>,</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">                  <span class="st">"Heterodontiformes"</span>,</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">                  <span class="st">"Hexanchiformes"</span>,</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">                  <span class="st">"Lamniformes"</span>,</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">                  <span class="st">"Orectolobiformes"</span>,</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">                  <span class="st">"Pristiophoriformes"</span>,</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">                  <span class="st">"Squaliformes"</span>,</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">                  <span class="st">"Squatiniformes"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">shark_orders &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="st">"Carcharhiniformes"</span>,</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">  <span class="st">"Heterodontiformes"</span>,</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">  <span class="st">"Hexanchiformes"</span>,</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">  <span class="st">"Lamniformes"</span>,</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">  <span class="st">"Orectolobiformes"</span>,</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">  <span class="st">"Pristiophoriformes"</span>,</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">  <span class="st">"Squaliformes"</span>,</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">  <span class="st">"Squatiniformes"</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">)</a></code></pre></div>
 <p>We can then formulate a query condition for specimens that are identified in one of these orders using the operator <code>IN</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">qc &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"identifications.defaultClassification.order"</span>, <span class="dt">operator=</span><span class="st">"IN"</span>, <span class="dt">value=</span>shark_orders)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">qc &lt;-</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field =</span> <span class="st">"identifications.defaultClassification.order"</span>,</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">                     <span class="dt">operator =</span> <span class="st">"IN"</span>,</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">                     <span class="dt">value =</span> shark_orders)</a></code></pre></div>
 <p>For many specimens, chronological information is available in the fields <code>gatheringEvent.chronoStratigraphy.youngChronoName</code> and <code>gatheringEvent.chronoStratigraphy.oldChronoName</code> which represent upper- and lower time bounds, respectively. Below, we will formulate a <code>QueryCondition</code> that requires either one of these fields to be non-empty:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">## formulate query conditions for fields to be non-empty</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">qc2 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"gatheringEvent.chronoStratigraphy.youngChronoName"</span>, <span class="dt">operator=</span><span class="st">"NOT_EQUALS"</span>, <span class="dt">value=</span><span class="st">""</span>)</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">qc3 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field=</span><span class="st">"gatheringEvent.chronoStratigraphy.oldChronoName"</span>, <span class="dt">operator=</span><span class="st">"NOT_EQUALS"</span>, <span class="dt">value=</span><span class="st">""</span>)</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">## join qc2 and qc3 with operator OR</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">qc2<span class="op">$</span>or &lt;-<span class="st"> </span><span class="kw">list</span>(qc3)</a></code></pre></div>
+<a class="sourceLine" id="cb4-2" data-line-number="2">qc2 &lt;-</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field =</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">                       <span class="st">"gatheringEvent.chronoStratigraphy.youngChronoName"</span>,</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">                     <span class="dt">operator =</span> <span class="st">"NOT_EQUALS"</span>,</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">                     <span class="dt">value =</span> <span class="st">""</span>)</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">qc3 &lt;-</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="st">  </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field =</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">                       <span class="st">"gatheringEvent.chronoStratigraphy.oldChronoName"</span>,</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">                     <span class="dt">operator =</span> <span class="st">"NOT_EQUALS"</span>,</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">                     <span class="dt">value =</span> <span class="st">""</span>)</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">## join qc2 and qc3 with operator OR</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">qc2<span class="op">$</span>or &lt;-<span class="st"> </span><span class="kw">list</span>(qc3)</a></code></pre></div>
 <p>Now we can do the query:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">## instantiate QuerySpec, give size</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc, qc3), <span class="dt">size=</span><span class="dv">5000</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions =</span> <span class="kw">list</span>(qc, qc3), <span class="dt">size =</span> <span class="dv">5000</span>)</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">res &lt;-<span class="st"> </span>sc<span class="op">$</span><span class="kw">query</span>(<span class="dt">querySpec =</span> qs)</a>
 <a class="sourceLine" id="cb5-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb5-5" data-line-number="5">## how many hits?</a>
@@ -152,14 +165,21 @@
 <a href="#exploring-the-data" class="anchor"></a>Exploring the data</h2>
 <p>Now we can explore the data:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">## load all specimens</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">specimens &lt;-<span class="st"> </span><span class="kw">lapply</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet, <span class="cf">function</span>(x)x<span class="op">$</span>item)</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4">## check the fields youngCronoName and oldChronoName</a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="kw">unique</span>(<span class="kw">unlist</span>(<span class="kw">lapply</span>(specimens, <span class="cf">function</span>(x)x<span class="op">$</span>gatheringEvent<span class="op">$</span>chronoStratigraphy[[<span class="dv">1</span>]]<span class="op">$</span>youngChronoName)))</a></code></pre></div>
+<a class="sourceLine" id="cb9-2" data-line-number="2">specimens &lt;-<span class="st"> </span><span class="kw">lapply</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet, <span class="cf">function</span>(x)</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">  x<span class="op">$</span>item)</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5">## check the fields youngCronoName and oldChronoName</a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="kw">unique</span>(<span class="kw">unlist</span>(</a>
+<a class="sourceLine" id="cb9-7" data-line-number="7">  <span class="kw">lapply</span>(specimens, <span class="cf">function</span>(x)</a>
+<a class="sourceLine" id="cb9-8" data-line-number="8">    x<span class="op">$</span>gatheringEvent<span class="op">$</span>chronoStratigraphy[[<span class="dv">1</span>]]<span class="op">$</span>youngChronoName)</a>
+<a class="sourceLine" id="cb9-9" data-line-number="9">))</a></code></pre></div>
 <pre><code>##  [1] "Miocene"        "Pliocene"       "Upper Miocene"  "Pleistocene"   
 ##  [5] "Oligocene"      "Cretaceous"     "Chattian"       "Middle Miocene"
 ##  [9] "Lower Miocene"  "Paleocene"      "Maastrichtian"  "Pliocene?"</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">unique</span>(<span class="kw">unlist</span>(<span class="kw">lapply</span>(specimens, <span class="cf">function</span>(x)x<span class="op">$</span>gatheringEvent<span class="op">$</span>chronoStratigraphy[[<span class="dv">1</span>]]<span class="op">$</span>oldChronoName)))</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">unique</span>(<span class="kw">unlist</span>(</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">  <span class="kw">lapply</span>(specimens, <span class="cf">function</span>(x)</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">    x<span class="op">$</span>gatheringEvent<span class="op">$</span>chronoStratigraphy[[<span class="dv">1</span>]]<span class="op">$</span>oldChronoName)</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">))</a></code></pre></div>
 <pre><code>##  [1] "Neogene"                                          
 ##  [2] "Middle Miocene"                                   
 ##  [3] "Middle Eocene"                                    
@@ -206,21 +226,32 @@
 ## [44] "Pliocene?"                                        
 ## [45] "Middle Miocen"</code></pre>
 <p><strong>Caution</strong>: As you see above, there can be more than one chronoStratigraphy assigned with a specimen. Check how many we have per specimen:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">unique</span>(<span class="kw">sapply</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet, <span class="cf">function</span>(x)<span class="kw">length</span>(x<span class="op">$</span>item<span class="op">$</span>gatheringEvent<span class="op">$</span>chronoStratigraphy)))</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">unique</span>(<span class="kw">sapply</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet, <span class="cf">function</span>(x)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">  <span class="kw">length</span>(x<span class="op">$</span>item<span class="op">$</span>gatheringEvent<span class="op">$</span>chronoStratigraphy)))</a></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p>Each <code>gatheringEvent</code> in each <code>Specimen</code> has only one <code>chronoStratigraphy</code>. We thus do not miss data by taking the first one (<code>chronoStratigraphy[[1]]</code>).</p>
 <p>Do we have hits for all orders? Below, we make an overview of the field <code>identifications.defaultClassification.order</code> for all specimen.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">## make table with counts for each order</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">tab &lt;-<span class="st"> </span><span class="kw">table</span>(<span class="kw">unlist</span>(<span class="kw">lapply</span>(specimens, <span class="cf">function</span>(x)x<span class="op">$</span>identifications[[<span class="dv">1</span>]]<span class="op">$</span>defaultClassification<span class="op">$</span>order)))</a>
-<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">5.1</span>, <span class="dv">8</span>, <span class="fl">4.1</span>, <span class="fl">2.1</span>))</a>
-<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="kw">barplot</span>(<span class="kw">sort</span>(tab), <span class="dt">horiz=</span><span class="ot">TRUE</span>, <span class="dt">las=</span><span class="dv">2</span>, <span class="dt">xlab=</span><span class="st">"Number of specimens"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb15-2" data-line-number="2">tab &lt;-</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw">table</span>(<span class="kw">unlist</span>(</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">    <span class="kw">lapply</span>(specimens, <span class="cf">function</span>(x)</a>
+<a class="sourceLine" id="cb15-5" data-line-number="5">      x<span class="op">$</span>identifications[[<span class="dv">1</span>]]<span class="op">$</span>defaultClassification<span class="op">$</span>order)</a>
+<a class="sourceLine" id="cb15-6" data-line-number="6">  ))</a>
+<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">5.1</span>, <span class="dv">8</span>, <span class="fl">4.1</span>, <span class="fl">2.1</span>))</a>
+<a class="sourceLine" id="cb15-8" data-line-number="8"><span class="kw">barplot</span>(<span class="kw">sort</span>(tab),</a>
+<a class="sourceLine" id="cb15-9" data-line-number="9">        <span class="dt">horiz =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb15-10" data-line-number="10">        <span class="dt">las =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb15-11" data-line-number="11">        <span class="dt">xlab =</span> <span class="st">"Number of specimens"</span>)</a></code></pre></div>
 <p><img src="sharks_files/figure-html/plot_orders-1.png" width="700"></p>
 <p><strong>Caution</strong>: There can be multiple identifications for one specimen. Some specimens in our data are for instance assigned to different genera. However, the field <code>preferred</code> in an <code>Identification</code> object states if this is the most accurate and recent identification. The preferred identification is usually the first in the list of a specimen’s identifications. It can, however, occur that there are multiple identifications of which none is preferred; it is best to filter them out:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">## get the specimens which have a preferred identification</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">ident &lt;-<span class="st"> </span><span class="kw">sapply</span>(specimens, <span class="cf">function</span>(s)<span class="kw">any</span>(<span class="kw">sapply</span>(s<span class="op">$</span>identifications, <span class="cf">function</span>(i)i<span class="op">$</span>preferred)))</a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb16-4" data-line-number="4">## how many do not have a preferred identification?</a>
-<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="kw">sum</span>(<span class="op">!</span>ident)</a></code></pre></div>
+<a class="sourceLine" id="cb16-2" data-line-number="2">ident &lt;-</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">  </span><span class="kw">sapply</span>(specimens, <span class="cf">function</span>(s)</a>
+<a class="sourceLine" id="cb16-4" data-line-number="4">    <span class="kw">any</span>(<span class="kw">sapply</span>(s<span class="op">$</span>identifications, <span class="cf">function</span>(i)</a>
+<a class="sourceLine" id="cb16-5" data-line-number="5">      i<span class="op">$</span>preferred)))</a>
+<a class="sourceLine" id="cb16-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb16-7" data-line-number="7">## how many do not have a preferred identification?</a>
+<a class="sourceLine" id="cb16-8" data-line-number="8"><span class="kw">sum</span>(<span class="op">!</span>ident)</a></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">## filter specimens</a>
 <a class="sourceLine" id="cb18-2" data-line-number="2">specimens &lt;-<span class="st"> </span>specimens[ident]</a></code></pre></div>
@@ -246,30 +277,50 @@
 ## late_age     2.59</code></pre>
 <p>We can now make a table with all interesting data, below this is done for the first 50 specimen objects:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">## Get genus, species and chrono information from specimen records</a>
-<a class="sourceLine" id="cb25-2" data-line-number="2">data &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">do.call</span>(rbind, <span class="kw">lapply</span>(specimens[<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>], <span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb25-3" data-line-number="3">    genus &lt;-<span class="st"> </span>x<span class="op">$</span>identifications[[<span class="dv">1</span>]]<span class="op">$</span>defaultClassification<span class="op">$</span>genus</a>
-<a class="sourceLine" id="cb25-4" data-line-number="4">    <span class="cf">if</span> (<span class="kw">is.null</span>(genus)) genus &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb25-5" data-line-number="5">    specificEpithet &lt;-<span class="st"> </span>x<span class="op">$</span>identifications[[<span class="dv">1</span>]]<span class="op">$</span>defaultClassification<span class="op">$</span>specificEpithet</a>
-<a class="sourceLine" id="cb25-6" data-line-number="6">    <span class="cf">if</span> (<span class="kw">is.null</span>(specificEpithet)) specificEpithet &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb25-7" data-line-number="7">    youngChronoName &lt;-<span class="st"> </span>x<span class="op">$</span>gatheringEvent<span class="op">$</span>chronoStratigraphy[[<span class="dv">1</span>]]<span class="op">$</span>youngChronoName</a>
-<a class="sourceLine" id="cb25-8" data-line-number="8">    <span class="cf">if</span> (<span class="kw">is.null</span>(youngChronoName)) youngChronoName &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb25-9" data-line-number="9">    oldChronoName &lt;-<span class="st"> </span>x<span class="op">$</span>gatheringEvent<span class="op">$</span>chronoStratigraphy[[<span class="dv">1</span>]]<span class="op">$</span>oldChronoName</a>
-<a class="sourceLine" id="cb25-10" data-line-number="10">    <span class="cf">if</span> (<span class="kw">is.null</span>(oldChronoName)) oldChronoName &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb25-11" data-line-number="11">    <span class="kw">c</span>(<span class="dt">genus=</span>genus, <span class="dt">specificEpithet=</span>specificEpithet,</a>
-<a class="sourceLine" id="cb25-12" data-line-number="12">      <span class="dt">youngChronoName=</span>youngChronoName, <span class="dt">oldChronoName=</span>oldChronoName)</a>
-<a class="sourceLine" id="cb25-13" data-line-number="13">})))</a>
-<a class="sourceLine" id="cb25-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb25-15" data-line-number="15">## Get absolute ages from earth life consortium</a>
-<a class="sourceLine" id="cb25-16" data-line-number="16">times &lt;-<span class="st"> </span><span class="kw"><a href="../reference/geo_age.html">geo_age</a></span>(<span class="kw">unique</span>(<span class="kw">c</span>(<span class="kw">as.character</span>(data<span class="op">$</span>youngChronoName), <span class="kw">as.character</span>(data<span class="op">$</span>oldChronoName))))</a></code></pre></div>
+<a class="sourceLine" id="cb25-2" data-line-number="2">data &lt;-</a>
+<a class="sourceLine" id="cb25-3" data-line-number="3"><span class="st">  </span><span class="kw">as.data.frame</span>(<span class="kw">do.call</span>(rbind, <span class="kw">lapply</span>(specimens[<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>], <span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb25-4" data-line-number="4">    genus &lt;-<span class="st"> </span>x<span class="op">$</span>identifications[[<span class="dv">1</span>]]<span class="op">$</span>defaultClassification<span class="op">$</span>genus</a>
+<a class="sourceLine" id="cb25-5" data-line-number="5">    <span class="cf">if</span> (<span class="kw">is.null</span>(genus))</a>
+<a class="sourceLine" id="cb25-6" data-line-number="6">      genus &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb25-7" data-line-number="7">    specificEpithet &lt;-</a>
+<a class="sourceLine" id="cb25-8" data-line-number="8"><span class="st">      </span>x<span class="op">$</span>identifications[[<span class="dv">1</span>]]<span class="op">$</span>defaultClassification<span class="op">$</span>specificEpithet</a>
+<a class="sourceLine" id="cb25-9" data-line-number="9">    <span class="cf">if</span> (<span class="kw">is.null</span>(specificEpithet))</a>
+<a class="sourceLine" id="cb25-10" data-line-number="10">      specificEpithet &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb25-11" data-line-number="11">    youngChronoName &lt;-</a>
+<a class="sourceLine" id="cb25-12" data-line-number="12"><span class="st">      </span>x<span class="op">$</span>gatheringEvent<span class="op">$</span>chronoStratigraphy[[<span class="dv">1</span>]]<span class="op">$</span>youngChronoName</a>
+<a class="sourceLine" id="cb25-13" data-line-number="13">    <span class="cf">if</span> (<span class="kw">is.null</span>(youngChronoName))</a>
+<a class="sourceLine" id="cb25-14" data-line-number="14">      youngChronoName &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb25-15" data-line-number="15">    oldChronoName &lt;-</a>
+<a class="sourceLine" id="cb25-16" data-line-number="16"><span class="st">      </span>x<span class="op">$</span>gatheringEvent<span class="op">$</span>chronoStratigraphy[[<span class="dv">1</span>]]<span class="op">$</span>oldChronoName</a>
+<a class="sourceLine" id="cb25-17" data-line-number="17">    <span class="cf">if</span> (<span class="kw">is.null</span>(oldChronoName))</a>
+<a class="sourceLine" id="cb25-18" data-line-number="18">      oldChronoName &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb25-19" data-line-number="19">    <span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb25-20" data-line-number="20">      <span class="dt">genus =</span> genus,</a>
+<a class="sourceLine" id="cb25-21" data-line-number="21">      <span class="dt">specificEpithet =</span> specificEpithet,</a>
+<a class="sourceLine" id="cb25-22" data-line-number="22">      <span class="dt">youngChronoName =</span> youngChronoName,</a>
+<a class="sourceLine" id="cb25-23" data-line-number="23">      <span class="dt">oldChronoName =</span> oldChronoName</a>
+<a class="sourceLine" id="cb25-24" data-line-number="24">    )</a>
+<a class="sourceLine" id="cb25-25" data-line-number="25">  })))</a>
+<a class="sourceLine" id="cb25-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb25-27" data-line-number="27">## Get absolute ages from earth life consortium</a>
+<a class="sourceLine" id="cb25-28" data-line-number="28">times &lt;-</a>
+<a class="sourceLine" id="cb25-29" data-line-number="29"><span class="st">  </span><span class="kw"><a href="../reference/geo_age.html">geo_age</a></span>(<span class="kw">unique</span>(<span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb25-30" data-line-number="30">    <span class="kw">as.character</span>(data<span class="op">$</span>youngChronoName),</a>
+<a class="sourceLine" id="cb25-31" data-line-number="31">    <span class="kw">as.character</span>(data<span class="op">$</span>oldChronoName)</a>
+<a class="sourceLine" id="cb25-32" data-line-number="32">  )))</a></code></pre></div>
 <pre><code>## Warning in FUN(X[[i]], ...): Could not retrieve time values for geo unit
 ## "Mioceen" from earthlifeconsortium.org, returning NA</code></pre>
 <pre><code>## Warning in FUN(X[[i]], ...): Could not retrieve time values for geo unit
 ## "Unspecified age" from earthlifeconsortium.org, returning NA</code></pre>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">## add upper and lower bounds to ages</a>
-<a class="sourceLine" id="cb28-2" data-line-number="2">data<span class="op">$</span>young_age &lt;-<span class="st"> </span><span class="kw">sapply</span>(data<span class="op">$</span>youngChronoName, <span class="cf">function</span>(x)<span class="kw">ifelse</span>(<span class="kw">is.na</span>(x), <span class="ot">NA</span>, <span class="kw">unlist</span>(times[<span class="st">'late_age'</span>, <span class="kw">as.character</span>(x)])))</a>
-<a class="sourceLine" id="cb28-3" data-line-number="3">data<span class="op">$</span>old_age &lt;-<span class="st"> </span><span class="kw">sapply</span>(data<span class="op">$</span>oldChronoName, <span class="cf">function</span>(x)<span class="kw">ifelse</span>(<span class="kw">is.na</span>(x), <span class="ot">NA</span>, <span class="kw">unlist</span>(times[<span class="st">'early_age'</span>, <span class="kw">as.character</span>(x)])))</a>
-<a class="sourceLine" id="cb28-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb28-5" data-line-number="5">data</a></code></pre></div>
+<a class="sourceLine" id="cb28-2" data-line-number="2">data<span class="op">$</span>young_age &lt;-</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3"><span class="st">  </span><span class="kw">sapply</span>(data<span class="op">$</span>youngChronoName, <span class="cf">function</span>(x)</a>
+<a class="sourceLine" id="cb28-4" data-line-number="4">    <span class="kw">ifelse</span>(<span class="kw">is.na</span>(x), <span class="ot">NA</span>, <span class="kw">unlist</span>(times[<span class="st">"late_age"</span>, <span class="kw">as.character</span>(x)])))</a>
+<a class="sourceLine" id="cb28-5" data-line-number="5">data<span class="op">$</span>old_age &lt;-</a>
+<a class="sourceLine" id="cb28-6" data-line-number="6"><span class="st">  </span><span class="kw">sapply</span>(data<span class="op">$</span>oldChronoName, <span class="cf">function</span>(x)</a>
+<a class="sourceLine" id="cb28-7" data-line-number="7">    <span class="kw">ifelse</span>(<span class="kw">is.na</span>(x), <span class="ot">NA</span>, <span class="kw">unlist</span>(times[<span class="st">"early_age"</span>, <span class="kw">as.character</span>(x)])))</a>
+<a class="sourceLine" id="cb28-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb28-9" data-line-number="9">data</a></code></pre></div>
 <pre><code>##               genus specificEpithet youngChronoName   oldChronoName
 ## 1     Ginglymostoma             sp.            &lt;NA&gt;         Neogene
 ## 2  Megascyliorhinus      sp. indet.            &lt;NA&gt;  Middle Miocene
@@ -382,18 +433,17 @@
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">library</span>(ape)</a>
 <a class="sourceLine" id="cb30-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb30-3" data-line-number="3">## read data</a>
-<a class="sourceLine" id="cb30-4" data-line-number="4">path &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">'extdata'</span>, <span class="st">'shark_tree.nex'</span>, <span class="dt">package=</span><span class="st">'nbaR'</span>)</a>
-<a class="sourceLine" id="cb30-5" data-line-number="5">tree &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/read.nexus">read.nexus</a></span>(path)</a>
-<a class="sourceLine" id="cb30-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb30-7" data-line-number="7">## plot the tree</a>
-<a class="sourceLine" id="cb30-8" data-line-number="8"><span class="kw">plot</span>(tree, <span class="dt">cex=</span><span class="fl">0.3</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb30-4" data-line-number="4"><span class="kw">data</span>(shark_tree)</a>
+<a class="sourceLine" id="cb30-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb30-6" data-line-number="6">## plot the tree</a>
+<a class="sourceLine" id="cb30-7" data-line-number="7"><span class="kw">plot</span>(shark_tree, <span class="dt">cex =</span> <span class="fl">0.3</span>)</a></code></pre></div>
 <p><img src="sharks_files/figure-html/read_tree-1.png" width="700"></p>
 <div id="genus-level" class="section level2">
 <h2 class="hasAnchor">
 <a href="#genus-level" class="anchor"></a>Genus level</h2>
 <p>Now we use <code>chronos_calib</code> to get the table at the genus level. <code>chronos_calib</code> also selects the nodes in the tree that will be calibrated. This is done by selecting the most recent common ancestor (mrca) of the species for which the data are averaged.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">## make calibration table on genus level</a>
-<a class="sourceLine" id="cb31-2" data-line-number="2">calibration_table &lt;-<span class="st"> </span><span class="kw"><a href="../reference/chronos_calib.html">chronos_calib</a></span>(specimens, tree, <span class="st">"genus"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb31-2" data-line-number="2">calibration_table &lt;-<span class="st"> </span><span class="kw"><a href="../reference/chronos_calib.html">chronos_calib</a></span>(specimens, shark_tree, <span class="st">"genus"</span>)</a></code></pre></div>
 <p><strong>Note</strong>: This function can produce many warnings, a warning is emitted whenever, for some geological division, no data can be obtained from the earth life consortium. This can be due to misspellings or words in foreign languages.</p>
 <p>The calibration table looks as follows:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">calibration_table</a></code></pre></div>
@@ -411,19 +461,20 @@
 ## 11  237 16.384000 30.11038       FALSE      Squatina</code></pre>
 <p><strong>Note</strong>: It is essential to thoroughly evaluate the calibration table! In this example, for example, the genus <em>Squatina</em> is non-monophyletic and one species is placed somewhere else in the tree. Calibrating the most recent common ancestor node for this genus can therefore result in errors using the calibration routine. We will therefore remove the calibration points for genus <em>Squatina</em> before calibration:</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">## clean up: one rogue taxon in genus "Squatina"! Skip this genus</a>
-<a class="sourceLine" id="cb34-2" data-line-number="2">calibration_table &lt;-<span class="st"> </span>calibration_table[calibration_table<span class="op">$</span>taxon <span class="op">!=</span><span class="st"> "Squatina"</span>,]</a>
-<a class="sourceLine" id="cb34-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb34-4" data-line-number="4">## run ape's chronos</a>
-<a class="sourceLine" id="cb34-5" data-line-number="5">chronogram &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/chronos">chronos</a></span>(tree, <span class="dt">calibration=</span>calibration_table)</a></code></pre></div>
+<a class="sourceLine" id="cb34-2" data-line-number="2">calibration_table &lt;-</a>
+<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="st">  </span>calibration_table[calibration_table<span class="op">$</span>taxon <span class="op">!=</span><span class="st"> "Squatina"</span>,]</a>
+<a class="sourceLine" id="cb34-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb34-5" data-line-number="5">## run ape's chronos</a>
+<a class="sourceLine" id="cb34-6" data-line-number="6">chronogram &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/chronos">chronos</a></span>(shark_tree, <span class="dt">calibration =</span> calibration_table)</a></code></pre></div>
 <pre><code>## 
 ## Setting initial dates...
 ## Fitting in progress... get a first set of estimates
-##          Penalised log-lik = -57.8127 
-## Optimising rates... dates... -57.8127 
+##          Penalised log-lik = -57.81267 
+## Optimising rates... dates... -57.81267 
 ## 
 ## Done.</code></pre>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">## plot tree with time axis</a>
-<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="kw">plot</span>(chronogram, <span class="dt">cex=</span><span class="fl">0.3</span>)</a>
+<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="kw">plot</span>(chronogram, <span class="dt">cex =</span> <span class="fl">0.3</span>)</a>
 <a class="sourceLine" id="cb36-3" data-line-number="3"><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/axisPhylo">axisPhylo</a></span>()</a>
 <a class="sourceLine" id="cb36-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb36-5" data-line-number="5">## plot calibrated genera</a>
@@ -435,13 +486,13 @@
 <a href="#family-level" class="anchor"></a>Family level</h2>
 <p>We can also calibrate the tree on the family level:</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">## make calibration table on family level</a>
-<a class="sourceLine" id="cb37-2" data-line-number="2">calibration_table &lt;-<span class="st"> </span><span class="kw"><a href="../reference/chronos_calib.html">chronos_calib</a></span>(specimens, tree, <span class="st">"family"</span>)</a>
+<a class="sourceLine" id="cb37-2" data-line-number="2">calibration_table &lt;-<span class="st"> </span><span class="kw"><a href="../reference/chronos_calib.html">chronos_calib</a></span>(specimens, shark_tree, <span class="st">"family"</span>)</a>
 <a class="sourceLine" id="cb37-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb37-4" data-line-number="4">## run ape's chronos</a>
-<a class="sourceLine" id="cb37-5" data-line-number="5">chronogram &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/chronos">chronos</a></span>(tree, <span class="dt">calibration=</span>calibration_table)</a>
+<a class="sourceLine" id="cb37-5" data-line-number="5">chronogram &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/chronos">chronos</a></span>(shark_tree, <span class="dt">calibration =</span> calibration_table)</a>
 <a class="sourceLine" id="cb37-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb37-7" data-line-number="7">## plot tree with time axis</a>
-<a class="sourceLine" id="cb37-8" data-line-number="8"><span class="kw">plot</span>(chronogram, <span class="dt">cex=</span><span class="fl">0.3</span>)</a>
+<a class="sourceLine" id="cb37-8" data-line-number="8"><span class="kw">plot</span>(chronogram, <span class="dt">cex =</span> <span class="fl">0.3</span>)</a>
 <a class="sourceLine" id="cb37-9" data-line-number="9"><span class="kw"><a href="http://www.rdocumentation.org/packages/ape/topics/axisPhylo">axisPhylo</a></span>()</a>
 <a class="sourceLine" id="cb37-10" data-line-number="10"></a>
 <a class="sourceLine" id="cb37-11" data-line-number="11">## plot calibrated families</a>
