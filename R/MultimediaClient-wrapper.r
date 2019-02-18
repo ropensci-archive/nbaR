@@ -17,7 +17,7 @@
 #' @family nbaR.MultimediaClient-wrappers
 #' @return scalar
 #' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
-#' @param ... additional parameters passed to count from class class nbaR.MultimediaClient
+#' @param ... additional parameters passed to count from class nbaR.MultimediaClient
 #' @export
 multimedia_count <- function(
                              queryParams = list(),
@@ -38,7 +38,7 @@ multimedia_count <- function(
 #' @family nbaR.MultimediaClient-wrappers
 #' @return scalar
 #' @param field Name of field in taxon object, type:
-#' @param ... additional parameters passed to count_distinct_values from class class nbaR.MultimediaClient
+#' @param ... additional parameters passed to count_distinct_values from class nbaR.MultimediaClient
 #' @export
 multimedia_count_distinct_values <- function(
                                              field = NULL,
@@ -61,11 +61,13 @@ multimedia_count_distinct_values <- function(
 #' @return scalar
 #' @param group name of field in the multimedia object you want to group by, type:
 #' @param field name of field in the multimedia object, type:
-#' @param ... additional parameters passed to count_distinct_values_per_group from class class nbaR.MultimediaClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to count_distinct_values_per_group from class nbaR.MultimediaClient
 #' @export
 multimedia_count_distinct_values_per_group <- function(
                                                        group = NULL,
                                                        field = NULL,
+                                                       returnType = "data.frame",
                                                        ...) {
   sc <- MultimediaClient$new()
   res <- sc$count_distinct_values_per_group(
@@ -86,7 +88,7 @@ multimedia_count_distinct_values_per_group <- function(
 
 #' @param collectionType Example query param, type:
 #' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
-#' @param ... additional parameters passed to download_query from class class nbaR.MultimediaClient
+#' @param ... additional parameters passed to download_query from class nbaR.MultimediaClient
 #' @export
 multimedia_download_query <- function(
                                       collectionType = NULL,
@@ -105,20 +107,29 @@ multimedia_download_query <- function(
 #' from class nbaR.MultimediaClient.
 #' @details If found, returns a single multimedia document
 #' @family nbaR.MultimediaClient-wrappers
-#' @return list
+#' @return list or data.frame, as specified by \code{returnType}'
 #' @param id id of multimedia document, type:
-#' @param ... additional parameters passed to find from class class nbaR.MultimediaClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to find from class nbaR.MultimediaClient
 #' @export
 multimedia_find <- function(
                             id = NULL,
+                            returnType = "data.frame",
                             ...) {
+
+  ## check returnType argument
+  if (!returnType %in% c("list", "data.frame")) {
+    stop("Invalid returnType argument. Must be 'data.frame' or 'list'")
+  }
+
   sc <- MultimediaClient$new()
   res <- sc$find(
     id,
 
     ...
   )
-  result <- .make_list_response(res)
+  ## return simpler data structure for object response
+  result <- .un_object(res, returnType = returnType)
   return(result)
 }
 #' @name multimedia_find_by_ids
@@ -127,20 +138,29 @@ multimedia_find <- function(
 #' from class nbaR.MultimediaClient.
 #' @details Given multiple ids, returns a list of multimedia documents
 #' @family nbaR.MultimediaClient-wrappers
-#' @return list
+#' @return list or data.frame, as specified by \code{returnType}'
 #' @param ids ids of multiple multimedia documents, separated by comma, type: character
-#' @param ... additional parameters passed to find_by_ids from class class nbaR.MultimediaClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to find_by_ids from class nbaR.MultimediaClient
 #' @export
 multimedia_find_by_ids <- function(
                                    ids = NULL,
+                                   returnType = "data.frame",
                                    ...) {
+
+  ## check returnType argument
+  if (!returnType %in% c("list", "data.frame")) {
+    stop("Invalid returnType argument. Must be 'data.frame' or 'list'")
+  }
+
   sc <- MultimediaClient$new()
   res <- sc$find_by_ids(
     ids,
 
     ...
   )
-  result <- .make_list_response(res)
+  ## return simpler data structure for object response
+  result <- .un_object(res, returnType = returnType)
   return(result)
 }
 #' @name multimedia_get_distinct_values
@@ -151,10 +171,12 @@ multimedia_find_by_ids <- function(
 #' @family nbaR.MultimediaClient-wrappers
 #' @return scalar
 #' @param field field, type:
-#' @param ... additional parameters passed to get_distinct_values from class class nbaR.MultimediaClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_distinct_values from class nbaR.MultimediaClient
 #' @export
 multimedia_get_distinct_values <- function(
                                            field = NULL,
+                                           returnType = "data.frame",
                                            ...) {
   sc <- MultimediaClient$new()
   res <- sc$get_distinct_values(
@@ -174,11 +196,13 @@ multimedia_get_distinct_values <- function(
 #' @return scalar
 #' @param group name of field in the multimedia object you want to group by, type:
 #' @param field name of field in the multimedia object, type:
-#' @param ... additional parameters passed to get_distinct_values_per_group from class class nbaR.MultimediaClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_distinct_values_per_group from class nbaR.MultimediaClient
 #' @export
 multimedia_get_distinct_values_per_group <- function(
                                                      group = NULL,
                                                      field = NULL,
+                                                     returnType = "data.frame",
                                                      ...) {
   sc <- MultimediaClient$new()
   res <- sc$get_distinct_values_per_group(
@@ -197,9 +221,11 @@ multimedia_get_distinct_values_per_group <- function(
 #' @details Info consists of whether the fields is indexed, the ElasticSearch datatype and a list of allowed operators
 #' @family nbaR.MultimediaClient-wrappers
 #' @return scalar
-#' @param ... additional parameters passed to get_field_info from class class nbaR.MultimediaClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_field_info from class nbaR.MultimediaClient
 #' @export
 multimedia_get_field_info <- function(
+                                      returnType = "data.frame",
                                       ...) {
   sc <- MultimediaClient$new()
   res <- sc$get_field_info(
@@ -215,9 +241,11 @@ multimedia_get_field_info <- function(
 #' @details See also metadata/getFieldInfo for all allowed operators per field
 #' @family nbaR.MultimediaClient-wrappers
 #' @return scalar
-#' @param ... additional parameters passed to get_paths from class class nbaR.MultimediaClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_paths from class nbaR.MultimediaClient
 #' @export
 multimedia_get_paths <- function(
+                                 returnType = "data.frame",
                                  ...) {
   sc <- MultimediaClient$new()
   res <- sc$get_paths(
@@ -234,7 +262,7 @@ multimedia_get_paths <- function(
 #' @family nbaR.MultimediaClient-wrappers
 #' @return scalar
 #' @param name name of setting, type:
-#' @param ... additional parameters passed to get_setting from class class nbaR.MultimediaClient
+#' @param ... additional parameters passed to get_setting from class nbaR.MultimediaClient
 #' @export
 multimedia_get_setting <- function(
                                    name = NULL,
@@ -255,9 +283,11 @@ multimedia_get_setting <- function(
 #' @details The value of a specific setting can be queried with metadata/getSetting/{name}
 #' @family nbaR.MultimediaClient-wrappers
 #' @return scalar
-#' @param ... additional parameters passed to get_settings from class class nbaR.MultimediaClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_settings from class nbaR.MultimediaClient
 #' @export
 multimedia_get_settings <- function(
+                                    returnType = "data.frame",
                                     ...) {
   sc <- MultimediaClient$new()
   res <- sc$get_settings(
@@ -275,7 +305,7 @@ multimedia_get_settings <- function(
 #' @return scalar
 #' @param field multimedia document field, type:
 #' @param operator operator, type:
-#' @param ... additional parameters passed to is_operator_allowed from class class nbaR.MultimediaClient
+#' @param ... additional parameters passed to is_operator_allowed from class nbaR.MultimediaClient
 #' @export
 multimedia_is_operator_allowed <- function(
                                            field = NULL,
@@ -297,27 +327,37 @@ multimedia_is_operator_allowed <- function(
 #' from class nbaR.MultimediaClient.
 #' @details Search for multimedia documents with query parameters or QuerySpec JSON string
 #' @family nbaR.MultimediaClient-wrappers
-#' @return list
+#' @return list or data.frame, as specified by \code{returnType}'
 #' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
-#' @param ... additional parameters passed to query from class class nbaR.MultimediaClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to query from class nbaR.MultimediaClient
 #' @export
 multimedia_query <- function(
                              queryParams = list(),
+                             returnType = "data.frame",
                              ...) {
+
+  ## check returnType argument
+  if (!returnType %in% c("list", "data.frame")) {
+    stop("Invalid returnType argument. Must be 'data.frame' or 'list'")
+  }
+
   sc <- MultimediaClient$new()
   res <- sc$query(
     queryParams = queryParams,
     ...
   )
-  result <- .make_list_response(res)
+  ## return simpler data structure for object response
+  result <- .un_object(res, returnType = returnType)
   return(result)
 }
 
 #' @noRd
 #' @param response Object of class Response
+#' @param returnType either 'list' or 'data.frame'
 #' Internal function to convert all (nested) objects
-#' in a response object to lists
-.make_list_response <- function(response) {
+#' in a response object to lists or data frames
+.un_object <- function(response, returnType = "data.frame") {
   l <- response$content
 
   ## Handle return objects of class QueryResult
@@ -325,7 +365,7 @@ multimedia_query <- function(
     l <- lapply(l$resultSet, function(x) x$item)
   }
 
-  ## wrapper functions return lists instead of objects
+  ## wrapper functions return data frames or lists instead of objects
   if (!is.list(l)) {
     result <- l$toList()
   } else {
@@ -337,6 +377,10 @@ multimedia_query <- function(
           x
         }
     )
+  }
+
+  if (returnType == "data.frame") {
+    result <- data.frame(do.call(rbind, result))
   }
 
   return(result)

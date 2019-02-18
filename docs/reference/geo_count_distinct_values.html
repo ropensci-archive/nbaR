@@ -134,7 +134,7 @@ from class nbaR.GeoClient.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>geo_count_distinct_values</span>(<span class='kw'>field</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>geo_count_distinct_values</span>(<span class='kw'>field</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>returnType</span> <span class='kw'>=</span> <span class='st'>"data.frame"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -144,8 +144,12 @@ from class nbaR.GeoClient.</p>
       <td><p>name of field in taxon object, type:</p></td>
     </tr>
     <tr>
+      <th>returnType</th>
+      <td><p>Either 'list' or 'data.frame', defaults to 'data.frame'</p></td>
+    </tr>
+    <tr>
       <th>...</th>
-      <td><p>additional parameters passed to count_distinct_values from class class nbaR.GeoClient</p></td>
+      <td><p>additional parameters passed to count_distinct_values from class nbaR.GeoClient</p></td>
     </tr>
     </table>
     

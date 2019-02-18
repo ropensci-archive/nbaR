@@ -4,15 +4,17 @@
 \alias{multimedia_find}
 \title{Find a multimedia document by id}
 \usage{
-multimedia_find(id = NULL, ...)
+multimedia_find(id = NULL, returnType = "data.frame", ...)
 }
 \arguments{
 \item{id}{id of multimedia document, type:}
 
-\item{...}{additional parameters passed to find from class class nbaR.MultimediaClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to find from class nbaR.MultimediaClient}
 }
 \value{
-list
+list or data.frame, as specified by \code{returnType}'
 }
 \description{
 This is a wrapper function for find

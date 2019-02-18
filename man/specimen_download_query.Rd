@@ -4,15 +4,18 @@
 \alias{specimen_download_query}
 \title{Dynamic download service: Query for specimens and return result as a stream ...}
 \usage{
-specimen_download_query(queryParams = list(), ...)
+specimen_download_query(queryParams = list(),
+  returnType = "data.frame", ...)
 }
 \arguments{
 \item{queryParams}{Named list or vector with names being the fields to be queried and values being the values to match}
 
-\item{...}{additional parameters passed to download_query from class class nbaR.SpecimenClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to download_query from class nbaR.SpecimenClient}
 }
 \value{
-list
+list or data.frame, as specified by \code{returnType}'
 }
 \description{
 This is a wrapper function for download_query

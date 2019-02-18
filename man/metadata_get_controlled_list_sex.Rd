@@ -4,10 +4,12 @@
 \alias{metadata_get_controlled_list_sex}
 \title{Get allowed values for the field &#39;Sex&#39; in a specimen document}
 \usage{
-metadata_get_controlled_list_sex(...)
+metadata_get_controlled_list_sex(returnType = "data.frame", ...)
 }
 \arguments{
-\item{...}{additional parameters passed to get_controlled_list_sex from class class nbaR.MetadataClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to get_controlled_list_sex from class nbaR.MetadataClient}
 }
 \value{
 scalar

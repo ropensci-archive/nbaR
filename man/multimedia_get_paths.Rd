@@ -4,10 +4,12 @@
 \alias{multimedia_get_paths}
 \title{Returns the full path of all fields within a document}
 \usage{
-multimedia_get_paths(...)
+multimedia_get_paths(returnType = "data.frame", ...)
 }
 \arguments{
-\item{...}{additional parameters passed to get_paths from class class nbaR.MultimediaClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to get_paths from class nbaR.MultimediaClient}
 }
 \value{
 scalar

@@ -15,17 +15,17 @@ test_that("specimen_count works", {
   cnt <- specimen_count()
   expect_true(is.numeric(cnt))
   expect_gt(cnt, 0)
-  
+
   ## test with query param
   qp <- list(sex = "female")
   cnt2 <- specimen_count(qp)
   expect_lt(cnt2, cnt)
-  
+
   ## test with multiple params
   qp <- list(sex = "female", sourceSystem.code = "CRS")
   cnt3 <- specimen_count(qp)
   expect_lt(cnt3, cnt2)
-  
+
   ## test if with vector instead of list
   qp <- c(sex = "female")
   cnt4 <- specimen_count(qp)
@@ -36,7 +36,7 @@ test_that("specimen_count_distinct_values works", {
   cnt <- specimen_count_distinct_values("sex")
   expect_true(is.numeric(cnt))
   expect_gt(cnt, 0)
-  
+
   ## test with query param
   qp <- list(sex = "female")
   cnt2 <- specimen_count_distinct_values("sex", qp)
@@ -49,21 +49,33 @@ test_that("specimen_count_distinct_values_per_group works", {
   ## of a mystery, see also
   ## https://docs.biodiversitydata.nl/en/latest/advanced-queries/#agg
   res <-
-    specimen_count_distinct_values_per_group("sex", "sourceSystem.code")
-  expect_is(res, "list")
+    specimen_count_distinct_values_per_group("sex", "sourceSystem.code",
+      returnType = "list"
+    )
+  ##expect_is(res, "list")
   expect_gt(length(res), 0)
+
+  res <-
+    specimen_count_distinct_values_per_group("sex", "sourceSystem.code",
+      returnType = "data.frame"
+    )
+  expect_is(res, "data.frame")
 })
 
 test_that("specimen_download_query works", {
   qp <-
     list("identifications.defaultClassification.genus" = "Hydrochoerus")
-  res <- specimen_download_query(qp)
+  res <- specimen_download_query(qp, returnType = "list")
   expect_is(res, "list")
-  
+
   ## this should not return objects but the list representation of specimens
   for (i in seq_along(res)) {
     expect_is(res[[i]], "list")
   }
+
+  ## check data frame return
+  res <- specimen_download_query(qp, returnType = "data.frame")
+  expect_is(res, "data.frame")
 })
 
 test_that("specimen_dwca_get_data_set works", {
@@ -105,7 +117,7 @@ test_that("specimen_exists works", {
   res <- specimen_exists("L.4191428")
   expect_is(res, "logical")
   expect_true(res)
-  
+
   ## test for nonexisting specimen
   res <- specimen_exists("XXX")
   expect_is(res, "logical")
@@ -114,28 +126,36 @@ test_that("specimen_exists works", {
 
 test_that("specimen_find works", {
   id <- "RMNH.MAM.17209.B@CRS"
-  res <- specimen_find(id)
+  res <- specimen_find(id, returnType = "list")
   expect_is(res, "list")
   expect_equal(res$id, id)
+
+  res <- specimen_find(id, returnType = "data.frame")
+  expect_is(res, "data.frame")
 })
 
 test_that("specimen_find_by_ids works", {
   ids_vec <- c("RMNH.INS.657083@CRS", "L.1589244@BRAHMS")
-  res <- specimen_find_by_ids(ids_vec)
+  res <- specimen_find_by_ids(ids_vec, returnType = "list")
   expect_is(res, "list")
   expect_length(res, 2)
   for (i in seq_along(res)) {
     expect_is(res[[i]], "list")
     expect_true(res[[i]]$id %in% ids_vec)
   }
+
+  res <- specimen_find_by_ids(ids_vec, returnType = "data.frame")
+  expect_is(res, "data.frame")
 })
 
 test_that("specimen_find_by_unit_id", {
   unitID <- "RMNH.MAM.1513"
-  res <- specimen_find_by_unit_id(unitID)
+  res <- specimen_find_by_unit_id(unitID, returnType = "list")
   expect_is(res, "list")
   expect_is(res[[1]], "list")
   expect_equal(res[[1]]$unitID, unitID)
+  res <- specimen_find_by_unit_id(unitID, returnType = "data.frame")
+  expect_is(res, "data.frame")
 })
 
 test_that("specimen_get_distinct_values works", {
@@ -153,8 +173,10 @@ test_that("specimen_get_distinct_values works", {
 })
 
 test_that("specimen_get_distinct_values_per_group works", {
-  res <- specimen_get_distinct_values_per_group(group = "sourceSystem.code",
-                                                field = "recordBasis")
+  res <- specimen_get_distinct_values_per_group(
+    group = "sourceSystem.code",
+    field = "recordBasis"
+  )
   ## Result should be a list with two entries, for BRAHMS and CRS, and XC
   expect_is(res, "list")
   expect_true(length(res) > 1)
@@ -197,9 +219,9 @@ test_that("specimen_get_settings works", {
 test_that("specimen_group_by_scientific_name works", {
   queryParams <-
     list("identifications.defaultClassification.genus" = "Passiflora")
-  
+
   res <- specimen_group_by_scientific_name(queryParams)
-  
+
   ## check if we get specimen documents
   for (hit in res) {
     expect_is(hit, "list")
@@ -220,18 +242,23 @@ test_that("specimen_is_operator_allowed works", {
 test_that("specimen_query works", {
   queryParams <-
     list("identifications.defaultClassification.genus" = "Passiflora")
-  res <- specimen_query(queryParams)
+  res <- specimen_query(queryParams, returnType = "list")
   expect_length(res, 10)
-  
+
   for (i in seq_along(res)) {
     expect_is(res[[i]], "list")
     ## check if we can access a value
     expect_is(res[[i]]$unitID, "character")
   }
-  
+
   ## test if this works with basic vector for params
   queryParams <-
     c("identifications.defaultClassification.genus" = "Passiflora")
-  res <- specimen_query(queryParams)
+  res <- specimen_query(queryParams, returnType = "list")
+  expect_is(res, "list")
   expect_length(res, 10)
+
+  ## check different return type
+  res <- specimen_query(queryParams, returnType = "data.frame")
+  expect_is(res, "data.frame")
 })

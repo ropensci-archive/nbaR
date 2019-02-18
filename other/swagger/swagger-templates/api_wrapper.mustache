@@ -10,7 +10,7 @@
     #' from class {{importPath}}Client.
     {{#notes}}#' @details {{notes}}{{/notes}}
     #' @family {{importPath}}Client-wrappers
-    {{#returnType}}#' @return {{#returnType}}{{#returnTypeIsPrimitive}}scalar{{/returnTypeIsPrimitive}}{{^returnTypeIsPrimitive}}list{{/returnTypeIsPrimitive}}{{/returnType}}{{/returnType}}
+    {{#returnType}}#' @return {{#returnType}}{{#returnTypeIsPrimitive}}scalar{{/returnTypeIsPrimitive}}{{^returnTypeIsPrimitive}}list or data.frame, as specified by \code{returnType}'{{/returnTypeIsPrimitive}}{{/returnType}}{{/returnType}}
       {{#allParams}}
         {{#isPrimitiveType}}
     #' @param {{baseName}} {{description}}, type: {{baseType}}
@@ -27,7 +27,17 @@
       {{#isResponseFile}}
     #' @param filename Filename to save results to, defaults to `format(Sys.time(),"download-\%Y-\%m-\%dT\%H:\%m.zip")`
       {{/isResponseFile}}
-    #' @param ... additional parameters passed to {{operationId}} from class class {{importPath}}Client
+    {{#returnType}}
+      {{#returnTypeIsPrimitive}}
+        {{^returnSimpleType}}
+    #' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+        {{/returnSimpleType}}
+      {{/returnTypeIsPrimitive}}
+      {{^returnTypeIsPrimitive}}
+    #' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+      {{/returnTypeIsPrimitive}}        
+    {{/returnType}}
+    #' @param ... additional parameters passed to {{operationId}} from class {{importPath}}Client
     #' @export
     {{classVarName}}_{{operationId}} <- function(
     {{#allParams}}
@@ -46,7 +56,28 @@
     {{#isResponseFile}}
       filename = format(Sys.time(),
       "download-%Y-%m-%dT%H:%m.zip"),
-    {{/isResponseFile}} ...) {
+    {{/isResponseFile}}
+    {{#returnType}}
+      {{#returnTypeIsPrimitive}}
+        {{^returnSimpleType}}
+        returnType='data.frame',
+        {{/returnSimpleType}}
+      {{/returnTypeIsPrimitive}}
+      {{^returnTypeIsPrimitive}}
+        returnType='data.frame',
+    {{/returnTypeIsPrimitive}}
+    {{/returnType}}
+    ...) {
+    
+    {{#returnType}}
+      {{^returnTypeIsPrimitive}}
+    ## check returnType argument
+    if (! returnType %in% c("list", "data.frame")) {
+      stop("Invalid returnType argument. Must be 'data.frame' or 'list'")
+    }
+      {{/returnTypeIsPrimitive}}
+    {{/returnType}}
+    
     sc <- {{baseName}}Client$new()
     res <- sc${{operationId}}(
     {{#allParams}}
@@ -69,7 +100,8 @@
           result <- res$content
         {{/returnTypeIsPrimitive}}          
         {{^returnTypeIsPrimitive}}
-          result <- .make_list_response(res)
+          ## return simpler data structure for object response
+          result <- .un_object(res, returnType=returnType)
         {{/returnTypeIsPrimitive}}
           return(result)
       {{/returnType}}
@@ -79,9 +111,10 @@
 
 #' @noRd
 #' @param response Object of class Response
+#' @param returnType either 'list' or 'data.frame'
 #' Internal function to convert all (nested) objects
-#' in a response object to lists
-.make_list_response <- function(response) {
+#' in a response object to lists or data frames
+.un_object <- function(response, returnType='data.frame') {
   l <- response$content          
 
   ## Handle return objects of class QueryResult
@@ -89,7 +122,7 @@
     l <- lapply(l$resultSet, function(x)x$item)
   }
           
-  ## wrapper functions return lists instead of objects
+  ## wrapper functions return data frames or lists instead of objects
   if (! is.list(l)) {
     result <- l$toList()
   } else {
@@ -97,5 +130,9 @@
                      function(x)if(is.object(x)){x$toList()}else{x})
   }
 
+  if (returnType == "data.frame") {
+     result <- data.frame(do.call(rbind, result))
+  }
+  
   return(result)
 }

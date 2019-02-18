@@ -12,7 +12,7 @@ specimen_dwca_query(queryParams = list(), filename = format(Sys.time(),
 
 \item{filename}{Filename to save results to, defaults to `format(Sys.time(),"download-\%Y-\%m-\%dT\%H:\%m.zip")`}
 
-\item{...}{additional parameters passed to dwca_query from class class nbaR.SpecimenClient}
+\item{...}{additional parameters passed to dwca_query from class nbaR.SpecimenClient}
 }
 \description{
 This is a wrapper function for dwca_query

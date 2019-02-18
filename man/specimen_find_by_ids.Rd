@@ -4,15 +4,17 @@
 \alias{specimen_find_by_ids}
 \title{Find specimens by ids}
 \usage{
-specimen_find_by_ids(ids = NULL, ...)
+specimen_find_by_ids(ids = NULL, returnType = "data.frame", ...)
 }
 \arguments{
 \item{ids}{ids of multiple specimen, separated by comma, type: character}
 
-\item{...}{additional parameters passed to find_by_ids from class class nbaR.SpecimenClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to find_by_ids from class nbaR.SpecimenClient}
 }
 \value{
-list
+list or data.frame, as specified by \code{returnType}'
 }
 \description{
 This is a wrapper function for find_by_ids

@@ -29,10 +29,9 @@ sc <- SpecimenClient$new()
 sp <- sc$find_by_unit_id("RGM.156532")$content
 # load tree
 library('ape')
-path <- system.file('extdata', 'shark_tree.nex', package='nbaR')
-tree <- read.nexus(path)
+data(shark_tree)
 # make calibration table
-chronos_calib(sp, tree, "genus")
+chronos_calib(sp, shark_tree, "genus")
 }
 \seealso{
 Other utils: \code{\link{geo_age}}

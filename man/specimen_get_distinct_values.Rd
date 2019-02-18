@@ -4,14 +4,17 @@
 \alias{specimen_get_distinct_values}
 \title{Get all different values that exist for a field}
 \usage{
-specimen_get_distinct_values(field = NULL, queryParams = list(), ...)
+specimen_get_distinct_values(field = NULL, queryParams = list(),
+  returnType = "data.frame", ...)
 }
 \arguments{
 \item{field}{Name of field in specimen object, type:}
 
 \item{queryParams}{Named list or vector with names being the fields to be queried and values being the values to match}
 
-\item{...}{additional parameters passed to get_distinct_values from class class nbaR.SpecimenClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to get_distinct_values from class nbaR.SpecimenClient}
 }
 \value{
 scalar

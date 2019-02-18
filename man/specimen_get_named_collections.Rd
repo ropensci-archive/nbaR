@@ -4,10 +4,12 @@
 \alias{specimen_get_named_collections}
 \title{Retrieve the names of all &#39;special collections&#39; of specimens}
 \usage{
-specimen_get_named_collections(...)
+specimen_get_named_collections(returnType = "data.frame", ...)
 }
 \arguments{
-\item{...}{additional parameters passed to get_named_collections from class class nbaR.SpecimenClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to get_named_collections from class nbaR.SpecimenClient}
 }
 \value{
 scalar

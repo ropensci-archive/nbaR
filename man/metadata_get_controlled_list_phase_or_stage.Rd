@@ -4,10 +4,13 @@
 \alias{metadata_get_controlled_list_phase_or_stage}
 \title{Get allowed values for the field &#39;PhaseOrStage&#39; in a specimen document}
 \usage{
-metadata_get_controlled_list_phase_or_stage(...)
+metadata_get_controlled_list_phase_or_stage(returnType = "data.frame",
+  ...)
 }
 \arguments{
-\item{...}{additional parameters passed to get_controlled_list_phase_or_stage from class class nbaR.MetadataClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to get_controlled_list_phase_or_stage from class nbaR.MetadataClient}
 }
 \value{
 scalar

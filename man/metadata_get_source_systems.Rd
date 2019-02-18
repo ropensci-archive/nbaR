@@ -4,13 +4,15 @@
 \alias{metadata_get_source_systems}
 \title{Get the data sources from which the data was retrieved}
 \usage{
-metadata_get_source_systems(...)
+metadata_get_source_systems(returnType = "data.frame", ...)
 }
 \arguments{
-\item{...}{additional parameters passed to get_source_systems from class class nbaR.MetadataClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to get_source_systems from class nbaR.MetadataClient}
 }
 \value{
-list
+list or data.frame, as specified by \code{returnType}'
 }
 \description{
 This is a wrapper function for get_source_systems

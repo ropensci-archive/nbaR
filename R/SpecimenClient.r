@@ -504,8 +504,8 @@ SpecimenClient <- R6::R6Class(
         httr::status_code(response) > 299) {
         self$handleError(response)
       } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.list(httr::content(response))
+        ## API call result is a "map container" and will be parsed to list
+        result <- httr::content(response, simplifyVector = TRUE)
         Response$new(result, response)
       }
     },

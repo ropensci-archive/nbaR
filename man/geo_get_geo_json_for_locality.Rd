@@ -9,7 +9,7 @@ geo_get_geo_json_for_locality(locality = NULL, ...)
 \arguments{
 \item{locality}{, type:}
 
-\item{...}{additional parameters passed to get_geo_json_for_locality from class class nbaR.GeoClient}
+\item{...}{additional parameters passed to get_geo_json_for_locality from class nbaR.GeoClient}
 }
 \value{
 scalar

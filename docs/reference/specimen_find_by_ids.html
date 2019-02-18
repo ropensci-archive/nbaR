@@ -134,7 +134,7 @@ from class nbaR.SpecimenClient.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>specimen_find_by_ids</span>(<span class='kw'>ids</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>specimen_find_by_ids</span>(<span class='kw'>ids</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>returnType</span> <span class='kw'>=</span> <span class='st'>"data.frame"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -144,14 +144,18 @@ from class nbaR.SpecimenClient.</p>
       <td><p>ids of multiple specimen, separated by comma, type: character</p></td>
     </tr>
     <tr>
+      <th>returnType</th>
+      <td><p>Either 'list' or 'data.frame', defaults to 'data.frame'</p></td>
+    </tr>
+    <tr>
       <th>...</th>
-      <td><p>additional parameters passed to find_by_ids from class class nbaR.SpecimenClient</p></td>
+      <td><p>additional parameters passed to find_by_ids from class nbaR.SpecimenClient</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>list</p>
+    <p>list or data.frame, as specified by <code>returnType</code>'</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 

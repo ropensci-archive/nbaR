@@ -12,7 +12,7 @@ multimedia_download_query(collectionType = NULL, queryParams = list(),
 
 \item{queryParams}{Named list or vector with names being the fields to be queried and values being the values to match}
 
-\item{...}{additional parameters passed to download_query from class class nbaR.MultimediaClient}
+\item{...}{additional parameters passed to download_query from class nbaR.MultimediaClient}
 }
 \description{
 This is a wrapper function for download_query

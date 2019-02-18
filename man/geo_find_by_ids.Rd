@@ -4,15 +4,17 @@
 \alias{geo_find_by_ids}
 \title{Find geo areas by ids}
 \usage{
-geo_find_by_ids(ids = NULL, ...)
+geo_find_by_ids(ids = NULL, returnType = "data.frame", ...)
 }
 \arguments{
 \item{ids}{ids of multiple geo areas, separated by comma, type: character}
 
-\item{...}{additional parameters passed to find_by_ids from class class nbaR.GeoClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to find_by_ids from class nbaR.GeoClient}
 }
 \value{
-list
+list or data.frame, as specified by \code{returnType}'
 }
 \description{
 This is a wrapper function for find_by_ids

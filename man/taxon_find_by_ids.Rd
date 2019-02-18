@@ -4,15 +4,17 @@
 \alias{taxon_find_by_ids}
 \title{Find taxa by ids}
 \usage{
-taxon_find_by_ids(ids = NULL, ...)
+taxon_find_by_ids(ids = NULL, returnType = "data.frame", ...)
 }
 \arguments{
 \item{ids}{ids of multiple taxa, separated by comma, type: character}
 
-\item{...}{additional parameters passed to find_by_ids from class class nbaR.TaxonClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to find_by_ids from class nbaR.TaxonClient}
 }
 \value{
-list
+list or data.frame, as specified by \code{returnType}'
 }
 \description{
 This is a wrapper function for find_by_ids

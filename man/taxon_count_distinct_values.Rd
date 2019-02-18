@@ -4,12 +4,15 @@
 \alias{taxon_count_distinct_values}
 \title{Count the distinct number of values that exist for a given field}
 \usage{
-taxon_count_distinct_values(field = NULL, ...)
+taxon_count_distinct_values(field = NULL, returnType = "data.frame",
+  ...)
 }
 \arguments{
 \item{field}{name of field in the taxon object, type:}
 
-\item{...}{additional parameters passed to count_distinct_values from class class nbaR.TaxonClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to count_distinct_values from class nbaR.TaxonClient}
 }
 \value{
 scalar

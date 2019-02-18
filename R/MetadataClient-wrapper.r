@@ -16,9 +16,11 @@
 #' @details Queries with other formatted dates will result in a query error
 #' @family nbaR.MetadataClient-wrappers
 #' @return scalar
-#' @param ... additional parameters passed to get_allowed_date_formats from class class nbaR.MetadataClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_allowed_date_formats from class nbaR.MetadataClient
 #' @export
 metadata_get_allowed_date_formats <- function(
+                                              returnType = "data.frame",
                                               ...) {
   sc <- MetadataClient$new()
   res <- sc$get_allowed_date_formats(
@@ -34,9 +36,11 @@ metadata_get_allowed_date_formats <- function(
 #' @details See also endpoint /getControlledLists
 #' @family nbaR.MetadataClient-wrappers
 #' @return scalar
-#' @param ... additional parameters passed to get_controlled_list_phase_or_stage from class class nbaR.MetadataClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_controlled_list_phase_or_stage from class nbaR.MetadataClient
 #' @export
 metadata_get_controlled_list_phase_or_stage <- function(
+                                                        returnType = "data.frame",
                                                         ...) {
   sc <- MetadataClient$new()
   res <- sc$get_controlled_list_phase_or_stage(
@@ -52,9 +56,11 @@ metadata_get_controlled_list_phase_or_stage <- function(
 #' @details See also endpoint /getControlledLists
 #' @family nbaR.MetadataClient-wrappers
 #' @return scalar
-#' @param ... additional parameters passed to get_controlled_list_sex from class class nbaR.MetadataClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_controlled_list_sex from class nbaR.MetadataClient
 #' @export
 metadata_get_controlled_list_sex <- function(
+                                             returnType = "data.frame",
                                              ...) {
   sc <- MetadataClient$new()
   res <- sc$get_controlled_list_sex(
@@ -70,9 +76,11 @@ metadata_get_controlled_list_sex <- function(
 #' @details See also endpoint /getControlledLists
 #' @family nbaR.MetadataClient-wrappers
 #' @return scalar
-#' @param ... additional parameters passed to get_controlled_list_specimen_type_status from class class nbaR.MetadataClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_controlled_list_specimen_type_status from class nbaR.MetadataClient
 #' @export
 metadata_get_controlled_list_specimen_type_status <- function(
+                                                              returnType = "data.frame",
                                                               ...) {
   sc <- MetadataClient$new()
   res <- sc$get_controlled_list_specimen_type_status(
@@ -88,9 +96,11 @@ metadata_get_controlled_list_specimen_type_status <- function(
 #' @details See also endpoint /getControlledLists
 #' @family nbaR.MetadataClient-wrappers
 #' @return scalar
-#' @param ... additional parameters passed to get_controlled_list_taxonomic_status from class class nbaR.MetadataClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_controlled_list_taxonomic_status from class nbaR.MetadataClient
 #' @export
 metadata_get_controlled_list_taxonomic_status <- function(
+                                                          returnType = "data.frame",
                                                           ...) {
   sc <- MetadataClient$new()
   res <- sc$get_controlled_list_taxonomic_status(
@@ -106,9 +116,11 @@ metadata_get_controlled_list_taxonomic_status <- function(
 #' @details Possible values for fields with controlled vocabularies can be queried with metadata/getControlledList/{field}
 #' @family nbaR.MetadataClient-wrappers
 #' @return scalar
-#' @param ... additional parameters passed to get_controlled_lists from class class nbaR.MetadataClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_controlled_lists from class nbaR.MetadataClient
 #' @export
 metadata_get_controlled_lists <- function(
+                                          returnType = "data.frame",
                                           ...) {
   sc <- MetadataClient$new()
   res <- sc$get_controlled_lists(
@@ -123,16 +135,25 @@ metadata_get_controlled_lists <- function(
 #' from class nbaR.MetadataClient.
 #' @details Lists end point name, http method, response type, and URL
 #' @family nbaR.MetadataClient-wrappers
-#' @return list
-#' @param ... additional parameters passed to get_rest_services from class class nbaR.MetadataClient
+#' @return list or data.frame, as specified by \code{returnType}'
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_rest_services from class nbaR.MetadataClient
 #' @export
 metadata_get_rest_services <- function(
+                                       returnType = "data.frame",
                                        ...) {
+
+  ## check returnType argument
+  if (!returnType %in% c("list", "data.frame")) {
+    stop("Invalid returnType argument. Must be 'data.frame' or 'list'")
+  }
+
   sc <- MetadataClient$new()
   res <- sc$get_rest_services(
     ...
   )
-  result <- .make_list_response(res)
+  ## return simpler data structure for object response
+  result <- .un_object(res, returnType = returnType)
   return(result)
 }
 #' @name metadata_get_setting
@@ -143,7 +164,7 @@ metadata_get_rest_services <- function(
 #' @family nbaR.MetadataClient-wrappers
 #' @return scalar
 #' @param name name of setting, type:
-#' @param ... additional parameters passed to get_setting from class class nbaR.MetadataClient
+#' @param ... additional parameters passed to get_setting from class nbaR.MetadataClient
 #' @export
 metadata_get_setting <- function(
                                  name = NULL,
@@ -164,9 +185,11 @@ metadata_get_setting <- function(
 #' @details The value of a specific setting can be queried with metadata/getSetting/{name}
 #' @family nbaR.MetadataClient-wrappers
 #' @return scalar
-#' @param ... additional parameters passed to get_settings from class class nbaR.MetadataClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_settings from class nbaR.MetadataClient
 #' @export
 metadata_get_settings <- function(
+                                  returnType = "data.frame",
                                   ...) {
   sc <- MetadataClient$new()
   res <- sc$get_settings(
@@ -181,24 +204,34 @@ metadata_get_settings <- function(
 #' from class nbaR.MetadataClient.
 #' @details Returns code and name of all source systems
 #' @family nbaR.MetadataClient-wrappers
-#' @return list
-#' @param ... additional parameters passed to get_source_systems from class class nbaR.MetadataClient
+#' @return list or data.frame, as specified by \code{returnType}'
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_source_systems from class nbaR.MetadataClient
 #' @export
 metadata_get_source_systems <- function(
+                                        returnType = "data.frame",
                                         ...) {
+
+  ## check returnType argument
+  if (!returnType %in% c("list", "data.frame")) {
+    stop("Invalid returnType argument. Must be 'data.frame' or 'list'")
+  }
+
   sc <- MetadataClient$new()
   res <- sc$get_source_systems(
     ...
   )
-  result <- .make_list_response(res)
+  ## return simpler data structure for object response
+  result <- .un_object(res, returnType = returnType)
   return(result)
 }
 
 #' @noRd
 #' @param response Object of class Response
+#' @param returnType either 'list' or 'data.frame'
 #' Internal function to convert all (nested) objects
-#' in a response object to lists
-.make_list_response <- function(response) {
+#' in a response object to lists or data frames
+.un_object <- function(response, returnType = "data.frame") {
   l <- response$content
 
   ## Handle return objects of class QueryResult
@@ -206,7 +239,7 @@ metadata_get_source_systems <- function(
     l <- lapply(l$resultSet, function(x) x$item)
   }
 
-  ## wrapper functions return lists instead of objects
+  ## wrapper functions return data frames or lists instead of objects
   if (!is.list(l)) {
     result <- l$toList()
   } else {
@@ -218,6 +251,10 @@ metadata_get_source_systems <- function(
           x
         }
     )
+  }
+
+  if (returnType == "data.frame") {
+    result <- data.frame(do.call(rbind, result))
   }
 
   return(result)

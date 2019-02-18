@@ -17,7 +17,7 @@
 #' @family nbaR.GeoClient-wrappers
 #' @return scalar
 #' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
-#' @param ... additional parameters passed to count from class class nbaR.GeoClient
+#' @param ... additional parameters passed to count from class nbaR.GeoClient
 #' @export
 geo_count <- function(
                       queryParams = list(),
@@ -38,10 +38,12 @@ geo_count <- function(
 #' @family nbaR.GeoClient-wrappers
 #' @return scalar
 #' @param field name of field in taxon object, type:
-#' @param ... additional parameters passed to count_distinct_values from class class nbaR.GeoClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to count_distinct_values from class nbaR.GeoClient
 #' @export
 geo_count_distinct_values <- function(
                                       field = NULL,
+                                      returnType = "data.frame",
                                       ...) {
   sc <- GeoClient$new()
   res <- sc$count_distinct_values(
@@ -61,11 +63,13 @@ geo_count_distinct_values <- function(
 #' @return scalar
 #' @param group name of field in the geo area object to group by, type:
 #' @param field name of field in the geo area object, type:
-#' @param ... additional parameters passed to count_distinct_values_per_group from class class nbaR.GeoClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to count_distinct_values_per_group from class nbaR.GeoClient
 #' @export
 geo_count_distinct_values_per_group <- function(
                                                 group = NULL,
                                                 field = NULL,
+                                                returnType = "data.frame",
                                                 ...) {
   sc <- GeoClient$new()
   res <- sc$count_distinct_values_per_group(
@@ -83,20 +87,29 @@ geo_count_distinct_values_per_group <- function(
 #' from class nbaR.GeoClient.
 #' @details Returns a GEO object containing a GEO json polygon
 #' @family nbaR.GeoClient-wrappers
-#' @return list
+#' @return list or data.frame, as specified by \code{returnType}'
 #' @param id id of geo area, type:
-#' @param ... additional parameters passed to find from class class nbaR.GeoClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to find from class nbaR.GeoClient
 #' @export
 geo_find <- function(
                      id = NULL,
+                     returnType = "data.frame",
                      ...) {
+
+  ## check returnType argument
+  if (!returnType %in% c("list", "data.frame")) {
+    stop("Invalid returnType argument. Must be 'data.frame' or 'list'")
+  }
+
   sc <- GeoClient$new()
   res <- sc$find(
     id,
 
     ...
   )
-  result <- .make_list_response(res)
+  ## return simpler data structure for object response
+  result <- .un_object(res, returnType = returnType)
   return(result)
 }
 #' @name geo_find_by_ids
@@ -105,20 +118,29 @@ geo_find <- function(
 #' from class nbaR.GeoClient.
 #' @details Given multiple ids, returns a list of geo area objects
 #' @family nbaR.GeoClient-wrappers
-#' @return list
+#' @return list or data.frame, as specified by \code{returnType}'
 #' @param ids ids of multiple geo areas, separated by comma, type: character
-#' @param ... additional parameters passed to find_by_ids from class class nbaR.GeoClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to find_by_ids from class nbaR.GeoClient
 #' @export
 geo_find_by_ids <- function(
                             ids = NULL,
+                            returnType = "data.frame",
                             ...) {
+
+  ## check returnType argument
+  if (!returnType %in% c("list", "data.frame")) {
+    stop("Invalid returnType argument. Must be 'data.frame' or 'list'")
+  }
+
   sc <- GeoClient$new()
   res <- sc$find_by_ids(
     ids,
 
     ...
   )
-  result <- .make_list_response(res)
+  ## return simpler data structure for object response
+  result <- .un_object(res, returnType = returnType)
   return(result)
 }
 #' @name geo_get_distinct_values
@@ -129,10 +151,12 @@ geo_find_by_ids <- function(
 #' @family nbaR.GeoClient-wrappers
 #' @return scalar
 #' @param field name of field in geo area object, type:
-#' @param ... additional parameters passed to get_distinct_values from class class nbaR.GeoClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_distinct_values from class nbaR.GeoClient
 #' @export
 geo_get_distinct_values <- function(
                                     field = NULL,
+                                    returnType = "data.frame",
                                     ...) {
   sc <- GeoClient$new()
   res <- sc$get_distinct_values(
@@ -152,11 +176,13 @@ geo_get_distinct_values <- function(
 #' @return scalar
 #' @param group name of field in the geo area object to group by, type:
 #' @param field name of field in the geo area object, type:
-#' @param ... additional parameters passed to get_distinct_values_per_group from class class nbaR.GeoClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_distinct_values_per_group from class nbaR.GeoClient
 #' @export
 geo_get_distinct_values_per_group <- function(
                                               group = NULL,
                                               field = NULL,
+                                              returnType = "data.frame",
                                               ...) {
   sc <- GeoClient$new()
   res <- sc$get_distinct_values_per_group(
@@ -175,9 +201,11 @@ geo_get_distinct_values_per_group <- function(
 #' @details Info consists of whether the fields is indexed, the ElasticSearch datatype and a list of allowed operators
 #' @family nbaR.GeoClient-wrappers
 #' @return scalar
-#' @param ... additional parameters passed to get_field_info from class class nbaR.GeoClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_field_info from class nbaR.GeoClient
 #' @export
 geo_get_field_info <- function(
+                               returnType = "data.frame",
                                ...) {
   sc <- GeoClient$new()
   res <- sc$get_field_info(
@@ -194,7 +222,7 @@ geo_get_field_info <- function(
 #' @family nbaR.GeoClient-wrappers
 #' @return scalar
 #' @param locality , type:
-#' @param ... additional parameters passed to get_geo_json_for_locality from class class nbaR.GeoClient
+#' @param ... additional parameters passed to get_geo_json_for_locality from class nbaR.GeoClient
 #' @export
 geo_get_geo_json_for_locality <- function(
                                           locality = NULL,
@@ -215,9 +243,11 @@ geo_get_geo_json_for_locality <- function(
 #' @details See also metadata/getFieldInfo for all allowed operators per field
 #' @family nbaR.GeoClient-wrappers
 #' @return scalar
-#' @param ... additional parameters passed to get_paths from class class nbaR.GeoClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_paths from class nbaR.GeoClient
 #' @export
 geo_get_paths <- function(
+                          returnType = "data.frame",
                           ...) {
   sc <- GeoClient$new()
   res <- sc$get_paths(
@@ -234,7 +264,7 @@ geo_get_paths <- function(
 #' @family nbaR.GeoClient-wrappers
 #' @return scalar
 #' @param name name of setting, type:
-#' @param ... additional parameters passed to get_setting from class class nbaR.GeoClient
+#' @param ... additional parameters passed to get_setting from class nbaR.GeoClient
 #' @export
 geo_get_setting <- function(
                             name = NULL,
@@ -255,9 +285,11 @@ geo_get_setting <- function(
 #' @details The value of a specific setting can be queried with metadata/getSetting/{name}
 #' @family nbaR.GeoClient-wrappers
 #' @return scalar
-#' @param ... additional parameters passed to get_settings from class class nbaR.GeoClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_settings from class nbaR.GeoClient
 #' @export
 geo_get_settings <- function(
+                             returnType = "data.frame",
                              ...) {
   sc <- GeoClient$new()
   res <- sc$get_settings(
@@ -275,11 +307,13 @@ geo_get_settings <- function(
 #' @return scalar
 #' @param field Field in geo area document, type:
 #' @param operator operator, type:
-#' @param ... additional parameters passed to is_operator_allowed from class class nbaR.GeoClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to is_operator_allowed from class nbaR.GeoClient
 #' @export
 geo_is_operator_allowed <- function(
                                     field = NULL,
                                     operator = NULL,
+                                    returnType = "data.frame",
                                     ...) {
   sc <- GeoClient$new()
   res <- sc$is_operator_allowed(
@@ -297,27 +331,37 @@ geo_is_operator_allowed <- function(
 #' from class nbaR.GeoClient.
 #' @details Query on searchable fields to retrieve matching geo areas
 #' @family nbaR.GeoClient-wrappers
-#' @return list
+#' @return list or data.frame, as specified by \code{returnType}'
 #' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
-#' @param ... additional parameters passed to query from class class nbaR.GeoClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to query from class nbaR.GeoClient
 #' @export
 geo_query <- function(
                       queryParams = list(),
+                      returnType = "data.frame",
                       ...) {
+
+  ## check returnType argument
+  if (!returnType %in% c("list", "data.frame")) {
+    stop("Invalid returnType argument. Must be 'data.frame' or 'list'")
+  }
+
   sc <- GeoClient$new()
   res <- sc$query(
     queryParams = queryParams,
     ...
   )
-  result <- .make_list_response(res)
+  ## return simpler data structure for object response
+  result <- .un_object(res, returnType = returnType)
   return(result)
 }
 
 #' @noRd
 #' @param response Object of class Response
+#' @param returnType either 'list' or 'data.frame'
 #' Internal function to convert all (nested) objects
-#' in a response object to lists
-.make_list_response <- function(response) {
+#' in a response object to lists or data frames
+.un_object <- function(response, returnType = "data.frame") {
   l <- response$content
 
   ## Handle return objects of class QueryResult
@@ -325,7 +369,7 @@ geo_query <- function(
     l <- lapply(l$resultSet, function(x) x$item)
   }
 
-  ## wrapper functions return lists instead of objects
+  ## wrapper functions return data frames or lists instead of objects
   if (!is.list(l)) {
     result <- l$toList()
   } else {
@@ -337,6 +381,10 @@ geo_query <- function(
           x
         }
     )
+  }
+
+  if (returnType == "data.frame") {
+    result <- data.frame(do.call(rbind, result))
   }
 
   return(result)

@@ -4,10 +4,12 @@
 \alias{taxon_get_field_info}
 \title{Returns extended information for each field of a specimen document}
 \usage{
-taxon_get_field_info(...)
+taxon_get_field_info(returnType = "data.frame", ...)
 }
 \arguments{
-\item{...}{additional parameters passed to get_field_info from class class nbaR.TaxonClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to get_field_info from class nbaR.TaxonClient}
 }
 \value{
 scalar

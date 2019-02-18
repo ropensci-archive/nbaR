@@ -89,7 +89,7 @@
     <div class="page-header toc-ignore">
       <h1>nbaR: R access to the Netherlands Biodiversity API</h1>
             
-            <h4 class="date">Feb 12, 2019</h4>
+            <h4 class="date">Feb 18, 2019</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/naturalis/nbaR/blob/master/vignettes/nbaR.Rmd"><code>vignettes/nbaR.Rmd</code></a></small>
       <div class="hidden name"><code>nbaR.Rmd</code></div>
@@ -735,7 +735,7 @@ we can combine the latter condition with an additional one using the method <cod
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="co"># download dataset 'porifera' to temporary file</span></a>
 <a class="sourceLine" id="cb61-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
 <a class="sourceLine" id="cb61-3" data-line-number="3">sc<span class="op">$</span><span class="kw">dwca_get_data_set</span>(<span class="st">'porifera'</span>, <span class="dt">filename=</span>filename)                                                                               </a></code></pre></div>
-<pre><code>## Query result written to /tmp/RtmppIC5O0/file7fa6e7085f7.zip</code></pre>
+<pre><code>## Query result written to /tmp/Rtmpf9nCD7/file46f96309fd15.zip</code></pre>
 </div>
 <div id="dynamic-download" class="section level4">
 <h4 class="hasAnchor">
@@ -752,7 +752,7 @@ we can combine the latter condition with an additional one using the method <cod
 <a class="sourceLine" id="cb63-9" data-line-number="9">    )</a>
 <a class="sourceLine" id="cb63-10" data-line-number="10">  ))</a>
 <a class="sourceLine" id="cb63-11" data-line-number="11">sc<span class="op">$</span><span class="kw">dwca_query</span>(<span class="dt">querySpec =</span> qs, <span class="dt">filename =</span> filename)</a></code></pre></div>
-<pre><code>## Query result written to /tmp/RtmppIC5O0/file7fac2aeb78.zip</code></pre>
+<pre><code>## Query result written to /tmp/Rtmpf9nCD7/file46f9c3b8a12.zip</code></pre>
 </div>
 </div>
 </div>
@@ -1029,7 +1029,7 @@ we can combine the latter condition with an additional one using the method <cod
 <div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1"><span class="co"># download dataset 'nsr' to temporary file</span></a>
 <a class="sourceLine" id="cb95-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
 <a class="sourceLine" id="cb95-3" data-line-number="3">tc<span class="op">$</span><span class="kw">dwca_get_data_set</span>(<span class="st">'nsr'</span>, <span class="dt">filename=</span>filename)                                                                               </a></code></pre></div>
-<pre><code>## Query result written to /tmp/RtmppIC5O0/file7fad1f06fc.zip</code></pre>
+<pre><code>## Query result written to /tmp/Rtmpf9nCD7/file46f9725d07d9.zip</code></pre>
 </div>
 <div id="dynamic-download-1" class="section level4">
 <h4 class="hasAnchor">
@@ -1046,7 +1046,7 @@ we can combine the latter condition with an additional one using the method <cod
 <a class="sourceLine" id="cb97-9" data-line-number="9">    )</a>
 <a class="sourceLine" id="cb97-10" data-line-number="10">  ))</a>
 <a class="sourceLine" id="cb97-11" data-line-number="11">tc<span class="op">$</span><span class="kw">dwca_query</span>(<span class="dt">querySpec =</span> qs, <span class="dt">filename =</span> filename)</a></code></pre></div>
-<pre><code>## Query result written to /tmp/RtmppIC5O0/file7fad97dc6f.zip</code></pre>
+<pre><code>## Query result written to /tmp/Rtmpf9nCD7/file46f9261a853.zip</code></pre>
 </div>
 </div>
 </div>

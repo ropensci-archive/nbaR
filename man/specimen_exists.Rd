@@ -9,7 +9,7 @@ specimen_exists(unitID = NULL, ...)
 \arguments{
 \item{unitID}{the unitID of the specimen to query, type:}
 
-\item{...}{additional parameters passed to exists from class class nbaR.SpecimenClient}
+\item{...}{additional parameters passed to exists from class nbaR.SpecimenClient}
 }
 \value{
 scalar

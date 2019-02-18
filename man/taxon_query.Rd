@@ -4,15 +4,17 @@
 \alias{taxon_query}
 \title{Query for taxa}
 \usage{
-taxon_query(queryParams = list(), ...)
+taxon_query(queryParams = list(), returnType = "data.frame", ...)
 }
 \arguments{
 \item{queryParams}{Named list or vector with names being the fields to be queried and values being the values to match}
 
-\item{...}{additional parameters passed to query from class class nbaR.TaxonClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to query from class nbaR.TaxonClient}
 }
 \value{
-list
+list or data.frame, as specified by \code{returnType}'
 }
 \description{
 This is a wrapper function for query

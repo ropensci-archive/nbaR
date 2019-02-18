@@ -17,7 +17,7 @@
 #' @family nbaR.SpecimenClient-wrappers
 #' @return scalar
 #' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
-#' @param ... additional parameters passed to count from class class nbaR.SpecimenClient
+#' @param ... additional parameters passed to count from class nbaR.SpecimenClient
 #' @export
 specimen_count <- function(
                            queryParams = list(),
@@ -39,7 +39,7 @@ specimen_count <- function(
 #' @return scalar
 #' @param field Name of field in the specimen object, type:
 #' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
-#' @param ... additional parameters passed to count_distinct_values from class class nbaR.SpecimenClient
+#' @param ... additional parameters passed to count_distinct_values from class nbaR.SpecimenClient
 #' @export
 specimen_count_distinct_values <- function(
                                            field = NULL,
@@ -63,11 +63,13 @@ specimen_count_distinct_values <- function(
 #' @return scalar
 #' @param group Name of field in the specimen object you want to group by, type:
 #' @param field Name of field in the specimen object, type:
-#' @param ... additional parameters passed to count_distinct_values_per_group from class class nbaR.SpecimenClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to count_distinct_values_per_group from class nbaR.SpecimenClient
 #' @export
 specimen_count_distinct_values_per_group <- function(
                                                      group = NULL,
                                                      field = NULL,
+                                                     returnType = "data.frame",
                                                      ...) {
   sc <- SpecimenClient$new()
   res <- sc$count_distinct_values_per_group(
@@ -85,19 +87,28 @@ specimen_count_distinct_values_per_group <- function(
 #' from class nbaR.SpecimenClient.
 #' @details Query with query parameters or querySpec JSON. ...
 #' @family nbaR.SpecimenClient-wrappers
-#' @return list
+#' @return list or data.frame, as specified by \code{returnType}'
 #' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
-#' @param ... additional parameters passed to download_query from class class nbaR.SpecimenClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to download_query from class nbaR.SpecimenClient
 #' @export
 specimen_download_query <- function(
                                     queryParams = list(),
+                                    returnType = "data.frame",
                                     ...) {
+
+  ## check returnType argument
+  if (!returnType %in% c("list", "data.frame")) {
+    stop("Invalid returnType argument. Must be 'data.frame' or 'list'")
+  }
+
   sc <- SpecimenClient$new()
   res <- sc$download_query(
     queryParams = queryParams,
     ...
   )
-  result <- .make_list_response(res)
+  ## return simpler data structure for object response
+  result <- .un_object(res, returnType = returnType)
   return(result)
 }
 #' @name specimen_dwca_get_data_set
@@ -109,7 +120,7 @@ specimen_download_query <- function(
 
 #' @param dataset name of dataset, type:
 #' @param filename Filename to save results to, defaults to `format(Sys.time(),"download-\%Y-\%m-\%dT\%H:\%m.zip")`
-#' @param ... additional parameters passed to dwca_get_data_set from class class nbaR.SpecimenClient
+#' @param ... additional parameters passed to dwca_get_data_set from class nbaR.SpecimenClient
 #' @export
 specimen_dwca_get_data_set <- function(
                                        dataset = NULL,
@@ -132,9 +143,11 @@ specimen_dwca_get_data_set <- function(
 #' @details Individual datasets can then be downloaded with /dwca/getDataSet/{dataset}
 #' @family nbaR.SpecimenClient-wrappers
 #' @return scalar
-#' @param ... additional parameters passed to dwca_get_data_set_names from class class nbaR.SpecimenClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to dwca_get_data_set_names from class nbaR.SpecimenClient
 #' @export
 specimen_dwca_get_data_set_names <- function(
+                                             returnType = "data.frame",
                                              ...) {
   sc <- SpecimenClient$new()
   res <- sc$dwca_get_data_set_names(
@@ -152,7 +165,7 @@ specimen_dwca_get_data_set_names <- function(
 
 #' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
 #' @param filename Filename to save results to, defaults to `format(Sys.time(),"download-\%Y-\%m-\%dT\%H:\%m.zip")`
-#' @param ... additional parameters passed to dwca_query from class class nbaR.SpecimenClient
+#' @param ... additional parameters passed to dwca_query from class nbaR.SpecimenClient
 #' @export
 specimen_dwca_query <- function(
                                 queryParams = list(),
@@ -176,7 +189,7 @@ specimen_dwca_query <- function(
 #' @family nbaR.SpecimenClient-wrappers
 #' @return scalar
 #' @param unitID the unitID of the specimen to query, type:
-#' @param ... additional parameters passed to exists from class class nbaR.SpecimenClient
+#' @param ... additional parameters passed to exists from class nbaR.SpecimenClient
 #' @export
 specimen_exists <- function(
                             unitID = NULL,
@@ -196,20 +209,29 @@ specimen_exists <- function(
 #' from class nbaR.SpecimenClient.
 #' @details If found, returns a single specimen
 #' @family nbaR.SpecimenClient-wrappers
-#' @return list
+#' @return list or data.frame, as specified by \code{returnType}'
 #' @param id id of specimen, type:
-#' @param ... additional parameters passed to find from class class nbaR.SpecimenClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to find from class nbaR.SpecimenClient
 #' @export
 specimen_find <- function(
                           id = NULL,
+                          returnType = "data.frame",
                           ...) {
+
+  ## check returnType argument
+  if (!returnType %in% c("list", "data.frame")) {
+    stop("Invalid returnType argument. Must be 'data.frame' or 'list'")
+  }
+
   sc <- SpecimenClient$new()
   res <- sc$find(
     id,
 
     ...
   )
-  result <- .make_list_response(res)
+  ## return simpler data structure for object response
+  result <- .un_object(res, returnType = returnType)
   return(result)
 }
 #' @name specimen_find_by_ids
@@ -218,20 +240,29 @@ specimen_find <- function(
 #' from class nbaR.SpecimenClient.
 #' @details Given multiple ids, returns a list of specimen
 #' @family nbaR.SpecimenClient-wrappers
-#' @return list
+#' @return list or data.frame, as specified by \code{returnType}'
 #' @param ids ids of multiple specimen, separated by comma, type: character
-#' @param ... additional parameters passed to find_by_ids from class class nbaR.SpecimenClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to find_by_ids from class nbaR.SpecimenClient
 #' @export
 specimen_find_by_ids <- function(
                                  ids = NULL,
+                                 returnType = "data.frame",
                                  ...) {
+
+  ## check returnType argument
+  if (!returnType %in% c("list", "data.frame")) {
+    stop("Invalid returnType argument. Must be 'data.frame' or 'list'")
+  }
+
   sc <- SpecimenClient$new()
   res <- sc$find_by_ids(
     ids,
 
     ...
   )
-  result <- .make_list_response(res)
+  ## return simpler data structure for object response
+  result <- .un_object(res, returnType = returnType)
   return(result)
 }
 #' @name specimen_find_by_unit_id
@@ -240,20 +271,29 @@ specimen_find_by_ids <- function(
 #' from class nbaR.SpecimenClient.
 #' @details Get a specimen by its unitID. Returns a list of specimens since unitIDs are not strictly unique
 #' @family nbaR.SpecimenClient-wrappers
-#' @return list
+#' @return list or data.frame, as specified by \code{returnType}'
 #' @param unitID the unitID of the specimen to query, type:
-#' @param ... additional parameters passed to find_by_unit_id from class class nbaR.SpecimenClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to find_by_unit_id from class nbaR.SpecimenClient
 #' @export
 specimen_find_by_unit_id <- function(
                                      unitID = NULL,
+                                     returnType = "data.frame",
                                      ...) {
+
+  ## check returnType argument
+  if (!returnType %in% c("list", "data.frame")) {
+    stop("Invalid returnType argument. Must be 'data.frame' or 'list'")
+  }
+
   sc <- SpecimenClient$new()
   res <- sc$find_by_unit_id(
     unitID,
 
     ...
   )
-  result <- .make_list_response(res)
+  ## return simpler data structure for object response
+  result <- .un_object(res, returnType = returnType)
   return(result)
 }
 #' @name specimen_get_distinct_values
@@ -265,11 +305,13 @@ specimen_find_by_unit_id <- function(
 #' @return scalar
 #' @param field Name of field in specimen object, type:
 #' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
-#' @param ... additional parameters passed to get_distinct_values from class class nbaR.SpecimenClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_distinct_values from class nbaR.SpecimenClient
 #' @export
 specimen_get_distinct_values <- function(
                                          field = NULL,
                                          queryParams = list(),
+                                         returnType = "data.frame",
                                          ...) {
   sc <- SpecimenClient$new()
   res <- sc$get_distinct_values(
@@ -289,11 +331,13 @@ specimen_get_distinct_values <- function(
 #' @return scalar
 #' @param group Name of field in the specimen object you want to group by, type:
 #' @param field Name of field in the specimen object, type:
-#' @param ... additional parameters passed to get_distinct_values_per_group from class class nbaR.SpecimenClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_distinct_values_per_group from class nbaR.SpecimenClient
 #' @export
 specimen_get_distinct_values_per_group <- function(
                                                    group = NULL,
                                                    field = NULL,
+                                                   returnType = "data.frame",
                                                    ...) {
   sc <- SpecimenClient$new()
   res <- sc$get_distinct_values_per_group(
@@ -312,9 +356,11 @@ specimen_get_distinct_values_per_group <- function(
 #' @details Info consists of whether the fields is indexed, the ElasticSearch datatype and a list of allowed operators
 #' @family nbaR.SpecimenClient-wrappers
 #' @return scalar
-#' @param ... additional parameters passed to get_field_info from class class nbaR.SpecimenClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_field_info from class nbaR.SpecimenClient
 #' @export
 specimen_get_field_info <- function(
+                                    returnType = "data.frame",
                                     ...) {
   sc <- SpecimenClient$new()
   res <- sc$get_field_info(
@@ -331,10 +377,12 @@ specimen_get_field_info <- function(
 #' @family nbaR.SpecimenClient-wrappers
 #' @return scalar
 #' @param name name of dataset, type:
-#' @param ... additional parameters passed to get_ids_in_collection from class class nbaR.SpecimenClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_ids_in_collection from class nbaR.SpecimenClient
 #' @export
 specimen_get_ids_in_collection <- function(
                                            name = NULL,
+                                           returnType = "data.frame",
                                            ...) {
   sc <- SpecimenClient$new()
   res <- sc$get_ids_in_collection(
@@ -352,9 +400,11 @@ specimen_get_ids_in_collection <- function(
 #' @details See also here: http://bioportal.naturalis.nl/collecties
 #' @family nbaR.SpecimenClient-wrappers
 #' @return scalar
-#' @param ... additional parameters passed to get_named_collections from class class nbaR.SpecimenClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_named_collections from class nbaR.SpecimenClient
 #' @export
 specimen_get_named_collections <- function(
+                                           returnType = "data.frame",
                                            ...) {
   sc <- SpecimenClient$new()
   res <- sc$get_named_collections(
@@ -370,9 +420,11 @@ specimen_get_named_collections <- function(
 #' @details See also metadata/getFieldInfo for all allowed operators per field
 #' @family nbaR.SpecimenClient-wrappers
 #' @return scalar
-#' @param ... additional parameters passed to get_paths from class class nbaR.SpecimenClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_paths from class nbaR.SpecimenClient
 #' @export
 specimen_get_paths <- function(
+                               returnType = "data.frame",
                                ...) {
   sc <- SpecimenClient$new()
   res <- sc$get_paths(
@@ -389,7 +441,7 @@ specimen_get_paths <- function(
 #' @family nbaR.SpecimenClient-wrappers
 #' @return scalar
 #' @param name name of setting, type:
-#' @param ... additional parameters passed to get_setting from class class nbaR.SpecimenClient
+#' @param ... additional parameters passed to get_setting from class nbaR.SpecimenClient
 #' @export
 specimen_get_setting <- function(
                                  name = NULL,
@@ -410,9 +462,11 @@ specimen_get_setting <- function(
 #' @details The value of a specific setting can be queried with metadata/getSetting/{name}
 #' @family nbaR.SpecimenClient-wrappers
 #' @return scalar
-#' @param ... additional parameters passed to get_settings from class class nbaR.SpecimenClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to get_settings from class nbaR.SpecimenClient
 #' @export
 specimen_get_settings <- function(
+                                  returnType = "data.frame",
                                   ...) {
   sc <- SpecimenClient$new()
   res <- sc$get_settings(
@@ -427,19 +481,28 @@ specimen_get_settings <- function(
 #' from class nbaR.SpecimenClient.
 #' @details Returns a list with ScientificNameGroups, which contain Taxon and Specimen documents that share a scientific name
 #' @family nbaR.SpecimenClient-wrappers
-#' @return list
+#' @return list or data.frame, as specified by \code{returnType}'
 #' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
-#' @param ... additional parameters passed to group_by_scientific_name from class class nbaR.SpecimenClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to group_by_scientific_name from class nbaR.SpecimenClient
 #' @export
 specimen_group_by_scientific_name <- function(
                                               queryParams = list(),
+                                              returnType = "data.frame",
                                               ...) {
+
+  ## check returnType argument
+  if (!returnType %in% c("list", "data.frame")) {
+    stop("Invalid returnType argument. Must be 'data.frame' or 'list'")
+  }
+
   sc <- SpecimenClient$new()
   res <- sc$group_by_scientific_name(
     queryParams = queryParams,
     ...
   )
-  result <- .make_list_response(res)
+  ## return simpler data structure for object response
+  result <- .un_object(res, returnType = returnType)
   return(result)
 }
 #' @name specimen_is_operator_allowed
@@ -451,7 +514,7 @@ specimen_group_by_scientific_name <- function(
 #' @return scalar
 #' @param field specimen document field, type:
 #' @param operator operator, type:
-#' @param ... additional parameters passed to is_operator_allowed from class class nbaR.SpecimenClient
+#' @param ... additional parameters passed to is_operator_allowed from class nbaR.SpecimenClient
 #' @export
 specimen_is_operator_allowed <- function(
                                          field = NULL,
@@ -473,27 +536,37 @@ specimen_is_operator_allowed <- function(
 #' from class nbaR.SpecimenClient.
 #' @details Search for specimens (GET) using query parameters or a querySpec JSON
 #' @family nbaR.SpecimenClient-wrappers
-#' @return list
+#' @return list or data.frame, as specified by \code{returnType}'
 #' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
-#' @param ... additional parameters passed to query from class class nbaR.SpecimenClient
+#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param ... additional parameters passed to query from class nbaR.SpecimenClient
 #' @export
 specimen_query <- function(
                            queryParams = list(),
+                           returnType = "data.frame",
                            ...) {
+
+  ## check returnType argument
+  if (!returnType %in% c("list", "data.frame")) {
+    stop("Invalid returnType argument. Must be 'data.frame' or 'list'")
+  }
+
   sc <- SpecimenClient$new()
   res <- sc$query(
     queryParams = queryParams,
     ...
   )
-  result <- .make_list_response(res)
+  ## return simpler data structure for object response
+  result <- .un_object(res, returnType = returnType)
   return(result)
 }
 
 #' @noRd
 #' @param response Object of class Response
+#' @param returnType either 'list' or 'data.frame'
 #' Internal function to convert all (nested) objects
-#' in a response object to lists
-.make_list_response <- function(response) {
+#' in a response object to lists or data frames
+.un_object <- function(response, returnType = "data.frame") {
   l <- response$content
 
   ## Handle return objects of class QueryResult
@@ -501,7 +574,7 @@ specimen_query <- function(
     l <- lapply(l$resultSet, function(x) x$item)
   }
 
-  ## wrapper functions return lists instead of objects
+  ## wrapper functions return data frames or lists instead of objects
   if (!is.list(l)) {
     result <- l$toList()
   } else {
@@ -513,6 +586,10 @@ specimen_query <- function(
           x
         }
     )
+  }
+
+  if (returnType == "data.frame") {
+    result <- data.frame(do.call(rbind, result))
   }
 
   return(result)

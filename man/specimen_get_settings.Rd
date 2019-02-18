@@ -4,10 +4,12 @@
 \alias{specimen_get_settings}
 \title{List all publicly available configuration settings for the NBA}
 \usage{
-specimen_get_settings(...)
+specimen_get_settings(returnType = "data.frame", ...)
 }
 \arguments{
-\item{...}{additional parameters passed to get_settings from class class nbaR.SpecimenClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to get_settings from class nbaR.SpecimenClient}
 }
 \value{
 scalar

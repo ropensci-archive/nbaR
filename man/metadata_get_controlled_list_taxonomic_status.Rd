@@ -4,10 +4,13 @@
 \alias{metadata_get_controlled_list_taxonomic_status}
 \title{Get allowed values for the field &#39;TaxonomicStatus&#39; in specimen and taxon documents}
 \usage{
-metadata_get_controlled_list_taxonomic_status(...)
+metadata_get_controlled_list_taxonomic_status(returnType = "data.frame",
+  ...)
 }
 \arguments{
-\item{...}{additional parameters passed to get_controlled_list_taxonomic_status from class class nbaR.MetadataClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to get_controlled_list_taxonomic_status from class nbaR.MetadataClient}
 }
 \value{
 scalar

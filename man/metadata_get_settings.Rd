@@ -4,10 +4,12 @@
 \alias{metadata_get_settings}
 \title{List all publicly available configuration settings for the NBA}
 \usage{
-metadata_get_settings(...)
+metadata_get_settings(returnType = "data.frame", ...)
 }
 \arguments{
-\item{...}{additional parameters passed to get_settings from class class nbaR.MetadataClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to get_settings from class nbaR.MetadataClient}
 }
 \value{
 scalar

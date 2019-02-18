@@ -11,7 +11,7 @@ specimen_count_distinct_values(field = NULL, queryParams = list(), ...)
 
 \item{queryParams}{Named list or vector with names being the fields to be queried and values being the values to match}
 
-\item{...}{additional parameters passed to count_distinct_values from class class nbaR.SpecimenClient}
+\item{...}{additional parameters passed to count_distinct_values from class nbaR.SpecimenClient}
 }
 \value{
 scalar

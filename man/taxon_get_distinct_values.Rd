@@ -4,12 +4,14 @@
 \alias{taxon_get_distinct_values}
 \title{Get all different values that can be found for one field}
 \usage{
-taxon_get_distinct_values(field = NULL, ...)
+taxon_get_distinct_values(field = NULL, returnType = "data.frame", ...)
 }
 \arguments{
 \item{field}{name of field in a taxon object, type:}
 
-\item{...}{additional parameters passed to get_distinct_values from class class nbaR.TaxonClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to get_distinct_values from class nbaR.TaxonClient}
 }
 \value{
 scalar

@@ -4,15 +4,17 @@
 \alias{geo_find}
 \title{Find a GEO area by id}
 \usage{
-geo_find(id = NULL, ...)
+geo_find(id = NULL, returnType = "data.frame", ...)
 }
 \arguments{
 \item{id}{id of geo area, type:}
 
-\item{...}{additional parameters passed to find from class class nbaR.GeoClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to find from class nbaR.GeoClient}
 }
 \value{
-list
+list or data.frame, as specified by \code{returnType}'
 }
 \description{
 This is a wrapper function for find

@@ -4,15 +4,17 @@
 \alias{specimen_find}
 \title{Find a specimen by id}
 \usage{
-specimen_find(id = NULL, ...)
+specimen_find(id = NULL, returnType = "data.frame", ...)
 }
 \arguments{
 \item{id}{id of specimen, type:}
 
-\item{...}{additional parameters passed to find from class class nbaR.SpecimenClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to find from class nbaR.SpecimenClient}
 }
 \value{
-list
+list or data.frame, as specified by \code{returnType}'
 }
 \description{
 This is a wrapper function for find

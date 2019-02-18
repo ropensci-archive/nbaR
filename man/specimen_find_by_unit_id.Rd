@@ -4,15 +4,17 @@
 \alias{specimen_find_by_unit_id}
 \title{Find a specimen by unitID}
 \usage{
-specimen_find_by_unit_id(unitID = NULL, ...)
+specimen_find_by_unit_id(unitID = NULL, returnType = "data.frame", ...)
 }
 \arguments{
 \item{unitID}{the unitID of the specimen to query, type:}
 
-\item{...}{additional parameters passed to find_by_unit_id from class class nbaR.SpecimenClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to find_by_unit_id from class nbaR.SpecimenClient}
 }
 \value{
-list
+list or data.frame, as specified by \code{returnType}'
 }
 \description{
 This is a wrapper function for find_by_unit_id

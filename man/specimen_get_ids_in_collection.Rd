@@ -4,12 +4,15 @@
 \alias{specimen_get_ids_in_collection}
 \title{Retrieve all ids within a &#39;special collection&#39; of specimens}
 \usage{
-specimen_get_ids_in_collection(name = NULL, ...)
+specimen_get_ids_in_collection(name = NULL, returnType = "data.frame",
+  ...)
 }
 \arguments{
 \item{name}{name of dataset, type:}
 
-\item{...}{additional parameters passed to get_ids_in_collection from class class nbaR.SpecimenClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to get_ids_in_collection from class nbaR.SpecimenClient}
 }
 \value{
 scalar

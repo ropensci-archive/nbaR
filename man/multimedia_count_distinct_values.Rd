@@ -9,7 +9,7 @@ multimedia_count_distinct_values(field = NULL, ...)
 \arguments{
 \item{field}{Name of field in taxon object, type:}
 
-\item{...}{additional parameters passed to count_distinct_values from class class nbaR.MultimediaClient}
+\item{...}{additional parameters passed to count_distinct_values from class nbaR.MultimediaClient}
 }
 \value{
 scalar

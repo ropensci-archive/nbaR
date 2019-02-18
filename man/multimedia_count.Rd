@@ -9,7 +9,7 @@ multimedia_count(queryParams = list(), ...)
 \arguments{
 \item{queryParams}{Named list or vector with names being the fields to be queried and values being the values to match}
 
-\item{...}{additional parameters passed to count from class class nbaR.MultimediaClient}
+\item{...}{additional parameters passed to count from class nbaR.MultimediaClient}
 }
 \value{
 scalar

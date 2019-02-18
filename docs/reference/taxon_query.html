@@ -134,7 +134,7 @@ from class nbaR.TaxonClient.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>taxon_query</span>(<span class='kw'>queryParams</span> <span class='kw'>=</span> <span class='fu'>list</span>(), <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>taxon_query</span>(<span class='kw'>queryParams</span> <span class='kw'>=</span> <span class='fu'>list</span>(), <span class='kw'>returnType</span> <span class='kw'>=</span> <span class='st'>"data.frame"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -144,14 +144,18 @@ from class nbaR.TaxonClient.</p>
       <td><p>Named list or vector with names being the fields to be queried and values being the values to match</p></td>
     </tr>
     <tr>
+      <th>returnType</th>
+      <td><p>Either 'list' or 'data.frame', defaults to 'data.frame'</p></td>
+    </tr>
+    <tr>
       <th>...</th>
-      <td><p>additional parameters passed to query from class class nbaR.TaxonClient</p></td>
+      <td><p>additional parameters passed to query from class nbaR.TaxonClient</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>list</p>
+    <p>list or data.frame, as specified by <code>returnType</code>'</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 

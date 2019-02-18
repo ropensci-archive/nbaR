@@ -4,10 +4,12 @@
 \alias{metadata_get_controlled_lists}
 \title{Get the names of fields for which a controlled vocabulary exists}
 \usage{
-metadata_get_controlled_lists(...)
+metadata_get_controlled_lists(returnType = "data.frame", ...)
 }
 \arguments{
-\item{...}{additional parameters passed to get_controlled_lists from class class nbaR.MetadataClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to get_controlled_lists from class nbaR.MetadataClient}
 }
 \value{
 scalar

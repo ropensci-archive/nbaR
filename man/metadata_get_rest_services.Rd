@@ -4,13 +4,15 @@
 \alias{metadata_get_rest_services}
 \title{List all available REST services and their parameters}
 \usage{
-metadata_get_rest_services(...)
+metadata_get_rest_services(returnType = "data.frame", ...)
 }
 \arguments{
-\item{...}{additional parameters passed to get_rest_services from class class nbaR.MetadataClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to get_rest_services from class nbaR.MetadataClient}
 }
 \value{
-list
+list or data.frame, as specified by \code{returnType}'
 }
 \description{
 This is a wrapper function for get_rest_services

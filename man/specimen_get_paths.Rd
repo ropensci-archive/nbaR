@@ -4,10 +4,12 @@
 \alias{specimen_get_paths}
 \title{Returns the full path of all fields within a document}
 \usage{
-specimen_get_paths(...)
+specimen_get_paths(returnType = "data.frame", ...)
 }
 \arguments{
-\item{...}{additional parameters passed to get_paths from class class nbaR.SpecimenClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to get_paths from class nbaR.SpecimenClient}
 }
 \value{
 scalar

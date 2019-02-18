@@ -4,12 +4,15 @@
 \alias{multimedia_get_distinct_values}
 \title{Get all different values that can be found for one field}
 \usage{
-multimedia_get_distinct_values(field = NULL, ...)
+multimedia_get_distinct_values(field = NULL, returnType = "data.frame",
+  ...)
 }
 \arguments{
 \item{field}{field, type:}
 
-\item{...}{additional parameters passed to get_distinct_values from class class nbaR.MultimediaClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to get_distinct_values from class nbaR.MultimediaClient}
 }
 \value{
 scalar

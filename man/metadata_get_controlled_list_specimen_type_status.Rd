@@ -4,10 +4,14 @@
 \alias{metadata_get_controlled_list_specimen_type_status}
 \title{Get allowed values for the field &#39;SpecimenTypeStatus&#39; in a specimen document}
 \usage{
-metadata_get_controlled_list_specimen_type_status(...)
+
+  metadata_get_controlled_list_specimen_type_status(returnType = "data.frame",
+  ...)
 }
 \arguments{
-\item{...}{additional parameters passed to get_controlled_list_specimen_type_status from class class nbaR.MetadataClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to get_controlled_list_specimen_type_status from class nbaR.MetadataClient}
 }
 \value{
 scalar

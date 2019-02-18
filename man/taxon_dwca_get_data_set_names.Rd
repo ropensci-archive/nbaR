@@ -4,10 +4,12 @@
 \alias{taxon_dwca_get_data_set_names}
 \title{Retrieve the names of all available datasets}
 \usage{
-taxon_dwca_get_data_set_names(...)
+taxon_dwca_get_data_set_names(returnType = "data.frame", ...)
 }
 \arguments{
-\item{...}{additional parameters passed to dwca_get_data_set_names from class class nbaR.TaxonClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to dwca_get_data_set_names from class nbaR.TaxonClient}
 }
 \value{
 scalar

@@ -5,14 +5,16 @@
 \title{Count the distinct number of field values that exist per the given field to group by}
 \usage{
 multimedia_count_distinct_values_per_group(group = NULL, field = NULL,
-  ...)
+  returnType = "data.frame", ...)
 }
 \arguments{
 \item{group}{name of field in the multimedia object you want to group by, type:}
 
 \item{field}{name of field in the multimedia object, type:}
 
-\item{...}{additional parameters passed to count_distinct_values_per_group from class class nbaR.MultimediaClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to count_distinct_values_per_group from class nbaR.MultimediaClient}
 }
 \value{
 scalar

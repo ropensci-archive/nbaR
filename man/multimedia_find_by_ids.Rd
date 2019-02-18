@@ -4,15 +4,17 @@
 \alias{multimedia_find_by_ids}
 \title{Find multimedia document by ids}
 \usage{
-multimedia_find_by_ids(ids = NULL, ...)
+multimedia_find_by_ids(ids = NULL, returnType = "data.frame", ...)
 }
 \arguments{
 \item{ids}{ids of multiple multimedia documents, separated by comma, type: character}
 
-\item{...}{additional parameters passed to find_by_ids from class class nbaR.MultimediaClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to find_by_ids from class nbaR.MultimediaClient}
 }
 \value{
-list
+list or data.frame, as specified by \code{returnType}'
 }
 \description{
 This is a wrapper function for find_by_ids

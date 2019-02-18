@@ -4,15 +4,18 @@
 \alias{specimen_group_by_scientific_name}
 \title{Aggregates Taxon and Specimen documents according to their scientific names}
 \usage{
-specimen_group_by_scientific_name(queryParams = list(), ...)
+specimen_group_by_scientific_name(queryParams = list(),
+  returnType = "data.frame", ...)
 }
 \arguments{
 \item{queryParams}{Named list or vector with names being the fields to be queried and values being the values to match}
 
-\item{...}{additional parameters passed to group_by_scientific_name from class class nbaR.SpecimenClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to group_by_scientific_name from class nbaR.SpecimenClient}
 }
 \value{
-list
+list or data.frame, as specified by \code{returnType}'
 }
 \description{
 This is a wrapper function for group_by_scientific_name

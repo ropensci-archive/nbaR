@@ -11,7 +11,7 @@ specimen_is_operator_allowed(field = NULL, operator = NULL, ...)
 
 \item{operator}{operator, type:}
 
-\item{...}{additional parameters passed to is_operator_allowed from class class nbaR.SpecimenClient}
+\item{...}{additional parameters passed to is_operator_allowed from class nbaR.SpecimenClient}
 }
 \value{
 scalar

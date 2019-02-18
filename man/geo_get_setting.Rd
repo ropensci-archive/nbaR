@@ -9,7 +9,7 @@ geo_get_setting(name = NULL, ...)
 \arguments{
 \item{name}{name of setting, type:}
 
-\item{...}{additional parameters passed to get_setting from class class nbaR.GeoClient}
+\item{...}{additional parameters passed to get_setting from class nbaR.GeoClient}
 }
 \value{
 scalar

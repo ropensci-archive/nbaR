@@ -4,14 +4,17 @@
 \alias{specimen_get_distinct_values_per_group}
 \title{Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by}
 \usage{
-specimen_get_distinct_values_per_group(group = NULL, field = NULL, ...)
+specimen_get_distinct_values_per_group(group = NULL, field = NULL,
+  returnType = "data.frame", ...)
 }
 \arguments{
 \item{group}{Name of field in the specimen object you want to group by, type:}
 
 \item{field}{Name of field in the specimen object, type:}
 
-\item{...}{additional parameters passed to get_distinct_values_per_group from class class nbaR.SpecimenClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to get_distinct_values_per_group from class nbaR.SpecimenClient}
 }
 \value{
 scalar

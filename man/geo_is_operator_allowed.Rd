@@ -4,14 +4,17 @@
 \alias{geo_is_operator_allowed}
 \title{Checks if a given operator is allowed for a given field}
 \usage{
-geo_is_operator_allowed(field = NULL, operator = NULL, ...)
+geo_is_operator_allowed(field = NULL, operator = NULL,
+  returnType = "data.frame", ...)
 }
 \arguments{
 \item{field}{Field in geo area document, type:}
 
 \item{operator}{operator, type:}
 
-\item{...}{additional parameters passed to is_operator_allowed from class class nbaR.GeoClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to is_operator_allowed from class nbaR.GeoClient}
 }
 \value{
 scalar

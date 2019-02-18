@@ -4,15 +4,17 @@
 \alias{taxon_find}
 \title{Find a taxon by id}
 \usage{
-taxon_find(id = NULL, ...)
+taxon_find(id = NULL, returnType = "data.frame", ...)
 }
 \arguments{
 \item{id}{id of taxon, type:}
 
-\item{...}{additional parameters passed to find from class class nbaR.TaxonClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to find from class nbaR.TaxonClient}
 }
 \value{
-list
+list or data.frame, as specified by \code{returnType}'
 }
 \description{
 This is a wrapper function for find

@@ -5,14 +5,16 @@
 \title{Count the distinct number of field values that exist per the given field to group by}
 \usage{
 specimen_count_distinct_values_per_group(group = NULL, field = NULL,
-  ...)
+  returnType = "data.frame", ...)
 }
 \arguments{
 \item{group}{Name of field in the specimen object you want to group by, type:}
 
 \item{field}{Name of field in the specimen object, type:}
 
-\item{...}{additional parameters passed to count_distinct_values_per_group from class class nbaR.SpecimenClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to count_distinct_values_per_group from class nbaR.SpecimenClient}
 }
 \value{
 scalar

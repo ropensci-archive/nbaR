@@ -9,7 +9,7 @@ metadata_get_setting(name = NULL, ...)
 \arguments{
 \item{name}{name of setting, type:}
 
-\item{...}{additional parameters passed to get_setting from class class nbaR.MetadataClient}
+\item{...}{additional parameters passed to get_setting from class nbaR.MetadataClient}
 }
 \value{
 scalar

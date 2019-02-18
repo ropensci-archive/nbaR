@@ -4,10 +4,12 @@
 \alias{metadata_get_allowed_date_formats}
 \title{Get allowed values for dates in queries}
 \usage{
-metadata_get_allowed_date_formats(...)
+metadata_get_allowed_date_formats(returnType = "data.frame", ...)
 }
 \arguments{
-\item{...}{additional parameters passed to get_allowed_date_formats from class class nbaR.MetadataClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to get_allowed_date_formats from class nbaR.MetadataClient}
 }
 \value{
 scalar

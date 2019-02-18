@@ -4,12 +4,14 @@
 \alias{geo_get_distinct_values}
 \title{Get all different values that exist for a field}
 \usage{
-geo_get_distinct_values(field = NULL, ...)
+geo_get_distinct_values(field = NULL, returnType = "data.frame", ...)
 }
 \arguments{
 \item{field}{name of field in geo area object, type:}
 
-\item{...}{additional parameters passed to get_distinct_values from class class nbaR.GeoClient}
+\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+
+\item{...}{additional parameters passed to get_distinct_values from class nbaR.GeoClient}
 }
 \value{
 scalar

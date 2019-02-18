@@ -9,7 +9,7 @@ taxon_get_setting(name = NULL, ...)
 \arguments{
 \item{name}{name of setting, type:}
 
-\item{...}{additional parameters passed to get_setting from class class nbaR.TaxonClient}
+\item{...}{additional parameters passed to get_setting from class nbaR.TaxonClient}
 }
 \value{
 scalar

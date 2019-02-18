@@ -2,7 +2,7 @@
 #'
 #' An (uncalibrated) phylogenetic tree with 231 species from the eight
 #' extant shark orders. Number of edges: 463. Branch lengths correspond
-#' to molecular distances. Tips are labelled as follows: Genus_species. 
+#' to molecular distances. Tips are labelled as follows: Genus_species.
 #' Can be processed using the package \code{ape}. The data were kindly
 #' provided by Ximena Vélez-Zuazo.
 #'
