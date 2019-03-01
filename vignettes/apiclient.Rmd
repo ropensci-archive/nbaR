@@ -1,0 +1,211 @@
+---
+title: "nbaR API client: concepts and object model"
+date: "`r format(Sys.time(), '%b %d, %Y')`"
+output:
+  html_document:
+    highlight: tango
+    code_folding: show
+    theme: sandstone
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+
+vignette: >
+  %\VignetteIndexEntry{nbaR API client: concepts and object model}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+
+## Main data types and classes
+The data served by the NBA consists of four main data types:
+  
+  * Specimen
+  * Taxon
+  * Multimedia
+  * Geo
+  
+Additionally, the data type *Metadata* stores miscellaneous
+information about NBA settings. Each of the data types is modelled
+as an `R6` class and therefore has its own members such as fields
+and methods. Documentation about a specific class can be retrieved
+in the standard manner, e.g. `?Specimen`
+Each class of the data model can be instantiated and has a `toJSONString` and `toList` method returning
+the object's JSON representation and the object's data as a list datatype, respectively.
+
+```{r}
+# load nbaR
+library(nbaR) 
+
+# instanciate specimen object
+spec <- Specimen$new()
+```
+```r
+# represent data as JSON or list
+spec$toJSONString()
+spec$toList()
+```
+
+## API Client classes
+The interaction with the API is accomplished by the API client classes:
+
+* SpecimenClient
+* TaxonClient
+* MultimediaClient
+* GeoClient
+* MetadataClient
+
+
+```{r}
+
+# initialize client
+client <- SpecimenClient$new()
+```
+
+The client class is by default initialized to connect to the base URL http://api.biodiversitydata.nl/v2.
+For testing purposes, this can be set to a different URL, see `?SpecimenClient` for details.
+
+## Queries
+
+### Concept
+
+With the SpecimentClient created above, the `query` endpoint for specimens can now be reached via the `query` function.
+
+```{r}
+# retrieve results of empty query.
+res <- client$query()
+```
+
+The `query` function then returns an object of class `Response`, which, in turn, has a field `content`
+of class `QueryResult`. From the `QueryResult`, the single result items can be accessed as follows:
+
+```{r}
+# get first element of results
+spec <- res$content$resultSet[[1]]$item
+
+# object should be of type Specimen
+class(spec)
+
+```
+
+### Passing query parameters as list
+Query parameters can be specified as a list with named parameters.
+To query for instance for specimen records that have the type status holotype and a female sex,
+one can pass a named list as the `queryParams` parameter to the `query` function:
+
+```{r}
+# specify two query conditions
+l <- list(identifications.typeStatus="holotype", sex="female")
+
+# run query
+res <- client$query(queryParams=l)
+```
+
+Note that by default, both conditions are connected by a logical `AND`. 
+The `queryParams` passed as a list thus correspond to 
+basic [*human readable* queries](http://docs.biodiversitydata.nl/en/latest/quickstart/#human-readable).
+For more advanced queries, containing different logical operators or nested sub-queries, 
+the user can specify the query in a `QuerySpec` object.
+
+# Advanced queries
+
+## Using the QuerySpec object
+Advanced queries with different operators than `AND` or nested query conditions 
+can not be accomplished by simply passing the query parameters as a list. 
+Instead, a query is modeled as a `QuerySpec` object which
+captures the relationships between multiple query terms. Please also refer to the 
+[NBA QuerySpec documentation](http://docs.biodiversitydata.nl/en/latest/advanced-queries/#queryspec) for more information.
+
+A `QuerySpec` object usually consists of one or more `QueryCondition` objects, specifying 
+query terms. A `QueryCondition` object usually contains the fields `field`, `operator`, and `value `(see also `?QueryCondition`).
+These fields can be specified in the constructor. If, for example, we want to query for records with a unitID equal to
+*L.4304195*, a `QueryCondition` would look as follows:
+
+```{r}
+# make specimen client instance
+client <- SpecimenClient$new()
+
+# specify search in QueryCondition object
+qc <-
+  QueryCondition$new(field = "unitID",
+                     operator = "EQUALS",
+                     value = "L.4304195")
+```
+
+Note: The function `get_field_info` on a certain field lists which operators 
+are allowed for that field e.g. for the field `unitID` : 
+
+```{r}
+client$get_field_info()$content$unitID$allowedOperators
+```
+
+Now, a `QuerySpec` object can be assembled with the `QueryCondition`(s) passed as a list:
+
+```{r}
+# build QuerySpec using above conditions
+qs <- QuerySpec$new(conditions=list(qc))
+
+# do the query
+res <- client$query(querySpec=qs)
+```
+
+Below, we show an example of how to nest multiple query conditions. The query conditions below define to query for 
+specimens of sex ** female* and family *Equidae* and of rank *Species*. 
+
+```{r}
+# specify multiple conditions
+q1 <- QueryCondition$new(field = "sex",
+                         operator = "EQUALS",
+                         value = "female")
+q2 <-
+  QueryCondition$new(field = "identifications.defaultClassification.family",
+                     operator = "EQUALS",
+                     value = "Equidae")
+q3 <- QueryCondition$new(field = "identifications.taxonRank",
+                         operator = "EQUALS",
+                         value = "species")
+```
+
+Extending the constraint to also include specimens of rank *Subspecies*,  
+we can combine the latter condition with an additional one using the method `or`:
+
+```{r}
+# logical conjunction using 'or' method
+q3$or <- list(QueryCondition$new(field = "identifications.taxonRank",
+                                 operator="EQUALS",
+                                 value="subspecies"))
+
+# build QuerySpec from QueryConditions
+qs <- QuerySpec$new(conditions=list(q1, q2, q3))
+
+# call API
+res <-client$query(querySpec=qs)
+```
+
+### Size of the query result set
+By default, the NBA returns the first 10 hits for a given query. 
+In, for instance, a query without parameters has many hits
+
+```{r}
+res <- client$query()
+res$content$totalSize
+```
+
+but only the first 10 are returned in the `resultSet`: 
+
+```{r}
+length(res$content$resultSet)
+```
+
+In order to increase the size of a `resultSet`, a `size` parameter can be
+passed to the constructor of a `QuerySpec` object. Below, we will get
+the first 1000 records of the query above:
+
+```{r}
+qs <- QuerySpec$new(size=1000)
+res <- client$query(querySpec=qs)
+length(res$content$resultSet)
+```
+
