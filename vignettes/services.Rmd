@@ -44,6 +44,8 @@ can query specimens of the Family *Ebenaceae* that were collected in
 Europe:
 
 ```{r}
+library('nbaR')
+
 # instantiate specimen client
 sc <- SpecimenClient$new()
 

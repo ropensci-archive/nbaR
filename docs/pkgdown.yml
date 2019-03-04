@@ -2,7 +2,9 @@ pandoc: 2.2.1
 pkgdown: 1.1.0.9000
 pkgdown_sha: eec35964f8c7a091ff953c7e07b2e285d7475df1
 articles:
+  apiclient: apiclient.html
   nbaR: nbaR.html
+  services: services.html
   sharks: sharks.html
   tomato: tomato.html
 

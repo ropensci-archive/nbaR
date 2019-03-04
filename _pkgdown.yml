@@ -3,39 +3,38 @@ navbar:
     left:
     - home
     - intro
+    - doc
+    - workflows
     - reference
-    - articles
-    - tutorials
     - news
     right: github
   components:
     home:
       icon: fa-home fa-lg
       href: index.html
-    reference:
-      text: Reference
-      href: reference/index.html
     intro:
       text: Get started
       href: articles/nbaR.html
-    articles:
-      text: Articles
+    doc:
+      text: Documentation
+      menu:
+      - text: Advanced queries
+        href: articles/apiclient.html
+      - text: Services summary
+        href: articles/services.html
+    workflows:
+      text: Example Workflows
       menu:
       - text: Calibrating a molecular phylogeny of the sharks
         href: articles/sharks.html
       - text: The oldest tomato specimen in the world
         href: articles/tomato.html
+    reference:
+      text: Reference
+      href: reference/index.html
     github:
       icon: fa-github fa-lg
       href: https://github.com/naturalis/nbaR
-
-articles:
-- title: All vignettes
-  desc: ~
-  contents:
-      - '`nbaR`'
-      - '`sharks`'
-      - '`tomato`'
 
 reference:
 - title: Wrappers
@@ -118,6 +117,10 @@ reference:
       - '`TaxonDescription`'
       - '`TaxonomicEnrichment`'
       - '`VernacularName`'
+- title: Data
+  desc: Test data
+  contents:
+      - '`shark_tree`'
 - title: Package
   desc: nbaR package
   contents:
