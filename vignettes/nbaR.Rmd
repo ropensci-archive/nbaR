@@ -47,8 +47,22 @@ researchers, we developed this R client.
   
 # Full client vs wrapper functions
 
+nbaR aims to be a *full* client of the NBA API, meaning that 
+it implements all endpoints and the entire NBA object model.
+The client thus facilitates all API queries possible.
+Complex objects returned by the API, such as `Specimen` or 
+`Taxon` objects are implemented as `R6` classes. This includes 
+also objects used for querying (`QuerySpec` and `QueryCondition`, 
+respectively, see also [here](apiclient.html)). 
 
+For for many queries, the full functionality of
+the NBA won't be required. The package therefore offers a
+**wrapper function** for each endpoint that does not use
+`R6` classes but common R data structes, such as `list` and
+`data.frame`. However, querying capabilities are limited for 
+these wrappers. Below we will show how to set up some
+simple queries using the wrapper functions.
 
-# Getting started: 
+# Getting started: query with wrapper functions
   
 

@@ -151,10 +151,12 @@
 <div id="full-client-vs-wrapper-functions" class="section level1">
 <h1 class="hasAnchor">
 <a href="#full-client-vs-wrapper-functions" class="anchor"></a>Full client vs wrapper functions</h1>
+<p>nbaR aims to be a <em>full</em> client of the NBA API, meaning that it implements all endpoints and the entire NBA object model. The client thus facilitates all API queries possible. Complex objects returned by the API, such as <code>Specimen</code> or <code>Taxon</code> objects are implemented as <code>R6</code> classes. This includes also objects used for querying (<code>QuerySpec</code> and <code>QueryCondition</code>, respectively, see also <a href="apiclient.html">here</a>).</p>
+<p>For for many queries, the full functionality of the NBA won’t be required. The package therefore offers a <strong>wrapper function</strong> for each endpoint that does not use <code>R6</code> classes but common R data structes, such as <code>list</code> and <code>data.frame</code>. However, querying capabilities are limited for these wrappers. Below we will show how to set up some simple queries using the wrapper functions.</p>
 </div>
-<div id="getting-started" class="section level1">
+<div id="getting-started-query-with-wrapper-functions" class="section level1">
 <h1 class="hasAnchor">
-<a href="#getting-started" class="anchor"></a>Getting started:</h1>
+<a href="#getting-started-query-with-wrapper-functions" class="anchor"></a>Getting started: query with wrapper functions</h1>
 </div>
   </div>
 
@@ -170,7 +172,7 @@
       </ul>
 </li>
       <li><a href="#full-client-vs-wrapper-functions">Full client vs wrapper functions</a></li>
-      <li><a href="#getting-started">Getting started:</a></li>
+      <li><a href="#getting-started-query-with-wrapper-functions">Getting started: query with wrapper functions</a></li>
       </ul>
 </div>
       </div>
