@@ -47,22 +47,71 @@ researchers, we developed this R client.
   
 # Full client vs wrapper functions
 
-nbaR aims to be a *full* client of the NBA API, meaning that 
-it implements all endpoints and the entire NBA object model.
-The client thus facilitates all API queries possible.
-Complex objects returned by the API, such as `Specimen` or 
-`Taxon` objects are implemented as `R6` classes. This includes 
-also objects used for querying (`QuerySpec` and `QueryCondition`, 
-respectively, see also [here](apiclient.html)). 
+nbaR aims to be a *full* client of the NBA API, meaning that it
+implements all endpoints and the entire NBA object model.  The client
+thus facilitates all API queries possible.  Complex objects returned
+by the API, such as `Specimen` or `Taxon` objects are implemented as
+`R6` classes. This includes also objects used for querying
+(`QuerySpec` and `QueryCondition`, respectively, see also
+[here](apiclient.html)).
 
-For for many queries, the full functionality of
-the NBA won't be required. The package therefore offers a
-**wrapper function** for each endpoint that does not use
-`R6` classes but common R data structes, such as `list` and
-`data.frame`. However, querying capabilities are limited for 
-these wrappers. Below we will show how to set up some
+For for many queries, the full functionality of the NBA won't be
+required. The package therefore offers a **wrapper function** for each
+endpoint that does not use `R6` classes but common R data structes,
+such as `list` and `data.frame`. However, querying capabilities are
+limited for these wrappers. Below we will show how to set up some
 simple queries using the wrapper functions.
 
 # Getting started: query with wrapper functions
+
+The data in the NBA consists of four main data types (see
+[NBA docs](http://docs.biodiversitydata.nl/)):
   
+  * Specimen
+  * Taxon
+  * Multimedia
+  * Geo
+
+Wrapper functions start with the data type (lower-case letter) and an
+underscore (`specimen_*`, `taxon_*`) etc. There is a wrapper function
+for each endpoint (see
+[here](https://docs.biodiversitydata.nl/endpoints-reference/) for all
+endpoints); camelCase naming is replaced by snake_case. The 
+endpoint `getDistinctValues` for specimen data, for instance, 
+is called by the function `specimen_get_distinct_values`.
+
+## Searching for specimen records
+
+Suppose we want to look up specimens of the genus *Mola* (sunfish). 
+To find out what field of the NBA we could query, we can use the 
+function `specimen_get_paths()` (see `?specimen_get_paths` for 
+documentation).
+
+```{r}
+library('nbaR')
+
+all_paths <- specimen_get_paths()
+head(all_paths)
+
+```
+
+Note that paths of nested objects are seperated via a `.`.
+To search for a specific genus, we can query the field
+`identifications.scientificName.genusOrMonomial`. 
+The `specimen_query` method lets us query for a specific field,
+where the query parameters are given as a list:
+
+```{r}
+queryParams <- list("identifications.scientificName.genusOrMonomial" =
+                        "Mola")
+specimens <- specimen_query(queryParams)
+```
+
+Return type can either be `list` or `data.frame` (the default). 
+Note that nested structures in the data frame are represented
+as list columns. N
+
+
+
+
 
