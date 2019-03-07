@@ -365,23 +365,23 @@ multimedia_query <- function(
     l <- lapply(l$resultSet, function(x) x$item)
   }
 
-  ## wrapper functions return data frames or lists instead of objects
-  if (!is.list(l)) {
-    result <- l$toList()
-  } else {
-    result <- lapply(
-      l,
-      function(x) if (is.object(x)) {
-          x$toList()
-        } else {
-          x
-        }
-    )
-  }
-
   if (returnType == "data.frame") {
-    result <- data.frame(do.call(rbind, result))
+    strs <- sapply(l, function(x) x$toJSONString())
+    result <- jsonlite::fromJSON(paste("[", paste(strs, collapse = ","), "]"))
+  } else {
+    ## Return type is list, coerce everything to list
+    if (!is.list(l)) {
+      result <- l$toList()
+    } else {
+      result <- lapply(
+        l,
+        function(x) if (is.object(x)) {
+            x$toList()
+          } else {
+            x
+          }
+      )
+    }
   }
-
   return(result)
 }

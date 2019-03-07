@@ -52,7 +52,7 @@ test_that("specimen_count_distinct_values_per_group works", {
     specimen_count_distinct_values_per_group("sex", "sourceSystem.code",
       returnType = "list"
     )
-  ##expect_is(res, "list")
+  ## expect_is(res, "list")
   expect_gt(length(res), 0)
 
   res <-

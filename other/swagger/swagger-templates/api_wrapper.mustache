@@ -114,25 +114,33 @@
 #' @param returnType either 'list' or 'data.frame'
 #' Internal function to convert all (nested) objects
 #' in a response object to lists or data frames
-.un_object <- function(response, returnType='data.frame') {
-  l <- response$content          
+.un_object <- function(response, returnType = "data.frame") {
+  l <- response$content
 
   ## Handle return objects of class QueryResult
   if (class(l)[1] == "QueryResult") {
-    l <- lapply(l$resultSet, function(x)x$item)
-  }
-          
-  ## wrapper functions return data frames or lists instead of objects
-  if (! is.list(l)) {
-    result <- l$toList()
-  } else {
-    result <- lapply(l,
-                     function(x)if(is.object(x)){x$toList()}else{x})
+    l <- lapply(l$resultSet, function(x) x$item)
   }
 
   if (returnType == "data.frame") {
-     result <- data.frame(do.call(rbind, result))
-  }
-  
+      strs <- sapply(l, function(x) x$toJSONString())
+      result <- jsonlite::fromJSON(paste("[", paste(strs, collapse=","), "]"))
+
+  } else {
+      ## Return type is list, coerce everything to list
+      if (!is.list(l)) {
+          result <- l$toList()
+      } else {
+          result <- lapply(
+              l,
+              function(x) if (is.object(x)) {
+              x$toList()
+          } else {
+              x
+          }
+          )
+      }
+  }    
   return(result)
 }
+  
