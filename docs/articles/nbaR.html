@@ -125,7 +125,7 @@
     <div class="page-header toc-ignore">
       <h1>nbaR: R access to the Netherlands Biodiversity API</h1>
             
-            <h4 class="date">Mar 07, 2019</h4>
+            <h4 class="date">Mar 08, 2019</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/naturalis/nbaR/blob/master/vignettes/nbaR.Rmd"><code>vignettes/nbaR.Rmd</code></a></small>
       <div class="hidden name"><code>nbaR.Rmd</code></div>
@@ -154,9 +154,9 @@
 <p>nbaR aims to be a <em>full</em> client of the NBA API, meaning that it implements all endpoints and the entire NBA object model. The client thus facilitates all API queries possible. Complex objects returned by the API, such as <code>Specimen</code> or <code>Taxon</code> objects are implemented as <code>R6</code> classes. This includes also objects used for querying (<code>QuerySpec</code> and <code>QueryCondition</code>, respectively, see also <a href="apiclient.html">here</a>).</p>
 <p>For for many queries, the full functionality of the NBA won’t be required. The package therefore offers a <strong>wrapper function</strong> for each endpoint that does not use <code>R6</code> classes but common R data structes, such as <code>list</code> and <code>data.frame</code>. However, querying capabilities are limited for these wrappers. Below we will show how to set up some simple queries using the wrapper functions.</p>
 </div>
-<div id="getting-started-query-with-wrapper-functions" class="section level1">
+<div id="quick-start-querying-the-nba-using-wrapper-functions" class="section level1">
 <h1 class="hasAnchor">
-<a href="#getting-started-query-with-wrapper-functions" class="anchor"></a>Getting started: query with wrapper functions</h1>
+<a href="#quick-start-querying-the-nba-using-wrapper-functions" class="anchor"></a>Quick start: querying the NBA using wrapper functions</h1>
 <p>The data in the NBA consists of four main data types (see <a href="http://docs.biodiversitydata.nl/">NBA docs</a>):</p>
 <ul>
 <li>Specimen</li>
@@ -164,10 +164,10 @@
 <li>Multimedia</li>
 <li>Geo</li>
 </ul>
-<p>Wrapper functions start with the data type (lower-case letter) and an underscore (<code>specimen_*</code>, <code>taxon_*</code>) etc. There is a wrapper function for each endpoint (see <a href="https://docs.biodiversitydata.nl/endpoints-reference/">here</a> for all endpoints); camelCase naming is replaced by snake_case. The endpoint <code>getDistinctValues</code> for specimen data, for instance, is called by the function <code>specimen_get_distinct_values</code>.</p>
-<div id="searching-for-specimen-records" class="section level2">
+<p>Wrapper functions start with the data type (lower-case letter) and an underscore (<code>specimen_*</code>, <code>taxon_*</code>) etc. There is a wrapper function for each endpoint (see <a href="https://docs.biodiversitydata.nl/endpoints-reference/">here</a> for all endpoints); camelCase naming is replaced by snake_case. The NBA endpoint <code>getDistinctValues</code> for specimen data, for instance, is called by the function <code>specimen_get_distinct_values</code>.</p>
+<div id="querying-specimen-records" class="section level2">
 <h2 class="hasAnchor">
-<a href="#searching-for-specimen-records" class="anchor"></a>Searching for specimen records</h2>
+<a href="#querying-specimen-records" class="anchor"></a>Querying specimen records</h2>
 <p>Suppose we want to look up specimens of the genus <em>Mola</em> (sunfish). To find out what field of the NBA we could query, we can use the function <code><a href="../reference/specimen_get_paths.html">specimen_get_paths()</a></code> (see <code><a href="../reference/specimen_get_paths.html">?specimen_get_paths</a></code> for documentation).</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(<span class="st">'nbaR'</span>)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"></a>
@@ -175,13 +175,133 @@
 <a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">head</span>(all_paths)</a></code></pre></div>
 <pre><code>## [1] "sourceSystem.code" "sourceSystem.name" "sourceSystemId"   
 ## [4] "recordURI"         "unitID"            "unitGUID"</code></pre>
-<p>Note that paths of nested objects are seperated via a <code>.</code>. To search for a specific genus, we can query the field <code>identifications.scientificName.genusOrMonomial</code>. The <code>specimen_query</code> method lets us query for a specific field, where the query parameters are given as a list:</p>
+<p>Note that paths of nested objects are seperated via a <code>.</code>. To search for a specific genus, we can query the field <code>identifications.scientificName.genusOrMonomial</code>. The <code>specimen_query</code> method lets us query for a specific field, where the query parameters are given as a named list (a named vector also works!):</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">queryParams &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">"identifications.scientificName.genusOrMonomial"</span> =</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">                        "Mola"</span>)</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">specimens &lt;-<span class="st"> </span><span class="kw"><a href="../reference/specimen_query.html">specimen_query</a></span>(queryParams)</a></code></pre></div>
-<pre><code>## Warning in (function (..., deparse.level = 1) : number of columns of result
-## is not a multiple of vector length (arg 1)</code></pre>
-<p>Return type can either be <code>list</code> or <code>data.frame</code> (the default). Note that nested structures in the data frame are represented as list columns. N</p>
+<a class="sourceLine" id="cb3-3" data-line-number="3">sp_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/specimen_query.html">specimen_query</a></span>(queryParams)</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">## how many specimens are found?</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw">nrow</span>(sp_data)</a></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">## which fields are available?</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">colnames</span>(sp_data)</a></code></pre></div>
+<pre><code>##  [1] "sourceSystem"             "sourceSystemId"          
+##  [3] "id"                       "unitID"                  
+##  [5] "unitGUID"                 "sourceInstitutionID"     
+##  [7] "sourceID"                 "owner"                   
+##  [9] "licenseType"              "license"                 
+## [11] "recordBasis"              "kindOfUnit"              
+## [13] "collectionType"           "preparationType"         
+## [15] "fromCaptivity"            "objectPublic"            
+## [17] "multiMediaPublic"         "identifications"         
+## [19] "title"                    "numberOfSpecimen"        
+## [21] "gatheringEvent"           "associatedMultiMediaUris"
+## [23] "theme"</code></pre>
+<p>Return type can either be <code>list</code> or <code>data.frame</code> (the default). Note that nested structures in the data frame are represented as list columns (for instance the field <code>associatedMultiMediaUris</code>). which lists, if given, all links to multimedia resources for the specimens:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">sp_data<span class="op">$</span>associatedMultiMediaUris</a></code></pre></div>
+<pre><code>## [[1]]
+## NULL
+## 
+## [[2]]
+##                                                        accessUri
+## 1 http://medialib.naturalis.nl/file/id/RMNH.ART.175/format/large
+##       format        variant
+## 1 image/jpeg MEDIUM_QUALITY
+## 
+## [[3]]
+## NULL
+## 
+## [[4]]
+##                                                                   accessUri
+## 1 http://medialib.naturalis.nl/file/id/RMNH.PISC.D.2059_HL_1_3/format/large
+## 2   http://medialib.naturalis.nl/file/id/RMNH.PISC.D.2059_HL_1/format/large
+## 3   http://medialib.naturalis.nl/file/id/RMNH.PISC.D.2059_HL_2/format/large
+##       format        variant
+## 1 image/jpeg MEDIUM_QUALITY
+## 2 image/jpeg MEDIUM_QUALITY
+## 3 image/jpeg MEDIUM_QUALITY</code></pre>
+</div>
+<div id="querying-taxon-records" class="section level2">
+<h2 class="hasAnchor">
+<a href="#querying-taxon-records" class="anchor"></a>Querying taxon records</h2>
+<p>Taxonomic information can be retrieved using the <strong>taxon_</strong> functions. Taxon records come from two sources, the <em>Dutch species register (Nederlands Soortregister, NSR)</em> and the <em>Catalogue of Life (COL)</em>.</p>
+<p>To see how many records are from each source, we can query for all distinct values (and counts) for a specific field (see <code>taxon_get_paths</code>) for all fields in the <code>taxon</code> data:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="../reference/taxon_get_distinct_values.html">taxon_get_distinct_values</a></span>(<span class="st">"sourceSystem.name"</span>)</a></code></pre></div>
+<pre><code>## $`Species 2000 - Catalogue Of Life`
+## [1] 1962192
+## 
+## $`Naturalis - Dutch Species Register`
+## [1] 47646</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">## alternatively, show for sourceSystem.code</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw"><a href="../reference/taxon_get_distinct_values.html">taxon_get_distinct_values</a></span>(<span class="st">'sourceSystem.code'</span>)</a></code></pre></div>
+<pre><code>## $COL
+## [1] 1962192
+## 
+## $NSR
+## [1] 47646</code></pre>
+<p>To query, for instance all the species listed in the Catalogue of life for the genus <em>Mola</em>, we can use the wrapper function <code>taxon_query</code>:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">## specify query parameters</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">queryParams &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">"sourceSystem.code"</span>=<span class="st">"COL"</span>,</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">                    <span class="st">"defaultClassification.genus"</span>=<span class="st">"Mola"</span>)</a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5">## do the query</a>
+<a class="sourceLine" id="cb13-6" data-line-number="6">tax_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/taxon_query.html">taxon_query</a></span>(queryParams)</a>
+<a class="sourceLine" id="cb13-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb13-8" data-line-number="8">## access nested field 'accepted Name' -&gt; 'specificEpithet'</a>
+<a class="sourceLine" id="cb13-9" data-line-number="9">tax_data<span class="op">$</span>acceptedName<span class="op">$</span>specificEpithet</a></code></pre></div>
+<pre><code>## [1] "mola"    "tecta"   "ramsayi"</code></pre>
+<p>Let’s see if we can find vernacular (common) names for the species <strong>Mola ramsayi</strong>:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">tax_data<span class="op">$</span>vernacularNames[[<span class="dv">3</span>]]</a></code></pre></div>
+<pre><code>##                   name         language
+## 1           拉氏翻车鲀 Mandarin Chinese
+## 2 Australisk klumpfisk          Swedish
+## 3     Suidelike sonvis        Afrikaans
+## 4     Southern sunfish          English
+## 5           拉氏翻車魨 Mandarin Chinese
+## 6        Lõuna-kuukala         Estonian</code></pre>
+</div>
+<div id="geo-queries" class="section level2">
+<h2 class="hasAnchor">
+<a href="#geo-queries" class="anchor"></a>Geo queries</h2>
+<p>The Geo data type in the NBA holds polygon data for countries, Dutch municipalities etc, and Dutch nature reserves. For more information please refer to the <a href="https://docs.biodiversitydata.nl/en/latest/doc-spec-services/geo/">API documentation</a>. To retreive e.g. a polygon, encoded in the <a href="http://geojson.org/">geoJSON</a> format for a country, we can query as follows:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">geo_json &lt;-<span class="st"> </span><span class="kw"><a href="../reference/geo_get_geo_json_for_locality.html">geo_get_geo_json_for_locality</a></span>(<span class="st">'Nigeria'</span>)</a></code></pre></div>
+</div>
+<div id="multimedia-queries" class="section level2">
+<h2 class="hasAnchor">
+<a href="#multimedia-queries" class="anchor"></a>Multimedia queries</h2>
+<p>Multimedia items accessible via the NBA include items captured from physical specimens (e.g. photos and videos) but also from human observations (e.g. recordings of bird sounds).</p>
+<p>As an example, we will retrieve records that represent sounds that were recorded in the country <em>Cape Verde</em>. The sound data accessible via the NBA is stored in the <a href="https://www.xeno-canto.org">Xeno-Canto database</a>, hosted at the Naturalis Biodiversity Center. The field <code>sourceSystem.code</code> for these records is <code>XC</code>; the country of occurrence is stored in the field <code>gatheringEvents.country</code>.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">queryParams &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">"sourceSystem.code"</span>=<span class="st">"XC"</span>,</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">                    <span class="st">"gatheringEvents.country"</span>=<span class="st">"Cape Verde"</span>)</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4">mm_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/multimedia_query.html">multimedia_query</a></span>(queryParams)</a>
+<a class="sourceLine" id="cb18-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb18-6" data-line-number="6">## Access link to Xeno-Canto database for each record:</a>
+<a class="sourceLine" id="cb18-7" data-line-number="7">mm_data<span class="op">$</span>recordURI</a></code></pre></div>
+<pre><code>##  [1] "http://data.biodiversitydata.nl/xeno-canto/observation/XC405139"
+##  [2] "http://data.biodiversitydata.nl/xeno-canto/observation/XC156912"
+##  [3] "http://data.biodiversitydata.nl/xeno-canto/observation/XC156924"
+##  [4] "http://data.biodiversitydata.nl/xeno-canto/observation/XC405556"
+##  [5] "http://data.biodiversitydata.nl/xeno-canto/observation/XC156923"
+##  [6] "http://data.biodiversitydata.nl/xeno-canto/observation/XC405139"
+##  [7] "http://data.biodiversitydata.nl/xeno-canto/observation/XC405560"
+##  [8] "http://data.biodiversitydata.nl/xeno-canto/observation/XC405566"
+##  [9] "http://data.biodiversitydata.nl/xeno-canto/observation/XC405560"
+## [10] "http://data.biodiversitydata.nl/xeno-canto/observation/XC405141"</code></pre>
+</div>
+<div id="limitations-of-wrapper-functions" class="section level2">
+<h2 class="hasAnchor">
+<a href="#limitations-of-wrapper-functions" class="anchor"></a>Limitations of wrapper functions</h2>
+<p>It is important to note that querying power is limited using the wrapper functions. They relate to basic, human readable NBA queries (<a href="https://docs.biodiversitydata.nl/en/latest/quickstart/">see here</a>).</p>
+<ul>
+<li>
+<strong>Size of result set:</strong> As by NBA default, wrapper functions only return the first 10 hits of a query.</li>
+<li>
+<strong>Operators:</strong> Only full matches (operator <em>EQUALS</em>) are considered in wrapper query functions. Partial matching is only available in the full API client</li>
+<li>
+<strong>Locical conjunctions:</strong> If multiple query conditions are given, wrapper functions only allow a simple <em>AND</em> conjunction. For more complex logical query constructs including <em>OR</em> operators or negations, the full API client must be used.</li>
+</ul>
+<p>The wrappers are thus designed for easy access for simple queries. In many situations it might be necessary to use the full API client which offers (almost) the entire functionality of the NBA API. Detailed documentation for the full client can be found <a href="apiclient.html">here</a></p>
 </div>
 </div>
   </div>
@@ -199,8 +319,12 @@
 </li>
       <li><a href="#full-client-vs-wrapper-functions">Full client vs wrapper functions</a></li>
       <li>
-<a href="#getting-started-query-with-wrapper-functions">Getting started: query with wrapper functions</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#searching-for-specimen-records">Searching for specimen records</a></li>
+<a href="#quick-start-querying-the-nba-using-wrapper-functions">Quick start: querying the NBA using wrapper functions</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#querying-specimen-records">Querying specimen records</a></li>
+      <li><a href="#querying-taxon-records">Querying taxon records</a></li>
+      <li><a href="#geo-queries">Geo queries</a></li>
+      <li><a href="#multimedia-queries">Multimedia queries</a></li>
+      <li><a href="#limitations-of-wrapper-functions">Limitations of wrapper functions</a></li>
       </ul>
 </li>
       </ul>

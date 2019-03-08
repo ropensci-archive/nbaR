@@ -650,7 +650,6 @@ sapply(res$content$resultSet, function(x)
   x$item$identifications[[1]]$scientificName$fullScientificName)
 ```
 
-
 ### Data access services
 
 #### count

@@ -62,7 +62,7 @@ such as `list` and `data.frame`. However, querying capabilities are
 limited for these wrappers. Below we will show how to set up some
 simple queries using the wrapper functions.
 
-# Getting started: query with wrapper functions
+# Quick start: querying the NBA using wrapper functions
 
 The data in the NBA consists of four main data types (see
 [NBA docs](http://docs.biodiversitydata.nl/)):
@@ -76,11 +76,11 @@ Wrapper functions start with the data type (lower-case letter) and an
 underscore (`specimen_*`, `taxon_*`) etc. There is a wrapper function
 for each endpoint (see
 [here](https://docs.biodiversitydata.nl/endpoints-reference/) for all
-endpoints); camelCase naming is replaced by snake_case. The 
-endpoint `getDistinctValues` for specimen data, for instance, 
-is called by the function `specimen_get_distinct_values`.
+endpoints); camelCase naming is replaced by snake_case. The NBA
+endpoint `getDistinctValues` for specimen data, for instance, is
+called by the function `specimen_get_distinct_values`.
 
-## Searching for specimen records
+## Querying specimen records
 
 Suppose we want to look up specimens of the genus *Mola* (sunfish). 
 To find out what field of the NBA we could query, we can use the 
@@ -92,26 +92,134 @@ library('nbaR')
 
 all_paths <- specimen_get_paths()
 head(all_paths)
-
 ```
 
-Note that paths of nested objects are seperated via a `.`.
-To search for a specific genus, we can query the field
-`identifications.scientificName.genusOrMonomial`. 
-The `specimen_query` method lets us query for a specific field,
-where the query parameters are given as a list:
+Note that paths of nested objects are seperated via a `.`.  To search
+for a specific genus, we can query the field
+`identifications.scientificName.genusOrMonomial`.  The
+`specimen_query` method lets us query for a specific field, where the
+query parameters are given as a named list (a named vector also
+works!):
 
 ```{r}
 queryParams <- list("identifications.scientificName.genusOrMonomial" =
                         "Mola")
-specimens <- specimen_query(queryParams)
+sp_data <- specimen_query(queryParams)
+
+## how many specimens are found?
+nrow(sp_data)
+
+## which fields are available?
+colnames(sp_data)
 ```
 
-Return type can either be `list` or `data.frame` (the default). 
-Note that nested structures in the data frame are represented
-as list columns. N
+Return type can either be `list` or `data.frame` (the default).  Note
+that nested structures in the data frame are represented as list
+columns (for instance the field `associatedMultiMediaUris`). which
+lists, if given, all links to multimedia resources for the specimens:
+
+```{r}
+sp_data$associatedMultiMediaUris
+```
 
 
+## Querying taxon records
+
+Taxonomic information can be retrieved using the **taxon_** functions.
+Taxon records come from two sources, the *Dutch species register
+(Nederlands Soortregister, NSR)* and the *Catalogue of Life (COL)*.
+
+To see how many records are from each source, we can query for all
+distinct values (and counts) for a specific field (see
+`taxon_get_paths`) for all fields in the `taxon` data:
+
+```{r}
+taxon_get_distinct_values("sourceSystem.name")
+
+## alternatively, show for sourceSystem.code
+taxon_get_distinct_values('sourceSystem.code')
+```
+
+To query, for instance all the species listed in the Catalogue of life
+for the genus *Mola*, we can use the wrapper function `taxon_query`:
+
+```{r}
+## specify query parameters
+queryParams <- list("sourceSystem.code"="COL",
+                    "defaultClassification.genus"="Mola")
+
+## do the query
+tax_data <- taxon_query(queryParams)
+
+## access nested field 'accepted Name' -> 'specificEpithet'
+tax_data$acceptedName$specificEpithet
+```
+
+Let's see if we can find vernacular (common) names for the
+species **Mola ramsayi**:
+
+```{r}
+tax_data$vernacularNames[[3]]
+```
+
+## Geo queries
+
+The Geo data type in the NBA holds polygon data for countries, Dutch
+municipalities etc, and Dutch nature reserves. For more information
+please refer to the
+[API documentation](https://docs.biodiversitydata.nl/en/latest/doc-spec-services/geo/).
+To retreive e.g. a polygon, encoded in the
+[geoJSON](http://geojson.org/) format for a country, we can query as
+follows:
 
 
+```{r}
+geo_json <- geo_get_geo_json_for_locality('Nigeria')
+```
 
+## Multimedia queries
+
+Multimedia items accessible via the NBA include items captured from
+physical specimens (e.g. photos and videos) but also from human
+observations (e.g. recordings of bird sounds).
+
+As an example, we will retrieve records that represent sounds that
+were recorded in the country *Cape Verde*.  The sound data accessible
+via the NBA is stored in the
+[Xeno-Canto database](https://www.xeno-canto.org), hosted at the
+Naturalis Biodiversity Center.  The field `sourceSystem.code` for
+these records is `XC`; the country of occurrence is stored in the
+field `gatheringEvents.country`.
+
+```{r}
+queryParams <- list("sourceSystem.code"="XC",
+                    "gatheringEvents.country"="Cape Verde")
+
+mm_data <- multimedia_query(queryParams)
+
+## Access link to Xeno-Canto database for each record:
+mm_data$recordURI
+```
+
+## Limitations of wrapper functions
+
+It is important to note that querying power is limited using the
+wrapper functions. They relate to basic, human readable NBA queries
+([see here](https://docs.biodiversitydata.nl/en/latest/quickstart/)).
+
+ * **Size of result set:** As by NBA default, wrapper functions 
+   only return the first 10 hits of a query. 
+ * **Operators:** Only full matches (operator *EQUALS*) are 
+   considered in wrapper query functions. Partial matching is
+   only available in the full API client
+ * **Locical conjunctions:** If multiple query conditions are
+   given, wrapper functions only allow a simple *AND* conjunction.
+   For more complex logical query constructs including *OR* 
+   operators or negations, the full API client must be used.
+
+The wrappers are thus designed for easy access for simple queries.  In
+many situations it might be necessary to use the full API client which
+offers (almost) the entire functionality of the NBA API. Detailed
+documentation for the full client can be found [here](apiclient.html)
+
+ 
