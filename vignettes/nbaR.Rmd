@@ -80,6 +80,17 @@ endpoints); camelCase naming is replaced by snake_case. The NBA
 endpoint `getDistinctValues` for specimen data, for instance, is
 called by the function `specimen_get_distinct_values`.
 
+Specimen services provide the interface to the Naturalis collection
+and to species occurrences (see
+[here](https://docs.biodiversitydata.nl/en/latest/doc-spec-services/specimen/)),
+wheras Taxon services provide data from taxonomic checklists (see
+[here](https://docs.biodiversitydata.nl/en/latest/doc-spec-services/taxon/)).
+Multimedia services give access to photos, videos and sound data (see
+[here](https://docs.biodiversitydata.nl/en/latest/doc-spec-services/multimedia/));
+Geo services store polygon data for geographical regions and nature
+reserves (see
+[here](https://docs.biodiversitydata.nl/en/latest/doc-spec-services/geo/)).
+
 ## Querying specimen records
 
 Suppose we want to look up specimens of the genus *Mola* (sunfish). 
@@ -220,6 +231,6 @@ wrapper functions. They relate to basic, human readable NBA queries
 The wrappers are thus designed for easy access for simple queries.  In
 many situations it might be necessary to use the full API client which
 offers (almost) the entire functionality of the NBA API. Detailed
-documentation for the full client can be found [here](apiclient.html)
+documentation for the full client can be found [here](apiclient.html).
 
  

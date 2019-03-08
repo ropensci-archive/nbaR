@@ -165,6 +165,7 @@
 <li>Geo</li>
 </ul>
 <p>Wrapper functions start with the data type (lower-case letter) and an underscore (<code>specimen_*</code>, <code>taxon_*</code>) etc. There is a wrapper function for each endpoint (see <a href="https://docs.biodiversitydata.nl/endpoints-reference/">here</a> for all endpoints); camelCase naming is replaced by snake_case. The NBA endpoint <code>getDistinctValues</code> for specimen data, for instance, is called by the function <code>specimen_get_distinct_values</code>.</p>
+<p>Specimen services provide the interface to the Naturalis collection and to species occurrences (see <a href="https://docs.biodiversitydata.nl/en/latest/doc-spec-services/specimen/">here</a>), wheras Taxon services provide data from taxonomic checklists (see <a href="https://docs.biodiversitydata.nl/en/latest/doc-spec-services/taxon/">here</a>). Multimedia services give access to photos, videos and sound data (see <a href="https://docs.biodiversitydata.nl/en/latest/doc-spec-services/multimedia/">here</a>); Geo services store polygon data for geographical regions and nature reserves (see <a href="https://docs.biodiversitydata.nl/en/latest/doc-spec-services/geo/">here</a>).</p>
 <div id="querying-specimen-records" class="section level2">
 <h2 class="hasAnchor">
 <a href="#querying-specimen-records" class="anchor"></a>Querying specimen records</h2>
@@ -301,7 +302,7 @@
 <li>
 <strong>Locical conjunctions:</strong> If multiple query conditions are given, wrapper functions only allow a simple <em>AND</em> conjunction. For more complex logical query constructs including <em>OR</em> operators or negations, the full API client must be used.</li>
 </ul>
-<p>The wrappers are thus designed for easy access for simple queries. In many situations it might be necessary to use the full API client which offers (almost) the entire functionality of the NBA API. Detailed documentation for the full client can be found <a href="apiclient.html">here</a></p>
+<p>The wrappers are thus designed for easy access for simple queries. In many situations it might be necessary to use the full API client which offers (almost) the entire functionality of the NBA API. Detailed documentation for the full client can be found <a href="apiclient.html">here</a>.</p>
 </div>
 </div>
   </div>
