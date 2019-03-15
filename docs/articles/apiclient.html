@@ -125,7 +125,7 @@
     <div class="page-header toc-ignore">
       <h1>nbaR API client: concepts and object model</h1>
             
-            <h4 class="date">Mar 08, 2019</h4>
+            <h4 class="date">Mar 15, 2019</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/naturalis/nbaR/blob/master/vignettes/apiclient.Rmd"><code>vignettes/apiclient.Rmd</code></a></small>
       <div class="hidden name"><code>apiclient.Rmd</code></div>
@@ -175,9 +175,12 @@
 <div id="concept" class="section level3">
 <h3 class="hasAnchor">
 <a href="#concept" class="anchor"></a>Concept</h3>
-<p>With the SpecimentClient created above, the <code>query</code> endpoint for specimens can now be reached via the <code>query</code> function.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># retrieve results of empty query.</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">res &lt;-<span class="st"> </span>client<span class="op">$</span><span class="kw">query</span>()</a></code></pre></div>
+<p>With the SpecimentClient created above, the <code>query</code> endpoint for specimens can now be reached via the <code>query</code> function. Query parameters can be specified as a list with named parameters. To query for instance for specimen records that have the type status holotype and a female sex, one can pass a named list as the <code>queryParams</code> parameter to the <code>query</code> function:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># specify two query conditions</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">l &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">identifications.typeStatus=</span><span class="st">"holotype"</span>, <span class="dt">sex=</span><span class="st">"female"</span>)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co"># run query</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">res &lt;-<span class="st"> </span>client<span class="op">$</span><span class="kw">query</span>(<span class="dt">queryParams=</span>l)</a></code></pre></div>
 <p>The <code>query</code> function then returns an object of class <code>Response</code>, which, in turn, has a field <code>content</code> of class <code>QueryResult</code>. From the <code>QueryResult</code>, the single result items can be accessed as follows:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># get first element of results</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">spec &lt;-<span class="st"> </span>res<span class="op">$</span>content<span class="op">$</span>resultSet[[<span class="dv">1</span>]]<span class="op">$</span>item</a>
@@ -185,16 +188,6 @@
 <a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co"># object should be of type Specimen</span></a>
 <a class="sourceLine" id="cb5-5" data-line-number="5"><span class="kw">class</span>(spec)</a></code></pre></div>
 <pre><code>## [1] "Specimen" "R6"</code></pre>
-</div>
-<div id="passing-query-parameters-as-list" class="section level3">
-<h3 class="hasAnchor">
-<a href="#passing-query-parameters-as-list" class="anchor"></a>Passing query parameters as list</h3>
-<p>Query parameters can be specified as a list with named parameters. To query for instance for specimen records that have the type status holotype and a female sex, one can pass a named list as the <code>queryParams</code> parameter to the <code>query</code> function:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># specify two query conditions</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">l &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">identifications.typeStatus=</span><span class="st">"holotype"</span>, <span class="dt">sex=</span><span class="st">"female"</span>)</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co"># run query</span></a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">res &lt;-<span class="st"> </span>client<span class="op">$</span><span class="kw">query</span>(<span class="dt">queryParams=</span>l)</a></code></pre></div>
 <p>Note that by default, both conditions are connected by a logical <code>AND</code>. The <code>queryParams</code> passed as a list thus correspond to basic <a href="http://docs.biodiversitydata.nl/en/latest/quickstart/#human-readable"><em>human readable</em> queries</a>. For more advanced queries, containing different logical operators or nested sub-queries, the user can specify the query in a <code>QuerySpec</code> object.</p>
 </div>
 </div>
@@ -206,65 +199,65 @@
 <a href="#using-the-queryspec-object" class="anchor"></a>Using the QuerySpec object</h2>
 <p>Advanced queries with different operators than <code>AND</code> or nested query conditions can not be accomplished by simply passing the query parameters as a list. Instead, a query is modeled as a <code>QuerySpec</code> object which captures the relationships between multiple query terms. Please also refer to the <a href="http://docs.biodiversitydata.nl/en/latest/advanced-queries/#queryspec">NBA QuerySpec documentation</a> for more information.</p>
 <p>A <code>QuerySpec</code> object usually consists of one or more <code>QueryCondition</code> objects, specifying query terms. A <code>QueryCondition</code> object usually contains the fields <code>field</code>, <code>operator</code>, and <code>value</code>(see also <code><a href="../reference/QueryCondition.html">?QueryCondition</a></code>). These fields can be specified in the constructor. If, for example, we want to query for records with a unitID equal to <em>L.4304195</em>, a <code>QueryCondition</code> would look as follows:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># make specimen client instance</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">client &lt;-<span class="st"> </span>SpecimenClient<span class="op">$</span><span class="kw">new</span>()</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co"># specify search in QueryCondition object</span></a>
-<a class="sourceLine" id="cb8-5" data-line-number="5">qc &lt;-</a>
-<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="st">  </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field =</span> <span class="st">"unitID"</span>,</a>
-<a class="sourceLine" id="cb8-7" data-line-number="7">                     <span class="dt">operator =</span> <span class="st">"EQUALS"</span>,</a>
-<a class="sourceLine" id="cb8-8" data-line-number="8">                     <span class="dt">value =</span> <span class="st">"L.4304195"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># make specimen client instance</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">client &lt;-<span class="st"> </span>SpecimenClient<span class="op">$</span><span class="kw">new</span>()</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co"># specify search in QueryCondition object</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">qc &lt;-</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="st">  </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field =</span> <span class="st">"unitID"</span>,</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">                     <span class="dt">operator =</span> <span class="st">"EQUALS"</span>,</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">                     <span class="dt">value =</span> <span class="st">"L.4304195"</span>)</a></code></pre></div>
 <p>Note: The function <code>get_field_info</code> on a certain field lists which operators are allowed for that field e.g. for the field <code>unitID</code> :</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">client<span class="op">$</span><span class="kw">get_field_info</span>()<span class="op">$</span>content<span class="op">$</span>unitID<span class="op">$</span>allowedOperators</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">client<span class="op">$</span><span class="kw">get_field_info</span>()<span class="op">$</span>content<span class="op">$</span>unitID<span class="op">$</span>allowedOperators</a></code></pre></div>
 <pre><code>##  [1] "EQUALS"             "NOT_EQUALS"         "EQUALS_IC"         
 ##  [4] "NOT_EQUALS_IC"      "CONTAINS"           "NOT_CONTAINS"      
 ##  [7] "IN"                 "NOT_IN"             "MATCHES"           
 ## [10] "NOT_MATCHES"        "STARTS_WITH"        "NOT_STARTS_WITH"   
 ## [13] "STARTS_WITH_IC"     "NOT_STARTS_WITH_IC"</code></pre>
 <p>Now, a <code>QuerySpec</code> object can be assembled with the <code>QueryCondition</code>(s) passed as a list:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># build QuerySpec using above conditions</span></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc))</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co"># do the query</span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5">res &lt;-<span class="st"> </span>client<span class="op">$</span><span class="kw">query</span>(<span class="dt">querySpec=</span>qs)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># build QuerySpec using above conditions</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc))</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="co"># do the query</span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5">res &lt;-<span class="st"> </span>client<span class="op">$</span><span class="kw">query</span>(<span class="dt">querySpec=</span>qs)</a></code></pre></div>
 <p>Below, we show an example of how to nest multiple query conditions. The query conditions below define to query for specimens of sex ** female* and family <em>Equidae</em> and of rank <em>Species</em>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co"># specify multiple conditions</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2">q1 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field =</span> <span class="st">"sex"</span>,</a>
-<a class="sourceLine" id="cb12-3" data-line-number="3">                         <span class="dt">operator =</span> <span class="st">"EQUALS"</span>,</a>
-<a class="sourceLine" id="cb12-4" data-line-number="4">                         <span class="dt">value =</span> <span class="st">"female"</span>)</a>
-<a class="sourceLine" id="cb12-5" data-line-number="5">q2 &lt;-</a>
-<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="st">  </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field =</span> <span class="st">"identifications.defaultClassification.family"</span>,</a>
-<a class="sourceLine" id="cb12-7" data-line-number="7">                     <span class="dt">operator =</span> <span class="st">"EQUALS"</span>,</a>
-<a class="sourceLine" id="cb12-8" data-line-number="8">                     <span class="dt">value =</span> <span class="st">"Equidae"</span>)</a>
-<a class="sourceLine" id="cb12-9" data-line-number="9">q3 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field =</span> <span class="st">"identifications.taxonRank"</span>,</a>
-<a class="sourceLine" id="cb12-10" data-line-number="10">                         <span class="dt">operator =</span> <span class="st">"EQUALS"</span>,</a>
-<a class="sourceLine" id="cb12-11" data-line-number="11">                         <span class="dt">value =</span> <span class="st">"species"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># specify multiple conditions</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">q1 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field =</span> <span class="st">"sex"</span>,</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">                         <span class="dt">operator =</span> <span class="st">"EQUALS"</span>,</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">                         <span class="dt">value =</span> <span class="st">"female"</span>)</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">q2 &lt;-</a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="st">  </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field =</span> <span class="st">"identifications.defaultClassification.family"</span>,</a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">                     <span class="dt">operator =</span> <span class="st">"EQUALS"</span>,</a>
+<a class="sourceLine" id="cb11-8" data-line-number="8">                     <span class="dt">value =</span> <span class="st">"Equidae"</span>)</a>
+<a class="sourceLine" id="cb11-9" data-line-number="9">q3 &lt;-<span class="st"> </span>QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field =</span> <span class="st">"identifications.taxonRank"</span>,</a>
+<a class="sourceLine" id="cb11-10" data-line-number="10">                         <span class="dt">operator =</span> <span class="st">"EQUALS"</span>,</a>
+<a class="sourceLine" id="cb11-11" data-line-number="11">                         <span class="dt">value =</span> <span class="st">"species"</span>)</a></code></pre></div>
 <p>Extending the constraint to also include specimens of rank <em>Subspecies</em>,<br>
 we can combine the latter condition with an additional one using the method <code>or</code>:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># logical conjunction using 'or' method</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">q3<span class="op">$</span>or &lt;-<span class="st"> </span><span class="kw">list</span>(QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field =</span> <span class="st">"identifications.taxonRank"</span>,</a>
-<a class="sourceLine" id="cb13-3" data-line-number="3">                                 <span class="dt">operator=</span><span class="st">"EQUALS"</span>,</a>
-<a class="sourceLine" id="cb13-4" data-line-number="4">                                 <span class="dt">value=</span><span class="st">"subspecies"</span>))</a>
-<a class="sourceLine" id="cb13-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="co"># build QuerySpec from QueryConditions</span></a>
-<a class="sourceLine" id="cb13-7" data-line-number="7">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(q1, q2, q3))</a>
-<a class="sourceLine" id="cb13-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb13-9" data-line-number="9"><span class="co"># call API</span></a>
-<a class="sourceLine" id="cb13-10" data-line-number="10">res &lt;-client<span class="op">$</span><span class="kw">query</span>(<span class="dt">querySpec=</span>qs)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co"># logical conjunction using 'or' method</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">q3<span class="op">$</span>or &lt;-<span class="st"> </span><span class="kw">list</span>(QueryCondition<span class="op">$</span><span class="kw">new</span>(<span class="dt">field =</span> <span class="st">"identifications.taxonRank"</span>,</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">                                 <span class="dt">operator=</span><span class="st">"EQUALS"</span>,</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">                                 <span class="dt">value=</span><span class="st">"subspecies"</span>))</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co"># build QuerySpec from QueryConditions</span></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(q1, q2, q3))</a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co"># call API</span></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10">res &lt;-client<span class="op">$</span><span class="kw">query</span>(<span class="dt">querySpec=</span>qs)</a></code></pre></div>
 <div id="size-of-the-query-result-set" class="section level3">
 <h3 class="hasAnchor">
 <a href="#size-of-the-query-result-set" class="anchor"></a>Size of the query result set</h3>
 <p>By default, the NBA returns the first 10 hits for a given query. In, for instance, a query without parameters has many hits</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">res &lt;-<span class="st"> </span>client<span class="op">$</span><span class="kw">query</span>()</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2">res<span class="op">$</span>content<span class="op">$</span>totalSize</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">res &lt;-<span class="st"> </span>client<span class="op">$</span><span class="kw">query</span>()</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">res<span class="op">$</span>content<span class="op">$</span>totalSize</a></code></pre></div>
 <pre><code>## [1] 35279515</code></pre>
 <p>but only the first 10 are returned in the <code>resultSet</code>:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">length</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">length</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet)</a></code></pre></div>
 <pre><code>## [1] 10</code></pre>
 <p>In order to increase the size of a <code>resultSet</code>, a <code>size</code> parameter can be passed to the constructor of a <code>QuerySpec</code> object. Below, we will get the first 1000 records of the query above:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">size=</span><span class="dv">1000</span>)</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2">res &lt;-<span class="st"> </span>client<span class="op">$</span><span class="kw">query</span>(<span class="dt">querySpec=</span>qs)</a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="kw">length</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">size=</span><span class="dv">1000</span>)</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">res &lt;-<span class="st"> </span>client<span class="op">$</span><span class="kw">query</span>(<span class="dt">querySpec=</span>qs)</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="kw">length</span>(res<span class="op">$</span>content<span class="op">$</span>resultSet)</a></code></pre></div>
 <pre><code>## [1] 1000</code></pre>
 </div>
 </div>
