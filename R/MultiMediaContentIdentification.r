@@ -286,6 +286,110 @@ MultiMediaContentIdentification <- R6::R6Class(
       )
       self <- self$fromList(MultiMediaContentIdentificationList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<MultiMediaContentIdentification>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$taxonRank) == "environment") {
+        cat("\ttaxonRank:\tobject of class", paste0("<", class(self$taxonRank)[1], ">"), "\n")
+      }
+      else if (typeof(self$taxonRank) == "list") {
+        cat("\ttaxonRank:\tlist of length", length(self$taxonRank), "\n")
+      }
+      else {
+        cat("\ttaxonRank:\t", self$taxonRank, "\n")
+      }
+      if (typeof(self$scientificName) == "environment") {
+        cat("\tscientificName:\tobject of class", paste0("<", class(self$scientificName)[1], ">"), "\n")
+      }
+      else if (typeof(self$scientificName) == "list") {
+        cat("\tscientificName:\tlist of length", length(self$scientificName), "\n")
+      }
+      else {
+        cat("\tscientificName:\t", self$scientificName, "\n")
+      }
+      if (typeof(self$typeStatus) == "environment") {
+        cat("\ttypeStatus:\tobject of class", paste0("<", class(self$typeStatus)[1], ">"), "\n")
+      }
+      else if (typeof(self$typeStatus) == "list") {
+        cat("\ttypeStatus:\tlist of length", length(self$typeStatus), "\n")
+      }
+      else {
+        cat("\ttypeStatus:\t", self$typeStatus, "\n")
+      }
+      if (typeof(self$dateIdentified) == "environment") {
+        cat("\tdateIdentified:\tobject of class", paste0("<", class(self$dateIdentified)[1], ">"), "\n")
+      }
+      else if (typeof(self$dateIdentified) == "list") {
+        cat("\tdateIdentified:\tlist of length", length(self$dateIdentified), "\n")
+      }
+      else {
+        cat("\tdateIdentified:\t", self$dateIdentified, "\n")
+      }
+      if (typeof(self$defaultClassification) == "environment") {
+        cat("\tdefaultClassification:\tobject of class", paste0("<", class(self$defaultClassification)[1], ">"), "\n")
+      }
+      else if (typeof(self$defaultClassification) == "list") {
+        cat("\tdefaultClassification:\tlist of length", length(self$defaultClassification), "\n")
+      }
+      else {
+        cat("\tdefaultClassification:\t", self$defaultClassification, "\n")
+      }
+      if (typeof(self$systemClassification) == "environment") {
+        cat("\tsystemClassification:\tobject of class", paste0("<", class(self$systemClassification)[1], ">"), "\n")
+      }
+      else if (typeof(self$systemClassification) == "list") {
+        cat("\tsystemClassification:\tlist of length", length(self$systemClassification), "\n")
+      }
+      else {
+        cat("\tsystemClassification:\t", self$systemClassification, "\n")
+      }
+      if (typeof(self$vernacularNames) == "environment") {
+        cat("\tvernacularNames:\tobject of class", paste0("<", class(self$vernacularNames)[1], ">"), "\n")
+      }
+      else if (typeof(self$vernacularNames) == "list") {
+        cat("\tvernacularNames:\tlist of length", length(self$vernacularNames), "\n")
+      }
+      else {
+        cat("\tvernacularNames:\t", self$vernacularNames, "\n")
+      }
+      if (typeof(self$identificationQualifiers) == "environment") {
+        cat("\tidentificationQualifiers:\tobject of class", paste0("<", class(self$identificationQualifiers)[1], ">"), "\n")
+      }
+      else if (typeof(self$identificationQualifiers) == "list") {
+        cat("\tidentificationQualifiers:\tlist of length", length(self$identificationQualifiers), "\n")
+      }
+      else {
+        cat("\tidentificationQualifiers:\t", self$identificationQualifiers, "\n")
+      }
+      if (typeof(self$identifiers) == "environment") {
+        cat("\tidentifiers:\tobject of class", paste0("<", class(self$identifiers)[1], ">"), "\n")
+      }
+      else if (typeof(self$identifiers) == "list") {
+        cat("\tidentifiers:\tlist of length", length(self$identifiers), "\n")
+      }
+      else {
+        cat("\tidentifiers:\t", self$identifiers, "\n")
+      }
+      if (typeof(self$taxonomicEnrichments) == "environment") {
+        cat("\ttaxonomicEnrichments:\tobject of class", paste0("<", class(self$taxonomicEnrichments)[1], ">"), "\n")
+      }
+      else if (typeof(self$taxonomicEnrichments) == "list") {
+        cat("\ttaxonomicEnrichments:\tlist of length", length(self$taxonomicEnrichments), "\n")
+      }
+      else {
+        cat("\ttaxonomicEnrichments:\t", self$taxonomicEnrichments, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

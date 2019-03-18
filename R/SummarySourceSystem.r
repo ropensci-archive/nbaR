@@ -95,6 +95,29 @@ SummarySourceSystem <- R6::R6Class(
       )
       self <- self$fromList(SummarySourceSystemList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<SummarySourceSystem>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$code) == "environment") {
+        cat("\tcode:\tobject of class", paste0("<", class(self$code)[1], ">"), "\n")
+      }
+      else if (typeof(self$code) == "list") {
+        cat("\tcode:\tlist of length", length(self$code), "\n")
+      }
+      else {
+        cat("\tcode:\t", self$code, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

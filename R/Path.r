@@ -91,6 +91,29 @@ Path <- R6::R6Class(
       )
       self <- self$fromList(PathList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<Path>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$purePath) == "environment") {
+        cat("\tpurePath:\tobject of class", paste0("<", class(self$purePath)[1], ">"), "\n")
+      }
+      else if (typeof(self$purePath) == "list") {
+        cat("\tpurePath:\tlist of length", length(self$purePath), "\n")
+      }
+      else {
+        cat("\tpurePath:\t", self$purePath, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

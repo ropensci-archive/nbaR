@@ -614,6 +614,272 @@ MultiMediaGatheringEvent <- R6::R6Class(
       )
       self <- self$fromList(MultiMediaGatheringEventList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<MultiMediaGatheringEvent>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$projectTitle) == "environment") {
+        cat("\tprojectTitle:\tobject of class", paste0("<", class(self$projectTitle)[1], ">"), "\n")
+      }
+      else if (typeof(self$projectTitle) == "list") {
+        cat("\tprojectTitle:\tlist of length", length(self$projectTitle), "\n")
+      }
+      else {
+        cat("\tprojectTitle:\t", self$projectTitle, "\n")
+      }
+      if (typeof(self$worldRegion) == "environment") {
+        cat("\tworldRegion:\tobject of class", paste0("<", class(self$worldRegion)[1], ">"), "\n")
+      }
+      else if (typeof(self$worldRegion) == "list") {
+        cat("\tworldRegion:\tlist of length", length(self$worldRegion), "\n")
+      }
+      else {
+        cat("\tworldRegion:\t", self$worldRegion, "\n")
+      }
+      if (typeof(self$continent) == "environment") {
+        cat("\tcontinent:\tobject of class", paste0("<", class(self$continent)[1], ">"), "\n")
+      }
+      else if (typeof(self$continent) == "list") {
+        cat("\tcontinent:\tlist of length", length(self$continent), "\n")
+      }
+      else {
+        cat("\tcontinent:\t", self$continent, "\n")
+      }
+      if (typeof(self$country) == "environment") {
+        cat("\tcountry:\tobject of class", paste0("<", class(self$country)[1], ">"), "\n")
+      }
+      else if (typeof(self$country) == "list") {
+        cat("\tcountry:\tlist of length", length(self$country), "\n")
+      }
+      else {
+        cat("\tcountry:\t", self$country, "\n")
+      }
+      if (typeof(self$iso3166Code) == "environment") {
+        cat("\tiso3166Code:\tobject of class", paste0("<", class(self$iso3166Code)[1], ">"), "\n")
+      }
+      else if (typeof(self$iso3166Code) == "list") {
+        cat("\tiso3166Code:\tlist of length", length(self$iso3166Code), "\n")
+      }
+      else {
+        cat("\tiso3166Code:\t", self$iso3166Code, "\n")
+      }
+      if (typeof(self$provinceState) == "environment") {
+        cat("\tprovinceState:\tobject of class", paste0("<", class(self$provinceState)[1], ">"), "\n")
+      }
+      else if (typeof(self$provinceState) == "list") {
+        cat("\tprovinceState:\tlist of length", length(self$provinceState), "\n")
+      }
+      else {
+        cat("\tprovinceState:\t", self$provinceState, "\n")
+      }
+      if (typeof(self$island) == "environment") {
+        cat("\tisland:\tobject of class", paste0("<", class(self$island)[1], ">"), "\n")
+      }
+      else if (typeof(self$island) == "list") {
+        cat("\tisland:\tlist of length", length(self$island), "\n")
+      }
+      else {
+        cat("\tisland:\t", self$island, "\n")
+      }
+      if (typeof(self$locality) == "environment") {
+        cat("\tlocality:\tobject of class", paste0("<", class(self$locality)[1], ">"), "\n")
+      }
+      else if (typeof(self$locality) == "list") {
+        cat("\tlocality:\tlist of length", length(self$locality), "\n")
+      }
+      else {
+        cat("\tlocality:\t", self$locality, "\n")
+      }
+      if (typeof(self$city) == "environment") {
+        cat("\tcity:\tobject of class", paste0("<", class(self$city)[1], ">"), "\n")
+      }
+      else if (typeof(self$city) == "list") {
+        cat("\tcity:\tlist of length", length(self$city), "\n")
+      }
+      else {
+        cat("\tcity:\t", self$city, "\n")
+      }
+      if (typeof(self$sublocality) == "environment") {
+        cat("\tsublocality:\tobject of class", paste0("<", class(self$sublocality)[1], ">"), "\n")
+      }
+      else if (typeof(self$sublocality) == "list") {
+        cat("\tsublocality:\tlist of length", length(self$sublocality), "\n")
+      }
+      else {
+        cat("\tsublocality:\t", self$sublocality, "\n")
+      }
+      if (typeof(self$localityText) == "environment") {
+        cat("\tlocalityText:\tobject of class", paste0("<", class(self$localityText)[1], ">"), "\n")
+      }
+      else if (typeof(self$localityText) == "list") {
+        cat("\tlocalityText:\tlist of length", length(self$localityText), "\n")
+      }
+      else {
+        cat("\tlocalityText:\t", self$localityText, "\n")
+      }
+      if (typeof(self$dateTimeBegin) == "environment") {
+        cat("\tdateTimeBegin:\tobject of class", paste0("<", class(self$dateTimeBegin)[1], ">"), "\n")
+      }
+      else if (typeof(self$dateTimeBegin) == "list") {
+        cat("\tdateTimeBegin:\tlist of length", length(self$dateTimeBegin), "\n")
+      }
+      else {
+        cat("\tdateTimeBegin:\t", self$dateTimeBegin, "\n")
+      }
+      if (typeof(self$dateTimeEnd) == "environment") {
+        cat("\tdateTimeEnd:\tobject of class", paste0("<", class(self$dateTimeEnd)[1], ">"), "\n")
+      }
+      else if (typeof(self$dateTimeEnd) == "list") {
+        cat("\tdateTimeEnd:\tlist of length", length(self$dateTimeEnd), "\n")
+      }
+      else {
+        cat("\tdateTimeEnd:\t", self$dateTimeEnd, "\n")
+      }
+      if (typeof(self$method) == "environment") {
+        cat("\tmethod:\tobject of class", paste0("<", class(self$method)[1], ">"), "\n")
+      }
+      else if (typeof(self$method) == "list") {
+        cat("\tmethod:\tlist of length", length(self$method), "\n")
+      }
+      else {
+        cat("\tmethod:\t", self$method, "\n")
+      }
+      if (typeof(self$altitude) == "environment") {
+        cat("\taltitude:\tobject of class", paste0("<", class(self$altitude)[1], ">"), "\n")
+      }
+      else if (typeof(self$altitude) == "list") {
+        cat("\taltitude:\tlist of length", length(self$altitude), "\n")
+      }
+      else {
+        cat("\taltitude:\t", self$altitude, "\n")
+      }
+      if (typeof(self$altitudeUnifOfMeasurement) == "environment") {
+        cat("\taltitudeUnifOfMeasurement:\tobject of class", paste0("<", class(self$altitudeUnifOfMeasurement)[1], ">"), "\n")
+      }
+      else if (typeof(self$altitudeUnifOfMeasurement) == "list") {
+        cat("\taltitudeUnifOfMeasurement:\tlist of length", length(self$altitudeUnifOfMeasurement), "\n")
+      }
+      else {
+        cat("\taltitudeUnifOfMeasurement:\t", self$altitudeUnifOfMeasurement, "\n")
+      }
+      if (typeof(self$biotopeText) == "environment") {
+        cat("\tbiotopeText:\tobject of class", paste0("<", class(self$biotopeText)[1], ">"), "\n")
+      }
+      else if (typeof(self$biotopeText) == "list") {
+        cat("\tbiotopeText:\tlist of length", length(self$biotopeText), "\n")
+      }
+      else {
+        cat("\tbiotopeText:\t", self$biotopeText, "\n")
+      }
+      if (typeof(self$depth) == "environment") {
+        cat("\tdepth:\tobject of class", paste0("<", class(self$depth)[1], ">"), "\n")
+      }
+      else if (typeof(self$depth) == "list") {
+        cat("\tdepth:\tlist of length", length(self$depth), "\n")
+      }
+      else {
+        cat("\tdepth:\t", self$depth, "\n")
+      }
+      if (typeof(self$depthUnitOfMeasurement) == "environment") {
+        cat("\tdepthUnitOfMeasurement:\tobject of class", paste0("<", class(self$depthUnitOfMeasurement)[1], ">"), "\n")
+      }
+      else if (typeof(self$depthUnitOfMeasurement) == "list") {
+        cat("\tdepthUnitOfMeasurement:\tlist of length", length(self$depthUnitOfMeasurement), "\n")
+      }
+      else {
+        cat("\tdepthUnitOfMeasurement:\t", self$depthUnitOfMeasurement, "\n")
+      }
+      if (typeof(self$gatheringPersons) == "environment") {
+        cat("\tgatheringPersons:\tobject of class", paste0("<", class(self$gatheringPersons)[1], ">"), "\n")
+      }
+      else if (typeof(self$gatheringPersons) == "list") {
+        cat("\tgatheringPersons:\tlist of length", length(self$gatheringPersons), "\n")
+      }
+      else {
+        cat("\tgatheringPersons:\t", self$gatheringPersons, "\n")
+      }
+      if (typeof(self$gatheringOrganizations) == "environment") {
+        cat("\tgatheringOrganizations:\tobject of class", paste0("<", class(self$gatheringOrganizations)[1], ">"), "\n")
+      }
+      else if (typeof(self$gatheringOrganizations) == "list") {
+        cat("\tgatheringOrganizations:\tlist of length", length(self$gatheringOrganizations), "\n")
+      }
+      else {
+        cat("\tgatheringOrganizations:\t", self$gatheringOrganizations, "\n")
+      }
+      if (typeof(self$siteCoordinates) == "environment") {
+        cat("\tsiteCoordinates:\tobject of class", paste0("<", class(self$siteCoordinates)[1], ">"), "\n")
+      }
+      else if (typeof(self$siteCoordinates) == "list") {
+        cat("\tsiteCoordinates:\tlist of length", length(self$siteCoordinates), "\n")
+      }
+      else {
+        cat("\tsiteCoordinates:\t", self$siteCoordinates, "\n")
+      }
+      if (typeof(self$namedAreas) == "environment") {
+        cat("\tnamedAreas:\tobject of class", paste0("<", class(self$namedAreas)[1], ">"), "\n")
+      }
+      else if (typeof(self$namedAreas) == "list") {
+        cat("\tnamedAreas:\tlist of length", length(self$namedAreas), "\n")
+      }
+      else {
+        cat("\tnamedAreas:\t", self$namedAreas, "\n")
+      }
+      if (typeof(self$associatedTaxa) == "environment") {
+        cat("\tassociatedTaxa:\tobject of class", paste0("<", class(self$associatedTaxa)[1], ">"), "\n")
+      }
+      else if (typeof(self$associatedTaxa) == "list") {
+        cat("\tassociatedTaxa:\tlist of length", length(self$associatedTaxa), "\n")
+      }
+      else {
+        cat("\tassociatedTaxa:\t", self$associatedTaxa, "\n")
+      }
+      if (typeof(self$chronoStratigraphy) == "environment") {
+        cat("\tchronoStratigraphy:\tobject of class", paste0("<", class(self$chronoStratigraphy)[1], ">"), "\n")
+      }
+      else if (typeof(self$chronoStratigraphy) == "list") {
+        cat("\tchronoStratigraphy:\tlist of length", length(self$chronoStratigraphy), "\n")
+      }
+      else {
+        cat("\tchronoStratigraphy:\t", self$chronoStratigraphy, "\n")
+      }
+      if (typeof(self$lithoStratigraphy) == "environment") {
+        cat("\tlithoStratigraphy:\tobject of class", paste0("<", class(self$lithoStratigraphy)[1], ">"), "\n")
+      }
+      else if (typeof(self$lithoStratigraphy) == "list") {
+        cat("\tlithoStratigraphy:\tlist of length", length(self$lithoStratigraphy), "\n")
+      }
+      else {
+        cat("\tlithoStratigraphy:\t", self$lithoStratigraphy, "\n")
+      }
+      if (typeof(self$iptc) == "environment") {
+        cat("\tiptc:\tobject of class", paste0("<", class(self$iptc)[1], ">"), "\n")
+      }
+      else if (typeof(self$iptc) == "list") {
+        cat("\tiptc:\tlist of length", length(self$iptc), "\n")
+      }
+      else {
+        cat("\tiptc:\t", self$iptc, "\n")
+      }
+      if (typeof(self$bioStratigraphic) == "environment") {
+        cat("\tbioStratigraphic:\tobject of class", paste0("<", class(self$bioStratigraphic)[1], ">"), "\n")
+      }
+      else if (typeof(self$bioStratigraphic) == "list") {
+        cat("\tbioStratigraphic:\tlist of length", length(self$bioStratigraphic), "\n")
+      }
+      else {
+        cat("\tbioStratigraphic:\t", self$bioStratigraphic, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

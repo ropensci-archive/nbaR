@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nbaR</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
       </span>
     </div>
 
@@ -125,7 +125,7 @@
     <div class="page-header toc-ignore">
       <h1>nbaR services examples</h1>
             
-            <h4 class="date">Mar 15, 2019</h4>
+            <h4 class="date">Mar 18, 2019</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/naturalis/nbaR/blob/master/vignettes/services.Rmd"><code>vignettes/services.Rmd</code></a></small>
       <div class="hidden name"><code>services.Rmd</code></div>
@@ -237,45 +237,44 @@
 <a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co"># content is single specimen object</span></a>
 <a class="sourceLine" id="cb14-5" data-line-number="5">res<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## &lt;Specimen&gt;
-##   Public:
-##     acquiredFrom: Agent, R6
-##     assemblageID: NULL
-##     associatedMultiMediaUris: list
-##     clone: function (deep = FALSE) 
-##     collectionType: Mammalia
-##     collectorsFieldNumber: NULL
-##     fromCaptivity: FALSE
-##     fromJSONString: function (SpecimenJson, typeMapping = NULL) 
-##     fromList: function (SpecimenList, typeMapping = NULL) 
-##     gatheringEvent: GatheringEvent, R6
-##     id: RMNH.MAM.17209.B@CRS
-##     identifications: list
-##     initialize: function (sourceSystem, sourceSystemId, recordURI, id, unitID, 
-##     kindOfUnit: skin
-##     license: CC0 4.0
-##     licenseType: Copyright
-##     multiMediaPublic: TRUE
-##     notes: NULL
-##     numberOfSpecimen: 1
-##     objectPublic: TRUE
-##     owner: Naturalis Biodiversity Center
-##     phaseOrStage: juvenile
-##     preparationType: NULL
-##     previousSourceID: NULL
-##     previousUnitsText: NULL
-##     recordBasis: PreservedSpecimen
-##     recordURI: NULL
-##     sex: female
-##     sourceID: CRS
-##     sourceInstitutionID: Naturalis Biodiversity Center
-##     sourceSystem: SourceSystem, R6
-##     sourceSystemId: RMNH.MAM.17209.B
-##     theme: NULL
-##     title: RMNH.MAM.17209.b_RMNH_MAM_17209.b
-##     toJSONString: function (pretty = TRUE) 
-##     toList: function () 
-##     unitGUID: http://data.biodiversitydata.nl/naturalis/specimen/RMNH. ...
-##     unitID: RMNH.MAM.17209.B</code></pre>
+## Fields:
+##  sourceSystem:   object of class &lt;SourceSystem&gt; 
+##  sourceSystemId:  RMNH.MAM.17209.B 
+##  recordURI:   
+##  id:  RMNH.MAM.17209.B@CRS 
+##  unitID:  RMNH.MAM.17209.B 
+##  unitGUID:    http://data.biodiversitydata.nl/naturalis/specimen/RMNH.MAM.17209.B 
+##  collectorsFieldNumber:   
+##  assemblageID:    
+##  sourceInstitutionID:     Naturalis Biodiversity Center 
+##  sourceID:    CRS 
+##  previousSourceID:    
+##  owner:   Naturalis Biodiversity Center 
+##  licenseType:     Copyright 
+##  license:     CC0 4.0 
+##  recordBasis:     PreservedSpecimen 
+##  kindOfUnit:  skin 
+##  collectionType:  Mammalia 
+##  sex:     female 
+##  phaseOrStage:    juvenile 
+##  title:   RMNH.MAM.17209.b_RMNH_MAM_17209.b 
+##  notes:   
+##  preparationType:     
+##  previousUnitsText:   
+##  numberOfSpecimen:    1 
+##  fromCaptivity:   FALSE 
+##  objectPublic:    TRUE 
+##  multiMediaPublic:    TRUE 
+##  acquiredFrom:   object of class &lt;Agent&gt; 
+##  gatheringEvent: object of class &lt;GatheringEvent&gt; 
+##  identifications:    list of length 1 
+##  associatedMultiMediaUris:   list of length 0 
+##  theme:   
+## Methods:
+##  fromJSONString
+##  toJSONString
+##  fromList
+##  toList</code></pre>
 </div>
 <div id="find_by_ids" class="section level4">
 <h4 class="hasAnchor">
@@ -569,11 +568,9 @@
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co"># get all settings</span></a>
 <a class="sourceLine" id="cb27-2" data-line-number="2">sc<span class="op">$</span><span class="kw">get_settings</span>()</a></code></pre></div>
 <pre><code>## &lt;Response&gt;
-##   Public:
-##     clone: function (deep = FALSE) 
-##     content: list
-##     initialize: function (content, response) 
-##     response: response</code></pre>
+## Fields:
+##  content: object of class &lt;list&gt; 
+##  response: object of class &lt;response&gt; (httr package)</code></pre>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="co"># get specific setting</span></a>
 <a class="sourceLine" id="cb29-2" data-line-number="2">sc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"index.max_result_window"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [[1]]
@@ -638,7 +635,7 @@
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="co"># download dataset 'porifera' to temporary file</span></a>
 <a class="sourceLine" id="cb42-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
 <a class="sourceLine" id="cb42-3" data-line-number="3">sc<span class="op">$</span><span class="kw">dwca_get_data_set</span>(<span class="st">'porifera'</span>, <span class="dt">filename=</span>filename)                                                                               </a></code></pre></div>
-<pre><code>## Query result written to /tmp/RtmpFNOJEE/file74b867ae4978.zip</code></pre>
+<pre><code>## Query result written to /tmp/Rtmp3OXWJt/file55c62aa79ca9.zip</code></pre>
 </div>
 <div id="dynamic-download" class="section level4">
 <h4 class="hasAnchor">
@@ -655,7 +652,7 @@
 <a class="sourceLine" id="cb44-9" data-line-number="9">    )</a>
 <a class="sourceLine" id="cb44-10" data-line-number="10">  ))</a>
 <a class="sourceLine" id="cb44-11" data-line-number="11">sc<span class="op">$</span><span class="kw">dwca_query</span>(<span class="dt">querySpec =</span> qs, <span class="dt">filename =</span> filename)</a></code></pre></div>
-<pre><code>## Query result written to /tmp/RtmpFNOJEE/file74b81e21395c.zip</code></pre>
+<pre><code>## Query result written to /tmp/Rtmp3OXWJt/file55c6359e54cf.zip</code></pre>
 </div>
 </div>
 </div>
@@ -708,11 +705,9 @@
 <a class="sourceLine" id="cb47-11" data-line-number="11">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions =</span> <span class="kw">list</span>(qc, qc2))</a>
 <a class="sourceLine" id="cb47-12" data-line-number="12">tc<span class="op">$</span><span class="kw">count</span>(qs)</a></code></pre></div>
 <pre><code>## &lt;Response&gt;
-##   Public:
-##     clone: function (deep = FALSE) 
-##     content: 23
-##     initialize: function (content, response) 
-##     response: response</code></pre>
+## Fields:
+##  content: object of class &lt;integer&gt; 
+##  response: object of class &lt;response&gt; (httr package)</code></pre>
 </div>
 <div id="find-1" class="section level4">
 <h4 class="hasAnchor">
@@ -871,11 +866,9 @@
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="co"># get all settings</span></a>
 <a class="sourceLine" id="cb60-2" data-line-number="2">tc<span class="op">$</span><span class="kw">get_settings</span>()</a></code></pre></div>
 <pre><code>## &lt;Response&gt;
-##   Public:
-##     clone: function (deep = FALSE) 
-##     content: list
-##     initialize: function (content, response) 
-##     response: response</code></pre>
+## Fields:
+##  content: object of class &lt;list&gt; 
+##  response: object of class &lt;response&gt; (httr package)</code></pre>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="co"># get specific setting</span></a>
 <a class="sourceLine" id="cb62-2" data-line-number="2">tc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"index.max_result_window"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [[1]]
@@ -932,7 +925,7 @@
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="co"># download dataset 'nsr' to temporary file</span></a>
 <a class="sourceLine" id="cb76-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
 <a class="sourceLine" id="cb76-3" data-line-number="3">tc<span class="op">$</span><span class="kw">dwca_get_data_set</span>(<span class="st">'nsr'</span>, <span class="dt">filename=</span>filename)                                                                               </a></code></pre></div>
-<pre><code>## Query result written to /tmp/RtmpFNOJEE/file74b81c3e65a1.zip</code></pre>
+<pre><code>## Query result written to /tmp/Rtmp3OXWJt/file55c67b538c0b.zip</code></pre>
 </div>
 <div id="dynamic-download-1" class="section level4">
 <h4 class="hasAnchor">
@@ -949,7 +942,7 @@
 <a class="sourceLine" id="cb78-9" data-line-number="9">    )</a>
 <a class="sourceLine" id="cb78-10" data-line-number="10">  ))</a>
 <a class="sourceLine" id="cb78-11" data-line-number="11">tc<span class="op">$</span><span class="kw">dwca_query</span>(<span class="dt">querySpec =</span> qs, <span class="dt">filename =</span> filename)</a></code></pre></div>
-<pre><code>## Query result written to /tmp/RtmpFNOJEE/file74b86f29dde2.zip</code></pre>
+<pre><code>## Query result written to /tmp/Rtmp3OXWJt/file55c66a01d1ed.zip</code></pre>
 </div>
 </div>
 </div>
@@ -974,23 +967,22 @@
 <a class="sourceLine" id="cb80-12" data-line-number="12"><span class="co"># get item</span></a>
 <a class="sourceLine" id="cb80-13" data-line-number="13">res<span class="op">$</span>content<span class="op">$</span>resultSet[[<span class="dv">1</span>]]<span class="op">$</span>item</a></code></pre></div>
 <pre><code>## &lt;GeoArea&gt;
-##   Public:
-##     areaType: Country
-##     clone: function (deep = FALSE) 
-##     countryNL: Nederland
-##     fromJSONString: function (GeoAreaJson, typeMapping = NULL) 
-##     fromList: function (GeoAreaList, typeMapping = NULL) 
-##     id: 1004050@GEO
-##     initialize: function (sourceSystem, sourceSystemId, recordURI, id, areaType, 
-##     isoCode: NLD
-##     locality: Netherlands
-##     recordURI: NULL
-##     shape: list
-##     source: World Countries
-##     sourceSystem: SourceSystem, R6
-##     sourceSystemId: 1004050
-##     toJSONString: function (pretty = TRUE) 
-##     toList: function ()</code></pre>
+## Fields:
+##  sourceSystem:   object of class &lt;SourceSystem&gt; 
+##  sourceSystemId:  1004050 
+##  recordURI:   
+##  id:  1004050@GEO 
+##  areaType:    Country 
+##  locality:    Netherlands 
+##  shape:  list of length 2 
+##  source:  World Countries 
+##  isoCode:     NLD 
+##  countryNL:   Nederland 
+## Methods:
+##  fromJSONString
+##  toJSONString
+##  fromList
+##  toList</code></pre>
 </div>
 <div id="data-access-services-2" class="section level3">
 <h3 class="hasAnchor">
@@ -1061,11 +1053,9 @@
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1"><span class="co"># get all settings</span></a>
 <a class="sourceLine" id="cb92-2" data-line-number="2">gc<span class="op">$</span><span class="kw">get_settings</span>()</a></code></pre></div>
 <pre><code>## &lt;Response&gt;
-##   Public:
-##     clone: function (deep = FALSE) 
-##     content: list
-##     initialize: function (content, response) 
-##     response: response</code></pre>
+## Fields:
+##  content: object of class &lt;list&gt; 
+##  response: object of class &lt;response&gt; (httr package)</code></pre>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1"><span class="co"># get specific setting</span></a>
 <a class="sourceLine" id="cb94-2" data-line-number="2">gc<span class="op">$</span><span class="kw">get_setting</span>(<span class="st">"index.max_result_window"</span>)<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## [[1]]
@@ -1087,15 +1077,14 @@
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1"><span class="co"># example of multimedia query passing parameters as a list</span></a>
 <a class="sourceLine" id="cb99-2" data-line-number="2">mc<span class="op">$</span><span class="kw">query</span>(<span class="dt">queryParams =</span> <span class="kw">list</span>(<span class="dt">collectionType =</span> <span class="st">'Cnidaria'</span>))<span class="op">$</span>content</a></code></pre></div>
 <pre><code>## &lt;QueryResult&gt;
-##   Public:
-##     clone: function (deep = FALSE) 
-##     fromJSONString: function (QueryResultJson, typeMapping = NULL) 
-##     fromList: function (QueryResultList, typeMapping = NULL) 
-##     initialize: function (totalSize, resultSet) 
-##     resultSet: list
-##     toJSONString: function (pretty = TRUE) 
-##     toList: function () 
-##     totalSize: 42350</code></pre>
+## Fields:
+##  totalSize:   42350 
+##  resultSet:  list of length 10 
+## Methods:
+##  fromJSONString
+##  toJSONString
+##  fromList
+##  toList</code></pre>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1"><span class="co"># example of multimedia query using QuerySpec: get the first 100</span></a>
 <a class="sourceLine" id="cb101-2" data-line-number="2"><span class="co"># multimedia items associated with a specimen with name starting with "Ba"</span></a>
 <a class="sourceLine" id="cb101-3" data-line-number="3">qc &lt;-</a>
@@ -1350,18 +1339,17 @@
 <div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1"><span class="co"># get the endPoint of the first rest service in the services list</span></a>
 <a class="sourceLine" id="cb129-2" data-line-number="2">mc<span class="op">$</span><span class="kw">get_rest_services</span>()<span class="op">$</span>content[[<span class="dv">1</span>]]</a></code></pre></div>
 <pre><code>## &lt;RestService&gt;
-##   Public:
-##     clone: function (deep = FALSE) 
-##     consumes: NULL
-##     endPoint: /
-##     fromJSONString: function (RestServiceJson, typeMapping = NULL) 
-##     fromList: function (RestServiceList, typeMapping = NULL) 
-##     initialize: function (endPoint, method, consumes, produces, url) 
-##     method: GET
-##     produces: text/html;charset=UTF-8
-##     toJSONString: function (pretty = TRUE) 
-##     toList: function () 
-##     url: http://api.biodiversitydata.nl/v2/</code></pre>
+## Fields:
+##  endPoint:    / 
+##  method:  GET 
+##  consumes:    
+##  produces:    text/html;charset=UTF-8 
+##  url:     http://api.biodiversitydata.nl/v2/ 
+## Methods:
+##  fromJSONString
+##  toJSONString
+##  fromList
+##  toList</code></pre>
 </div>
 <div id="settings-3" class="section level5">
 <h5 class="hasAnchor">

@@ -214,6 +214,83 @@ QuerySpec <- R6::R6Class(
       )
       self <- self$fromList(QuerySpecList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<QuerySpec>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$constantScore) == "environment") {
+        cat("\tconstantScore:\tobject of class", paste0("<", class(self$constantScore)[1], ">"), "\n")
+      }
+      else if (typeof(self$constantScore) == "list") {
+        cat("\tconstantScore:\tlist of length", length(self$constantScore), "\n")
+      }
+      else {
+        cat("\tconstantScore:\t", self$constantScore, "\n")
+      }
+      if (typeof(self$fields) == "environment") {
+        cat("\tfields:\tobject of class", paste0("<", class(self$fields)[1], ">"), "\n")
+      }
+      else if (typeof(self$fields) == "list") {
+        cat("\tfields:\tlist of length", length(self$fields), "\n")
+      }
+      else {
+        cat("\tfields:\t", self$fields, "\n")
+      }
+      if (typeof(self$conditions) == "environment") {
+        cat("\tconditions:\tobject of class", paste0("<", class(self$conditions)[1], ">"), "\n")
+      }
+      else if (typeof(self$conditions) == "list") {
+        cat("\tconditions:\tlist of length", length(self$conditions), "\n")
+      }
+      else {
+        cat("\tconditions:\t", self$conditions, "\n")
+      }
+      if (typeof(self$logicalOperator) == "environment") {
+        cat("\tlogicalOperator:\tobject of class", paste0("<", class(self$logicalOperator)[1], ">"), "\n")
+      }
+      else if (typeof(self$logicalOperator) == "list") {
+        cat("\tlogicalOperator:\tlist of length", length(self$logicalOperator), "\n")
+      }
+      else {
+        cat("\tlogicalOperator:\t", self$logicalOperator, "\n")
+      }
+      if (typeof(self$sortFields) == "environment") {
+        cat("\tsortFields:\tobject of class", paste0("<", class(self$sortFields)[1], ">"), "\n")
+      }
+      else if (typeof(self$sortFields) == "list") {
+        cat("\tsortFields:\tlist of length", length(self$sortFields), "\n")
+      }
+      else {
+        cat("\tsortFields:\t", self$sortFields, "\n")
+      }
+      if (typeof(self$from) == "environment") {
+        cat("\tfrom:\tobject of class", paste0("<", class(self$from)[1], ">"), "\n")
+      }
+      else if (typeof(self$from) == "list") {
+        cat("\tfrom:\tlist of length", length(self$from), "\n")
+      }
+      else {
+        cat("\tfrom:\t", self$from, "\n")
+      }
+      if (typeof(self$size) == "environment") {
+        cat("\tsize:\tobject of class", paste0("<", class(self$size)[1], ">"), "\n")
+      }
+      else if (typeof(self$size) == "list") {
+        cat("\tsize:\tlist of length", length(self$size), "\n")
+      }
+      else {
+        cat("\tsize:\t", self$size, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

@@ -255,6 +255,119 @@ DefaultClassification <- R6::R6Class(
       )
       self <- self$fromList(DefaultClassificationList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<DefaultClassification>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$kingdom) == "environment") {
+        cat("\tkingdom:\tobject of class", paste0("<", class(self$kingdom)[1], ">"), "\n")
+      }
+      else if (typeof(self$kingdom) == "list") {
+        cat("\tkingdom:\tlist of length", length(self$kingdom), "\n")
+      }
+      else {
+        cat("\tkingdom:\t", self$kingdom, "\n")
+      }
+      if (typeof(self$phylum) == "environment") {
+        cat("\tphylum:\tobject of class", paste0("<", class(self$phylum)[1], ">"), "\n")
+      }
+      else if (typeof(self$phylum) == "list") {
+        cat("\tphylum:\tlist of length", length(self$phylum), "\n")
+      }
+      else {
+        cat("\tphylum:\t", self$phylum, "\n")
+      }
+      if (typeof(self$className) == "environment") {
+        cat("\tclassName:\tobject of class", paste0("<", class(self$className)[1], ">"), "\n")
+      }
+      else if (typeof(self$className) == "list") {
+        cat("\tclassName:\tlist of length", length(self$className), "\n")
+      }
+      else {
+        cat("\tclassName:\t", self$className, "\n")
+      }
+      if (typeof(self$order) == "environment") {
+        cat("\torder:\tobject of class", paste0("<", class(self$order)[1], ">"), "\n")
+      }
+      else if (typeof(self$order) == "list") {
+        cat("\torder:\tlist of length", length(self$order), "\n")
+      }
+      else {
+        cat("\torder:\t", self$order, "\n")
+      }
+      if (typeof(self$superFamily) == "environment") {
+        cat("\tsuperFamily:\tobject of class", paste0("<", class(self$superFamily)[1], ">"), "\n")
+      }
+      else if (typeof(self$superFamily) == "list") {
+        cat("\tsuperFamily:\tlist of length", length(self$superFamily), "\n")
+      }
+      else {
+        cat("\tsuperFamily:\t", self$superFamily, "\n")
+      }
+      if (typeof(self$family) == "environment") {
+        cat("\tfamily:\tobject of class", paste0("<", class(self$family)[1], ">"), "\n")
+      }
+      else if (typeof(self$family) == "list") {
+        cat("\tfamily:\tlist of length", length(self$family), "\n")
+      }
+      else {
+        cat("\tfamily:\t", self$family, "\n")
+      }
+      if (typeof(self$genus) == "environment") {
+        cat("\tgenus:\tobject of class", paste0("<", class(self$genus)[1], ">"), "\n")
+      }
+      else if (typeof(self$genus) == "list") {
+        cat("\tgenus:\tlist of length", length(self$genus), "\n")
+      }
+      else {
+        cat("\tgenus:\t", self$genus, "\n")
+      }
+      if (typeof(self$subgenus) == "environment") {
+        cat("\tsubgenus:\tobject of class", paste0("<", class(self$subgenus)[1], ">"), "\n")
+      }
+      else if (typeof(self$subgenus) == "list") {
+        cat("\tsubgenus:\tlist of length", length(self$subgenus), "\n")
+      }
+      else {
+        cat("\tsubgenus:\t", self$subgenus, "\n")
+      }
+      if (typeof(self$specificEpithet) == "environment") {
+        cat("\tspecificEpithet:\tobject of class", paste0("<", class(self$specificEpithet)[1], ">"), "\n")
+      }
+      else if (typeof(self$specificEpithet) == "list") {
+        cat("\tspecificEpithet:\tlist of length", length(self$specificEpithet), "\n")
+      }
+      else {
+        cat("\tspecificEpithet:\t", self$specificEpithet, "\n")
+      }
+      if (typeof(self$infraspecificEpithet) == "environment") {
+        cat("\tinfraspecificEpithet:\tobject of class", paste0("<", class(self$infraspecificEpithet)[1], ">"), "\n")
+      }
+      else if (typeof(self$infraspecificEpithet) == "list") {
+        cat("\tinfraspecificEpithet:\tlist of length", length(self$infraspecificEpithet), "\n")
+      }
+      else {
+        cat("\tinfraspecificEpithet:\t", self$infraspecificEpithet, "\n")
+      }
+      if (typeof(self$infraspecificRank) == "environment") {
+        cat("\tinfraspecificRank:\tobject of class", paste0("<", class(self$infraspecificRank)[1], ">"), "\n")
+      }
+      else if (typeof(self$infraspecificRank) == "list") {
+        cat("\tinfraspecificRank:\tlist of length", length(self$infraspecificRank), "\n")
+      }
+      else {
+        cat("\tinfraspecificRank:\t", self$infraspecificRank, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

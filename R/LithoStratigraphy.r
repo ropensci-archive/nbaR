@@ -347,6 +347,173 @@ LithoStratigraphy <- R6::R6Class(
       )
       self <- self$fromList(LithoStratigraphyList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<LithoStratigraphy>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$qualifier) == "environment") {
+        cat("\tqualifier:\tobject of class", paste0("<", class(self$qualifier)[1], ">"), "\n")
+      }
+      else if (typeof(self$qualifier) == "list") {
+        cat("\tqualifier:\tlist of length", length(self$qualifier), "\n")
+      }
+      else {
+        cat("\tqualifier:\t", self$qualifier, "\n")
+      }
+      if (typeof(self$preferredFlag) == "environment") {
+        cat("\tpreferredFlag:\tobject of class", paste0("<", class(self$preferredFlag)[1], ">"), "\n")
+      }
+      else if (typeof(self$preferredFlag) == "list") {
+        cat("\tpreferredFlag:\tlist of length", length(self$preferredFlag), "\n")
+      }
+      else {
+        cat("\tpreferredFlag:\t", self$preferredFlag, "\n")
+      }
+      if (typeof(self$member2) == "environment") {
+        cat("\tmember2:\tobject of class", paste0("<", class(self$member2)[1], ">"), "\n")
+      }
+      else if (typeof(self$member2) == "list") {
+        cat("\tmember2:\tlist of length", length(self$member2), "\n")
+      }
+      else {
+        cat("\tmember2:\t", self$member2, "\n")
+      }
+      if (typeof(self$member) == "environment") {
+        cat("\tmember:\tobject of class", paste0("<", class(self$member)[1], ">"), "\n")
+      }
+      else if (typeof(self$member) == "list") {
+        cat("\tmember:\tlist of length", length(self$member), "\n")
+      }
+      else {
+        cat("\tmember:\t", self$member, "\n")
+      }
+      if (typeof(self$informalName2) == "environment") {
+        cat("\tinformalName2:\tobject of class", paste0("<", class(self$informalName2)[1], ">"), "\n")
+      }
+      else if (typeof(self$informalName2) == "list") {
+        cat("\tinformalName2:\tlist of length", length(self$informalName2), "\n")
+      }
+      else {
+        cat("\tinformalName2:\t", self$informalName2, "\n")
+      }
+      if (typeof(self$informalName) == "environment") {
+        cat("\tinformalName:\tobject of class", paste0("<", class(self$informalName)[1], ">"), "\n")
+      }
+      else if (typeof(self$informalName) == "list") {
+        cat("\tinformalName:\tlist of length", length(self$informalName), "\n")
+      }
+      else {
+        cat("\tinformalName:\t", self$informalName, "\n")
+      }
+      if (typeof(self$importedName2) == "environment") {
+        cat("\timportedName2:\tobject of class", paste0("<", class(self$importedName2)[1], ">"), "\n")
+      }
+      else if (typeof(self$importedName2) == "list") {
+        cat("\timportedName2:\tlist of length", length(self$importedName2), "\n")
+      }
+      else {
+        cat("\timportedName2:\t", self$importedName2, "\n")
+      }
+      if (typeof(self$importedName1) == "environment") {
+        cat("\timportedName1:\tobject of class", paste0("<", class(self$importedName1)[1], ">"), "\n")
+      }
+      else if (typeof(self$importedName1) == "list") {
+        cat("\timportedName1:\tlist of length", length(self$importedName1), "\n")
+      }
+      else {
+        cat("\timportedName1:\t", self$importedName1, "\n")
+      }
+      if (typeof(self$lithoIdentifier) == "environment") {
+        cat("\tlithoIdentifier:\tobject of class", paste0("<", class(self$lithoIdentifier)[1], ">"), "\n")
+      }
+      else if (typeof(self$lithoIdentifier) == "list") {
+        cat("\tlithoIdentifier:\tlist of length", length(self$lithoIdentifier), "\n")
+      }
+      else {
+        cat("\tlithoIdentifier:\t", self$lithoIdentifier, "\n")
+      }
+      if (typeof(self$formation2) == "environment") {
+        cat("\tformation2:\tobject of class", paste0("<", class(self$formation2)[1], ">"), "\n")
+      }
+      else if (typeof(self$formation2) == "list") {
+        cat("\tformation2:\tlist of length", length(self$formation2), "\n")
+      }
+      else {
+        cat("\tformation2:\t", self$formation2, "\n")
+      }
+      if (typeof(self$formationGroup2) == "environment") {
+        cat("\tformationGroup2:\tobject of class", paste0("<", class(self$formationGroup2)[1], ">"), "\n")
+      }
+      else if (typeof(self$formationGroup2) == "list") {
+        cat("\tformationGroup2:\tlist of length", length(self$formationGroup2), "\n")
+      }
+      else {
+        cat("\tformationGroup2:\t", self$formationGroup2, "\n")
+      }
+      if (typeof(self$formationGroup) == "environment") {
+        cat("\tformationGroup:\tobject of class", paste0("<", class(self$formationGroup)[1], ">"), "\n")
+      }
+      else if (typeof(self$formationGroup) == "list") {
+        cat("\tformationGroup:\tlist of length", length(self$formationGroup), "\n")
+      }
+      else {
+        cat("\tformationGroup:\t", self$formationGroup, "\n")
+      }
+      if (typeof(self$formation) == "environment") {
+        cat("\tformation:\tobject of class", paste0("<", class(self$formation)[1], ">"), "\n")
+      }
+      else if (typeof(self$formation) == "list") {
+        cat("\tformation:\tlist of length", length(self$formation), "\n")
+      }
+      else {
+        cat("\tformation:\t", self$formation, "\n")
+      }
+      if (typeof(self$certainty2) == "environment") {
+        cat("\tcertainty2:\tobject of class", paste0("<", class(self$certainty2)[1], ">"), "\n")
+      }
+      else if (typeof(self$certainty2) == "list") {
+        cat("\tcertainty2:\tlist of length", length(self$certainty2), "\n")
+      }
+      else {
+        cat("\tcertainty2:\t", self$certainty2, "\n")
+      }
+      if (typeof(self$certainty) == "environment") {
+        cat("\tcertainty:\tobject of class", paste0("<", class(self$certainty)[1], ">"), "\n")
+      }
+      else if (typeof(self$certainty) == "list") {
+        cat("\tcertainty:\tlist of length", length(self$certainty), "\n")
+      }
+      else {
+        cat("\tcertainty:\t", self$certainty, "\n")
+      }
+      if (typeof(self$bed2) == "environment") {
+        cat("\tbed2:\tobject of class", paste0("<", class(self$bed2)[1], ">"), "\n")
+      }
+      else if (typeof(self$bed2) == "list") {
+        cat("\tbed2:\tlist of length", length(self$bed2), "\n")
+      }
+      else {
+        cat("\tbed2:\t", self$bed2, "\n")
+      }
+      if (typeof(self$bed) == "environment") {
+        cat("\tbed:\tobject of class", paste0("<", class(self$bed)[1], ">"), "\n")
+      }
+      else if (typeof(self$bed) == "list") {
+        cat("\tbed:\tlist of length", length(self$bed), "\n")
+      }
+      else {
+        cat("\tbed:\t", self$bed, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

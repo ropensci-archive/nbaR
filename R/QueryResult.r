@@ -122,6 +122,38 @@ QueryResult <- R6::R6Class(
       )
       self <- self$fromList(QueryResultList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<QueryResult>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$totalSize) == "environment") {
+        cat("\ttotalSize:\tobject of class", paste0("<", class(self$totalSize)[1], ">"), "\n")
+      }
+      else if (typeof(self$totalSize) == "list") {
+        cat("\ttotalSize:\tlist of length", length(self$totalSize), "\n")
+      }
+      else {
+        cat("\ttotalSize:\t", self$totalSize, "\n")
+      }
+      if (typeof(self$resultSet) == "environment") {
+        cat("\tresultSet:\tobject of class", paste0("<", class(self$resultSet)[1], ">"), "\n")
+      }
+      else if (typeof(self$resultSet) == "list") {
+        cat("\tresultSet:\tlist of length", length(self$resultSet), "\n")
+      }
+      else {
+        cat("\tresultSet:\t", self$resultSet, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

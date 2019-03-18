@@ -107,6 +107,38 @@ Crs <- R6::R6Class(
       )
       self <- self$fromList(CrsList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<Crs>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$type) == "environment") {
+        cat("\ttype:\tobject of class", paste0("<", class(self$type)[1], ">"), "\n")
+      }
+      else if (typeof(self$type) == "list") {
+        cat("\ttype:\tlist of length", length(self$type), "\n")
+      }
+      else {
+        cat("\ttype:\t", self$type, "\n")
+      }
+      if (typeof(self$properties) == "environment") {
+        cat("\tproperties:\tobject of class", paste0("<", class(self$properties)[1], ">"), "\n")
+      }
+      else if (typeof(self$properties) == "list") {
+        cat("\tproperties:\tlist of length", length(self$properties), "\n")
+      }
+      else {
+        cat("\tproperties:\t", self$properties, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

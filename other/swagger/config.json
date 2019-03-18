@@ -3,7 +3,7 @@
 	"systemProperties" : {
 		"generateApiDocs" : "true",
 		"apiDocs" : "true",
-		"packageVersion" : "0.0.0"
+		"packageVersion" : "0.0.1"
 	}
 	
 }

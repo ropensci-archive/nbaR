@@ -111,6 +111,38 @@ NamedArea <- R6::R6Class(
       )
       self <- self$fromList(NamedAreaList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<NamedArea>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$areaClass) == "environment") {
+        cat("\tareaClass:\tobject of class", paste0("<", class(self$areaClass)[1], ">"), "\n")
+      }
+      else if (typeof(self$areaClass) == "list") {
+        cat("\tareaClass:\tlist of length", length(self$areaClass), "\n")
+      }
+      else {
+        cat("\tareaClass:\t", self$areaClass, "\n")
+      }
+      if (typeof(self$areaName) == "environment") {
+        cat("\tareaName:\tobject of class", paste0("<", class(self$areaName)[1], ">"), "\n")
+      }
+      else if (typeof(self$areaName) == "list") {
+        cat("\tareaName:\tlist of length", length(self$areaName), "\n")
+      }
+      else {
+        cat("\tareaName:\t", self$areaName, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

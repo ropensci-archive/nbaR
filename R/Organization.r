@@ -111,6 +111,38 @@ Organization <- R6::R6Class(
       )
       self <- self$fromList(OrganizationList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<Organization>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$agentText) == "environment") {
+        cat("\tagentText:\tobject of class", paste0("<", class(self$agentText)[1], ">"), "\n")
+      }
+      else if (typeof(self$agentText) == "list") {
+        cat("\tagentText:\tlist of length", length(self$agentText), "\n")
+      }
+      else {
+        cat("\tagentText:\t", self$agentText, "\n")
+      }
+      if (typeof(self$name) == "environment") {
+        cat("\tname:\tobject of class", paste0("<", class(self$name)[1], ">"), "\n")
+      }
+      else if (typeof(self$name) == "list") {
+        cat("\tname:\tlist of length", length(self$name), "\n")
+      }
+      else {
+        cat("\tname:\t", self$name, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

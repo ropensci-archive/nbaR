@@ -315,6 +315,155 @@ BioStratigraphy <- R6::R6Class(
       )
       self <- self$fromList(BioStratigraphyList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<BioStratigraphy>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$youngBioDatingQualifier) == "environment") {
+        cat("\tyoungBioDatingQualifier:\tobject of class", paste0("<", class(self$youngBioDatingQualifier)[1], ">"), "\n")
+      }
+      else if (typeof(self$youngBioDatingQualifier) == "list") {
+        cat("\tyoungBioDatingQualifier:\tlist of length", length(self$youngBioDatingQualifier), "\n")
+      }
+      else {
+        cat("\tyoungBioDatingQualifier:\t", self$youngBioDatingQualifier, "\n")
+      }
+      if (typeof(self$youngBioName) == "environment") {
+        cat("\tyoungBioName:\tobject of class", paste0("<", class(self$youngBioName)[1], ">"), "\n")
+      }
+      else if (typeof(self$youngBioName) == "list") {
+        cat("\tyoungBioName:\tlist of length", length(self$youngBioName), "\n")
+      }
+      else {
+        cat("\tyoungBioName:\t", self$youngBioName, "\n")
+      }
+      if (typeof(self$youngFossilZone) == "environment") {
+        cat("\tyoungFossilZone:\tobject of class", paste0("<", class(self$youngFossilZone)[1], ">"), "\n")
+      }
+      else if (typeof(self$youngFossilZone) == "list") {
+        cat("\tyoungFossilZone:\tlist of length", length(self$youngFossilZone), "\n")
+      }
+      else {
+        cat("\tyoungFossilZone:\t", self$youngFossilZone, "\n")
+      }
+      if (typeof(self$youngFossilSubZone) == "environment") {
+        cat("\tyoungFossilSubZone:\tobject of class", paste0("<", class(self$youngFossilSubZone)[1], ">"), "\n")
+      }
+      else if (typeof(self$youngFossilSubZone) == "list") {
+        cat("\tyoungFossilSubZone:\tlist of length", length(self$youngFossilSubZone), "\n")
+      }
+      else {
+        cat("\tyoungFossilSubZone:\t", self$youngFossilSubZone, "\n")
+      }
+      if (typeof(self$youngBioCertainty) == "environment") {
+        cat("\tyoungBioCertainty:\tobject of class", paste0("<", class(self$youngBioCertainty)[1], ">"), "\n")
+      }
+      else if (typeof(self$youngBioCertainty) == "list") {
+        cat("\tyoungBioCertainty:\tlist of length", length(self$youngBioCertainty), "\n")
+      }
+      else {
+        cat("\tyoungBioCertainty:\t", self$youngBioCertainty, "\n")
+      }
+      if (typeof(self$youngStratType) == "environment") {
+        cat("\tyoungStratType:\tobject of class", paste0("<", class(self$youngStratType)[1], ">"), "\n")
+      }
+      else if (typeof(self$youngStratType) == "list") {
+        cat("\tyoungStratType:\tlist of length", length(self$youngStratType), "\n")
+      }
+      else {
+        cat("\tyoungStratType:\t", self$youngStratType, "\n")
+      }
+      if (typeof(self$bioDatingQualifier) == "environment") {
+        cat("\tbioDatingQualifier:\tobject of class", paste0("<", class(self$bioDatingQualifier)[1], ">"), "\n")
+      }
+      else if (typeof(self$bioDatingQualifier) == "list") {
+        cat("\tbioDatingQualifier:\tlist of length", length(self$bioDatingQualifier), "\n")
+      }
+      else {
+        cat("\tbioDatingQualifier:\t", self$bioDatingQualifier, "\n")
+      }
+      if (typeof(self$bioPreferredFlag) == "environment") {
+        cat("\tbioPreferredFlag:\tobject of class", paste0("<", class(self$bioPreferredFlag)[1], ">"), "\n")
+      }
+      else if (typeof(self$bioPreferredFlag) == "list") {
+        cat("\tbioPreferredFlag:\tlist of length", length(self$bioPreferredFlag), "\n")
+      }
+      else {
+        cat("\tbioPreferredFlag:\t", self$bioPreferredFlag, "\n")
+      }
+      if (typeof(self$rangePosition) == "environment") {
+        cat("\trangePosition:\tobject of class", paste0("<", class(self$rangePosition)[1], ">"), "\n")
+      }
+      else if (typeof(self$rangePosition) == "list") {
+        cat("\trangePosition:\tlist of length", length(self$rangePosition), "\n")
+      }
+      else {
+        cat("\trangePosition:\t", self$rangePosition, "\n")
+      }
+      if (typeof(self$oldBioName) == "environment") {
+        cat("\toldBioName:\tobject of class", paste0("<", class(self$oldBioName)[1], ">"), "\n")
+      }
+      else if (typeof(self$oldBioName) == "list") {
+        cat("\toldBioName:\tlist of length", length(self$oldBioName), "\n")
+      }
+      else {
+        cat("\toldBioName:\t", self$oldBioName, "\n")
+      }
+      if (typeof(self$bioIdentifier) == "environment") {
+        cat("\tbioIdentifier:\tobject of class", paste0("<", class(self$bioIdentifier)[1], ">"), "\n")
+      }
+      else if (typeof(self$bioIdentifier) == "list") {
+        cat("\tbioIdentifier:\tlist of length", length(self$bioIdentifier), "\n")
+      }
+      else {
+        cat("\tbioIdentifier:\t", self$bioIdentifier, "\n")
+      }
+      if (typeof(self$oldFossilzone) == "environment") {
+        cat("\toldFossilzone:\tobject of class", paste0("<", class(self$oldFossilzone)[1], ">"), "\n")
+      }
+      else if (typeof(self$oldFossilzone) == "list") {
+        cat("\toldFossilzone:\tlist of length", length(self$oldFossilzone), "\n")
+      }
+      else {
+        cat("\toldFossilzone:\t", self$oldFossilzone, "\n")
+      }
+      if (typeof(self$oldFossilSubzone) == "environment") {
+        cat("\toldFossilSubzone:\tobject of class", paste0("<", class(self$oldFossilSubzone)[1], ">"), "\n")
+      }
+      else if (typeof(self$oldFossilSubzone) == "list") {
+        cat("\toldFossilSubzone:\tlist of length", length(self$oldFossilSubzone), "\n")
+      }
+      else {
+        cat("\toldFossilSubzone:\t", self$oldFossilSubzone, "\n")
+      }
+      if (typeof(self$oldBioCertainty) == "environment") {
+        cat("\toldBioCertainty:\tobject of class", paste0("<", class(self$oldBioCertainty)[1], ">"), "\n")
+      }
+      else if (typeof(self$oldBioCertainty) == "list") {
+        cat("\toldBioCertainty:\tlist of length", length(self$oldBioCertainty), "\n")
+      }
+      else {
+        cat("\toldBioCertainty:\t", self$oldBioCertainty, "\n")
+      }
+      if (typeof(self$oldBioStratType) == "environment") {
+        cat("\toldBioStratType:\tobject of class", paste0("<", class(self$oldBioStratType)[1], ">"), "\n")
+      }
+      else if (typeof(self$oldBioStratType) == "list") {
+        cat("\toldBioStratType:\tlist of length", length(self$oldBioStratType), "\n")
+      }
+      else {
+        cat("\toldBioStratType:\t", self$oldBioStratType, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

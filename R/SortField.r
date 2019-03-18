@@ -119,6 +119,47 @@ SortField <- R6::R6Class(
       )
       self <- self$fromList(SortFieldList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<SortField>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$path) == "environment") {
+        cat("\tpath:\tobject of class", paste0("<", class(self$path)[1], ">"), "\n")
+      }
+      else if (typeof(self$path) == "list") {
+        cat("\tpath:\tlist of length", length(self$path), "\n")
+      }
+      else {
+        cat("\tpath:\t", self$path, "\n")
+      }
+      if (typeof(self$sortOrder) == "environment") {
+        cat("\tsortOrder:\tobject of class", paste0("<", class(self$sortOrder)[1], ">"), "\n")
+      }
+      else if (typeof(self$sortOrder) == "list") {
+        cat("\tsortOrder:\tlist of length", length(self$sortOrder), "\n")
+      }
+      else {
+        cat("\tsortOrder:\t", self$sortOrder, "\n")
+      }
+      if (typeof(self$ascending) == "environment") {
+        cat("\tascending:\tobject of class", paste0("<", class(self$ascending)[1], ">"), "\n")
+      }
+      else if (typeof(self$ascending) == "list") {
+        cat("\tascending:\tlist of length", length(self$ascending), "\n")
+      }
+      else {
+        cat("\tascending:\t", self$ascending, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

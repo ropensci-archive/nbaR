@@ -127,6 +127,47 @@ TaxonDescription <- R6::R6Class(
       )
       self <- self$fromList(TaxonDescriptionList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<TaxonDescription>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$category) == "environment") {
+        cat("\tcategory:\tobject of class", paste0("<", class(self$category)[1], ">"), "\n")
+      }
+      else if (typeof(self$category) == "list") {
+        cat("\tcategory:\tlist of length", length(self$category), "\n")
+      }
+      else {
+        cat("\tcategory:\t", self$category, "\n")
+      }
+      if (typeof(self$description) == "environment") {
+        cat("\tdescription:\tobject of class", paste0("<", class(self$description)[1], ">"), "\n")
+      }
+      else if (typeof(self$description) == "list") {
+        cat("\tdescription:\tlist of length", length(self$description), "\n")
+      }
+      else {
+        cat("\tdescription:\t", self$description, "\n")
+      }
+      if (typeof(self$language) == "environment") {
+        cat("\tlanguage:\tobject of class", paste0("<", class(self$language)[1], ">"), "\n")
+      }
+      else if (typeof(self$language) == "list") {
+        cat("\tlanguage:\tlist of length", length(self$language), "\n")
+      }
+      else {
+        cat("\tlanguage:\t", self$language, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

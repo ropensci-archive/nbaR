@@ -491,6 +491,254 @@ ChronoStratigraphy <- R6::R6Class(
       )
       self <- self$fromList(ChronoStratigraphyList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<ChronoStratigraphy>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$youngRegionalSubstage) == "environment") {
+        cat("\tyoungRegionalSubstage:\tobject of class", paste0("<", class(self$youngRegionalSubstage)[1], ">"), "\n")
+      }
+      else if (typeof(self$youngRegionalSubstage) == "list") {
+        cat("\tyoungRegionalSubstage:\tlist of length", length(self$youngRegionalSubstage), "\n")
+      }
+      else {
+        cat("\tyoungRegionalSubstage:\t", self$youngRegionalSubstage, "\n")
+      }
+      if (typeof(self$youngRegionalStage) == "environment") {
+        cat("\tyoungRegionalStage:\tobject of class", paste0("<", class(self$youngRegionalStage)[1], ">"), "\n")
+      }
+      else if (typeof(self$youngRegionalStage) == "list") {
+        cat("\tyoungRegionalStage:\tlist of length", length(self$youngRegionalStage), "\n")
+      }
+      else {
+        cat("\tyoungRegionalStage:\t", self$youngRegionalStage, "\n")
+      }
+      if (typeof(self$youngRegionalSeries) == "environment") {
+        cat("\tyoungRegionalSeries:\tobject of class", paste0("<", class(self$youngRegionalSeries)[1], ">"), "\n")
+      }
+      else if (typeof(self$youngRegionalSeries) == "list") {
+        cat("\tyoungRegionalSeries:\tlist of length", length(self$youngRegionalSeries), "\n")
+      }
+      else {
+        cat("\tyoungRegionalSeries:\t", self$youngRegionalSeries, "\n")
+      }
+      if (typeof(self$youngDatingQualifier) == "environment") {
+        cat("\tyoungDatingQualifier:\tobject of class", paste0("<", class(self$youngDatingQualifier)[1], ">"), "\n")
+      }
+      else if (typeof(self$youngDatingQualifier) == "list") {
+        cat("\tyoungDatingQualifier:\tlist of length", length(self$youngDatingQualifier), "\n")
+      }
+      else {
+        cat("\tyoungDatingQualifier:\t", self$youngDatingQualifier, "\n")
+      }
+      if (typeof(self$youngInternSystem) == "environment") {
+        cat("\tyoungInternSystem:\tobject of class", paste0("<", class(self$youngInternSystem)[1], ">"), "\n")
+      }
+      else if (typeof(self$youngInternSystem) == "list") {
+        cat("\tyoungInternSystem:\tlist of length", length(self$youngInternSystem), "\n")
+      }
+      else {
+        cat("\tyoungInternSystem:\t", self$youngInternSystem, "\n")
+      }
+      if (typeof(self$youngInternSubstage) == "environment") {
+        cat("\tyoungInternSubstage:\tobject of class", paste0("<", class(self$youngInternSubstage)[1], ">"), "\n")
+      }
+      else if (typeof(self$youngInternSubstage) == "list") {
+        cat("\tyoungInternSubstage:\tlist of length", length(self$youngInternSubstage), "\n")
+      }
+      else {
+        cat("\tyoungInternSubstage:\t", self$youngInternSubstage, "\n")
+      }
+      if (typeof(self$youngInternStage) == "environment") {
+        cat("\tyoungInternStage:\tobject of class", paste0("<", class(self$youngInternStage)[1], ">"), "\n")
+      }
+      else if (typeof(self$youngInternStage) == "list") {
+        cat("\tyoungInternStage:\tlist of length", length(self$youngInternStage), "\n")
+      }
+      else {
+        cat("\tyoungInternStage:\t", self$youngInternStage, "\n")
+      }
+      if (typeof(self$youngInternSeries) == "environment") {
+        cat("\tyoungInternSeries:\tobject of class", paste0("<", class(self$youngInternSeries)[1], ">"), "\n")
+      }
+      else if (typeof(self$youngInternSeries) == "list") {
+        cat("\tyoungInternSeries:\tlist of length", length(self$youngInternSeries), "\n")
+      }
+      else {
+        cat("\tyoungInternSeries:\t", self$youngInternSeries, "\n")
+      }
+      if (typeof(self$youngInternErathem) == "environment") {
+        cat("\tyoungInternErathem:\tobject of class", paste0("<", class(self$youngInternErathem)[1], ">"), "\n")
+      }
+      else if (typeof(self$youngInternErathem) == "list") {
+        cat("\tyoungInternErathem:\tlist of length", length(self$youngInternErathem), "\n")
+      }
+      else {
+        cat("\tyoungInternErathem:\t", self$youngInternErathem, "\n")
+      }
+      if (typeof(self$youngInternEonothem) == "environment") {
+        cat("\tyoungInternEonothem:\tobject of class", paste0("<", class(self$youngInternEonothem)[1], ">"), "\n")
+      }
+      else if (typeof(self$youngInternEonothem) == "list") {
+        cat("\tyoungInternEonothem:\tlist of length", length(self$youngInternEonothem), "\n")
+      }
+      else {
+        cat("\tyoungInternEonothem:\t", self$youngInternEonothem, "\n")
+      }
+      if (typeof(self$youngChronoName) == "environment") {
+        cat("\tyoungChronoName:\tobject of class", paste0("<", class(self$youngChronoName)[1], ">"), "\n")
+      }
+      else if (typeof(self$youngChronoName) == "list") {
+        cat("\tyoungChronoName:\tlist of length", length(self$youngChronoName), "\n")
+      }
+      else {
+        cat("\tyoungChronoName:\t", self$youngChronoName, "\n")
+      }
+      if (typeof(self$youngCertainty) == "environment") {
+        cat("\tyoungCertainty:\tobject of class", paste0("<", class(self$youngCertainty)[1], ">"), "\n")
+      }
+      else if (typeof(self$youngCertainty) == "list") {
+        cat("\tyoungCertainty:\tlist of length", length(self$youngCertainty), "\n")
+      }
+      else {
+        cat("\tyoungCertainty:\t", self$youngCertainty, "\n")
+      }
+      if (typeof(self$oldDatingQualifier) == "environment") {
+        cat("\toldDatingQualifier:\tobject of class", paste0("<", class(self$oldDatingQualifier)[1], ">"), "\n")
+      }
+      else if (typeof(self$oldDatingQualifier) == "list") {
+        cat("\toldDatingQualifier:\tlist of length", length(self$oldDatingQualifier), "\n")
+      }
+      else {
+        cat("\toldDatingQualifier:\t", self$oldDatingQualifier, "\n")
+      }
+      if (typeof(self$chronoPreferredFlag) == "environment") {
+        cat("\tchronoPreferredFlag:\tobject of class", paste0("<", class(self$chronoPreferredFlag)[1], ">"), "\n")
+      }
+      else if (typeof(self$chronoPreferredFlag) == "list") {
+        cat("\tchronoPreferredFlag:\tlist of length", length(self$chronoPreferredFlag), "\n")
+      }
+      else {
+        cat("\tchronoPreferredFlag:\t", self$chronoPreferredFlag, "\n")
+      }
+      if (typeof(self$oldRegionalSubstage) == "environment") {
+        cat("\toldRegionalSubstage:\tobject of class", paste0("<", class(self$oldRegionalSubstage)[1], ">"), "\n")
+      }
+      else if (typeof(self$oldRegionalSubstage) == "list") {
+        cat("\toldRegionalSubstage:\tlist of length", length(self$oldRegionalSubstage), "\n")
+      }
+      else {
+        cat("\toldRegionalSubstage:\t", self$oldRegionalSubstage, "\n")
+      }
+      if (typeof(self$oldRegionalStage) == "environment") {
+        cat("\toldRegionalStage:\tobject of class", paste0("<", class(self$oldRegionalStage)[1], ">"), "\n")
+      }
+      else if (typeof(self$oldRegionalStage) == "list") {
+        cat("\toldRegionalStage:\tlist of length", length(self$oldRegionalStage), "\n")
+      }
+      else {
+        cat("\toldRegionalStage:\t", self$oldRegionalStage, "\n")
+      }
+      if (typeof(self$oldRegionalSeries) == "environment") {
+        cat("\toldRegionalSeries:\tobject of class", paste0("<", class(self$oldRegionalSeries)[1], ">"), "\n")
+      }
+      else if (typeof(self$oldRegionalSeries) == "list") {
+        cat("\toldRegionalSeries:\tlist of length", length(self$oldRegionalSeries), "\n")
+      }
+      else {
+        cat("\toldRegionalSeries:\t", self$oldRegionalSeries, "\n")
+      }
+      if (typeof(self$oldInternSystem) == "environment") {
+        cat("\toldInternSystem:\tobject of class", paste0("<", class(self$oldInternSystem)[1], ">"), "\n")
+      }
+      else if (typeof(self$oldInternSystem) == "list") {
+        cat("\toldInternSystem:\tlist of length", length(self$oldInternSystem), "\n")
+      }
+      else {
+        cat("\toldInternSystem:\t", self$oldInternSystem, "\n")
+      }
+      if (typeof(self$oldInternSubstage) == "environment") {
+        cat("\toldInternSubstage:\tobject of class", paste0("<", class(self$oldInternSubstage)[1], ">"), "\n")
+      }
+      else if (typeof(self$oldInternSubstage) == "list") {
+        cat("\toldInternSubstage:\tlist of length", length(self$oldInternSubstage), "\n")
+      }
+      else {
+        cat("\toldInternSubstage:\t", self$oldInternSubstage, "\n")
+      }
+      if (typeof(self$oldInternStage) == "environment") {
+        cat("\toldInternStage:\tobject of class", paste0("<", class(self$oldInternStage)[1], ">"), "\n")
+      }
+      else if (typeof(self$oldInternStage) == "list") {
+        cat("\toldInternStage:\tlist of length", length(self$oldInternStage), "\n")
+      }
+      else {
+        cat("\toldInternStage:\t", self$oldInternStage, "\n")
+      }
+      if (typeof(self$oldInternSeries) == "environment") {
+        cat("\toldInternSeries:\tobject of class", paste0("<", class(self$oldInternSeries)[1], ">"), "\n")
+      }
+      else if (typeof(self$oldInternSeries) == "list") {
+        cat("\toldInternSeries:\tlist of length", length(self$oldInternSeries), "\n")
+      }
+      else {
+        cat("\toldInternSeries:\t", self$oldInternSeries, "\n")
+      }
+      if (typeof(self$oldInternErathem) == "environment") {
+        cat("\toldInternErathem:\tobject of class", paste0("<", class(self$oldInternErathem)[1], ">"), "\n")
+      }
+      else if (typeof(self$oldInternErathem) == "list") {
+        cat("\toldInternErathem:\tlist of length", length(self$oldInternErathem), "\n")
+      }
+      else {
+        cat("\toldInternErathem:\t", self$oldInternErathem, "\n")
+      }
+      if (typeof(self$oldInternEonothem) == "environment") {
+        cat("\toldInternEonothem:\tobject of class", paste0("<", class(self$oldInternEonothem)[1], ">"), "\n")
+      }
+      else if (typeof(self$oldInternEonothem) == "list") {
+        cat("\toldInternEonothem:\tlist of length", length(self$oldInternEonothem), "\n")
+      }
+      else {
+        cat("\toldInternEonothem:\t", self$oldInternEonothem, "\n")
+      }
+      if (typeof(self$oldChronoName) == "environment") {
+        cat("\toldChronoName:\tobject of class", paste0("<", class(self$oldChronoName)[1], ">"), "\n")
+      }
+      else if (typeof(self$oldChronoName) == "list") {
+        cat("\toldChronoName:\tlist of length", length(self$oldChronoName), "\n")
+      }
+      else {
+        cat("\toldChronoName:\t", self$oldChronoName, "\n")
+      }
+      if (typeof(self$chronoIdentifier) == "environment") {
+        cat("\tchronoIdentifier:\tobject of class", paste0("<", class(self$chronoIdentifier)[1], ">"), "\n")
+      }
+      else if (typeof(self$chronoIdentifier) == "list") {
+        cat("\tchronoIdentifier:\tlist of length", length(self$chronoIdentifier), "\n")
+      }
+      else {
+        cat("\tchronoIdentifier:\t", self$chronoIdentifier, "\n")
+      }
+      if (typeof(self$oldCertainty) == "environment") {
+        cat("\toldCertainty:\tobject of class", paste0("<", class(self$oldCertainty)[1], ">"), "\n")
+      }
+      else if (typeof(self$oldCertainty) == "list") {
+        cat("\toldCertainty:\tlist of length", length(self$oldCertainty), "\n")
+      }
+      else {
+        cat("\toldCertainty:\t", self$oldCertainty, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

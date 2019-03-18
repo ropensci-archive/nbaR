@@ -164,6 +164,56 @@ TaxonomicEnrichment <- R6::R6Class(
       )
       self <- self$fromList(TaxonomicEnrichmentList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<TaxonomicEnrichment>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$vernacularNames) == "environment") {
+        cat("\tvernacularNames:\tobject of class", paste0("<", class(self$vernacularNames)[1], ">"), "\n")
+      }
+      else if (typeof(self$vernacularNames) == "list") {
+        cat("\tvernacularNames:\tlist of length", length(self$vernacularNames), "\n")
+      }
+      else {
+        cat("\tvernacularNames:\t", self$vernacularNames, "\n")
+      }
+      if (typeof(self$synonyms) == "environment") {
+        cat("\tsynonyms:\tobject of class", paste0("<", class(self$synonyms)[1], ">"), "\n")
+      }
+      else if (typeof(self$synonyms) == "list") {
+        cat("\tsynonyms:\tlist of length", length(self$synonyms), "\n")
+      }
+      else {
+        cat("\tsynonyms:\t", self$synonyms, "\n")
+      }
+      if (typeof(self$sourceSystem) == "environment") {
+        cat("\tsourceSystem:\tobject of class", paste0("<", class(self$sourceSystem)[1], ">"), "\n")
+      }
+      else if (typeof(self$sourceSystem) == "list") {
+        cat("\tsourceSystem:\tlist of length", length(self$sourceSystem), "\n")
+      }
+      else {
+        cat("\tsourceSystem:\t", self$sourceSystem, "\n")
+      }
+      if (typeof(self$taxonId) == "environment") {
+        cat("\ttaxonId:\tobject of class", paste0("<", class(self$taxonId)[1], ">"), "\n")
+      }
+      else if (typeof(self$taxonId) == "list") {
+        cat("\ttaxonId:\tlist of length", length(self$taxonId), "\n")
+      }
+      else {
+        cat("\ttaxonId:\t", self$taxonId, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

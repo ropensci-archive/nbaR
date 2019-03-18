@@ -111,6 +111,38 @@ Monomial <- R6::R6Class(
       )
       self <- self$fromList(MonomialList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<Monomial>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$rank) == "environment") {
+        cat("\trank:\tobject of class", paste0("<", class(self$rank)[1], ">"), "\n")
+      }
+      else if (typeof(self$rank) == "list") {
+        cat("\trank:\tlist of length", length(self$rank), "\n")
+      }
+      else {
+        cat("\trank:\t", self$rank, "\n")
+      }
+      if (typeof(self$name) == "environment") {
+        cat("\tname:\tobject of class", paste0("<", class(self$name)[1], ">"), "\n")
+      }
+      else if (typeof(self$name) == "list") {
+        cat("\tname:\tlist of length", length(self$name), "\n")
+      }
+      else {
+        cat("\tname:\t", self$name, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

@@ -309,18 +309,27 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 		        for (Object _mo : models) {
 		            Map<String, Object> mo = (Map<String, Object>) _mo;
 		            CodegenModel cm = (CodegenModel) mo.get("model");
-		            System.out.println(cm.name);
+		            //System.out.println(cm.name);
 		            		            
 		            if (cm.name == "QueryResultItemObject") { //cm.name == "QueryResult" ||
 		        	    for (CodegenProperty prop : cm.allVars) {
-		        		    System.out.println("\t" + prop.name);
+		        		    //System.out.println("\t" + prop.name);
 		        		    if (prop.baseName == "item") { // || prop.baseName == "resultSet") {
-		        			    prop.needsTypeMapping = true;		        			    
+		        			    prop.needsTypeMapping = true;
+		        			    //prop.isPrimitiveType = false;
+		        			    
 		        		    }		        		    
 		        	    }
 		            }
-		         
-		        }	
+/*		            if (cm.name == "GeoArea") { //cm.name == "QueryResult" ||
+		        	    for (CodegenProperty prop : cm.allVars) {
+		        		    if (prop.baseName == "shape") { 
+		        			    prop.isPrimitiveType = false;		        			    
+		        		    }		        		    
+		        	    }
+		            }
+*/		         
+		        }
 		return super.postProcessModelsEnum(objs);
 	}
 	

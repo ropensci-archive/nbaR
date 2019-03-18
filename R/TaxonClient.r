@@ -969,6 +969,37 @@ TaxonClient <- R6::R6Class(
         )
         Response$new(result, response)
       }
+    },
+    print = function(...) {
+      ## print class name
+      cat("<TaxonClient>\n")
+      cat("\tInherits from: <ApiClient>\n\n")
+      ## print all members with values
+      cat("Fields:\n")
+      cat("\tbasePath:\t", self$basePath, "\n")
+      cat("\tuserAgent:\t", self$userAgent, "\n")
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tcount", "\n")
+      cat("\tcount_distinct_values", "\n")
+      cat("\tcount_distinct_values_per_group", "\n")
+      cat("\tdownload_query", "\n")
+      cat("\tdwca_get_data_set", "\n")
+      cat("\tdwca_get_data_set_names", "\n")
+      cat("\tdwca_query", "\n")
+      cat("\tfind", "\n")
+      cat("\tfind_by_ids", "\n")
+      cat("\tget_distinct_values", "\n")
+      cat("\tget_distinct_values_per_group", "\n")
+      cat("\tget_field_info", "\n")
+      cat("\tget_paths", "\n")
+      cat("\tget_setting", "\n")
+      cat("\tget_settings", "\n")
+      cat("\tgroup_by_scientific_name", "\n")
+      cat("\tis_operator_allowed", "\n")
+      cat("\tquery", "\n")
+      cat("\tping\n")
+      invisible(self)
     }
   )
 )

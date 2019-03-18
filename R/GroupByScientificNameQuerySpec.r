@@ -316,6 +316,137 @@ GroupByScientificNameQuerySpec <- R6::R6Class(
       )
       self <- self$fromList(GroupByScientificNameQuerySpecList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<GroupByScientificNameQuerySpec>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$constantScore) == "environment") {
+        cat("\tconstantScore:\tobject of class", paste0("<", class(self$constantScore)[1], ">"), "\n")
+      }
+      else if (typeof(self$constantScore) == "list") {
+        cat("\tconstantScore:\tlist of length", length(self$constantScore), "\n")
+      }
+      else {
+        cat("\tconstantScore:\t", self$constantScore, "\n")
+      }
+      if (typeof(self$fields) == "environment") {
+        cat("\tfields:\tobject of class", paste0("<", class(self$fields)[1], ">"), "\n")
+      }
+      else if (typeof(self$fields) == "list") {
+        cat("\tfields:\tlist of length", length(self$fields), "\n")
+      }
+      else {
+        cat("\tfields:\t", self$fields, "\n")
+      }
+      if (typeof(self$conditions) == "environment") {
+        cat("\tconditions:\tobject of class", paste0("<", class(self$conditions)[1], ">"), "\n")
+      }
+      else if (typeof(self$conditions) == "list") {
+        cat("\tconditions:\tlist of length", length(self$conditions), "\n")
+      }
+      else {
+        cat("\tconditions:\t", self$conditions, "\n")
+      }
+      if (typeof(self$logicalOperator) == "environment") {
+        cat("\tlogicalOperator:\tobject of class", paste0("<", class(self$logicalOperator)[1], ">"), "\n")
+      }
+      else if (typeof(self$logicalOperator) == "list") {
+        cat("\tlogicalOperator:\tlist of length", length(self$logicalOperator), "\n")
+      }
+      else {
+        cat("\tlogicalOperator:\t", self$logicalOperator, "\n")
+      }
+      if (typeof(self$sortFields) == "environment") {
+        cat("\tsortFields:\tobject of class", paste0("<", class(self$sortFields)[1], ">"), "\n")
+      }
+      else if (typeof(self$sortFields) == "list") {
+        cat("\tsortFields:\tlist of length", length(self$sortFields), "\n")
+      }
+      else {
+        cat("\tsortFields:\t", self$sortFields, "\n")
+      }
+      if (typeof(self$from) == "environment") {
+        cat("\tfrom:\tobject of class", paste0("<", class(self$from)[1], ">"), "\n")
+      }
+      else if (typeof(self$from) == "list") {
+        cat("\tfrom:\tlist of length", length(self$from), "\n")
+      }
+      else {
+        cat("\tfrom:\t", self$from, "\n")
+      }
+      if (typeof(self$size) == "environment") {
+        cat("\tsize:\tobject of class", paste0("<", class(self$size)[1], ">"), "\n")
+      }
+      else if (typeof(self$size) == "list") {
+        cat("\tsize:\tlist of length", length(self$size), "\n")
+      }
+      else {
+        cat("\tsize:\t", self$size, "\n")
+      }
+      if (typeof(self$groupSort) == "environment") {
+        cat("\tgroupSort:\tobject of class", paste0("<", class(self$groupSort)[1], ">"), "\n")
+      }
+      else if (typeof(self$groupSort) == "list") {
+        cat("\tgroupSort:\tlist of length", length(self$groupSort), "\n")
+      }
+      else {
+        cat("\tgroupSort:\t", self$groupSort, "\n")
+      }
+      if (typeof(self$groupFilter) == "environment") {
+        cat("\tgroupFilter:\tobject of class", paste0("<", class(self$groupFilter)[1], ">"), "\n")
+      }
+      else if (typeof(self$groupFilter) == "list") {
+        cat("\tgroupFilter:\tlist of length", length(self$groupFilter), "\n")
+      }
+      else {
+        cat("\tgroupFilter:\t", self$groupFilter, "\n")
+      }
+      if (typeof(self$specimensFrom) == "environment") {
+        cat("\tspecimensFrom:\tobject of class", paste0("<", class(self$specimensFrom)[1], ">"), "\n")
+      }
+      else if (typeof(self$specimensFrom) == "list") {
+        cat("\tspecimensFrom:\tlist of length", length(self$specimensFrom), "\n")
+      }
+      else {
+        cat("\tspecimensFrom:\t", self$specimensFrom, "\n")
+      }
+      if (typeof(self$specimensSize) == "environment") {
+        cat("\tspecimensSize:\tobject of class", paste0("<", class(self$specimensSize)[1], ">"), "\n")
+      }
+      else if (typeof(self$specimensSize) == "list") {
+        cat("\tspecimensSize:\tlist of length", length(self$specimensSize), "\n")
+      }
+      else {
+        cat("\tspecimensSize:\t", self$specimensSize, "\n")
+      }
+      if (typeof(self$specimensSortFields) == "environment") {
+        cat("\tspecimensSortFields:\tobject of class", paste0("<", class(self$specimensSortFields)[1], ">"), "\n")
+      }
+      else if (typeof(self$specimensSortFields) == "list") {
+        cat("\tspecimensSortFields:\tlist of length", length(self$specimensSortFields), "\n")
+      }
+      else {
+        cat("\tspecimensSortFields:\t", self$specimensSortFields, "\n")
+      }
+      if (typeof(self$noTaxa) == "environment") {
+        cat("\tnoTaxa:\tobject of class", paste0("<", class(self$noTaxa)[1], ">"), "\n")
+      }
+      else if (typeof(self$noTaxa) == "list") {
+        cat("\tnoTaxa:\tlist of length", length(self$noTaxa), "\n")
+      }
+      else {
+        cat("\tnoTaxa:\t", self$noTaxa, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

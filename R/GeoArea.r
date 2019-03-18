@@ -234,6 +234,110 @@ GeoArea <- R6::R6Class(
       )
       self <- self$fromList(GeoAreaList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<GeoArea>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$sourceSystem) == "environment") {
+        cat("\tsourceSystem:\tobject of class", paste0("<", class(self$sourceSystem)[1], ">"), "\n")
+      }
+      else if (typeof(self$sourceSystem) == "list") {
+        cat("\tsourceSystem:\tlist of length", length(self$sourceSystem), "\n")
+      }
+      else {
+        cat("\tsourceSystem:\t", self$sourceSystem, "\n")
+      }
+      if (typeof(self$sourceSystemId) == "environment") {
+        cat("\tsourceSystemId:\tobject of class", paste0("<", class(self$sourceSystemId)[1], ">"), "\n")
+      }
+      else if (typeof(self$sourceSystemId) == "list") {
+        cat("\tsourceSystemId:\tlist of length", length(self$sourceSystemId), "\n")
+      }
+      else {
+        cat("\tsourceSystemId:\t", self$sourceSystemId, "\n")
+      }
+      if (typeof(self$recordURI) == "environment") {
+        cat("\trecordURI:\tobject of class", paste0("<", class(self$recordURI)[1], ">"), "\n")
+      }
+      else if (typeof(self$recordURI) == "list") {
+        cat("\trecordURI:\tlist of length", length(self$recordURI), "\n")
+      }
+      else {
+        cat("\trecordURI:\t", self$recordURI, "\n")
+      }
+      if (typeof(self$id) == "environment") {
+        cat("\tid:\tobject of class", paste0("<", class(self$id)[1], ">"), "\n")
+      }
+      else if (typeof(self$id) == "list") {
+        cat("\tid:\tlist of length", length(self$id), "\n")
+      }
+      else {
+        cat("\tid:\t", self$id, "\n")
+      }
+      if (typeof(self$areaType) == "environment") {
+        cat("\tareaType:\tobject of class", paste0("<", class(self$areaType)[1], ">"), "\n")
+      }
+      else if (typeof(self$areaType) == "list") {
+        cat("\tareaType:\tlist of length", length(self$areaType), "\n")
+      }
+      else {
+        cat("\tareaType:\t", self$areaType, "\n")
+      }
+      if (typeof(self$locality) == "environment") {
+        cat("\tlocality:\tobject of class", paste0("<", class(self$locality)[1], ">"), "\n")
+      }
+      else if (typeof(self$locality) == "list") {
+        cat("\tlocality:\tlist of length", length(self$locality), "\n")
+      }
+      else {
+        cat("\tlocality:\t", self$locality, "\n")
+      }
+      if (typeof(self$shape) == "environment") {
+        cat("\tshape:\tobject of class", paste0("<", class(self$shape)[1], ">"), "\n")
+      }
+      else if (typeof(self$shape) == "list") {
+        cat("\tshape:\tlist of length", length(self$shape), "\n")
+      }
+      else {
+        cat("\tshape:\t", self$shape, "\n")
+      }
+      if (typeof(self$source) == "environment") {
+        cat("\tsource:\tobject of class", paste0("<", class(self$source)[1], ">"), "\n")
+      }
+      else if (typeof(self$source) == "list") {
+        cat("\tsource:\tlist of length", length(self$source), "\n")
+      }
+      else {
+        cat("\tsource:\t", self$source, "\n")
+      }
+      if (typeof(self$isoCode) == "environment") {
+        cat("\tisoCode:\tobject of class", paste0("<", class(self$isoCode)[1], ">"), "\n")
+      }
+      else if (typeof(self$isoCode) == "list") {
+        cat("\tisoCode:\tlist of length", length(self$isoCode), "\n")
+      }
+      else {
+        cat("\tisoCode:\t", self$isoCode, "\n")
+      }
+      if (typeof(self$countryNL) == "environment") {
+        cat("\tcountryNL:\tobject of class", paste0("<", class(self$countryNL)[1], ">"), "\n")
+      }
+      else if (typeof(self$countryNL) == "list") {
+        cat("\tcountryNL:\tlist of length", length(self$countryNL), "\n")
+      }
+      else {
+        cat("\tcountryNL:\t", self$countryNL, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

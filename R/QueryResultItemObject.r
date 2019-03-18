@@ -117,6 +117,38 @@ QueryResultItemObject <- R6::R6Class(
       )
       self <- self$fromList(QueryResultItemObjectList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<QueryResultItemObject>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$score) == "environment") {
+        cat("\tscore:\tobject of class", paste0("<", class(self$score)[1], ">"), "\n")
+      }
+      else if (typeof(self$score) == "list") {
+        cat("\tscore:\tlist of length", length(self$score), "\n")
+      }
+      else {
+        cat("\tscore:\t", self$score, "\n")
+      }
+      if (typeof(self$item) == "environment") {
+        cat("\titem:\tobject of class", paste0("<", class(self$item)[1], ">"), "\n")
+      }
+      else if (typeof(self$item) == "list") {
+        cat("\titem:\tlist of length", length(self$item), "\n")
+      }
+      else {
+        cat("\titem:\t", self$item, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

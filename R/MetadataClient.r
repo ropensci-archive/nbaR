@@ -443,6 +443,29 @@ MetadataClient <- R6::R6Class(
         )
         Response$new(result, response)
       }
+    },
+    print = function(...) {
+      ## print class name
+      cat("<MetadataClient>\n")
+      cat("\tInherits from: <ApiClient>\n\n")
+      ## print all members with values
+      cat("Fields:\n")
+      cat("\tbasePath:\t", self$basePath, "\n")
+      cat("\tuserAgent:\t", self$userAgent, "\n")
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tget_allowed_date_formats", "\n")
+      cat("\tget_controlled_list_phase_or_stage", "\n")
+      cat("\tget_controlled_list_sex", "\n")
+      cat("\tget_controlled_list_specimen_type_status", "\n")
+      cat("\tget_controlled_list_taxonomic_status", "\n")
+      cat("\tget_controlled_lists", "\n")
+      cat("\tget_rest_services", "\n")
+      cat("\tget_setting", "\n")
+      cat("\tget_settings", "\n")
+      cat("\tget_source_systems", "\n")
+      cat("\tping\n")
+      invisible(self)
     }
   )
 )

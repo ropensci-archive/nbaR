@@ -325,6 +325,146 @@ ScientificName <- R6::R6Class(
       )
       self <- self$fromList(ScientificNameList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<ScientificName>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$fullScientificName) == "environment") {
+        cat("\tfullScientificName:\tobject of class", paste0("<", class(self$fullScientificName)[1], ">"), "\n")
+      }
+      else if (typeof(self$fullScientificName) == "list") {
+        cat("\tfullScientificName:\tlist of length", length(self$fullScientificName), "\n")
+      }
+      else {
+        cat("\tfullScientificName:\t", self$fullScientificName, "\n")
+      }
+      if (typeof(self$taxonomicStatus) == "environment") {
+        cat("\ttaxonomicStatus:\tobject of class", paste0("<", class(self$taxonomicStatus)[1], ">"), "\n")
+      }
+      else if (typeof(self$taxonomicStatus) == "list") {
+        cat("\ttaxonomicStatus:\tlist of length", length(self$taxonomicStatus), "\n")
+      }
+      else {
+        cat("\ttaxonomicStatus:\t", self$taxonomicStatus, "\n")
+      }
+      if (typeof(self$genusOrMonomial) == "environment") {
+        cat("\tgenusOrMonomial:\tobject of class", paste0("<", class(self$genusOrMonomial)[1], ">"), "\n")
+      }
+      else if (typeof(self$genusOrMonomial) == "list") {
+        cat("\tgenusOrMonomial:\tlist of length", length(self$genusOrMonomial), "\n")
+      }
+      else {
+        cat("\tgenusOrMonomial:\t", self$genusOrMonomial, "\n")
+      }
+      if (typeof(self$subgenus) == "environment") {
+        cat("\tsubgenus:\tobject of class", paste0("<", class(self$subgenus)[1], ">"), "\n")
+      }
+      else if (typeof(self$subgenus) == "list") {
+        cat("\tsubgenus:\tlist of length", length(self$subgenus), "\n")
+      }
+      else {
+        cat("\tsubgenus:\t", self$subgenus, "\n")
+      }
+      if (typeof(self$specificEpithet) == "environment") {
+        cat("\tspecificEpithet:\tobject of class", paste0("<", class(self$specificEpithet)[1], ">"), "\n")
+      }
+      else if (typeof(self$specificEpithet) == "list") {
+        cat("\tspecificEpithet:\tlist of length", length(self$specificEpithet), "\n")
+      }
+      else {
+        cat("\tspecificEpithet:\t", self$specificEpithet, "\n")
+      }
+      if (typeof(self$infraspecificEpithet) == "environment") {
+        cat("\tinfraspecificEpithet:\tobject of class", paste0("<", class(self$infraspecificEpithet)[1], ">"), "\n")
+      }
+      else if (typeof(self$infraspecificEpithet) == "list") {
+        cat("\tinfraspecificEpithet:\tlist of length", length(self$infraspecificEpithet), "\n")
+      }
+      else {
+        cat("\tinfraspecificEpithet:\t", self$infraspecificEpithet, "\n")
+      }
+      if (typeof(self$infraspecificMarker) == "environment") {
+        cat("\tinfraspecificMarker:\tobject of class", paste0("<", class(self$infraspecificMarker)[1], ">"), "\n")
+      }
+      else if (typeof(self$infraspecificMarker) == "list") {
+        cat("\tinfraspecificMarker:\tlist of length", length(self$infraspecificMarker), "\n")
+      }
+      else {
+        cat("\tinfraspecificMarker:\t", self$infraspecificMarker, "\n")
+      }
+      if (typeof(self$nameAddendum) == "environment") {
+        cat("\tnameAddendum:\tobject of class", paste0("<", class(self$nameAddendum)[1], ">"), "\n")
+      }
+      else if (typeof(self$nameAddendum) == "list") {
+        cat("\tnameAddendum:\tlist of length", length(self$nameAddendum), "\n")
+      }
+      else {
+        cat("\tnameAddendum:\t", self$nameAddendum, "\n")
+      }
+      if (typeof(self$authorshipVerbatim) == "environment") {
+        cat("\tauthorshipVerbatim:\tobject of class", paste0("<", class(self$authorshipVerbatim)[1], ">"), "\n")
+      }
+      else if (typeof(self$authorshipVerbatim) == "list") {
+        cat("\tauthorshipVerbatim:\tlist of length", length(self$authorshipVerbatim), "\n")
+      }
+      else {
+        cat("\tauthorshipVerbatim:\t", self$authorshipVerbatim, "\n")
+      }
+      if (typeof(self$author) == "environment") {
+        cat("\tauthor:\tobject of class", paste0("<", class(self$author)[1], ">"), "\n")
+      }
+      else if (typeof(self$author) == "list") {
+        cat("\tauthor:\tlist of length", length(self$author), "\n")
+      }
+      else {
+        cat("\tauthor:\t", self$author, "\n")
+      }
+      if (typeof(self$year) == "environment") {
+        cat("\tyear:\tobject of class", paste0("<", class(self$year)[1], ">"), "\n")
+      }
+      else if (typeof(self$year) == "list") {
+        cat("\tyear:\tlist of length", length(self$year), "\n")
+      }
+      else {
+        cat("\tyear:\t", self$year, "\n")
+      }
+      if (typeof(self$scientificNameGroup) == "environment") {
+        cat("\tscientificNameGroup:\tobject of class", paste0("<", class(self$scientificNameGroup)[1], ">"), "\n")
+      }
+      else if (typeof(self$scientificNameGroup) == "list") {
+        cat("\tscientificNameGroup:\tlist of length", length(self$scientificNameGroup), "\n")
+      }
+      else {
+        cat("\tscientificNameGroup:\t", self$scientificNameGroup, "\n")
+      }
+      if (typeof(self$references) == "environment") {
+        cat("\treferences:\tobject of class", paste0("<", class(self$references)[1], ">"), "\n")
+      }
+      else if (typeof(self$references) == "list") {
+        cat("\treferences:\tlist of length", length(self$references), "\n")
+      }
+      else {
+        cat("\treferences:\t", self$references, "\n")
+      }
+      if (typeof(self$experts) == "environment") {
+        cat("\texperts:\tobject of class", paste0("<", class(self$experts)[1], ">"), "\n")
+      }
+      else if (typeof(self$experts) == "list") {
+        cat("\texperts:\tlist of length", length(self$experts), "\n")
+      }
+      else {
+        cat("\texperts:\t", self$experts, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

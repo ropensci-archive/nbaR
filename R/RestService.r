@@ -159,6 +159,65 @@ RestService <- R6::R6Class(
       )
       self <- self$fromList(RestServiceList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<RestService>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$endPoint) == "environment") {
+        cat("\tendPoint:\tobject of class", paste0("<", class(self$endPoint)[1], ">"), "\n")
+      }
+      else if (typeof(self$endPoint) == "list") {
+        cat("\tendPoint:\tlist of length", length(self$endPoint), "\n")
+      }
+      else {
+        cat("\tendPoint:\t", self$endPoint, "\n")
+      }
+      if (typeof(self$method) == "environment") {
+        cat("\tmethod:\tobject of class", paste0("<", class(self$method)[1], ">"), "\n")
+      }
+      else if (typeof(self$method) == "list") {
+        cat("\tmethod:\tlist of length", length(self$method), "\n")
+      }
+      else {
+        cat("\tmethod:\t", self$method, "\n")
+      }
+      if (typeof(self$consumes) == "environment") {
+        cat("\tconsumes:\tobject of class", paste0("<", class(self$consumes)[1], ">"), "\n")
+      }
+      else if (typeof(self$consumes) == "list") {
+        cat("\tconsumes:\tlist of length", length(self$consumes), "\n")
+      }
+      else {
+        cat("\tconsumes:\t", self$consumes, "\n")
+      }
+      if (typeof(self$produces) == "environment") {
+        cat("\tproduces:\tobject of class", paste0("<", class(self$produces)[1], ">"), "\n")
+      }
+      else if (typeof(self$produces) == "list") {
+        cat("\tproduces:\tlist of length", length(self$produces), "\n")
+      }
+      else {
+        cat("\tproduces:\t", self$produces, "\n")
+      }
+      if (typeof(self$url) == "environment") {
+        cat("\turl:\tobject of class", paste0("<", class(self$url)[1], ">"), "\n")
+      }
+      else if (typeof(self$url) == "list") {
+        cat("\turl:\tlist of length", length(self$url), "\n")
+      }
+      else {
+        cat("\turl:\t", self$url, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

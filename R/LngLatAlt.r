@@ -148,6 +148,56 @@ LngLatAlt <- R6::R6Class(
       )
       self <- self$fromList(LngLatAltList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<LngLatAlt>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$longitude) == "environment") {
+        cat("\tlongitude:\tobject of class", paste0("<", class(self$longitude)[1], ">"), "\n")
+      }
+      else if (typeof(self$longitude) == "list") {
+        cat("\tlongitude:\tlist of length", length(self$longitude), "\n")
+      }
+      else {
+        cat("\tlongitude:\t", self$longitude, "\n")
+      }
+      if (typeof(self$latitude) == "environment") {
+        cat("\tlatitude:\tobject of class", paste0("<", class(self$latitude)[1], ">"), "\n")
+      }
+      else if (typeof(self$latitude) == "list") {
+        cat("\tlatitude:\tlist of length", length(self$latitude), "\n")
+      }
+      else {
+        cat("\tlatitude:\t", self$latitude, "\n")
+      }
+      if (typeof(self$altitude) == "environment") {
+        cat("\taltitude:\tobject of class", paste0("<", class(self$altitude)[1], ">"), "\n")
+      }
+      else if (typeof(self$altitude) == "list") {
+        cat("\taltitude:\tlist of length", length(self$altitude), "\n")
+      }
+      else {
+        cat("\taltitude:\t", self$altitude, "\n")
+      }
+      if (typeof(self$additionalElements) == "environment") {
+        cat("\tadditionalElements:\tobject of class", paste0("<", class(self$additionalElements)[1], ">"), "\n")
+      }
+      else if (typeof(self$additionalElements) == "list") {
+        cat("\tadditionalElements:\tlist of length", length(self$additionalElements), "\n")
+      }
+      else {
+        cat("\tadditionalElements:\t", self$additionalElements, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

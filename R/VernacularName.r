@@ -177,6 +177,65 @@ VernacularName <- R6::R6Class(
       )
       self <- self$fromList(VernacularNameList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<VernacularName>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$name) == "environment") {
+        cat("\tname:\tobject of class", paste0("<", class(self$name)[1], ">"), "\n")
+      }
+      else if (typeof(self$name) == "list") {
+        cat("\tname:\tlist of length", length(self$name), "\n")
+      }
+      else {
+        cat("\tname:\t", self$name, "\n")
+      }
+      if (typeof(self$language) == "environment") {
+        cat("\tlanguage:\tobject of class", paste0("<", class(self$language)[1], ">"), "\n")
+      }
+      else if (typeof(self$language) == "list") {
+        cat("\tlanguage:\tlist of length", length(self$language), "\n")
+      }
+      else {
+        cat("\tlanguage:\t", self$language, "\n")
+      }
+      if (typeof(self$preferred) == "environment") {
+        cat("\tpreferred:\tobject of class", paste0("<", class(self$preferred)[1], ">"), "\n")
+      }
+      else if (typeof(self$preferred) == "list") {
+        cat("\tpreferred:\tlist of length", length(self$preferred), "\n")
+      }
+      else {
+        cat("\tpreferred:\t", self$preferred, "\n")
+      }
+      if (typeof(self$references) == "environment") {
+        cat("\treferences:\tobject of class", paste0("<", class(self$references)[1], ">"), "\n")
+      }
+      else if (typeof(self$references) == "list") {
+        cat("\treferences:\tlist of length", length(self$references), "\n")
+      }
+      else {
+        cat("\treferences:\t", self$references, "\n")
+      }
+      if (typeof(self$experts) == "environment") {
+        cat("\texperts:\tobject of class", paste0("<", class(self$experts)[1], ">"), "\n")
+      }
+      else if (typeof(self$experts) == "list") {
+        cat("\texperts:\tlist of length", length(self$experts), "\n")
+      }
+      else {
+        cat("\texperts:\t", self$experts, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

@@ -142,6 +142,47 @@ FeatureCollection <- R6::R6Class(
       )
       self <- self$fromList(FeatureCollectionList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<FeatureCollection>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$crs) == "environment") {
+        cat("\tcrs:\tobject of class", paste0("<", class(self$crs)[1], ">"), "\n")
+      }
+      else if (typeof(self$crs) == "list") {
+        cat("\tcrs:\tlist of length", length(self$crs), "\n")
+      }
+      else {
+        cat("\tcrs:\t", self$crs, "\n")
+      }
+      if (typeof(self$bbox) == "environment") {
+        cat("\tbbox:\tobject of class", paste0("<", class(self$bbox)[1], ">"), "\n")
+      }
+      else if (typeof(self$bbox) == "list") {
+        cat("\tbbox:\tlist of length", length(self$bbox), "\n")
+      }
+      else {
+        cat("\tbbox:\t", self$bbox, "\n")
+      }
+      if (typeof(self$features) == "environment") {
+        cat("\tfeatures:\tobject of class", paste0("<", class(self$features)[1], ">"), "\n")
+      }
+      else if (typeof(self$features) == "list") {
+        cat("\tfeatures:\tlist of length", length(self$features), "\n")
+      }
+      else {
+        cat("\tfeatures:\t", self$features, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

@@ -111,6 +111,38 @@ SummaryVernacularName <- R6::R6Class(
       )
       self <- self$fromList(SummaryVernacularNameList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<SummaryVernacularName>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$name) == "environment") {
+        cat("\tname:\tobject of class", paste0("<", class(self$name)[1], ">"), "\n")
+      }
+      else if (typeof(self$name) == "list") {
+        cat("\tname:\tlist of length", length(self$name), "\n")
+      }
+      else {
+        cat("\tname:\t", self$name, "\n")
+      }
+      if (typeof(self$language) == "environment") {
+        cat("\tlanguage:\tobject of class", paste0("<", class(self$language)[1], ">"), "\n")
+      }
+      else if (typeof(self$language) == "list") {
+        cat("\tlanguage:\tlist of length", length(self$language), "\n")
+      }
+      else {
+        cat("\tlanguage:\t", self$language, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

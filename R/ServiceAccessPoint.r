@@ -127,6 +127,47 @@ ServiceAccessPoint <- R6::R6Class(
       )
       self <- self$fromList(ServiceAccessPointList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<ServiceAccessPoint>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$accessUri) == "environment") {
+        cat("\taccessUri:\tobject of class", paste0("<", class(self$accessUri)[1], ">"), "\n")
+      }
+      else if (typeof(self$accessUri) == "list") {
+        cat("\taccessUri:\tlist of length", length(self$accessUri), "\n")
+      }
+      else {
+        cat("\taccessUri:\t", self$accessUri, "\n")
+      }
+      if (typeof(self$format) == "environment") {
+        cat("\tformat:\tobject of class", paste0("<", class(self$format)[1], ">"), "\n")
+      }
+      else if (typeof(self$format) == "list") {
+        cat("\tformat:\tlist of length", length(self$format), "\n")
+      }
+      else {
+        cat("\tformat:\t", self$format, "\n")
+      }
+      if (typeof(self$variant) == "environment") {
+        cat("\tvariant:\tobject of class", paste0("<", class(self$variant)[1], ">"), "\n")
+      }
+      else if (typeof(self$variant) == "list") {
+        cat("\tvariant:\tlist of length", length(self$variant), "\n")
+      }
+      else {
+        cat("\tvariant:\t", self$variant, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

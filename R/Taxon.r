@@ -413,6 +413,173 @@ Taxon <- R6::R6Class(
       )
       self <- self$fromList(TaxonList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<Taxon>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$sourceSystem) == "environment") {
+        cat("\tsourceSystem:\tobject of class", paste0("<", class(self$sourceSystem)[1], ">"), "\n")
+      }
+      else if (typeof(self$sourceSystem) == "list") {
+        cat("\tsourceSystem:\tlist of length", length(self$sourceSystem), "\n")
+      }
+      else {
+        cat("\tsourceSystem:\t", self$sourceSystem, "\n")
+      }
+      if (typeof(self$sourceSystemId) == "environment") {
+        cat("\tsourceSystemId:\tobject of class", paste0("<", class(self$sourceSystemId)[1], ">"), "\n")
+      }
+      else if (typeof(self$sourceSystemId) == "list") {
+        cat("\tsourceSystemId:\tlist of length", length(self$sourceSystemId), "\n")
+      }
+      else {
+        cat("\tsourceSystemId:\t", self$sourceSystemId, "\n")
+      }
+      if (typeof(self$recordURI) == "environment") {
+        cat("\trecordURI:\tobject of class", paste0("<", class(self$recordURI)[1], ">"), "\n")
+      }
+      else if (typeof(self$recordURI) == "list") {
+        cat("\trecordURI:\tlist of length", length(self$recordURI), "\n")
+      }
+      else {
+        cat("\trecordURI:\t", self$recordURI, "\n")
+      }
+      if (typeof(self$id) == "environment") {
+        cat("\tid:\tobject of class", paste0("<", class(self$id)[1], ">"), "\n")
+      }
+      else if (typeof(self$id) == "list") {
+        cat("\tid:\tlist of length", length(self$id), "\n")
+      }
+      else {
+        cat("\tid:\t", self$id, "\n")
+      }
+      if (typeof(self$sourceSystemParentId) == "environment") {
+        cat("\tsourceSystemParentId:\tobject of class", paste0("<", class(self$sourceSystemParentId)[1], ">"), "\n")
+      }
+      else if (typeof(self$sourceSystemParentId) == "list") {
+        cat("\tsourceSystemParentId:\tlist of length", length(self$sourceSystemParentId), "\n")
+      }
+      else {
+        cat("\tsourceSystemParentId:\t", self$sourceSystemParentId, "\n")
+      }
+      if (typeof(self$taxonRank) == "environment") {
+        cat("\ttaxonRank:\tobject of class", paste0("<", class(self$taxonRank)[1], ">"), "\n")
+      }
+      else if (typeof(self$taxonRank) == "list") {
+        cat("\ttaxonRank:\tlist of length", length(self$taxonRank), "\n")
+      }
+      else {
+        cat("\ttaxonRank:\t", self$taxonRank, "\n")
+      }
+      if (typeof(self$taxonRemarks) == "environment") {
+        cat("\ttaxonRemarks:\tobject of class", paste0("<", class(self$taxonRemarks)[1], ">"), "\n")
+      }
+      else if (typeof(self$taxonRemarks) == "list") {
+        cat("\ttaxonRemarks:\tlist of length", length(self$taxonRemarks), "\n")
+      }
+      else {
+        cat("\ttaxonRemarks:\t", self$taxonRemarks, "\n")
+      }
+      if (typeof(self$occurrenceStatusVerbatim) == "environment") {
+        cat("\toccurrenceStatusVerbatim:\tobject of class", paste0("<", class(self$occurrenceStatusVerbatim)[1], ">"), "\n")
+      }
+      else if (typeof(self$occurrenceStatusVerbatim) == "list") {
+        cat("\toccurrenceStatusVerbatim:\tlist of length", length(self$occurrenceStatusVerbatim), "\n")
+      }
+      else {
+        cat("\toccurrenceStatusVerbatim:\t", self$occurrenceStatusVerbatim, "\n")
+      }
+      if (typeof(self$acceptedName) == "environment") {
+        cat("\tacceptedName:\tobject of class", paste0("<", class(self$acceptedName)[1], ">"), "\n")
+      }
+      else if (typeof(self$acceptedName) == "list") {
+        cat("\tacceptedName:\tlist of length", length(self$acceptedName), "\n")
+      }
+      else {
+        cat("\tacceptedName:\t", self$acceptedName, "\n")
+      }
+      if (typeof(self$defaultClassification) == "environment") {
+        cat("\tdefaultClassification:\tobject of class", paste0("<", class(self$defaultClassification)[1], ">"), "\n")
+      }
+      else if (typeof(self$defaultClassification) == "list") {
+        cat("\tdefaultClassification:\tlist of length", length(self$defaultClassification), "\n")
+      }
+      else {
+        cat("\tdefaultClassification:\t", self$defaultClassification, "\n")
+      }
+      if (typeof(self$systemClassification) == "environment") {
+        cat("\tsystemClassification:\tobject of class", paste0("<", class(self$systemClassification)[1], ">"), "\n")
+      }
+      else if (typeof(self$systemClassification) == "list") {
+        cat("\tsystemClassification:\tlist of length", length(self$systemClassification), "\n")
+      }
+      else {
+        cat("\tsystemClassification:\t", self$systemClassification, "\n")
+      }
+      if (typeof(self$synonyms) == "environment") {
+        cat("\tsynonyms:\tobject of class", paste0("<", class(self$synonyms)[1], ">"), "\n")
+      }
+      else if (typeof(self$synonyms) == "list") {
+        cat("\tsynonyms:\tlist of length", length(self$synonyms), "\n")
+      }
+      else {
+        cat("\tsynonyms:\t", self$synonyms, "\n")
+      }
+      if (typeof(self$vernacularNames) == "environment") {
+        cat("\tvernacularNames:\tobject of class", paste0("<", class(self$vernacularNames)[1], ">"), "\n")
+      }
+      else if (typeof(self$vernacularNames) == "list") {
+        cat("\tvernacularNames:\tlist of length", length(self$vernacularNames), "\n")
+      }
+      else {
+        cat("\tvernacularNames:\t", self$vernacularNames, "\n")
+      }
+      if (typeof(self$descriptions) == "environment") {
+        cat("\tdescriptions:\tobject of class", paste0("<", class(self$descriptions)[1], ">"), "\n")
+      }
+      else if (typeof(self$descriptions) == "list") {
+        cat("\tdescriptions:\tlist of length", length(self$descriptions), "\n")
+      }
+      else {
+        cat("\tdescriptions:\t", self$descriptions, "\n")
+      }
+      if (typeof(self$references) == "environment") {
+        cat("\treferences:\tobject of class", paste0("<", class(self$references)[1], ">"), "\n")
+      }
+      else if (typeof(self$references) == "list") {
+        cat("\treferences:\tlist of length", length(self$references), "\n")
+      }
+      else {
+        cat("\treferences:\t", self$references, "\n")
+      }
+      if (typeof(self$experts) == "environment") {
+        cat("\texperts:\tobject of class", paste0("<", class(self$experts)[1], ">"), "\n")
+      }
+      else if (typeof(self$experts) == "list") {
+        cat("\texperts:\tlist of length", length(self$experts), "\n")
+      }
+      else {
+        cat("\texperts:\t", self$experts, "\n")
+      }
+      if (typeof(self$validName) == "environment") {
+        cat("\tvalidName:\tobject of class", paste0("<", class(self$validName)[1], ">"), "\n")
+      }
+      else if (typeof(self$validName) == "list") {
+        cat("\tvalidName:\tlist of length", length(self$validName), "\n")
+      }
+      else {
+        cat("\tvalidName:\t", self$validName, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

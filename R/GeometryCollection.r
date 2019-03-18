@@ -136,6 +136,47 @@ GeometryCollection <- R6::R6Class(
       )
       self <- self$fromList(GeometryCollectionList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<GeometryCollection>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$crs) == "environment") {
+        cat("\tcrs:\tobject of class", paste0("<", class(self$crs)[1], ">"), "\n")
+      }
+      else if (typeof(self$crs) == "list") {
+        cat("\tcrs:\tlist of length", length(self$crs), "\n")
+      }
+      else {
+        cat("\tcrs:\t", self$crs, "\n")
+      }
+      if (typeof(self$bbox) == "environment") {
+        cat("\tbbox:\tobject of class", paste0("<", class(self$bbox)[1], ">"), "\n")
+      }
+      else if (typeof(self$bbox) == "list") {
+        cat("\tbbox:\tlist of length", length(self$bbox), "\n")
+      }
+      else {
+        cat("\tbbox:\t", self$bbox, "\n")
+      }
+      if (typeof(self$geometries) == "environment") {
+        cat("\tgeometries:\tobject of class", paste0("<", class(self$geometries)[1], ">"), "\n")
+      }
+      else if (typeof(self$geometries) == "list") {
+        cat("\tgeometries:\tlist of length", length(self$geometries), "\n")
+      }
+      else {
+        cat("\tgeometries:\t", self$geometries, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

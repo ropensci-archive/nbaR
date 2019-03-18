@@ -155,6 +155,65 @@ Feature <- R6::R6Class(
       )
       self <- self$fromList(FeatureList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<Feature>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$crs) == "environment") {
+        cat("\tcrs:\tobject of class", paste0("<", class(self$crs)[1], ">"), "\n")
+      }
+      else if (typeof(self$crs) == "list") {
+        cat("\tcrs:\tlist of length", length(self$crs), "\n")
+      }
+      else {
+        cat("\tcrs:\t", self$crs, "\n")
+      }
+      if (typeof(self$bbox) == "environment") {
+        cat("\tbbox:\tobject of class", paste0("<", class(self$bbox)[1], ">"), "\n")
+      }
+      else if (typeof(self$bbox) == "list") {
+        cat("\tbbox:\tlist of length", length(self$bbox), "\n")
+      }
+      else {
+        cat("\tbbox:\t", self$bbox, "\n")
+      }
+      if (typeof(self$properties) == "environment") {
+        cat("\tproperties:\tobject of class", paste0("<", class(self$properties)[1], ">"), "\n")
+      }
+      else if (typeof(self$properties) == "list") {
+        cat("\tproperties:\tlist of length", length(self$properties), "\n")
+      }
+      else {
+        cat("\tproperties:\t", self$properties, "\n")
+      }
+      if (typeof(self$geometry) == "environment") {
+        cat("\tgeometry:\tobject of class", paste0("<", class(self$geometry)[1], ">"), "\n")
+      }
+      else if (typeof(self$geometry) == "list") {
+        cat("\tgeometry:\tlist of length", length(self$geometry), "\n")
+      }
+      else {
+        cat("\tgeometry:\t", self$geometry, "\n")
+      }
+      if (typeof(self$id) == "environment") {
+        cat("\tid:\tobject of class", paste0("<", class(self$id)[1], ">"), "\n")
+      }
+      else if (typeof(self$id) == "list") {
+        cat("\tid:\tlist of length", length(self$id), "\n")
+      }
+      else {
+        cat("\tid:\t", self$id, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

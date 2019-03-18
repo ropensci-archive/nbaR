@@ -28,7 +28,7 @@
 #' @field basePath specifies the base URL of the API, defaults to
 #'                 http://api.biodiversitydata.nl/v2
 #' @field userAgent Set the user agent of the request, defaults to
-#'                 nbaR/0.0.0
+#'                 nbaR/0.0.1
 #' @importFrom R6 R6Class
 #' @importFrom httr add_headers user_agent GET POST
 #'
@@ -37,7 +37,7 @@ ApiClient <- R6::R6Class(
   "ApiClient",
   public = list(
     basePath = "http://api.biodiversitydata.nl/v2",
-    userAgent = "nbaR/0.0.0",
+    userAgent = "nbaR/0.0.1",
     initialize = function(basePath, userAgent) {
       if (!missing(basePath)) {
         self$basePath <- basePath
@@ -93,6 +93,18 @@ ApiClient <- R6::R6Class(
       url <- paste0(self$basePath, "/ping")
       res <- self$callApi(url, "GET", NULL, NULL)
       httr::content(res, encoding = "UTF-8") == "NBA Service is up and running!"
+    },
+    print = function(...) {
+      ## print class name
+      cat("<ApiClient>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      cat("\tbasePath:\t", self$basePath, "\n")
+      cat("\tuserAgent:\t", self$userAgent, "\n")
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tping\n")
+      invisible(self)
     }
   ),
   private = list(

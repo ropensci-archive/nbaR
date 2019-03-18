@@ -206,6 +206,92 @@ GatheringSiteCoordinates <- R6::R6Class(
       )
       self <- self$fromList(GatheringSiteCoordinatesList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<GatheringSiteCoordinates>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$longitudeDecimal) == "environment") {
+        cat("\tlongitudeDecimal:\tobject of class", paste0("<", class(self$longitudeDecimal)[1], ">"), "\n")
+      }
+      else if (typeof(self$longitudeDecimal) == "list") {
+        cat("\tlongitudeDecimal:\tlist of length", length(self$longitudeDecimal), "\n")
+      }
+      else {
+        cat("\tlongitudeDecimal:\t", self$longitudeDecimal, "\n")
+      }
+      if (typeof(self$latitudeDecimal) == "environment") {
+        cat("\tlatitudeDecimal:\tobject of class", paste0("<", class(self$latitudeDecimal)[1], ">"), "\n")
+      }
+      else if (typeof(self$latitudeDecimal) == "list") {
+        cat("\tlatitudeDecimal:\tlist of length", length(self$latitudeDecimal), "\n")
+      }
+      else {
+        cat("\tlatitudeDecimal:\t", self$latitudeDecimal, "\n")
+      }
+      if (typeof(self$gridCellSystem) == "environment") {
+        cat("\tgridCellSystem:\tobject of class", paste0("<", class(self$gridCellSystem)[1], ">"), "\n")
+      }
+      else if (typeof(self$gridCellSystem) == "list") {
+        cat("\tgridCellSystem:\tlist of length", length(self$gridCellSystem), "\n")
+      }
+      else {
+        cat("\tgridCellSystem:\t", self$gridCellSystem, "\n")
+      }
+      if (typeof(self$gridLatitudeDecimal) == "environment") {
+        cat("\tgridLatitudeDecimal:\tobject of class", paste0("<", class(self$gridLatitudeDecimal)[1], ">"), "\n")
+      }
+      else if (typeof(self$gridLatitudeDecimal) == "list") {
+        cat("\tgridLatitudeDecimal:\tlist of length", length(self$gridLatitudeDecimal), "\n")
+      }
+      else {
+        cat("\tgridLatitudeDecimal:\t", self$gridLatitudeDecimal, "\n")
+      }
+      if (typeof(self$gridLongitudeDecimal) == "environment") {
+        cat("\tgridLongitudeDecimal:\tobject of class", paste0("<", class(self$gridLongitudeDecimal)[1], ">"), "\n")
+      }
+      else if (typeof(self$gridLongitudeDecimal) == "list") {
+        cat("\tgridLongitudeDecimal:\tlist of length", length(self$gridLongitudeDecimal), "\n")
+      }
+      else {
+        cat("\tgridLongitudeDecimal:\t", self$gridLongitudeDecimal, "\n")
+      }
+      if (typeof(self$gridCellCode) == "environment") {
+        cat("\tgridCellCode:\tobject of class", paste0("<", class(self$gridCellCode)[1], ">"), "\n")
+      }
+      else if (typeof(self$gridCellCode) == "list") {
+        cat("\tgridCellCode:\tlist of length", length(self$gridCellCode), "\n")
+      }
+      else {
+        cat("\tgridCellCode:\t", self$gridCellCode, "\n")
+      }
+      if (typeof(self$gridQualifier) == "environment") {
+        cat("\tgridQualifier:\tobject of class", paste0("<", class(self$gridQualifier)[1], ">"), "\n")
+      }
+      else if (typeof(self$gridQualifier) == "list") {
+        cat("\tgridQualifier:\tlist of length", length(self$gridQualifier), "\n")
+      }
+      else {
+        cat("\tgridQualifier:\t", self$gridQualifier, "\n")
+      }
+      if (typeof(self$geoShape) == "environment") {
+        cat("\tgeoShape:\tobject of class", paste0("<", class(self$geoShape)[1], ">"), "\n")
+      }
+      else if (typeof(self$geoShape) == "list") {
+        cat("\tgeoShape:\tlist of length", length(self$geoShape), "\n")
+      }
+      else {
+        cat("\tgeoShape:\t", self$geoShape, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

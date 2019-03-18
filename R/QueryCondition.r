@@ -217,6 +217,92 @@ QueryCondition <- R6::R6Class(
       )
       self <- self$fromList(QueryConditionList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<QueryCondition>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$not) == "environment") {
+        cat("\tnot:\tobject of class", paste0("<", class(self$not)[1], ">"), "\n")
+      }
+      else if (typeof(self$not) == "list") {
+        cat("\tnot:\tlist of length", length(self$not), "\n")
+      }
+      else {
+        cat("\tnot:\t", self$not, "\n")
+      }
+      if (typeof(self$field) == "environment") {
+        cat("\tfield:\tobject of class", paste0("<", class(self$field)[1], ">"), "\n")
+      }
+      else if (typeof(self$field) == "list") {
+        cat("\tfield:\tlist of length", length(self$field), "\n")
+      }
+      else {
+        cat("\tfield:\t", self$field, "\n")
+      }
+      if (typeof(self$operator) == "environment") {
+        cat("\toperator:\tobject of class", paste0("<", class(self$operator)[1], ">"), "\n")
+      }
+      else if (typeof(self$operator) == "list") {
+        cat("\toperator:\tlist of length", length(self$operator), "\n")
+      }
+      else {
+        cat("\toperator:\t", self$operator, "\n")
+      }
+      if (typeof(self$value) == "environment") {
+        cat("\tvalue:\tobject of class", paste0("<", class(self$value)[1], ">"), "\n")
+      }
+      else if (typeof(self$value) == "list") {
+        cat("\tvalue:\tlist of length", length(self$value), "\n")
+      }
+      else {
+        cat("\tvalue:\t", self$value, "\n")
+      }
+      if (typeof(self$and) == "environment") {
+        cat("\tand:\tobject of class", paste0("<", class(self$and)[1], ">"), "\n")
+      }
+      else if (typeof(self$and) == "list") {
+        cat("\tand:\tlist of length", length(self$and), "\n")
+      }
+      else {
+        cat("\tand:\t", self$and, "\n")
+      }
+      if (typeof(self$or) == "environment") {
+        cat("\tor:\tobject of class", paste0("<", class(self$or)[1], ">"), "\n")
+      }
+      else if (typeof(self$or) == "list") {
+        cat("\tor:\tlist of length", length(self$or), "\n")
+      }
+      else {
+        cat("\tor:\t", self$or, "\n")
+      }
+      if (typeof(self$constantScore) == "environment") {
+        cat("\tconstantScore:\tobject of class", paste0("<", class(self$constantScore)[1], ">"), "\n")
+      }
+      else if (typeof(self$constantScore) == "list") {
+        cat("\tconstantScore:\tlist of length", length(self$constantScore), "\n")
+      }
+      else {
+        cat("\tconstantScore:\t", self$constantScore, "\n")
+      }
+      if (typeof(self$boost) == "environment") {
+        cat("\tboost:\tobject of class", paste0("<", class(self$boost)[1], ">"), "\n")
+      }
+      else if (typeof(self$boost) == "list") {
+        cat("\tboost:\tlist of length", length(self$boost), "\n")
+      }
+      else {
+        cat("\tboost:\t", self$boost, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

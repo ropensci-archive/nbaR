@@ -189,7 +189,32 @@
           simplifyVector = FALSE)
       self <- self$fromList({{classname}}List)
       invisible(self)
-    }
+    },
+    print = function(...) {
+       ## print class name
+       cat("<{{classname}}>\n")    
+       ## print all members with values
+       cat("Fields:\n")
+         {{#vars}}           
+           if (typeof(self${{{baseName}}}) == "environment") {
+               cat("\t{{{baseName}}}:\tobject of class", paste0("<", class(self${{{baseName}}})[1], ">"), "\n")
+           }
+           else if (typeof(self${{{baseName}}}) == "list") {
+               cat("\t{{{baseName}}}:\tlist of length", length(self${{{baseName}}}), "\n")
+           }
+           else {
+               cat("\t{{{baseName}}}:\t", self${{{baseName}}}, "\n")
+           }           
+         {{/vars}}
+       ## print all methods
+       cat("Methods:\n")
+       cat("\tfromJSONString\n")
+       cat("\ttoJSONString\n")
+       cat("\tfromList\n")
+       cat("\ttoList\n")
+       cat("\tprint\n")
+       invisible(self)
+    }  
   )
 )
 {{/model}}

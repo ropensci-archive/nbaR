@@ -158,6 +158,65 @@ Reference <- R6::R6Class(
       )
       self <- self$fromList(ReferenceList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<Reference>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$titleCitation) == "environment") {
+        cat("\ttitleCitation:\tobject of class", paste0("<", class(self$titleCitation)[1], ">"), "\n")
+      }
+      else if (typeof(self$titleCitation) == "list") {
+        cat("\ttitleCitation:\tlist of length", length(self$titleCitation), "\n")
+      }
+      else {
+        cat("\ttitleCitation:\t", self$titleCitation, "\n")
+      }
+      if (typeof(self$citationDetail) == "environment") {
+        cat("\tcitationDetail:\tobject of class", paste0("<", class(self$citationDetail)[1], ">"), "\n")
+      }
+      else if (typeof(self$citationDetail) == "list") {
+        cat("\tcitationDetail:\tlist of length", length(self$citationDetail), "\n")
+      }
+      else {
+        cat("\tcitationDetail:\t", self$citationDetail, "\n")
+      }
+      if (typeof(self$uri) == "environment") {
+        cat("\turi:\tobject of class", paste0("<", class(self$uri)[1], ">"), "\n")
+      }
+      else if (typeof(self$uri) == "list") {
+        cat("\turi:\tlist of length", length(self$uri), "\n")
+      }
+      else {
+        cat("\turi:\t", self$uri, "\n")
+      }
+      if (typeof(self$author) == "environment") {
+        cat("\tauthor:\tobject of class", paste0("<", class(self$author)[1], ">"), "\n")
+      }
+      else if (typeof(self$author) == "list") {
+        cat("\tauthor:\tlist of length", length(self$author), "\n")
+      }
+      else {
+        cat("\tauthor:\t", self$author, "\n")
+      }
+      if (typeof(self$publicationDate) == "environment") {
+        cat("\tpublicationDate:\tobject of class", paste0("<", class(self$publicationDate)[1], ">"), "\n")
+      }
+      else if (typeof(self$publicationDate) == "list") {
+        cat("\tpublicationDate:\tlist of length", length(self$publicationDate), "\n")
+      }
+      else {
+        cat("\tpublicationDate:\t", self$publicationDate, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

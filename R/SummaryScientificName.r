@@ -191,6 +191,83 @@ SummaryScientificName <- R6::R6Class(
       )
       self <- self$fromList(SummaryScientificNameList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<SummaryScientificName>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$fullScientificName) == "environment") {
+        cat("\tfullScientificName:\tobject of class", paste0("<", class(self$fullScientificName)[1], ">"), "\n")
+      }
+      else if (typeof(self$fullScientificName) == "list") {
+        cat("\tfullScientificName:\tlist of length", length(self$fullScientificName), "\n")
+      }
+      else {
+        cat("\tfullScientificName:\t", self$fullScientificName, "\n")
+      }
+      if (typeof(self$taxonomicStatus) == "environment") {
+        cat("\ttaxonomicStatus:\tobject of class", paste0("<", class(self$taxonomicStatus)[1], ">"), "\n")
+      }
+      else if (typeof(self$taxonomicStatus) == "list") {
+        cat("\ttaxonomicStatus:\tlist of length", length(self$taxonomicStatus), "\n")
+      }
+      else {
+        cat("\ttaxonomicStatus:\t", self$taxonomicStatus, "\n")
+      }
+      if (typeof(self$genusOrMonomial) == "environment") {
+        cat("\tgenusOrMonomial:\tobject of class", paste0("<", class(self$genusOrMonomial)[1], ">"), "\n")
+      }
+      else if (typeof(self$genusOrMonomial) == "list") {
+        cat("\tgenusOrMonomial:\tlist of length", length(self$genusOrMonomial), "\n")
+      }
+      else {
+        cat("\tgenusOrMonomial:\t", self$genusOrMonomial, "\n")
+      }
+      if (typeof(self$subgenus) == "environment") {
+        cat("\tsubgenus:\tobject of class", paste0("<", class(self$subgenus)[1], ">"), "\n")
+      }
+      else if (typeof(self$subgenus) == "list") {
+        cat("\tsubgenus:\tlist of length", length(self$subgenus), "\n")
+      }
+      else {
+        cat("\tsubgenus:\t", self$subgenus, "\n")
+      }
+      if (typeof(self$specificEpithet) == "environment") {
+        cat("\tspecificEpithet:\tobject of class", paste0("<", class(self$specificEpithet)[1], ">"), "\n")
+      }
+      else if (typeof(self$specificEpithet) == "list") {
+        cat("\tspecificEpithet:\tlist of length", length(self$specificEpithet), "\n")
+      }
+      else {
+        cat("\tspecificEpithet:\t", self$specificEpithet, "\n")
+      }
+      if (typeof(self$infraspecificEpithet) == "environment") {
+        cat("\tinfraspecificEpithet:\tobject of class", paste0("<", class(self$infraspecificEpithet)[1], ">"), "\n")
+      }
+      else if (typeof(self$infraspecificEpithet) == "list") {
+        cat("\tinfraspecificEpithet:\tlist of length", length(self$infraspecificEpithet), "\n")
+      }
+      else {
+        cat("\tinfraspecificEpithet:\t", self$infraspecificEpithet, "\n")
+      }
+      if (typeof(self$authorshipVerbatim) == "environment") {
+        cat("\tauthorshipVerbatim:\tobject of class", paste0("<", class(self$authorshipVerbatim)[1], ">"), "\n")
+      }
+      else if (typeof(self$authorshipVerbatim) == "list") {
+        cat("\tauthorshipVerbatim:\tlist of length", length(self$authorshipVerbatim), "\n")
+      }
+      else {
+        cat("\tauthorshipVerbatim:\t", self$authorshipVerbatim, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

@@ -153,6 +153,56 @@ Filter <- R6::R6Class(
       )
       self <- self$fromList(FilterList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<Filter>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$acceptRegexp) == "environment") {
+        cat("\tacceptRegexp:\tobject of class", paste0("<", class(self$acceptRegexp)[1], ">"), "\n")
+      }
+      else if (typeof(self$acceptRegexp) == "list") {
+        cat("\tacceptRegexp:\tlist of length", length(self$acceptRegexp), "\n")
+      }
+      else {
+        cat("\tacceptRegexp:\t", self$acceptRegexp, "\n")
+      }
+      if (typeof(self$rejectRegexp) == "environment") {
+        cat("\trejectRegexp:\tobject of class", paste0("<", class(self$rejectRegexp)[1], ">"), "\n")
+      }
+      else if (typeof(self$rejectRegexp) == "list") {
+        cat("\trejectRegexp:\tlist of length", length(self$rejectRegexp), "\n")
+      }
+      else {
+        cat("\trejectRegexp:\t", self$rejectRegexp, "\n")
+      }
+      if (typeof(self$acceptValues) == "environment") {
+        cat("\tacceptValues:\tobject of class", paste0("<", class(self$acceptValues)[1], ">"), "\n")
+      }
+      else if (typeof(self$acceptValues) == "list") {
+        cat("\tacceptValues:\tlist of length", length(self$acceptValues), "\n")
+      }
+      else {
+        cat("\tacceptValues:\t", self$acceptValues, "\n")
+      }
+      if (typeof(self$rejectValues) == "environment") {
+        cat("\trejectValues:\tobject of class", paste0("<", class(self$rejectValues)[1], ">"), "\n")
+      }
+      else if (typeof(self$rejectValues) == "list") {
+        cat("\trejectValues:\tlist of length", length(self$rejectValues), "\n")
+      }
+      else {
+        cat("\trejectValues:\t", self$rejectValues, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

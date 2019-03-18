@@ -608,6 +608,308 @@ Specimen <- R6::R6Class(
       )
       self <- self$fromList(SpecimenList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<Specimen>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$sourceSystem) == "environment") {
+        cat("\tsourceSystem:\tobject of class", paste0("<", class(self$sourceSystem)[1], ">"), "\n")
+      }
+      else if (typeof(self$sourceSystem) == "list") {
+        cat("\tsourceSystem:\tlist of length", length(self$sourceSystem), "\n")
+      }
+      else {
+        cat("\tsourceSystem:\t", self$sourceSystem, "\n")
+      }
+      if (typeof(self$sourceSystemId) == "environment") {
+        cat("\tsourceSystemId:\tobject of class", paste0("<", class(self$sourceSystemId)[1], ">"), "\n")
+      }
+      else if (typeof(self$sourceSystemId) == "list") {
+        cat("\tsourceSystemId:\tlist of length", length(self$sourceSystemId), "\n")
+      }
+      else {
+        cat("\tsourceSystemId:\t", self$sourceSystemId, "\n")
+      }
+      if (typeof(self$recordURI) == "environment") {
+        cat("\trecordURI:\tobject of class", paste0("<", class(self$recordURI)[1], ">"), "\n")
+      }
+      else if (typeof(self$recordURI) == "list") {
+        cat("\trecordURI:\tlist of length", length(self$recordURI), "\n")
+      }
+      else {
+        cat("\trecordURI:\t", self$recordURI, "\n")
+      }
+      if (typeof(self$id) == "environment") {
+        cat("\tid:\tobject of class", paste0("<", class(self$id)[1], ">"), "\n")
+      }
+      else if (typeof(self$id) == "list") {
+        cat("\tid:\tlist of length", length(self$id), "\n")
+      }
+      else {
+        cat("\tid:\t", self$id, "\n")
+      }
+      if (typeof(self$unitID) == "environment") {
+        cat("\tunitID:\tobject of class", paste0("<", class(self$unitID)[1], ">"), "\n")
+      }
+      else if (typeof(self$unitID) == "list") {
+        cat("\tunitID:\tlist of length", length(self$unitID), "\n")
+      }
+      else {
+        cat("\tunitID:\t", self$unitID, "\n")
+      }
+      if (typeof(self$unitGUID) == "environment") {
+        cat("\tunitGUID:\tobject of class", paste0("<", class(self$unitGUID)[1], ">"), "\n")
+      }
+      else if (typeof(self$unitGUID) == "list") {
+        cat("\tunitGUID:\tlist of length", length(self$unitGUID), "\n")
+      }
+      else {
+        cat("\tunitGUID:\t", self$unitGUID, "\n")
+      }
+      if (typeof(self$collectorsFieldNumber) == "environment") {
+        cat("\tcollectorsFieldNumber:\tobject of class", paste0("<", class(self$collectorsFieldNumber)[1], ">"), "\n")
+      }
+      else if (typeof(self$collectorsFieldNumber) == "list") {
+        cat("\tcollectorsFieldNumber:\tlist of length", length(self$collectorsFieldNumber), "\n")
+      }
+      else {
+        cat("\tcollectorsFieldNumber:\t", self$collectorsFieldNumber, "\n")
+      }
+      if (typeof(self$assemblageID) == "environment") {
+        cat("\tassemblageID:\tobject of class", paste0("<", class(self$assemblageID)[1], ">"), "\n")
+      }
+      else if (typeof(self$assemblageID) == "list") {
+        cat("\tassemblageID:\tlist of length", length(self$assemblageID), "\n")
+      }
+      else {
+        cat("\tassemblageID:\t", self$assemblageID, "\n")
+      }
+      if (typeof(self$sourceInstitutionID) == "environment") {
+        cat("\tsourceInstitutionID:\tobject of class", paste0("<", class(self$sourceInstitutionID)[1], ">"), "\n")
+      }
+      else if (typeof(self$sourceInstitutionID) == "list") {
+        cat("\tsourceInstitutionID:\tlist of length", length(self$sourceInstitutionID), "\n")
+      }
+      else {
+        cat("\tsourceInstitutionID:\t", self$sourceInstitutionID, "\n")
+      }
+      if (typeof(self$sourceID) == "environment") {
+        cat("\tsourceID:\tobject of class", paste0("<", class(self$sourceID)[1], ">"), "\n")
+      }
+      else if (typeof(self$sourceID) == "list") {
+        cat("\tsourceID:\tlist of length", length(self$sourceID), "\n")
+      }
+      else {
+        cat("\tsourceID:\t", self$sourceID, "\n")
+      }
+      if (typeof(self$previousSourceID) == "environment") {
+        cat("\tpreviousSourceID:\tobject of class", paste0("<", class(self$previousSourceID)[1], ">"), "\n")
+      }
+      else if (typeof(self$previousSourceID) == "list") {
+        cat("\tpreviousSourceID:\tlist of length", length(self$previousSourceID), "\n")
+      }
+      else {
+        cat("\tpreviousSourceID:\t", self$previousSourceID, "\n")
+      }
+      if (typeof(self$owner) == "environment") {
+        cat("\towner:\tobject of class", paste0("<", class(self$owner)[1], ">"), "\n")
+      }
+      else if (typeof(self$owner) == "list") {
+        cat("\towner:\tlist of length", length(self$owner), "\n")
+      }
+      else {
+        cat("\towner:\t", self$owner, "\n")
+      }
+      if (typeof(self$licenseType) == "environment") {
+        cat("\tlicenseType:\tobject of class", paste0("<", class(self$licenseType)[1], ">"), "\n")
+      }
+      else if (typeof(self$licenseType) == "list") {
+        cat("\tlicenseType:\tlist of length", length(self$licenseType), "\n")
+      }
+      else {
+        cat("\tlicenseType:\t", self$licenseType, "\n")
+      }
+      if (typeof(self$license) == "environment") {
+        cat("\tlicense:\tobject of class", paste0("<", class(self$license)[1], ">"), "\n")
+      }
+      else if (typeof(self$license) == "list") {
+        cat("\tlicense:\tlist of length", length(self$license), "\n")
+      }
+      else {
+        cat("\tlicense:\t", self$license, "\n")
+      }
+      if (typeof(self$recordBasis) == "environment") {
+        cat("\trecordBasis:\tobject of class", paste0("<", class(self$recordBasis)[1], ">"), "\n")
+      }
+      else if (typeof(self$recordBasis) == "list") {
+        cat("\trecordBasis:\tlist of length", length(self$recordBasis), "\n")
+      }
+      else {
+        cat("\trecordBasis:\t", self$recordBasis, "\n")
+      }
+      if (typeof(self$kindOfUnit) == "environment") {
+        cat("\tkindOfUnit:\tobject of class", paste0("<", class(self$kindOfUnit)[1], ">"), "\n")
+      }
+      else if (typeof(self$kindOfUnit) == "list") {
+        cat("\tkindOfUnit:\tlist of length", length(self$kindOfUnit), "\n")
+      }
+      else {
+        cat("\tkindOfUnit:\t", self$kindOfUnit, "\n")
+      }
+      if (typeof(self$collectionType) == "environment") {
+        cat("\tcollectionType:\tobject of class", paste0("<", class(self$collectionType)[1], ">"), "\n")
+      }
+      else if (typeof(self$collectionType) == "list") {
+        cat("\tcollectionType:\tlist of length", length(self$collectionType), "\n")
+      }
+      else {
+        cat("\tcollectionType:\t", self$collectionType, "\n")
+      }
+      if (typeof(self$sex) == "environment") {
+        cat("\tsex:\tobject of class", paste0("<", class(self$sex)[1], ">"), "\n")
+      }
+      else if (typeof(self$sex) == "list") {
+        cat("\tsex:\tlist of length", length(self$sex), "\n")
+      }
+      else {
+        cat("\tsex:\t", self$sex, "\n")
+      }
+      if (typeof(self$phaseOrStage) == "environment") {
+        cat("\tphaseOrStage:\tobject of class", paste0("<", class(self$phaseOrStage)[1], ">"), "\n")
+      }
+      else if (typeof(self$phaseOrStage) == "list") {
+        cat("\tphaseOrStage:\tlist of length", length(self$phaseOrStage), "\n")
+      }
+      else {
+        cat("\tphaseOrStage:\t", self$phaseOrStage, "\n")
+      }
+      if (typeof(self$title) == "environment") {
+        cat("\ttitle:\tobject of class", paste0("<", class(self$title)[1], ">"), "\n")
+      }
+      else if (typeof(self$title) == "list") {
+        cat("\ttitle:\tlist of length", length(self$title), "\n")
+      }
+      else {
+        cat("\ttitle:\t", self$title, "\n")
+      }
+      if (typeof(self$notes) == "environment") {
+        cat("\tnotes:\tobject of class", paste0("<", class(self$notes)[1], ">"), "\n")
+      }
+      else if (typeof(self$notes) == "list") {
+        cat("\tnotes:\tlist of length", length(self$notes), "\n")
+      }
+      else {
+        cat("\tnotes:\t", self$notes, "\n")
+      }
+      if (typeof(self$preparationType) == "environment") {
+        cat("\tpreparationType:\tobject of class", paste0("<", class(self$preparationType)[1], ">"), "\n")
+      }
+      else if (typeof(self$preparationType) == "list") {
+        cat("\tpreparationType:\tlist of length", length(self$preparationType), "\n")
+      }
+      else {
+        cat("\tpreparationType:\t", self$preparationType, "\n")
+      }
+      if (typeof(self$previousUnitsText) == "environment") {
+        cat("\tpreviousUnitsText:\tobject of class", paste0("<", class(self$previousUnitsText)[1], ">"), "\n")
+      }
+      else if (typeof(self$previousUnitsText) == "list") {
+        cat("\tpreviousUnitsText:\tlist of length", length(self$previousUnitsText), "\n")
+      }
+      else {
+        cat("\tpreviousUnitsText:\t", self$previousUnitsText, "\n")
+      }
+      if (typeof(self$numberOfSpecimen) == "environment") {
+        cat("\tnumberOfSpecimen:\tobject of class", paste0("<", class(self$numberOfSpecimen)[1], ">"), "\n")
+      }
+      else if (typeof(self$numberOfSpecimen) == "list") {
+        cat("\tnumberOfSpecimen:\tlist of length", length(self$numberOfSpecimen), "\n")
+      }
+      else {
+        cat("\tnumberOfSpecimen:\t", self$numberOfSpecimen, "\n")
+      }
+      if (typeof(self$fromCaptivity) == "environment") {
+        cat("\tfromCaptivity:\tobject of class", paste0("<", class(self$fromCaptivity)[1], ">"), "\n")
+      }
+      else if (typeof(self$fromCaptivity) == "list") {
+        cat("\tfromCaptivity:\tlist of length", length(self$fromCaptivity), "\n")
+      }
+      else {
+        cat("\tfromCaptivity:\t", self$fromCaptivity, "\n")
+      }
+      if (typeof(self$objectPublic) == "environment") {
+        cat("\tobjectPublic:\tobject of class", paste0("<", class(self$objectPublic)[1], ">"), "\n")
+      }
+      else if (typeof(self$objectPublic) == "list") {
+        cat("\tobjectPublic:\tlist of length", length(self$objectPublic), "\n")
+      }
+      else {
+        cat("\tobjectPublic:\t", self$objectPublic, "\n")
+      }
+      if (typeof(self$multiMediaPublic) == "environment") {
+        cat("\tmultiMediaPublic:\tobject of class", paste0("<", class(self$multiMediaPublic)[1], ">"), "\n")
+      }
+      else if (typeof(self$multiMediaPublic) == "list") {
+        cat("\tmultiMediaPublic:\tlist of length", length(self$multiMediaPublic), "\n")
+      }
+      else {
+        cat("\tmultiMediaPublic:\t", self$multiMediaPublic, "\n")
+      }
+      if (typeof(self$acquiredFrom) == "environment") {
+        cat("\tacquiredFrom:\tobject of class", paste0("<", class(self$acquiredFrom)[1], ">"), "\n")
+      }
+      else if (typeof(self$acquiredFrom) == "list") {
+        cat("\tacquiredFrom:\tlist of length", length(self$acquiredFrom), "\n")
+      }
+      else {
+        cat("\tacquiredFrom:\t", self$acquiredFrom, "\n")
+      }
+      if (typeof(self$gatheringEvent) == "environment") {
+        cat("\tgatheringEvent:\tobject of class", paste0("<", class(self$gatheringEvent)[1], ">"), "\n")
+      }
+      else if (typeof(self$gatheringEvent) == "list") {
+        cat("\tgatheringEvent:\tlist of length", length(self$gatheringEvent), "\n")
+      }
+      else {
+        cat("\tgatheringEvent:\t", self$gatheringEvent, "\n")
+      }
+      if (typeof(self$identifications) == "environment") {
+        cat("\tidentifications:\tobject of class", paste0("<", class(self$identifications)[1], ">"), "\n")
+      }
+      else if (typeof(self$identifications) == "list") {
+        cat("\tidentifications:\tlist of length", length(self$identifications), "\n")
+      }
+      else {
+        cat("\tidentifications:\t", self$identifications, "\n")
+      }
+      if (typeof(self$associatedMultiMediaUris) == "environment") {
+        cat("\tassociatedMultiMediaUris:\tobject of class", paste0("<", class(self$associatedMultiMediaUris)[1], ">"), "\n")
+      }
+      else if (typeof(self$associatedMultiMediaUris) == "list") {
+        cat("\tassociatedMultiMediaUris:\tlist of length", length(self$associatedMultiMediaUris), "\n")
+      }
+      else {
+        cat("\tassociatedMultiMediaUris:\t", self$associatedMultiMediaUris, "\n")
+      }
+      if (typeof(self$theme) == "environment") {
+        cat("\ttheme:\tobject of class", paste0("<", class(self$theme)[1], ">"), "\n")
+      }
+      else if (typeof(self$theme) == "list") {
+        cat("\ttheme:\tlist of length", length(self$theme), "\n")
+      }
+      else {
+        cat("\ttheme:\t", self$theme, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

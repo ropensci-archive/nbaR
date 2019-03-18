@@ -126,6 +126,47 @@ Person <- R6::R6Class(
       )
       self <- self$fromList(PersonList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<Person>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$agentText) == "environment") {
+        cat("\tagentText:\tobject of class", paste0("<", class(self$agentText)[1], ">"), "\n")
+      }
+      else if (typeof(self$agentText) == "list") {
+        cat("\tagentText:\tlist of length", length(self$agentText), "\n")
+      }
+      else {
+        cat("\tagentText:\t", self$agentText, "\n")
+      }
+      if (typeof(self$fullName) == "environment") {
+        cat("\tfullName:\tobject of class", paste0("<", class(self$fullName)[1], ">"), "\n")
+      }
+      else if (typeof(self$fullName) == "list") {
+        cat("\tfullName:\tlist of length", length(self$fullName), "\n")
+      }
+      else {
+        cat("\tfullName:\t", self$fullName, "\n")
+      }
+      if (typeof(self$organization) == "environment") {
+        cat("\torganization:\tobject of class", paste0("<", class(self$organization)[1], ">"), "\n")
+      }
+      else if (typeof(self$organization) == "list") {
+        cat("\torganization:\tlist of length", length(self$organization), "\n")
+      }
+      else {
+        cat("\torganization:\t", self$organization, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )

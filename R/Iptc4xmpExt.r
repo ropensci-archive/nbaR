@@ -191,6 +191,83 @@ Iptc4xmpExt <- R6::R6Class(
       )
       self <- self$fromList(Iptc4xmpExtList)
       invisible(self)
+    },
+    print = function(...) {
+      ## print class name
+      cat("<Iptc4xmpExt>\n")
+      ## print all members with values
+      cat("Fields:\n")
+      if (typeof(self$locationShown) == "environment") {
+        cat("\tlocationShown:\tobject of class", paste0("<", class(self$locationShown)[1], ">"), "\n")
+      }
+      else if (typeof(self$locationShown) == "list") {
+        cat("\tlocationShown:\tlist of length", length(self$locationShown), "\n")
+      }
+      else {
+        cat("\tlocationShown:\t", self$locationShown, "\n")
+      }
+      if (typeof(self$worldRegion) == "environment") {
+        cat("\tworldRegion:\tobject of class", paste0("<", class(self$worldRegion)[1], ">"), "\n")
+      }
+      else if (typeof(self$worldRegion) == "list") {
+        cat("\tworldRegion:\tlist of length", length(self$worldRegion), "\n")
+      }
+      else {
+        cat("\tworldRegion:\t", self$worldRegion, "\n")
+      }
+      if (typeof(self$countryCode) == "environment") {
+        cat("\tcountryCode:\tobject of class", paste0("<", class(self$countryCode)[1], ">"), "\n")
+      }
+      else if (typeof(self$countryCode) == "list") {
+        cat("\tcountryCode:\tlist of length", length(self$countryCode), "\n")
+      }
+      else {
+        cat("\tcountryCode:\t", self$countryCode, "\n")
+      }
+      if (typeof(self$countryName) == "environment") {
+        cat("\tcountryName:\tobject of class", paste0("<", class(self$countryName)[1], ">"), "\n")
+      }
+      else if (typeof(self$countryName) == "list") {
+        cat("\tcountryName:\tlist of length", length(self$countryName), "\n")
+      }
+      else {
+        cat("\tcountryName:\t", self$countryName, "\n")
+      }
+      if (typeof(self$provinceState) == "environment") {
+        cat("\tprovinceState:\tobject of class", paste0("<", class(self$provinceState)[1], ">"), "\n")
+      }
+      else if (typeof(self$provinceState) == "list") {
+        cat("\tprovinceState:\tlist of length", length(self$provinceState), "\n")
+      }
+      else {
+        cat("\tprovinceState:\t", self$provinceState, "\n")
+      }
+      if (typeof(self$city) == "environment") {
+        cat("\tcity:\tobject of class", paste0("<", class(self$city)[1], ">"), "\n")
+      }
+      else if (typeof(self$city) == "list") {
+        cat("\tcity:\tlist of length", length(self$city), "\n")
+      }
+      else {
+        cat("\tcity:\t", self$city, "\n")
+      }
+      if (typeof(self$sublocation) == "environment") {
+        cat("\tsublocation:\tobject of class", paste0("<", class(self$sublocation)[1], ">"), "\n")
+      }
+      else if (typeof(self$sublocation) == "list") {
+        cat("\tsublocation:\tlist of length", length(self$sublocation), "\n")
+      }
+      else {
+        cat("\tsublocation:\t", self$sublocation, "\n")
+      }
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tfromJSONString\n")
+      cat("\ttoJSONString\n")
+      cat("\tfromList\n")
+      cat("\ttoList\n")
+      cat("\tprint\n")
+      invisible(self)
     }
   )
 )
