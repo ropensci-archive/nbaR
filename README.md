@@ -26,7 +26,7 @@ install_github("naturalis/nbaR", build_vignettes=TRUE)
 ### Using the package
 After installation, the package can be loaded as follows:
 ```R
-library('nbaR')
+library(nbaR)
 ```
 
 ### Documentation
