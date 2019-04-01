@@ -55,7 +55,7 @@ by the API, such as `Specimen` or `Taxon` objects are implemented as
 (`QuerySpec` and `QueryCondition`, respectively, see also
 [here](apiclient.html)).
 
-For for many queries, the full functionality of the NBA won't be
+For many queries, the full functionality of the NBA won't be
 required. The package therefore offers a **wrapper function** for each
 endpoint that does not use `R6` classes but common R data structes,
 such as `list` and `data.frame`. However, querying capabilities are
