@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nbaR</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0</span>
       </span>
     </div>
 
@@ -125,7 +125,7 @@
     <div class="page-header toc-ignore">
       <h1>nbaR services examples</h1>
             
-            <h4 class="date">Mar 18, 2019</h4>
+            <h4 class="date">Apr 11, 2019</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/naturalis/nbaR/blob/master/vignettes/services.Rmd"><code>vignettes/services.Rmd</code></a></small>
       <div class="hidden name"><code>services.Rmd</code></div>
@@ -274,7 +274,8 @@
 ##  fromJSONString
 ##  toJSONString
 ##  fromList
-##  toList</code></pre>
+##  toList
+##  print</code></pre>
 </div>
 <div id="find_by_ids" class="section level4">
 <h4 class="hasAnchor">
@@ -635,7 +636,7 @@
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="co"># download dataset 'porifera' to temporary file</span></a>
 <a class="sourceLine" id="cb42-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
 <a class="sourceLine" id="cb42-3" data-line-number="3">sc<span class="op">$</span><span class="kw">dwca_get_data_set</span>(<span class="st">'porifera'</span>, <span class="dt">filename=</span>filename)                                                                               </a></code></pre></div>
-<pre><code>## Query result written to /tmp/Rtmp3OXWJt/file55c62aa79ca9.zip</code></pre>
+<pre><code>## Query result written to /tmp/RtmpL5L77Q/file3fea5c4ca19b.zip</code></pre>
 </div>
 <div id="dynamic-download" class="section level4">
 <h4 class="hasAnchor">
@@ -652,7 +653,7 @@
 <a class="sourceLine" id="cb44-9" data-line-number="9">    )</a>
 <a class="sourceLine" id="cb44-10" data-line-number="10">  ))</a>
 <a class="sourceLine" id="cb44-11" data-line-number="11">sc<span class="op">$</span><span class="kw">dwca_query</span>(<span class="dt">querySpec =</span> qs, <span class="dt">filename =</span> filename)</a></code></pre></div>
-<pre><code>## Query result written to /tmp/Rtmp3OXWJt/file55c6359e54cf.zip</code></pre>
+<pre><code>## Query result written to /tmp/RtmpL5L77Q/file3fea4db7a535.zip</code></pre>
 </div>
 </div>
 </div>
@@ -925,7 +926,7 @@
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="co"># download dataset 'nsr' to temporary file</span></a>
 <a class="sourceLine" id="cb76-2" data-line-number="2">filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext=</span><span class="st">".zip"</span>)</a>
 <a class="sourceLine" id="cb76-3" data-line-number="3">tc<span class="op">$</span><span class="kw">dwca_get_data_set</span>(<span class="st">'nsr'</span>, <span class="dt">filename=</span>filename)                                                                               </a></code></pre></div>
-<pre><code>## Query result written to /tmp/Rtmp3OXWJt/file55c67b538c0b.zip</code></pre>
+<pre><code>## Query result written to /tmp/RtmpL5L77Q/file3fea6f84fba8.zip</code></pre>
 </div>
 <div id="dynamic-download-1" class="section level4">
 <h4 class="hasAnchor">
@@ -942,7 +943,7 @@
 <a class="sourceLine" id="cb78-9" data-line-number="9">    )</a>
 <a class="sourceLine" id="cb78-10" data-line-number="10">  ))</a>
 <a class="sourceLine" id="cb78-11" data-line-number="11">tc<span class="op">$</span><span class="kw">dwca_query</span>(<span class="dt">querySpec =</span> qs, <span class="dt">filename =</span> filename)</a></code></pre></div>
-<pre><code>## Query result written to /tmp/Rtmp3OXWJt/file55c66a01d1ed.zip</code></pre>
+<pre><code>## Query result written to /tmp/RtmpL5L77Q/file3fea598635ea.zip</code></pre>
 </div>
 </div>
 </div>
@@ -982,7 +983,8 @@
 ##  fromJSONString
 ##  toJSONString
 ##  fromList
-##  toList</code></pre>
+##  toList
+##  print</code></pre>
 </div>
 <div id="data-access-services-2" class="section level3">
 <h3 class="hasAnchor">
@@ -1084,7 +1086,8 @@
 ##  fromJSONString
 ##  toJSONString
 ##  fromList
-##  toList</code></pre>
+##  toList
+##  print</code></pre>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1"><span class="co"># example of multimedia query using QuerySpec: get the first 100</span></a>
 <a class="sourceLine" id="cb101-2" data-line-number="2"><span class="co"># multimedia items associated with a specimen with name starting with "Ba"</span></a>
 <a class="sourceLine" id="cb101-3" data-line-number="3">qc &lt;-</a>
@@ -1349,7 +1352,8 @@
 ##  fromJSONString
 ##  toJSONString
 ##  fromList
-##  toList</code></pre>
+##  toList
+##  print</code></pre>
 </div>
 <div id="settings-3" class="section level5">
 <h5 class="hasAnchor">

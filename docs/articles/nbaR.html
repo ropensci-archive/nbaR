@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nbaR</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0</span>
       </span>
     </div>
 
@@ -125,7 +125,7 @@
     <div class="page-header toc-ignore">
       <h1>nbaR: R access to the Netherlands Biodiversity API</h1>
             
-            <h4 class="date">Mar 18, 2019</h4>
+            <h4 class="date">Apr 11, 2019</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/naturalis/nbaR/blob/master/vignettes/nbaR.Rmd"><code>vignettes/nbaR.Rmd</code></a></small>
       <div class="hidden name"><code>nbaR.Rmd</code></div>
@@ -152,7 +152,7 @@
 <h1 class="hasAnchor">
 <a href="#full-client-vs-wrapper-functions" class="anchor"></a>Full client vs wrapper functions</h1>
 <p>nbaR aims to be a <em>full</em> client of the NBA API, meaning that it implements all endpoints and the entire NBA object model. The client thus facilitates all API queries possible. Complex objects returned by the API, such as <code>Specimen</code> or <code>Taxon</code> objects are implemented as <code>R6</code> classes. This includes also objects used for querying (<code>QuerySpec</code> and <code>QueryCondition</code>, respectively, see also <a href="apiclient.html">here</a>).</p>
-<p>For for many queries, the full functionality of the NBA won’t be required. The package therefore offers a <strong>wrapper function</strong> for each endpoint that does not use <code>R6</code> classes but common R data structes, such as <code>list</code> and <code>data.frame</code>. However, querying capabilities are limited for these wrappers. Below we will show how to set up some simple queries using the wrapper functions.</p>
+<p>For many queries, the full functionality of the NBA won’t be required. The package therefore offers a <strong>wrapper function</strong> for each endpoint that does not use <code>R6</code> classes but common R data structes, such as <code>list</code> and <code>data.frame</code>. However, querying capabilities are limited for these wrappers. Below we will show how to set up some simple queries using the wrapper functions.</p>
 </div>
 <div id="quick-start-querying-the-nba-using-wrapper-functions" class="section level1">
 <h1 class="hasAnchor">

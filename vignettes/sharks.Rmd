@@ -11,11 +11,6 @@ output:
     toc_depth: 3
     toc_float:
       collapsed: false
-
-vignette: >
-  %\VignetteIndexEntry{nbaR: R access to the Netherlands Biodiversity API}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 # Background

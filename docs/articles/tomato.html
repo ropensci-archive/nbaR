@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nbaR</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0</span>
       </span>
     </div>
 
@@ -125,7 +125,7 @@
     <div class="page-header toc-ignore">
       <h1>The oldest tomato specimen in the world</h1>
             
-            <h4 class="date">Mar 18, 2019</h4>
+            <h4 class="date">Apr 11, 2019</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/naturalis/nbaR/blob/master/vignettes/tomato.Rmd"><code>vignettes/tomato.Rmd</code></a></small>
       <div class="hidden name"><code>tomato.Rmd</code></div>
@@ -464,7 +464,8 @@
 ##  fromJSONString
 ##  toJSONString
 ##  fromList
-##  toList</code></pre>
+##  toList
+##  print</code></pre>
 <p><strong>Note:</strong> By default, the NBA (and thus nbaR) returns the first 10 hits. To fetch more records, we need to specify this in the <code>QuerySpec</code> object.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># specify size in QuerySpec obejct</span></a>
 <a class="sourceLine" id="cb17-2" data-line-number="2">qs &lt;-<span class="st"> </span>QuerySpec<span class="op">$</span><span class="kw">new</span>(<span class="dt">conditions=</span><span class="kw">list</span>(qc), <span class="dt">size=</span><span class="dv">1000</span>)</a>
