@@ -80,6 +80,6 @@ test_that("Errors and warnings work", {
   expect_warning(tc$query(querySpec = QuerySpec$new(conditions = list(q1))))
 
   ## look at http error code
-  res <- tc$query(querySpec = QuerySpec$new(conditions = list(q1)))
+  expect_warning(res <- tc$query(querySpec = QuerySpec$new(conditions = list(q1))))
   expect_equal(res$response$status_code, 500)
 })

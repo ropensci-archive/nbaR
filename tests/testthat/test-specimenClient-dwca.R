@@ -30,7 +30,7 @@ test_that("dwca_get_data_set() works", {
   expect_true(file.exists(filename))
   ## check for contents
   l <- unzip(filename, list = TRUE)
-  expect_equal(sort(l$Name), sort(c("eml.xml", "meta.xml", "Occurrence.txt")))
+  expect_equal(sort(l$Name), sort(c("eml.xml", "meta.xml", "Multimedia.txt", "Occurrence.txt")))
   unlink(filename)
 })
 

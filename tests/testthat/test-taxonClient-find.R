@@ -35,7 +35,7 @@ test_that("findByIds works", {
 
 test_that("Test error handling in find functions", {
   id <- "XXX"
-  res <- tc$find(id)
+  expect_warning(res <- tc$find(id))
   expect_equal(res$response$status_code, 404)
   expect_warning(tc$find(""))
 })

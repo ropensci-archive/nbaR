@@ -155,6 +155,6 @@ test_that("Errors and warnings work", {
   expect_warning(sc$query(querySpec = QuerySpec$new(conditions = list(q1))))
 
   ## look at http error code
-  res <- sc$query(querySpec = QuerySpec$new(conditions = list(q1)))
+  expect_warning(res <- sc$query(querySpec = QuerySpec$new(conditions = list(q1))))
   expect_equal(res$response$status_code, 500)
 })

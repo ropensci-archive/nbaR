@@ -66,7 +66,7 @@ test_that("find_by_unit_id works", {
 
 test_that("Test error handling in find functions", {
   id <- "XXX"
-  res <- sc$find(id)
+  expect_warning(res <- sc$find(id))
   expect_equal(res$response$status_code, 404)
   expect_warning(sc$find(""))
 

@@ -575,8 +575,14 @@ specimen_query <- function(
   }
 
   if (returnType == "data.frame") {
-    strs <- sapply(l, function(x) x$toJSONString())
-    result <- jsonlite::fromJSON(paste("[", paste(strs, collapse = ","), "]"))
+    if (!is.list(l)) {
+      result <- as.data.frame(l$toList())
+    } else {
+      strs <- sapply(l, function(x) x$toJSONString())
+      result <- jsonlite::fromJSON(
+        paste("[", paste(strs, collapse = ","), "]")
+      )
+    }
   } else {
     ## Return type is list, coerce everything to list
     if (!is.list(l)) {

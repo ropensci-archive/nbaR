@@ -63,6 +63,7 @@ test_that("specimen_count_distinct_values_per_group works", {
 })
 
 test_that("specimen_download_query works", {
+  skip("ndjson not supperoted yet, see issue #51")
   qp <-
     list("identifications.defaultClassification.genus" = "Hydrochoerus")
   res <- specimen_download_query(qp, returnType = "list")
@@ -87,7 +88,7 @@ test_that("specimen_dwca_get_data_set works", {
   ## check for contents
   l <- unzip(filename, list = TRUE)
   expect_equal(sort(l$Name), sort(c(
-    "eml.xml", "meta.xml", "Occurrence.txt"
+    "eml.xml", "meta.xml", "Multimedia.txt", "Occurrence.txt"
   )))
   unlink(filename)
 })

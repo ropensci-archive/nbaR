@@ -31,13 +31,12 @@ test_that("getFieldInfo works", {
   expect_equal(sort(paths), sort(names(list)))
 })
 
-test_that("Settings work", {
+test_that("getSettings works", {
   settings <- mc$get_settings()$content
   expect_true(length(settings) > 0)
 
   for (s in settings) {
-    ss <- mc$get_setting(s)$content
-    expect_true(!is.null(ss))
+    expect_true(!is.null(s))
   }
 })
 
