@@ -18,7 +18,7 @@ navbar:
     doc:
       text: Documentation
       menu:
-      - text: Advanced queries
+      - text: Objects and advanced queries
         href: articles/apiclient.html
       - text: Services summary
         href: articles/services.html

@@ -19,7 +19,7 @@ vignette: >
 
 
 
-## Main data types and classes
+# Main data types and classes
 The data served by the NBA consists of four main data types:
 
   * Specimen
@@ -48,7 +48,7 @@ spec$toJSONString()
 spec$toList()
 ```
 
-## API Client classes
+# API Client classes
 The interaction with the API is accomplished by the API client classes:
 
 * SpecimenClient
@@ -67,9 +67,9 @@ client <- SpecimenClient$new()
 The client class is by default initialized to connect to the base URL http://api.biodiversitydata.nl/v2.
 For testing purposes, this can be set to a different URL, see `?SpecimenClient` for details.
 
-## Queries
+# Queries
 
-### Concept
+## Concept
 
 With the SpecimentClient created above, the `query` endpoint for specimens can now be reached via the `query` function.
 Query parameters can be specified as a list with named parameters.
@@ -234,11 +234,40 @@ field `identifications.defaultClassification.genus`. Let's look at
 other operators which can be used for this field:
 
 ```{r}
-client$get_field_info()$content$identifications.defaultClassification.genus$allowedOperators
+client$get_field_info()$
+content$identifications.defaultClassification.genus$
+allowedOperators
 ```
 
-gatheringEvent.altitude
+Often useful is e.g. the operator `IN`, which allowes
+matching against multiple values given as a vector:
 
+```{r}
+qc <- QueryCondition$new(field='identifications.defaultClassification.genus', 
+                         operator='IN', 
+                         value=c("Phoenix", "Trachycarpus"))
+qs <- QuerySpec$new(conditions=list(qc))
+
+## print QuerySpec JSON representation
+qs$toJSONString()
+```
+
+For numeric or date fields, common comparison operators such as `LT`
+(less than) or `GT` (greater than) or `BETWEEn` are implemented:
+
+```{r}
+## operators for gatheringEvent.dateTimeBegin
+client$get_field_info()$
+content$gatheringEvent.dateTimeBegin$
+allowedOperators
+
+## how many specimens were collected between 1600 and 1700?
+qc <- QueryCondition$new(field='gatheringEvent.dateTimeBegin', 
+                         operator='BETWEEN', 
+                         value=c("1600", "1700"))
+qs <- QuerySpec$new(conditions=list(qc))
+client$count(querySpec=qs)$content
+```
 
 For more information, please also refer to the [NBA documentation on
 operators](https://docs.biodiversitydata.nl/en/latest/advanced-queries/#comparison-operators).
