@@ -8,7 +8,7 @@
   "description": "Access to the digitised Natural History collection at the Naturalis Biodiversity Center.\n    This is the official client to the Netherlands Biodiversity API\n    (NBA, <http://api.biodiversitydata.nl>) for the R programming language.\n    More information on the NBA can be found at <http://docs.biodiversitydata.nl>.",
   "name": "nbaR: R Package Client for the Netherlands Biodiversity API",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -102,18 +102,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=pkgdown"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "maps",
-      "name": "maps",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=maps"
     }
   ],
   "softwareRequirements": [
@@ -174,12 +162,13 @@
   ],
   "codeRepository": "https://github.com/naturalis/nbaR",
   "readme": "https://github.com/naturalis/nbaR/blob/master/README.md",
-  "fileSize": "35931.363KB",
+  "fileSize": "28857.598KB",
   "contIntegration": [
     "https://travis-ci.org/naturalis/nbaR",
     "https://coveralls.io/github/naturalis/nbaR?branch=master"
   ],
   "issueTracker": "https://github.com/naturalis/nbaR/issues/new",
   "developmentStatus": "http://www.repostatus.org/#active",
-  "releaseNotes": "https://github.com/naturalis/nbaR/blob/master/NEWS.md"
+  "releaseNotes": "https://github.com/naturalis/nbaR/blob/master/NEWS.md",
+  "keywords": ["r", "biodiversity-data", "api-client"]
 }

@@ -9,5 +9,3 @@
 ^docs$
 ^_pkgdown\.yml$
 ^.gitignore
-vignettes/sharks.Rmd
-vignettes/tomato.Rmd

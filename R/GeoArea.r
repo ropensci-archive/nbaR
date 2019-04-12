@@ -9,7 +9,7 @@
 
 #' GeoArea Class
 #'
-#'
+#' Geographical mapping of species occurrences is essential in biogeographical analyses. More than 1.2 Million of our specimen records are geo-referenced, i.e. they have latitude and longitude coordinates reported for the sita at which they were collected. The data type geo stores geographical areas to which the geo-referenced species can be mapped. This enables querying for specimens found in a specific region, to e.g. retrieve all the primate species collected on Madagascar. The areas are represented as polygons of longitude/latitude pairs. All polygons are coded in the GeoJSON format. For more info on model classes, please refer to https://docs.biodiversitydata.nl
 #'
 #' @field sourceSystem  SourceSystem
 #' @field sourceSystemId  character

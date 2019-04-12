@@ -1,6 +1,6 @@
 Package: nbaR
 Title: R Package Client for the Netherlands Biodiversity API
-Version: 0.0.0
+Version: 0.0.1
 Authors@R: c(person("Hannes", "Hettling", email = "hannes.hettling@naturalis.nl", role = c("aut", "cre")),
              person("Rutger", "Vos", role="aut"))
 Maintainer: Hannes Hettling <hannes.hettling@naturalis.nl>
@@ -20,8 +20,7 @@ Suggests:
     rmarkdown,
     tic,
     remotes,
-    pkgdown,
-	maps
+    pkgdown
 Imports:
     jsonlite,
     httr,

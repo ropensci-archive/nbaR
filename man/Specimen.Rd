@@ -9,7 +9,7 @@
 Specimen
 }
 \description{
-This class models a Specimen record. Specimen records constitute the core of data served by the NBA. They can be unambiguously distinguished by the field unitID. Further fields include (among others) information about Finding place, identification, and multimedia content.
+This class models a Specimen record. Specimen records constitute the core of data served by the NBA. They can be unambiguously distinguished by the field unitID. Further fields include (among others) information about finding place, identification, and multimedia content. For more info on model classes, please refer to https://docs.biodiversitydata.nl
 }
 \section{Fields}{
 
