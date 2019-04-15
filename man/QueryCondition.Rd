@@ -4,9 +4,9 @@
 \name{QueryCondition}
 \alias{QueryCondition}
 \title{QueryCondition Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-QueryCondition
+
 }
 \description{
 QueryCondition Class

@@ -4,9 +4,9 @@
 \name{MultiPoint}
 \alias{MultiPoint}
 \title{MultiPoint Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-MultiPoint
+
 }
 \description{
 MultiPoint Class

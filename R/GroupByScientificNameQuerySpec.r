@@ -25,6 +25,11 @@
 #' @field specimensSortFields  list(SortField)
 #' @field noTaxa  logical
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

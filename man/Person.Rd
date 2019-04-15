@@ -4,9 +4,9 @@
 \name{Person}
 \alias{Person}
 \title{Person Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-Person
+
 }
 \description{
 Person Class

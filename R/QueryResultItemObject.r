@@ -14,6 +14,11 @@
 #' @field score  numeric
 #' @field item  list
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

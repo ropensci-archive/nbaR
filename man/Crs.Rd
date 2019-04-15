@@ -4,9 +4,9 @@
 \name{Crs}
 \alias{Crs}
 \title{Crs Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-Crs
+
 }
 \description{
 Crs Class

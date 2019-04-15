@@ -19,6 +19,11 @@
 #' @field from  integer
 #' @field size  integer
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

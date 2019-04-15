@@ -4,9 +4,9 @@
 \name{Filter}
 \alias{Filter}
 \title{Filter Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-Filter
+
 }
 \description{
 Filter Class

@@ -4,9 +4,9 @@
 \name{SummaryScientificName}
 \alias{SummaryScientificName}
 \title{SummaryScientificName Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-SummaryScientificName
+
 }
 \description{
 SummaryScientificName Class

@@ -15,6 +15,11 @@
 #' @field sortOrder  character
 #' @field ascending  logical
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

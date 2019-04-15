@@ -4,9 +4,9 @@
 \name{SpecimenIdentification}
 \alias{SpecimenIdentification}
 \title{SpecimenIdentification Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-SpecimenIdentification
+
 }
 \description{
 SpecimenIdentification Class

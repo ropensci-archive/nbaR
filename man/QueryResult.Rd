@@ -4,9 +4,9 @@
 \name{QueryResult}
 \alias{QueryResult}
 \title{QueryResult Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-QueryResult
+
 }
 \description{
 QueryResult Class

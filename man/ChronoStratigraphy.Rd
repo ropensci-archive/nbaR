@@ -4,9 +4,9 @@
 \name{ChronoStratigraphy}
 \alias{ChronoStratigraphy}
 \title{ChronoStratigraphy Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-ChronoStratigraphy
+
 }
 \description{
 ChronoStratigraphy Class

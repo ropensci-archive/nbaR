@@ -4,9 +4,9 @@
 \name{GatheringEvent}
 \alias{GatheringEvent}
 \title{GatheringEvent Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-GatheringEvent
+
 }
 \description{
 GatheringEvent Class

@@ -16,6 +16,11 @@
 #' @field altitude  numeric
 #' @field additionalElements  list(numeric)
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

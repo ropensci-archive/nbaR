@@ -4,9 +4,9 @@
 \name{VernacularName}
 \alias{VernacularName}
 \title{VernacularName Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-VernacularName
+
 }
 \description{
 VernacularName Class

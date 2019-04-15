@@ -4,9 +4,9 @@
 \name{GeometryCollection}
 \alias{GeometryCollection}
 \title{GeometryCollection Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-GeometryCollection
+
 }
 \description{
 GeometryCollection Class

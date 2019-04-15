@@ -29,6 +29,11 @@
 #' @field experts  list(Expert)
 #' @field validName  ScientificName
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

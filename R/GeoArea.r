@@ -22,6 +22,11 @@
 #' @field isoCode  character
 #' @field countryNL  character
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

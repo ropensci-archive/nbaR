@@ -4,9 +4,9 @@
 \name{LngLatAlt}
 \alias{LngLatAlt}
 \title{LngLatAlt Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-LngLatAlt
+
 }
 \description{
 LngLatAlt Class

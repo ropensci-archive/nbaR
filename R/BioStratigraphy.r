@@ -27,6 +27,11 @@
 #' @field oldBioCertainty  character
 #' @field oldBioStratType  character
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

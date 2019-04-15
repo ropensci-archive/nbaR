@@ -4,9 +4,9 @@
 \name{Specimen}
 \alias{Specimen}
 \title{Specimen Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-Specimen
+
 }
 \description{
 This class models a Specimen record. Specimen records constitute the core of data served by the NBA. They can be unambiguously distinguished by the field unitID. Further fields include (among others) information about finding place, identification, and multimedia content. For more info on model classes, please refer to https://docs.biodiversitydata.nl

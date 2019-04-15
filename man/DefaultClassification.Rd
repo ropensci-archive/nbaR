@@ -4,9 +4,9 @@
 \name{DefaultClassification}
 \alias{DefaultClassification}
 \title{DefaultClassification Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-DefaultClassification
+
 }
 \description{
 DefaultClassification Class

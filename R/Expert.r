@@ -15,6 +15,11 @@
 #' @field fullName  character
 #' @field organization  Organization
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

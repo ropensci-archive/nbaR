@@ -13,6 +13,11 @@
 #'
 #' @field purePath  character
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

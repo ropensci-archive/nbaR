@@ -4,9 +4,9 @@
 \name{Iptc4xmpExt}
 \alias{Iptc4xmpExt}
 \title{Iptc4xmpExt Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-Iptc4xmpExt
+
 }
 \description{
 Iptc4xmpExt Class

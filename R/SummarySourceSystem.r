@@ -13,6 +13,11 @@
 #'
 #' @field code  character
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

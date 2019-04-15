@@ -4,9 +4,9 @@
 \name{QuerySpec}
 \alias{QuerySpec}
 \title{QuerySpec Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-QuerySpec
+
 }
 \description{
 QuerySpec Class

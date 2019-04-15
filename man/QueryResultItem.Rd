@@ -4,9 +4,9 @@
 \name{QueryResultItem}
 \alias{QueryResultItem}
 \title{QueryResultItem Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-QueryResultItem
+
 }
 \description{
 Contains an object returned from a QuerySpec query. Holds an item and a relevance score.

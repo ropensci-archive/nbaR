@@ -15,6 +15,11 @@
 #' @field bbox  list(numeric)
 #' @field features  list(Feature)
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

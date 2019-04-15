@@ -4,9 +4,9 @@
 \name{MultiPolygon}
 \alias{MultiPolygon}
 \title{MultiPolygon Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-MultiPolygon
+
 }
 \description{
 MultiPolygon Class

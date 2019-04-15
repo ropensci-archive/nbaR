@@ -4,9 +4,9 @@
 \name{MultiMediaContentIdentification}
 \alias{MultiMediaContentIdentification}
 \title{MultiMediaContentIdentification Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-MultiMediaContentIdentification
+
 }
 \description{
 MultiMediaContentIdentification Class

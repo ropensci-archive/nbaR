@@ -4,9 +4,9 @@
 \name{Organization}
 \alias{Organization}
 \title{Organization Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-Organization
+
 }
 \description{
 Organization Class

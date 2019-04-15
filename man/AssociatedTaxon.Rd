@@ -4,9 +4,9 @@
 \name{AssociatedTaxon}
 \alias{AssociatedTaxon}
 \title{AssociatedTaxon Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-AssociatedTaxon
+
 }
 \description{
 AssociatedTaxon Class

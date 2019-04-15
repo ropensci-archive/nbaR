@@ -14,6 +14,11 @@
 #' @field areaClass  character
 #' @field areaName  character
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

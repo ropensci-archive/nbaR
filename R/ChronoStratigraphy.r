@@ -38,6 +38,11 @@
 #' @field chronoIdentifier  character
 #' @field oldCertainty  character
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

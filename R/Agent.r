@@ -13,6 +13,11 @@
 #'
 #' @field agentText  character
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

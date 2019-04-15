@@ -4,9 +4,9 @@
 \name{Path}
 \alias{Path}
 \title{Path Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-Path
+
 }
 \description{
 Path Class

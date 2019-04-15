@@ -4,9 +4,9 @@
 \name{SummarySourceSystem}
 \alias{SummarySourceSystem}
 \title{SummarySourceSystem Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-SummarySourceSystem
+
 }
 \description{
 SummarySourceSystem Class

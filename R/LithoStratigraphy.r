@@ -29,6 +29,11 @@
 #' @field bed2  character
 #' @field bed  character
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

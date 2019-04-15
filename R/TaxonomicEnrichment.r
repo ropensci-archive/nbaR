@@ -16,6 +16,11 @@
 #' @field sourceSystem  SummarySourceSystem
 #' @field taxonId  character
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

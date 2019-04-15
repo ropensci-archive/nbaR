@@ -14,6 +14,11 @@
 #' @field name  character
 #' @field relationType  character
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

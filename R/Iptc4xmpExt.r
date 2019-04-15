@@ -19,6 +19,11 @@
 #' @field city  character
 #' @field sublocation  character
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

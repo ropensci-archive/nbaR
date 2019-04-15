@@ -14,6 +14,11 @@
 #' @field crs  Crs
 #' @field bbox  list(numeric)
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

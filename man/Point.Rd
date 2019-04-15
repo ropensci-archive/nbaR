@@ -4,9 +4,9 @@
 \name{Point}
 \alias{Point}
 \title{Point Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-Point
+
 }
 \description{
 Point Class

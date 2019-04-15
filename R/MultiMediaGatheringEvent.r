@@ -40,6 +40,11 @@
 #' @field iptc  Iptc4xmpExt
 #' @field bioStratigraphic  list(BioStratigraphy)
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

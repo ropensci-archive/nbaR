@@ -20,6 +20,11 @@
 #' @field constantScore  logical
 #' @field boost  numeric
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

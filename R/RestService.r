@@ -17,6 +17,11 @@
 #' @field produces  character
 #' @field url  character
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

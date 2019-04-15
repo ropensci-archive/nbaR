@@ -15,6 +15,11 @@
 #' @field description  character
 #' @field language  character
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

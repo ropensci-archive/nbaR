@@ -17,6 +17,11 @@
 #' @field author  Person
 #' @field publicationDate  character
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

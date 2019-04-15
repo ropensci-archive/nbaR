@@ -15,6 +15,11 @@
 #' @field bbox  list(numeric)
 #' @field coordinates  list(LngLatAlt)
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

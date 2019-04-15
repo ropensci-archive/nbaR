@@ -43,6 +43,11 @@
 #' @field associatedSpecimen  Specimen
 #' @field associatedTaxon  Taxon
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

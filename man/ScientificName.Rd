@@ -4,9 +4,9 @@
 \name{ScientificName}
 \alias{ScientificName}
 \title{ScientificName Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-ScientificName
+
 }
 \description{
 ScientificName Class

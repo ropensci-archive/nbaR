@@ -4,9 +4,9 @@
 \name{TaxonomicEnrichment}
 \alias{TaxonomicEnrichment}
 \title{TaxonomicEnrichment Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-TaxonomicEnrichment
+
 }
 \description{
 TaxonomicEnrichment Class

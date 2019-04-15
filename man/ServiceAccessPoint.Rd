@@ -4,9 +4,9 @@
 \name{ServiceAccessPoint}
 \alias{ServiceAccessPoint}
 \title{ServiceAccessPoint Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-ServiceAccessPoint
+
 }
 \description{
 ServiceAccessPoint Class

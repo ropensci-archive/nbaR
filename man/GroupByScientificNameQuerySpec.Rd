@@ -4,9 +4,9 @@
 \name{GroupByScientificNameQuerySpec}
 \alias{GroupByScientificNameQuerySpec}
 \title{GroupByScientificNameQuerySpec Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-GroupByScientificNameQuerySpec
+
 }
 \description{
 GroupByScientificNameQuerySpec Class

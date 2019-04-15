@@ -4,9 +4,9 @@
 \name{SourceSystem}
 \alias{SourceSystem}
 \title{SourceSystem Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-SourceSystem
+
 }
 \description{
 SourceSystem Class

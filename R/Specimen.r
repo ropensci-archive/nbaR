@@ -44,6 +44,11 @@
 #' @field associatedMultiMediaUris  list(ServiceAccessPoint)
 #' @field theme  list(character)
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

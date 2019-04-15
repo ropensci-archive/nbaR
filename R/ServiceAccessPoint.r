@@ -15,6 +15,11 @@
 #' @field format  character
 #' @field variant  character
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

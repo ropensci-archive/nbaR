@@ -4,9 +4,9 @@
 \name{Reference}
 \alias{Reference}
 \title{Reference Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-Reference
+
 }
 \description{
 Reference Class

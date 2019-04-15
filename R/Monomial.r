@@ -14,6 +14,11 @@
 #' @field rank  character
 #' @field name  character
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

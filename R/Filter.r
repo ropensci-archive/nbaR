@@ -16,6 +16,11 @@
 #' @field acceptValues  list(character)
 #' @field rejectValues  list(character)
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

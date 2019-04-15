@@ -29,6 +29,11 @@
 #' @field associatedMineralName  character
 #' @field remarks  character
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

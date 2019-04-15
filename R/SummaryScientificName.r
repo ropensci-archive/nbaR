@@ -19,6 +19,11 @@
 #' @field infraspecificEpithet  character
 #' @field authorshipVerbatim  character
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

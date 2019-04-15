@@ -20,6 +20,11 @@
 #' @field gridQualifier  character
 #' @field geoShape  Point
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

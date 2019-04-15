@@ -4,9 +4,9 @@
 \name{Monomial}
 \alias{Monomial}
 \title{Monomial Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-Monomial
+
 }
 \description{
 Monomial Class

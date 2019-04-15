@@ -39,6 +39,11 @@
 #' @field lithoStratigraphy  list(LithoStratigraphy)
 #' @field bioStratigraphic  list(BioStratigraphy)
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

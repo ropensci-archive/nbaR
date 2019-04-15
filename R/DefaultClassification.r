@@ -23,6 +23,11 @@
 #' @field infraspecificEpithet  character
 #' @field infraspecificRank  character
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

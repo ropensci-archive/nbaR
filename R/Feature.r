@@ -17,6 +17,11 @@
 #' @field geometry  list
 #' @field id  character
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

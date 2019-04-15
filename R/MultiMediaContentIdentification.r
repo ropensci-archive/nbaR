@@ -22,6 +22,11 @@
 #' @field identifiers  list(Agent)
 #' @field taxonomicEnrichments  list(TaxonomicEnrichment)
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'

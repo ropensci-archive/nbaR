@@ -4,9 +4,9 @@
 \name{LineString}
 \alias{LineString}
 \title{LineString Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-LineString
+
 }
 \description{
 LineString Class

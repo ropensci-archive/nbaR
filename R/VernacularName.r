@@ -17,6 +17,11 @@
 #' @field references  list(Reference)
 #' @field experts  list(Expert)
 #'
+#'
+#' @format
+#'
+#' @usage
+#'
 #' @section Methods:
 #' \describe{
 #'
