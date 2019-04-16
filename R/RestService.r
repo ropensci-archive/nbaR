@@ -12,10 +12,15 @@
 #'
 #'
 #' @field endPoint  character
+#'
 #' @field method  character
+#'
 #' @field consumes  character
+#'
 #' @field produces  character
+#'
 #' @field url  character
+#'
 #'
 #'
 #' @format

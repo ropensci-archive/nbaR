@@ -12,12 +12,19 @@
 #'
 #'
 #' @field locationShown  character
+#'
 #' @field worldRegion  character
+#'
 #' @field countryCode  character
+#'
 #' @field countryName  character
+#'
 #' @field provinceState  character
+#'
 #' @field city  character
+#'
 #' @field sublocation  character
+#'
 #'
 #'
 #' @format

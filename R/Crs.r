@@ -12,7 +12,9 @@
 #'
 #'
 #' @field type  character
+#'
 #' @field properties  list
+#'
 #'
 #'
 #' @format

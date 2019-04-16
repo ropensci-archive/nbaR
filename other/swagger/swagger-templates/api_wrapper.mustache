@@ -6,11 +6,11 @@
   {{#operation}}
     #' @name {{classVarName}}_{{operationId}}
     #' @title {{summary}}
-    #' @description This is a wrapper function for {{operationId}}
-    #' from class {{importPath}}Client.
+    #' @description This is a wrapper for the method \code{ {{operationId}} }
+    #' from class \code{ {{baseName}}Client}.
     {{#notes}}#' @details {{notes}}{{/notes}}
     #' @family {{importPath}}Client-wrappers
-    {{#returnType}}#' @return {{#returnType}}{{#returnTypeIsPrimitive}}scalar{{/returnTypeIsPrimitive}}{{^returnTypeIsPrimitive}}list or data.frame, as specified by \code{returnType}'{{/returnTypeIsPrimitive}}{{/returnType}}{{/returnType}}
+    {{#returnType}}#' @return {{#returnType}}{{#returnTypeIsPrimitive}}scalar{{/returnTypeIsPrimitive}}{{^returnTypeIsPrimitive}}list or data.frame, as specified by \code{returnType}{{/returnTypeIsPrimitive}}{{/returnType}}{{/returnType}}
       {{#allParams}}
         {{#isPrimitiveType}}
     #' @param {{baseName}} {{description}}, type: {{baseType}}
@@ -30,11 +30,11 @@
     {{#returnType}}
       {{#returnTypeIsPrimitive}}
         {{^returnSimpleType}}
-    #' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+    #' @param returnType Either \code{list} or \code{data.frame} (default)
         {{/returnSimpleType}}
       {{/returnTypeIsPrimitive}}
       {{^returnTypeIsPrimitive}}
-    #' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+    #' @param returnType Either \code{list} or \code{data.frame} (default)
       {{/returnTypeIsPrimitive}}        
     {{/returnType}}
     #' @param ... additional parameters passed to {{operationId}} from class {{importPath}}Client

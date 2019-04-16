@@ -12,8 +12,11 @@
 #'
 #'
 #' @field category  character
+#'
 #' @field description  character
+#'
 #' @field language  character
+#'
 #'
 #'
 #' @format

@@ -12,19 +12,33 @@
 #'
 #'
 #' @field fullScientificName  character
+#'
 #' @field taxonomicStatus  character
+#'
 #' @field genusOrMonomial  character
+#'
 #' @field subgenus  character
+#'
 #' @field specificEpithet  character
+#'
 #' @field infraspecificEpithet  character
+#'
 #' @field infraspecificMarker  character
+#'
 #' @field nameAddendum  character
+#'
 #' @field authorshipVerbatim  character
+#'
 #' @field author  character
+#'
 #' @field year  character
+#'
 #' @field scientificNameGroup  character
+#'
 #' @field references  list(Reference)
+#'
 #' @field experts  list(Expert)
+#'
 #'
 #'
 #' @format

@@ -12,16 +12,27 @@
 #'
 #'
 #' @field kingdom  character
+#'
 #' @field phylum  character
+#'
 #' @field className  character
+#'
 #' @field order  character
+#'
 #' @field superFamily  character
+#'
 #' @field family  character
+#'
 #' @field genus  character
+#'
 #' @field subgenus  character
+#'
 #' @field specificEpithet  character
+#'
 #' @field infraspecificEpithet  character
+#'
 #' @field infraspecificRank  character
+#'
 #'
 #'
 #' @format

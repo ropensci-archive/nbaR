@@ -12,10 +12,15 @@
 #'
 #'
 #' @field titleCitation  character
+#'
 #' @field citationDetail  character
+#'
 #' @field uri  character
+#'
 #' @field author  Person
+#'
 #' @field publicationDate  character
+#'
 #'
 #'
 #' @format

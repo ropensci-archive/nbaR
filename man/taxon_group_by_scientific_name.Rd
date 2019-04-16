@@ -10,16 +10,16 @@ taxon_group_by_scientific_name(queryParams = list(),
 \arguments{
 \item{queryParams}{Named list or vector with names being the fields to be queried and values being the values to match}
 
-\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+\item{returnType}{Either \code{list} or \code{data.frame} (default)}
 
 \item{...}{additional parameters passed to group_by_scientific_name from class nbaR.TaxonClient}
 }
 \value{
-list or data.frame, as specified by \code{returnType}'
+list or data.frame, as specified by \code{returnType}
 }
 \description{
-This is a wrapper function for group_by_scientific_name
-from class nbaR.TaxonClient.
+This is a wrapper for the method \code{ group_by_scientific_name }
+from class \code{ TaxonClient}.
 }
 \details{
 Returns a list with ScientificNameGroups, which contain Taxon and Specimen documents that share a scientific name

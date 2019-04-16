@@ -12,8 +12,11 @@
 #'
 #'
 #' @field crs  Crs
+#'
 #' @field bbox  list(numeric)
+#'
 #' @field coordinates  LngLatAlt
+#'
 #'
 #'
 #' @format

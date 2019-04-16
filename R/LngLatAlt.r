@@ -12,9 +12,13 @@
 #'
 #'
 #' @field longitude  numeric
+#'
 #' @field latitude  numeric
+#'
 #' @field altitude  numeric
+#'
 #' @field additionalElements  list(numeric)
+#'
 #'
 #'
 #' @format

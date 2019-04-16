@@ -12,7 +12,9 @@
 #'
 #'
 #' @field code  character
+#'
 #' @field name  character
+#'
 #'
 #'
 #' @format

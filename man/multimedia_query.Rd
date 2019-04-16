@@ -9,16 +9,16 @@ multimedia_query(queryParams = list(), returnType = "data.frame", ...)
 \arguments{
 \item{queryParams}{Named list or vector with names being the fields to be queried and values being the values to match}
 
-\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+\item{returnType}{Either \code{list} or \code{data.frame} (default)}
 
 \item{...}{additional parameters passed to query from class nbaR.MultimediaClient}
 }
 \value{
-list or data.frame, as specified by \code{returnType}'
+list or data.frame, as specified by \code{returnType}
 }
 \description{
-This is a wrapper function for query
-from class nbaR.MultimediaClient.
+This is a wrapper for the method \code{ query }
+from class \code{ MultimediaClient}.
 }
 \details{
 Search for multimedia documents with query parameters or QuerySpec JSON string

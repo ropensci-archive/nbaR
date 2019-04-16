@@ -7,7 +7,7 @@
 metadata_get_controlled_list_sex(returnType = "data.frame", ...)
 }
 \arguments{
-\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+\item{returnType}{Either \code{list} or \code{data.frame} (default)}
 
 \item{...}{additional parameters passed to get_controlled_list_sex from class nbaR.MetadataClient}
 }
@@ -15,8 +15,8 @@ metadata_get_controlled_list_sex(returnType = "data.frame", ...)
 scalar
 }
 \description{
-This is a wrapper function for get_controlled_list_sex
-from class nbaR.MetadataClient.
+This is a wrapper for the method \code{ get_controlled_list_sex }
+from class \code{ MetadataClient}.
 }
 \details{
 See also endpoint /getControlledLists

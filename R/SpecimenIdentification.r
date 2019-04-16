@@ -12,22 +12,39 @@
 #'
 #'
 #' @field taxonRank  character
+#'
 #' @field scientificName  ScientificName
+#'
 #' @field typeStatus  character
+#'
 #' @field dateIdentified  character
+#'
 #' @field defaultClassification  DefaultClassification
+#'
 #' @field systemClassification  list(Monomial)
+#'
 #' @field vernacularNames  list(VernacularName)
+#'
 #' @field identificationQualifiers  list(character)
+#'
 #' @field identifiers  list(Agent)
+#'
 #' @field taxonomicEnrichments  list(TaxonomicEnrichment)
+#'
 #' @field preferred  logical
+#'
 #' @field verificationStatus  character
+#'
 #' @field rockType  character
+#'
 #' @field associatedFossilAssemblage  character
+#'
 #' @field rockMineralUsage  character
+#'
 #' @field associatedMineralName  character
+#'
 #' @field remarks  character
+#'
 #'
 #'
 #' @format

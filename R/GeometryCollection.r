@@ -12,8 +12,11 @@
 #'
 #'
 #' @field crs  Crs
+#'
 #' @field bbox  list(numeric)
+#'
 #' @field geometries  list(list)
+#'
 #'
 #'
 #' @format

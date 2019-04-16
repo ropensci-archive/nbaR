@@ -22,7 +22,8 @@ This class models a Specimen record. Specimen records constitute the core of dat
 
 \item{\code{id}}{character}
 
-\item{\code{unitID}}{character}
+\item{\code{unitID}}{character
+The unique identifier of the specimen.}
 
 \item{\code{unitGUID}}{character}
 

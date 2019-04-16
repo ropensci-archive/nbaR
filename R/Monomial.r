@@ -12,7 +12,9 @@
 #'
 #'
 #' @field rank  character
+#'
 #' @field name  character
+#'
 #'
 #'
 #' @format

@@ -9,14 +9,18 @@
 # client <- TaxonClient$new()
 }
 \description{
-Client class for nbaR.Taxon objects
+This client connects to all Taxon-related endpoints
+of the NBA. Each endpoint is available as a class method
+(see section 'Methods' below). Optionally, a custom URL
+pointing to a NBA server and a user Agent can be specified
+by the user (see section 'Fields' below).
 }
 \section{Fields}{
 
 \describe{
-\item{\code{basePath}}{Stores url path of the request.}
+\item{\code{basePath}}{Stores url path of the request, defaults to http://api.biodiversitydata.nl/v2}
 
-\item{\code{userAgent}}{Set the user agent of the request.}
+\item{\code{userAgent}}{Set the user agent of the request, defaults to nbaR/0.0.1}
 }}
 
 \section{Methods}{

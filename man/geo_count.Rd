@@ -15,8 +15,8 @@ geo_count(queryParams = list(), ...)
 scalar
 }
 \description{
-This is a wrapper function for count
-from class nbaR.GeoClient.
+This is a wrapper for the method \code{ count }
+from class \code{ GeoClient}.
 }
 \details{
 Conditions given as query string

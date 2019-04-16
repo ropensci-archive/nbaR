@@ -7,16 +7,16 @@
 metadata_get_rest_services(returnType = "data.frame", ...)
 }
 \arguments{
-\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+\item{returnType}{Either \code{list} or \code{data.frame} (default)}
 
 \item{...}{additional parameters passed to get_rest_services from class nbaR.MetadataClient}
 }
 \value{
-list or data.frame, as specified by \code{returnType}'
+list or data.frame, as specified by \code{returnType}
 }
 \description{
-This is a wrapper function for get_rest_services
-from class nbaR.MetadataClient.
+This is a wrapper for the method \code{ get_rest_services }
+from class \code{ MetadataClient}.
 }
 \details{
 Lists end point name, http method, response type, and URL

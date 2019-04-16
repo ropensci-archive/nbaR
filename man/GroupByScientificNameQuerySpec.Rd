@@ -14,19 +14,26 @@ GroupByScientificNameQuerySpec Class
 \section{Fields}{
 
 \describe{
-\item{\code{constantScore}}{logical}
+\item{\code{constantScore}}{logical
+If true, no relevance scores will be calculated for the returned documents. By default Elasticsearch not only determines whether a document matches your search criteria, but also how well it matches them, expressed as a so-called relevance score. If you are not interested in relevance scores, set constantScore to true, as there is some performance overhead associated with calculating relevance scores.}
 
-\item{\code{fields}}{list(character)}
+\item{\code{fields}}{list(character)
+The fields to be returned. Specimen, Taxon and MultiMediaObject documents are large documents containing lots of fields. If you are only interested in a few fields, use the fields property to specify them.}
 
-\item{\code{conditions}}{list(QueryCondition)}
+\item{\code{conditions}}{list(QueryCondition)
+List of QueryCondition objetcs}
 
-\item{\code{logicalOperator}}{character}
+\item{\code{logicalOperator}}{character
+(AND/OR) Specifies whether a document must satisfy all search criteria or just one in order to be returned.}
 
-\item{\code{sortFields}}{list(SortField)}
+\item{\code{sortFields}}{list(SortField)
+Specifies the field(s) on which to sort the documents.}
 
-\item{\code{from}}{integer}
+\item{\code{from}}{integer
+The offset in the result set from which to return the documents.}
 
-\item{\code{size}}{integer}
+\item{\code{size}}{integer
+The number of documents to return.}
 
 \item{\code{groupSort}}{character}
 

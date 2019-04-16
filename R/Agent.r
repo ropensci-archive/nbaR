@@ -14,6 +14,7 @@
 #' @field agentText  character
 #'
 #'
+#'
 #' @format
 #'
 #' @usage

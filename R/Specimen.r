@@ -12,37 +12,69 @@
 #' This class models a Specimen record. Specimen records constitute the core of data served by the NBA. They can be unambiguously distinguished by the field unitID. Further fields include (among others) information about finding place, identification, and multimedia content. For more info on model classes, please refer to https://docs.biodiversitydata.nl
 #'
 #' @field sourceSystem  SourceSystem
+#'
 #' @field sourceSystemId  character
+#'
 #' @field recordURI  character
+#'
 #' @field id  character
+#'
 #' @field unitID  character
+#'        The unique identifier of the specimen.
 #' @field unitGUID  character
+#'
 #' @field collectorsFieldNumber  character
+#'
 #' @field assemblageID  character
+#'
 #' @field sourceInstitutionID  character
+#'
 #' @field sourceID  character
+#'
 #' @field previousSourceID  list(character)
+#'
 #' @field owner  character
+#'
 #' @field licenseType  character
+#'
 #' @field license  character
+#'
 #' @field recordBasis  character
+#'
 #' @field kindOfUnit  character
+#'
 #' @field collectionType  character
+#'
 #' @field sex  character
+#'
 #' @field phaseOrStage  character
+#'
 #' @field title  character
+#'
 #' @field notes  character
+#'
 #' @field preparationType  character
+#'
 #' @field previousUnitsText  character
+#'
 #' @field numberOfSpecimen  integer
+#'
 #' @field fromCaptivity  logical
+#'
 #' @field objectPublic  logical
+#'
 #' @field multiMediaPublic  logical
+#'
 #' @field acquiredFrom  Agent
+#'
 #' @field gatheringEvent  GatheringEvent
+#'
 #' @field identifications  list(SpecimenIdentification)
+#'
 #' @field associatedMultiMediaUris  list(ServiceAccessPoint)
+#'
 #' @field theme  list(character)
+#'
 #'
 #'
 #' @format

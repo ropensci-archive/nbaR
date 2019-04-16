@@ -10,16 +10,16 @@ taxon_download_query(queryParams = list(), returnType = "data.frame",
 \arguments{
 \item{queryParams}{Named list or vector with names being the fields to be queried and values being the values to match}
 
-\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+\item{returnType}{Either \code{list} or \code{data.frame} (default)}
 
 \item{...}{additional parameters passed to download_query from class nbaR.TaxonClient}
 }
 \value{
-list or data.frame, as specified by \code{returnType}'
+list or data.frame, as specified by \code{returnType}
 }
 \description{
-This is a wrapper function for download_query
-from class nbaR.TaxonClient.
+This is a wrapper for the method \code{ download_query }
+from class \code{ TaxonClient}.
 }
 \details{
 Query with query parameters or querySpec JSON. ...

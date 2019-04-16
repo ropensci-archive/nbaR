@@ -12,10 +12,15 @@
 #'
 #'
 #' @field crs  Crs
+#'
 #' @field bbox  list(numeric)
+#'
 #' @field properties  list
+#'
 #' @field geometry  list
+#'
 #' @field id  character
+#'
 #'
 #'
 #' @format

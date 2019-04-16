@@ -12,7 +12,9 @@
 #'
 #'
 #' @field name  character
+#'
 #' @field relationType  character
+#'
 #'
 #'
 #' @format

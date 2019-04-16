@@ -12,8 +12,11 @@
 #'
 #'
 #' @field accessUri  character
+#'
 #' @field format  character
+#'
 #' @field variant  character
+#'
 #'
 #'
 #' @format

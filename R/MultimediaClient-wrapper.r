@@ -11,8 +11,8 @@
 
 #' @name multimedia_count
 #' @title Get the number of multimedia documents matching a given condition
-#' @description This is a wrapper function for count
-#' from class nbaR.MultimediaClient.
+#' @description This is a wrapper for the method \code{ count }
+#' from class \code{ MultimediaClient}.
 #' @details Conditions given as query parameters or QuerySpec JSON
 #' @family nbaR.MultimediaClient-wrappers
 #' @return scalar
@@ -32,8 +32,8 @@ multimedia_count <- function(
 }
 #' @name multimedia_count_distinct_values
 #' @title Count the distinct number of values that exist for a given field
-#' @description This is a wrapper function for count_distinct_values
-#' from class nbaR.MultimediaClient.
+#' @description This is a wrapper for the method \code{ count_distinct_values }
+#' from class \code{ MultimediaClient}.
 #' @details See also endpoint /getDistinctValues
 #' @family nbaR.MultimediaClient-wrappers
 #' @return scalar
@@ -54,14 +54,14 @@ multimedia_count_distinct_values <- function(
 }
 #' @name multimedia_count_distinct_values_per_group
 #' @title Count the distinct number of field values that exist per the given field to group by
-#' @description This is a wrapper function for count_distinct_values_per_group
-#' from class nbaR.MultimediaClient.
+#' @description This is a wrapper for the method \code{ count_distinct_values_per_group }
+#' from class \code{ MultimediaClient}.
 #' @details See also endpoint /getDistinctValuesPerGroup
 #' @family nbaR.MultimediaClient-wrappers
 #' @return scalar
 #' @param group name of field in the multimedia object you want to group by, type:
 #' @param field name of field in the multimedia object, type:
-#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param returnType Either \code{list} or \code{data.frame} (default)
 #' @param ... additional parameters passed to count_distinct_values_per_group from class nbaR.MultimediaClient
 #' @export
 multimedia_count_distinct_values_per_group <- function(
@@ -81,8 +81,8 @@ multimedia_count_distinct_values_per_group <- function(
 }
 #' @name multimedia_download_query
 #' @title Dynamic download service: Query for multimedia objects and return result as a stream ...
-#' @description This is a wrapper function for download_query
-#' from class nbaR.MultimediaClient.
+#' @description This is a wrapper for the method \code{ download_query }
+#' from class \code{ MultimediaClient}.
 #' @details Query with query parameters or querySpec JSON. ...
 #' @family nbaR.MultimediaClient-wrappers
 
@@ -103,13 +103,13 @@ multimedia_download_query <- function(
 }
 #' @name multimedia_find
 #' @title Find a multimedia document by id
-#' @description This is a wrapper function for find
-#' from class nbaR.MultimediaClient.
+#' @description This is a wrapper for the method \code{ find }
+#' from class \code{ MultimediaClient}.
 #' @details If found, returns a single multimedia document
 #' @family nbaR.MultimediaClient-wrappers
-#' @return list or data.frame, as specified by \code{returnType}'
+#' @return list or data.frame, as specified by \code{returnType}
 #' @param id id of multimedia document, type:
-#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param returnType Either \code{list} or \code{data.frame} (default)
 #' @param ... additional parameters passed to find from class nbaR.MultimediaClient
 #' @export
 multimedia_find <- function(
@@ -134,13 +134,13 @@ multimedia_find <- function(
 }
 #' @name multimedia_find_by_ids
 #' @title Find multimedia document by ids
-#' @description This is a wrapper function for find_by_ids
-#' from class nbaR.MultimediaClient.
+#' @description This is a wrapper for the method \code{ find_by_ids }
+#' from class \code{ MultimediaClient}.
 #' @details Given multiple ids, returns a list of multimedia documents
 #' @family nbaR.MultimediaClient-wrappers
-#' @return list or data.frame, as specified by \code{returnType}'
+#' @return list or data.frame, as specified by \code{returnType}
 #' @param ids ids of multiple multimedia documents, separated by comma, type: character
-#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param returnType Either \code{list} or \code{data.frame} (default)
 #' @param ... additional parameters passed to find_by_ids from class nbaR.MultimediaClient
 #' @export
 multimedia_find_by_ids <- function(
@@ -165,13 +165,13 @@ multimedia_find_by_ids <- function(
 }
 #' @name multimedia_get_distinct_values
 #' @title Get all different values that can be found for one field
-#' @description This is a wrapper function for get_distinct_values
-#' from class nbaR.MultimediaClient.
+#' @description This is a wrapper for the method \code{ get_distinct_values }
+#' from class \code{ MultimediaClient}.
 #' @details A list of all fields for multimedia documents can be retrieved with /metadata/getFieldInfo
 #' @family nbaR.MultimediaClient-wrappers
 #' @return scalar
 #' @param field field, type:
-#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param returnType Either \code{list} or \code{data.frame} (default)
 #' @param ... additional parameters passed to get_distinct_values from class nbaR.MultimediaClient
 #' @export
 multimedia_get_distinct_values <- function(
@@ -189,14 +189,14 @@ multimedia_get_distinct_values <- function(
 }
 #' @name multimedia_get_distinct_values_per_group
 #' @title Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by
-#' @description This is a wrapper function for get_distinct_values_per_group
-#' from class nbaR.MultimediaClient.
+#' @description This is a wrapper for the method \code{ get_distinct_values_per_group }
+#' from class \code{ MultimediaClient}.
 #' @details See also endpoint /getDistinctValues
 #' @family nbaR.MultimediaClient-wrappers
 #' @return scalar
 #' @param group name of field in the multimedia object you want to group by, type:
 #' @param field name of field in the multimedia object, type:
-#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param returnType Either \code{list} or \code{data.frame} (default)
 #' @param ... additional parameters passed to get_distinct_values_per_group from class nbaR.MultimediaClient
 #' @export
 multimedia_get_distinct_values_per_group <- function(
@@ -216,12 +216,12 @@ multimedia_get_distinct_values_per_group <- function(
 }
 #' @name multimedia_get_field_info
 #' @title Returns extended information for each field of a multimedia document
-#' @description This is a wrapper function for get_field_info
-#' from class nbaR.MultimediaClient.
+#' @description This is a wrapper for the method \code{ get_field_info }
+#' from class \code{ MultimediaClient}.
 #' @details Info consists of whether the fields is indexed, the ElasticSearch datatype and a list of allowed operators
 #' @family nbaR.MultimediaClient-wrappers
 #' @return scalar
-#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param returnType Either \code{list} or \code{data.frame} (default)
 #' @param ... additional parameters passed to get_field_info from class nbaR.MultimediaClient
 #' @export
 multimedia_get_field_info <- function(
@@ -236,12 +236,12 @@ multimedia_get_field_info <- function(
 }
 #' @name multimedia_get_paths
 #' @title Returns the full path of all fields within a document
-#' @description This is a wrapper function for get_paths
-#' from class nbaR.MultimediaClient.
+#' @description This is a wrapper for the method \code{ get_paths }
+#' from class \code{ MultimediaClient}.
 #' @details See also metadata/getFieldInfo for all allowed operators per field
 #' @family nbaR.MultimediaClient-wrappers
 #' @return scalar
-#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param returnType Either \code{list} or \code{data.frame} (default)
 #' @param ... additional parameters passed to get_paths from class nbaR.MultimediaClient
 #' @export
 multimedia_get_paths <- function(
@@ -256,8 +256,8 @@ multimedia_get_paths <- function(
 }
 #' @name multimedia_get_setting
 #' @title Get the value of an NBA setting
-#' @description This is a wrapper function for get_setting
-#' from class nbaR.MultimediaClient.
+#' @description This is a wrapper for the method \code{ get_setting }
+#' from class \code{ MultimediaClient}.
 #' @details All settings can be queried with /metadata/getSettings
 #' @family nbaR.MultimediaClient-wrappers
 #' @return scalar
@@ -278,12 +278,12 @@ multimedia_get_setting <- function(
 }
 #' @name multimedia_get_settings
 #' @title List all publicly available configuration settings for the NBA
-#' @description This is a wrapper function for get_settings
-#' from class nbaR.MultimediaClient.
+#' @description This is a wrapper for the method \code{ get_settings }
+#' from class \code{ MultimediaClient}.
 #' @details The value of a specific setting can be queried with metadata/getSetting/{name}
 #' @family nbaR.MultimediaClient-wrappers
 #' @return scalar
-#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param returnType Either \code{list} or \code{data.frame} (default)
 #' @param ... additional parameters passed to get_settings from class nbaR.MultimediaClient
 #' @export
 multimedia_get_settings <- function(
@@ -298,8 +298,8 @@ multimedia_get_settings <- function(
 }
 #' @name multimedia_is_operator_allowed
 #' @title Checks if a given operator is allowed for a given field
-#' @description This is a wrapper function for is_operator_allowed
-#' from class nbaR.MultimediaClient.
+#' @description This is a wrapper for the method \code{ is_operator_allowed }
+#' from class \code{ MultimediaClient}.
 #' @details See also metadata/getFieldInfo
 #' @family nbaR.MultimediaClient-wrappers
 #' @return scalar
@@ -323,13 +323,13 @@ multimedia_is_operator_allowed <- function(
 }
 #' @name multimedia_query
 #' @title Query for multimedia documents
-#' @description This is a wrapper function for query
-#' from class nbaR.MultimediaClient.
+#' @description This is a wrapper for the method \code{ query }
+#' from class \code{ MultimediaClient}.
 #' @details Search for multimedia documents with query parameters or QuerySpec JSON string
 #' @family nbaR.MultimediaClient-wrappers
-#' @return list or data.frame, as specified by \code{returnType}'
+#' @return list or data.frame, as specified by \code{returnType}
 #' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
-#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param returnType Either \code{list} or \code{data.frame} (default)
 #' @param ... additional parameters passed to query from class nbaR.MultimediaClient
 #' @export
 multimedia_query <- function(

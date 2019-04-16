@@ -15,8 +15,8 @@ geo_get_geo_json_for_locality(locality = NULL, ...)
 scalar
 }
 \description{
-This is a wrapper function for get_geo_json_for_locality
-from class nbaR.GeoClient.
+This is a wrapper for the method \code{ get_geo_json_for_locality }
+from class \code{ GeoClient}.
 }
 \details{
 Returns a GeoJson polygon

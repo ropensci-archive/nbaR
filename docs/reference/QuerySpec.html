@@ -33,7 +33,7 @@
 
 <meta property="og:title" content="QuerySpec Class — QuerySpec" />
 
-<meta property="og:description" content="QuerySpec Class" />
+<meta property="og:description" content="A QuerySpec object enables you to specify a query for the NBA. It contains the following properties, each covering a different aspect of the query:  * conditions: The search criteria a.k.a. query conditions. Only documents that satisfy all search criteria or at least one (depending on the logicalOperator are returned." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -164,7 +164,7 @@
 
     <div class="ref-description">
     
-    <p>QuerySpec Class</p>
+    <p>A QuerySpec object enables you to specify a query for the NBA. It contains the following properties, each covering a different aspect of the query:  * conditions: The search criteria a.k.a. query conditions. Only documents that satisfy all search criteria or at least one (depending on the logicalOperator are returned.</p>
     
     </div>
 
@@ -177,13 +177,20 @@
 
     
     <dl class='dl-horizontal'>
-<dt><code>constantScore</code></dt><dd><p>logical</p></dd>
-    <dt><code>fields</code></dt><dd><p>list(character)</p></dd>
-    <dt><code>conditions</code></dt><dd><p>list(QueryCondition)</p></dd>
-    <dt><code>logicalOperator</code></dt><dd><p>character</p></dd>
-    <dt><code>sortFields</code></dt><dd><p>list(SortField)</p></dd>
-    <dt><code>from</code></dt><dd><p>integer</p></dd>
-    <dt><code>size</code></dt><dd><p>integer</p></dd>
+<dt><code>constantScore</code></dt><dd><p>logical
+If true, no relevance scores will be calculated for the returned documents. By default Elasticsearch not only determines whether a document matches your search criteria, but also how well it matches them, expressed as a so-called relevance score. If you are not interested in relevance scores, set constantScore to true, as there is some performance overhead associated with calculating relevance scores.</p></dd>
+    <dt><code>fields</code></dt><dd><p>list(character)
+The fields to be returned. Specimen, Taxon and MultiMediaObject documents are large documents containing lots of fields. If you are only interested in a few fields, use the fields property to specify them.</p></dd>
+    <dt><code>conditions</code></dt><dd><p>list(QueryCondition)
+List of QueryCondition objetcs</p></dd>
+    <dt><code>logicalOperator</code></dt><dd><p>character
+(AND/OR) Specifies whether a document must satisfy all search criteria or just one in order to be returned.</p></dd>
+    <dt><code>sortFields</code></dt><dd><p>list(SortField)
+Specifies the field(s) on which to sort the documents.</p></dd>
+    <dt><code>from</code></dt><dd><p>integer
+The offset in the result set from which to return the documents.</p></dd>
+    <dt><code>size</code></dt><dd><p>integer
+The number of documents to return.</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>

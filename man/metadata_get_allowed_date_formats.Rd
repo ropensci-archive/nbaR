@@ -7,7 +7,7 @@
 metadata_get_allowed_date_formats(returnType = "data.frame", ...)
 }
 \arguments{
-\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+\item{returnType}{Either \code{list} or \code{data.frame} (default)}
 
 \item{...}{additional parameters passed to get_allowed_date_formats from class nbaR.MetadataClient}
 }
@@ -15,8 +15,8 @@ metadata_get_allowed_date_formats(returnType = "data.frame", ...)
 scalar
 }
 \description{
-This is a wrapper function for get_allowed_date_formats
-from class nbaR.MetadataClient.
+This is a wrapper for the method \code{ get_allowed_date_formats }
+from class \code{ MetadataClient}.
 }
 \details{
 Queries with other formatted dates will result in a query error

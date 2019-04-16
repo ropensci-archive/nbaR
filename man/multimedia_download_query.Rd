@@ -15,8 +15,8 @@ multimedia_download_query(collectionType = NULL, queryParams = list(),
 \item{...}{additional parameters passed to download_query from class nbaR.MultimediaClient}
 }
 \description{
-This is a wrapper function for download_query
-from class nbaR.MultimediaClient.
+This is a wrapper for the method \code{ download_query }
+from class \code{ MultimediaClient}.
 }
 \details{
 Query with query parameters or querySpec JSON. ...

@@ -15,8 +15,8 @@ specimen_exists(unitID = NULL, ...)
 scalar
 }
 \description{
-This is a wrapper function for exists
-from class nbaR.SpecimenClient.
+This is a wrapper for the method \code{ exists }
+from class \code{ SpecimenClient}.
 }
 \details{
 Returns either true or false

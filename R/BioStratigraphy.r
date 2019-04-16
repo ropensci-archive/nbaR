@@ -12,20 +12,35 @@
 #'
 #'
 #' @field youngBioDatingQualifier  character
+#'
 #' @field youngBioName  character
+#'
 #' @field youngFossilZone  character
+#'
 #' @field youngFossilSubZone  character
+#'
 #' @field youngBioCertainty  character
+#'
 #' @field youngStratType  character
+#'
 #' @field bioDatingQualifier  character
+#'
 #' @field bioPreferredFlag  logical
+#'
 #' @field rangePosition  character
+#'
 #' @field oldBioName  character
+#'
 #' @field bioIdentifier  character
+#'
 #' @field oldFossilzone  character
+#'
 #' @field oldFossilSubzone  character
+#'
 #' @field oldBioCertainty  character
+#'
 #' @field oldBioStratType  character
+#'
 #'
 #'
 #' @format

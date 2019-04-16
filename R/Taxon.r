@@ -12,22 +12,39 @@
 #' A taxon record stores the hierarchical classification of a taxon, its scientific names and synonyms, and other relevant data retrieved from the respective source system. Taxonomic information is sourced from two species checklists: The Catalogue of Life (COL) and the Dutch Species Register (NSR). For more info on model classes, please refer to https://docs.biodiversitydata.nl
 #'
 #' @field sourceSystem  SourceSystem
+#'
 #' @field sourceSystemId  character
+#'
 #' @field recordURI  character
+#'
 #' @field id  character
+#'
 #' @field sourceSystemParentId  character
+#'
 #' @field taxonRank  character
+#'
 #' @field taxonRemarks  character
+#'
 #' @field occurrenceStatusVerbatim  character
+#'
 #' @field acceptedName  ScientificName
+#'
 #' @field defaultClassification  DefaultClassification
+#'
 #' @field systemClassification  list(Monomial)
+#'
 #' @field synonyms  list(ScientificName)
+#'
 #' @field vernacularNames  list(VernacularName)
+#'
 #' @field descriptions  list(TaxonDescription)
+#'
 #' @field references  list(Reference)
+#'
 #' @field experts  list(Expert)
+#'
 #' @field validName  ScientificName
+#'
 #'
 #'
 #' @format

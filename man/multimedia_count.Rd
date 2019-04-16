@@ -15,8 +15,8 @@ multimedia_count(queryParams = list(), ...)
 scalar
 }
 \description{
-This is a wrapper function for count
-from class nbaR.MultimediaClient.
+This is a wrapper for the method \code{ count }
+from class \code{ MultimediaClient}.
 }
 \details{
 Conditions given as query parameters or QuerySpec JSON

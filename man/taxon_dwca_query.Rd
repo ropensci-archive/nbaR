@@ -15,8 +15,8 @@ taxon_dwca_query(queryParams = list(), filename = format(Sys.time(),
 \item{...}{additional parameters passed to dwca_query from class nbaR.TaxonClient}
 }
 \description{
-This is a wrapper function for dwca_query
-from class nbaR.TaxonClient.
+This is a wrapper for the method \code{ dwca_query }
+from class \code{ TaxonClient}.
 }
 \details{
 Query with query parameters or querySpec JSON. Response saved to nba-taxa.dwca.zip

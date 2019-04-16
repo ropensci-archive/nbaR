@@ -12,7 +12,9 @@
 #'
 #'
 #' @field areaClass  character
+#'
 #' @field areaName  character
+#'
 #'
 #'
 #' @format

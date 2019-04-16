@@ -9,16 +9,16 @@ geo_find(id = NULL, returnType = "data.frame", ...)
 \arguments{
 \item{id}{id of geo area, type:}
 
-\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+\item{returnType}{Either \code{list} or \code{data.frame} (default)}
 
 \item{...}{additional parameters passed to find from class nbaR.GeoClient}
 }
 \value{
-list or data.frame, as specified by \code{returnType}'
+list or data.frame, as specified by \code{returnType}
 }
 \description{
-This is a wrapper function for find
-from class nbaR.GeoClient.
+This is a wrapper for the method \code{ find }
+from class \code{ GeoClient}.
 }
 \details{
 Returns a GEO object containing a GEO json polygon

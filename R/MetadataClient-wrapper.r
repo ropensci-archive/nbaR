@@ -11,12 +11,12 @@
 
 #' @name metadata_get_allowed_date_formats
 #' @title Get allowed values for dates in queries
-#' @description This is a wrapper function for get_allowed_date_formats
-#' from class nbaR.MetadataClient.
+#' @description This is a wrapper for the method \code{ get_allowed_date_formats }
+#' from class \code{ MetadataClient}.
 #' @details Queries with other formatted dates will result in a query error
 #' @family nbaR.MetadataClient-wrappers
 #' @return scalar
-#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param returnType Either \code{list} or \code{data.frame} (default)
 #' @param ... additional parameters passed to get_allowed_date_formats from class nbaR.MetadataClient
 #' @export
 metadata_get_allowed_date_formats <- function(
@@ -31,12 +31,12 @@ metadata_get_allowed_date_formats <- function(
 }
 #' @name metadata_get_controlled_list_phase_or_stage
 #' @title Get allowed values for the field &#39;PhaseOrStage&#39; in a specimen document
-#' @description This is a wrapper function for get_controlled_list_phase_or_stage
-#' from class nbaR.MetadataClient.
+#' @description This is a wrapper for the method \code{ get_controlled_list_phase_or_stage }
+#' from class \code{ MetadataClient}.
 #' @details See also endpoint /getControlledLists
 #' @family nbaR.MetadataClient-wrappers
 #' @return scalar
-#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param returnType Either \code{list} or \code{data.frame} (default)
 #' @param ... additional parameters passed to get_controlled_list_phase_or_stage from class nbaR.MetadataClient
 #' @export
 metadata_get_controlled_list_phase_or_stage <- function(
@@ -51,12 +51,12 @@ metadata_get_controlled_list_phase_or_stage <- function(
 }
 #' @name metadata_get_controlled_list_sex
 #' @title Get allowed values for the field &#39;Sex&#39; in a specimen document
-#' @description This is a wrapper function for get_controlled_list_sex
-#' from class nbaR.MetadataClient.
+#' @description This is a wrapper for the method \code{ get_controlled_list_sex }
+#' from class \code{ MetadataClient}.
 #' @details See also endpoint /getControlledLists
 #' @family nbaR.MetadataClient-wrappers
 #' @return scalar
-#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param returnType Either \code{list} or \code{data.frame} (default)
 #' @param ... additional parameters passed to get_controlled_list_sex from class nbaR.MetadataClient
 #' @export
 metadata_get_controlled_list_sex <- function(
@@ -71,12 +71,12 @@ metadata_get_controlled_list_sex <- function(
 }
 #' @name metadata_get_controlled_list_specimen_type_status
 #' @title Get allowed values for the field &#39;SpecimenTypeStatus&#39; in a specimen document
-#' @description This is a wrapper function for get_controlled_list_specimen_type_status
-#' from class nbaR.MetadataClient.
+#' @description This is a wrapper for the method \code{ get_controlled_list_specimen_type_status }
+#' from class \code{ MetadataClient}.
 #' @details See also endpoint /getControlledLists
 #' @family nbaR.MetadataClient-wrappers
 #' @return scalar
-#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param returnType Either \code{list} or \code{data.frame} (default)
 #' @param ... additional parameters passed to get_controlled_list_specimen_type_status from class nbaR.MetadataClient
 #' @export
 metadata_get_controlled_list_specimen_type_status <- function(
@@ -91,12 +91,12 @@ metadata_get_controlled_list_specimen_type_status <- function(
 }
 #' @name metadata_get_controlled_list_taxonomic_status
 #' @title Get allowed values for the field &#39;TaxonomicStatus&#39; in specimen and taxon documents
-#' @description This is a wrapper function for get_controlled_list_taxonomic_status
-#' from class nbaR.MetadataClient.
+#' @description This is a wrapper for the method \code{ get_controlled_list_taxonomic_status }
+#' from class \code{ MetadataClient}.
 #' @details See also endpoint /getControlledLists
 #' @family nbaR.MetadataClient-wrappers
 #' @return scalar
-#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param returnType Either \code{list} or \code{data.frame} (default)
 #' @param ... additional parameters passed to get_controlled_list_taxonomic_status from class nbaR.MetadataClient
 #' @export
 metadata_get_controlled_list_taxonomic_status <- function(
@@ -111,12 +111,12 @@ metadata_get_controlled_list_taxonomic_status <- function(
 }
 #' @name metadata_get_controlled_lists
 #' @title Get the names of fields for which a controlled vocabulary exists
-#' @description This is a wrapper function for get_controlled_lists
-#' from class nbaR.MetadataClient.
+#' @description This is a wrapper for the method \code{ get_controlled_lists }
+#' from class \code{ MetadataClient}.
 #' @details Possible values for fields with controlled vocabularies can be queried with metadata/getControlledList/{field}
 #' @family nbaR.MetadataClient-wrappers
 #' @return scalar
-#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param returnType Either \code{list} or \code{data.frame} (default)
 #' @param ... additional parameters passed to get_controlled_lists from class nbaR.MetadataClient
 #' @export
 metadata_get_controlled_lists <- function(
@@ -131,12 +131,12 @@ metadata_get_controlled_lists <- function(
 }
 #' @name metadata_get_rest_services
 #' @title List all available REST services and their parameters
-#' @description This is a wrapper function for get_rest_services
-#' from class nbaR.MetadataClient.
+#' @description This is a wrapper for the method \code{ get_rest_services }
+#' from class \code{ MetadataClient}.
 #' @details Lists end point name, http method, response type, and URL
 #' @family nbaR.MetadataClient-wrappers
-#' @return list or data.frame, as specified by \code{returnType}'
-#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @return list or data.frame, as specified by \code{returnType}
+#' @param returnType Either \code{list} or \code{data.frame} (default)
 #' @param ... additional parameters passed to get_rest_services from class nbaR.MetadataClient
 #' @export
 metadata_get_rest_services <- function(
@@ -158,8 +158,8 @@ metadata_get_rest_services <- function(
 }
 #' @name metadata_get_setting
 #' @title Get the value of an NBA setting
-#' @description This is a wrapper function for get_setting
-#' from class nbaR.MetadataClient.
+#' @description This is a wrapper for the method \code{ get_setting }
+#' from class \code{ MetadataClient}.
 #' @details All settings can be queried with /metadata/getSettings
 #' @family nbaR.MetadataClient-wrappers
 #' @return scalar
@@ -180,12 +180,12 @@ metadata_get_setting <- function(
 }
 #' @name metadata_get_settings
 #' @title List all publicly available configuration settings for the NBA
-#' @description This is a wrapper function for get_settings
-#' from class nbaR.MetadataClient.
+#' @description This is a wrapper for the method \code{ get_settings }
+#' from class \code{ MetadataClient}.
 #' @details The value of a specific setting can be queried with metadata/getSetting/{name}
 #' @family nbaR.MetadataClient-wrappers
 #' @return scalar
-#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @param returnType Either \code{list} or \code{data.frame} (default)
 #' @param ... additional parameters passed to get_settings from class nbaR.MetadataClient
 #' @export
 metadata_get_settings <- function(
@@ -200,12 +200,12 @@ metadata_get_settings <- function(
 }
 #' @name metadata_get_source_systems
 #' @title Get the data sources from which the data was retrieved
-#' @description This is a wrapper function for get_source_systems
-#' from class nbaR.MetadataClient.
+#' @description This is a wrapper for the method \code{ get_source_systems }
+#' from class \code{ MetadataClient}.
 #' @details Returns code and name of all source systems
 #' @family nbaR.MetadataClient-wrappers
-#' @return list or data.frame, as specified by \code{returnType}'
-#' @param returnType Either 'list' or 'data.frame', defaults to 'data.frame'
+#' @return list or data.frame, as specified by \code{returnType}
+#' @param returnType Either \code{list} or \code{data.frame} (default)
 #' @param ... additional parameters passed to get_source_systems from class nbaR.MetadataClient
 #' @export
 metadata_get_source_systems <- function(

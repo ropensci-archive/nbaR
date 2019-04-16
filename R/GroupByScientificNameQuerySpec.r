@@ -12,18 +12,31 @@
 #'
 #'
 #' @field constantScore  logical
+#'        If true, no relevance scores will be calculated for the returned documents. By default Elasticsearch not only determines whether a document matches your search criteria, but also how well it matches them, expressed as a so-called relevance score. If you are not interested in relevance scores, set constantScore to true, as there is some performance overhead associated with calculating relevance scores.
 #' @field fields  list(character)
+#'        The fields to be returned. Specimen, Taxon and MultiMediaObject documents are large documents containing lots of fields. If you are only interested in a few fields, use the fields property to specify them.
 #' @field conditions  list(QueryCondition)
+#'        List of QueryCondition objetcs
 #' @field logicalOperator  character
+#'        (AND/OR) Specifies whether a document must satisfy all search criteria or just one in order to be returned.
 #' @field sortFields  list(SortField)
+#'        Specifies the field(s) on which to sort the documents.
 #' @field from  integer
+#'        The offset in the result set from which to return the documents.
 #' @field size  integer
+#'        The number of documents to return.
 #' @field groupSort  character
+#'
 #' @field groupFilter  Filter
+#'
 #' @field specimensFrom  integer
+#'
 #' @field specimensSize  integer
+#'
 #' @field specimensSortFields  list(SortField)
+#'
 #' @field noTaxa  logical
+#'
 #'
 #'
 #' @format

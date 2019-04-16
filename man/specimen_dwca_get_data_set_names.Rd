@@ -7,7 +7,7 @@
 specimen_dwca_get_data_set_names(returnType = "data.frame", ...)
 }
 \arguments{
-\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+\item{returnType}{Either \code{list} or \code{data.frame} (default)}
 
 \item{...}{additional parameters passed to dwca_get_data_set_names from class nbaR.SpecimenClient}
 }
@@ -15,8 +15,8 @@ specimen_dwca_get_data_set_names(returnType = "data.frame", ...)
 scalar
 }
 \description{
-This is a wrapper function for dwca_get_data_set_names
-from class nbaR.SpecimenClient.
+This is a wrapper for the method \code{ dwca_get_data_set_names }
+from class \code{ SpecimenClient}.
 }
 \details{
 Individual datasets can then be downloaded with /dwca/getDataSet/{dataset}

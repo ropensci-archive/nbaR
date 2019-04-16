@@ -12,8 +12,11 @@
 #'
 #'
 #' @field path  character
+#'
 #' @field sortOrder  character
+#'
 #' @field ascending  logical
+#'
 #'
 #'
 #' @format

@@ -12,22 +12,39 @@
 #'
 #'
 #' @field qualifier  character
+#'
 #' @field preferredFlag  logical
+#'
 #' @field member2  character
+#'
 #' @field member  character
+#'
 #' @field informalName2  character
+#'
 #' @field informalName  character
+#'
 #' @field importedName2  character
+#'
 #' @field importedName1  character
+#'
 #' @field lithoIdentifier  character
+#'
 #' @field formation2  character
+#'
 #' @field formationGroup2  character
+#'
 #' @field formationGroup  character
+#'
 #' @field formation  character
+#'
 #' @field certainty2  character
+#'
 #' @field certainty  character
+#'
 #' @field bed2  character
+#'
 #' @field bed  character
+#'
 #'
 #'
 #' @format

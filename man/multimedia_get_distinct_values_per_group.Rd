@@ -12,7 +12,7 @@ multimedia_get_distinct_values_per_group(group = NULL, field = NULL,
 
 \item{field}{name of field in the multimedia object, type:}
 
-\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+\item{returnType}{Either \code{list} or \code{data.frame} (default)}
 
 \item{...}{additional parameters passed to get_distinct_values_per_group from class nbaR.MultimediaClient}
 }
@@ -20,8 +20,8 @@ multimedia_get_distinct_values_per_group(group = NULL, field = NULL,
 scalar
 }
 \description{
-This is a wrapper function for get_distinct_values_per_group
-from class nbaR.MultimediaClient.
+This is a wrapper for the method \code{ get_distinct_values_per_group }
+from class \code{ MultimediaClient}.
 }
 \details{
 See also endpoint /getDistinctValues

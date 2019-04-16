@@ -12,31 +12,57 @@
 #'
 #'
 #' @field youngRegionalSubstage  character
+#'
 #' @field youngRegionalStage  character
+#'
 #' @field youngRegionalSeries  character
+#'
 #' @field youngDatingQualifier  character
+#'
 #' @field youngInternSystem  character
+#'
 #' @field youngInternSubstage  character
+#'
 #' @field youngInternStage  character
+#'
 #' @field youngInternSeries  character
+#'
 #' @field youngInternErathem  character
+#'
 #' @field youngInternEonothem  character
+#'
 #' @field youngChronoName  character
+#'
 #' @field youngCertainty  character
+#'
 #' @field oldDatingQualifier  character
+#'
 #' @field chronoPreferredFlag  logical
+#'
 #' @field oldRegionalSubstage  character
+#'
 #' @field oldRegionalStage  character
+#'
 #' @field oldRegionalSeries  character
+#'
 #' @field oldInternSystem  character
+#'
 #' @field oldInternSubstage  character
+#'
 #' @field oldInternStage  character
+#'
 #' @field oldInternSeries  character
+#'
 #' @field oldInternErathem  character
+#'
 #' @field oldInternEonothem  character
+#'
 #' @field oldChronoName  character
+#'
 #' @field chronoIdentifier  character
+#'
 #' @field oldCertainty  character
+#'
 #'
 #'
 #' @format

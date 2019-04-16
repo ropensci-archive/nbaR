@@ -12,36 +12,67 @@
 #' Naturalis stores a vast amount of multimedia in its internal document store. This can be multimedia captured from physical specimens (e.g. photos of a specimen), but also from human observations (e.g. audio recordings of bird sounds). Digitisation of Naturalis museum objects include a detailed photographic documentation. So far, there are more than 5 million photos and several houndreds of thousands of bird sounds. For more info on model classes, please refer to https://docs.biodiversitydata.nl
 #'
 #' @field sourceSystem  SourceSystem
+#'
 #' @field sourceSystemId  character
+#'
 #' @field recordURI  character
+#'
 #' @field id  character
+#'
 #' @field sourceInstitutionID  character
+#'
 #' @field sourceID  character
+#'
 #' @field owner  character
+#'
 #' @field licenseType  character
+#'
 #' @field license  character
+#'
 #' @field unitID  character
+#'
 #' @field collectionType  character
+#'
 #' @field title  character
+#'
 #' @field caption  character
+#'
 #' @field description  character
+#'
 #' @field serviceAccessPoints  list(ServiceAccessPoint)
+#'
 #' @field type  character
+#'
 #' @field taxonCount  integer
+#'
 #' @field creator  character
+#'
 #' @field copyrightText  character
+#'
 #' @field associatedSpecimenReference  character
+#'
 #' @field associatedTaxonReference  character
+#'
 #' @field multiMediaPublic  logical
+#'
 #' @field subjectParts  list(character)
+#'
 #' @field subjectOrientations  list(character)
+#'
 #' @field phasesOrStages  list(character)
+#'
 #' @field sexes  list(character)
+#'
 #' @field gatheringEvents  list(MultiMediaGatheringEvent)
+#'
 #' @field identifications  list(MultiMediaContentIdentification)
+#'
 #' @field theme  list(character)
+#'
 #' @field associatedSpecimen  Specimen
+#'
 #' @field associatedTaxon  Taxon
+#'
 #'
 #'
 #' @format

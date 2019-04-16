@@ -33,7 +33,8 @@
 
 <meta property="og:title" content="Response Class — Response" />
 
-<meta property="og:description" content="Response Class" />
+<meta property="og:description" content="The Response object is a generic object returned by any query
+function of one of the nbaR client classes." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -164,15 +165,36 @@
 
     <div class="ref-description">
     
-    <p>Response Class</p>
+    <p>The Response object is a generic object returned by any query
+function of one of the nbaR client classes.</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>Response</span></pre>
+    <pre class="usage"></pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An object of class <code>R6ClassGenerator</code> of length 24.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Response Class</p>
+    <p>This class contains two fields (see also section 'Fields' below):
+The field <code>content</code> contains the query result parsed from
+the JSON response of the request. Depending on the query, this
+can be an object such as e.g. a <code>ResultSet</code>, or a <code>Specimen</code> or
+<code>Taxon</code> or a primitive data type. The field <code>reponse</code>
+is the actual response from the <code>httr</code> package that is used
+to perform the http request. It contains information such as the request and response headers,
+status code, URL, and the raw response.
+See also https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html for further details.</p>
+    
+    <h2 class="hasAnchor" id="fields"><a class="anchor" href="#fields"></a>Fields</h2>
+
+    
+    <dl class='dl-horizontal'>
+<dt><code>content</code></dt><dd><p>Parsed response of the query call</p></dd>
+    <dt><code>response</code></dt><dd><p>Response object from package <code>httr</code></p></dd>
+</dl>
     
 
   </div>
@@ -181,6 +203,10 @@
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#format">Format</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#fields">Fields</a></li>
           </ul>
 
   </div>

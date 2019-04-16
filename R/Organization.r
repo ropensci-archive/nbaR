@@ -12,7 +12,9 @@
 #'
 #'
 #' @field agentText  character
+#'
 #' @field name  character
+#'
 #'
 #'
 #' @format

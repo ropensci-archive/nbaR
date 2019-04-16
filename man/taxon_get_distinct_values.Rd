@@ -9,7 +9,7 @@ taxon_get_distinct_values(field = NULL, returnType = "data.frame", ...)
 \arguments{
 \item{field}{name of field in a taxon object, type:}
 
-\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+\item{returnType}{Either \code{list} or \code{data.frame} (default)}
 
 \item{...}{additional parameters passed to get_distinct_values from class nbaR.TaxonClient}
 }
@@ -17,8 +17,8 @@ taxon_get_distinct_values(field = NULL, returnType = "data.frame", ...)
 scalar
 }
 \description{
-This is a wrapper function for get_distinct_values
-from class nbaR.TaxonClient.
+This is a wrapper for the method \code{ get_distinct_values }
+from class \code{ TaxonClient}.
 }
 \details{
 A list of all fields for taxon documents can be retrieved with /metadata/getFieldInfo

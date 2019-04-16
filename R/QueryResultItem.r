@@ -12,7 +12,9 @@
 #' Contains an object returned from a QuerySpec query. Holds an item and a relevance score.
 #'
 #' @field score  numeric
+#'
 #' @field item  list
+#'
 #'
 #'
 #' @format

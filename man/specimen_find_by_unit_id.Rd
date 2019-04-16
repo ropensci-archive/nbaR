@@ -9,16 +9,16 @@ specimen_find_by_unit_id(unitID = NULL, returnType = "data.frame", ...)
 \arguments{
 \item{unitID}{the unitID of the specimen to query, type:}
 
-\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+\item{returnType}{Either \code{list} or \code{data.frame} (default)}
 
 \item{...}{additional parameters passed to find_by_unit_id from class nbaR.SpecimenClient}
 }
 \value{
-list or data.frame, as specified by \code{returnType}'
+list or data.frame, as specified by \code{returnType}
 }
 \description{
-This is a wrapper function for find_by_unit_id
-from class nbaR.SpecimenClient.
+This is a wrapper for the method \code{ find_by_unit_id }
+from class \code{ SpecimenClient}.
 }
 \details{
 Get a specimen by its unitID. Returns a list of specimens since unitIDs are not strictly unique

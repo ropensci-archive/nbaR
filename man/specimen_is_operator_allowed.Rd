@@ -17,8 +17,8 @@ specimen_is_operator_allowed(field = NULL, operator = NULL, ...)
 scalar
 }
 \description{
-This is a wrapper function for is_operator_allowed
-from class nbaR.SpecimenClient.
+This is a wrapper for the method \code{ is_operator_allowed }
+from class \code{ SpecimenClient}.
 }
 \details{
 See also metadata/getFieldInfo

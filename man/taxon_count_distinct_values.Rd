@@ -10,7 +10,7 @@ taxon_count_distinct_values(field = NULL, returnType = "data.frame",
 \arguments{
 \item{field}{name of field in the taxon object, type:}
 
-\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+\item{returnType}{Either \code{list} or \code{data.frame} (default)}
 
 \item{...}{additional parameters passed to count_distinct_values from class nbaR.TaxonClient}
 }
@@ -18,8 +18,8 @@ taxon_count_distinct_values(field = NULL, returnType = "data.frame",
 scalar
 }
 \description{
-This is a wrapper function for count_distinct_values
-from class nbaR.TaxonClient.
+This is a wrapper for the method \code{ count_distinct_values }
+from class \code{ TaxonClient}.
 }
 \details{
 See also endpoint /getDistinctValues

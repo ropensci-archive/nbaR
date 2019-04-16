@@ -12,9 +12,13 @@
 #'
 #'
 #' @field acceptRegexp  character
+#'
 #' @field rejectRegexp  character
+#'
 #' @field acceptValues  list(character)
+#'
 #' @field rejectValues  list(character)
+#'
 #'
 #'
 #' @format

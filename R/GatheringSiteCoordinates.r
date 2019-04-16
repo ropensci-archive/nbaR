@@ -12,13 +12,21 @@
 #'
 #'
 #' @field longitudeDecimal  numeric
+#'
 #' @field latitudeDecimal  numeric
+#'
 #' @field gridCellSystem  character
+#'
 #' @field gridLatitudeDecimal  numeric
+#'
 #' @field gridLongitudeDecimal  numeric
+#'
 #' @field gridCellCode  character
+#'
 #' @field gridQualifier  character
+#'
 #' @field geoShape  Point
+#'
 #'
 #'
 #' @format

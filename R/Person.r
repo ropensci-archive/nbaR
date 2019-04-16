@@ -12,8 +12,11 @@
 #'
 #'
 #' @field agentText  character
+#'
 #' @field fullName  character
+#'
 #' @field organization  Organization
+#'
 #'
 #'
 #' @format

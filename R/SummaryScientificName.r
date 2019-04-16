@@ -12,12 +12,19 @@
 #'
 #'
 #' @field fullScientificName  character
+#'
 #' @field taxonomicStatus  character
+#'
 #' @field genusOrMonomial  character
+#'
 #' @field subgenus  character
+#'
 #' @field specificEpithet  character
+#'
 #' @field infraspecificEpithet  character
+#'
 #' @field authorshipVerbatim  character
+#'
 #'
 #'
 #' @format

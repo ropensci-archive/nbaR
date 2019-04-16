@@ -15,8 +15,8 @@ specimen_dwca_query(queryParams = list(), filename = format(Sys.time(),
 \item{...}{additional parameters passed to dwca_query from class nbaR.SpecimenClient}
 }
 \description{
-This is a wrapper function for dwca_query
-from class nbaR.SpecimenClient.
+This is a wrapper for the method \code{ dwca_query }
+from class \code{ SpecimenClient}.
 }
 \details{
 Query with query parameters or querySpec JSON. Response saved to nba-specimens.dwca.zip

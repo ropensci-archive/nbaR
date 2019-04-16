@@ -15,8 +15,8 @@ multimedia_count_distinct_values(field = NULL, ...)
 scalar
 }
 \description{
-This is a wrapper function for count_distinct_values
-from class nbaR.MultimediaClient.
+This is a wrapper for the method \code{ count_distinct_values }
+from class \code{ MultimediaClient}.
 }
 \details{
 See also endpoint /getDistinctValues

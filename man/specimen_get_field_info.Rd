@@ -7,7 +7,7 @@
 specimen_get_field_info(returnType = "data.frame", ...)
 }
 \arguments{
-\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+\item{returnType}{Either \code{list} or \code{data.frame} (default)}
 
 \item{...}{additional parameters passed to get_field_info from class nbaR.SpecimenClient}
 }
@@ -15,8 +15,8 @@ specimen_get_field_info(returnType = "data.frame", ...)
 scalar
 }
 \description{
-This is a wrapper function for get_field_info
-from class nbaR.SpecimenClient.
+This is a wrapper for the method \code{ get_field_info }
+from class \code{ SpecimenClient}.
 }
 \details{
 Info consists of whether the fields is indexed, the ElasticSearch datatype and a list of allowed operators

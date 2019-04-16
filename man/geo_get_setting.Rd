@@ -15,8 +15,8 @@ geo_get_setting(name = NULL, ...)
 scalar
 }
 \description{
-This is a wrapper function for get_setting
-from class nbaR.GeoClient.
+This is a wrapper for the method \code{ get_setting }
+from class \code{ GeoClient}.
 }
 \details{
 All settings can be queried with /metadata/getSettings

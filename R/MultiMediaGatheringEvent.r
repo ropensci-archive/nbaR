@@ -12,33 +12,61 @@
 #'
 #'
 #' @field projectTitle  character
+#'
 #' @field worldRegion  character
+#'
 #' @field continent  character
+#'
 #' @field country  character
+#'
 #' @field iso3166Code  character
+#'
 #' @field provinceState  character
+#'
 #' @field island  character
+#'
 #' @field locality  character
+#'
 #' @field city  character
+#'
 #' @field sublocality  character
+#'
 #' @field localityText  character
+#'
 #' @field dateTimeBegin  character
+#'
 #' @field dateTimeEnd  character
+#'
 #' @field method  character
+#'
 #' @field altitude  character
+#'
 #' @field altitudeUnifOfMeasurement  character
+#'
 #' @field biotopeText  character
+#'
 #' @field depth  character
+#'
 #' @field depthUnitOfMeasurement  character
+#'
 #' @field gatheringPersons  list(Person)
+#'
 #' @field gatheringOrganizations  list(Organization)
+#'
 #' @field siteCoordinates  list(GatheringSiteCoordinates)
+#'
 #' @field namedAreas  list(NamedArea)
+#'
 #' @field associatedTaxa  list(AssociatedTaxon)
+#'
 #' @field chronoStratigraphy  list(ChronoStratigraphy)
+#'
 #' @field lithoStratigraphy  list(LithoStratigraphy)
+#'
 #' @field iptc  Iptc4xmpExt
+#'
 #' @field bioStratigraphic  list(BioStratigraphy)
+#'
 #'
 #'
 #' @format

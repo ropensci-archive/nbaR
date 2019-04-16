@@ -17,8 +17,8 @@ multimedia_is_operator_allowed(field = NULL, operator = NULL, ...)
 scalar
 }
 \description{
-This is a wrapper function for is_operator_allowed
-from class nbaR.MultimediaClient.
+This is a wrapper for the method \code{ is_operator_allowed }
+from class \code{ MultimediaClient}.
 }
 \details{
 See also metadata/getFieldInfo

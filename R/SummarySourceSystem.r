@@ -14,6 +14,7 @@
 #' @field code  character
 #'
 #'
+#'
 #' @format
 #'
 #' @usage

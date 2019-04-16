@@ -12,7 +12,9 @@
 #'
 #'
 #' @field totalSize  integer
+#'
 #' @field resultSet  list(QueryResultItemObject)
+#'
 #'
 #'
 #' @format

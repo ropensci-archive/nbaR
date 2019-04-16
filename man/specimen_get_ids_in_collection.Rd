@@ -10,7 +10,7 @@ specimen_get_ids_in_collection(name = NULL, returnType = "data.frame",
 \arguments{
 \item{name}{name of dataset, type:}
 
-\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+\item{returnType}{Either \code{list} or \code{data.frame} (default)}
 
 \item{...}{additional parameters passed to get_ids_in_collection from class nbaR.SpecimenClient}
 }
@@ -18,8 +18,8 @@ specimen_get_ids_in_collection(name = NULL, returnType = "data.frame",
 scalar
 }
 \description{
-This is a wrapper function for get_ids_in_collection
-from class nbaR.SpecimenClient.
+This is a wrapper for the method \code{ get_ids_in_collection }
+from class \code{ SpecimenClient}.
 }
 \details{
 Available collections can be queried with /getNamedCollections

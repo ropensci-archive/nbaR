@@ -15,8 +15,8 @@ taxon_count(queryParams = list(), ...)
 scalar
 }
 \description{
-This is a wrapper function for count
-from class nbaR.TaxonClient.
+This is a wrapper for the method \code{ count }
+from class \code{ TaxonClient}.
 }
 \details{
 Conditions given as query parameters or a querySpec JSON

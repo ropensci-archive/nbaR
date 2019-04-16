@@ -9,16 +9,16 @@ multimedia_find_by_ids(ids = NULL, returnType = "data.frame", ...)
 \arguments{
 \item{ids}{ids of multiple multimedia documents, separated by comma, type: character}
 
-\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+\item{returnType}{Either \code{list} or \code{data.frame} (default)}
 
 \item{...}{additional parameters passed to find_by_ids from class nbaR.MultimediaClient}
 }
 \value{
-list or data.frame, as specified by \code{returnType}'
+list or data.frame, as specified by \code{returnType}
 }
 \description{
-This is a wrapper function for find_by_ids
-from class nbaR.MultimediaClient.
+This is a wrapper for the method \code{ find_by_ids }
+from class \code{ MultimediaClient}.
 }
 \details{
 Given multiple ids, returns a list of multimedia documents

@@ -15,8 +15,8 @@ specimen_dwca_get_data_set(dataset = NULL,
 \item{...}{additional parameters passed to dwca_get_data_set from class nbaR.SpecimenClient}
 }
 \description{
-This is a wrapper function for dwca_get_data_set
-from class nbaR.SpecimenClient.
+This is a wrapper for the method \code{ dwca_get_data_set }
+from class \code{ SpecimenClient}.
 }
 \details{
 Available datasets can be queried with /specimen/dwca/getDataSetNames. Response saved to &lt;datasetname&gt;-&lt;yyyymmdd&gt;.dwca.zip

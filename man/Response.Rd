@@ -4,11 +4,34 @@
 \name{Response}
 \alias{Response}
 \title{Response Class}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-Response
+
 }
 \description{
-Response Class
+The Response object is a generic object returned by any query
+function of one of the nbaR client classes.
 }
+\details{
+Response Class
+
+
+This class contains two fields (see also section 'Fields' below):
+The field \code{content} contains the query result parsed from
+the JSON response of the request. Depending on the query, this
+can be an object such as e.g. a \code{ResultSet}, or a \code{Specimen} or
+\code{Taxon} or a primitive data type. The field \code{reponse}
+is the actual response from the \code{httr} package that is used
+to perform the http request. It contains information such as the request and response headers,
+status code, URL, and the raw response.
+See also \link{https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html} for further details.
+}
+\section{Fields}{
+
+\describe{
+\item{\code{content}}{Parsed response of the query call}
+
+\item{\code{response}}{Response object from package \code{httr}}
+}}
+
 \keyword{datasets}

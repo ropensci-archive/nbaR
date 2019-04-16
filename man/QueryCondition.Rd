@@ -9,7 +9,7 @@
 
 }
 \description{
-QueryCondition Class
+Class modeling a query condition. A condition consists of a field name, a ComparisonOperator and a value. For example: &#39;name&#39;, EQUALS, &#39;John&#39;. A condition can optionally have a list of sibling conditions. These are joined to the containing condition using the AND or OR operator. A condition and its siblings are strongly bound together, as though surrounded by parentheses: (condition AND sibling0 AND sibling1). Because each sibling may itself also have a list of sibling conditions, this allows you to nest logical expressions like (A AND (B OR C OR (D AND E)) AND F).
 }
 \section{Fields}{
 

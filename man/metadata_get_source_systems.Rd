@@ -7,16 +7,16 @@
 metadata_get_source_systems(returnType = "data.frame", ...)
 }
 \arguments{
-\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+\item{returnType}{Either \code{list} or \code{data.frame} (default)}
 
 \item{...}{additional parameters passed to get_source_systems from class nbaR.MetadataClient}
 }
 \value{
-list or data.frame, as specified by \code{returnType}'
+list or data.frame, as specified by \code{returnType}
 }
 \description{
-This is a wrapper function for get_source_systems
-from class nbaR.MetadataClient.
+This is a wrapper for the method \code{ get_source_systems }
+from class \code{ MetadataClient}.
 }
 \details{
 Returns code and name of all source systems

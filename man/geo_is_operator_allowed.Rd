@@ -12,7 +12,7 @@ geo_is_operator_allowed(field = NULL, operator = NULL,
 
 \item{operator}{operator, type:}
 
-\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+\item{returnType}{Either \code{list} or \code{data.frame} (default)}
 
 \item{...}{additional parameters passed to is_operator_allowed from class nbaR.GeoClient}
 }
@@ -20,8 +20,8 @@ geo_is_operator_allowed(field = NULL, operator = NULL,
 scalar
 }
 \description{
-This is a wrapper function for is_operator_allowed
-from class nbaR.GeoClient.
+This is a wrapper for the method \code{ is_operator_allowed }
+from class \code{ GeoClient}.
 }
 \details{
 See also metadata/getFieldInfo

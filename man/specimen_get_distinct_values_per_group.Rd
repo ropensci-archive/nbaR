@@ -12,7 +12,7 @@ specimen_get_distinct_values_per_group(group = NULL, field = NULL,
 
 \item{field}{Name of field in the specimen object, type:}
 
-\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+\item{returnType}{Either \code{list} or \code{data.frame} (default)}
 
 \item{...}{additional parameters passed to get_distinct_values_per_group from class nbaR.SpecimenClient}
 }
@@ -20,8 +20,8 @@ specimen_get_distinct_values_per_group(group = NULL, field = NULL,
 scalar
 }
 \description{
-This is a wrapper function for get_distinct_values_per_group
-from class nbaR.SpecimenClient.
+This is a wrapper for the method \code{ get_distinct_values_per_group }
+from class \code{ SpecimenClient}.
 }
 \details{
 See also endpoint /getDistinctValues

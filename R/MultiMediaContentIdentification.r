@@ -12,15 +12,25 @@
 #'
 #'
 #' @field taxonRank  character
+#'
 #' @field scientificName  ScientificName
+#'
 #' @field typeStatus  character
+#'
 #' @field dateIdentified  character
+#'
 #' @field defaultClassification  DefaultClassification
+#'
 #' @field systemClassification  list(Monomial)
+#'
 #' @field vernacularNames  list(VernacularName)
+#'
 #' @field identificationQualifiers  list(character)
+#'
 #' @field identifiers  list(Agent)
+#'
 #' @field taxonomicEnrichments  list(TaxonomicEnrichment)
+#'
 #'
 #'
 #' @format

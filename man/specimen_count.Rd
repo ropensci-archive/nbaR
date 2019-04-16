@@ -15,8 +15,8 @@ specimen_count(queryParams = list(), ...)
 scalar
 }
 \description{
-This is a wrapper function for count
-from class nbaR.SpecimenClient.
+This is a wrapper for the method \code{ count }
+from class \code{ SpecimenClient}.
 }
 \details{
 Conditions given as query parameters or a querySpec JSON

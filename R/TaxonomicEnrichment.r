@@ -12,9 +12,13 @@
 #'
 #'
 #' @field vernacularNames  list(SummaryVernacularName)
+#'
 #' @field synonyms  list(SummaryScientificName)
+#'
 #' @field sourceSystem  SummarySourceSystem
+#'
 #' @field taxonId  character
+#'
 #'
 #'
 #' @format

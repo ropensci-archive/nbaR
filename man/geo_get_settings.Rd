@@ -7,7 +7,7 @@
 geo_get_settings(returnType = "data.frame", ...)
 }
 \arguments{
-\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+\item{returnType}{Either \code{list} or \code{data.frame} (default)}
 
 \item{...}{additional parameters passed to get_settings from class nbaR.GeoClient}
 }
@@ -15,8 +15,8 @@ geo_get_settings(returnType = "data.frame", ...)
 scalar
 }
 \description{
-This is a wrapper function for get_settings
-from class nbaR.GeoClient.
+This is a wrapper for the method \code{ get_settings }
+from class \code{ GeoClient}.
 }
 \details{
 The value of a specific setting can be queried with metadata/getSetting/{name}

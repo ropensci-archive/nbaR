@@ -17,8 +17,8 @@ specimen_count_distinct_values(field = NULL, queryParams = list(), ...)
 scalar
 }
 \description{
-This is a wrapper function for count_distinct_values
-from class nbaR.SpecimenClient.
+This is a wrapper for the method \code{ count_distinct_values }
+from class \code{ SpecimenClient}.
 }
 \details{
 See also endpoint /getDistinctValues

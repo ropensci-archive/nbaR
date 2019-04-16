@@ -9,7 +9,7 @@
   ...)
 }
 \arguments{
-\item{returnType}{Either 'list' or 'data.frame', defaults to 'data.frame'}
+\item{returnType}{Either \code{list} or \code{data.frame} (default)}
 
 \item{...}{additional parameters passed to get_controlled_list_specimen_type_status from class nbaR.MetadataClient}
 }
@@ -17,8 +17,8 @@
 scalar
 }
 \description{
-This is a wrapper function for get_controlled_list_specimen_type_status
-from class nbaR.MetadataClient.
+This is a wrapper for the method \code{ get_controlled_list_specimen_type_status }
+from class \code{ MetadataClient}.
 }
 \details{
 See also endpoint /getControlledLists

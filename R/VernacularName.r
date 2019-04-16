@@ -12,10 +12,15 @@
 #'
 #'
 #' @field name  character
+#'
 #' @field language  character
+#'
 #' @field preferred  logical
+#'
 #' @field references  list(Reference)
+#'
 #' @field experts  list(Expert)
+#'
 #'
 #'
 #' @format
