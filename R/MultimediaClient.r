@@ -14,6 +14,11 @@
 #'
 #' @importFrom R6 R6Class
 #'
+#' @format
+#'
+#' @usage
+#' # client <- MultimediaClient$new()
+#'
 #' @section Methods:
 #' \describe{
 #' \item{\code{ count }}{

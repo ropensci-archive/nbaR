@@ -4,9 +4,9 @@
 \name{SpecimenClient}
 \alias{SpecimenClient}
 \title{Specimen operations}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-SpecimenClient
+# client <- SpecimenClient$new()
 }
 \description{
 Client class for nbaR.Specimen objects

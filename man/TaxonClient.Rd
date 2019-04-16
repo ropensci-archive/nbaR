@@ -4,9 +4,9 @@
 \name{TaxonClient}
 \alias{TaxonClient}
 \title{Taxon operations}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-TaxonClient
+# client <- TaxonClient$new()
 }
 \description{
 Client class for nbaR.Taxon objects

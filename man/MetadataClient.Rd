@@ -4,9 +4,9 @@
 \name{MetadataClient}
 \alias{MetadataClient}
 \title{Metadata operations}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-MetadataClient
+# client <- MetadataClient$new()
 }
 \description{
 Client class for nbaR.Metadata objects

@@ -4,9 +4,9 @@
 \name{MultimediaClient}
 \alias{MultimediaClient}
 \title{Multimedia operations}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-MultimediaClient
+# client <- MultimediaClient$new()
 }
 \description{
 Client class for nbaR.Multimedia objects

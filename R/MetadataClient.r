@@ -14,6 +14,11 @@
 #'
 #' @importFrom R6 R6Class
 #'
+#' @format
+#'
+#' @usage
+#' # client <- MetadataClient$new()
+#'
 #' @section Methods:
 #' \describe{
 #' \item{\code{ get_allowed_date_formats }}{

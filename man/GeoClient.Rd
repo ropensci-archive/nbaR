@@ -4,9 +4,9 @@
 \name{GeoClient}
 \alias{GeoClient}
 \title{Geo operations}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{}
 \usage{
-GeoClient
+# client <- GeoClient$new()
 }
 \description{
 Client class for nbaR.Geo objects
