@@ -1,3 +1,22 @@
+nbaR 0.1.0 (2019-04-18)
+=========================
+
+### NEW FEATURES
+
+  * Completed package changes for ROpenscince revisions
+    [reviewer's comments here](https://github.com/ropensci/software-review/issues/257)
+  * Implemented low-level API access through wrapper functions
+
+### MINOR IMPROVEMENTS
+
+### BUG FIXES
+
+### DEPRECATED AND DEFUNCT
+
+### DOCUMENTATION FIXES
+
+   * Re-arrranged documentation in vignettes
+
 nbaR 0.0.0 (2018-10-04)
 =========================
 

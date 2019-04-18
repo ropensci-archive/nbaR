@@ -9,7 +9,7 @@ This package provides access to the digitised Natural
 History collection at the Naturalis Biodiversity Center via tha
 [Netherlands Biodiversity API](http://docs.biodiversitydata.nl).
 - API version: v2
-- Package version: 0.0.0
+- Package version: 0.1.0
 
 ### Prerequisites
 If not already done, install the `devtools` package with the following command

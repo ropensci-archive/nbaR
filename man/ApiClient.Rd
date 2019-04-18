@@ -19,7 +19,7 @@ derive from this class
 http://api.biodiversitydata.nl/v2}
 
 \item{\code{userAgent}}{Set the user agent of the request, defaults to
-nbaR/0.0.1}
+nbaR/0.1.0}
 }}
 
 \keyword{datasets}

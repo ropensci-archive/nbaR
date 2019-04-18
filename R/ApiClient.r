@@ -14,7 +14,7 @@
 #' @field basePath specifies the base URL of the API, defaults to
 #'                 http://api.biodiversitydata.nl/v2
 #' @field userAgent Set the user agent of the request, defaults to
-#'                 nbaR/0.0.1
+#'                 nbaR/0.1.0
 #' @importFrom R6 R6Class
 #' @importFrom httr add_headers user_agent GET POST
 #'
@@ -23,7 +23,7 @@ ApiClient <- R6::R6Class(
   "ApiClient",
   public = list(
     basePath = "http://api.biodiversitydata.nl/v2",
-    userAgent = "nbaR/0.0.1",
+    userAgent = "nbaR/0.1.0",
     initialize = function(basePath, userAgent) {
       if (!missing(basePath)) {
         self$basePath <- basePath

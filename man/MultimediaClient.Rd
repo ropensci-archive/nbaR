@@ -20,7 +20,7 @@ by the user (see section 'Fields' below).
 \describe{
 \item{\code{basePath}}{Stores url path of the request, defaults to http://api.biodiversitydata.nl/v2}
 
-\item{\code{userAgent}}{Set the user agent of the request, defaults to nbaR/0.0.1}
+\item{\code{userAgent}}{Set the user agent of the request, defaults to nbaR/0.1.0}
 }}
 
 \section{Methods}{
