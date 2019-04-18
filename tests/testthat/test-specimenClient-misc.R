@@ -84,7 +84,7 @@ test_that("download endpoint works", {
   }
 
   ## check that all unitIDs are different
-  unitids <- sapply(res$content, function(x) x$unitID)
+  unitids <- vapply(res$content, function(x) x$unitID, FUN.VALUE = character(1))
   expect_false(any(duplicated(unitids)))
 })
 
