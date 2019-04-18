@@ -366,14 +366,18 @@ geo_query <- function(
 
   ## Handle return objects of class QueryResult
   if (class(l)[1] == "QueryResult") {
-    l <- lapply(l$resultSet, function(x) x$item)
+    tmp <- list()
+    for (r in l$resultSet) {
+      tmp <- append(tmp, r$item)
+    }
+    l <- tmp
   }
 
   if (returnType == "data.frame") {
     if (!is.list(l)) {
       result <- as.data.frame(l$toList())
     } else {
-      strs <- sapply(l, function(x) x$toJSONString())
+      strs <- vapply(l, function(x) x$toJSONString(), FUN.VALUE = character(1))
       result <- jsonlite::fromJSON(
         paste("[", paste(strs, collapse = ","), "]")
       )
@@ -383,14 +387,14 @@ geo_query <- function(
     if (!is.list(l)) {
       result <- l$toList()
     } else {
-      result <- lapply(
-        l,
-        function(x) if (is.object(x)) {
-            x$toList()
-          } else {
-            x
-          }
-      )
+      result <- list()
+      for (i in seq_along(l)) {
+        if (is.object(l[[i]])) {
+          result[[i]] <- l[[i]]$toList()
+        } else {
+          result[[i]] <- l[[i]]
+        }
+      }
     }
   }
   return(result)

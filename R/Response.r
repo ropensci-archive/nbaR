@@ -16,11 +16,8 @@
 #' is the actual response from the \code{httr} package that is used
 #' to perform the http request. It contains information such as the request and response headers,
 #' status code, URL, and the raw response.
-#' See also \link{https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html} for further details.
 #'
-#' @format
-#'
-#' @usage
+#' @seealso https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html for further details.
 #'
 #'
 #' @field content Parsed response of the query call

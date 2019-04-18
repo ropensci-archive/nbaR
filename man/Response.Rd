@@ -4,9 +4,9 @@
 \name{Response}
 \alias{Response}
 \title{Response Class}
-\format{}
+\format{An object of class \code{R6ClassGenerator} of length 24.}
 \usage{
-
+Response
 }
 \description{
 The Response object is a generic object returned by any query
@@ -24,7 +24,6 @@ can be an object such as e.g. a \code{ResultSet}, or a \code{Specimen} or
 is the actual response from the \code{httr} package that is used
 to perform the http request. It contains information such as the request and response headers,
 status code, URL, and the raw response.
-See also \link{https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html} for further details.
 }
 \section{Fields}{
 
@@ -34,4 +33,7 @@ See also \link{https://cran.r-project.org/web/packages/httr/vignettes/quickstart
 \item{\code{response}}{Response object from package \code{httr}}
 }}
 
+\seealso{
+https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html for further details.
+}
 \keyword{datasets}

@@ -4,9 +4,9 @@
 \name{ApiClient}
 \alias{ApiClient}
 \title{ApiClient class}
-\format{}
+\format{An object of class \code{R6ClassGenerator} of length 24.}
 \usage{
-
+ApiClient
 }
 \description{
 Generic class for API client calls, all nbaR client classes

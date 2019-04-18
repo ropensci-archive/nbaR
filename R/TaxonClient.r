@@ -13,12 +13,14 @@
 #' pointing to a NBA server and a user Agent can be specified
 #' by the user (see section 'Fields' below).
 #'
+#' @docType class
+#'
+#' @format R6 class
+#'
 #' @field basePath Stores url path of the request, defaults to http://api.biodiversitydata.nl/v2
 #' @field userAgent Set the user agent of the request, defaults to nbaR/0.0.1
 #'
 #' @importFrom R6 R6Class
-#'
-#' @format
 #'
 #' @usage
 #' # client <- TaxonClient$new()

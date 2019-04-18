@@ -11,10 +11,6 @@
 #' @description Generic class for API client calls, all nbaR client classes
 #' derive from this class
 #'
-#' @format
-#'
-#' @usage
-#'
 #' @field basePath specifies the base URL of the API, defaults to
 #'                 http://api.biodiversitydata.nl/v2
 #' @field userAgent Set the user agent of the request, defaults to

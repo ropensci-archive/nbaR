@@ -1,20 +1,34 @@
 {{#models}}
 {{#model}}
 {{>partial_header}}
-
-#' {{classname}} Class
+#' 
+#' @docType class
 #'
-#' {{description}}
+#' @format R6 class
+#'
+#' @usage
+#' # {{classname}}$new()
+#'
+#' @format
+#' R6 class
+#' 
+#' @title {{classname}} Class
+#'
+#' @description 
+#' For more information on the NBA object model, please refer to the
+#' official NBA documentation at
+#' \href{https://docs.biodiversitydata.nl}{https://docs.biodiversitydata.nl} and
+#' the NBA model and endpoints reference at
+#' \href{https://docs.biodiversitydata.nl/endpoints-reference}{https://docs.biodiversitydata.nl/endpoints-reference}.
+#'
+#' @details Model class for {{classname}} objects. {{description}}
+#'
 #'
 {{#vars}}
 #' @field {{baseName}} {{title}} {{#isListContainer}}list({{/isListContainer}}{{datatype}}{{#isListContainer}}){{/isListContainer}}
 #'        {{description}}   
 {{/vars}}
 #'
-#'
-#' @format
-#' 
-#' @usage
 #'
 #' @section Methods:
 #' \describe{
