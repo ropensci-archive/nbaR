@@ -1,18 +1,4 @@
-library("nbaR")
-library("testthat")
-
-wd <- getwd()
-if (grepl("testthat", wd)) {
-  data_dir <- file.path("data")
-} else {
-  ## for running test at package level
-  data_dir <- file.path("tests", "testthat", "data")
-}
-
-sc <- SpecimenClient$new()
-if (!sc$ping()) {
-  skip("NBA not available, skipping test")
-}
+source("setup-vars.R")
 
 context("Testing miscellaneous specimen endpoints")
 

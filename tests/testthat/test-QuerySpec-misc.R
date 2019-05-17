@@ -19,7 +19,6 @@ test_that("named list input works", {
     value = "Solanum"
   )
   qs <- QuerySpec$new(conditions = list(qc))
-  sc <- SpecimenClient$new()
   res <- sc$query(querySpec = qs)
 
   ## make QuerySpec from named list and query

@@ -1,13 +1,4 @@
-library("nbaR")
-library("testthat")
-
-wd <- getwd()
-if (grepl("testthat", wd)) {
-  data_dir <- file.path("data")
-} else {
-  ## for running test at package level
-  data_dir <- file.path("tests", "testthat", "data")
-}
+source("setup-vars.R")
 
 test_that("Constructor works", {
   ## constructor with default base path
@@ -17,8 +8,6 @@ test_that("Constructor works", {
   ## test with other userAgent
   ac <- ApiClient$new(userAgent = "test/0.0")
 })
-
-ac <- ApiClient$new()
 
 test_that("HandleError function works", {
   ## make call that produces error

@@ -1,7 +1,4 @@
-library("nbaR")
-library("testthat")
 
-set.seed(111)
 
 context("Testing class Specimen")
 
@@ -152,4 +149,11 @@ test_that("fromJSONString works", {
   obj$fromJSONString(objRand$toJSONString())
   # expect_equal(obj, objRand)
   expect_is(obj, "Specimen")
+})
+
+test_that("print works", {
+  obj <- Specimen$new()
+  obj$fromJSONString(objRand$toJSONString())
+  ## check that the print method doesn't error
+  expect_error(obj$print(), NA)
 })

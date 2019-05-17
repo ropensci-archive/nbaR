@@ -1,9 +1,4 @@
-{{#models}}{{#model}}library("nbaR")
-library("testthat")
-
-set.seed(111)
-
-context("Testing class {{classname}}")
+{{#models}}{{#model}}context("Testing class {{classname}}")
 
 # Make a list with random arguments for all fields in the class
 args <- list()

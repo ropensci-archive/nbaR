@@ -1,18 +1,6 @@
-library("nbaR")
-library("testthat")
+source("setup-vars.R")
 
-wd <- getwd()
-if (grepl("testthat", wd)) {
-  data_dir <- file.path("data")
-} else {
-  ## for running test at package level
-  data_dir <- file.path("tests", "testthat", "data")
-}
-
-mc <- MultimediaClient$new(basePath = "http://api.biodiversitydata.nl/v2")
-if (!mc$ping()) {
-  skip("NBA not available, skipping test")
-}
+context("Testing multimedia query endpoints")
 
 test_that("Query with MultiMediaClient returns multimedia objects", {
   res <- mc$query()

@@ -1,7 +1,4 @@
-library("nbaR")
-library("testthat")
 
-set.seed(111)
 
 context("Testing class RestService")
 
@@ -61,4 +58,11 @@ test_that("fromJSONString works", {
   obj$fromJSONString(objRand$toJSONString())
   # expect_equal(obj, objRand)
   expect_is(obj, "RestService")
+})
+
+test_that("print works", {
+  obj <- RestService$new()
+  obj$fromJSONString(objRand$toJSONString())
+  ## check that the print method doesn't error
+  expect_error(obj$print(), NA)
 })
