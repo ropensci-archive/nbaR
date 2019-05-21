@@ -11,3 +11,5 @@
 ^.gitignore
 ^paper/
 ^tic\.R$
+^vignettes/sharks\.Rmd$
+^vignettes/tomato\.Rmd$
