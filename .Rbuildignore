@@ -9,3 +9,5 @@
 ^docs$
 ^_pkgdown\.yml$
 ^.gitignore
+^paper/
+^tic\.R$
