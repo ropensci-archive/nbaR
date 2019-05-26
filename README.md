@@ -61,4 +61,3 @@ via email to nba@naturalis.nl
 ----
 
 [![ropensci_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
-* add ropensci review badge to your readme [![](https://badges.ropensci.org/257_status.svg)]
