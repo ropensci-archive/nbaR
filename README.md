@@ -2,7 +2,10 @@
 
 [![Build Status](https://travis-ci.org/ropensci/nbaR.svg?branch=master)](https://travis-ci.org/ropensci/nbaR)
 [![Coverage Status](https://coveralls.io/repos/github/ropensci/nbaR/badge.svg?branch=master)](https://coveralls.io/github/ropensci/nbaR?branch=master)
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![](https://badges.ropensci.org/257_status.svg)](https://github.com/ropensci/onboarding/issues/257)
 
 ## Overview 
 This package provides access to the digitised Natural
@@ -54,3 +57,8 @@ can be found
 Bug reports, questions or suggestions can be submitted to
 the [issue tracker](https://github.com/ropensci/nbaR/issues/new) or
 via email to nba@naturalis.nl
+
+----
+
+[![ropensci_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
+* add ropensci review badge to your readme [![](https://badges.ropensci.org/257_status.svg)]
