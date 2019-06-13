@@ -18,7 +18,7 @@ Suggests:
     testthat,
     knitr,
     rmarkdown,
-    tic,
+    maps,
     remotes,
     pkgdown
 Imports:
