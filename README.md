@@ -10,7 +10,7 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
 ## Overview 
 This package provides access to the digitised Natural
 History collection at the Naturalis Biodiversity Center via tha
-[Netherlands Biodiversity API](http://docs.biodiversitydata.nl).
+[Netherlands Biodiversity API](http://docs.biodiversitydata.nl/en/latest).
 - API version: v2
 - Package version: 0.1.0
 
