@@ -8,8 +8,8 @@ Description: Access to the digitised Natural History collection at the Naturalis
     This is the official client to the Netherlands Biodiversity API
     (NBA, <http://api.biodiversitydata.nl>) for the R programming language.
     More information on the NBA can be found at <http://docs.biodiversitydata.nl>.
-URL: https://github.com/naturalis/nbaR
-BugReports: https://github.com/naturalis/nbaR/issues/new
+URL: https://docs.ropensci.org/nbaR, https://github.com/ropensci/nbaR
+BugReports: https://github.com/ropensci/nbaR/issues/new
 Depends: R (>= 3.3.0)
 Encoding: UTF-8
 License: MIT + file LICENSE
