@@ -18,7 +18,7 @@ test_that("dwca_get_data_set() works", {
   l <- unzip(filename, list = T)
   expect_equal(sort(l$Name), sort(c(
     "eml.xml", "meta.xml",
-    "Taxa.txt", "Vernacular_Names.txt"
+    "Taxa.txt", "Multimedia.txt","Vernacular_Names.txt"
   )))
   unlink(filename)
 })
