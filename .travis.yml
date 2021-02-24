@@ -7,7 +7,7 @@ r:
 warnings_are_errors: false
 
 env:
-    - BUILD_PKGDOWN="1"
+    - BUILD_PKGDOWN="0"
 
 r_packages:
     - testthat
