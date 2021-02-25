@@ -12,25 +12,25 @@ env:
 r_packages:
     - testthat
 #    - roxygen2
-    - remotes
+#    - remotes
 #    - pkgdown
-    - maps
+#    - maps
 
-r_github_packages:
-    - r-lib/covr
-    - ropenscilabs/tic
+#r_github_packages:
+#    - r-lib/covr
+#    - ropenscilabs/tic
 #before_script:
 #    - Rscript -e 'roxygen2::roxygenise()'
 
-after_success:
-    - Rscript -e 'covr::coveralls()'
+#after_success:
+#    - Rscript -e 'covr::coveralls()'
 
 deploy:
    skip_cleanup: true
    provider: script
    script:
        - R CMD INSTALL .
-       - R -q -e 'tic::deploy()'
+#       - R -q -e 'tic::deploy()'
    on:
      branch: master
      condition:
