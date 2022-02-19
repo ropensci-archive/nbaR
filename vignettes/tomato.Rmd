@@ -266,6 +266,6 @@ map(
   mar = c(0, 0, 0, 0)
 )
 points(long, lat, col = 'red', pch = 16)
- ```
+```
 
 
