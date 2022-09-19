@@ -1,9 +1,10 @@
 Package: nbaR
 Title: R Package Client for the Netherlands Biodiversity API
-Version: 0.1.0
-Authors@R: c(person("Hannes", "Hettling", email = "hannes.hettling@naturalis.nl", role = c("aut", "cre")),
-             person("Rutger", "Vos", role="aut"))
-Maintainer: Hannes Hettling <hannes.hettling@naturalis.nl>
+Version: 0.1.0.9000
+Authors@R: c(
+    person("Hannes", "Hettling", email = "hannes.hettling@naturalis.nl", role = "aut"),
+    person("Rutger", "Vos", role = "aut"),
+    person("Kevin", "Cazelles", role = c("aut", "cre"), email = "kevin.cazelles@gmail.com", comment = c(ORCID = "0000-0001-6619-9874")))
 Description: Access to the digitised Natural History collection at the Naturalis Biodiversity Center.
     This is the official client to the Netherlands Biodiversity API
     (NBA, <http://api.biodiversitydata.nl>) for the R programming language.
@@ -14,16 +15,16 @@ Depends: R (>= 3.3.0)
 Encoding: UTF-8
 License: MIT + file LICENSE
 LazyData: true
+Imports:
+    ape,
+    httr,
+    jsonlite,
+    R6
 Suggests:
-    testthat,
     knitr,
-    rmarkdown,
     maps,
     remotes,
-Imports:
-    jsonlite,
-    httr,
-    R6,
-    ape
-RoxygenNote: 6.1.0
+    rmarkdown,
+    testthat
+RoxygenNote: 7.2.1
 VignetteBuilder: knitr
