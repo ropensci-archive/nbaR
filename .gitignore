@@ -1,4 +1,5 @@
-# ref: https://github.com/github/gitignore/blob/master/R.gitignore
+# Project specific files 
+docs/
 
 # History files
 .Rhistory
