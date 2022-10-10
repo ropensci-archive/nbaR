@@ -30,23 +30,22 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 	protected String sourceFolder = "src";
 	protected String apiVersion = "v2";
 	protected String authorFirstName = "Hannes";
-	protected String authorLastName = "Hettling";	
+	protected String authorLastName = "Hettling";
 	protected String authorEmail = "hannes.hettling@naturalis.nl";
 	protected String repoURL = "https://github.com/naturalis/nbaR";
 	protected String bugReportURL = "https://github.com/naturalis/nbaR/issues/new";
 	protected String nbaRemail = "nba@naturalis.nl";
-	protected String extendedDescription = "This is the official client to the Netherlands Biodiversity API\n" 
-			 + "    (NBA, <http://api.biodiversitydata.nl>) for the R programming language.\n"
-			 + "    More information on the NBA can be found at <http://docs.biodiversitydata.nl>.";
-	
+	protected String extendedDescription = "This is the official client to the Netherlands Biodiversity API\n"
+			+ "    (NBA, <http://api.biodiversitydata.nl>) for the R programming language.\n"
+			+ "    More information on the NBA can be found at <http://docs.biodiversitydata.nl>.";
+
 	/**
 	 * Configures a friendly name for the generator. This will be used by
 	 * the generator to select the library with the -l flag.
 	 * 
 	 * @return the friendly name for the generator
 	 */
-	public String getName()
-	{
+	public String getName() {
 		return "nbaRcodegen";
 	}
 
@@ -56,24 +55,22 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 	 * 
 	 * @return A string value for the help message
 	 */
-	public String getHelp()
-	{
+	public String getHelp() {
 		return "Generates a client R library for the Netherlands Biodiversity API (NBA).";
 	}
 
-	public NbarcodegenGenerator()
-	{
+	public NbarcodegenGenerator() {
 		super();
 
 		// put some custom additional properties for package metadata files
 		additionalProperties.put("authorFirstName", authorFirstName);
-		additionalProperties.put("authorLastName", authorLastName);		
+		additionalProperties.put("authorLastName", authorLastName);
 		additionalProperties.put("authorEmail", authorEmail);
 		additionalProperties.put("repoURL", repoURL);
 		additionalProperties.put("nbaRemail", nbaRemail);
 		additionalProperties.put("extendedDescription", extendedDescription);
 		additionalProperties.put("bugReportURL", bugReportURL);
-						
+
 		// put custom mustache file for package description
 		supportingFiles.add(new SupportingFile("package.mustache", "", "R/nbaR-package.r"));
 		supportingFiles.add(new SupportingFile("license.mustache", "", "LICENSE"));
@@ -81,131 +78,125 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 		// set the output folder here
 		this.outputFolder = ".";
 
-		this.testPackage = "tests/testthat";
-		
-		
+		//this.testPackage = "tests/testthat";
+
 		modelTestTemplateFiles.put("model_test.mustache", ".r");
 		apiTemplateFiles.put("api_wrapper.mustache", ".r");
-		
 
 		/**
 		 * Template Location. This is the location which templates will
 		 * be read from. The generator will use the resource stream to
 		 * attempt to read the templates.
 		 */
-		//templateDir = "nbaRcodegen";
+		// templateDir = "nbaRcodegen";
 
-	        /*defaultIncludes = new HashSet<String>(
-	                        Arrays.asList(
-	                            "map",
-	                            "array",
-	                            "list")
-	                        );
-		*/
-	        languageSpecificPrimitives = new HashSet<String>(
-	                    Arrays.asList(
-	                        "integer",
-	                        "numeric",
-	                        "character", 
-	                        "list", 
-	                        "logical")
-	                    );
-			        
-	        
+		/*
+		 * defaultIncludes = new HashSet<String>(
+		 * Arrays.asList(
+		 * "map",
+		 * "array",
+		 * "list")
+		 * );
+		 */
+		languageSpecificPrimitives = new HashSet<String>(
+				Arrays.asList(
+						"integer",
+						"numeric",
+						"character",
+						"list",
+						"logical"));
+
 		// nbaR specific type mapping
 		typeMapping.put("array", "list");
 		typeMapping.put("object", "list");
 		typeMapping.put("list", "list");
-		
-	        typeMapping.put("integer", "integer");
-	        typeMapping.put("long", "integer");
-	        typeMapping.put("number", "numeric");
-	        typeMapping.put("float", "numeric");
-	        typeMapping.put("double", "numeric");
-	        typeMapping.put("boolean", "logical");
-	        typeMapping.put("string", "character");
-	        typeMapping.put("UUID", "character");
-	        typeMapping.put("date", "character");
-	        typeMapping.put("DateTime", "character");
-	        typeMapping.put("password", "character");
-	        typeMapping.put("file", null);
-	        typeMapping.put("binary", "character");
-	        typeMapping.put("ByteArray", "character");
+
+		typeMapping.put("integer", "integer");
+		typeMapping.put("long", "integer");
+		typeMapping.put("number", "numeric");
+		typeMapping.put("float", "numeric");
+		typeMapping.put("double", "numeric");
+		typeMapping.put("boolean", "logical");
+		typeMapping.put("string", "character");
+		typeMapping.put("UUID", "character");
+		typeMapping.put("date", "character");
+		typeMapping.put("DateTime", "character");
+		typeMapping.put("password", "character");
+		typeMapping.put("file", null);
+		typeMapping.put("binary", "character");
+		typeMapping.put("ByteArray", "character");
 		typeMapping.put("Path", "character");
 		typeMapping.put("GeoJsonObject", "list");
-		
-		
-		//typeMapping.put("object", "Character");
-		typeMapping.put("Path", "character"); //caution! isString in json output not set to true !
-		
+
+		// typeMapping.put("object", "Character");
+		typeMapping.put("Path", "character"); // caution! isString in json output not set to true !
 
 	}
 
-	
-	    @Override
-	    public void processOpts() {
-	        super.processOpts();
-
-	        if (additionalProperties.containsKey(CodegenConstants.PACKAGE_NAME)) {
-	            setPackageName((String) additionalProperties.get(CodegenConstants.PACKAGE_NAME));
-	        } else {
-	            setPackageName("swagger");
-	        }
-
-	        if (additionalProperties.containsKey(CodegenConstants.PACKAGE_VERSION)) {
-	            setPackageVersion((String) additionalProperties.get(CodegenConstants.PACKAGE_VERSION));
-	        } else {
-	            setPackageVersion("1.0.0");
-	        }
-
-	        additionalProperties.put(CodegenConstants.PACKAGE_NAME, packageName);
-	        additionalProperties.put(CodegenConstants.PACKAGE_VERSION, packageVersion);
-
-	        additionalProperties.put("apiDocPath", apiDocPath);
-	        additionalProperties.put("modelDocPath", modelDocPath);
-
-	        //Hannes: Commented out from superclass
-	        //apiTestTemplateFiles.clear(); // TODO: add api test template
-	        //modelTestTemplateFiles.clear(); // TODO: add model test template
-
-	        //apiDocTemplateFiles.clear(); // TODO: add api doc template
-	        //modelDocTemplateFiles.clear(); // TODO: add model doc template
-
-	        modelPackage = packageName;
-	        apiPackage = packageName;
-	        
-	        supportingFiles.add(new SupportingFile("README.mustache", "", "README.md"));
-	        supportingFiles.add(new SupportingFile("git_push.sh.mustache", "", "git_push.sh"));
-	        supportingFiles.add(new SupportingFile("gitignore.mustache", "", ".gitignore"));
-	        supportingFiles.add(new SupportingFile("description.mustache", "", "DESCRIPTION"));
-	        supportingFiles.add(new SupportingFile("Rbuildignore.mustache", "", ".Rbuildignore"));
-	        supportingFiles.add(new SupportingFile(".travis.yml", "", ".travis.yml"));
-	        supportingFiles.add(new SupportingFile("response.mustache", "/R", "Response.r"));
-	        // supportingFiles.add(new SupportingFile("element.mustache", "/R", "Element.r"));
-	        supportingFiles.add(new SupportingFile("api_client.mustache", "/R", "ApiClient.r"));
-	        supportingFiles.add(new SupportingFile("NAMESPACE.mustache", "", "NAMESPACE"));
-	    }
-	
 	@Override
-	public String toModelTestFilename(String name)
-	{
+	public void processOpts() {
+		super.processOpts();
+
+		if (additionalProperties.containsKey(CodegenConstants.PACKAGE_NAME)) {
+			setPackageName((String) additionalProperties.get(CodegenConstants.PACKAGE_NAME));
+		} else {
+			setPackageName("swagger");
+		}
+
+		if (additionalProperties.containsKey(CodegenConstants.PACKAGE_VERSION)) {
+			setPackageVersion((String) additionalProperties.get(CodegenConstants.PACKAGE_VERSION));
+		} else {
+			setPackageVersion("1.0.0");
+		}
+
+		additionalProperties.put(CodegenConstants.PACKAGE_NAME, packageName);
+		additionalProperties.put(CodegenConstants.PACKAGE_VERSION, packageVersion);
+
+		additionalProperties.put("apiDocPath", apiDocPath);
+		additionalProperties.put("modelDocPath", modelDocPath);
+
+		// Hannes: Commented out from superclass
+		// apiTestTemplateFiles.clear(); // TODO: add api test template
+		// modelTestTemplateFiles.clear(); // TODO: add model test template
+
+		// apiDocTemplateFiles.clear(); // TODO: add api doc template
+		// modelDocTemplateFiles.clear(); // TODO: add model doc template
+
+		modelPackage = packageName;
+		apiPackage = packageName;
+
+		supportingFiles.add(new SupportingFile("README.mustache", "", "README.md"));
+		supportingFiles.add(new SupportingFile("git_push.sh.mustache", "", "git_push.sh"));
+		supportingFiles.add(new SupportingFile("gitignore.mustache", "", ".gitignore"));
+		supportingFiles.add(new SupportingFile("description.mustache", "", "DESCRIPTION"));
+		supportingFiles.add(new SupportingFile("Rbuildignore.mustache", "", ".Rbuildignore"));
+		supportingFiles.add(new SupportingFile(".travis.yml", "", ".travis.yml"));
+		supportingFiles.add(new SupportingFile("response.mustache", "/R", "Response.r"));
+		// supportingFiles.add(new SupportingFile("element.mustache", "/R",
+		// "Element.r"));
+		supportingFiles.add(new SupportingFile("api_client.mustache", "/R", "ApiClient.r"));
+		supportingFiles.add(new SupportingFile("NAMESPACE.mustache", "", "NAMESPACE"));
+	}
+
+	@Override
+	public String toModelTestFilename(String name) {
 		return ("test-" + name);
 	}
-	
-/*	@Override
-	public String modelTestFileFolder() 
-	{
-		System.out.println("Testpackage : " + testPackage());
-	        return "tests/testthat/";
-	}
-*/	
+
+	/*
+	 * @Override
+	 * public String modelTestFileFolder()
+	 * {
+	 * System.out.println("Testpackage : " + testPackage());
+	 * return "tests/testthat/";
+	 * }
+	 */
 	/*
 	 * Overridden to change later R object name from e.g. SpecimenApi to
 	 * SpecimenClient
 	 */
 	@Override
-	public String toApiFilename(String name)
-	{
+	public String toApiFilename(String name) {
 		name = name.replaceAll("-", "_");
 
 		// changed 'api' to 'client' from superclass
@@ -217,39 +208,39 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 	 * SpecimenClient
 	 */
 	@Override
-	public String toApiName(String name)
-	{
+	public String toApiName(String name) {
 		// Changed "Api" to "Client"
 		if (name.length() == 0) {
 			return "DefaultClient";
 		}
 		return initialCaps(name) + "Client";
 	}
-	
+
 	/*
-	 * Overridden to make distinction  between api-wrapper files and api files.
-	 * Since we put them into the 'apiTemplateFiles' above, files would otherwise be overwritten
-	 * The distinction is determined by the template filename ('api_wrapper.mustache' for)
+	 * Overridden to make distinction between api-wrapper files and api files.
+	 * Since we put them into the 'apiTemplateFiles' above, files would otherwise be
+	 * overwritten
+	 * The distinction is determined by the template filename
+	 * ('api_wrapper.mustache' for)
 	 * XXX This could also be adapted in Generator.java
-	 */	
+	 */
 	@Override
 	public String apiFilename(String templateName, String tag) {
 		String suffix = apiTemplateFiles().get(templateName);
 		String af = "";
 		if (templateName == "api_wrapper.mustache") {
 			af = apiFileFolder() + File.separator + toApiFilename(tag) + "-wrapper" + suffix;
-		} else {		
+		} else {
 			af = apiFileFolder() + File.separator + toApiFilename(tag) + suffix;
 		}
 		return af;
 	}
-	
+
 	/*
 	 * Overridden to clean up operationID from suffixes like _http_get2 etc
 	 */
 	@Override
-	public String toOperationId(String operationId)
-	{
+	public String toOperationId(String operationId) {
 		String sanitizedOperationId = sanitizeName(operationId);
 
 		// Remove trailing numbers from operation IDs and also
@@ -273,8 +264,7 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public Map<String, Object> postProcessOperations(Map<String, Object> objs)
-	{
+	public Map<String, Object> postProcessOperations(Map<String, Object> objs) {
 		super.postProcessOperations(objs);
 
 		Map<String, Object> operations = (Map<String, Object>) objs.get("operations");
@@ -284,62 +274,62 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 				CodegenOperation operation = it.next();
 				if (operation.httpMethod.equals("POST")) {
 					it.remove();
-				}				
-				// label QuerySpec params
-				/* List<CodegenParameter> par = operation.allParams;
-				for (Iterator<CodegenParameter> it2 = par.iterator(); it2.hasNext();) {
-					CodegenParameter p = it2.next();
-					if (p.baseName == "querySpec") {
-						//p. = true;
-					
-					}
-					
 				}
-				*/
+				// label QuerySpec params
+				/*
+				 * List<CodegenParameter> par = operation.allParams;
+				 * for (Iterator<CodegenParameter> it2 = par.iterator(); it2.hasNext();) {
+				 * CodegenParameter p = it2.next();
+				 * if (p.baseName == "querySpec") {
+				 * //p. = true;
+				 * 
+				 * }
+				 * 
+				 * }
+				 */
 			}
 		}
 		return objs;
 	}
 
 	@Override
-	public Map<String, Object> postProcessModelsEnum(Map<String, Object> objs)
-	{
+	public Map<String, Object> postProcessModelsEnum(Map<String, Object> objs) {
 		super.postProcessModelsEnum(objs);
 		List<Object> models = (List<Object>) objs.get("models");
-		        for (Object _mo : models) {
-		            Map<String, Object> mo = (Map<String, Object>) _mo;
-		            CodegenModel cm = (CodegenModel) mo.get("model");
-		            //System.out.println(cm.name);
-		            		            
-		            if (cm.name == "QueryResultItemObject") { //cm.name == "QueryResult" ||
-		        	    for (CodegenProperty prop : cm.allVars) {
-		        		    //System.out.println("\t" + prop.name);
-		        		    if (prop.baseName == "item") { // || prop.baseName == "resultSet") {
-		        			    prop.needsTypeMapping = true;
-		        			    //prop.isPrimitiveType = false;
-		        			    
-		        		    }		        		    
-		        	    }
-		            }
-/*		            if (cm.name == "GeoArea") { //cm.name == "QueryResult" ||
-		        	    for (CodegenProperty prop : cm.allVars) {
-		        		    if (prop.baseName == "shape") { 
-		        			    prop.isPrimitiveType = false;		        			    
-		        		    }		        		    
-		        	    }
-		            }
-*/		         
-		        }
+		for (Object _mo : models) {
+			Map<String, Object> mo = (Map<String, Object>) _mo;
+			CodegenModel cm = (CodegenModel) mo.get("model");
+			// System.out.println(cm.name);
+
+			if (cm.name == "QueryResultItemObject") { // cm.name == "QueryResult" ||
+				for (CodegenProperty prop : cm.allVars) {
+					// System.out.println("\t" + prop.name);
+					if (prop.baseName == "item") { // || prop.baseName == "resultSet") {
+						// kc prop.needsTypeMapping = true;
+						// prop.isPrimitiveType = false;
+
+					}
+				}
+			}
+			/*
+			 * if (cm.name == "GeoArea") { //cm.name == "QueryResult" ||
+			 * for (CodegenProperty prop : cm.allVars) {
+			 * if (prop.baseName == "shape") {
+			 * prop.isPrimitiveType = false;
+			 * }
+			 * }
+			 * }
+			 */
+		}
 		return super.postProcessModelsEnum(objs);
 	}
-	
+
 	/*
 	 * Overridden to omit check for unique operation IDs
 	 */
 	@Override
 	public void addOperationToGroup(String tag, String resourcePath, Operation operation, CodegenOperation co,
-			Map<String, List<CodegenOperation>> operations)
-	{
+			Map<String, List<CodegenOperation>> operations) {
 		List<CodegenOperation> opList = operations.get(tag);
 		if (opList == null) {
 			opList = new ArrayList<CodegenOperation>();
@@ -365,5 +355,5 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 		co.operationIdSnakeCase = DefaultCodegen.underscore(uniqueName);
 		opList.add(co);
 		co.baseName = tag;
-	}	
+	}
 }

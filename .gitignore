@@ -1,5 +1,8 @@
 # Project specific files 
-docs/
+docs
+.vscode
+tmp
+target
 
 # History files
 .Rhistory
