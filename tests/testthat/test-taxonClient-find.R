@@ -11,9 +11,10 @@ test_that("find function works", {
 
 test_that("findByIds works", {
   ids <- paste("3c341b736a476ce416313415caed2d96@COL",
-               "547c2e534a2b06b943f0c7887e0bffbc@COL",
-               "9450769e32d060c18639c388c57c9af7@COL",
-               sep=",")
+    "547c2e534a2b06b943f0c7887e0bffbc@COL",
+    "9450769e32d060c18639c388c57c9af7@COL",
+    sep = ","
+  )
   res <- tc$find_by_ids(ids)
   expect_is(res$content, "list")
   expect_length(res$content, 3)
