@@ -4,7 +4,11 @@
 \name{SummarySourceSystem}
 \alias{SummarySourceSystem}
 \title{SummarySourceSystem Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # SummarySourceSystem$new()
 }
@@ -18,12 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for SummarySourceSystem objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{code}}{character}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -57,4 +55,94 @@ Model class for SummarySourceSystem objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{code}}{character}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-SummarySourceSystem-new}{\code{SummarySourceSystem$new()}}
+\item \href{#method-SummarySourceSystem-toList}{\code{SummarySourceSystem$toList()}}
+\item \href{#method-SummarySourceSystem-fromList}{\code{SummarySourceSystem$fromList()}}
+\item \href{#method-SummarySourceSystem-toJSONString}{\code{SummarySourceSystem$toJSONString()}}
+\item \href{#method-SummarySourceSystem-fromJSONString}{\code{SummarySourceSystem$fromJSONString()}}
+\item \href{#method-SummarySourceSystem-print}{\code{SummarySourceSystem$print()}}
+\item \href{#method-SummarySourceSystem-clone}{\code{SummarySourceSystem$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SummarySourceSystem-new"></a>}}
+\if{latex}{\out{\hypertarget{method-SummarySourceSystem-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SummarySourceSystem$new(code)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SummarySourceSystem-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-SummarySourceSystem-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SummarySourceSystem$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SummarySourceSystem-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-SummarySourceSystem-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SummarySourceSystem$fromList(SummarySourceSystemList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SummarySourceSystem-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-SummarySourceSystem-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SummarySourceSystem$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SummarySourceSystem-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-SummarySourceSystem-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SummarySourceSystem$fromJSONString(SummarySourceSystemJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SummarySourceSystem-print"></a>}}
+\if{latex}{\out{\hypertarget{method-SummarySourceSystem-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SummarySourceSystem$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SummarySourceSystem-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-SummarySourceSystem-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SummarySourceSystem$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

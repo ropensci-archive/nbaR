@@ -4,7 +4,11 @@
 \name{MultiMediaGatheringEvent}
 \alias{MultiMediaGatheringEvent}
 \title{MultiMediaGatheringEvent Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # MultiMediaGatheringEvent$new()
 }
@@ -18,66 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for MultiMediaGatheringEvent objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{projectTitle}}{character}
-
-\item{\code{worldRegion}}{character}
-
-\item{\code{continent}}{character}
-
-\item{\code{country}}{character}
-
-\item{\code{iso3166Code}}{character}
-
-\item{\code{provinceState}}{character}
-
-\item{\code{island}}{character}
-
-\item{\code{locality}}{character}
-
-\item{\code{city}}{character}
-
-\item{\code{sublocality}}{character}
-
-\item{\code{localityText}}{character}
-
-\item{\code{dateTimeBegin}}{character}
-
-\item{\code{dateTimeEnd}}{character}
-
-\item{\code{method}}{character}
-
-\item{\code{altitude}}{character}
-
-\item{\code{altitudeUnifOfMeasurement}}{character}
-
-\item{\code{biotopeText}}{character}
-
-\item{\code{depth}}{character}
-
-\item{\code{depthUnitOfMeasurement}}{character}
-
-\item{\code{gatheringPersons}}{list(Person)}
-
-\item{\code{gatheringOrganizations}}{list(Organization)}
-
-\item{\code{siteCoordinates}}{list(GatheringSiteCoordinates)}
-
-\item{\code{namedAreas}}{list(NamedArea)}
-
-\item{\code{associatedTaxa}}{list(AssociatedTaxon)}
-
-\item{\code{chronoStratigraphy}}{list(ChronoStratigraphy)}
-
-\item{\code{lithoStratigraphy}}{list(LithoStratigraphy)}
-
-\item{\code{iptc}}{Iptc4xmpExt}
-
-\item{\code{bioStratigraphic}}{list(BioStratigraphy)}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -111,4 +55,195 @@ Model class for MultiMediaGatheringEvent objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{projectTitle}}{character}
+
+\item{\code{worldRegion}}{character}
+
+\item{\code{continent}}{character}
+
+\item{\code{country}}{character}
+
+\item{\code{iso3166Code}}{character}
+
+\item{\code{provinceState}}{character}
+
+\item{\code{island}}{character}
+
+\item{\code{locality}}{character}
+
+\item{\code{city}}{character}
+
+\item{\code{sublocality}}{character}
+
+\item{\code{localityText}}{character}
+
+\item{\code{dateTimeBegin}}{character}
+
+\item{\code{dateTimeEnd}}{character}
+
+\item{\code{dateText}}{character}
+
+\item{\code{method}}{character}
+
+\item{\code{altitude}}{character}
+
+\item{\code{altitudeUnifOfMeasurement}}{character}
+
+\item{\code{behavior}}{character}
+
+\item{\code{biotopeText}}{character}
+
+\item{\code{depth}}{character}
+
+\item{\code{depthUnitOfMeasurement}}{character}
+
+\item{\code{code}}{character}
+
+\item{\code{establishmentMeans}}{character}
+
+\item{\code{gatheringPersons}}{list(Person)}
+
+\item{\code{gatheringOrganizations}}{list(Organization)}
+
+\item{\code{siteCoordinates}}{list(GatheringSiteCoordinates)}
+
+\item{\code{namedAreas}}{list(NamedArea)}
+
+\item{\code{associatedTaxa}}{list(AssociatedTaxon)}
+
+\item{\code{chronoStratigraphy}}{list(ChronoStratigraphy)}
+
+\item{\code{lithoStratigraphy}}{list(LithoStratigraphy)}
+
+\item{\code{iptc}}{Iptc4xmpExt}
+
+\item{\code{bioStratigraphic}}{list(BioStratigraphy)}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-MultiMediaGatheringEvent-new}{\code{MultiMediaGatheringEvent$new()}}
+\item \href{#method-MultiMediaGatheringEvent-toList}{\code{MultiMediaGatheringEvent$toList()}}
+\item \href{#method-MultiMediaGatheringEvent-fromList}{\code{MultiMediaGatheringEvent$fromList()}}
+\item \href{#method-MultiMediaGatheringEvent-toJSONString}{\code{MultiMediaGatheringEvent$toJSONString()}}
+\item \href{#method-MultiMediaGatheringEvent-fromJSONString}{\code{MultiMediaGatheringEvent$fromJSONString()}}
+\item \href{#method-MultiMediaGatheringEvent-print}{\code{MultiMediaGatheringEvent$print()}}
+\item \href{#method-MultiMediaGatheringEvent-clone}{\code{MultiMediaGatheringEvent$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiMediaGatheringEvent-new"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiMediaGatheringEvent-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiMediaGatheringEvent$new(
+  projectTitle,
+  worldRegion,
+  continent,
+  country,
+  iso3166Code,
+  provinceState,
+  island,
+  locality,
+  city,
+  sublocality,
+  localityText,
+  dateTimeBegin,
+  dateTimeEnd,
+  dateText,
+  method,
+  altitude,
+  altitudeUnifOfMeasurement,
+  behavior,
+  biotopeText,
+  depth,
+  depthUnitOfMeasurement,
+  code,
+  establishmentMeans,
+  gatheringPersons,
+  gatheringOrganizations,
+  siteCoordinates,
+  namedAreas,
+  associatedTaxa,
+  chronoStratigraphy,
+  lithoStratigraphy,
+  iptc,
+  bioStratigraphic
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiMediaGatheringEvent-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiMediaGatheringEvent-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiMediaGatheringEvent$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiMediaGatheringEvent-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiMediaGatheringEvent-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiMediaGatheringEvent$fromList(
+  MultiMediaGatheringEventList,
+  typeMapping = NULL
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiMediaGatheringEvent-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiMediaGatheringEvent-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiMediaGatheringEvent$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiMediaGatheringEvent-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiMediaGatheringEvent-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiMediaGatheringEvent$fromJSONString(
+  MultiMediaGatheringEventJson,
+  typeMapping = NULL
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiMediaGatheringEvent-print"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiMediaGatheringEvent-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiMediaGatheringEvent$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiMediaGatheringEvent-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiMediaGatheringEvent-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiMediaGatheringEvent$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

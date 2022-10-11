@@ -4,8 +4,12 @@
 \alias{geo_get_distinct_values_per_group}
 \title{Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by}
 \usage{
-geo_get_distinct_values_per_group(group = NULL, field = NULL,
-  returnType = "data.frame", ...)
+geo_get_distinct_values_per_group(
+  group = NULL,
+  field = NULL,
+  returnType = "data.frame",
+  ...
+)
 }
 \arguments{
 \item{group}{name of field in the geo area object to group by, type:}
@@ -27,17 +31,19 @@ from class \code{ GeoClient}.
 See also endpoint /getDistinctValues
 }
 \seealso{
-Other nbaR.GeoClient-wrappers: \code{\link{geo_count_distinct_values_per_group}},
-  \code{\link{geo_count_distinct_values}},
-  \code{\link{geo_count}}, \code{\link{geo_find_by_ids}},
-  \code{\link{geo_find}},
-  \code{\link{geo_get_distinct_values}},
-  \code{\link{geo_get_field_info}},
-  \code{\link{geo_get_geo_json_for_locality}},
-  \code{\link{geo_get_paths}},
-  \code{\link{geo_get_settings}},
-  \code{\link{geo_get_setting}},
-  \code{\link{geo_is_operator_allowed}},
-  \code{\link{geo_query}}
+Other nbaR.GeoClient-wrappers: 
+\code{\link{geo_count_distinct_values_per_group}()},
+\code{\link{geo_count_distinct_values}()},
+\code{\link{geo_count}()},
+\code{\link{geo_find_by_ids}()},
+\code{\link{geo_find}()},
+\code{\link{geo_get_distinct_values}()},
+\code{\link{geo_get_field_info}()},
+\code{\link{geo_get_geo_json_for_locality}()},
+\code{\link{geo_get_paths}()},
+\code{\link{geo_get_settings}()},
+\code{\link{geo_get_setting}()},
+\code{\link{geo_is_operator_allowed}()},
+\code{\link{geo_query}()}
 }
 \concept{nbaR.GeoClient-wrappers}

@@ -4,7 +4,11 @@
 \name{LngLatAlt}
 \alias{LngLatAlt}
 \title{LngLatAlt Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # LngLatAlt$new()
 }
@@ -18,18 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for LngLatAlt objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{longitude}}{numeric}
-
-\item{\code{latitude}}{numeric}
-
-\item{\code{altitude}}{numeric}
-
-\item{\code{additionalElements}}{list(numeric)}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -63,4 +55,100 @@ Model class for LngLatAlt objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{longitude}}{numeric}
+
+\item{\code{latitude}}{numeric}
+
+\item{\code{altitude}}{numeric}
+
+\item{\code{additionalElements}}{list(numeric)}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-LngLatAlt-new}{\code{LngLatAlt$new()}}
+\item \href{#method-LngLatAlt-toList}{\code{LngLatAlt$toList()}}
+\item \href{#method-LngLatAlt-fromList}{\code{LngLatAlt$fromList()}}
+\item \href{#method-LngLatAlt-toJSONString}{\code{LngLatAlt$toJSONString()}}
+\item \href{#method-LngLatAlt-fromJSONString}{\code{LngLatAlt$fromJSONString()}}
+\item \href{#method-LngLatAlt-print}{\code{LngLatAlt$print()}}
+\item \href{#method-LngLatAlt-clone}{\code{LngLatAlt$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-LngLatAlt-new"></a>}}
+\if{latex}{\out{\hypertarget{method-LngLatAlt-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LngLatAlt$new(longitude, latitude, altitude, additionalElements)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-LngLatAlt-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-LngLatAlt-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LngLatAlt$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-LngLatAlt-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-LngLatAlt-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LngLatAlt$fromList(LngLatAltList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-LngLatAlt-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-LngLatAlt-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LngLatAlt$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-LngLatAlt-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-LngLatAlt-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LngLatAlt$fromJSONString(LngLatAltJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-LngLatAlt-print"></a>}}
+\if{latex}{\out{\hypertarget{method-LngLatAlt-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LngLatAlt$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-LngLatAlt-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-LngLatAlt-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LngLatAlt$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

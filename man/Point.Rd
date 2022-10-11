@@ -4,7 +4,11 @@
 \name{Point}
 \alias{Point}
 \title{Point Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # Point$new()
 }
@@ -18,16 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for Point objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{crs}}{Crs}
-
-\item{\code{bbox}}{list(numeric)}
-
-\item{\code{coordinates}}{LngLatAlt}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -61,4 +55,98 @@ Model class for Point objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{crs}}{Crs}
+
+\item{\code{bbox}}{list(numeric)}
+
+\item{\code{coordinates}}{LngLatAlt}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-Point-new}{\code{Point$new()}}
+\item \href{#method-Point-toList}{\code{Point$toList()}}
+\item \href{#method-Point-fromList}{\code{Point$fromList()}}
+\item \href{#method-Point-toJSONString}{\code{Point$toJSONString()}}
+\item \href{#method-Point-fromJSONString}{\code{Point$fromJSONString()}}
+\item \href{#method-Point-print}{\code{Point$print()}}
+\item \href{#method-Point-clone}{\code{Point$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Point-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Point-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Point$new(crs, bbox, coordinates)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Point-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-Point-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Point$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Point-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-Point-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Point$fromList(PointList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Point-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-Point-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Point$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Point-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-Point-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Point$fromJSONString(PointJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Point-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Point-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Point$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Point-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Point-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Point$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

@@ -4,7 +4,11 @@
 \name{Agent}
 \alias{Agent}
 \title{Agent Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # Agent$new()
 }
@@ -18,12 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for Agent objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{agentText}}{character}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -57,4 +55,94 @@ Model class for Agent objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{agentText}}{character}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-Agent-new}{\code{Agent$new()}}
+\item \href{#method-Agent-toList}{\code{Agent$toList()}}
+\item \href{#method-Agent-fromList}{\code{Agent$fromList()}}
+\item \href{#method-Agent-toJSONString}{\code{Agent$toJSONString()}}
+\item \href{#method-Agent-fromJSONString}{\code{Agent$fromJSONString()}}
+\item \href{#method-Agent-print}{\code{Agent$print()}}
+\item \href{#method-Agent-clone}{\code{Agent$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Agent-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Agent-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Agent$new(agentText)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Agent-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-Agent-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Agent$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Agent-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-Agent-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Agent$fromList(AgentList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Agent-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-Agent-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Agent$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Agent-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-Agent-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Agent$fromJSONString(AgentJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Agent-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Agent-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Agent$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Agent-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Agent-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Agent$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

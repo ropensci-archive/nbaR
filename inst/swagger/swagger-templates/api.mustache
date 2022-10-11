@@ -87,9 +87,11 @@
           queryParams["{{baseName}}"] <- param
         }
         ## querySpec parameter has underscore in NBA, omitted in argument
-        names(queryParams) <- gsub("querySpec",
-                                    "_querySpec",
-                                    names(queryParams))
+        names(queryParams) <- sub(
+        "\\.querySpec", 
+        paste0("_", "querySpec"), # tweak to not transform _querySpec
+        names(queryParams)
+      )
 
           {{/queryParams}}
       {{/hasQueryParams}}
@@ -129,7 +131,7 @@
             ## input can be vector or string with comma separated items
             ## API takes string, so translate vector, if present
             if (length(`{{baseName}}`) > 1) {
-                {{baseName}} <- paste({{baseName}}, collapse=",")
+                {{baseName}} <- paste({{baseName}}, collapse = ",")
             }
             {{/isContainer}}
             urlPath <- gsub(paste0("\\{", "{{baseName}}", "\\}"), `{{baseName}}`, urlPath)

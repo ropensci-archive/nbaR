@@ -4,7 +4,11 @@
 \name{ServiceAccessPoint}
 \alias{ServiceAccessPoint}
 \title{ServiceAccessPoint Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # ServiceAccessPoint$new()
 }
@@ -18,16 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for ServiceAccessPoint objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{accessUri}}{character}
-
-\item{\code{format}}{character}
-
-\item{\code{variant}}{character}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -61,4 +55,98 @@ Model class for ServiceAccessPoint objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{accessUri}}{character}
+
+\item{\code{format}}{character}
+
+\item{\code{variant}}{character}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-ServiceAccessPoint-new}{\code{ServiceAccessPoint$new()}}
+\item \href{#method-ServiceAccessPoint-toList}{\code{ServiceAccessPoint$toList()}}
+\item \href{#method-ServiceAccessPoint-fromList}{\code{ServiceAccessPoint$fromList()}}
+\item \href{#method-ServiceAccessPoint-toJSONString}{\code{ServiceAccessPoint$toJSONString()}}
+\item \href{#method-ServiceAccessPoint-fromJSONString}{\code{ServiceAccessPoint$fromJSONString()}}
+\item \href{#method-ServiceAccessPoint-print}{\code{ServiceAccessPoint$print()}}
+\item \href{#method-ServiceAccessPoint-clone}{\code{ServiceAccessPoint$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ServiceAccessPoint-new"></a>}}
+\if{latex}{\out{\hypertarget{method-ServiceAccessPoint-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ServiceAccessPoint$new(accessUri, format, variant)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ServiceAccessPoint-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-ServiceAccessPoint-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ServiceAccessPoint$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ServiceAccessPoint-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-ServiceAccessPoint-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ServiceAccessPoint$fromList(ServiceAccessPointList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ServiceAccessPoint-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-ServiceAccessPoint-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ServiceAccessPoint$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ServiceAccessPoint-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-ServiceAccessPoint-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ServiceAccessPoint$fromJSONString(ServiceAccessPointJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ServiceAccessPoint-print"></a>}}
+\if{latex}{\out{\hypertarget{method-ServiceAccessPoint-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ServiceAccessPoint$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ServiceAccessPoint-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-ServiceAccessPoint-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ServiceAccessPoint$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

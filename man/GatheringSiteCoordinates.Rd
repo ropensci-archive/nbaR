@@ -4,7 +4,11 @@
 \name{GatheringSiteCoordinates}
 \alias{GatheringSiteCoordinates}
 \title{GatheringSiteCoordinates Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # GatheringSiteCoordinates$new()
 }
@@ -18,26 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for GatheringSiteCoordinates objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{longitudeDecimal}}{numeric}
-
-\item{\code{latitudeDecimal}}{numeric}
-
-\item{\code{gridCellSystem}}{character}
-
-\item{\code{gridLatitudeDecimal}}{numeric}
-
-\item{\code{gridLongitudeDecimal}}{numeric}
-
-\item{\code{gridCellCode}}{character}
-
-\item{\code{gridQualifier}}{character}
-
-\item{\code{geoShape}}{Point}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -71,4 +55,129 @@ Model class for GatheringSiteCoordinates objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{longitudeDecimal}}{numeric}
+
+\item{\code{latitudeDecimal}}{numeric}
+
+\item{\code{gridCellSystem}}{character}
+
+\item{\code{gridLatitudeDecimal}}{numeric}
+
+\item{\code{gridLongitudeDecimal}}{numeric}
+
+\item{\code{gridCellCode}}{character}
+
+\item{\code{gridQualifier}}{character}
+
+\item{\code{coordinateErrorDistanceInMeters}}{integer}
+
+\item{\code{spatialDatum}}{character}
+
+\item{\code{geoShape}}{Point}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-GatheringSiteCoordinates-new}{\code{GatheringSiteCoordinates$new()}}
+\item \href{#method-GatheringSiteCoordinates-toList}{\code{GatheringSiteCoordinates$toList()}}
+\item \href{#method-GatheringSiteCoordinates-fromList}{\code{GatheringSiteCoordinates$fromList()}}
+\item \href{#method-GatheringSiteCoordinates-toJSONString}{\code{GatheringSiteCoordinates$toJSONString()}}
+\item \href{#method-GatheringSiteCoordinates-fromJSONString}{\code{GatheringSiteCoordinates$fromJSONString()}}
+\item \href{#method-GatheringSiteCoordinates-print}{\code{GatheringSiteCoordinates$print()}}
+\item \href{#method-GatheringSiteCoordinates-clone}{\code{GatheringSiteCoordinates$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GatheringSiteCoordinates-new"></a>}}
+\if{latex}{\out{\hypertarget{method-GatheringSiteCoordinates-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GatheringSiteCoordinates$new(
+  longitudeDecimal,
+  latitudeDecimal,
+  gridCellSystem,
+  gridLatitudeDecimal,
+  gridLongitudeDecimal,
+  gridCellCode,
+  gridQualifier,
+  coordinateErrorDistanceInMeters,
+  spatialDatum,
+  geoShape
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GatheringSiteCoordinates-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-GatheringSiteCoordinates-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GatheringSiteCoordinates$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GatheringSiteCoordinates-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-GatheringSiteCoordinates-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GatheringSiteCoordinates$fromList(
+  GatheringSiteCoordinatesList,
+  typeMapping = NULL
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GatheringSiteCoordinates-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-GatheringSiteCoordinates-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GatheringSiteCoordinates$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GatheringSiteCoordinates-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-GatheringSiteCoordinates-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GatheringSiteCoordinates$fromJSONString(
+  GatheringSiteCoordinatesJson,
+  typeMapping = NULL
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GatheringSiteCoordinates-print"></a>}}
+\if{latex}{\out{\hypertarget{method-GatheringSiteCoordinates-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GatheringSiteCoordinates$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GatheringSiteCoordinates-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-GatheringSiteCoordinates-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GatheringSiteCoordinates$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

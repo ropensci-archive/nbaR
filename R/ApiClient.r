@@ -1,4 +1,4 @@
-# Netherlands Biodiversity API
+# Netherlands Biodiversity Api
 #
 # Access to the digitised Natural History collection at the Naturalis Biodiversity Center
 #
@@ -19,86 +19,81 @@
 #' @importFrom httr add_headers user_agent GET POST
 #'
 #' @export
-ApiClient <- R6::R6Class(
+ApiClient  <- R6::R6Class(
   "ApiClient",
   public = list(
     basePath = "http://api.biodiversitydata.nl/v2",
     userAgent = "nbaR/0.1.0",
     initialize = function(basePath, userAgent) {
-      if (!missing(basePath)) {
-        self$basePath <- basePath
-      }
-      if (!missing(userAgent)) {
-        self$userAgent <- userAgent
-      }
+        if (!missing(basePath)) {
+            self$basePath <- basePath
+        }
+        if (!missing(userAgent)) {
+            self$userAgent <- userAgent
+        }
     },
     callApi = function(url, method, queryParams, headerParams, body, ...) {
-      headers <- httr::add_headers(headerParams)
-      ua <- httr::user_agent(self$userAgent)
-      if (method == "GET") {
-        httr::GET(url,
-          query = queryParams, ua,
-          headers = headers, ...
-        )
-      }
-      else if (method == "POST") {
-        httr::POST(url,
-          query = queryParams, ua,
-          headers = headers, body = body, encode = "json", ...
-        )
-      }
-      else {
-        stop(paste("http method must be `GET` or `POST`."))
-      }
+        headers <- httr::add_headers(headerParams)
+        ua <- httr::user_agent(self$userAgent)
+        if (method == "GET") {
+            httr::GET(url, query = queryParams, ua,
+                      headers = headers, ...)
+        }
+        else if (method == "POST") {
+            httr::POST(url, query = queryParams, ua,
+                       headers = headers, body = body, encode='json', ...)
+        }
+        else {
+            stop(paste("http method must be `GET` or `POST`."))
+        }
     },
     handleError = function(response) {
-      warningMessage <- ""
-      responseMessage <- ""
+        warningMessage <- ""
+        responseMessage <- ""
 
-      if (typeof(httr::content(response)) == "list") {
-        ## handle (server) errors with stack trace etc
-        c <- httr::content(response)
-        warningMessage <- paste0(
-          "Status code:",
-          httr::status_code(response),
-          "\n", c$httpStatus$message,
-          "\nException: ", c$exception$message,
-          "\nException type: ", c$exception$type,
-          "\nFull stack trace stored in response object"
-        )
-        responseMessage <- c$httpStatus$message
-      } else {
-        ## handle errors in which httr only returns a string
-        warningMessage <- httr::content(response)
-        responseMessage <- httr::content(response)
-      }
-      warning(warningMessage)
-      Response$new(responseMessage, response)
-    },
+        if (typeof(httr::content(response)) == "list") {
+            ## handle (server) errors with stack trace etc
+            c <- httr::content(response)
+            warningMessage <- paste0(
+                    "Status code:",
+                    httr::status_code(response),
+                    "\n", c$httpStatus$message,                       
+                    "\nException: ", c$exception$message,
+                    "\nException type: ", c$exception$type,
+                    "\nFull stack trace stored in response object")
+            responseMessage <- c$httpStatus$message                                     
+        } else {
+            ## handle errors in which httr only returns a string
+            warningMessage <- httr::content(response)  
+            responseMessage <- httr::content(response)  
+        }
+        warning(warningMessage)
+        Response$new(responseMessage, response)
+    },        
     ping = function() {
-      url <- paste0(self$basePath, "/ping")
-      res <- self$callApi(url, "GET", NULL, NULL)
-      httr::content(res, encoding = "UTF-8") == "NBA Service is up and running!"
+        url <- paste0(self$basePath, "/ping")
+        res <- self$callApi(url, "GET", NULL, NULL)
+        httr::content(res, encoding='UTF-8') == "NBA Service is up and running!"
     },
     print = function(...) {
-      ## print class name
-      cat("<ApiClient>\n")
-      ## print all members with values
-      cat("Fields:\n")
-      cat("\tbasePath:\t", self$basePath, "\n")
-      cat("\tuserAgent:\t", self$userAgent, "\n")
-      ## print all methods
-      cat("Methods:\n")
-      cat("\tping\n")
-      invisible(self)
-    }
+       ## print class name
+       cat("<ApiClient>\n")
+       ## print all members with values
+       cat("Fields:\n")
+       cat("\tbasePath:\t", self$basePath, "\n")
+       cat("\tuserAgent:\t", self$userAgent, "\n")
+       ## print all methods
+       cat("Methods:\n")
+       cat("\tping\n")
+       invisible(self)
+    }    
   ),
   private = list(
-    getBaseDataType = function() {
-      result <- gsub("Client", "", class(self)[1])
-      result <- gsub("Multimedia", "MultiMediaObject", result)
-      result <- gsub("Geo", "GeoArea", result)
-      result
-    }
+     getBaseDataType = function() {
+         result <- gsub("Client", "", class(self)[1])
+         result <- gsub("Multimedia", "MultiMediaObject", result)
+         result <- gsub("Geo", "GeoArea", result)
+         result
+     }
   )
 )

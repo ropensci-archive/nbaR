@@ -4,7 +4,11 @@
 \name{MultiPolygon}
 \alias{MultiPolygon}
 \title{MultiPolygon Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # MultiPolygon$new()
 }
@@ -18,16 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for MultiPolygon objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{crs}}{Crs}
-
-\item{\code{bbox}}{list(numeric)}
-
-\item{\code{coordinates}}{list(LngLatAlt)}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -61,4 +55,98 @@ Model class for MultiPolygon objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{crs}}{Crs}
+
+\item{\code{bbox}}{list(numeric)}
+
+\item{\code{coordinates}}{list(LngLatAlt)}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-MultiPolygon-new}{\code{MultiPolygon$new()}}
+\item \href{#method-MultiPolygon-toList}{\code{MultiPolygon$toList()}}
+\item \href{#method-MultiPolygon-fromList}{\code{MultiPolygon$fromList()}}
+\item \href{#method-MultiPolygon-toJSONString}{\code{MultiPolygon$toJSONString()}}
+\item \href{#method-MultiPolygon-fromJSONString}{\code{MultiPolygon$fromJSONString()}}
+\item \href{#method-MultiPolygon-print}{\code{MultiPolygon$print()}}
+\item \href{#method-MultiPolygon-clone}{\code{MultiPolygon$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiPolygon-new"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiPolygon-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiPolygon$new(crs, bbox, coordinates)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiPolygon-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiPolygon-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiPolygon$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiPolygon-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiPolygon-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiPolygon$fromList(MultiPolygonList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiPolygon-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiPolygon-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiPolygon$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiPolygon-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiPolygon-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiPolygon$fromJSONString(MultiPolygonJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiPolygon-print"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiPolygon-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiPolygon$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiPolygon-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiPolygon-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiPolygon$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

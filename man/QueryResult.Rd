@@ -4,7 +4,11 @@
 \name{QueryResult}
 \alias{QueryResult}
 \title{QueryResult Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # QueryResult$new()
 }
@@ -18,14 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for QueryResult objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{totalSize}}{integer}
-
-\item{\code{resultSet}}{list(QueryResultItemObject)}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -59,4 +55,96 @@ Model class for QueryResult objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{resultSet}}{list(QueryResultItemObject)}
+
+\item{\code{totalSize}}{integer}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-QueryResult-new}{\code{QueryResult$new()}}
+\item \href{#method-QueryResult-toList}{\code{QueryResult$toList()}}
+\item \href{#method-QueryResult-fromList}{\code{QueryResult$fromList()}}
+\item \href{#method-QueryResult-toJSONString}{\code{QueryResult$toJSONString()}}
+\item \href{#method-QueryResult-fromJSONString}{\code{QueryResult$fromJSONString()}}
+\item \href{#method-QueryResult-print}{\code{QueryResult$print()}}
+\item \href{#method-QueryResult-clone}{\code{QueryResult$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-QueryResult-new"></a>}}
+\if{latex}{\out{\hypertarget{method-QueryResult-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{QueryResult$new(resultSet, totalSize)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-QueryResult-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-QueryResult-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{QueryResult$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-QueryResult-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-QueryResult-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{QueryResult$fromList(QueryResultList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-QueryResult-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-QueryResult-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{QueryResult$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-QueryResult-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-QueryResult-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{QueryResult$fromJSONString(QueryResultJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-QueryResult-print"></a>}}
+\if{latex}{\out{\hypertarget{method-QueryResult-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{QueryResult$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-QueryResult-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-QueryResult-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{QueryResult$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

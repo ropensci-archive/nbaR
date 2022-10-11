@@ -4,7 +4,9 @@
 \name{SpecimenClient}
 \alias{SpecimenClient}
 \title{Specimen operations}
-\format{R6 class}
+\format{
+R6 class
+}
 \usage{
 # client <- SpecimenClient$new()
 }
@@ -15,14 +17,6 @@ of the NBA. Each endpoint is available as a class method
 pointing to a NBA server and a user Agent can be specified
 by the user (see section 'Fields' below).
 }
-\section{Fields}{
-
-\describe{
-\item{\code{basePath}}{Stores url path of the request, defaults to http://api.biodiversitydata.nl/v2}
-
-\item{\code{userAgent}}{Set the user agent of the request, defaults to nbaR/0.1.0}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -33,10 +27,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
-
-        \item \code{ queryParams } : named list or vector with query parameters
-
+        \item \code{ collection_type } : Example query param 
+        
+        \item \code{ queryParams } : named list or vector with query parameters 
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -45,14 +39,14 @@ by the user (see section 'Fields' below).
 \item{\code{ count_distinct_values }}{
 
   Count the distinct number of values that exist for a given field;
-  See also endpoint /getDistinctValues.
+  .
 
     Parameters:
     \itemize{
-        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
-        \item \code{ field } : Name of field in the specimen object
-        \item \code{ queryParams } : named list or vector with query parameters
-
+        
+        \item \code{ field } : Name of field in the specimen object 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -61,14 +55,14 @@ by the user (see section 'Fields' below).
 \item{\code{ count_distinct_values_per_group }}{
 
   Count the distinct number of field values that exist per the given field to group by;
-  See also endpoint /getDistinctValuesPerGroup.
+  .
 
     Parameters:
     \itemize{
-
-        \item \code{ group } : Name of field in the specimen object you want to group by \item \code{ field } : Name of field in the specimen object
-
-
+        
+        \item \code{ group } : Name of field in the specimen object you want to group by \item \code{ field } : Name of field in the specimen object 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -81,14 +75,14 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
-
-        \item \code{ queryParams } : named list or vector with query parameters
-
+        \item \code{ collection_type } : Example query param 
+        
+        \item \code{ queryParams } : named list or vector with query parameters 
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
-        \code{ Specimen }
+        \code{  }
 }
 \item{\code{ dwca_get_data_set }}{
 
@@ -97,10 +91,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-        \item \code{ dataset } : name of dataset
-
-        \item \code{ filename } : location to save data, defaults to \code{format(Sys.time(), "download-\%Y-\%m-\%dT\%H:\%m.zip")}
+        
+        \item \code{ dataset } : name of dataset 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -113,10 +107,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-
-
-
+        
+        
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -129,10 +123,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
-
-        \item \code{ queryParams } : named list or vector with query parameters
-        \item \code{ filename } : location to save data, defaults to \code{format(Sys.time(), "download-\%Y-\%m-\%dT\%H:\%m.zip")}
+        \item \code{ collection_type } : Example query param 
+        
+        \item \code{ queryParams } : named list or vector with query parameters 
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -140,15 +134,15 @@ by the user (see section 'Fields' below).
 }
 \item{\code{ exists }}{
 
-  Returns whether or not a unitID for a specimen exists;
+  Returns whether or not the provided unitID is a valid (in-use) unitID;
   Returns either true or false.
 
     Parameters:
     \itemize{
-
-        \item \code{ unit_id } : the unitID of the specimen to query
-
-
+        
+        \item \code{ unit_id } : the unitID of the specimen to query 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -156,15 +150,15 @@ by the user (see section 'Fields' below).
 }
 \item{\code{ find }}{
 
-  Find a specimen by id;
-  If found, returns a single specimen.
+  Find a specimen by its Elasticsearch document ID;
+  If found, returns a single specimen. Note that NBA document IDs are not auto-generated, so they are stable across dataset imports..
 
     Parameters:
     \itemize{
-
-        \item \code{ id } : id of specimen
-
-
+        
+        \item \code{ id } : id of specimen 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -172,15 +166,15 @@ by the user (see section 'Fields' below).
 }
 \item{\code{ find_by_ids }}{
 
-  Find specimens by ids;
+  Find specimens by their Elasticsearch document IDs;
   Given multiple ids, returns a list of specimen.
 
     Parameters:
     \itemize{
-
-        \item \code{ ids } : ids of multiple specimen, separated by comma
-
-
+        
+        \item \code{ ids } : ids of multiple specimen, separated by comma 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -193,10 +187,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-        \item \code{ unit_id } : the unitID of the specimen to query
-
-
+        
+        \item \code{ unit_id } : the unitID of the specimen to query 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -209,10 +203,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
-        \item \code{ field } : Name of field in specimen object
-        \item \code{ queryParams } : named list or vector with query parameters
-
+        
+        \item \code{ field } : Name of field in specimen object 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -221,14 +215,14 @@ by the user (see section 'Fields' below).
 \item{\code{ get_distinct_values_per_group }}{
 
   Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by;
-  See also endpoint /getDistinctValues.
+  .
 
     Parameters:
     \itemize{
-
-        \item \code{ group } : Name of field in the specimen object you want to group by \item \code{ field } : Name of field in the specimen object
-
-
+        
+        \item \code{ group } : Name of field in the specimen object you want to group by \item \code{ field } : Name of field in the specimen object 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -241,46 +235,14 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-
-
-
+        
+        
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
         \code{ list }
-}
-\item{\code{ get_ids_in_collection }}{
-
-  Retrieve all ids within a &#39;special collection&#39; of specimens;
-  Available collections can be queried with /getNamedCollections.
-
-    Parameters:
-    \itemize{
-
-        \item \code{ name } : name of dataset
-
-
-        \item \code{ ... } : additional parameters passed to httr::GET
-    }
-    Returns:
-        \code{ character }
-}
-\item{\code{ get_named_collections }}{
-
-  Retrieve the names of all &#39;special collections&#39; of specimens;
-  See also here: http://bioportal.naturalis.nl/collecties.
-
-    Parameters:
-    \itemize{
-
-
-
-
-        \item \code{ ... } : additional parameters passed to httr::GET
-    }
-    Returns:
-        \code{ character }
 }
 \item{\code{ get_paths }}{
 
@@ -289,30 +251,14 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-
-
-
+        
+        
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
         \code{ character }
-}
-\item{\code{ get_setting }}{
-
-  Get the value of an NBA setting;
-  All settings can be queried with /metadata/getSettings.
-
-    Parameters:
-    \itemize{
-
-        \item \code{ name } : name of setting
-
-
-        \item \code{ ... } : additional parameters passed to httr::GET
-    }
-    Returns:
-        \code{ list }
 }
 \item{\code{ get_settings }}{
 
@@ -321,10 +267,26 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
+        
+        
+        
+        
+        \item \code{ ... } : additional parameters passed to httr::GET
+    }
+    Returns:
+        \code{ list }
+}
+\item{\code{ get_settings }}{
 
+  Get the value of an NBA setting;
+  All settings can be queried with /metadata/getSettings.
 
-
-
+    Parameters:
+    \itemize{
+        
+        \item \code{ name } : name of setting 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -337,10 +299,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
-
-        \item \code{ queryParams } : named list or vector with query parameters
-
+        \item \code{ collection_type } : Example query param 
+        
+        \item \code{ queryParams } : named list or vector with query parameters 
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -353,14 +315,14 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-        \item \code{ field } : specimen document field \item \code{ operator } : operator
-
-
+        
+        \item \code{ field } : specimen document field \item \code{ operator } : operator 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
-        \code{ logical }
+        \code{ list }
 }
 \item{\code{ query }}{
 
@@ -369,16 +331,313 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
-
-        \item \code{ queryParams } : named list or vector with query parameters
-
+        \item \code{ collection_type } : Example query param 
+        
+        \item \code{ queryParams } : named list or vector with query parameters 
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
         \code{ QueryResult }
 }
+\item{\code{ query_with_name_resolution }}{
+
+  ;
+  .
+
+    Parameters:
+    \itemize{
+        \item \code{ _query_spec } :  
+        
+        \item \code{ queryParams } : named list or vector with query parameters 
+        
+        \item \code{ ... } : additional parameters passed to httr::GET
+    }
+    Returns:
+        \code{  }
+}
 }
 }
 
-\keyword{datasets}
+\section{Super class}{
+\code{\link[nbaR:ApiClient]{nbaR::ApiClient}} -> \code{SpecimenClient}
+}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{basePath}}{Stores url path of the request, defaults to http://api.biodiversitydata.nl/v2}
+
+\item{\code{userAgent}}{Set the user agent of the request, defaults to nbaR/0.1.0}
+}
+\if{html}{\out{</div>}}
+}
+\section{Active bindings}{
+\if{html}{\out{<div class="r6-active-bindings">}}
+\describe{
+\item{\code{basePath}}{Stores url path of the request, defaults to http://api.biodiversitydata.nl/v2}
+
+\item{\code{userAgent}}{Set the user agent of the request, defaults to nbaR/0.1.0}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-SpecimenClient-new}{\code{SpecimenClient$new()}}
+\item \href{#method-SpecimenClient-count}{\code{SpecimenClient$count()}}
+\item \href{#method-SpecimenClient-count_distinct_values}{\code{SpecimenClient$count_distinct_values()}}
+\item \href{#method-SpecimenClient-count_distinct_values_per_group}{\code{SpecimenClient$count_distinct_values_per_group()}}
+\item \href{#method-SpecimenClient-download_query}{\code{SpecimenClient$download_query()}}
+\item \href{#method-SpecimenClient-dwca_get_data_set}{\code{SpecimenClient$dwca_get_data_set()}}
+\item \href{#method-SpecimenClient-dwca_get_data_set_names}{\code{SpecimenClient$dwca_get_data_set_names()}}
+\item \href{#method-SpecimenClient-dwca_query}{\code{SpecimenClient$dwca_query()}}
+\item \href{#method-SpecimenClient-exists}{\code{SpecimenClient$exists()}}
+\item \href{#method-SpecimenClient-find}{\code{SpecimenClient$find()}}
+\item \href{#method-SpecimenClient-find_by_ids}{\code{SpecimenClient$find_by_ids()}}
+\item \href{#method-SpecimenClient-find_by_unit_id}{\code{SpecimenClient$find_by_unit_id()}}
+\item \href{#method-SpecimenClient-get_distinct_values}{\code{SpecimenClient$get_distinct_values()}}
+\item \href{#method-SpecimenClient-get_distinct_values_per_group}{\code{SpecimenClient$get_distinct_values_per_group()}}
+\item \href{#method-SpecimenClient-get_field_info}{\code{SpecimenClient$get_field_info()}}
+\item \href{#method-SpecimenClient-get_paths}{\code{SpecimenClient$get_paths()}}
+\item \href{#method-SpecimenClient-get_settings}{\code{SpecimenClient$get_settings()}}
+\item \href{#method-SpecimenClient-group_by_scientific_name}{\code{SpecimenClient$group_by_scientific_name()}}
+\item \href{#method-SpecimenClient-is_operator_allowed}{\code{SpecimenClient$is_operator_allowed()}}
+\item \href{#method-SpecimenClient-query}{\code{SpecimenClient$query()}}
+\item \href{#method-SpecimenClient-query_with_name_resolution}{\code{SpecimenClient$query_with_name_resolution()}}
+\item \href{#method-SpecimenClient-print}{\code{SpecimenClient$print()}}
+\item \href{#method-SpecimenClient-clone}{\code{SpecimenClient$clone()}}
+}
+}
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="nbaR" data-topic="ApiClient" data-id="callApi"><a href='../../nbaR/html/ApiClient.html#method-ApiClient-callApi'><code>nbaR::ApiClient$callApi()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="nbaR" data-topic="ApiClient" data-id="handleError"><a href='../../nbaR/html/ApiClient.html#method-ApiClient-handleError'><code>nbaR::ApiClient$handleError()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="nbaR" data-topic="ApiClient" data-id="ping"><a href='../../nbaR/html/ApiClient.html#method-ApiClient-ping'><code>nbaR::ApiClient$ping()</code></a></span></li>
+</ul>
+</details>
+}}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-new"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$new(basePath, userAgent)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-count"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-count}{}}}
+\subsection{Method \code{count()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$count(collectionType = NULL, queryParams = list(), ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-count_distinct_values"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-count_distinct_values}{}}}
+\subsection{Method \code{count_distinct_values()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$count_distinct_values(field = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-count_distinct_values_per_group"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-count_distinct_values_per_group}{}}}
+\subsection{Method \code{count_distinct_values_per_group()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$count_distinct_values_per_group(group = NULL, field = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-download_query"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-download_query}{}}}
+\subsection{Method \code{download_query()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$download_query(collectionType = NULL, queryParams = list(), ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-dwca_get_data_set"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-dwca_get_data_set}{}}}
+\subsection{Method \code{dwca_get_data_set()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$dwca_get_data_set(dataset = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-dwca_get_data_set_names"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-dwca_get_data_set_names}{}}}
+\subsection{Method \code{dwca_get_data_set_names()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$dwca_get_data_set_names(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-dwca_query"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-dwca_query}{}}}
+\subsection{Method \code{dwca_query()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$dwca_query(collectionType = NULL, queryParams = list(), ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-exists"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-exists}{}}}
+\subsection{Method \code{exists()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$exists(unitID = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-find"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-find}{}}}
+\subsection{Method \code{find()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$find(id = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-find_by_ids"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-find_by_ids}{}}}
+\subsection{Method \code{find_by_ids()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$find_by_ids(ids = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-find_by_unit_id"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-find_by_unit_id}{}}}
+\subsection{Method \code{find_by_unit_id()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$find_by_unit_id(unitID = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-get_distinct_values"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-get_distinct_values}{}}}
+\subsection{Method \code{get_distinct_values()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$get_distinct_values(field = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-get_distinct_values_per_group"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-get_distinct_values_per_group}{}}}
+\subsection{Method \code{get_distinct_values_per_group()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$get_distinct_values_per_group(group = NULL, field = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-get_field_info"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-get_field_info}{}}}
+\subsection{Method \code{get_field_info()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$get_field_info(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-get_paths"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-get_paths}{}}}
+\subsection{Method \code{get_paths()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$get_paths(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-get_settings"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-get_settings}{}}}
+\subsection{Method \code{get_settings()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$get_settings(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-group_by_scientific_name"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-group_by_scientific_name}{}}}
+\subsection{Method \code{group_by_scientific_name()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$group_by_scientific_name(
+  collectionType = NULL,
+  queryParams = list(),
+  ...
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-is_operator_allowed"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-is_operator_allowed}{}}}
+\subsection{Method \code{is_operator_allowed()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$is_operator_allowed(field = NULL, operator = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-query"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-query}{}}}
+\subsection{Method \code{query()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$query(collectionType = NULL, queryParams = list(), ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-query_with_name_resolution"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-query_with_name_resolution}{}}}
+\subsection{Method \code{query_with_name_resolution()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$query_with_name_resolution(
+  querySpec = NULL,
+  queryParams = list(),
+  ...
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-print"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

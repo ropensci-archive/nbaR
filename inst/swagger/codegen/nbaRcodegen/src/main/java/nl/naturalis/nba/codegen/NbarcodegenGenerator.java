@@ -15,7 +15,6 @@ import io.swagger.codegen.CodegenConfig;
 import io.swagger.codegen.CodegenConstants;
 import io.swagger.codegen.CodegenModel;
 import io.swagger.codegen.CodegenOperation;
-import io.swagger.codegen.CodegenParameter;
 import io.swagger.codegen.CodegenProperty;
 import io.swagger.codegen.DefaultCodegen;
 import io.swagger.codegen.SupportingFile;
@@ -169,8 +168,7 @@ public class NbarcodegenGenerator extends RClientCodegen implements CodegenConfi
 		supportingFiles.add(new SupportingFile("git_push.sh.mustache", "", "git_push.sh"));
 		supportingFiles.add(new SupportingFile("gitignore.mustache", "", ".gitignore"));
 		supportingFiles.add(new SupportingFile("description.mustache", "", "DESCRIPTION"));
-		supportingFiles.add(new SupportingFile("Rbuildignore.mustache", "", ".Rbuildignore"));
-		supportingFiles.add(new SupportingFile(".travis.yml", "", ".travis.yml"));
+		//supportingFiles.add(new SupportingFile("Rbuildignore.mustache", "", ".Rbuildignore"));
 		supportingFiles.add(new SupportingFile("response.mustache", "/R", "Response.r"));
 		// supportingFiles.add(new SupportingFile("element.mustache", "/R",
 		// "Element.r"));

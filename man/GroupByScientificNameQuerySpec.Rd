@@ -4,7 +4,11 @@
 \name{GroupByScientificNameQuerySpec}
 \alias{GroupByScientificNameQuerySpec}
 \title{GroupByScientificNameQuerySpec Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # GroupByScientificNameQuerySpec$new()
 }
@@ -18,43 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for GroupByScientificNameQuerySpec objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{constantScore}}{logical
-If true, no relevance scores will be calculated for the returned documents. By default Elasticsearch not only determines whether a document matches your search criteria, but also how well it matches them, expressed as a so-called relevance score. If you are not interested in relevance scores, set constantScore to true, as there is some performance overhead associated with calculating relevance scores.}
-
-\item{\code{fields}}{list(character)
-The fields to be returned. Specimen, Taxon and MultiMediaObject documents are large documents containing lots of fields. If you are only interested in a few fields, use the fields property to specify them.}
-
-\item{\code{conditions}}{list(QueryCondition)
-List of QueryCondition objetcs}
-
-\item{\code{logicalOperator}}{character
-(AND/OR) Specifies whether a document must satisfy all search criteria or just one in order to be returned.}
-
-\item{\code{sortFields}}{list(SortField)
-Specifies the field(s) on which to sort the documents.}
-
-\item{\code{from}}{integer
-The offset in the result set from which to return the documents.}
-
-\item{\code{size}}{integer
-The number of documents to return.}
-
-\item{\code{groupSort}}{character}
-
-\item{\code{groupFilter}}{Filter}
-
-\item{\code{specimensFrom}}{integer}
-
-\item{\code{specimensSize}}{integer}
-
-\item{\code{specimensSortFields}}{list(SortField)}
-
-\item{\code{noTaxa}}{logical}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -88,4 +55,138 @@ The number of documents to return.}
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{constantScore}}{logical}
+
+\item{\code{fields}}{list(character)}
+
+\item{\code{conditions}}{list(QueryCondition)}
+
+\item{\code{logicalOperator}}{character}
+
+\item{\code{sortFields}}{list(SortField)}
+
+\item{\code{from}}{integer}
+
+\item{\code{size}}{integer}
+
+\item{\code{groupSort}}{character}
+
+\item{\code{groupFilter}}{Filter}
+
+\item{\code{specimensFrom}}{integer}
+
+\item{\code{specimensSize}}{integer}
+
+\item{\code{specimensSortFields}}{list(SortField)}
+
+\item{\code{noTaxa}}{logical}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-GroupByScientificNameQuerySpec-new}{\code{GroupByScientificNameQuerySpec$new()}}
+\item \href{#method-GroupByScientificNameQuerySpec-toList}{\code{GroupByScientificNameQuerySpec$toList()}}
+\item \href{#method-GroupByScientificNameQuerySpec-fromList}{\code{GroupByScientificNameQuerySpec$fromList()}}
+\item \href{#method-GroupByScientificNameQuerySpec-toJSONString}{\code{GroupByScientificNameQuerySpec$toJSONString()}}
+\item \href{#method-GroupByScientificNameQuerySpec-fromJSONString}{\code{GroupByScientificNameQuerySpec$fromJSONString()}}
+\item \href{#method-GroupByScientificNameQuerySpec-print}{\code{GroupByScientificNameQuerySpec$print()}}
+\item \href{#method-GroupByScientificNameQuerySpec-clone}{\code{GroupByScientificNameQuerySpec$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GroupByScientificNameQuerySpec-new"></a>}}
+\if{latex}{\out{\hypertarget{method-GroupByScientificNameQuerySpec-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GroupByScientificNameQuerySpec$new(
+  constantScore,
+  fields,
+  conditions,
+  logicalOperator,
+  sortFields,
+  from,
+  size,
+  groupSort,
+  groupFilter,
+  specimensFrom,
+  specimensSize,
+  specimensSortFields,
+  noTaxa
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GroupByScientificNameQuerySpec-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-GroupByScientificNameQuerySpec-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GroupByScientificNameQuerySpec$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GroupByScientificNameQuerySpec-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-GroupByScientificNameQuerySpec-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GroupByScientificNameQuerySpec$fromList(
+  GroupByScientificNameQuerySpecList,
+  typeMapping = NULL
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GroupByScientificNameQuerySpec-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-GroupByScientificNameQuerySpec-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GroupByScientificNameQuerySpec$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GroupByScientificNameQuerySpec-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-GroupByScientificNameQuerySpec-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GroupByScientificNameQuerySpec$fromJSONString(
+  GroupByScientificNameQuerySpecJson,
+  typeMapping = NULL
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GroupByScientificNameQuerySpec-print"></a>}}
+\if{latex}{\out{\hypertarget{method-GroupByScientificNameQuerySpec-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GroupByScientificNameQuerySpec$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GroupByScientificNameQuerySpec-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-GroupByScientificNameQuerySpec-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GroupByScientificNameQuerySpec$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

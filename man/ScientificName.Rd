@@ -4,7 +4,11 @@
 \name{ScientificName}
 \alias{ScientificName}
 \title{ScientificName Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # ScientificName$new()
 }
@@ -18,38 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for ScientificName objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{fullScientificName}}{character}
-
-\item{\code{taxonomicStatus}}{character}
-
-\item{\code{genusOrMonomial}}{character}
-
-\item{\code{subgenus}}{character}
-
-\item{\code{specificEpithet}}{character}
-
-\item{\code{infraspecificEpithet}}{character}
-
-\item{\code{infraspecificMarker}}{character}
-
-\item{\code{nameAddendum}}{character}
-
-\item{\code{authorshipVerbatim}}{character}
-
-\item{\code{author}}{character}
-
-\item{\code{year}}{character}
-
-\item{\code{scientificNameGroup}}{character}
-
-\item{\code{references}}{list(Reference)}
-
-\item{\code{experts}}{list(Expert)}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -83,4 +55,135 @@ Model class for ScientificName objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{fullScientificName}}{character}
+
+\item{\code{taxonomicStatus}}{character}
+
+\item{\code{genusOrMonomial}}{character}
+
+\item{\code{subgenus}}{character}
+
+\item{\code{specificEpithet}}{character}
+
+\item{\code{infraspecificEpithet}}{character}
+
+\item{\code{infraspecificMarker}}{character}
+
+\item{\code{nameAddendum}}{character}
+
+\item{\code{authorshipVerbatim}}{character}
+
+\item{\code{author}}{character}
+
+\item{\code{year}}{character}
+
+\item{\code{scientificNameGroup}}{character}
+
+\item{\code{references}}{list(Reference)}
+
+\item{\code{experts}}{list(Expert)}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-ScientificName-new}{\code{ScientificName$new()}}
+\item \href{#method-ScientificName-toList}{\code{ScientificName$toList()}}
+\item \href{#method-ScientificName-fromList}{\code{ScientificName$fromList()}}
+\item \href{#method-ScientificName-toJSONString}{\code{ScientificName$toJSONString()}}
+\item \href{#method-ScientificName-fromJSONString}{\code{ScientificName$fromJSONString()}}
+\item \href{#method-ScientificName-print}{\code{ScientificName$print()}}
+\item \href{#method-ScientificName-clone}{\code{ScientificName$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ScientificName-new"></a>}}
+\if{latex}{\out{\hypertarget{method-ScientificName-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ScientificName$new(
+  fullScientificName,
+  taxonomicStatus,
+  genusOrMonomial,
+  subgenus,
+  specificEpithet,
+  infraspecificEpithet,
+  infraspecificMarker,
+  nameAddendum,
+  authorshipVerbatim,
+  author,
+  year,
+  scientificNameGroup,
+  references,
+  experts
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ScientificName-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-ScientificName-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ScientificName$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ScientificName-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-ScientificName-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ScientificName$fromList(ScientificNameList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ScientificName-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-ScientificName-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ScientificName$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ScientificName-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-ScientificName-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ScientificName$fromJSONString(ScientificNameJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ScientificName-print"></a>}}
+\if{latex}{\out{\hypertarget{method-ScientificName-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ScientificName$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ScientificName-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-ScientificName-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ScientificName$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

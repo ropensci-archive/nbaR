@@ -68,7 +68,11 @@
           queryParams['{{baseName}}'] <- param
         }
         ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
-        names(queryParams) <- gsub("querySpec", "_querySpec", names(queryParams))
+         names(queryParams) <- gsub(
+        "\\.querySpec", 
+        paste0("_", "querySpec"), # tweak to not transform _querySpec
+        names(queryParams)
+      )
 
           {{/queryParams}}
       {{/hasQueryParams}}

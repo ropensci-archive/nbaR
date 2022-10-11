@@ -4,18 +4,14 @@
 \alias{taxon_download_query}
 \title{Dynamic download service: Query for taxa and return result as a stream ...}
 \usage{
-taxon_download_query(queryParams = list(), returnType = "data.frame",
-  ...)
+taxon_download_query(sourceSystem.code = NULL, queryParams = list(), ...)
 }
 \arguments{
+\item{sourceSystem.code}{Example query param, type:}
+
 \item{queryParams}{Named list or vector with names being the fields to be queried and values being the values to match}
 
-\item{returnType}{Either \code{list} or \code{data.frame} (default)}
-
 \item{...}{additional parameters passed to download_query from class nbaR.TaxonClient}
-}
-\value{
-list or data.frame, as specified by \code{returnType}
 }
 \description{
 This is a wrapper for the method \code{ download_query }
@@ -25,22 +21,22 @@ from class \code{ TaxonClient}.
 Query with query parameters or querySpec JSON. ...
 }
 \seealso{
-Other nbaR.TaxonClient-wrappers: \code{\link{taxon_count_distinct_values_per_group}},
-  \code{\link{taxon_count_distinct_values}},
-  \code{\link{taxon_count}},
-  \code{\link{taxon_dwca_get_data_set_names}},
-  \code{\link{taxon_dwca_get_data_set}},
-  \code{\link{taxon_dwca_query}},
-  \code{\link{taxon_find_by_ids}},
-  \code{\link{taxon_find}},
-  \code{\link{taxon_get_distinct_values_per_group}},
-  \code{\link{taxon_get_distinct_values}},
-  \code{\link{taxon_get_field_info}},
-  \code{\link{taxon_get_paths}},
-  \code{\link{taxon_get_settings}},
-  \code{\link{taxon_get_setting}},
-  \code{\link{taxon_group_by_scientific_name}},
-  \code{\link{taxon_is_operator_allowed}},
-  \code{\link{taxon_query}}
+Other nbaR.TaxonClient-wrappers: 
+\code{\link{taxon_count_distinct_values_per_group}()},
+\code{\link{taxon_count_distinct_values}()},
+\code{\link{taxon_count}()},
+\code{\link{taxon_dwca_get_data_set_names}()},
+\code{\link{taxon_dwca_get_data_set}()},
+\code{\link{taxon_dwca_query}()},
+\code{\link{taxon_find_by_ids}()},
+\code{\link{taxon_find}()},
+\code{\link{taxon_get_distinct_values_per_group}()},
+\code{\link{taxon_get_distinct_values}()},
+\code{\link{taxon_get_field_info}()},
+\code{\link{taxon_get_paths}()},
+\code{\link{taxon_get_settings}()},
+\code{\link{taxon_group_by_scientific_name}()},
+\code{\link{taxon_is_operator_allowed}()},
+\code{\link{taxon_query}()}
 }
 \concept{nbaR.TaxonClient-wrappers}

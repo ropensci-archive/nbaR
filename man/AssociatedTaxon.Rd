@@ -4,7 +4,11 @@
 \name{AssociatedTaxon}
 \alias{AssociatedTaxon}
 \title{AssociatedTaxon Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # AssociatedTaxon$new()
 }
@@ -18,14 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for AssociatedTaxon objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{name}}{character}
-
-\item{\code{relationType}}{character}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -59,4 +55,96 @@ Model class for AssociatedTaxon objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{name}}{character}
+
+\item{\code{relationType}}{character}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-AssociatedTaxon-new}{\code{AssociatedTaxon$new()}}
+\item \href{#method-AssociatedTaxon-toList}{\code{AssociatedTaxon$toList()}}
+\item \href{#method-AssociatedTaxon-fromList}{\code{AssociatedTaxon$fromList()}}
+\item \href{#method-AssociatedTaxon-toJSONString}{\code{AssociatedTaxon$toJSONString()}}
+\item \href{#method-AssociatedTaxon-fromJSONString}{\code{AssociatedTaxon$fromJSONString()}}
+\item \href{#method-AssociatedTaxon-print}{\code{AssociatedTaxon$print()}}
+\item \href{#method-AssociatedTaxon-clone}{\code{AssociatedTaxon$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-AssociatedTaxon-new"></a>}}
+\if{latex}{\out{\hypertarget{method-AssociatedTaxon-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{AssociatedTaxon$new(name, relationType)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-AssociatedTaxon-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-AssociatedTaxon-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{AssociatedTaxon$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-AssociatedTaxon-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-AssociatedTaxon-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{AssociatedTaxon$fromList(AssociatedTaxonList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-AssociatedTaxon-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-AssociatedTaxon-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{AssociatedTaxon$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-AssociatedTaxon-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-AssociatedTaxon-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{AssociatedTaxon$fromJSONString(AssociatedTaxonJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-AssociatedTaxon-print"></a>}}
+\if{latex}{\out{\hypertarget{method-AssociatedTaxon-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{AssociatedTaxon$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-AssociatedTaxon-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-AssociatedTaxon-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{AssociatedTaxon$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

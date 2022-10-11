@@ -4,8 +4,7 @@
 \alias{taxon_count_distinct_values}
 \title{Count the distinct number of values that exist for a given field}
 \usage{
-taxon_count_distinct_values(field = NULL, returnType = "data.frame",
-  ...)
+taxon_count_distinct_values(field = NULL, returnType = "data.frame", ...)
 }
 \arguments{
 \item{field}{name of field in the taxon object, type:}
@@ -21,26 +20,23 @@ scalar
 This is a wrapper for the method \code{ count_distinct_values }
 from class \code{ TaxonClient}.
 }
-\details{
-See also endpoint /getDistinctValues
-}
 \seealso{
-Other nbaR.TaxonClient-wrappers: \code{\link{taxon_count_distinct_values_per_group}},
-  \code{\link{taxon_count}},
-  \code{\link{taxon_download_query}},
-  \code{\link{taxon_dwca_get_data_set_names}},
-  \code{\link{taxon_dwca_get_data_set}},
-  \code{\link{taxon_dwca_query}},
-  \code{\link{taxon_find_by_ids}},
-  \code{\link{taxon_find}},
-  \code{\link{taxon_get_distinct_values_per_group}},
-  \code{\link{taxon_get_distinct_values}},
-  \code{\link{taxon_get_field_info}},
-  \code{\link{taxon_get_paths}},
-  \code{\link{taxon_get_settings}},
-  \code{\link{taxon_get_setting}},
-  \code{\link{taxon_group_by_scientific_name}},
-  \code{\link{taxon_is_operator_allowed}},
-  \code{\link{taxon_query}}
+Other nbaR.TaxonClient-wrappers: 
+\code{\link{taxon_count_distinct_values_per_group}()},
+\code{\link{taxon_count}()},
+\code{\link{taxon_download_query}()},
+\code{\link{taxon_dwca_get_data_set_names}()},
+\code{\link{taxon_dwca_get_data_set}()},
+\code{\link{taxon_dwca_query}()},
+\code{\link{taxon_find_by_ids}()},
+\code{\link{taxon_find}()},
+\code{\link{taxon_get_distinct_values_per_group}()},
+\code{\link{taxon_get_distinct_values}()},
+\code{\link{taxon_get_field_info}()},
+\code{\link{taxon_get_paths}()},
+\code{\link{taxon_get_settings}()},
+\code{\link{taxon_group_by_scientific_name}()},
+\code{\link{taxon_is_operator_allowed}()},
+\code{\link{taxon_query}()}
 }
 \concept{nbaR.TaxonClient-wrappers}

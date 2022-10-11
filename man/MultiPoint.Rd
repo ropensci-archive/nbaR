@@ -4,7 +4,11 @@
 \name{MultiPoint}
 \alias{MultiPoint}
 \title{MultiPoint Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # MultiPoint$new()
 }
@@ -18,16 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for MultiPoint objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{crs}}{Crs}
-
-\item{\code{bbox}}{list(numeric)}
-
-\item{\code{coordinates}}{list(LngLatAlt)}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -61,4 +55,98 @@ Model class for MultiPoint objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{crs}}{Crs}
+
+\item{\code{bbox}}{list(numeric)}
+
+\item{\code{coordinates}}{list(LngLatAlt)}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-MultiPoint-new}{\code{MultiPoint$new()}}
+\item \href{#method-MultiPoint-toList}{\code{MultiPoint$toList()}}
+\item \href{#method-MultiPoint-fromList}{\code{MultiPoint$fromList()}}
+\item \href{#method-MultiPoint-toJSONString}{\code{MultiPoint$toJSONString()}}
+\item \href{#method-MultiPoint-fromJSONString}{\code{MultiPoint$fromJSONString()}}
+\item \href{#method-MultiPoint-print}{\code{MultiPoint$print()}}
+\item \href{#method-MultiPoint-clone}{\code{MultiPoint$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiPoint-new"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiPoint-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiPoint$new(crs, bbox, coordinates)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiPoint-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiPoint-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiPoint$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiPoint-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiPoint-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiPoint$fromList(MultiPointList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiPoint-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiPoint-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiPoint$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiPoint-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiPoint-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiPoint$fromJSONString(MultiPointJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiPoint-print"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiPoint-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiPoint$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiPoint-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiPoint-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiPoint$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

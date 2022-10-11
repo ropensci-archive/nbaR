@@ -15,7 +15,7 @@ Check out [OpenAPI-Spec](https://github.com/OAI/OpenAPI-Specification) for addit
 ## How do I use this?
 At this point, you've likely generated a client setup. It will include something along these lines:
 
-```
+```sh
 .
 |- README.md    // this file
 |- pom.xml      // build script
@@ -40,20 +40,24 @@ Templates in this folder:
 
 Once modified, you can run this:
 
-```
+```sh
 mvn package
 ```
 
 In your generator project. A single jar file will be produced in `target`. You can now use that with codegen:
 
-```
+```sh
 java -cp /path/to/swagger-codegen-cli.jar:/path/to/your.jar io.swagger.codegen.Codegen -l nbaRcodegen -i /path/to/swagger.yaml -o ./test
 ```
 
 Now your templates are available to the client generator and you can write output values.
 
+Note that there is a `Makefile` in `swagger` to help rebuilding the code using the Swagger.
+
+
 
 ## But how do I modify this?
+
 The `NbarcodegenGenerator.java` has comments in it--lots of comments. There is no good substitute
 for reading the code more, though. See how the `NbarcodegenGenerator` implements `CodegenConfig`.
 That class has the signature of all values that can be overridden.
@@ -72,5 +76,5 @@ the object you have available during client generation:
 java -DdebugOperations -cp /path/to/swagger-codegen-cli.jar:/path/to/your.jar io.swagger.codegen.Codegen -l nbaRcodegen -i /path/to/swagger.yaml -o ./test
 ```
 
-Will, for example, output the debug info for operations.  You can use this info
+Will, for example, output the debug info for operations. You can use this info
 in the `api.mustache` file.

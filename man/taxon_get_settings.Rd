@@ -4,40 +4,69 @@
 \alias{taxon_get_settings}
 \title{List all publicly available configuration settings for the NBA}
 \usage{
-taxon_get_settings(returnType = "data.frame", ...)
+taxon_get_settings(name = NULL, ...)
+
+taxon_get_settings(name = NULL, ...)
 }
 \arguments{
-\item{returnType}{Either \code{list} or \code{data.frame} (default)}
+\item{name}{name of setting, type:}
 
 \item{...}{additional parameters passed to get_settings from class nbaR.TaxonClient}
+
+\item{returnType}{Either \code{list} or \code{data.frame} (default)}
 }
 \value{
+scalar
+
 scalar
 }
 \description{
 This is a wrapper for the method \code{ get_settings }
 from class \code{ TaxonClient}.
+
+This is a wrapper for the method \code{ get_settings }
+from class \code{ TaxonClient}.
 }
 \details{
 The value of a specific setting can be queried with metadata/getSetting/{name}
+
+All settings can be queried with /metadata/getSettings
 }
 \seealso{
-Other nbaR.TaxonClient-wrappers: \code{\link{taxon_count_distinct_values_per_group}},
-  \code{\link{taxon_count_distinct_values}},
-  \code{\link{taxon_count}},
-  \code{\link{taxon_download_query}},
-  \code{\link{taxon_dwca_get_data_set_names}},
-  \code{\link{taxon_dwca_get_data_set}},
-  \code{\link{taxon_dwca_query}},
-  \code{\link{taxon_find_by_ids}},
-  \code{\link{taxon_find}},
-  \code{\link{taxon_get_distinct_values_per_group}},
-  \code{\link{taxon_get_distinct_values}},
-  \code{\link{taxon_get_field_info}},
-  \code{\link{taxon_get_paths}},
-  \code{\link{taxon_get_setting}},
-  \code{\link{taxon_group_by_scientific_name}},
-  \code{\link{taxon_is_operator_allowed}},
-  \code{\link{taxon_query}}
+Other nbaR.TaxonClient-wrappers: 
+\code{\link{taxon_count_distinct_values_per_group}()},
+\code{\link{taxon_count_distinct_values}()},
+\code{\link{taxon_count}()},
+\code{\link{taxon_download_query}()},
+\code{\link{taxon_dwca_get_data_set_names}()},
+\code{\link{taxon_dwca_get_data_set}()},
+\code{\link{taxon_dwca_query}()},
+\code{\link{taxon_find_by_ids}()},
+\code{\link{taxon_find}()},
+\code{\link{taxon_get_distinct_values_per_group}()},
+\code{\link{taxon_get_distinct_values}()},
+\code{\link{taxon_get_field_info}()},
+\code{\link{taxon_get_paths}()},
+\code{\link{taxon_group_by_scientific_name}()},
+\code{\link{taxon_is_operator_allowed}()},
+\code{\link{taxon_query}()}
+
+Other nbaR.TaxonClient-wrappers: 
+\code{\link{taxon_count_distinct_values_per_group}()},
+\code{\link{taxon_count_distinct_values}()},
+\code{\link{taxon_count}()},
+\code{\link{taxon_download_query}()},
+\code{\link{taxon_dwca_get_data_set_names}()},
+\code{\link{taxon_dwca_get_data_set}()},
+\code{\link{taxon_dwca_query}()},
+\code{\link{taxon_find_by_ids}()},
+\code{\link{taxon_find}()},
+\code{\link{taxon_get_distinct_values_per_group}()},
+\code{\link{taxon_get_distinct_values}()},
+\code{\link{taxon_get_field_info}()},
+\code{\link{taxon_get_paths}()},
+\code{\link{taxon_group_by_scientific_name}()},
+\code{\link{taxon_is_operator_allowed}()},
+\code{\link{taxon_query}()}
 }
 \concept{nbaR.TaxonClient-wrappers}

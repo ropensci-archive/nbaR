@@ -4,9 +4,16 @@
 \alias{taxon_query}
 \title{Query for taxa}
 \usage{
-taxon_query(queryParams = list(), returnType = "data.frame", ...)
+taxon_query(
+  defaultClassification.genus = NULL,
+  queryParams = list(),
+  returnType = "data.frame",
+  ...
+)
 }
 \arguments{
+\item{defaultClassification.genus}{Example query param, type:}
+
 \item{queryParams}{Named list or vector with names being the fields to be queried and values being the values to match}
 
 \item{returnType}{Either \code{list} or \code{data.frame} (default)}
@@ -24,22 +31,22 @@ from class \code{ TaxonClient}.
 Search for taxa (GET) using query parameters or a querySpec JSON
 }
 \seealso{
-Other nbaR.TaxonClient-wrappers: \code{\link{taxon_count_distinct_values_per_group}},
-  \code{\link{taxon_count_distinct_values}},
-  \code{\link{taxon_count}},
-  \code{\link{taxon_download_query}},
-  \code{\link{taxon_dwca_get_data_set_names}},
-  \code{\link{taxon_dwca_get_data_set}},
-  \code{\link{taxon_dwca_query}},
-  \code{\link{taxon_find_by_ids}},
-  \code{\link{taxon_find}},
-  \code{\link{taxon_get_distinct_values_per_group}},
-  \code{\link{taxon_get_distinct_values}},
-  \code{\link{taxon_get_field_info}},
-  \code{\link{taxon_get_paths}},
-  \code{\link{taxon_get_settings}},
-  \code{\link{taxon_get_setting}},
-  \code{\link{taxon_group_by_scientific_name}},
-  \code{\link{taxon_is_operator_allowed}}
+Other nbaR.TaxonClient-wrappers: 
+\code{\link{taxon_count_distinct_values_per_group}()},
+\code{\link{taxon_count_distinct_values}()},
+\code{\link{taxon_count}()},
+\code{\link{taxon_download_query}()},
+\code{\link{taxon_dwca_get_data_set_names}()},
+\code{\link{taxon_dwca_get_data_set}()},
+\code{\link{taxon_dwca_query}()},
+\code{\link{taxon_find_by_ids}()},
+\code{\link{taxon_find}()},
+\code{\link{taxon_get_distinct_values_per_group}()},
+\code{\link{taxon_get_distinct_values}()},
+\code{\link{taxon_get_field_info}()},
+\code{\link{taxon_get_paths}()},
+\code{\link{taxon_get_settings}()},
+\code{\link{taxon_group_by_scientific_name}()},
+\code{\link{taxon_is_operator_allowed}()}
 }
 \concept{nbaR.TaxonClient-wrappers}

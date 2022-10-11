@@ -4,8 +4,12 @@
 \alias{multimedia_get_distinct_values_per_group}
 \title{Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by}
 \usage{
-multimedia_get_distinct_values_per_group(group = NULL, field = NULL,
-  returnType = "data.frame", ...)
+multimedia_get_distinct_values_per_group(
+  group = NULL,
+  field = NULL,
+  returnType = "data.frame",
+  ...
+)
 }
 \arguments{
 \item{group}{name of field in the multimedia object you want to group by, type:}
@@ -23,22 +27,21 @@ scalar
 This is a wrapper for the method \code{ get_distinct_values_per_group }
 from class \code{ MultimediaClient}.
 }
-\details{
-See also endpoint /getDistinctValues
-}
 \seealso{
-Other nbaR.MultimediaClient-wrappers: \code{\link{multimedia_count_distinct_values_per_group}},
-  \code{\link{multimedia_count_distinct_values}},
-  \code{\link{multimedia_count}},
-  \code{\link{multimedia_download_query}},
-  \code{\link{multimedia_find_by_ids}},
-  \code{\link{multimedia_find}},
-  \code{\link{multimedia_get_distinct_values}},
-  \code{\link{multimedia_get_field_info}},
-  \code{\link{multimedia_get_paths}},
-  \code{\link{multimedia_get_settings}},
-  \code{\link{multimedia_get_setting}},
-  \code{\link{multimedia_is_operator_allowed}},
-  \code{\link{multimedia_query}}
+Other nbaR.MultimediaClient-wrappers: 
+\code{\link{multimedia_count_distinct_values_per_group}()},
+\code{\link{multimedia_count_distinct_values}()},
+\code{\link{multimedia_count}()},
+\code{\link{multimedia_download_query}()},
+\code{\link{multimedia_find_by_ids}()},
+\code{\link{multimedia_find}()},
+\code{\link{multimedia_get_distinct_values}()},
+\code{\link{multimedia_get_field_info}()},
+\code{\link{multimedia_get_paths}()},
+\code{\link{multimedia_get_settings}()},
+\code{\link{multimedia_get_setting}()},
+\code{\link{multimedia_is_operator_allowed}()},
+\code{\link{multimedia_query_with_name_resolution}()},
+\code{\link{multimedia_query}()}
 }
 \concept{nbaR.MultimediaClient-wrappers}

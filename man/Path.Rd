@@ -4,7 +4,11 @@
 \name{Path}
 \alias{Path}
 \title{Path Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # Path$new()
 }
@@ -18,12 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for Path objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{purePath}}{character}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -57,4 +55,94 @@ Model class for Path objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{purePath}}{character}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-Path-new}{\code{Path$new()}}
+\item \href{#method-Path-toList}{\code{Path$toList()}}
+\item \href{#method-Path-fromList}{\code{Path$fromList()}}
+\item \href{#method-Path-toJSONString}{\code{Path$toJSONString()}}
+\item \href{#method-Path-fromJSONString}{\code{Path$fromJSONString()}}
+\item \href{#method-Path-print}{\code{Path$print()}}
+\item \href{#method-Path-clone}{\code{Path$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Path-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Path-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Path$new(purePath)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Path-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-Path-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Path$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Path-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-Path-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Path$fromList(PathList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Path-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-Path-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Path$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Path-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-Path-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Path$fromJSONString(PathJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Path-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Path-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Path$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Path-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Path-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Path$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

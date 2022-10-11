@@ -4,7 +4,11 @@
 \name{Polygon}
 \alias{Polygon}
 \title{Polygon Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # Polygon$new()
 }
@@ -18,16 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for Polygon objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{crs}}{Crs}
-
-\item{\code{bbox}}{list(numeric)}
-
-\item{\code{coordinates}}{list(LngLatAlt)}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -61,4 +55,98 @@ Model class for Polygon objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{crs}}{Crs}
+
+\item{\code{bbox}}{list(numeric)}
+
+\item{\code{coordinates}}{list(LngLatAlt)}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-Polygon-new}{\code{Polygon$new()}}
+\item \href{#method-Polygon-toList}{\code{Polygon$toList()}}
+\item \href{#method-Polygon-fromList}{\code{Polygon$fromList()}}
+\item \href{#method-Polygon-toJSONString}{\code{Polygon$toJSONString()}}
+\item \href{#method-Polygon-fromJSONString}{\code{Polygon$fromJSONString()}}
+\item \href{#method-Polygon-print}{\code{Polygon$print()}}
+\item \href{#method-Polygon-clone}{\code{Polygon$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Polygon-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Polygon-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Polygon$new(crs, bbox, coordinates)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Polygon-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-Polygon-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Polygon$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Polygon-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-Polygon-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Polygon$fromList(PolygonList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Polygon-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-Polygon-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Polygon$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Polygon-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-Polygon-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Polygon$fromJSONString(PolygonJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Polygon-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Polygon-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Polygon$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Polygon-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Polygon-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Polygon$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

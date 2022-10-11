@@ -4,7 +4,9 @@
 \name{GeoClient}
 \alias{GeoClient}
 \title{Geo operations}
-\format{R6 class}
+\format{
+R6 class
+}
 \usage{
 # client <- GeoClient$new()
 }
@@ -15,14 +17,6 @@ of the NBA. Each endpoint is available as a class method
 pointing to a NBA server and a user Agent can be specified
 by the user (see section 'Fields' below).
 }
-\section{Fields}{
-
-\describe{
-\item{\code{basePath}}{Stores url path of the request, defaults to http://api.biodiversitydata.nl/v2}
-
-\item{\code{userAgent}}{Set the user agent of the request, defaults to nbaR/0.1.0}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -33,10 +27,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
-
-        \item \code{ queryParams } : named list or vector with query parameters
-
+        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation 
+        
+        \item \code{ queryParams } : named list or vector with query parameters 
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -49,10 +43,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-        \item \code{ field } : name of field in taxon object
-
-
+        
+        \item \code{ field } : name of field in taxon object 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -65,10 +59,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-        \item \code{ group } : name of field in the geo area object to group by \item \code{ field } : name of field in the geo area object
-
-
+        
+        \item \code{ group } : name of field in the geo area object to group by \item \code{ field } : name of field in the geo area object 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -81,10 +75,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-        \item \code{ id } : id of geo area
-
-
+        
+        \item \code{ id } : id of geo area 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -97,10 +91,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-        \item \code{ ids } : ids of multiple geo areas, separated by comma
-
-
+        
+        \item \code{ ids } : ids of multiple geo areas, separated by comma 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -113,10 +107,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-        \item \code{ field } : name of field in geo area object
-
-
+        
+        \item \code{ field } : name of field in geo area object 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -129,10 +123,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-        \item \code{ group } : name of field in the geo area object to group by \item \code{ field } : name of field in the geo area object
-
-
+        
+        \item \code{ group } : name of field in the geo area object to group by \item \code{ field } : name of field in the geo area object 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -145,10 +139,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-
-
-
+        
+        
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -161,10 +155,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-        \item \code{ locality } :
-
-
+        
+        \item \code{ locality } :  
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -177,10 +171,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-
-
-
+        
+        
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -193,10 +187,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-        \item \code{ name } : name of setting
-
-
+        
+        \item \code{ name } : name of setting 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -209,10 +203,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-
-
-
+        
+        
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -225,10 +219,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-        \item \code{ field } : Field in geo area document \item \code{ operator } : operator
-
-
+        
+        \item \code{ field } : Field in geo area document \item \code{ operator } : operator 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -241,10 +235,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
-
-        \item \code{ queryParams } : named list or vector with query parameters
-
+        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation 
+        
+        \item \code{ queryParams } : named list or vector with query parameters 
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -253,4 +247,217 @@ by the user (see section 'Fields' below).
 }
 }
 
-\keyword{datasets}
+\section{Super class}{
+\code{\link[nbaR:ApiClient]{nbaR::ApiClient}} -> \code{GeoClient}
+}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{basePath}}{Stores url path of the request, defaults to http://api.biodiversitydata.nl/v2}
+
+\item{\code{userAgent}}{Set the user agent of the request, defaults to nbaR/0.1.0}
+}
+\if{html}{\out{</div>}}
+}
+\section{Active bindings}{
+\if{html}{\out{<div class="r6-active-bindings">}}
+\describe{
+\item{\code{basePath}}{Stores url path of the request, defaults to http://api.biodiversitydata.nl/v2}
+
+\item{\code{userAgent}}{Set the user agent of the request, defaults to nbaR/0.1.0}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-GeoClient-new}{\code{GeoClient$new()}}
+\item \href{#method-GeoClient-count}{\code{GeoClient$count()}}
+\item \href{#method-GeoClient-count_distinct_values}{\code{GeoClient$count_distinct_values()}}
+\item \href{#method-GeoClient-count_distinct_values_per_group}{\code{GeoClient$count_distinct_values_per_group()}}
+\item \href{#method-GeoClient-find}{\code{GeoClient$find()}}
+\item \href{#method-GeoClient-find_by_ids}{\code{GeoClient$find_by_ids()}}
+\item \href{#method-GeoClient-get_distinct_values}{\code{GeoClient$get_distinct_values()}}
+\item \href{#method-GeoClient-get_distinct_values_per_group}{\code{GeoClient$get_distinct_values_per_group()}}
+\item \href{#method-GeoClient-get_field_info}{\code{GeoClient$get_field_info()}}
+\item \href{#method-GeoClient-get_geo_json_for_locality}{\code{GeoClient$get_geo_json_for_locality()}}
+\item \href{#method-GeoClient-get_paths}{\code{GeoClient$get_paths()}}
+\item \href{#method-GeoClient-get_setting}{\code{GeoClient$get_setting()}}
+\item \href{#method-GeoClient-get_settings}{\code{GeoClient$get_settings()}}
+\item \href{#method-GeoClient-is_operator_allowed}{\code{GeoClient$is_operator_allowed()}}
+\item \href{#method-GeoClient-query}{\code{GeoClient$query()}}
+\item \href{#method-GeoClient-print}{\code{GeoClient$print()}}
+\item \href{#method-GeoClient-clone}{\code{GeoClient$clone()}}
+}
+}
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="nbaR" data-topic="ApiClient" data-id="callApi"><a href='../../nbaR/html/ApiClient.html#method-ApiClient-callApi'><code>nbaR::ApiClient$callApi()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="nbaR" data-topic="ApiClient" data-id="handleError"><a href='../../nbaR/html/ApiClient.html#method-ApiClient-handleError'><code>nbaR::ApiClient$handleError()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="nbaR" data-topic="ApiClient" data-id="ping"><a href='../../nbaR/html/ApiClient.html#method-ApiClient-ping'><code>nbaR::ApiClient$ping()</code></a></span></li>
+</ul>
+</details>
+}}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoClient-new"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoClient-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoClient$new(basePath, userAgent)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoClient-count"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoClient-count}{}}}
+\subsection{Method \code{count()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoClient$count(querySpec = NULL, queryParams = list(), ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoClient-count_distinct_values"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoClient-count_distinct_values}{}}}
+\subsection{Method \code{count_distinct_values()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoClient$count_distinct_values(field = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoClient-count_distinct_values_per_group"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoClient-count_distinct_values_per_group}{}}}
+\subsection{Method \code{count_distinct_values_per_group()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoClient$count_distinct_values_per_group(group = NULL, field = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoClient-find"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoClient-find}{}}}
+\subsection{Method \code{find()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoClient$find(id = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoClient-find_by_ids"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoClient-find_by_ids}{}}}
+\subsection{Method \code{find_by_ids()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoClient$find_by_ids(ids = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoClient-get_distinct_values"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoClient-get_distinct_values}{}}}
+\subsection{Method \code{get_distinct_values()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoClient$get_distinct_values(field = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoClient-get_distinct_values_per_group"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoClient-get_distinct_values_per_group}{}}}
+\subsection{Method \code{get_distinct_values_per_group()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoClient$get_distinct_values_per_group(group = NULL, field = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoClient-get_field_info"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoClient-get_field_info}{}}}
+\subsection{Method \code{get_field_info()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoClient$get_field_info(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoClient-get_geo_json_for_locality"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoClient-get_geo_json_for_locality}{}}}
+\subsection{Method \code{get_geo_json_for_locality()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoClient$get_geo_json_for_locality(locality = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoClient-get_paths"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoClient-get_paths}{}}}
+\subsection{Method \code{get_paths()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoClient$get_paths(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoClient-get_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoClient-get_setting}{}}}
+\subsection{Method \code{get_setting()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoClient$get_setting(name = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoClient-get_settings"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoClient-get_settings}{}}}
+\subsection{Method \code{get_settings()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoClient$get_settings(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoClient-is_operator_allowed"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoClient-is_operator_allowed}{}}}
+\subsection{Method \code{is_operator_allowed()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoClient$is_operator_allowed(field = NULL, operator = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoClient-query"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoClient-query}{}}}
+\subsection{Method \code{query()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoClient$query(querySpec = NULL, queryParams = list(), ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoClient-print"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoClient-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoClient$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoClient-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoClient-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoClient$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

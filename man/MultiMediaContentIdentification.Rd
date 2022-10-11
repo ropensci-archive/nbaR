@@ -4,7 +4,11 @@
 \name{MultiMediaContentIdentification}
 \alias{MultiMediaContentIdentification}
 \title{MultiMediaContentIdentification Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # MultiMediaContentIdentification$new()
 }
@@ -18,30 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for MultiMediaContentIdentification objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{taxonRank}}{character}
-
-\item{\code{scientificName}}{ScientificName}
-
-\item{\code{typeStatus}}{character}
-
-\item{\code{dateIdentified}}{character}
-
-\item{\code{defaultClassification}}{DefaultClassification}
-
-\item{\code{systemClassification}}{list(Monomial)}
-
-\item{\code{vernacularNames}}{list(VernacularName)}
-
-\item{\code{identificationQualifiers}}{list(character)}
-
-\item{\code{identifiers}}{list(Agent)}
-
-\item{\code{taxonomicEnrichments}}{list(TaxonomicEnrichment)}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -75,4 +55,129 @@ Model class for MultiMediaContentIdentification objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{taxonRank}}{character}
+
+\item{\code{scientificName}}{ScientificName}
+
+\item{\code{typeStatus}}{character}
+
+\item{\code{dateIdentified}}{character}
+
+\item{\code{defaultClassification}}{DefaultClassification}
+
+\item{\code{systemClassification}}{list(Monomial)}
+
+\item{\code{vernacularNames}}{list(VernacularName)}
+
+\item{\code{identificationQualifiers}}{list(character)}
+
+\item{\code{identifiers}}{list(Agent)}
+
+\item{\code{taxonomicEnrichments}}{list(TaxonomicEnrichment)}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-MultiMediaContentIdentification-new}{\code{MultiMediaContentIdentification$new()}}
+\item \href{#method-MultiMediaContentIdentification-toList}{\code{MultiMediaContentIdentification$toList()}}
+\item \href{#method-MultiMediaContentIdentification-fromList}{\code{MultiMediaContentIdentification$fromList()}}
+\item \href{#method-MultiMediaContentIdentification-toJSONString}{\code{MultiMediaContentIdentification$toJSONString()}}
+\item \href{#method-MultiMediaContentIdentification-fromJSONString}{\code{MultiMediaContentIdentification$fromJSONString()}}
+\item \href{#method-MultiMediaContentIdentification-print}{\code{MultiMediaContentIdentification$print()}}
+\item \href{#method-MultiMediaContentIdentification-clone}{\code{MultiMediaContentIdentification$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiMediaContentIdentification-new"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiMediaContentIdentification-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiMediaContentIdentification$new(
+  taxonRank,
+  scientificName,
+  typeStatus,
+  dateIdentified,
+  defaultClassification,
+  systemClassification,
+  vernacularNames,
+  identificationQualifiers,
+  identifiers,
+  taxonomicEnrichments
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiMediaContentIdentification-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiMediaContentIdentification-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiMediaContentIdentification$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiMediaContentIdentification-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiMediaContentIdentification-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiMediaContentIdentification$fromList(
+  MultiMediaContentIdentificationList,
+  typeMapping = NULL
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiMediaContentIdentification-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiMediaContentIdentification-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiMediaContentIdentification$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiMediaContentIdentification-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiMediaContentIdentification-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiMediaContentIdentification$fromJSONString(
+  MultiMediaContentIdentificationJson,
+  typeMapping = NULL
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiMediaContentIdentification-print"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiMediaContentIdentification-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiMediaContentIdentification$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiMediaContentIdentification-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiMediaContentIdentification-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiMediaContentIdentification$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

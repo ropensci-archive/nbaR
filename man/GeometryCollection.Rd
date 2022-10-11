@@ -4,7 +4,11 @@
 \name{GeometryCollection}
 \alias{GeometryCollection}
 \title{GeometryCollection Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # GeometryCollection$new()
 }
@@ -18,16 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for GeometryCollection objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{crs}}{Crs}
-
-\item{\code{bbox}}{list(numeric)}
-
-\item{\code{geometries}}{list(list)}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -61,4 +55,98 @@ Model class for GeometryCollection objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{crs}}{Crs}
+
+\item{\code{bbox}}{list(numeric)}
+
+\item{\code{geometries}}{list(list)}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-GeometryCollection-new}{\code{GeometryCollection$new()}}
+\item \href{#method-GeometryCollection-toList}{\code{GeometryCollection$toList()}}
+\item \href{#method-GeometryCollection-fromList}{\code{GeometryCollection$fromList()}}
+\item \href{#method-GeometryCollection-toJSONString}{\code{GeometryCollection$toJSONString()}}
+\item \href{#method-GeometryCollection-fromJSONString}{\code{GeometryCollection$fromJSONString()}}
+\item \href{#method-GeometryCollection-print}{\code{GeometryCollection$print()}}
+\item \href{#method-GeometryCollection-clone}{\code{GeometryCollection$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeometryCollection-new"></a>}}
+\if{latex}{\out{\hypertarget{method-GeometryCollection-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeometryCollection$new(crs, bbox, geometries)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeometryCollection-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-GeometryCollection-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeometryCollection$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeometryCollection-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-GeometryCollection-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeometryCollection$fromList(GeometryCollectionList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeometryCollection-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-GeometryCollection-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeometryCollection$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeometryCollection-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-GeometryCollection-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeometryCollection$fromJSONString(GeometryCollectionJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeometryCollection-print"></a>}}
+\if{latex}{\out{\hypertarget{method-GeometryCollection-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeometryCollection$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeometryCollection-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-GeometryCollection-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeometryCollection$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

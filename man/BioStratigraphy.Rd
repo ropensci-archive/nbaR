@@ -4,7 +4,11 @@
 \name{BioStratigraphy}
 \alias{BioStratigraphy}
 \title{BioStratigraphy Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # BioStratigraphy$new()
 }
@@ -18,40 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for BioStratigraphy objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{youngBioDatingQualifier}}{character}
-
-\item{\code{youngBioName}}{character}
-
-\item{\code{youngFossilZone}}{character}
-
-\item{\code{youngFossilSubZone}}{character}
-
-\item{\code{youngBioCertainty}}{character}
-
-\item{\code{youngStratType}}{character}
-
-\item{\code{bioDatingQualifier}}{character}
-
-\item{\code{bioPreferredFlag}}{logical}
-
-\item{\code{rangePosition}}{character}
-
-\item{\code{oldBioName}}{character}
-
-\item{\code{bioIdentifier}}{character}
-
-\item{\code{oldFossilzone}}{character}
-
-\item{\code{oldFossilSubzone}}{character}
-
-\item{\code{oldBioCertainty}}{character}
-
-\item{\code{oldBioStratType}}{character}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -85,4 +55,138 @@ Model class for BioStratigraphy objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{youngBioDatingQualifier}}{character}
+
+\item{\code{youngBioName}}{character}
+
+\item{\code{youngFossilZone}}{character}
+
+\item{\code{youngFossilSubZone}}{character}
+
+\item{\code{youngBioCertainty}}{character}
+
+\item{\code{youngStratType}}{character}
+
+\item{\code{bioDatingQualifier}}{character}
+
+\item{\code{bioPreferredFlag}}{logical}
+
+\item{\code{rangePosition}}{character}
+
+\item{\code{oldBioName}}{character}
+
+\item{\code{bioIdentifier}}{character}
+
+\item{\code{oldFossilzone}}{character}
+
+\item{\code{oldFossilSubzone}}{character}
+
+\item{\code{oldBioCertainty}}{character}
+
+\item{\code{oldBioStratType}}{character}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-BioStratigraphy-new}{\code{BioStratigraphy$new()}}
+\item \href{#method-BioStratigraphy-toList}{\code{BioStratigraphy$toList()}}
+\item \href{#method-BioStratigraphy-fromList}{\code{BioStratigraphy$fromList()}}
+\item \href{#method-BioStratigraphy-toJSONString}{\code{BioStratigraphy$toJSONString()}}
+\item \href{#method-BioStratigraphy-fromJSONString}{\code{BioStratigraphy$fromJSONString()}}
+\item \href{#method-BioStratigraphy-print}{\code{BioStratigraphy$print()}}
+\item \href{#method-BioStratigraphy-clone}{\code{BioStratigraphy$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-BioStratigraphy-new"></a>}}
+\if{latex}{\out{\hypertarget{method-BioStratigraphy-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{BioStratigraphy$new(
+  youngBioDatingQualifier,
+  youngBioName,
+  youngFossilZone,
+  youngFossilSubZone,
+  youngBioCertainty,
+  youngStratType,
+  bioDatingQualifier,
+  bioPreferredFlag,
+  rangePosition,
+  oldBioName,
+  bioIdentifier,
+  oldFossilzone,
+  oldFossilSubzone,
+  oldBioCertainty,
+  oldBioStratType
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-BioStratigraphy-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-BioStratigraphy-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{BioStratigraphy$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-BioStratigraphy-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-BioStratigraphy-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{BioStratigraphy$fromList(BioStratigraphyList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-BioStratigraphy-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-BioStratigraphy-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{BioStratigraphy$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-BioStratigraphy-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-BioStratigraphy-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{BioStratigraphy$fromJSONString(BioStratigraphyJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-BioStratigraphy-print"></a>}}
+\if{latex}{\out{\hypertarget{method-BioStratigraphy-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{BioStratigraphy$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-BioStratigraphy-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-BioStratigraphy-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{BioStratigraphy$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

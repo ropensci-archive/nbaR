@@ -4,7 +4,11 @@
 \name{FeatureCollection}
 \alias{FeatureCollection}
 \title{FeatureCollection Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # FeatureCollection$new()
 }
@@ -18,16 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for FeatureCollection objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{crs}}{Crs}
-
-\item{\code{bbox}}{list(numeric)}
-
-\item{\code{features}}{list(Feature)}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -61,4 +55,98 @@ Model class for FeatureCollection objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{crs}}{Crs}
+
+\item{\code{bbox}}{list(numeric)}
+
+\item{\code{features}}{list(Feature)}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-FeatureCollection-new}{\code{FeatureCollection$new()}}
+\item \href{#method-FeatureCollection-toList}{\code{FeatureCollection$toList()}}
+\item \href{#method-FeatureCollection-fromList}{\code{FeatureCollection$fromList()}}
+\item \href{#method-FeatureCollection-toJSONString}{\code{FeatureCollection$toJSONString()}}
+\item \href{#method-FeatureCollection-fromJSONString}{\code{FeatureCollection$fromJSONString()}}
+\item \href{#method-FeatureCollection-print}{\code{FeatureCollection$print()}}
+\item \href{#method-FeatureCollection-clone}{\code{FeatureCollection$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-FeatureCollection-new"></a>}}
+\if{latex}{\out{\hypertarget{method-FeatureCollection-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FeatureCollection$new(crs, bbox, features)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-FeatureCollection-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-FeatureCollection-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FeatureCollection$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-FeatureCollection-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-FeatureCollection-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FeatureCollection$fromList(FeatureCollectionList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-FeatureCollection-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-FeatureCollection-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FeatureCollection$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-FeatureCollection-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-FeatureCollection-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FeatureCollection$fromJSONString(FeatureCollectionJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-FeatureCollection-print"></a>}}
+\if{latex}{\out{\hypertarget{method-FeatureCollection-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FeatureCollection$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-FeatureCollection-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-FeatureCollection-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FeatureCollection$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

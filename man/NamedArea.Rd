@@ -4,7 +4,11 @@
 \name{NamedArea}
 \alias{NamedArea}
 \title{NamedArea Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # NamedArea$new()
 }
@@ -18,14 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for NamedArea objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{areaClass}}{character}
-
-\item{\code{areaName}}{character}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -59,4 +55,96 @@ Model class for NamedArea objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{areaClass}}{character}
+
+\item{\code{areaName}}{character}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-NamedArea-new}{\code{NamedArea$new()}}
+\item \href{#method-NamedArea-toList}{\code{NamedArea$toList()}}
+\item \href{#method-NamedArea-fromList}{\code{NamedArea$fromList()}}
+\item \href{#method-NamedArea-toJSONString}{\code{NamedArea$toJSONString()}}
+\item \href{#method-NamedArea-fromJSONString}{\code{NamedArea$fromJSONString()}}
+\item \href{#method-NamedArea-print}{\code{NamedArea$print()}}
+\item \href{#method-NamedArea-clone}{\code{NamedArea$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-NamedArea-new"></a>}}
+\if{latex}{\out{\hypertarget{method-NamedArea-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NamedArea$new(areaClass, areaName)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-NamedArea-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-NamedArea-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NamedArea$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-NamedArea-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-NamedArea-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NamedArea$fromList(NamedAreaList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-NamedArea-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-NamedArea-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NamedArea$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-NamedArea-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-NamedArea-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NamedArea$fromJSONString(NamedAreaJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-NamedArea-print"></a>}}
+\if{latex}{\out{\hypertarget{method-NamedArea-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NamedArea$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-NamedArea-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-NamedArea-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NamedArea$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

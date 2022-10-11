@@ -4,12 +4,19 @@
 \alias{multimedia_is_operator_allowed}
 \title{Checks if a given operator is allowed for a given field}
 \usage{
-multimedia_is_operator_allowed(field = NULL, operator = NULL, ...)
+multimedia_is_operator_allowed(
+  field = NULL,
+  operator = NULL,
+  returnType = "data.frame",
+  ...
+)
 }
 \arguments{
 \item{field}{multimedia document field, type:}
 
 \item{operator}{operator, type:}
+
+\item{returnType}{Either \code{list} or \code{data.frame} (default)}
 
 \item{...}{additional parameters passed to is_operator_allowed from class nbaR.MultimediaClient}
 }
@@ -24,18 +31,20 @@ from class \code{ MultimediaClient}.
 See also metadata/getFieldInfo
 }
 \seealso{
-Other nbaR.MultimediaClient-wrappers: \code{\link{multimedia_count_distinct_values_per_group}},
-  \code{\link{multimedia_count_distinct_values}},
-  \code{\link{multimedia_count}},
-  \code{\link{multimedia_download_query}},
-  \code{\link{multimedia_find_by_ids}},
-  \code{\link{multimedia_find}},
-  \code{\link{multimedia_get_distinct_values_per_group}},
-  \code{\link{multimedia_get_distinct_values}},
-  \code{\link{multimedia_get_field_info}},
-  \code{\link{multimedia_get_paths}},
-  \code{\link{multimedia_get_settings}},
-  \code{\link{multimedia_get_setting}},
-  \code{\link{multimedia_query}}
+Other nbaR.MultimediaClient-wrappers: 
+\code{\link{multimedia_count_distinct_values_per_group}()},
+\code{\link{multimedia_count_distinct_values}()},
+\code{\link{multimedia_count}()},
+\code{\link{multimedia_download_query}()},
+\code{\link{multimedia_find_by_ids}()},
+\code{\link{multimedia_find}()},
+\code{\link{multimedia_get_distinct_values_per_group}()},
+\code{\link{multimedia_get_distinct_values}()},
+\code{\link{multimedia_get_field_info}()},
+\code{\link{multimedia_get_paths}()},
+\code{\link{multimedia_get_settings}()},
+\code{\link{multimedia_get_setting}()},
+\code{\link{multimedia_query_with_name_resolution}()},
+\code{\link{multimedia_query}()}
 }
 \concept{nbaR.MultimediaClient-wrappers}

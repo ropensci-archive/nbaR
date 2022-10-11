@@ -1,4 +1,4 @@
-# Netherlands Biodiversity API
+# Netherlands Biodiversity Api
 #
 # Access to the digitised Natural History collection at the Naturalis Biodiversity Center
 #
@@ -16,7 +16,7 @@
 #' @docType class
 #'
 #' @format R6 class
-#'
+#' 
 #' @field basePath Stores url path of the request, defaults to http://api.biodiversitydata.nl/v2
 #' @field userAgent Set the user agent of the request, defaults to nbaR/0.1.0
 #'
@@ -24,7 +24,7 @@
 #'
 #' @usage
 #' # client <- GeoClient$new()
-#'
+#' 
 #' @section Methods:
 #' \describe{
 #' \item{\code{ count }}{
@@ -34,10 +34,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
-#'
-#'         \item \code{ queryParams } : named list or vector with query parameters
-#'
+#'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation 
+#'         
+#'         \item \code{ queryParams } : named list or vector with query parameters 
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -50,10 +50,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'         \item \code{ field } : name of field in taxon object
-#'
-#'
+#'         
+#'         \item \code{ field } : name of field in taxon object 
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -66,10 +66,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'         \item \code{ group } : name of field in the geo area object to group by \item \code{ field } : name of field in the geo area object
-#'
-#'
+#'         
+#'         \item \code{ group } : name of field in the geo area object to group by \item \code{ field } : name of field in the geo area object 
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -82,10 +82,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'         \item \code{ id } : id of geo area
-#'
-#'
+#'         
+#'         \item \code{ id } : id of geo area 
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -98,10 +98,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'         \item \code{ ids } : ids of multiple geo areas, separated by comma
-#'
-#'
+#'         
+#'         \item \code{ ids } : ids of multiple geo areas, separated by comma 
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -114,10 +114,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'         \item \code{ field } : name of field in geo area object
-#'
-#'
+#'         
+#'         \item \code{ field } : name of field in geo area object 
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -130,10 +130,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'         \item \code{ group } : name of field in the geo area object to group by \item \code{ field } : name of field in the geo area object
-#'
-#'
+#'         
+#'         \item \code{ group } : name of field in the geo area object to group by \item \code{ field } : name of field in the geo area object 
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -146,10 +146,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'
-#'
-#'
+#'         
+#'         
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -162,10 +162,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'         \item \code{ locality } :
-#'
-#'
+#'         
+#'         \item \code{ locality } :  
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -178,10 +178,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'
-#'
-#'
+#'         
+#'         
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -194,10 +194,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'         \item \code{ name } : name of setting
-#'
-#'
+#'         
+#'         \item \code{ name } : name of setting 
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -210,10 +210,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'
-#'
-#'
+#'         
+#'         
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -226,10 +226,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'         \item \code{ field } : Field in geo area document \item \code{ operator } : operator
-#'
-#'
+#'         
+#'         \item \code{ field } : Field in geo area document \item \code{ operator } : operator 
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -242,10 +242,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
-#'
-#'         \item \code{ queryParams } : named list or vector with query parameters
-#'
+#'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation 
+#'         
+#'         \item \code{ queryParams } : named list or vector with query parameters 
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -255,512 +255,474 @@
 #'
 #' @export
 GeoClient <- R6::R6Class(
-  "GeoClient",
-  inherit = ApiClient,
-  public = list(
-    initialize = function(basePath, userAgent) {
-      super$initialize(basePath, userAgent)
+    "GeoClient",
+    inherit = ApiClient,
+    public = list(
+        initialize = function(basePath, userAgent){
+        super$initialize(basePath, userAgent)
     },
 
-    count = function(
-                         querySpec = NULL,
-                         queryParams = list(),
-                         ...) {
-      headerParams <- character()
-      if (!is.null(querySpec) & length(queryParams) > 0) {
-        stop("Either querySpec or queryParams argument allowed, not both.")
-      }
-
-      if (!missing(`querySpec`)) {
-        ## querySpec can be either JSON string or object of type QuerySpec.
-        param <- ifelse(typeof(`querySpec`) == "environment",
-          `querySpec`$toJSONString(),
-          `querySpec`
-        )
-        queryParams["querySpec"] <- param
-      }
-      ## querySpec parameter has underscore in NBA, omitted in argument
-      names(queryParams) <- gsub(
-        "querySpec",
-        "_querySpec",
-        names(queryParams)
-      )
-
-      urlPath <- "/geo/count"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.integer(httr::content(response))
-        Response$new(result, response)
-      }
-    },
-    count_distinct_values = function(
-                                         field = NULL,
-                                         ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/geo/countDistinctValues/{field}"
-
-      if (!missing(`field`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
-      }
-
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is a "map container" and will be parsed to list
-        result <- httr::content(response, simplifyVector = TRUE)
-        Response$new(result, response)
-      }
-    },
-    count_distinct_values_per_group = function(
-                                                   group = NULL,
-                                                   field = NULL,
-                                                   ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/geo/countDistinctValuesPerGroup/{group}/{field}"
-
-      if (!missing(`group`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
-      }
-
-
-      if (!missing(`field`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
-      }
-
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is a "map container" and will be parsed to list
-        result <- httr::content(response, simplifyVector = TRUE)
-        Response$new(result, response)
-      }
-    },
-    find = function(
-                        id = NULL,
-                        ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/geo/find/{id}"
-
-      if (!missing(`id`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "id", "\\}"), `id`, urlPath)
-      }
-
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is object of model class
-        returnObject <- GeoArea$new()
-        ## if API call result is QueryResult,
-        ## list items must be mapped to model class
-        result <- returnObject$fromList(
-          httr::content(response),
-          typeMapping = list(item = private$getBaseDataType())
-        )
-        Response$new(result, response)
-      }
-    },
-    find_by_ids = function(
-                               ids = NULL,
-                               ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/geo/findByIds/{ids}"
-
-      if (!missing(`ids`)) {
-        ## build URL for path param
-        ## input can be vector or string with comma separated items
-        ## API takes string, so translate vector, if present
-        if (length(`ids`) > 1) {
-          ids <- paste(ids, collapse = ",")
+      count = function(
+          querySpec = NULL,
+          queryParams = list(),
+          ... ) {
+        headerParams <- character()
+        if (!is.null(querySpec) & length(queryParams) > 0) {
+            stop("Either querySpec or queryParams argument allowed, not both.")
         }
-        urlPath <- gsub(paste0("\\{", "ids", "\\}"), `ids`, urlPath)
-      }
+            
+        if (!missing(`querySpec`)) {
+          ## querySpec can be either JSON string or object of type QuerySpec. 
+          param <- ifelse(typeof(`querySpec`) == "environment",
+                          `querySpec`$toJSONString(),
+                          `querySpec`)    
+          queryParams["querySpec"] <- param
+        }
+        ## querySpec parameter has underscore in NBA, omitted in argument
+        names(queryParams) <- gsub("querySpec",
+                                    "querySpec",
+                                    names(queryParams))
 
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
+        urlPath <- "/geo/count"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is object of model class
-        returnObject <- GeoArea$new()
-        ## API call result is "list container"
-        result <- lapply(
-          httr::content(response),
-          function(x) {
-            cl <- returnObject$clone()
-            cl$fromList(x,
-              typeMapping = list(item = private$getBaseDataType())
-            )
-          }
-        )
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.integer(httr::content(response))
+            Response$new(result, response)
+        }        
     },
-    get_distinct_values = function(
-                                       field = NULL,
-                                       ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/geo/getDistinctValues/{field}"
+      count_distinct_values = function(
+          field = NULL,
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/geo/countDistinctValues/{field}"
+            
+        if (!missing(`field`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
+        }
 
-      if (!missing(`field`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
-      }
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is a "map container" and will be parsed to list
-        result <- httr::content(response, simplifyVector = TRUE)
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is a "map container" and will be parsed to list 
+            result <- httr::content(response, simplifyVector = TRUE)
+            Response$new(result, response)
+        }        
     },
-    get_distinct_values_per_group = function(
-                                                 group = NULL,
-                                                 field = NULL,
-                                                 ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/geo/getDistinctValuesPerGroup/{group}/{field}"
+      count_distinct_values_per_group = function(
+          group = NULL,
+          field = NULL,
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/geo/countDistinctValuesPerGroup/{group}/{field}"
+            
+        if (!missing(`group`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
+        }
 
-      if (!missing(`group`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
-      }
+            
+        if (!missing(`field`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
+        }
 
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      if (!missing(`field`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
-      }
-
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.list(httr::content(response))
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is a "map container" and will be parsed to list 
+            result <- httr::content(response, simplifyVector = TRUE)
+            Response$new(result, response)
+        }        
     },
-    get_field_info = function(
-                                  ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/geo/metadata/getFieldInfo"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
+      find = function(
+          id = NULL,
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/geo/find/{id}"
+            
+        if (!missing(`id`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "id", "\\}"), `id`, urlPath)
+        }
 
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is a "map container" and will be parsed to list
-        result <- httr::content(response, simplifyVector = TRUE)
-        Response$new(result, response)
-      }
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is object of model class
+            returnObject <- GeoArea$new()
+            ## if API call result is QueryResult,
+            ## list items must be mapped to model class            
+            result <- returnObject$fromList(
+                httr::content(response),
+                  typeMapping = list(item = private$getBaseDataType()))
+            Response$new(result, response)
+        }        
     },
-    get_geo_json_for_locality = function(
-                                             locality = NULL,
-                                             ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/geo/getGeoJsonForLocality/{locality}"
+      find_by_ids = function(
+          ids = NULL,
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/geo/findByIds/{ids}"
+            
+        if (!missing(`ids`)) {
+            ## build URL for path param
+            ## input can be vector or string with comma separated items
+            ## API takes string, so translate vector, if present
+            if (length(`ids`) > 1) {
+                ids <- paste(ids, collapse = ",")
+            }
+            urlPath <- gsub(paste0("\\{", "ids", "\\}"), `ids`, urlPath)
+        }
 
-      if (!missing(`locality`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "locality", "\\}"), `locality`, urlPath)
-      }
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.list(httr::content(response))
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is object of model class
+            returnObject <- GeoArea$new()
+            ## API call result is "list container"
+            result <- lapply(httr::content(response),
+                             function(x) {
+                                 cl <- returnObject$clone()
+                                 cl$fromList(x,
+                                 typeMapping = list(item = private$getBaseDataType()))
+                                 })
+            Response$new(result, response)
+        }        
     },
-    get_paths = function(
-                             ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/geo/metadata/getPaths"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
+      get_distinct_values = function(
+          field = NULL,
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/geo/getDistinctValues/{field}"
+            
+        if (!missing(`field`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
+        }
 
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.character(httr::content(response))
-        Response$new(result, response)
-      }
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is a "map container" and will be parsed to list 
+            result <- httr::content(response, simplifyVector = TRUE)
+            Response$new(result, response)
+        }        
     },
-    get_setting = function(
-                               name = NULL,
-                               ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/geo/metadata/getSetting/{name}"
+      get_distinct_values_per_group = function(
+          group = NULL,
+          field = NULL,
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/geo/getDistinctValuesPerGroup/{group}/{field}"
+            
+        if (!missing(`group`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
+        }
 
-      if (!missing(`name`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
-      }
+            
+        if (!missing(`field`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
+        }
 
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.list(httr::content(response))
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.list(httr::content(response))
+            Response$new(result, response)
+        }        
     },
-    get_settings = function(
-                                ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/geo/metadata/getSettings"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
+      get_field_info = function(
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/geo/metadata/getFieldInfo"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is a "map container" and will be parsed to list
-        result <- httr::content(response, simplifyVector = TRUE)
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is a "map container" and will be parsed to list 
+            result <- httr::content(response, simplifyVector = TRUE)
+            Response$new(result, response)
+        }        
     },
-    is_operator_allowed = function(
-                                       field = NULL,
-                                       operator = NULL,
-                                       ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/geo/metadata/isOperatorAllowed/{field}/{operator}"
+      get_geo_json_for_locality = function(
+          locality = NULL,
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/geo/getGeoJsonForLocality/{locality}"
+            
+        if (!missing(`locality`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "locality", "\\}"), `locality`, urlPath)
+        }
 
-      if (!missing(`field`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
-      }
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-
-      if (!missing(`operator`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "operator", "\\}"), `operator`, urlPath)
-      }
-
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is a "map container" and will be parsed to list
-        result <- httr::content(response, simplifyVector = TRUE)
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.list(httr::content(response))
+            Response$new(result, response)
+        }        
     },
-    query = function(
-                         querySpec = NULL,
-                         queryParams = list(),
-                         ...) {
-      headerParams <- character()
-      if (!is.null(querySpec) & length(queryParams) > 0) {
-        stop("Either querySpec or queryParams argument allowed, not both.")
-      }
+      get_paths = function(
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/geo/metadata/getPaths"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      if (!missing(`querySpec`)) {
-        ## querySpec can be either JSON string or object of type QuerySpec.
-        param <- ifelse(typeof(`querySpec`) == "environment",
-          `querySpec`$toJSONString(),
-          `querySpec`
-        )
-        queryParams["querySpec"] <- param
-      }
-      ## querySpec parameter has underscore in NBA, omitted in argument
-      names(queryParams) <- gsub(
-        "querySpec",
-        "_querySpec",
-        names(queryParams)
-      )
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.character(httr::content(response))
+            Response$new(result, response)
+        }        
+    },
+      get_setting = function(
+          name = NULL,
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/geo/metadata/getSetting/{name}"
+            
+        if (!missing(`name`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
+        }
 
-      urlPath <- "/geo/query"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is object of model class
-        returnObject <- QueryResult$new()
-        ## if API call result is QueryResult,
-        ## list items must be mapped to model class
-        result <- returnObject$fromList(
-          httr::content(response),
-          typeMapping = list(item = private$getBaseDataType())
-        )
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.list(httr::content(response))
+            Response$new(result, response)
+        }        
+    },
+      get_settings = function(
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/geo/metadata/getSettings"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is a "map container" and will be parsed to list 
+            result <- httr::content(response, simplifyVector = TRUE)
+            Response$new(result, response)
+        }        
+    },
+      is_operator_allowed = function(
+          field = NULL,
+          operator = NULL,
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/geo/metadata/isOperatorAllowed/{field}/{operator}"
+            
+        if (!missing(`field`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
+        }
+
+            
+        if (!missing(`operator`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "operator", "\\}"), `operator`, urlPath)
+        }
+
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is a "map container" and will be parsed to list 
+            result <- httr::content(response, simplifyVector = TRUE)
+            Response$new(result, response)
+        }        
+    },
+      query = function(
+          querySpec = NULL,
+          queryParams = list(),
+          ... ) {
+        headerParams <- character()
+        if (!is.null(querySpec) & length(queryParams) > 0) {
+            stop("Either querySpec or queryParams argument allowed, not both.")
+        }
+            
+        if (!missing(`querySpec`)) {
+          ## querySpec can be either JSON string or object of type QuerySpec. 
+          param <- ifelse(typeof(`querySpec`) == "environment",
+                          `querySpec`$toJSONString(),
+                          `querySpec`)    
+          queryParams["querySpec"] <- param
+        }
+        ## querySpec parameter has underscore in NBA, omitted in argument
+        names(queryParams) <- gsub("querySpec",
+                                    "querySpec",
+                                    names(queryParams))
+
+        urlPath <- "/geo/query"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is object of model class
+            returnObject <- QueryResult$new()
+            ## if API call result is QueryResult,
+            ## list items must be mapped to model class            
+            result <- returnObject$fromList(
+                httr::content(response),
+                  typeMapping = list(item = private$getBaseDataType()))
+            Response$new(result, response)
+        }        
     },
     print = function(...) {
-      ## print class name
-      cat("<GeoClient>\n")
-      cat("\tInherits from: <ApiClient>\n\n")
-      ## print all members with values
-      cat("Fields:\n")
-      cat("\tbasePath:\t", self$basePath, "\n")
-      cat("\tuserAgent:\t", self$userAgent, "\n")
-      ## print all methods
-      cat("Methods:\n")
-      cat("\tcount", "\n")
-      cat("\tcount_distinct_values", "\n")
-      cat("\tcount_distinct_values_per_group", "\n")
-      cat("\tfind", "\n")
-      cat("\tfind_by_ids", "\n")
-      cat("\tget_distinct_values", "\n")
-      cat("\tget_distinct_values_per_group", "\n")
-      cat("\tget_field_info", "\n")
-      cat("\tget_geo_json_for_locality", "\n")
-      cat("\tget_paths", "\n")
-      cat("\tget_setting", "\n")
-      cat("\tget_settings", "\n")
-      cat("\tis_operator_allowed", "\n")
-      cat("\tquery", "\n")
-      cat("\tping\n")
-      invisible(self)
+       ## print class name
+       cat("<GeoClient>\n")
+       cat("\tInherits from: <ApiClient>\n\n")
+       ## print all members with values
+       cat("Fields:\n")
+       cat("\tbasePath:\t", self$basePath, "\n")
+       cat("\tuserAgent:\t", self$userAgent, "\n")
+       ## print all methods
+       cat("Methods:\n")
+           cat("\tcount", "\n")
+           cat("\tcount_distinct_values", "\n")
+           cat("\tcount_distinct_values_per_group", "\n")
+           cat("\tfind", "\n")
+           cat("\tfind_by_ids", "\n")
+           cat("\tget_distinct_values", "\n")
+           cat("\tget_distinct_values_per_group", "\n")
+           cat("\tget_field_info", "\n")
+           cat("\tget_geo_json_for_locality", "\n")
+           cat("\tget_paths", "\n")
+           cat("\tget_setting", "\n")
+           cat("\tget_settings", "\n")
+           cat("\tis_operator_allowed", "\n")
+           cat("\tquery", "\n")
+       cat("\tping\n")
+       invisible(self)
     }
   )
 )
+

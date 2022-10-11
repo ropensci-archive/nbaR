@@ -4,7 +4,11 @@
 \name{MultiMediaObject}
 \alias{MultiMediaObject}
 \title{MultiMediaObject Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # MultiMediaObject$new()
 }
@@ -16,74 +20,8 @@ the NBA model and endpoints reference at
 \href{https://docs.biodiversitydata.nl/endpoints-reference}{https://docs.biodiversitydata.nl/endpoints-reference}.
 }
 \details{
-Model class for MultiMediaObject objects. Naturalis stores a vast amount of multimedia in its internal document store. This can be multimedia captured from physical specimens (e.g. photos of a specimen), but also from human observations (e.g. audio recordings of bird sounds). Digitisation of Naturalis museum objects include a detailed photographic documentation. So far, there are more than 5 million photos and several houndreds of thousands of bird sounds.
+Model class for MultiMediaObject objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{sourceSystem}}{SourceSystem}
-
-\item{\code{sourceSystemId}}{character}
-
-\item{\code{recordURI}}{character}
-
-\item{\code{id}}{character}
-
-\item{\code{sourceInstitutionID}}{character}
-
-\item{\code{sourceID}}{character}
-
-\item{\code{owner}}{character}
-
-\item{\code{licenseType}}{character}
-
-\item{\code{license}}{character}
-
-\item{\code{unitID}}{character}
-
-\item{\code{collectionType}}{character}
-
-\item{\code{title}}{character}
-
-\item{\code{caption}}{character}
-
-\item{\code{description}}{character}
-
-\item{\code{serviceAccessPoints}}{list(ServiceAccessPoint)}
-
-\item{\code{type}}{character}
-
-\item{\code{taxonCount}}{integer}
-
-\item{\code{creator}}{character}
-
-\item{\code{copyrightText}}{character}
-
-\item{\code{associatedSpecimenReference}}{character}
-
-\item{\code{associatedTaxonReference}}{character}
-
-\item{\code{multiMediaPublic}}{logical}
-
-\item{\code{subjectParts}}{list(character)}
-
-\item{\code{subjectOrientations}}{list(character)}
-
-\item{\code{phasesOrStages}}{list(character)}
-
-\item{\code{sexes}}{list(character)}
-
-\item{\code{gatheringEvents}}{list(MultiMediaGatheringEvent)}
-
-\item{\code{identifications}}{list(MultiMediaContentIdentification)}
-
-\item{\code{theme}}{list(character)}
-
-\item{\code{associatedSpecimen}}{Specimen}
-
-\item{\code{associatedTaxon}}{Taxon}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -117,4 +55,207 @@ Model class for MultiMediaObject objects. Naturalis stores a vast amount of mult
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{sourceSystem}}{SourceSystem}
+
+\item{\code{sourceSystemId}}{character}
+
+\item{\code{recordURI}}{character}
+
+\item{\code{id}}{character}
+
+\item{\code{sourceInstitutionID}}{character}
+
+\item{\code{sourceID}}{character}
+
+\item{\code{previousSourceID}}{list(character)}
+
+\item{\code{owner}}{character}
+
+\item{\code{licenseType}}{character}
+
+\item{\code{license}}{character}
+
+\item{\code{unitID}}{character}
+
+\item{\code{previousUnitsText}}{character}
+
+\item{\code{collectionType}}{character}
+
+\item{\code{title}}{character}
+
+\item{\code{caption}}{character}
+
+\item{\code{description}}{character}
+
+\item{\code{serviceAccessPoints}}{list(ServiceAccessPoint)}
+
+\item{\code{type}}{character}
+
+\item{\code{taxonCount}}{integer}
+
+\item{\code{creator}}{character}
+
+\item{\code{copyrightText}}{character}
+
+\item{\code{associatedSpecimenReference}}{character}
+
+\item{\code{associatedTaxonReference}}{character}
+
+\item{\code{multiMediaPublic}}{logical}
+
+\item{\code{informationWithheld}}{character}
+
+\item{\code{dataGeneralizations}}{character}
+
+\item{\code{rating}}{character}
+
+\item{\code{resourceCreationTechnique}}{character}
+
+\item{\code{subjectParts}}{list(character)}
+
+\item{\code{subjectOrientations}}{list(character)}
+
+\item{\code{phasesOrStages}}{list(character)}
+
+\item{\code{sexes}}{list(character)}
+
+\item{\code{gatheringEvents}}{list(MultiMediaGatheringEvent)}
+
+\item{\code{identifications}}{list(MultiMediaContentIdentification)}
+
+\item{\code{theme}}{list(character)}
+
+\item{\code{associatedSpecimen}}{Specimen}
+
+\item{\code{associatedTaxon}}{Taxon}
+
+\item{\code{dateLastEdited}}{character}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-MultiMediaObject-new}{\code{MultiMediaObject$new()}}
+\item \href{#method-MultiMediaObject-toList}{\code{MultiMediaObject$toList()}}
+\item \href{#method-MultiMediaObject-fromList}{\code{MultiMediaObject$fromList()}}
+\item \href{#method-MultiMediaObject-toJSONString}{\code{MultiMediaObject$toJSONString()}}
+\item \href{#method-MultiMediaObject-fromJSONString}{\code{MultiMediaObject$fromJSONString()}}
+\item \href{#method-MultiMediaObject-print}{\code{MultiMediaObject$print()}}
+\item \href{#method-MultiMediaObject-clone}{\code{MultiMediaObject$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiMediaObject-new"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiMediaObject-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiMediaObject$new(
+  sourceSystem,
+  sourceSystemId,
+  recordURI,
+  id,
+  sourceInstitutionID,
+  sourceID,
+  previousSourceID,
+  owner,
+  licenseType,
+  license,
+  unitID,
+  previousUnitsText,
+  collectionType,
+  title,
+  caption,
+  description,
+  serviceAccessPoints,
+  type,
+  taxonCount,
+  creator,
+  copyrightText,
+  associatedSpecimenReference,
+  associatedTaxonReference,
+  multiMediaPublic,
+  informationWithheld,
+  dataGeneralizations,
+  rating,
+  resourceCreationTechnique,
+  subjectParts,
+  subjectOrientations,
+  phasesOrStages,
+  sexes,
+  gatheringEvents,
+  identifications,
+  theme,
+  associatedSpecimen,
+  associatedTaxon,
+  dateLastEdited
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiMediaObject-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiMediaObject-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiMediaObject$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiMediaObject-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiMediaObject-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiMediaObject$fromList(MultiMediaObjectList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiMediaObject-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiMediaObject-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiMediaObject$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiMediaObject-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiMediaObject-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiMediaObject$fromJSONString(MultiMediaObjectJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiMediaObject-print"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiMediaObject-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiMediaObject$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiMediaObject-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiMediaObject-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiMediaObject$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

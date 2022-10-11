@@ -4,9 +4,9 @@
 \name{nbaR}
 \alias{nbaR}
 \alias{nbaR-package}
-\title{nbaR : R Package Client for the Netherlands Biodiversity API}
+\title{nbaR : R Package Client for the Netherlands Biodiversity Api}
 \description{
-nbaR : R Package Client for the Netherlands Biodiversity API
+nbaR : R Package Client for the Netherlands Biodiversity Api
 }
 \details{
 Access to the digitised Natural History collection at the Naturalis Biodiversity Center

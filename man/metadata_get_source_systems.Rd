@@ -22,14 +22,19 @@ from class \code{ MetadataClient}.
 Returns code and name of all source systems
 }
 \seealso{
-Other nbaR.MetadataClient-wrappers: \code{\link{metadata_get_allowed_date_formats}},
-  \code{\link{metadata_get_controlled_list_phase_or_stage}},
-  \code{\link{metadata_get_controlled_list_sex}},
-  \code{\link{metadata_get_controlled_list_specimen_type_status}},
-  \code{\link{metadata_get_controlled_list_taxonomic_status}},
-  \code{\link{metadata_get_controlled_lists}},
-  \code{\link{metadata_get_rest_services}},
-  \code{\link{metadata_get_settings}},
-  \code{\link{metadata_get_setting}}
+Other nbaR.MetadataClient-wrappers: 
+\code{\link{metadata_get_allowed_date_formats}()},
+\code{\link{metadata_get_controlled_list_area_class}()},
+\code{\link{metadata_get_controlled_list_license_type}()},
+\code{\link{metadata_get_controlled_list_license}()},
+\code{\link{metadata_get_controlled_list_sex}()},
+\code{\link{metadata_get_controlled_list_spatial_datum}()},
+\code{\link{metadata_get_controlled_list_specimen_type_status}()},
+\code{\link{metadata_get_controlled_list_taxon_relation_type}()},
+\code{\link{metadata_get_controlled_list_taxonomic_status}()},
+\code{\link{metadata_get_controlled_lists}()},
+\code{\link{metadata_get_rest_services}()},
+\code{\link{metadata_get_settings}()},
+\code{\link{metadata_get_setting}()}
 }
 \concept{nbaR.MetadataClient-wrappers}

@@ -4,7 +4,11 @@
 \name{Reference}
 \alias{Reference}
 \title{Reference Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # Reference$new()
 }
@@ -18,20 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for Reference objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{titleCitation}}{character}
-
-\item{\code{citationDetail}}{character}
-
-\item{\code{uri}}{character}
-
-\item{\code{author}}{Person}
-
-\item{\code{publicationDate}}{character}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -65,4 +55,102 @@ Model class for Reference objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{titleCitation}}{character}
+
+\item{\code{citationDetail}}{character}
+
+\item{\code{uri}}{character}
+
+\item{\code{author}}{Person}
+
+\item{\code{publicationDate}}{character}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-Reference-new}{\code{Reference$new()}}
+\item \href{#method-Reference-toList}{\code{Reference$toList()}}
+\item \href{#method-Reference-fromList}{\code{Reference$fromList()}}
+\item \href{#method-Reference-toJSONString}{\code{Reference$toJSONString()}}
+\item \href{#method-Reference-fromJSONString}{\code{Reference$fromJSONString()}}
+\item \href{#method-Reference-print}{\code{Reference$print()}}
+\item \href{#method-Reference-clone}{\code{Reference$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Reference-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Reference-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Reference$new(titleCitation, citationDetail, uri, author, publicationDate)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Reference-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-Reference-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Reference$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Reference-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-Reference-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Reference$fromList(ReferenceList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Reference-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-Reference-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Reference$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Reference-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-Reference-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Reference$fromJSONString(ReferenceJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Reference-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Reference-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Reference$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Reference-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Reference-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Reference$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

@@ -4,13 +4,10 @@
 \alias{specimen_dwca_get_data_set}
 \title{Download dataset as Darwin Core Archive File}
 \usage{
-specimen_dwca_get_data_set(dataset = NULL,
-  filename = format(Sys.time(), "download-\%Y-\%m-\%dT\%H:\%m.zip"), ...)
+specimen_dwca_get_data_set(dataset = NULL, ...)
 }
 \arguments{
 \item{dataset}{name of dataset, type:}
-
-\item{filename}{Filename to save results to, defaults to `format(Sys.time(),"download-\%Y-\%m-\%dT\%H:\%m.zip")`}
 
 \item{...}{additional parameters passed to dwca_get_data_set from class nbaR.SpecimenClient}
 }
@@ -22,26 +19,25 @@ from class \code{ SpecimenClient}.
 Available datasets can be queried with /specimen/dwca/getDataSetNames. Response saved to &lt;datasetname&gt;-&lt;yyyymmdd&gt;.dwca.zip
 }
 \seealso{
-Other nbaR.SpecimenClient-wrappers: \code{\link{specimen_count_distinct_values_per_group}},
-  \code{\link{specimen_count_distinct_values}},
-  \code{\link{specimen_count}},
-  \code{\link{specimen_download_query}},
-  \code{\link{specimen_dwca_get_data_set_names}},
-  \code{\link{specimen_dwca_query}},
-  \code{\link{specimen_exists}},
-  \code{\link{specimen_find_by_ids}},
-  \code{\link{specimen_find_by_unit_id}},
-  \code{\link{specimen_find}},
-  \code{\link{specimen_get_distinct_values_per_group}},
-  \code{\link{specimen_get_distinct_values}},
-  \code{\link{specimen_get_field_info}},
-  \code{\link{specimen_get_ids_in_collection}},
-  \code{\link{specimen_get_named_collections}},
-  \code{\link{specimen_get_paths}},
-  \code{\link{specimen_get_settings}},
-  \code{\link{specimen_get_setting}},
-  \code{\link{specimen_group_by_scientific_name}},
-  \code{\link{specimen_is_operator_allowed}},
-  \code{\link{specimen_query}}
+Other nbaR.SpecimenClient-wrappers: 
+\code{\link{specimen_count_distinct_values_per_group}()},
+\code{\link{specimen_count_distinct_values}()},
+\code{\link{specimen_count}()},
+\code{\link{specimen_download_query}()},
+\code{\link{specimen_dwca_get_data_set_names}()},
+\code{\link{specimen_dwca_query}()},
+\code{\link{specimen_exists}()},
+\code{\link{specimen_find_by_ids}()},
+\code{\link{specimen_find_by_unit_id}()},
+\code{\link{specimen_find}()},
+\code{\link{specimen_get_distinct_values_per_group}()},
+\code{\link{specimen_get_distinct_values}()},
+\code{\link{specimen_get_field_info}()},
+\code{\link{specimen_get_paths}()},
+\code{\link{specimen_get_settings}()},
+\code{\link{specimen_group_by_scientific_name}()},
+\code{\link{specimen_is_operator_allowed}()},
+\code{\link{specimen_query_with_name_resolution}()},
+\code{\link{specimen_query}()}
 }
 \concept{nbaR.SpecimenClient-wrappers}

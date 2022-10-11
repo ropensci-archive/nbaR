@@ -4,8 +4,7 @@
 \alias{metadata_get_controlled_list_taxonomic_status}
 \title{Get allowed values for the field &#39;TaxonomicStatus&#39; in specimen and taxon documents}
 \usage{
-metadata_get_controlled_list_taxonomic_status(returnType = "data.frame",
-  ...)
+metadata_get_controlled_list_taxonomic_status(returnType = "data.frame", ...)
 }
 \arguments{
 \item{returnType}{Either \code{list} or \code{data.frame} (default)}
@@ -19,18 +18,20 @@ scalar
 This is a wrapper for the method \code{ get_controlled_list_taxonomic_status }
 from class \code{ MetadataClient}.
 }
-\details{
-See also endpoint /getControlledLists
-}
 \seealso{
-Other nbaR.MetadataClient-wrappers: \code{\link{metadata_get_allowed_date_formats}},
-  \code{\link{metadata_get_controlled_list_phase_or_stage}},
-  \code{\link{metadata_get_controlled_list_sex}},
-  \code{\link{metadata_get_controlled_list_specimen_type_status}},
-  \code{\link{metadata_get_controlled_lists}},
-  \code{\link{metadata_get_rest_services}},
-  \code{\link{metadata_get_settings}},
-  \code{\link{metadata_get_setting}},
-  \code{\link{metadata_get_source_systems}}
+Other nbaR.MetadataClient-wrappers: 
+\code{\link{metadata_get_allowed_date_formats}()},
+\code{\link{metadata_get_controlled_list_area_class}()},
+\code{\link{metadata_get_controlled_list_license_type}()},
+\code{\link{metadata_get_controlled_list_license}()},
+\code{\link{metadata_get_controlled_list_sex}()},
+\code{\link{metadata_get_controlled_list_spatial_datum}()},
+\code{\link{metadata_get_controlled_list_specimen_type_status}()},
+\code{\link{metadata_get_controlled_list_taxon_relation_type}()},
+\code{\link{metadata_get_controlled_lists}()},
+\code{\link{metadata_get_rest_services}()},
+\code{\link{metadata_get_settings}()},
+\code{\link{metadata_get_setting}()},
+\code{\link{metadata_get_source_systems}()}
 }
 \concept{nbaR.MetadataClient-wrappers}

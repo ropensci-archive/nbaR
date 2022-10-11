@@ -22,14 +22,19 @@ from class \code{ MetadataClient}.
 Queries with other formatted dates will result in a query error
 }
 \seealso{
-Other nbaR.MetadataClient-wrappers: \code{\link{metadata_get_controlled_list_phase_or_stage}},
-  \code{\link{metadata_get_controlled_list_sex}},
-  \code{\link{metadata_get_controlled_list_specimen_type_status}},
-  \code{\link{metadata_get_controlled_list_taxonomic_status}},
-  \code{\link{metadata_get_controlled_lists}},
-  \code{\link{metadata_get_rest_services}},
-  \code{\link{metadata_get_settings}},
-  \code{\link{metadata_get_setting}},
-  \code{\link{metadata_get_source_systems}}
+Other nbaR.MetadataClient-wrappers: 
+\code{\link{metadata_get_controlled_list_area_class}()},
+\code{\link{metadata_get_controlled_list_license_type}()},
+\code{\link{metadata_get_controlled_list_license}()},
+\code{\link{metadata_get_controlled_list_sex}()},
+\code{\link{metadata_get_controlled_list_spatial_datum}()},
+\code{\link{metadata_get_controlled_list_specimen_type_status}()},
+\code{\link{metadata_get_controlled_list_taxon_relation_type}()},
+\code{\link{metadata_get_controlled_list_taxonomic_status}()},
+\code{\link{metadata_get_controlled_lists}()},
+\code{\link{metadata_get_rest_services}()},
+\code{\link{metadata_get_settings}()},
+\code{\link{metadata_get_setting}()},
+\code{\link{metadata_get_source_systems}()}
 }
 \concept{nbaR.MetadataClient-wrappers}

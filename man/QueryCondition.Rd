@@ -4,7 +4,11 @@
 \name{QueryCondition}
 \alias{QueryCondition}
 \title{QueryCondition Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # QueryCondition$new()
 }
@@ -16,28 +20,8 @@ the NBA model and endpoints reference at
 \href{https://docs.biodiversitydata.nl/endpoints-reference}{https://docs.biodiversitydata.nl/endpoints-reference}.
 }
 \details{
-Model class for QueryCondition objects. Class modeling a query condition. A condition consists of a field name, a ComparisonOperator and a value. For example: &#39;name&#39;, EQUALS, &#39;John&#39;. A condition can optionally have a list of sibling conditions. These are joined to the containing condition using the AND or OR operator. A condition and its siblings are strongly bound together, as though surrounded by parentheses: (condition AND sibling0 AND sibling1). Because each sibling may itself also have a list of sibling conditions, this allows you to nest logical expressions like (A AND (B OR C OR (D AND E)) AND F).
+Model class for QueryCondition objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{not}}{character}
-
-\item{\code{field}}{character}
-
-\item{\code{operator}}{character}
-
-\item{\code{value}}{list}
-
-\item{\code{and}}{list(QueryCondition)}
-
-\item{\code{or}}{list(QueryCondition)}
-
-\item{\code{constantScore}}{logical}
-
-\item{\code{boost}}{numeric}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -71,4 +55,108 @@ Model class for QueryCondition objects. Class modeling a query condition. A cond
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{not}}{character}
+
+\item{\code{field}}{character}
+
+\item{\code{operator}}{character}
+
+\item{\code{value}}{list}
+
+\item{\code{and}}{list(QueryCondition)}
+
+\item{\code{or}}{list(QueryCondition)}
+
+\item{\code{constantScore}}{logical}
+
+\item{\code{boost}}{numeric}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-QueryCondition-new}{\code{QueryCondition$new()}}
+\item \href{#method-QueryCondition-toList}{\code{QueryCondition$toList()}}
+\item \href{#method-QueryCondition-fromList}{\code{QueryCondition$fromList()}}
+\item \href{#method-QueryCondition-toJSONString}{\code{QueryCondition$toJSONString()}}
+\item \href{#method-QueryCondition-fromJSONString}{\code{QueryCondition$fromJSONString()}}
+\item \href{#method-QueryCondition-print}{\code{QueryCondition$print()}}
+\item \href{#method-QueryCondition-clone}{\code{QueryCondition$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-QueryCondition-new"></a>}}
+\if{latex}{\out{\hypertarget{method-QueryCondition-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{QueryCondition$new(not, field, operator, value, and, or, constantScore, boost)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-QueryCondition-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-QueryCondition-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{QueryCondition$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-QueryCondition-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-QueryCondition-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{QueryCondition$fromList(QueryConditionList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-QueryCondition-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-QueryCondition-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{QueryCondition$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-QueryCondition-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-QueryCondition-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{QueryCondition$fromJSONString(QueryConditionJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-QueryCondition-print"></a>}}
+\if{latex}{\out{\hypertarget{method-QueryCondition-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{QueryCondition$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-QueryCondition-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-QueryCondition-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{QueryCondition$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

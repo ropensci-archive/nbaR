@@ -4,7 +4,11 @@
 \name{LithoStratigraphy}
 \alias{LithoStratigraphy}
 \title{LithoStratigraphy Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # LithoStratigraphy$new()
 }
@@ -18,8 +22,41 @@ the NBA model and endpoints reference at
 \details{
 Model class for LithoStratigraphy objects.
 }
-\section{Fields}{
+\section{Methods}{
 
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor LithoStratigraphy object.
+
+}
+\item{\code{$fromList(LithoStratigraphyList)}}{
+
+  Create LithoStratigraphy object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of LithoStratigraphy.
+
+}
+\item{\code{fromJSONString(LithoStratigraphyJson)}}{
+
+  Create LithoStratigraphy object from JSON.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of LithoStratigraphy.
+
+}
+}
+}
+
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
 \describe{
 \item{\code{qualifier}}{character}
 
@@ -54,39 +91,108 @@ Model class for LithoStratigraphy objects.
 \item{\code{bed2}}{character}
 
 \item{\code{bed}}{character}
-}}
-
+}
+\if{html}{\out{</div>}}
+}
 \section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-LithoStratigraphy-new}{\code{LithoStratigraphy$new()}}
+\item \href{#method-LithoStratigraphy-toList}{\code{LithoStratigraphy$toList()}}
+\item \href{#method-LithoStratigraphy-fromList}{\code{LithoStratigraphy$fromList()}}
+\item \href{#method-LithoStratigraphy-toJSONString}{\code{LithoStratigraphy$toJSONString()}}
+\item \href{#method-LithoStratigraphy-fromJSONString}{\code{LithoStratigraphy$fromJSONString()}}
+\item \href{#method-LithoStratigraphy-print}{\code{LithoStratigraphy$print()}}
+\item \href{#method-LithoStratigraphy-clone}{\code{LithoStratigraphy$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-LithoStratigraphy-new"></a>}}
+\if{latex}{\out{\hypertarget{method-LithoStratigraphy-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LithoStratigraphy$new(
+  qualifier,
+  preferredFlag,
+  member2,
+  member,
+  informalName2,
+  informalName,
+  importedName2,
+  importedName1,
+  lithoIdentifier,
+  formation2,
+  formationGroup2,
+  formationGroup,
+  formation,
+  certainty2,
+  certainty,
+  bed2,
+  bed
+)}\if{html}{\out{</div>}}
+}
 
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-LithoStratigraphy-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-LithoStratigraphy-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LithoStratigraphy$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-LithoStratigraphy-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-LithoStratigraphy-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LithoStratigraphy$fromList(LithoStratigraphyList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-LithoStratigraphy-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-LithoStratigraphy-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LithoStratigraphy$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-LithoStratigraphy-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-LithoStratigraphy-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LithoStratigraphy$fromJSONString(LithoStratigraphyJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-LithoStratigraphy-print"></a>}}
+\if{latex}{\out{\hypertarget{method-LithoStratigraphy-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LithoStratigraphy$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-LithoStratigraphy-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-LithoStratigraphy-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LithoStratigraphy$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
 \describe{
-
-\item{\code{$new()}}{
-
-  Constructor LithoStratigraphy object.
-
+\item{\code{deep}}{Whether to make a deep clone.}
 }
-\item{\code{$fromList(LithoStratigraphyList)}}{
-
-  Create LithoStratigraphy object from list.
-
-}
-
-\item{\code{$toList()}}{
-
-  Get list representation of LithoStratigraphy.
-
-}
-\item{\code{fromJSONString(LithoStratigraphyJson)}}{
-
-  Create LithoStratigraphy object from JSON.
-
-}
-\item{\code{toJSONString(pretty=TRUE)}}{
-
-  Get JSON representation of LithoStratigraphy.
-
+\if{html}{\out{</div>}}
 }
 }
 }
-
-\keyword{datasets}

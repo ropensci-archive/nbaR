@@ -4,7 +4,11 @@
 \name{QuerySpec}
 \alias{QuerySpec}
 \title{QuerySpec Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # QuerySpec$new()
 }
@@ -16,33 +20,8 @@ the NBA model and endpoints reference at
 \href{https://docs.biodiversitydata.nl/endpoints-reference}{https://docs.biodiversitydata.nl/endpoints-reference}.
 }
 \details{
-Model class for QuerySpec objects. A QuerySpec object enables you to specify a query for the NBA. It contains the following properties, each covering a different aspect of the query:  * conditions: The search criteria a.k.a. query conditions. Only documents that satisfy all search criteria or at least one (depending on the logicalOperator are returned.
+Model class for QuerySpec objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{constantScore}}{logical
-If true, no relevance scores will be calculated for the returned documents. By default Elasticsearch not only determines whether a document matches your search criteria, but also how well it matches them, expressed as a so-called relevance score. If you are not interested in relevance scores, set constantScore to true, as there is some performance overhead associated with calculating relevance scores.}
-
-\item{\code{fields}}{list(character)
-The fields to be returned. Specimen, Taxon and MultiMediaObject documents are large documents containing lots of fields. If you are only interested in a few fields, use the fields property to specify them.}
-
-\item{\code{conditions}}{list(QueryCondition)
-List of QueryCondition objetcs}
-
-\item{\code{logicalOperator}}{character
-(AND/OR) Specifies whether a document must satisfy all search criteria or just one in order to be returned.}
-
-\item{\code{sortFields}}{list(SortField)
-Specifies the field(s) on which to sort the documents.}
-
-\item{\code{from}}{integer
-The offset in the result set from which to return the documents.}
-
-\item{\code{size}}{integer
-The number of documents to return.}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -76,4 +55,114 @@ The number of documents to return.}
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{constantScore}}{logical}
+
+\item{\code{fields}}{list(character)}
+
+\item{\code{conditions}}{list(QueryCondition)}
+
+\item{\code{logicalOperator}}{character}
+
+\item{\code{sortFields}}{list(SortField)}
+
+\item{\code{from}}{integer}
+
+\item{\code{size}}{integer}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-QuerySpec-new}{\code{QuerySpec$new()}}
+\item \href{#method-QuerySpec-toList}{\code{QuerySpec$toList()}}
+\item \href{#method-QuerySpec-fromList}{\code{QuerySpec$fromList()}}
+\item \href{#method-QuerySpec-toJSONString}{\code{QuerySpec$toJSONString()}}
+\item \href{#method-QuerySpec-fromJSONString}{\code{QuerySpec$fromJSONString()}}
+\item \href{#method-QuerySpec-print}{\code{QuerySpec$print()}}
+\item \href{#method-QuerySpec-clone}{\code{QuerySpec$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-QuerySpec-new"></a>}}
+\if{latex}{\out{\hypertarget{method-QuerySpec-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{QuerySpec$new(
+  constantScore,
+  fields,
+  conditions,
+  logicalOperator,
+  sortFields,
+  from,
+  size
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-QuerySpec-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-QuerySpec-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{QuerySpec$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-QuerySpec-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-QuerySpec-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{QuerySpec$fromList(QuerySpecList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-QuerySpec-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-QuerySpec-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{QuerySpec$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-QuerySpec-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-QuerySpec-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{QuerySpec$fromJSONString(QuerySpecJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-QuerySpec-print"></a>}}
+\if{latex}{\out{\hypertarget{method-QuerySpec-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{QuerySpec$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-QuerySpec-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-QuerySpec-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{QuerySpec$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

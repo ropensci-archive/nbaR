@@ -4,7 +4,11 @@
 \name{GeoJsonObject}
 \alias{GeoJsonObject}
 \title{GeoJsonObject Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # GeoJsonObject$new()
 }
@@ -18,14 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for GeoJsonObject objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{crs}}{Crs}
-
-\item{\code{bbox}}{list(numeric)}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -59,4 +55,96 @@ Model class for GeoJsonObject objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{crs}}{Crs}
+
+\item{\code{bbox}}{list(numeric)}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-GeoJsonObject-new}{\code{GeoJsonObject$new()}}
+\item \href{#method-GeoJsonObject-toList}{\code{GeoJsonObject$toList()}}
+\item \href{#method-GeoJsonObject-fromList}{\code{GeoJsonObject$fromList()}}
+\item \href{#method-GeoJsonObject-toJSONString}{\code{GeoJsonObject$toJSONString()}}
+\item \href{#method-GeoJsonObject-fromJSONString}{\code{GeoJsonObject$fromJSONString()}}
+\item \href{#method-GeoJsonObject-print}{\code{GeoJsonObject$print()}}
+\item \href{#method-GeoJsonObject-clone}{\code{GeoJsonObject$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoJsonObject-new"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoJsonObject-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoJsonObject$new(crs, bbox)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoJsonObject-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoJsonObject-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoJsonObject$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoJsonObject-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoJsonObject-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoJsonObject$fromList(GeoJsonObjectList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoJsonObject-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoJsonObject-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoJsonObject$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoJsonObject-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoJsonObject-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoJsonObject$fromJSONString(GeoJsonObjectJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoJsonObject-print"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoJsonObject-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoJsonObject$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoJsonObject-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoJsonObject-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoJsonObject$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

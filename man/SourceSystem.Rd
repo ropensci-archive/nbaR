@@ -4,7 +4,11 @@
 \name{SourceSystem}
 \alias{SourceSystem}
 \title{SourceSystem Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # SourceSystem$new()
 }
@@ -18,14 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for SourceSystem objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{code}}{character}
-
-\item{\code{name}}{character}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -59,4 +55,96 @@ Model class for SourceSystem objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{code}}{character}
+
+\item{\code{name}}{character}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-SourceSystem-new}{\code{SourceSystem$new()}}
+\item \href{#method-SourceSystem-toList}{\code{SourceSystem$toList()}}
+\item \href{#method-SourceSystem-fromList}{\code{SourceSystem$fromList()}}
+\item \href{#method-SourceSystem-toJSONString}{\code{SourceSystem$toJSONString()}}
+\item \href{#method-SourceSystem-fromJSONString}{\code{SourceSystem$fromJSONString()}}
+\item \href{#method-SourceSystem-print}{\code{SourceSystem$print()}}
+\item \href{#method-SourceSystem-clone}{\code{SourceSystem$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SourceSystem-new"></a>}}
+\if{latex}{\out{\hypertarget{method-SourceSystem-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SourceSystem$new(code, name)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SourceSystem-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-SourceSystem-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SourceSystem$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SourceSystem-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-SourceSystem-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SourceSystem$fromList(SourceSystemList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SourceSystem-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-SourceSystem-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SourceSystem$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SourceSystem-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-SourceSystem-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SourceSystem$fromJSONString(SourceSystemJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SourceSystem-print"></a>}}
+\if{latex}{\out{\hypertarget{method-SourceSystem-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SourceSystem$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SourceSystem-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-SourceSystem-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SourceSystem$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

@@ -4,7 +4,11 @@
 \name{TaxonomicEnrichment}
 \alias{TaxonomicEnrichment}
 \title{TaxonomicEnrichment Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # TaxonomicEnrichment$new()
 }
@@ -18,18 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for TaxonomicEnrichment objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{vernacularNames}}{list(SummaryVernacularName)}
-
-\item{\code{synonyms}}{list(SummaryScientificName)}
-
-\item{\code{sourceSystem}}{SummarySourceSystem}
-
-\item{\code{taxonId}}{character}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -63,4 +55,108 @@ Model class for TaxonomicEnrichment objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{vernacularNames}}{list(SummaryVernacularName)}
+
+\item{\code{synonyms}}{list(SummaryScientificName)}
+
+\item{\code{defaultClassification}}{DefaultClassification}
+
+\item{\code{sourceSystem}}{SummarySourceSystem}
+
+\item{\code{taxonId}}{character}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-TaxonomicEnrichment-new}{\code{TaxonomicEnrichment$new()}}
+\item \href{#method-TaxonomicEnrichment-toList}{\code{TaxonomicEnrichment$toList()}}
+\item \href{#method-TaxonomicEnrichment-fromList}{\code{TaxonomicEnrichment$fromList()}}
+\item \href{#method-TaxonomicEnrichment-toJSONString}{\code{TaxonomicEnrichment$toJSONString()}}
+\item \href{#method-TaxonomicEnrichment-fromJSONString}{\code{TaxonomicEnrichment$fromJSONString()}}
+\item \href{#method-TaxonomicEnrichment-print}{\code{TaxonomicEnrichment$print()}}
+\item \href{#method-TaxonomicEnrichment-clone}{\code{TaxonomicEnrichment$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-TaxonomicEnrichment-new"></a>}}
+\if{latex}{\out{\hypertarget{method-TaxonomicEnrichment-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TaxonomicEnrichment$new(
+  vernacularNames,
+  synonyms,
+  defaultClassification,
+  sourceSystem,
+  taxonId
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-TaxonomicEnrichment-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-TaxonomicEnrichment-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TaxonomicEnrichment$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-TaxonomicEnrichment-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-TaxonomicEnrichment-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TaxonomicEnrichment$fromList(TaxonomicEnrichmentList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-TaxonomicEnrichment-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-TaxonomicEnrichment-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TaxonomicEnrichment$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-TaxonomicEnrichment-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-TaxonomicEnrichment-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TaxonomicEnrichment$fromJSONString(TaxonomicEnrichmentJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-TaxonomicEnrichment-print"></a>}}
+\if{latex}{\out{\hypertarget{method-TaxonomicEnrichment-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TaxonomicEnrichment$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-TaxonomicEnrichment-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-TaxonomicEnrichment-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TaxonomicEnrichment$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

@@ -4,8 +4,12 @@
 \alias{taxon_get_distinct_values_per_group}
 \title{Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by}
 \usage{
-taxon_get_distinct_values_per_group(group = NULL, field = NULL,
-  returnType = "data.frame", ...)
+taxon_get_distinct_values_per_group(
+  group = NULL,
+  field = NULL,
+  returnType = "data.frame",
+  ...
+)
 }
 \arguments{
 \item{group}{name of field in the taxon object you want to group by, type:}
@@ -23,26 +27,23 @@ scalar
 This is a wrapper for the method \code{ get_distinct_values_per_group }
 from class \code{ TaxonClient}.
 }
-\details{
-See also endpoint /getDistinctValues
-}
 \seealso{
-Other nbaR.TaxonClient-wrappers: \code{\link{taxon_count_distinct_values_per_group}},
-  \code{\link{taxon_count_distinct_values}},
-  \code{\link{taxon_count}},
-  \code{\link{taxon_download_query}},
-  \code{\link{taxon_dwca_get_data_set_names}},
-  \code{\link{taxon_dwca_get_data_set}},
-  \code{\link{taxon_dwca_query}},
-  \code{\link{taxon_find_by_ids}},
-  \code{\link{taxon_find}},
-  \code{\link{taxon_get_distinct_values}},
-  \code{\link{taxon_get_field_info}},
-  \code{\link{taxon_get_paths}},
-  \code{\link{taxon_get_settings}},
-  \code{\link{taxon_get_setting}},
-  \code{\link{taxon_group_by_scientific_name}},
-  \code{\link{taxon_is_operator_allowed}},
-  \code{\link{taxon_query}}
+Other nbaR.TaxonClient-wrappers: 
+\code{\link{taxon_count_distinct_values_per_group}()},
+\code{\link{taxon_count_distinct_values}()},
+\code{\link{taxon_count}()},
+\code{\link{taxon_download_query}()},
+\code{\link{taxon_dwca_get_data_set_names}()},
+\code{\link{taxon_dwca_get_data_set}()},
+\code{\link{taxon_dwca_query}()},
+\code{\link{taxon_find_by_ids}()},
+\code{\link{taxon_find}()},
+\code{\link{taxon_get_distinct_values}()},
+\code{\link{taxon_get_field_info}()},
+\code{\link{taxon_get_paths}()},
+\code{\link{taxon_get_settings}()},
+\code{\link{taxon_group_by_scientific_name}()},
+\code{\link{taxon_is_operator_allowed}()},
+\code{\link{taxon_query}()}
 }
 \concept{nbaR.TaxonClient-wrappers}

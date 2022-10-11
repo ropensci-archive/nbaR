@@ -2,7 +2,7 @@
 % Please edit documentation in R/SpecimenClient-wrapper.r
 \name{specimen_exists}
 \alias{specimen_exists}
-\title{Returns whether or not a unitID for a specimen exists}
+\title{Returns whether or not the provided unitID is a valid (in-use) unitID}
 \usage{
 specimen_exists(unitID = NULL, ...)
 }
@@ -22,26 +22,25 @@ from class \code{ SpecimenClient}.
 Returns either true or false
 }
 \seealso{
-Other nbaR.SpecimenClient-wrappers: \code{\link{specimen_count_distinct_values_per_group}},
-  \code{\link{specimen_count_distinct_values}},
-  \code{\link{specimen_count}},
-  \code{\link{specimen_download_query}},
-  \code{\link{specimen_dwca_get_data_set_names}},
-  \code{\link{specimen_dwca_get_data_set}},
-  \code{\link{specimen_dwca_query}},
-  \code{\link{specimen_find_by_ids}},
-  \code{\link{specimen_find_by_unit_id}},
-  \code{\link{specimen_find}},
-  \code{\link{specimen_get_distinct_values_per_group}},
-  \code{\link{specimen_get_distinct_values}},
-  \code{\link{specimen_get_field_info}},
-  \code{\link{specimen_get_ids_in_collection}},
-  \code{\link{specimen_get_named_collections}},
-  \code{\link{specimen_get_paths}},
-  \code{\link{specimen_get_settings}},
-  \code{\link{specimen_get_setting}},
-  \code{\link{specimen_group_by_scientific_name}},
-  \code{\link{specimen_is_operator_allowed}},
-  \code{\link{specimen_query}}
+Other nbaR.SpecimenClient-wrappers: 
+\code{\link{specimen_count_distinct_values_per_group}()},
+\code{\link{specimen_count_distinct_values}()},
+\code{\link{specimen_count}()},
+\code{\link{specimen_download_query}()},
+\code{\link{specimen_dwca_get_data_set_names}()},
+\code{\link{specimen_dwca_get_data_set}()},
+\code{\link{specimen_dwca_query}()},
+\code{\link{specimen_find_by_ids}()},
+\code{\link{specimen_find_by_unit_id}()},
+\code{\link{specimen_find}()},
+\code{\link{specimen_get_distinct_values_per_group}()},
+\code{\link{specimen_get_distinct_values}()},
+\code{\link{specimen_get_field_info}()},
+\code{\link{specimen_get_paths}()},
+\code{\link{specimen_get_settings}()},
+\code{\link{specimen_group_by_scientific_name}()},
+\code{\link{specimen_is_operator_allowed}()},
+\code{\link{specimen_query_with_name_resolution}()},
+\code{\link{specimen_query}()}
 }
 \concept{nbaR.SpecimenClient-wrappers}

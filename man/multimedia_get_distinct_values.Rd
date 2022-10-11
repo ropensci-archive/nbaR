@@ -4,8 +4,7 @@
 \alias{multimedia_get_distinct_values}
 \title{Get all different values that can be found for one field}
 \usage{
-multimedia_get_distinct_values(field = NULL, returnType = "data.frame",
-  ...)
+multimedia_get_distinct_values(field = NULL, returnType = "data.frame", ...)
 }
 \arguments{
 \item{field}{field, type:}
@@ -25,18 +24,20 @@ from class \code{ MultimediaClient}.
 A list of all fields for multimedia documents can be retrieved with /metadata/getFieldInfo
 }
 \seealso{
-Other nbaR.MultimediaClient-wrappers: \code{\link{multimedia_count_distinct_values_per_group}},
-  \code{\link{multimedia_count_distinct_values}},
-  \code{\link{multimedia_count}},
-  \code{\link{multimedia_download_query}},
-  \code{\link{multimedia_find_by_ids}},
-  \code{\link{multimedia_find}},
-  \code{\link{multimedia_get_distinct_values_per_group}},
-  \code{\link{multimedia_get_field_info}},
-  \code{\link{multimedia_get_paths}},
-  \code{\link{multimedia_get_settings}},
-  \code{\link{multimedia_get_setting}},
-  \code{\link{multimedia_is_operator_allowed}},
-  \code{\link{multimedia_query}}
+Other nbaR.MultimediaClient-wrappers: 
+\code{\link{multimedia_count_distinct_values_per_group}()},
+\code{\link{multimedia_count_distinct_values}()},
+\code{\link{multimedia_count}()},
+\code{\link{multimedia_download_query}()},
+\code{\link{multimedia_find_by_ids}()},
+\code{\link{multimedia_find}()},
+\code{\link{multimedia_get_distinct_values_per_group}()},
+\code{\link{multimedia_get_field_info}()},
+\code{\link{multimedia_get_paths}()},
+\code{\link{multimedia_get_settings}()},
+\code{\link{multimedia_get_setting}()},
+\code{\link{multimedia_is_operator_allowed}()},
+\code{\link{multimedia_query_with_name_resolution}()},
+\code{\link{multimedia_query}()}
 }
 \concept{nbaR.MultimediaClient-wrappers}

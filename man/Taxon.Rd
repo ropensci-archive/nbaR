@@ -4,7 +4,11 @@
 \name{Taxon}
 \alias{Taxon}
 \title{Taxon Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # Taxon$new()
 }
@@ -16,10 +20,43 @@ the NBA model and endpoints reference at
 \href{https://docs.biodiversitydata.nl/endpoints-reference}{https://docs.biodiversitydata.nl/endpoints-reference}.
 }
 \details{
-Model class for Taxon objects. A taxon record stores the hierarchical classification of a taxon, its scientific names and synonyms, and other relevant data retrieved from the respective source system. Taxonomic information is sourced from two species checklists: The Catalogue of Life (COL) and the Dutch Species Register (NSR).
+Model class for Taxon objects.
 }
-\section{Fields}{
+\section{Methods}{
 
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor Taxon object.
+
+}
+\item{\code{$fromList(TaxonList)}}{
+
+  Create Taxon object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of Taxon.
+
+}
+\item{\code{fromJSONString(TaxonJson)}}{
+
+  Create Taxon object from JSON.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of Taxon.
+
+}
+}
+}
+
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
 \describe{
 \item{\code{sourceSystem}}{SourceSystem}
 
@@ -54,39 +91,108 @@ Model class for Taxon objects. A taxon record stores the hierarchical classifica
 \item{\code{experts}}{list(Expert)}
 
 \item{\code{validName}}{ScientificName}
-}}
-
+}
+\if{html}{\out{</div>}}
+}
 \section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-Taxon-new}{\code{Taxon$new()}}
+\item \href{#method-Taxon-toList}{\code{Taxon$toList()}}
+\item \href{#method-Taxon-fromList}{\code{Taxon$fromList()}}
+\item \href{#method-Taxon-toJSONString}{\code{Taxon$toJSONString()}}
+\item \href{#method-Taxon-fromJSONString}{\code{Taxon$fromJSONString()}}
+\item \href{#method-Taxon-print}{\code{Taxon$print()}}
+\item \href{#method-Taxon-clone}{\code{Taxon$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Taxon-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Taxon-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Taxon$new(
+  sourceSystem,
+  sourceSystemId,
+  recordURI,
+  id,
+  sourceSystemParentId,
+  taxonRank,
+  taxonRemarks,
+  occurrenceStatusVerbatim,
+  acceptedName,
+  defaultClassification,
+  systemClassification,
+  synonyms,
+  vernacularNames,
+  descriptions,
+  references,
+  experts,
+  validName
+)}\if{html}{\out{</div>}}
+}
 
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Taxon-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-Taxon-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Taxon$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Taxon-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-Taxon-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Taxon$fromList(TaxonList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Taxon-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-Taxon-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Taxon$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Taxon-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-Taxon-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Taxon$fromJSONString(TaxonJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Taxon-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Taxon-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Taxon$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Taxon-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Taxon-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Taxon$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
 \describe{
-
-\item{\code{$new()}}{
-
-  Constructor Taxon object.
-
+\item{\code{deep}}{Whether to make a deep clone.}
 }
-\item{\code{$fromList(TaxonList)}}{
-
-  Create Taxon object from list.
-
-}
-
-\item{\code{$toList()}}{
-
-  Get list representation of Taxon.
-
-}
-\item{\code{fromJSONString(TaxonJson)}}{
-
-  Create Taxon object from JSON.
-
-}
-\item{\code{toJSONString(pretty=TRUE)}}{
-
-  Get JSON representation of Taxon.
-
+\if{html}{\out{</div>}}
 }
 }
 }
-
-\keyword{datasets}

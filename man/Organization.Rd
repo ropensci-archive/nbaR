@@ -4,7 +4,11 @@
 \name{Organization}
 \alias{Organization}
 \title{Organization Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # Organization$new()
 }
@@ -18,14 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for Organization objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{agentText}}{character}
-
-\item{\code{name}}{character}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -59,4 +55,96 @@ Model class for Organization objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{agentText}}{character}
+
+\item{\code{name}}{character}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-Organization-new}{\code{Organization$new()}}
+\item \href{#method-Organization-toList}{\code{Organization$toList()}}
+\item \href{#method-Organization-fromList}{\code{Organization$fromList()}}
+\item \href{#method-Organization-toJSONString}{\code{Organization$toJSONString()}}
+\item \href{#method-Organization-fromJSONString}{\code{Organization$fromJSONString()}}
+\item \href{#method-Organization-print}{\code{Organization$print()}}
+\item \href{#method-Organization-clone}{\code{Organization$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Organization-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Organization-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Organization$new(agentText, name)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Organization-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-Organization-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Organization$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Organization-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-Organization-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Organization$fromList(OrganizationList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Organization-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-Organization-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Organization$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Organization-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-Organization-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Organization$fromJSONString(OrganizationJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Organization-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Organization-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Organization$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Organization-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Organization-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Organization$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

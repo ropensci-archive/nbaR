@@ -1,4 +1,4 @@
-# Netherlands Biodiversity API
+# Netherlands Biodiversity Api
 #
 # Access to the digitised Natural History collection at the Naturalis Biodiversity Center
 #
@@ -16,7 +16,7 @@
 #' @docType class
 #'
 #' @format R6 class
-#'
+#' 
 #' @field basePath Stores url path of the request, defaults to http://api.biodiversitydata.nl/v2
 #' @field userAgent Set the user agent of the request, defaults to nbaR/0.1.0
 #'
@@ -24,7 +24,7 @@
 #'
 #' @usage
 #' # client <- MetadataClient$new()
-#'
+#' 
 #' @section Methods:
 #' \describe{
 #' \item{\code{ get_allowed_date_formats }}{
@@ -34,26 +34,58 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'
-#'
-#'
+#'         
+#'         
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
 #'         \code{ character }
 #' }
-#' \item{\code{ get_controlled_list_phase_or_stage }}{
+#' \item{\code{ get_controlled_list_area_class }}{
 #'
-#'   Get allowed values for the field &#39;PhaseOrStage&#39; in a specimen document;
-#'   See also endpoint /getControlledLists.
+#'   Get allowed values for the field &#39;AreaClass&#39;;
+#'   .
 #'
 #'     Parameters:
 #'     \itemize{
+#'         
+#'         
+#'         
+#'         
+#'         \item \code{ ... } : additional parameters passed to httr::GET
+#'     }
+#'     Returns:
+#'         \code{ character }
+#' }
+#' \item{\code{ get_controlled_list_license }}{
 #'
+#'   Get allowed values for the field &#39;License&#39;;
+#'   .
 #'
+#'     Parameters:
+#'     \itemize{
+#'         
+#'         
+#'         
+#'         
+#'         \item \code{ ... } : additional parameters passed to httr::GET
+#'     }
+#'     Returns:
+#'         \code{ character }
+#' }
+#' \item{\code{ get_controlled_list_license_type }}{
 #'
+#'   Get allowed values for the field &#39;LicenseType&#39;;
+#'   .
 #'
+#'     Parameters:
+#'     \itemize{
+#'         
+#'         
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -62,14 +94,30 @@
 #' \item{\code{ get_controlled_list_sex }}{
 #'
 #'   Get allowed values for the field &#39;Sex&#39; in a specimen document;
-#'   See also endpoint /getControlledLists.
+#'   .
 #'
 #'     Parameters:
 #'     \itemize{
+#'         
+#'         
+#'         
+#'         
+#'         \item \code{ ... } : additional parameters passed to httr::GET
+#'     }
+#'     Returns:
+#'         \code{ character }
+#' }
+#' \item{\code{ get_controlled_list_spatial_datum }}{
 #'
+#'   Get allowed values for the field &#39;SpatialDatum&#39;;
+#'   .
 #'
-#'
-#'
+#'     Parameters:
+#'     \itemize{
+#'         
+#'         
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -78,14 +126,30 @@
 #' \item{\code{ get_controlled_list_specimen_type_status }}{
 #'
 #'   Get allowed values for the field &#39;SpecimenTypeStatus&#39; in a specimen document;
-#'   See also endpoint /getControlledLists.
+#'   .
 #'
 #'     Parameters:
 #'     \itemize{
+#'         
+#'         
+#'         
+#'         
+#'         \item \code{ ... } : additional parameters passed to httr::GET
+#'     }
+#'     Returns:
+#'         \code{ character }
+#' }
+#' \item{\code{ get_controlled_list_taxon_relation_type }}{
 #'
+#'   Get allowed values for the field &#39;Relationtype&#39;;
+#'   .
 #'
-#'
-#'
+#'     Parameters:
+#'     \itemize{
+#'         
+#'         
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -94,14 +158,14 @@
 #' \item{\code{ get_controlled_list_taxonomic_status }}{
 #'
 #'   Get allowed values for the field &#39;TaxonomicStatus&#39; in specimen and taxon documents;
-#'   See also endpoint /getControlledLists.
+#'   .
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'
-#'
-#'
+#'         
+#'         
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -114,10 +178,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'
-#'
-#'
+#'         
+#'         
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -130,10 +194,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'
-#'
-#'
+#'         
+#'         
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -146,10 +210,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'         \item \code{ name } : name of setting
-#'
-#'
+#'         
+#'         \item \code{ name } : name of setting 
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -162,10 +226,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'
-#'
-#'
+#'         
+#'         
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -178,10 +242,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'
-#'
-#'
+#'         
+#'         
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -191,292 +255,355 @@
 #'
 #' @export
 MetadataClient <- R6::R6Class(
-  "MetadataClient",
-  inherit = ApiClient,
-  public = list(
-    initialize = function(basePath, userAgent) {
-      super$initialize(basePath, userAgent)
+    "MetadataClient",
+    inherit = ApiClient,
+    public = list(
+        initialize = function(basePath, userAgent){
+        super$initialize(basePath, userAgent)
     },
 
-    get_allowed_date_formats = function(
-                                            ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/metadata/getAllowedDateFormats"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
+      get_allowed_date_formats = function(
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getAllowedDateFormats"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.character(httr::content(response))
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.character(httr::content(response))
+            Response$new(result, response)
+        }        
     },
-    get_controlled_list_phase_or_stage = function(
-                                                      ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/metadata/getControlledList/PhaseOrStage"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
+      get_controlled_list_area_class = function(
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getControlledList/AreaClass"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.character(httr::content(response))
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.character(httr::content(response))
+            Response$new(result, response)
+        }        
     },
-    get_controlled_list_sex = function(
-                                           ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/metadata/getControlledList/Sex"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
+      get_controlled_list_license = function(
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getControlledList/License"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.character(httr::content(response))
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.character(httr::content(response))
+            Response$new(result, response)
+        }        
     },
-    get_controlled_list_specimen_type_status = function(
-                                                            ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/metadata/getControlledList/SpecimenTypeStatus"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
+      get_controlled_list_license_type = function(
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getControlledList/LicenseType"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.character(httr::content(response))
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.character(httr::content(response))
+            Response$new(result, response)
+        }        
     },
-    get_controlled_list_taxonomic_status = function(
-                                                        ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/metadata/getControlledList/TaxonomicStatus"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
+      get_controlled_list_sex = function(
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getControlledList/Sex"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.character(httr::content(response))
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.character(httr::content(response))
+            Response$new(result, response)
+        }        
     },
-    get_controlled_lists = function(
-                                        ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/metadata/getControlledLists"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
+      get_controlled_list_spatial_datum = function(
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getControlledList/SpatialDatum"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.character(httr::content(response))
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.character(httr::content(response))
+            Response$new(result, response)
+        }        
     },
-    get_rest_services = function(
-                                     ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/metadata/getRestServices"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
+      get_controlled_list_specimen_type_status = function(
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getControlledList/SpecimenTypeStatus"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is object of model class
-        returnObject <- RestService$new()
-        ## API call result is "list container"
-        result <- lapply(
-          httr::content(response),
-          function(x) {
-            cl <- returnObject$clone()
-            cl$fromList(x,
-              typeMapping = list(item = private$getBaseDataType())
-            )
-          }
-        )
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.character(httr::content(response))
+            Response$new(result, response)
+        }        
     },
-    get_setting = function(
-                               name = NULL,
-                               ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/metadata/getSetting/{name}"
+      get_controlled_list_taxon_relation_type = function(
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getControlledList/RelationType"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      if (!missing(`name`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
-      }
-
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.list(httr::content(response))
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.character(httr::content(response))
+            Response$new(result, response)
+        }        
     },
-    get_settings = function(
-                                ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/metadata/getSettings"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
+      get_controlled_list_taxonomic_status = function(
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getControlledList/TaxonomicStatus"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is a "map container" and will be parsed to list
-        result <- httr::content(response, simplifyVector = TRUE)
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.character(httr::content(response))
+            Response$new(result, response)
+        }        
     },
-    get_source_systems = function(
-                                      ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/metadata/getSourceSystems"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
+      get_controlled_lists = function(
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getControlledLists"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is object of model class
-        returnObject <- SourceSystem$new()
-        ## API call result is "list container"
-        result <- lapply(
-          httr::content(response),
-          function(x) {
-            cl <- returnObject$clone()
-            cl$fromList(x,
-              typeMapping = list(item = private$getBaseDataType())
-            )
-          }
-        )
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.character(httr::content(response))
+            Response$new(result, response)
+        }        
+    },
+      get_rest_services = function(
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getRestServices"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is object of model class
+            returnObject <- RestService$new()
+            ## API call result is "list container"
+            result <- lapply(httr::content(response),
+                             function(x) {
+                                 cl <- returnObject$clone()
+                                 cl$fromList(x,
+                                 typeMapping = list(item = private$getBaseDataType()))
+                                 })
+            Response$new(result, response)
+        }        
+    },
+      get_setting = function(
+          name = NULL,
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getSetting/{name}"
+            
+        if (!missing(`name`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
+        }
+
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.list(httr::content(response))
+            Response$new(result, response)
+        }        
+    },
+      get_settings = function(
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getSettings"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is a "map container" and will be parsed to list 
+            result <- httr::content(response, simplifyVector = TRUE)
+            Response$new(result, response)
+        }        
+    },
+      get_source_systems = function(
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/metadata/getSourceSystems"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is object of model class
+            returnObject <- SourceSystem$new()
+            ## API call result is "list container"
+            result <- lapply(httr::content(response),
+                             function(x) {
+                                 cl <- returnObject$clone()
+                                 cl$fromList(x,
+                                 typeMapping = list(item = private$getBaseDataType()))
+                                 })
+            Response$new(result, response)
+        }        
     },
     print = function(...) {
-      ## print class name
-      cat("<MetadataClient>\n")
-      cat("\tInherits from: <ApiClient>\n\n")
-      ## print all members with values
-      cat("Fields:\n")
-      cat("\tbasePath:\t", self$basePath, "\n")
-      cat("\tuserAgent:\t", self$userAgent, "\n")
-      ## print all methods
-      cat("Methods:\n")
-      cat("\tget_allowed_date_formats", "\n")
-      cat("\tget_controlled_list_phase_or_stage", "\n")
-      cat("\tget_controlled_list_sex", "\n")
-      cat("\tget_controlled_list_specimen_type_status", "\n")
-      cat("\tget_controlled_list_taxonomic_status", "\n")
-      cat("\tget_controlled_lists", "\n")
-      cat("\tget_rest_services", "\n")
-      cat("\tget_setting", "\n")
-      cat("\tget_settings", "\n")
-      cat("\tget_source_systems", "\n")
-      cat("\tping\n")
-      invisible(self)
+       ## print class name
+       cat("<MetadataClient>\n")
+       cat("\tInherits from: <ApiClient>\n\n")
+       ## print all members with values
+       cat("Fields:\n")
+       cat("\tbasePath:\t", self$basePath, "\n")
+       cat("\tuserAgent:\t", self$userAgent, "\n")
+       ## print all methods
+       cat("Methods:\n")
+           cat("\tget_allowed_date_formats", "\n")
+           cat("\tget_controlled_list_area_class", "\n")
+           cat("\tget_controlled_list_license", "\n")
+           cat("\tget_controlled_list_license_type", "\n")
+           cat("\tget_controlled_list_sex", "\n")
+           cat("\tget_controlled_list_spatial_datum", "\n")
+           cat("\tget_controlled_list_specimen_type_status", "\n")
+           cat("\tget_controlled_list_taxon_relation_type", "\n")
+           cat("\tget_controlled_list_taxonomic_status", "\n")
+           cat("\tget_controlled_lists", "\n")
+           cat("\tget_rest_services", "\n")
+           cat("\tget_setting", "\n")
+           cat("\tget_settings", "\n")
+           cat("\tget_source_systems", "\n")
+       cat("\tping\n")
+       invisible(self)
     }
   )
 )
+

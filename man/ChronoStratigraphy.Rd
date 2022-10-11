@@ -4,7 +4,11 @@
 \name{ChronoStratigraphy}
 \alias{ChronoStratigraphy}
 \title{ChronoStratigraphy Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # ChronoStratigraphy$new()
 }
@@ -18,8 +22,41 @@ the NBA model and endpoints reference at
 \details{
 Model class for ChronoStratigraphy objects.
 }
-\section{Fields}{
+\section{Methods}{
 
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor ChronoStratigraphy object.
+
+}
+\item{\code{$fromList(ChronoStratigraphyList)}}{
+
+  Create ChronoStratigraphy object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of ChronoStratigraphy.
+
+}
+\item{\code{fromJSONString(ChronoStratigraphyJson)}}{
+
+  Create ChronoStratigraphy object from JSON.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of ChronoStratigraphy.
+
+}
+}
+}
+
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
 \describe{
 \item{\code{youngRegionalSubstage}}{character}
 
@@ -72,39 +109,117 @@ Model class for ChronoStratigraphy objects.
 \item{\code{chronoIdentifier}}{character}
 
 \item{\code{oldCertainty}}{character}
-}}
-
+}
+\if{html}{\out{</div>}}
+}
 \section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-ChronoStratigraphy-new}{\code{ChronoStratigraphy$new()}}
+\item \href{#method-ChronoStratigraphy-toList}{\code{ChronoStratigraphy$toList()}}
+\item \href{#method-ChronoStratigraphy-fromList}{\code{ChronoStratigraphy$fromList()}}
+\item \href{#method-ChronoStratigraphy-toJSONString}{\code{ChronoStratigraphy$toJSONString()}}
+\item \href{#method-ChronoStratigraphy-fromJSONString}{\code{ChronoStratigraphy$fromJSONString()}}
+\item \href{#method-ChronoStratigraphy-print}{\code{ChronoStratigraphy$print()}}
+\item \href{#method-ChronoStratigraphy-clone}{\code{ChronoStratigraphy$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ChronoStratigraphy-new"></a>}}
+\if{latex}{\out{\hypertarget{method-ChronoStratigraphy-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ChronoStratigraphy$new(
+  youngRegionalSubstage,
+  youngRegionalStage,
+  youngRegionalSeries,
+  youngDatingQualifier,
+  youngInternSystem,
+  youngInternSubstage,
+  youngInternStage,
+  youngInternSeries,
+  youngInternErathem,
+  youngInternEonothem,
+  youngChronoName,
+  youngCertainty,
+  oldDatingQualifier,
+  chronoPreferredFlag,
+  oldRegionalSubstage,
+  oldRegionalStage,
+  oldRegionalSeries,
+  oldInternSystem,
+  oldInternSubstage,
+  oldInternStage,
+  oldInternSeries,
+  oldInternErathem,
+  oldInternEonothem,
+  oldChronoName,
+  chronoIdentifier,
+  oldCertainty
+)}\if{html}{\out{</div>}}
+}
 
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ChronoStratigraphy-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-ChronoStratigraphy-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ChronoStratigraphy$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ChronoStratigraphy-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-ChronoStratigraphy-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ChronoStratigraphy$fromList(ChronoStratigraphyList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ChronoStratigraphy-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-ChronoStratigraphy-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ChronoStratigraphy$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ChronoStratigraphy-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-ChronoStratigraphy-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ChronoStratigraphy$fromJSONString(ChronoStratigraphyJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ChronoStratigraphy-print"></a>}}
+\if{latex}{\out{\hypertarget{method-ChronoStratigraphy-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ChronoStratigraphy$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ChronoStratigraphy-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-ChronoStratigraphy-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ChronoStratigraphy$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
 \describe{
-
-\item{\code{$new()}}{
-
-  Constructor ChronoStratigraphy object.
-
+\item{\code{deep}}{Whether to make a deep clone.}
 }
-\item{\code{$fromList(ChronoStratigraphyList)}}{
-
-  Create ChronoStratigraphy object from list.
-
-}
-
-\item{\code{$toList()}}{
-
-  Get list representation of ChronoStratigraphy.
-
-}
-\item{\code{fromJSONString(ChronoStratigraphyJson)}}{
-
-  Create ChronoStratigraphy object from JSON.
-
-}
-\item{\code{toJSONString(pretty=TRUE)}}{
-
-  Get JSON representation of ChronoStratigraphy.
-
+\if{html}{\out{</div>}}
 }
 }
 }
-
-\keyword{datasets}

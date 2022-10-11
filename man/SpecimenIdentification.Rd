@@ -4,7 +4,11 @@
 \name{SpecimenIdentification}
 \alias{SpecimenIdentification}
 \title{SpecimenIdentification Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # SpecimenIdentification$new()
 }
@@ -18,8 +22,41 @@ the NBA model and endpoints reference at
 \details{
 Model class for SpecimenIdentification objects.
 }
-\section{Fields}{
+\section{Methods}{
 
+\describe{
+
+\item{\code{$new()}}{
+
+  Constructor SpecimenIdentification object.
+
+}
+\item{\code{$fromList(SpecimenIdentificationList)}}{
+
+  Create SpecimenIdentification object from list.
+
+}
+
+\item{\code{$toList()}}{
+
+  Get list representation of SpecimenIdentification.
+
+}
+\item{\code{fromJSONString(SpecimenIdentificationJson)}}{
+
+  Create SpecimenIdentification object from JSON.
+
+}
+\item{\code{toJSONString(pretty=TRUE)}}{
+
+  Get JSON representation of SpecimenIdentification.
+
+}
+}
+}
+
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
 \describe{
 \item{\code{taxonRank}}{character}
 
@@ -54,39 +91,111 @@ Model class for SpecimenIdentification objects.
 \item{\code{associatedMineralName}}{character}
 
 \item{\code{remarks}}{character}
-}}
-
+}
+\if{html}{\out{</div>}}
+}
 \section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-SpecimenIdentification-new}{\code{SpecimenIdentification$new()}}
+\item \href{#method-SpecimenIdentification-toList}{\code{SpecimenIdentification$toList()}}
+\item \href{#method-SpecimenIdentification-fromList}{\code{SpecimenIdentification$fromList()}}
+\item \href{#method-SpecimenIdentification-toJSONString}{\code{SpecimenIdentification$toJSONString()}}
+\item \href{#method-SpecimenIdentification-fromJSONString}{\code{SpecimenIdentification$fromJSONString()}}
+\item \href{#method-SpecimenIdentification-print}{\code{SpecimenIdentification$print()}}
+\item \href{#method-SpecimenIdentification-clone}{\code{SpecimenIdentification$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenIdentification-new"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenIdentification-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenIdentification$new(
+  taxonRank,
+  scientificName,
+  typeStatus,
+  dateIdentified,
+  defaultClassification,
+  systemClassification,
+  vernacularNames,
+  identificationQualifiers,
+  identifiers,
+  taxonomicEnrichments,
+  preferred,
+  verificationStatus,
+  rockType,
+  associatedFossilAssemblage,
+  rockMineralUsage,
+  associatedMineralName,
+  remarks
+)}\if{html}{\out{</div>}}
+}
 
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenIdentification-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenIdentification-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenIdentification$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenIdentification-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenIdentification-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenIdentification$fromList(SpecimenIdentificationList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenIdentification-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenIdentification-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenIdentification$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenIdentification-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenIdentification-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenIdentification$fromJSONString(
+  SpecimenIdentificationJson,
+  typeMapping = NULL
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenIdentification-print"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenIdentification-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenIdentification$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenIdentification-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenIdentification-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenIdentification$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
 \describe{
-
-\item{\code{$new()}}{
-
-  Constructor SpecimenIdentification object.
-
+\item{\code{deep}}{Whether to make a deep clone.}
 }
-\item{\code{$fromList(SpecimenIdentificationList)}}{
-
-  Create SpecimenIdentification object from list.
-
-}
-
-\item{\code{$toList()}}{
-
-  Get list representation of SpecimenIdentification.
-
-}
-\item{\code{fromJSONString(SpecimenIdentificationJson)}}{
-
-  Create SpecimenIdentification object from JSON.
-
-}
-\item{\code{toJSONString(pretty=TRUE)}}{
-
-  Get JSON representation of SpecimenIdentification.
-
+\if{html}{\out{</div>}}
 }
 }
 }
-
-\keyword{datasets}

@@ -4,10 +4,12 @@
 \alias{multimedia_count_distinct_values}
 \title{Count the distinct number of values that exist for a given field}
 \usage{
-multimedia_count_distinct_values(field = NULL, ...)
+multimedia_count_distinct_values(field = NULL, queryParams = list(), ...)
 }
 \arguments{
 \item{field}{Name of field in taxon object, type:}
+
+\item{queryParams}{Named list or vector with names being the fields to be queried and values being the values to match}
 
 \item{...}{additional parameters passed to count_distinct_values from class nbaR.MultimediaClient}
 }
@@ -18,22 +20,21 @@ scalar
 This is a wrapper for the method \code{ count_distinct_values }
 from class \code{ MultimediaClient}.
 }
-\details{
-See also endpoint /getDistinctValues
-}
 \seealso{
-Other nbaR.MultimediaClient-wrappers: \code{\link{multimedia_count_distinct_values_per_group}},
-  \code{\link{multimedia_count}},
-  \code{\link{multimedia_download_query}},
-  \code{\link{multimedia_find_by_ids}},
-  \code{\link{multimedia_find}},
-  \code{\link{multimedia_get_distinct_values_per_group}},
-  \code{\link{multimedia_get_distinct_values}},
-  \code{\link{multimedia_get_field_info}},
-  \code{\link{multimedia_get_paths}},
-  \code{\link{multimedia_get_settings}},
-  \code{\link{multimedia_get_setting}},
-  \code{\link{multimedia_is_operator_allowed}},
-  \code{\link{multimedia_query}}
+Other nbaR.MultimediaClient-wrappers: 
+\code{\link{multimedia_count_distinct_values_per_group}()},
+\code{\link{multimedia_count}()},
+\code{\link{multimedia_download_query}()},
+\code{\link{multimedia_find_by_ids}()},
+\code{\link{multimedia_find}()},
+\code{\link{multimedia_get_distinct_values_per_group}()},
+\code{\link{multimedia_get_distinct_values}()},
+\code{\link{multimedia_get_field_info}()},
+\code{\link{multimedia_get_paths}()},
+\code{\link{multimedia_get_settings}()},
+\code{\link{multimedia_get_setting}()},
+\code{\link{multimedia_is_operator_allowed}()},
+\code{\link{multimedia_query_with_name_resolution}()},
+\code{\link{multimedia_query}()}
 }
 \concept{nbaR.MultimediaClient-wrappers}

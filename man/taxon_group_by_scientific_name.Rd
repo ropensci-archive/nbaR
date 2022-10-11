@@ -4,10 +4,16 @@
 \alias{taxon_group_by_scientific_name}
 \title{Aggregates Taxon and Specimen documents according to their scientific names}
 \usage{
-taxon_group_by_scientific_name(queryParams = list(),
-  returnType = "data.frame", ...)
+taxon_group_by_scientific_name(
+  defaultClassification.family = NULL,
+  queryParams = list(),
+  returnType = "data.frame",
+  ...
+)
 }
 \arguments{
+\item{defaultClassification.family}{Example query param, type:}
+
 \item{queryParams}{Named list or vector with names being the fields to be queried and values being the values to match}
 
 \item{returnType}{Either \code{list} or \code{data.frame} (default)}
@@ -25,22 +31,22 @@ from class \code{ TaxonClient}.
 Returns a list with ScientificNameGroups, which contain Taxon and Specimen documents that share a scientific name
 }
 \seealso{
-Other nbaR.TaxonClient-wrappers: \code{\link{taxon_count_distinct_values_per_group}},
-  \code{\link{taxon_count_distinct_values}},
-  \code{\link{taxon_count}},
-  \code{\link{taxon_download_query}},
-  \code{\link{taxon_dwca_get_data_set_names}},
-  \code{\link{taxon_dwca_get_data_set}},
-  \code{\link{taxon_dwca_query}},
-  \code{\link{taxon_find_by_ids}},
-  \code{\link{taxon_find}},
-  \code{\link{taxon_get_distinct_values_per_group}},
-  \code{\link{taxon_get_distinct_values}},
-  \code{\link{taxon_get_field_info}},
-  \code{\link{taxon_get_paths}},
-  \code{\link{taxon_get_settings}},
-  \code{\link{taxon_get_setting}},
-  \code{\link{taxon_is_operator_allowed}},
-  \code{\link{taxon_query}}
+Other nbaR.TaxonClient-wrappers: 
+\code{\link{taxon_count_distinct_values_per_group}()},
+\code{\link{taxon_count_distinct_values}()},
+\code{\link{taxon_count}()},
+\code{\link{taxon_download_query}()},
+\code{\link{taxon_dwca_get_data_set_names}()},
+\code{\link{taxon_dwca_get_data_set}()},
+\code{\link{taxon_dwca_query}()},
+\code{\link{taxon_find_by_ids}()},
+\code{\link{taxon_find}()},
+\code{\link{taxon_get_distinct_values_per_group}()},
+\code{\link{taxon_get_distinct_values}()},
+\code{\link{taxon_get_field_info}()},
+\code{\link{taxon_get_paths}()},
+\code{\link{taxon_get_settings}()},
+\code{\link{taxon_is_operator_allowed}()},
+\code{\link{taxon_query}()}
 }
 \concept{nbaR.TaxonClient-wrappers}

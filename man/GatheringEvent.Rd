@@ -4,7 +4,11 @@
 \name{GatheringEvent}
 \alias{GatheringEvent}
 \title{GatheringEvent Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # GatheringEvent$new()
 }
@@ -18,64 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for GatheringEvent objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{projectTitle}}{character}
-
-\item{\code{worldRegion}}{character}
-
-\item{\code{continent}}{character}
-
-\item{\code{country}}{character}
-
-\item{\code{iso3166Code}}{character}
-
-\item{\code{provinceState}}{character}
-
-\item{\code{island}}{character}
-
-\item{\code{locality}}{character}
-
-\item{\code{city}}{character}
-
-\item{\code{sublocality}}{character}
-
-\item{\code{localityText}}{character}
-
-\item{\code{dateTimeBegin}}{character}
-
-\item{\code{dateTimeEnd}}{character}
-
-\item{\code{method}}{character}
-
-\item{\code{altitude}}{character}
-
-\item{\code{altitudeUnifOfMeasurement}}{character}
-
-\item{\code{biotopeText}}{character}
-
-\item{\code{depth}}{character}
-
-\item{\code{depthUnitOfMeasurement}}{character}
-
-\item{\code{gatheringPersons}}{list(Person)}
-
-\item{\code{gatheringOrganizations}}{list(Organization)}
-
-\item{\code{siteCoordinates}}{list(GatheringSiteCoordinates)}
-
-\item{\code{namedAreas}}{list(NamedArea)}
-
-\item{\code{associatedTaxa}}{list(AssociatedTaxon)}
-
-\item{\code{chronoStratigraphy}}{list(ChronoStratigraphy)}
-
-\item{\code{lithoStratigraphy}}{list(LithoStratigraphy)}
-
-\item{\code{bioStratigraphic}}{list(BioStratigraphy)}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -109,4 +55,186 @@ Model class for GatheringEvent objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{projectTitle}}{character}
+
+\item{\code{worldRegion}}{character}
+
+\item{\code{continent}}{character}
+
+\item{\code{country}}{character}
+
+\item{\code{iso3166Code}}{character}
+
+\item{\code{provinceState}}{character}
+
+\item{\code{island}}{character}
+
+\item{\code{locality}}{character}
+
+\item{\code{city}}{character}
+
+\item{\code{sublocality}}{character}
+
+\item{\code{localityText}}{character}
+
+\item{\code{dateTimeBegin}}{character}
+
+\item{\code{dateTimeEnd}}{character}
+
+\item{\code{dateText}}{character}
+
+\item{\code{method}}{character}
+
+\item{\code{altitude}}{character}
+
+\item{\code{altitudeUnifOfMeasurement}}{character}
+
+\item{\code{behavior}}{character}
+
+\item{\code{biotopeText}}{character}
+
+\item{\code{depth}}{character}
+
+\item{\code{depthUnitOfMeasurement}}{character}
+
+\item{\code{code}}{character}
+
+\item{\code{establishmentMeans}}{character}
+
+\item{\code{gatheringPersons}}{list(Person)}
+
+\item{\code{gatheringOrganizations}}{list(Organization)}
+
+\item{\code{siteCoordinates}}{list(GatheringSiteCoordinates)}
+
+\item{\code{namedAreas}}{list(NamedArea)}
+
+\item{\code{associatedTaxa}}{list(AssociatedTaxon)}
+
+\item{\code{chronoStratigraphy}}{list(ChronoStratigraphy)}
+
+\item{\code{lithoStratigraphy}}{list(LithoStratigraphy)}
+
+\item{\code{bioStratigraphic}}{list(BioStratigraphy)}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-GatheringEvent-new}{\code{GatheringEvent$new()}}
+\item \href{#method-GatheringEvent-toList}{\code{GatheringEvent$toList()}}
+\item \href{#method-GatheringEvent-fromList}{\code{GatheringEvent$fromList()}}
+\item \href{#method-GatheringEvent-toJSONString}{\code{GatheringEvent$toJSONString()}}
+\item \href{#method-GatheringEvent-fromJSONString}{\code{GatheringEvent$fromJSONString()}}
+\item \href{#method-GatheringEvent-print}{\code{GatheringEvent$print()}}
+\item \href{#method-GatheringEvent-clone}{\code{GatheringEvent$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GatheringEvent-new"></a>}}
+\if{latex}{\out{\hypertarget{method-GatheringEvent-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GatheringEvent$new(
+  projectTitle,
+  worldRegion,
+  continent,
+  country,
+  iso3166Code,
+  provinceState,
+  island,
+  locality,
+  city,
+  sublocality,
+  localityText,
+  dateTimeBegin,
+  dateTimeEnd,
+  dateText,
+  method,
+  altitude,
+  altitudeUnifOfMeasurement,
+  behavior,
+  biotopeText,
+  depth,
+  depthUnitOfMeasurement,
+  code,
+  establishmentMeans,
+  gatheringPersons,
+  gatheringOrganizations,
+  siteCoordinates,
+  namedAreas,
+  associatedTaxa,
+  chronoStratigraphy,
+  lithoStratigraphy,
+  bioStratigraphic
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GatheringEvent-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-GatheringEvent-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GatheringEvent$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GatheringEvent-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-GatheringEvent-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GatheringEvent$fromList(GatheringEventList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GatheringEvent-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-GatheringEvent-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GatheringEvent$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GatheringEvent-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-GatheringEvent-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GatheringEvent$fromJSONString(GatheringEventJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GatheringEvent-print"></a>}}
+\if{latex}{\out{\hypertarget{method-GatheringEvent-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GatheringEvent$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GatheringEvent-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-GatheringEvent-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GatheringEvent$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

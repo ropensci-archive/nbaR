@@ -4,12 +4,10 @@
 \alias{specimen_count_distinct_values}
 \title{Count the distinct number of values that exist for a given field}
 \usage{
-specimen_count_distinct_values(field = NULL, queryParams = list(), ...)
+specimen_count_distinct_values(field = NULL, ...)
 }
 \arguments{
 \item{field}{Name of field in the specimen object, type:}
-
-\item{queryParams}{Named list or vector with names being the fields to be queried and values being the values to match}
 
 \item{...}{additional parameters passed to count_distinct_values from class nbaR.SpecimenClient}
 }
@@ -20,30 +18,26 @@ scalar
 This is a wrapper for the method \code{ count_distinct_values }
 from class \code{ SpecimenClient}.
 }
-\details{
-See also endpoint /getDistinctValues
-}
 \seealso{
-Other nbaR.SpecimenClient-wrappers: \code{\link{specimen_count_distinct_values_per_group}},
-  \code{\link{specimen_count}},
-  \code{\link{specimen_download_query}},
-  \code{\link{specimen_dwca_get_data_set_names}},
-  \code{\link{specimen_dwca_get_data_set}},
-  \code{\link{specimen_dwca_query}},
-  \code{\link{specimen_exists}},
-  \code{\link{specimen_find_by_ids}},
-  \code{\link{specimen_find_by_unit_id}},
-  \code{\link{specimen_find}},
-  \code{\link{specimen_get_distinct_values_per_group}},
-  \code{\link{specimen_get_distinct_values}},
-  \code{\link{specimen_get_field_info}},
-  \code{\link{specimen_get_ids_in_collection}},
-  \code{\link{specimen_get_named_collections}},
-  \code{\link{specimen_get_paths}},
-  \code{\link{specimen_get_settings}},
-  \code{\link{specimen_get_setting}},
-  \code{\link{specimen_group_by_scientific_name}},
-  \code{\link{specimen_is_operator_allowed}},
-  \code{\link{specimen_query}}
+Other nbaR.SpecimenClient-wrappers: 
+\code{\link{specimen_count_distinct_values_per_group}()},
+\code{\link{specimen_count}()},
+\code{\link{specimen_download_query}()},
+\code{\link{specimen_dwca_get_data_set_names}()},
+\code{\link{specimen_dwca_get_data_set}()},
+\code{\link{specimen_dwca_query}()},
+\code{\link{specimen_exists}()},
+\code{\link{specimen_find_by_ids}()},
+\code{\link{specimen_find_by_unit_id}()},
+\code{\link{specimen_find}()},
+\code{\link{specimen_get_distinct_values_per_group}()},
+\code{\link{specimen_get_distinct_values}()},
+\code{\link{specimen_get_field_info}()},
+\code{\link{specimen_get_paths}()},
+\code{\link{specimen_get_settings}()},
+\code{\link{specimen_group_by_scientific_name}()},
+\code{\link{specimen_is_operator_allowed}()},
+\code{\link{specimen_query_with_name_resolution}()},
+\code{\link{specimen_query}()}
 }
 \concept{nbaR.SpecimenClient-wrappers}

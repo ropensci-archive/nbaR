@@ -22,17 +22,19 @@ from class \code{ GeoClient}.
 Returns a GeoJson polygon
 }
 \seealso{
-Other nbaR.GeoClient-wrappers: \code{\link{geo_count_distinct_values_per_group}},
-  \code{\link{geo_count_distinct_values}},
-  \code{\link{geo_count}}, \code{\link{geo_find_by_ids}},
-  \code{\link{geo_find}},
-  \code{\link{geo_get_distinct_values_per_group}},
-  \code{\link{geo_get_distinct_values}},
-  \code{\link{geo_get_field_info}},
-  \code{\link{geo_get_paths}},
-  \code{\link{geo_get_settings}},
-  \code{\link{geo_get_setting}},
-  \code{\link{geo_is_operator_allowed}},
-  \code{\link{geo_query}}
+Other nbaR.GeoClient-wrappers: 
+\code{\link{geo_count_distinct_values_per_group}()},
+\code{\link{geo_count_distinct_values}()},
+\code{\link{geo_count}()},
+\code{\link{geo_find_by_ids}()},
+\code{\link{geo_find}()},
+\code{\link{geo_get_distinct_values_per_group}()},
+\code{\link{geo_get_distinct_values}()},
+\code{\link{geo_get_field_info}()},
+\code{\link{geo_get_paths}()},
+\code{\link{geo_get_settings}()},
+\code{\link{geo_get_setting}()},
+\code{\link{geo_is_operator_allowed}()},
+\code{\link{geo_query}()}
 }
 \concept{nbaR.GeoClient-wrappers}

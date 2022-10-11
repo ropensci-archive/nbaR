@@ -1,4 +1,4 @@
-# Netherlands Biodiversity API
+# Netherlands Biodiversity Api
 #
 # Access to the digitised Natural History collection at the Naturalis Biodiversity Center
 #
@@ -16,7 +16,7 @@
 #' @docType class
 #'
 #' @format R6 class
-#'
+#' 
 #' @field basePath Stores url path of the request, defaults to http://api.biodiversitydata.nl/v2
 #' @field userAgent Set the user agent of the request, defaults to nbaR/0.1.0
 #'
@@ -24,7 +24,7 @@
 #'
 #' @usage
 #' # client <- SpecimenClient$new()
-#'
+#' 
 #' @section Methods:
 #' \describe{
 #' \item{\code{ count }}{
@@ -34,10 +34,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
-#'
-#'         \item \code{ queryParams } : named list or vector with query parameters
-#'
+#'         \item \code{ collection_type } : Example query param 
+#'         
+#'         \item \code{ queryParams } : named list or vector with query parameters 
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -46,14 +46,14 @@
 #' \item{\code{ count_distinct_values }}{
 #'
 #'   Count the distinct number of values that exist for a given field;
-#'   See also endpoint /getDistinctValues.
+#'   .
 #'
 #'     Parameters:
 #'     \itemize{
-#'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
-#'         \item \code{ field } : Name of field in the specimen object
-#'         \item \code{ queryParams } : named list or vector with query parameters
-#'
+#'         
+#'         \item \code{ field } : Name of field in the specimen object 
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -62,14 +62,14 @@
 #' \item{\code{ count_distinct_values_per_group }}{
 #'
 #'   Count the distinct number of field values that exist per the given field to group by;
-#'   See also endpoint /getDistinctValuesPerGroup.
+#'   .
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'         \item \code{ group } : Name of field in the specimen object you want to group by \item \code{ field } : Name of field in the specimen object
-#'
-#'
+#'         
+#'         \item \code{ group } : Name of field in the specimen object you want to group by \item \code{ field } : Name of field in the specimen object 
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -82,14 +82,14 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
-#'
-#'         \item \code{ queryParams } : named list or vector with query parameters
-#'
+#'         \item \code{ collection_type } : Example query param 
+#'         
+#'         \item \code{ queryParams } : named list or vector with query parameters 
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
-#'         \code{ Specimen }
+#'         \code{  }
 #' }
 #' \item{\code{ dwca_get_data_set }}{
 #'
@@ -98,10 +98,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'         \item \code{ dataset } : name of dataset
-#'
-#'         \item \code{ filename } : location to save data, defaults to \code{format(Sys.time(), "download-\%Y-\%m-\%dT\%H:\%m.zip")}
+#'         
+#'         \item \code{ dataset } : name of dataset 
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -114,10 +114,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'
-#'
-#'
+#'         
+#'         
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -130,10 +130,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
-#'
-#'         \item \code{ queryParams } : named list or vector with query parameters
-#'         \item \code{ filename } : location to save data, defaults to \code{format(Sys.time(), "download-\%Y-\%m-\%dT\%H:\%m.zip")}
+#'         \item \code{ collection_type } : Example query param 
+#'         
+#'         \item \code{ queryParams } : named list or vector with query parameters 
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -141,15 +141,15 @@
 #' }
 #' \item{\code{ exists }}{
 #'
-#'   Returns whether or not a unitID for a specimen exists;
+#'   Returns whether or not the provided unitID is a valid (in-use) unitID;
 #'   Returns either true or false.
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'         \item \code{ unit_id } : the unitID of the specimen to query
-#'
-#'
+#'         
+#'         \item \code{ unit_id } : the unitID of the specimen to query 
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -157,15 +157,15 @@
 #' }
 #' \item{\code{ find }}{
 #'
-#'   Find a specimen by id;
-#'   If found, returns a single specimen.
+#'   Find a specimen by its Elasticsearch document ID;
+#'   If found, returns a single specimen. Note that NBA document IDs are not auto-generated, so they are stable across dataset imports..
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'         \item \code{ id } : id of specimen
-#'
-#'
+#'         
+#'         \item \code{ id } : id of specimen 
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -173,15 +173,15 @@
 #' }
 #' \item{\code{ find_by_ids }}{
 #'
-#'   Find specimens by ids;
+#'   Find specimens by their Elasticsearch document IDs;
 #'   Given multiple ids, returns a list of specimen.
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'         \item \code{ ids } : ids of multiple specimen, separated by comma
-#'
-#'
+#'         
+#'         \item \code{ ids } : ids of multiple specimen, separated by comma 
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -194,10 +194,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'         \item \code{ unit_id } : the unitID of the specimen to query
-#'
-#'
+#'         
+#'         \item \code{ unit_id } : the unitID of the specimen to query 
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -210,10 +210,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
-#'         \item \code{ field } : Name of field in specimen object
-#'         \item \code{ queryParams } : named list or vector with query parameters
-#'
+#'         
+#'         \item \code{ field } : Name of field in specimen object 
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -222,14 +222,14 @@
 #' \item{\code{ get_distinct_values_per_group }}{
 #'
 #'   Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by;
-#'   See also endpoint /getDistinctValues.
+#'   .
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'         \item \code{ group } : Name of field in the specimen object you want to group by \item \code{ field } : Name of field in the specimen object
-#'
-#'
+#'         
+#'         \item \code{ group } : Name of field in the specimen object you want to group by \item \code{ field } : Name of field in the specimen object 
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -242,46 +242,14 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'
-#'
-#'
+#'         
+#'         
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
 #'         \code{ list }
-#' }
-#' \item{\code{ get_ids_in_collection }}{
-#'
-#'   Retrieve all ids within a &#39;special collection&#39; of specimens;
-#'   Available collections can be queried with /getNamedCollections.
-#'
-#'     Parameters:
-#'     \itemize{
-#'
-#'         \item \code{ name } : name of dataset
-#'
-#'
-#'         \item \code{ ... } : additional parameters passed to httr::GET
-#'     }
-#'     Returns:
-#'         \code{ character }
-#' }
-#' \item{\code{ get_named_collections }}{
-#'
-#'   Retrieve the names of all &#39;special collections&#39; of specimens;
-#'   See also here: http://bioportal.naturalis.nl/collecties.
-#'
-#'     Parameters:
-#'     \itemize{
-#'
-#'
-#'
-#'
-#'         \item \code{ ... } : additional parameters passed to httr::GET
-#'     }
-#'     Returns:
-#'         \code{ character }
 #' }
 #' \item{\code{ get_paths }}{
 #'
@@ -290,30 +258,14 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'
-#'
-#'
+#'         
+#'         
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
 #'         \code{ character }
-#' }
-#' \item{\code{ get_setting }}{
-#'
-#'   Get the value of an NBA setting;
-#'   All settings can be queried with /metadata/getSettings.
-#'
-#'     Parameters:
-#'     \itemize{
-#'
-#'         \item \code{ name } : name of setting
-#'
-#'
-#'         \item \code{ ... } : additional parameters passed to httr::GET
-#'     }
-#'     Returns:
-#'         \code{ list }
 #' }
 #' \item{\code{ get_settings }}{
 #'
@@ -322,10 +274,26 @@
 #'
 #'     Parameters:
 #'     \itemize{
+#'         
+#'         
+#'         
+#'         
+#'         \item \code{ ... } : additional parameters passed to httr::GET
+#'     }
+#'     Returns:
+#'         \code{ list }
+#' }
+#' \item{\code{ get_settings }}{
 #'
+#'   Get the value of an NBA setting;
+#'   All settings can be queried with /metadata/getSettings.
 #'
-#'
-#'
+#'     Parameters:
+#'     \itemize{
+#'         
+#'         \item \code{ name } : name of setting 
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -338,10 +306,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
-#'
-#'         \item \code{ queryParams } : named list or vector with query parameters
-#'
+#'         \item \code{ collection_type } : Example query param 
+#'         
+#'         \item \code{ queryParams } : named list or vector with query parameters 
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -354,14 +322,14 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'
-#'         \item \code{ field } : specimen document field \item \code{ operator } : operator
-#'
-#'
+#'         
+#'         \item \code{ field } : specimen document field \item \code{ operator } : operator 
+#'         
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
-#'         \code{ logical }
+#'         \code{ list }
 #' }
 #' \item{\code{ query }}{
 #'
@@ -370,878 +338,723 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
-#'
-#'         \item \code{ queryParams } : named list or vector with query parameters
-#'
+#'         \item \code{ collection_type } : Example query param 
+#'         
+#'         \item \code{ queryParams } : named list or vector with query parameters 
+#'         
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
 #'         \code{ QueryResult }
 #' }
+#' \item{\code{ query_with_name_resolution }}{
+#'
+#'   ;
+#'   .
+#'
+#'     Parameters:
+#'     \itemize{
+#'         \item \code{ _query_spec } :  
+#'         
+#'         \item \code{ queryParams } : named list or vector with query parameters 
+#'         
+#'         \item \code{ ... } : additional parameters passed to httr::GET
+#'     }
+#'     Returns:
+#'         \code{  }
+#' }
 #' }
 #'
 #' @export
 SpecimenClient <- R6::R6Class(
-  "SpecimenClient",
-  inherit = ApiClient,
-  public = list(
-    initialize = function(basePath, userAgent) {
-      super$initialize(basePath, userAgent)
+    "SpecimenClient",
+    inherit = ApiClient,
+    public = list(
+        initialize = function(basePath, userAgent){
+        super$initialize(basePath, userAgent)
     },
 
-    count = function(
-                         querySpec = NULL,
-                         queryParams = list(),
-                         ...) {
-      headerParams <- character()
-      if (!is.null(querySpec) & length(queryParams) > 0) {
-        stop("Either querySpec or queryParams argument allowed, not both.")
-      }
-
-      if (!missing(`querySpec`)) {
-        ## querySpec can be either JSON string or object of type QuerySpec.
-        param <- ifelse(typeof(`querySpec`) == "environment",
-          `querySpec`$toJSONString(),
-          `querySpec`
-        )
-        queryParams["querySpec"] <- param
-      }
-      ## querySpec parameter has underscore in NBA, omitted in argument
-      names(queryParams) <- gsub(
-        "querySpec",
-        "_querySpec",
-        names(queryParams)
-      )
-
-      urlPath <- "/specimen/count"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.integer(httr::content(response))
-        Response$new(result, response)
-      }
-    },
-    count_distinct_values = function(
-                                         field = NULL,
-                                         querySpec = NULL,
-                                         queryParams = list(),
-                                         ...) {
-      headerParams <- character()
-      if (!is.null(querySpec) & length(queryParams) > 0) {
-        stop("Either querySpec or queryParams argument allowed, not both.")
-      }
-
-      if (!missing(`querySpec`)) {
-        ## querySpec can be either JSON string or object of type QuerySpec.
-        param <- ifelse(typeof(`querySpec`) == "environment",
-          `querySpec`$toJSONString(),
-          `querySpec`
-        )
-        queryParams["querySpec"] <- param
-      }
-      ## querySpec parameter has underscore in NBA, omitted in argument
-      names(queryParams) <- gsub(
-        "querySpec",
-        "_querySpec",
-        names(queryParams)
-      )
-
-      urlPath <- "/specimen/countDistinctValues/{field}"
-
-      if (!missing(`field`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
-      }
-
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.integer(httr::content(response))
-        Response$new(result, response)
-      }
-    },
-    count_distinct_values_per_group = function(
-                                                   group = NULL,
-                                                   field = NULL,
-                                                   ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/specimen/countDistinctValuesPerGroup/{group}/{field}"
-
-      if (!missing(`group`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
-      }
-
-
-      if (!missing(`field`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
-      }
-
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is a "map container" and will be parsed to list
-        result <- httr::content(response, simplifyVector = TRUE)
-        Response$new(result, response)
-      }
-    },
-    download_query = function(
-                                  querySpec = NULL,
-                                  queryParams = list(),
-                                  ...) {
-      headerParams <- character()
-      if (!is.null(querySpec) & length(queryParams) > 0) {
-        stop("Either querySpec or queryParams argument allowed, not both.")
-      }
-
-      if (!missing(`querySpec`)) {
-        ## querySpec can be either JSON string or object of type QuerySpec.
-        param <- ifelse(typeof(`querySpec`) == "environment",
-          `querySpec`$toJSONString(),
-          `querySpec`
-        )
-        queryParams["querySpec"] <- param
-      }
-      ## querySpec parameter has underscore in NBA, omitted in argument
-      names(queryParams) <- gsub(
-        "querySpec",
-        "_querySpec",
-        names(queryParams)
-      )
-
-      urlPath <- "/specimen/download"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is object of model class
-        returnObject <- Specimen$new()
-        ## API call result is "list container"
-        result <- lapply(
-          httr::content(response),
-          function(x) {
-            cl <- returnObject$clone()
-            cl$fromList(x,
-              typeMapping = list(item = private$getBaseDataType())
-            )
-          }
-        )
-        Response$new(result, response)
-      }
-    },
-    dwca_get_data_set = function(
-                                     dataset = NULL,
-                                     filename = format(
-                                       Sys.time(),
-                                       "download-%Y-%m-%dT%H:%m.zip"
-                                     ),
-                                     ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/specimen/dwca/getDataSet/{dataset}"
-
-      if (!missing(`dataset`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "dataset", "\\}"), `dataset`, urlPath)
-      }
-
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        httr::write_disk(filename),
-        httr::progress(),
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        message("Query result written to ", filename)
-        ## empty response, e.g. when file is downloaded
-        result <- NULL
-        Response$new(result, response)
-      }
-    },
-    dwca_get_data_set_names = function(
-                                           ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/specimen/dwca/getDataSetNames"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.character(httr::content(response))
-        Response$new(result, response)
-      }
-    },
-    dwca_query = function(
-                              querySpec = NULL,
-                              queryParams = list(),
-                              filename = format(
-                                Sys.time(),
-                                "download-%Y-%m-%dT%H:%m.zip"
-                              ),
-                              ...) {
-      headerParams <- character()
-      if (!is.null(querySpec) & length(queryParams) > 0) {
-        stop("Either querySpec or queryParams argument allowed, not both.")
-      }
-
-      if (!missing(`querySpec`)) {
-        ## querySpec can be either JSON string or object of type QuerySpec.
-        param <- ifelse(typeof(`querySpec`) == "environment",
-          `querySpec`$toJSONString(),
-          `querySpec`
-        )
-        queryParams["querySpec"] <- param
-      }
-      ## querySpec parameter has underscore in NBA, omitted in argument
-      names(queryParams) <- gsub(
-        "querySpec",
-        "_querySpec",
-        names(queryParams)
-      )
-
-      urlPath <- "/specimen/dwca/query"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        httr::write_disk(filename),
-        httr::progress(),
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        message("Query result written to ", filename)
-        ## empty response, e.g. when file is downloaded
-        result <- NULL
-        Response$new(result, response)
-      }
-    },
-    exists = function(
-                          unitID = NULL,
-                          ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/specimen/exists/{unitID}"
-
-      if (!missing(`unitID`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "unitID", "\\}"), `unitID`, urlPath)
-      }
-
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.logical(httr::content(response))
-        Response$new(result, response)
-      }
-    },
-    find = function(
-                        id = NULL,
-                        ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/specimen/find/{id}"
-
-      if (!missing(`id`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "id", "\\}"), `id`, urlPath)
-      }
-
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is object of model class
-        returnObject <- Specimen$new()
-        ## if API call result is QueryResult,
-        ## list items must be mapped to model class
-        result <- returnObject$fromList(
-          httr::content(response),
-          typeMapping = list(item = private$getBaseDataType())
-        )
-        Response$new(result, response)
-      }
-    },
-    find_by_ids = function(
-                               ids = NULL,
-                               ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/specimen/findByIds/{ids}"
-
-      if (!missing(`ids`)) {
-        ## build URL for path param
-        ## input can be vector or string with comma separated items
-        ## API takes string, so translate vector, if present
-        if (length(`ids`) > 1) {
-          ids <- paste(ids, collapse = ",")
+      count = function(
+          collectionType = NULL,
+          queryParams = list(),
+          ... ) {
+        headerParams <- character()
+        if (!is.null(querySpec) & length(queryParams) > 0) {
+            stop("Either querySpec or queryParams argument allowed, not both.")
         }
-        urlPath <- gsub(paste0("\\{", "ids", "\\}"), `ids`, urlPath)
-      }
+            
+        if (!missing(`collectionType`)) {
+          ## querySpec can be either JSON string or object of type QuerySpec. 
+          param <- ifelse(typeof(`collectionType`) == "environment",
+                          `collectionType`$toJSONString(),
+                          `collectionType`)    
+          queryParams["collectionType"] <- param
+        }
+        ## querySpec parameter has underscore in NBA, omitted in argument
+        names(queryParams) <- gsub("querySpec",
+                                    "querySpec",
+                                    names(queryParams))
 
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
+        urlPath <- "/specimen/count"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is object of model class
-        returnObject <- Specimen$new()
-        ## API call result is "list container"
-        result <- lapply(
-          httr::content(response),
-          function(x) {
-            cl <- returnObject$clone()
-            cl$fromList(x,
-              typeMapping = list(item = private$getBaseDataType())
-            )
-          }
-        )
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.integer(httr::content(response))
+            Response$new(result, response)
+        }        
     },
-    find_by_unit_id = function(
-                                   unitID = NULL,
-                                   ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/specimen/findByUnitID/{unitID}"
+      count_distinct_values = function(
+          field = NULL,
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/specimen/countDistinctValues/{field}"
+            
+        if (!missing(`field`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
+        }
 
-      if (!missing(`unitID`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "unitID", "\\}"), `unitID`, urlPath)
-      }
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is object of model class
-        returnObject <- Specimen$new()
-        ## API call result is "list container"
-        result <- lapply(
-          httr::content(response),
-          function(x) {
-            cl <- returnObject$clone()
-            cl$fromList(x,
-              typeMapping = list(item = private$getBaseDataType())
-            )
-          }
-        )
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.integer(httr::content(response))
+            Response$new(result, response)
+        }        
     },
-    get_distinct_values = function(
-                                       field = NULL,
-                                       querySpec = NULL,
-                                       queryParams = list(),
-                                       ...) {
-      headerParams <- character()
-      if (!is.null(querySpec) & length(queryParams) > 0) {
-        stop("Either querySpec or queryParams argument allowed, not both.")
-      }
+      count_distinct_values_per_group = function(
+          group = NULL,
+          field = NULL,
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/specimen/countDistinctValuesPerGroup/{group}/{field}"
+            
+        if (!missing(`group`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
+        }
 
-      if (!missing(`querySpec`)) {
-        ## querySpec can be either JSON string or object of type QuerySpec.
-        param <- ifelse(typeof(`querySpec`) == "environment",
-          `querySpec`$toJSONString(),
-          `querySpec`
-        )
-        queryParams["querySpec"] <- param
-      }
-      ## querySpec parameter has underscore in NBA, omitted in argument
-      names(queryParams) <- gsub(
-        "querySpec",
-        "_querySpec",
-        names(queryParams)
-      )
+            
+        if (!missing(`field`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
+        }
 
-      urlPath <- "/specimen/getDistinctValues/{field}"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      if (!missing(`field`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
-      }
-
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is a "map container" and will be parsed to list
-        result <- httr::content(response, simplifyVector = TRUE)
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.list(httr::content(response))
+            Response$new(result, response)
+        }        
     },
-    get_distinct_values_per_group = function(
-                                                 group = NULL,
-                                                 field = NULL,
-                                                 ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/specimen/getDistinctValuesPerGroup/{group}/{field}"
+      download_query = function(
+          collectionType = NULL,
+          queryParams = list(),
+          ... ) {
+        headerParams <- character()
+        if (!is.null(querySpec) & length(queryParams) > 0) {
+            stop("Either querySpec or queryParams argument allowed, not both.")
+        }
+            
+        if (!missing(`collectionType`)) {
+          ## querySpec can be either JSON string or object of type QuerySpec. 
+          param <- ifelse(typeof(`collectionType`) == "environment",
+                          `collectionType`$toJSONString(),
+                          `collectionType`)    
+          queryParams["collectionType"] <- param
+        }
+        ## querySpec parameter has underscore in NBA, omitted in argument
+        names(queryParams) <- gsub("querySpec",
+                                    "querySpec",
+                                    names(queryParams))
 
-      if (!missing(`group`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
-      }
+        urlPath <- "/specimen/download"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-
-      if (!missing(`field`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
-      }
-
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.list(httr::content(response))
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## empty response, e.g. when file is downloaded
+            result <- NULL
+            Response$new(result, response)
+        }        
     },
-    get_field_info = function(
-                                  ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/specimen/metadata/getFieldInfo"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
+      dwca_get_data_set = function(
+          dataset = NULL,
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/specimen/dwca/getDataSet/{dataset}"
+            
+        if (!missing(`dataset`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "dataset", "\\}"), `dataset`, urlPath)
+        }
 
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is a "map container" and will be parsed to list
-        result <- httr::content(response, simplifyVector = TRUE)
-        Response$new(result, response)
-      }
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## empty response, e.g. when file is downloaded
+            result <- NULL
+            Response$new(result, response)
+        }        
     },
-    get_ids_in_collection = function(
-                                         name = NULL,
-                                         ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/specimen/getIdsInCollection/{name}"
+      dwca_get_data_set_names = function(
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/specimen/dwca/getDataSetNames"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      if (!missing(`name`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
-      }
-
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.character(httr::content(response))
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.character(httr::content(response))
+            Response$new(result, response)
+        }        
     },
-    get_named_collections = function(
-                                         ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/specimen/getNamedCollections"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
+      dwca_query = function(
+          collectionType = NULL,
+          queryParams = list(),
+          ... ) {
+        headerParams <- character()
+        if (!is.null(querySpec) & length(queryParams) > 0) {
+            stop("Either querySpec or queryParams argument allowed, not both.")
+        }
+            
+        if (!missing(`collectionType`)) {
+          ## querySpec can be either JSON string or object of type QuerySpec. 
+          param <- ifelse(typeof(`collectionType`) == "environment",
+                          `collectionType`$toJSONString(),
+                          `collectionType`)    
+          queryParams["collectionType"] <- param
+        }
+        ## querySpec parameter has underscore in NBA, omitted in argument
+        names(queryParams) <- gsub("querySpec",
+                                    "querySpec",
+                                    names(queryParams))
 
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.character(httr::content(response))
-        Response$new(result, response)
-      }
+        urlPath <- "/specimen/dwca/query"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## empty response, e.g. when file is downloaded
+            result <- NULL
+            Response$new(result, response)
+        }        
     },
-    get_paths = function(
-                             ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/specimen/metadata/getPaths"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
+      exists = function(
+          unitID = NULL,
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/specimen/exists/{unitID}"
+            
+        if (!missing(`unitID`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "unitID", "\\}"), `unitID`, urlPath)
+        }
 
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.character(httr::content(response))
-        Response$new(result, response)
-      }
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.logical(httr::content(response))
+            Response$new(result, response)
+        }        
     },
-    get_setting = function(
-                               name = NULL,
-                               ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/specimen/metadata/getSetting/{name}"
+      find = function(
+          id = NULL,
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/specimen/find/{id}"
+            
+        if (!missing(`id`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "id", "\\}"), `id`, urlPath)
+        }
 
-      if (!missing(`name`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
-      }
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.list(httr::content(response))
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is object of model class
+            returnObject <- Specimen$new()
+            ## if API call result is QueryResult,
+            ## list items must be mapped to model class            
+            result <- returnObject$fromList(
+                httr::content(response),
+                  typeMapping = list(item = private$getBaseDataType()))
+            Response$new(result, response)
+        }        
     },
-    get_settings = function(
-                                ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/specimen/metadata/getSettings"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
+      find_by_ids = function(
+          ids = NULL,
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/specimen/findByIds/{ids}"
+            
+        if (!missing(`ids`)) {
+            ## build URL for path param
+            ## input can be vector or string with comma separated items
+            ## API takes string, so translate vector, if present
+            if (length(`ids`) > 1) {
+                ids <- paste(ids, collapse = ",")
+            }
+            urlPath <- gsub(paste0("\\{", "ids", "\\}"), `ids`, urlPath)
+        }
 
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is a "map container" and will be parsed to list
-        result <- httr::content(response, simplifyVector = TRUE)
-        Response$new(result, response)
-      }
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is object of model class
+            returnObject <- Specimen$new()
+            ## API call result is "list container"
+            result <- lapply(httr::content(response),
+                             function(x) {
+                                 cl <- returnObject$clone()
+                                 cl$fromList(x,
+                                 typeMapping = list(item = private$getBaseDataType()))
+                                 })
+            Response$new(result, response)
+        }        
     },
-    group_by_scientific_name = function(
-                                            querySpec = NULL,
-                                            queryParams = list(),
-                                            ...) {
-      headerParams <- character()
-      if (!is.null(querySpec) & length(queryParams) > 0) {
-        stop("Either querySpec or queryParams argument allowed, not both.")
-      }
+      find_by_unit_id = function(
+          unitID = NULL,
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/specimen/findByUnitID/{unitID}"
+            
+        if (!missing(`unitID`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "unitID", "\\}"), `unitID`, urlPath)
+        }
 
-      if (!missing(`querySpec`)) {
-        ## querySpec can be either JSON string or object of type QuerySpec.
-        param <- ifelse(typeof(`querySpec`) == "environment",
-          `querySpec`$toJSONString(),
-          `querySpec`
-        )
-        queryParams["querySpec"] <- param
-      }
-      ## querySpec parameter has underscore in NBA, omitted in argument
-      names(queryParams) <- gsub(
-        "querySpec",
-        "_querySpec",
-        names(queryParams)
-      )
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      urlPath <- "/specimen/groupByScientificName"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is object of model class
-        returnObject <- QueryResult$new()
-        ## if API call result is QueryResult,
-        ## list items must be mapped to model class
-        result <- returnObject$fromList(
-          httr::content(response),
-          typeMapping = list(item = private$getBaseDataType())
-        )
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is object of model class
+            returnObject <- Specimen$new()
+            ## API call result is "list container"
+            result <- lapply(httr::content(response),
+                             function(x) {
+                                 cl <- returnObject$clone()
+                                 cl$fromList(x,
+                                 typeMapping = list(item = private$getBaseDataType()))
+                                 })
+            Response$new(result, response)
+        }        
     },
-    is_operator_allowed = function(
-                                       field = NULL,
-                                       operator = NULL,
-                                       ...) {
-      headerParams <- character()
-      queryParams <- list()
-      urlPath <- "/specimen/metadata/isOperatorAllowed/{field}/{operator}"
+      get_distinct_values = function(
+          field = NULL,
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/specimen/getDistinctValues/{field}"
+            
+        if (!missing(`field`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
+        }
 
-      if (!missing(`field`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
-      }
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-
-      if (!missing(`operator`)) {
-        ## build URL for path param
-        urlPath <- gsub(paste0("\\{", "operator", "\\}"), `operator`, urlPath)
-      }
-
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
-
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is "primitive type", return vector or single value
-        result <- as.logical(httr::content(response))
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is a "map container" and will be parsed to list 
+            result <- httr::content(response, simplifyVector = TRUE)
+            Response$new(result, response)
+        }        
     },
-    query = function(
-                         querySpec = NULL,
-                         queryParams = list(),
-                         ...) {
-      headerParams <- character()
-      if (!is.null(querySpec) & length(queryParams) > 0) {
-        stop("Either querySpec or queryParams argument allowed, not both.")
-      }
+      get_distinct_values_per_group = function(
+          group = NULL,
+          field = NULL,
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/specimen/getDistinctValuesPerGroup/{group}/{field}"
+            
+        if (!missing(`group`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
+        }
 
-      if (!missing(`querySpec`)) {
-        ## querySpec can be either JSON string or object of type QuerySpec.
-        param <- ifelse(typeof(`querySpec`) == "environment",
-          `querySpec`$toJSONString(),
-          `querySpec`
-        )
-        queryParams["querySpec"] <- param
-      }
-      ## querySpec parameter has underscore in NBA, omitted in argument
-      names(queryParams) <- gsub(
-        "querySpec",
-        "_querySpec",
-        names(queryParams)
-      )
+            
+        if (!missing(`field`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
+        }
 
-      urlPath <- "/specimen/query"
-      response <- self$callApi(
-        url = paste0(self$basePath, urlPath),
-        method = "GET",
-        queryParams = as.list(queryParams),
-        headerParams = headerParams,
-        body = body,
-        ...
-      )
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
 
-      if (httr::status_code(response) < 200 ||
-        httr::status_code(response) > 299) {
-        self$handleError(response)
-      } else {
-        ## API call result is object of model class
-        returnObject <- QueryResult$new()
-        ## if API call result is QueryResult,
-        ## list items must be mapped to model class
-        result <- returnObject$fromList(
-          httr::content(response),
-          typeMapping = list(item = private$getBaseDataType())
-        )
-        Response$new(result, response)
-      }
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.list(httr::content(response))
+            Response$new(result, response)
+        }        
+    },
+      get_field_info = function(
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/specimen/metadata/getFieldInfo"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is a "map container" and will be parsed to list 
+            result <- httr::content(response, simplifyVector = TRUE)
+            Response$new(result, response)
+        }        
+    },
+      get_paths = function(
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/specimen/metadata/getPaths"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is "primitive type", return vector or single value
+            result <- as.character(httr::content(response))
+            Response$new(result, response)
+        }        
+    },
+      get_settings = function(
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/specimen/metadata/getSettings"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is a "map container" and will be parsed to list 
+            result <- httr::content(response, simplifyVector = TRUE)
+            Response$new(result, response)
+        }        
+    },
+      group_by_scientific_name = function(
+          collectionType = NULL,
+          queryParams = list(),
+          ... ) {
+        headerParams <- character()
+        if (!is.null(querySpec) & length(queryParams) > 0) {
+            stop("Either querySpec or queryParams argument allowed, not both.")
+        }
+            
+        if (!missing(`collectionType`)) {
+          ## querySpec can be either JSON string or object of type QuerySpec. 
+          param <- ifelse(typeof(`collectionType`) == "environment",
+                          `collectionType`$toJSONString(),
+                          `collectionType`)    
+          queryParams["collectionType"] <- param
+        }
+        ## querySpec parameter has underscore in NBA, omitted in argument
+        names(queryParams) <- gsub("querySpec",
+                                    "querySpec",
+                                    names(queryParams))
+
+        urlPath <- "/specimen/groupByScientificName"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is object of model class
+            returnObject <- QueryResult$new()
+            ## if API call result is QueryResult,
+            ## list items must be mapped to model class            
+            result <- returnObject$fromList(
+                httr::content(response),
+                  typeMapping = list(item = private$getBaseDataType()))
+            Response$new(result, response)
+        }        
+    },
+      is_operator_allowed = function(
+          field = NULL,
+          operator = NULL,
+          ... ) {
+        headerParams <- character()
+        queryParams <- list()
+        urlPath <- "/specimen/metadata/isOperatorAllowed/{field}/{operator}"
+            
+        if (!missing(`field`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
+        }
+
+            
+        if (!missing(`operator`)) {
+            ## build URL for path param
+            urlPath <- gsub(paste0("\\{", "operator", "\\}"), `operator`, urlPath)
+        }
+
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is a "map container" and will be parsed to list 
+            result <- httr::content(response, simplifyVector = TRUE)
+            Response$new(result, response)
+        }        
+    },
+      query = function(
+          collectionType = NULL,
+          queryParams = list(),
+          ... ) {
+        headerParams <- character()
+        if (!is.null(querySpec) & length(queryParams) > 0) {
+            stop("Either querySpec or queryParams argument allowed, not both.")
+        }
+            
+        if (!missing(`collectionType`)) {
+          ## querySpec can be either JSON string or object of type QuerySpec. 
+          param <- ifelse(typeof(`collectionType`) == "environment",
+                          `collectionType`$toJSONString(),
+                          `collectionType`)    
+          queryParams["collectionType"] <- param
+        }
+        ## querySpec parameter has underscore in NBA, omitted in argument
+        names(queryParams) <- gsub("querySpec",
+                                    "querySpec",
+                                    names(queryParams))
+
+        urlPath <- "/specimen/query"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## API call result is object of model class
+            returnObject <- QueryResult$new()
+            ## if API call result is QueryResult,
+            ## list items must be mapped to model class            
+            result <- returnObject$fromList(
+                httr::content(response),
+                  typeMapping = list(item = private$getBaseDataType()))
+            Response$new(result, response)
+        }        
+    },
+      query_with_name_resolution = function(
+          querySpec = NULL,
+          queryParams = list(),
+          ... ) {
+        headerParams <- character()
+        if (!is.null(querySpec) & length(queryParams) > 0) {
+            stop("Either querySpec or queryParams argument allowed, not both.")
+        }
+            
+        if (!missing(`querySpec`)) {
+          ## querySpec can be either JSON string or object of type QuerySpec. 
+          param <- ifelse(typeof(`querySpec`) == "environment",
+                          `querySpec`$toJSONString(),
+                          `querySpec`)    
+          queryParams["querySpec"] <- param
+        }
+        ## querySpec parameter has underscore in NBA, omitted in argument
+        names(queryParams) <- gsub("querySpec",
+                                    "querySpec",
+                                    names(queryParams))
+
+        urlPath <- "/specimen/queryWithNameResolution"
+        response <- self$callApi(url = paste0(self$basePath, urlPath),
+                                 method = "GET",
+                                 queryParams = as.list(queryParams),
+                                 headerParams = headerParams,
+                                 body = body,
+                                 ...)
+
+        if (httr::status_code(response) < 200 ||
+               httr::status_code(response) > 299) {
+            self$handleError(response)
+        } else {
+            ## empty response, e.g. when file is downloaded
+            result <- NULL
+            Response$new(result, response)
+        }        
     },
     print = function(...) {
-      ## print class name
-      cat("<SpecimenClient>\n")
-      cat("\tInherits from: <ApiClient>\n\n")
-      ## print all members with values
-      cat("Fields:\n")
-      cat("\tbasePath:\t", self$basePath, "\n")
-      cat("\tuserAgent:\t", self$userAgent, "\n")
-      ## print all methods
-      cat("Methods:\n")
-      cat("\tcount", "\n")
-      cat("\tcount_distinct_values", "\n")
-      cat("\tcount_distinct_values_per_group", "\n")
-      cat("\tdownload_query", "\n")
-      cat("\tdwca_get_data_set", "\n")
-      cat("\tdwca_get_data_set_names", "\n")
-      cat("\tdwca_query", "\n")
-      cat("\texists", "\n")
-      cat("\tfind", "\n")
-      cat("\tfind_by_ids", "\n")
-      cat("\tfind_by_unit_id", "\n")
-      cat("\tget_distinct_values", "\n")
-      cat("\tget_distinct_values_per_group", "\n")
-      cat("\tget_field_info", "\n")
-      cat("\tget_ids_in_collection", "\n")
-      cat("\tget_named_collections", "\n")
-      cat("\tget_paths", "\n")
-      cat("\tget_setting", "\n")
-      cat("\tget_settings", "\n")
-      cat("\tgroup_by_scientific_name", "\n")
-      cat("\tis_operator_allowed", "\n")
-      cat("\tquery", "\n")
-      cat("\tping\n")
-      invisible(self)
+       ## print class name
+       cat("<SpecimenClient>\n")
+       cat("\tInherits from: <ApiClient>\n\n")
+       ## print all members with values
+       cat("Fields:\n")
+       cat("\tbasePath:\t", self$basePath, "\n")
+       cat("\tuserAgent:\t", self$userAgent, "\n")
+       ## print all methods
+       cat("Methods:\n")
+           cat("\tcount", "\n")
+           cat("\tcount_distinct_values", "\n")
+           cat("\tcount_distinct_values_per_group", "\n")
+           cat("\tdownload_query", "\n")
+           cat("\tdwca_get_data_set", "\n")
+           cat("\tdwca_get_data_set_names", "\n")
+           cat("\tdwca_query", "\n")
+           cat("\texists", "\n")
+           cat("\tfind", "\n")
+           cat("\tfind_by_ids", "\n")
+           cat("\tfind_by_unit_id", "\n")
+           cat("\tget_distinct_values", "\n")
+           cat("\tget_distinct_values_per_group", "\n")
+           cat("\tget_field_info", "\n")
+           cat("\tget_paths", "\n")
+           cat("\tget_settings", "\n")
+           cat("\tget_settings", "\n")
+           cat("\tgroup_by_scientific_name", "\n")
+           cat("\tis_operator_allowed", "\n")
+           cat("\tquery", "\n")
+           cat("\tquery_with_name_resolution", "\n")
+       cat("\tping\n")
+       invisible(self)
     }
   )
 )
+

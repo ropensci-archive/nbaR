@@ -4,7 +4,11 @@
 \name{SummaryScientificName}
 \alias{SummaryScientificName}
 \title{SummaryScientificName Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # SummaryScientificName$new()
 }
@@ -18,24 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for SummaryScientificName objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{fullScientificName}}{character}
-
-\item{\code{taxonomicStatus}}{character}
-
-\item{\code{genusOrMonomial}}{character}
-
-\item{\code{subgenus}}{character}
-
-\item{\code{specificEpithet}}{character}
-
-\item{\code{infraspecificEpithet}}{character}
-
-\item{\code{authorshipVerbatim}}{character}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -69,4 +55,117 @@ Model class for SummaryScientificName objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{fullScientificName}}{character}
+
+\item{\code{taxonomicStatus}}{character}
+
+\item{\code{genusOrMonomial}}{character}
+
+\item{\code{subgenus}}{character}
+
+\item{\code{specificEpithet}}{character}
+
+\item{\code{infraspecificEpithet}}{character}
+
+\item{\code{authorshipVerbatim}}{character}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-SummaryScientificName-new}{\code{SummaryScientificName$new()}}
+\item \href{#method-SummaryScientificName-toList}{\code{SummaryScientificName$toList()}}
+\item \href{#method-SummaryScientificName-fromList}{\code{SummaryScientificName$fromList()}}
+\item \href{#method-SummaryScientificName-toJSONString}{\code{SummaryScientificName$toJSONString()}}
+\item \href{#method-SummaryScientificName-fromJSONString}{\code{SummaryScientificName$fromJSONString()}}
+\item \href{#method-SummaryScientificName-print}{\code{SummaryScientificName$print()}}
+\item \href{#method-SummaryScientificName-clone}{\code{SummaryScientificName$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SummaryScientificName-new"></a>}}
+\if{latex}{\out{\hypertarget{method-SummaryScientificName-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SummaryScientificName$new(
+  fullScientificName,
+  taxonomicStatus,
+  genusOrMonomial,
+  subgenus,
+  specificEpithet,
+  infraspecificEpithet,
+  authorshipVerbatim
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SummaryScientificName-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-SummaryScientificName-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SummaryScientificName$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SummaryScientificName-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-SummaryScientificName-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SummaryScientificName$fromList(SummaryScientificNameList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SummaryScientificName-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-SummaryScientificName-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SummaryScientificName$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SummaryScientificName-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-SummaryScientificName-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SummaryScientificName$fromJSONString(
+  SummaryScientificNameJson,
+  typeMapping = NULL
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SummaryScientificName-print"></a>}}
+\if{latex}{\out{\hypertarget{method-SummaryScientificName-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SummaryScientificName$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SummaryScientificName-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-SummaryScientificName-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SummaryScientificName$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

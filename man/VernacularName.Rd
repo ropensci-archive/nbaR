@@ -4,7 +4,11 @@
 \name{VernacularName}
 \alias{VernacularName}
 \title{VernacularName Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # VernacularName$new()
 }
@@ -18,20 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for VernacularName objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{name}}{character}
-
-\item{\code{language}}{character}
-
-\item{\code{preferred}}{logical}
-
-\item{\code{references}}{list(Reference)}
-
-\item{\code{experts}}{list(Expert)}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -65,4 +55,102 @@ Model class for VernacularName objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{name}}{character}
+
+\item{\code{language}}{character}
+
+\item{\code{preferred}}{logical}
+
+\item{\code{references}}{list(Reference)}
+
+\item{\code{experts}}{list(Expert)}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-VernacularName-new}{\code{VernacularName$new()}}
+\item \href{#method-VernacularName-toList}{\code{VernacularName$toList()}}
+\item \href{#method-VernacularName-fromList}{\code{VernacularName$fromList()}}
+\item \href{#method-VernacularName-toJSONString}{\code{VernacularName$toJSONString()}}
+\item \href{#method-VernacularName-fromJSONString}{\code{VernacularName$fromJSONString()}}
+\item \href{#method-VernacularName-print}{\code{VernacularName$print()}}
+\item \href{#method-VernacularName-clone}{\code{VernacularName$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-VernacularName-new"></a>}}
+\if{latex}{\out{\hypertarget{method-VernacularName-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{VernacularName$new(name, language, preferred, references, experts)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-VernacularName-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-VernacularName-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{VernacularName$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-VernacularName-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-VernacularName-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{VernacularName$fromList(VernacularNameList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-VernacularName-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-VernacularName-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{VernacularName$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-VernacularName-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-VernacularName-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{VernacularName$fromJSONString(VernacularNameJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-VernacularName-print"></a>}}
+\if{latex}{\out{\hypertarget{method-VernacularName-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{VernacularName$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-VernacularName-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-VernacularName-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{VernacularName$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

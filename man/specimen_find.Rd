@@ -2,7 +2,7 @@
 % Please edit documentation in R/SpecimenClient-wrapper.r
 \name{specimen_find}
 \alias{specimen_find}
-\title{Find a specimen by id}
+\title{Find a specimen by its Elasticsearch document ID}
 \usage{
 specimen_find(id = NULL, returnType = "data.frame", ...)
 }
@@ -21,29 +21,28 @@ This is a wrapper for the method \code{ find }
 from class \code{ SpecimenClient}.
 }
 \details{
-If found, returns a single specimen
+If found, returns a single specimen. Note that NBA document IDs are not auto-generated, so they are stable across dataset imports.
 }
 \seealso{
-Other nbaR.SpecimenClient-wrappers: \code{\link{specimen_count_distinct_values_per_group}},
-  \code{\link{specimen_count_distinct_values}},
-  \code{\link{specimen_count}},
-  \code{\link{specimen_download_query}},
-  \code{\link{specimen_dwca_get_data_set_names}},
-  \code{\link{specimen_dwca_get_data_set}},
-  \code{\link{specimen_dwca_query}},
-  \code{\link{specimen_exists}},
-  \code{\link{specimen_find_by_ids}},
-  \code{\link{specimen_find_by_unit_id}},
-  \code{\link{specimen_get_distinct_values_per_group}},
-  \code{\link{specimen_get_distinct_values}},
-  \code{\link{specimen_get_field_info}},
-  \code{\link{specimen_get_ids_in_collection}},
-  \code{\link{specimen_get_named_collections}},
-  \code{\link{specimen_get_paths}},
-  \code{\link{specimen_get_settings}},
-  \code{\link{specimen_get_setting}},
-  \code{\link{specimen_group_by_scientific_name}},
-  \code{\link{specimen_is_operator_allowed}},
-  \code{\link{specimen_query}}
+Other nbaR.SpecimenClient-wrappers: 
+\code{\link{specimen_count_distinct_values_per_group}()},
+\code{\link{specimen_count_distinct_values}()},
+\code{\link{specimen_count}()},
+\code{\link{specimen_download_query}()},
+\code{\link{specimen_dwca_get_data_set_names}()},
+\code{\link{specimen_dwca_get_data_set}()},
+\code{\link{specimen_dwca_query}()},
+\code{\link{specimen_exists}()},
+\code{\link{specimen_find_by_ids}()},
+\code{\link{specimen_find_by_unit_id}()},
+\code{\link{specimen_get_distinct_values_per_group}()},
+\code{\link{specimen_get_distinct_values}()},
+\code{\link{specimen_get_field_info}()},
+\code{\link{specimen_get_paths}()},
+\code{\link{specimen_get_settings}()},
+\code{\link{specimen_group_by_scientific_name}()},
+\code{\link{specimen_is_operator_allowed}()},
+\code{\link{specimen_query_with_name_resolution}()},
+\code{\link{specimen_query}()}
 }
 \concept{nbaR.SpecimenClient-wrappers}

@@ -4,7 +4,11 @@
 \name{Person}
 \alias{Person}
 \title{Person Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # Person$new()
 }
@@ -18,16 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for Person objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{agentText}}{character}
-
-\item{\code{fullName}}{character}
-
-\item{\code{organization}}{Organization}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -61,4 +55,98 @@ Model class for Person objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{agentText}}{character}
+
+\item{\code{fullName}}{character}
+
+\item{\code{organization}}{Organization}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-Person-new}{\code{Person$new()}}
+\item \href{#method-Person-toList}{\code{Person$toList()}}
+\item \href{#method-Person-fromList}{\code{Person$fromList()}}
+\item \href{#method-Person-toJSONString}{\code{Person$toJSONString()}}
+\item \href{#method-Person-fromJSONString}{\code{Person$fromJSONString()}}
+\item \href{#method-Person-print}{\code{Person$print()}}
+\item \href{#method-Person-clone}{\code{Person$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Person-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Person-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Person$new(agentText, fullName, organization)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Person-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-Person-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Person$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Person-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-Person-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Person$fromList(PersonList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Person-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-Person-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Person$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Person-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-Person-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Person$fromJSONString(PersonJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Person-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Person-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Person$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Person-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Person-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Person$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

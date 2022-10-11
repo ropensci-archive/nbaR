@@ -4,7 +4,11 @@
 \name{SortField}
 \alias{SortField}
 \title{SortField Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # SortField$new()
 }
@@ -18,16 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for SortField objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{path}}{character}
-
-\item{\code{sortOrder}}{character}
-
-\item{\code{ascending}}{logical}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -61,4 +55,98 @@ Model class for SortField objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{path}}{character}
+
+\item{\code{sortOrder}}{character}
+
+\item{\code{ascending}}{logical}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-SortField-new}{\code{SortField$new()}}
+\item \href{#method-SortField-toList}{\code{SortField$toList()}}
+\item \href{#method-SortField-fromList}{\code{SortField$fromList()}}
+\item \href{#method-SortField-toJSONString}{\code{SortField$toJSONString()}}
+\item \href{#method-SortField-fromJSONString}{\code{SortField$fromJSONString()}}
+\item \href{#method-SortField-print}{\code{SortField$print()}}
+\item \href{#method-SortField-clone}{\code{SortField$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SortField-new"></a>}}
+\if{latex}{\out{\hypertarget{method-SortField-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SortField$new(path, sortOrder, ascending)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SortField-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-SortField-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SortField$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SortField-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-SortField-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SortField$fromList(SortFieldList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SortField-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-SortField-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SortField$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SortField-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-SortField-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SortField$fromJSONString(SortFieldJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SortField-print"></a>}}
+\if{latex}{\out{\hypertarget{method-SortField-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SortField$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SortField-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-SortField-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SortField$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

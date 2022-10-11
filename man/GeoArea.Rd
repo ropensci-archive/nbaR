@@ -4,7 +4,11 @@
 \name{GeoArea}
 \alias{GeoArea}
 \title{GeoArea Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # GeoArea$new()
 }
@@ -16,32 +20,8 @@ the NBA model and endpoints reference at
 \href{https://docs.biodiversitydata.nl/endpoints-reference}{https://docs.biodiversitydata.nl/endpoints-reference}.
 }
 \details{
-Model class for GeoArea objects. Geographical mapping of species occurrences is essential in biogeographical analyses. More than 1.2 Million of our specimen records are geo-referenced, i.e. they have latitude and longitude coordinates reported for the sita at which they were collected. The data type geo stores geographical areas to which the geo-referenced species can be mapped. This enables querying for specimens found in a specific region, to e.g. retrieve all the primate species collected on Madagascar. The areas are represented as polygons of longitude/latitude pairs. All polygons are coded in the GeoJSON format.
+Model class for GeoArea objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{sourceSystem}}{SourceSystem}
-
-\item{\code{sourceSystemId}}{character}
-
-\item{\code{recordURI}}{character}
-
-\item{\code{id}}{character}
-
-\item{\code{areaType}}{character}
-
-\item{\code{locality}}{character}
-
-\item{\code{shape}}{list}
-
-\item{\code{source}}{character}
-
-\item{\code{isoCode}}{character}
-
-\item{\code{countryNL}}{character}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -75,4 +55,123 @@ Model class for GeoArea objects. Geographical mapping of species occurrences is 
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{sourceSystem}}{SourceSystem}
+
+\item{\code{sourceSystemId}}{character}
+
+\item{\code{recordURI}}{character}
+
+\item{\code{id}}{character}
+
+\item{\code{areaType}}{character}
+
+\item{\code{locality}}{character}
+
+\item{\code{shape}}{list}
+
+\item{\code{source}}{character}
+
+\item{\code{isoCode}}{character}
+
+\item{\code{countryNL}}{character}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-GeoArea-new}{\code{GeoArea$new()}}
+\item \href{#method-GeoArea-toList}{\code{GeoArea$toList()}}
+\item \href{#method-GeoArea-fromList}{\code{GeoArea$fromList()}}
+\item \href{#method-GeoArea-toJSONString}{\code{GeoArea$toJSONString()}}
+\item \href{#method-GeoArea-fromJSONString}{\code{GeoArea$fromJSONString()}}
+\item \href{#method-GeoArea-print}{\code{GeoArea$print()}}
+\item \href{#method-GeoArea-clone}{\code{GeoArea$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoArea-new"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoArea-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoArea$new(
+  sourceSystem,
+  sourceSystemId,
+  recordURI,
+  id,
+  areaType,
+  locality,
+  shape,
+  source,
+  isoCode,
+  countryNL
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoArea-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoArea-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoArea$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoArea-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoArea-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoArea$fromList(GeoAreaList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoArea-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoArea-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoArea$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoArea-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoArea-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoArea$fromJSONString(GeoAreaJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoArea-print"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoArea-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoArea$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeoArea-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-GeoArea-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeoArea$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

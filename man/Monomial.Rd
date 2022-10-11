@@ -4,7 +4,11 @@
 \name{Monomial}
 \alias{Monomial}
 \title{Monomial Class}
-\format{R6 class}
+\format{
+R6 class
+
+R6 class
+}
 \usage{
 # Monomial$new()
 }
@@ -18,14 +22,6 @@ the NBA model and endpoints reference at
 \details{
 Model class for Monomial objects.
 }
-\section{Fields}{
-
-\describe{
-\item{\code{rank}}{character}
-
-\item{\code{name}}{character}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -59,4 +55,96 @@ Model class for Monomial objects.
 }
 }
 
-\keyword{datasets}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{rank}}{character}
+
+\item{\code{name}}{character}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-Monomial-new}{\code{Monomial$new()}}
+\item \href{#method-Monomial-toList}{\code{Monomial$toList()}}
+\item \href{#method-Monomial-fromList}{\code{Monomial$fromList()}}
+\item \href{#method-Monomial-toJSONString}{\code{Monomial$toJSONString()}}
+\item \href{#method-Monomial-fromJSONString}{\code{Monomial$fromJSONString()}}
+\item \href{#method-Monomial-print}{\code{Monomial$print()}}
+\item \href{#method-Monomial-clone}{\code{Monomial$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Monomial-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Monomial-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Monomial$new(rank, name)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Monomial-toList"></a>}}
+\if{latex}{\out{\hypertarget{method-Monomial-toList}{}}}
+\subsection{Method \code{toList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Monomial$toList()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Monomial-fromList"></a>}}
+\if{latex}{\out{\hypertarget{method-Monomial-fromList}{}}}
+\subsection{Method \code{fromList()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Monomial$fromList(MonomialList, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Monomial-toJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-Monomial-toJSONString}{}}}
+\subsection{Method \code{toJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Monomial$toJSONString(pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Monomial-fromJSONString"></a>}}
+\if{latex}{\out{\hypertarget{method-Monomial-fromJSONString}{}}}
+\subsection{Method \code{fromJSONString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Monomial$fromJSONString(MonomialJson, typeMapping = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Monomial-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Monomial-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Monomial$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Monomial-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Monomial-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Monomial$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

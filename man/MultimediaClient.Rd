@@ -4,7 +4,9 @@
 \name{MultimediaClient}
 \alias{MultimediaClient}
 \title{Multimedia operations}
-\format{R6 class}
+\format{
+R6 class
+}
 \usage{
 # client <- MultimediaClient$new()
 }
@@ -15,14 +17,6 @@ of the NBA. Each endpoint is available as a class method
 pointing to a NBA server and a user Agent can be specified
 by the user (see section 'Fields' below).
 }
-\section{Fields}{
-
-\describe{
-\item{\code{basePath}}{Stores url path of the request, defaults to http://api.biodiversitydata.nl/v2}
-
-\item{\code{userAgent}}{Set the user agent of the request, defaults to nbaR/0.1.0}
-}}
-
 \section{Methods}{
 
 \describe{
@@ -33,10 +27,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
-
-        \item \code{ queryParams } : named list or vector with query parameters
-
+        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation 
+        
+        \item \code{ queryParams } : named list or vector with query parameters 
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -45,14 +39,14 @@ by the user (see section 'Fields' below).
 \item{\code{ count_distinct_values }}{
 
   Count the distinct number of values that exist for a given field;
-  See also endpoint /getDistinctValues.
+  .
 
     Parameters:
     \itemize{
-
-        \item \code{ field } : Name of field in taxon object
-
-
+        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation 
+        \item \code{ field } : Name of field in taxon object 
+        \item \code{ queryParams } : named list or vector with query parameters 
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -61,14 +55,14 @@ by the user (see section 'Fields' below).
 \item{\code{ count_distinct_values_per_group }}{
 
   Count the distinct number of field values that exist per the given field to group by;
-  See also endpoint /getDistinctValuesPerGroup.
+  .
 
     Parameters:
     \itemize{
-
-        \item \code{ group } : name of field in the multimedia object you want to group by \item \code{ field } : name of field in the multimedia object
-
-
+        
+        \item \code{ group } : name of field in the multimedia object you want to group by \item \code{ field } : name of field in the multimedia object 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -81,10 +75,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ collection_type } : Example query param
-
-        \item \code{ queryParams } : named list or vector with query parameters
-
+        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation 
+        
+        \item \code{ queryParams } : named list or vector with query parameters 
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -97,10 +91,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-        \item \code{ id } : id of multimedia document
-
-
+        
+        \item \code{ id } : id of multimedia document 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -113,10 +107,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-        \item \code{ ids } : ids of multiple multimedia documents, separated by comma
-
-
+        
+        \item \code{ ids } : ids of multiple multimedia documents, separated by comma 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -129,10 +123,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-        \item \code{ field } : field
-
-
+        
+        \item \code{ field } : field 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -141,14 +135,14 @@ by the user (see section 'Fields' below).
 \item{\code{ get_distinct_values_per_group }}{
 
   Get all distinct values (and their document count) for the field given divided per distinct value of the field to group by;
-  See also endpoint /getDistinctValues.
+  .
 
     Parameters:
     \itemize{
-
-        \item \code{ group } : name of field in the multimedia object you want to group by \item \code{ field } : name of field in the multimedia object
-
-
+        
+        \item \code{ group } : name of field in the multimedia object you want to group by \item \code{ field } : name of field in the multimedia object 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -161,10 +155,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-
-
-
+        
+        
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -177,10 +171,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-
-
-
+        
+        
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -193,10 +187,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-        \item \code{ name } : name of setting
-
-
+        
+        \item \code{ name } : name of setting 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -209,10 +203,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-
-
-
+        
+        
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -225,14 +219,14 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-
-        \item \code{ field } : multimedia document field \item \code{ operator } : operator
-
-
+        
+        \item \code{ field } : multimedia document field \item \code{ operator } : operator 
+        
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
-        \code{ logical }
+        \code{ list }
 }
 \item{\code{ query }}{
 
@@ -241,16 +235,268 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
-
-        \item \code{ queryParams } : named list or vector with query parameters
-
+        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation 
+        
+        \item \code{ queryParams } : named list or vector with query parameters 
+        
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
         \code{ QueryResult }
 }
+\item{\code{ query_with_name_resolution }}{
+
+  ;
+  .
+
+    Parameters:
+    \itemize{
+        \item \code{ _query_spec } :  
+        
+        \item \code{ queryParams } : named list or vector with query parameters 
+        
+        \item \code{ ... } : additional parameters passed to httr::GET
+    }
+    Returns:
+        \code{  }
+}
 }
 }
 
-\keyword{datasets}
+\section{Super class}{
+\code{\link[nbaR:ApiClient]{nbaR::ApiClient}} -> \code{MultimediaClient}
+}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{basePath}}{Stores url path of the request, defaults to http://api.biodiversitydata.nl/v2}
+
+\item{\code{userAgent}}{Set the user agent of the request, defaults to nbaR/0.1.0}
+}
+\if{html}{\out{</div>}}
+}
+\section{Active bindings}{
+\if{html}{\out{<div class="r6-active-bindings">}}
+\describe{
+\item{\code{basePath}}{Stores url path of the request, defaults to http://api.biodiversitydata.nl/v2}
+
+\item{\code{userAgent}}{Set the user agent of the request, defaults to nbaR/0.1.0}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-MultimediaClient-new}{\code{MultimediaClient$new()}}
+\item \href{#method-MultimediaClient-count}{\code{MultimediaClient$count()}}
+\item \href{#method-MultimediaClient-count_distinct_values}{\code{MultimediaClient$count_distinct_values()}}
+\item \href{#method-MultimediaClient-count_distinct_values_per_group}{\code{MultimediaClient$count_distinct_values_per_group()}}
+\item \href{#method-MultimediaClient-download_query}{\code{MultimediaClient$download_query()}}
+\item \href{#method-MultimediaClient-find}{\code{MultimediaClient$find()}}
+\item \href{#method-MultimediaClient-find_by_ids}{\code{MultimediaClient$find_by_ids()}}
+\item \href{#method-MultimediaClient-get_distinct_values}{\code{MultimediaClient$get_distinct_values()}}
+\item \href{#method-MultimediaClient-get_distinct_values_per_group}{\code{MultimediaClient$get_distinct_values_per_group()}}
+\item \href{#method-MultimediaClient-get_field_info}{\code{MultimediaClient$get_field_info()}}
+\item \href{#method-MultimediaClient-get_paths}{\code{MultimediaClient$get_paths()}}
+\item \href{#method-MultimediaClient-get_setting}{\code{MultimediaClient$get_setting()}}
+\item \href{#method-MultimediaClient-get_settings}{\code{MultimediaClient$get_settings()}}
+\item \href{#method-MultimediaClient-is_operator_allowed}{\code{MultimediaClient$is_operator_allowed()}}
+\item \href{#method-MultimediaClient-query}{\code{MultimediaClient$query()}}
+\item \href{#method-MultimediaClient-query_with_name_resolution}{\code{MultimediaClient$query_with_name_resolution()}}
+\item \href{#method-MultimediaClient-print}{\code{MultimediaClient$print()}}
+\item \href{#method-MultimediaClient-clone}{\code{MultimediaClient$clone()}}
+}
+}
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="nbaR" data-topic="ApiClient" data-id="callApi"><a href='../../nbaR/html/ApiClient.html#method-ApiClient-callApi'><code>nbaR::ApiClient$callApi()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="nbaR" data-topic="ApiClient" data-id="handleError"><a href='../../nbaR/html/ApiClient.html#method-ApiClient-handleError'><code>nbaR::ApiClient$handleError()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="nbaR" data-topic="ApiClient" data-id="ping"><a href='../../nbaR/html/ApiClient.html#method-ApiClient-ping'><code>nbaR::ApiClient$ping()</code></a></span></li>
+</ul>
+</details>
+}}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultimediaClient-new"></a>}}
+\if{latex}{\out{\hypertarget{method-MultimediaClient-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultimediaClient$new(basePath, userAgent)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultimediaClient-count"></a>}}
+\if{latex}{\out{\hypertarget{method-MultimediaClient-count}{}}}
+\subsection{Method \code{count()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultimediaClient$count(querySpec = NULL, queryParams = list(), ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultimediaClient-count_distinct_values"></a>}}
+\if{latex}{\out{\hypertarget{method-MultimediaClient-count_distinct_values}{}}}
+\subsection{Method \code{count_distinct_values()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultimediaClient$count_distinct_values(
+  field = NULL,
+  querySpec = NULL,
+  queryParams = list(),
+  ...
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultimediaClient-count_distinct_values_per_group"></a>}}
+\if{latex}{\out{\hypertarget{method-MultimediaClient-count_distinct_values_per_group}{}}}
+\subsection{Method \code{count_distinct_values_per_group()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultimediaClient$count_distinct_values_per_group(
+  group = NULL,
+  field = NULL,
+  ...
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultimediaClient-download_query"></a>}}
+\if{latex}{\out{\hypertarget{method-MultimediaClient-download_query}{}}}
+\subsection{Method \code{download_query()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultimediaClient$download_query(querySpec = NULL, queryParams = list(), ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultimediaClient-find"></a>}}
+\if{latex}{\out{\hypertarget{method-MultimediaClient-find}{}}}
+\subsection{Method \code{find()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultimediaClient$find(id = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultimediaClient-find_by_ids"></a>}}
+\if{latex}{\out{\hypertarget{method-MultimediaClient-find_by_ids}{}}}
+\subsection{Method \code{find_by_ids()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultimediaClient$find_by_ids(ids = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultimediaClient-get_distinct_values"></a>}}
+\if{latex}{\out{\hypertarget{method-MultimediaClient-get_distinct_values}{}}}
+\subsection{Method \code{get_distinct_values()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultimediaClient$get_distinct_values(field = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultimediaClient-get_distinct_values_per_group"></a>}}
+\if{latex}{\out{\hypertarget{method-MultimediaClient-get_distinct_values_per_group}{}}}
+\subsection{Method \code{get_distinct_values_per_group()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultimediaClient$get_distinct_values_per_group(group = NULL, field = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultimediaClient-get_field_info"></a>}}
+\if{latex}{\out{\hypertarget{method-MultimediaClient-get_field_info}{}}}
+\subsection{Method \code{get_field_info()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultimediaClient$get_field_info(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultimediaClient-get_paths"></a>}}
+\if{latex}{\out{\hypertarget{method-MultimediaClient-get_paths}{}}}
+\subsection{Method \code{get_paths()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultimediaClient$get_paths(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultimediaClient-get_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-MultimediaClient-get_setting}{}}}
+\subsection{Method \code{get_setting()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultimediaClient$get_setting(name = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultimediaClient-get_settings"></a>}}
+\if{latex}{\out{\hypertarget{method-MultimediaClient-get_settings}{}}}
+\subsection{Method \code{get_settings()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultimediaClient$get_settings(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultimediaClient-is_operator_allowed"></a>}}
+\if{latex}{\out{\hypertarget{method-MultimediaClient-is_operator_allowed}{}}}
+\subsection{Method \code{is_operator_allowed()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultimediaClient$is_operator_allowed(field = NULL, operator = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultimediaClient-query"></a>}}
+\if{latex}{\out{\hypertarget{method-MultimediaClient-query}{}}}
+\subsection{Method \code{query()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultimediaClient$query(querySpec = NULL, queryParams = list(), ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultimediaClient-query_with_name_resolution"></a>}}
+\if{latex}{\out{\hypertarget{method-MultimediaClient-query_with_name_resolution}{}}}
+\subsection{Method \code{query_with_name_resolution()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultimediaClient$query_with_name_resolution(
+  querySpec = NULL,
+  queryParams = list(),
+  ...
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultimediaClient-print"></a>}}
+\if{latex}{\out{\hypertarget{method-MultimediaClient-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultimediaClient$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultimediaClient-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-MultimediaClient-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultimediaClient$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}
