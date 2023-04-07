@@ -99,7 +99,7 @@ function `specimen_get_paths()` (see `?specimen_get_paths` for
 documentation).
 
 ```{r}
-library('nbaR')
+library("nbaR")
 
 all_paths <- specimen_get_paths()
 head(all_paths)
@@ -113,8 +113,10 @@ query parameters are given as a named list (a named vector also
 works!):
 
 ```{r}
-queryParams <- list("identifications.scientificName.genusOrMonomial" =
-                        "Mola")
+queryParams <- list(
+  "identifications.scientificName.genusOrMonomial" =
+    "Mola"
+)
 sp_data <- specimen_query(queryParams)
 
 ## how many specimens are found?
@@ -148,7 +150,7 @@ distinct values (and counts) for a specific field (see
 taxon_get_distinct_values("sourceSystem.name")
 
 ## alternatively, show for sourceSystem.code
-taxon_get_distinct_values('sourceSystem.code')
+taxon_get_distinct_values("sourceSystem.code")
 ```
 
 To query, for instance all the species listed in the Catalogue of life
@@ -156,8 +158,10 @@ for the genus *Mola*, we can use the wrapper function `taxon_query`:
 
 ```{r}
 ## specify query parameters
-queryParams <- list("sourceSystem.code"="COL",
-                    "defaultClassification.genus"="Mola")
+queryParams <- list(
+  "sourceSystem.code" = "COL",
+  "defaultClassification.genus" = "Mola"
+)
 
 ## do the query
 tax_data <- taxon_query(queryParams)
@@ -185,7 +189,7 @@ follows:
 
 
 ```{r}
-geo_json <- geo_get_geo_json_for_locality('Nigeria')
+geo_json <- geo_get_geo_json_for_locality("Nigeria")
 ```
 
 ## Multimedia queries
@@ -203,8 +207,10 @@ these records is `XC`; the country of occurrence is stored in the
 field `gatheringEvents.country`.
 
 ```{r}
-queryParams <- list("sourceSystem.code"="XC",
-                    "gatheringEvents.country"="Cape Verde")
+queryParams <- list(
+  "sourceSystem.code" = "XC",
+  "gatheringEvents.country" = "Cape Verde"
+)
 
 mm_data <- multimedia_query(queryParams)
 

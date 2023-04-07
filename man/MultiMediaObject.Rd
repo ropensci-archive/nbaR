@@ -90,6 +90,10 @@ Model class for MultiMediaObject objects.
 
 \item{\code{description}}{character}
 
+\item{\code{physicalSetting}}{character}
+
+\item{\code{captureDevice}}{character}
+
 \item{\code{serviceAccessPoints}}{list(ServiceAccessPoint)}
 
 \item{\code{type}}{character}
@@ -170,6 +174,8 @@ Model class for MultiMediaObject objects.
   title,
   caption,
   description,
+  physicalSetting,
+  captureDevice,
   serviceAccessPoints,
   type,
   taxonCount,

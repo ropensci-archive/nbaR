@@ -1,53 +1,35 @@
-
-
-context("Testing class Filter")
-
 # Make a list with random arguments for all fields in the class
 args <- list()
-args[["acceptRegexp"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["rejectRegexp"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-randomList <- lapply(
-  1:sample(5:10, 1),
-  function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
-)
-args[["acceptValues"]] <- randomList
-randomList <- lapply(
-  1:sample(5:10, 1),
-  function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
-)
-args[["rejectValues"]] <- randomList
+args[["acceptRegexp"]] <- random_string()
+args[["rejectRegexp"]] <- random_string()
+args[["acceptValues"]] <- random_string_list()
+args[["rejectValues"]] <- random_string_list()
 
 # make Filter object without and with args
 objEmpty <- Filter$new()
 objRand <- do.call(Filter$new, args)
 
 test_that("Constructor works", {
-  expect_is(objEmpty, "Filter")
-  expect_is(objRand, "Filter")
+  expect_s3_class(objEmpty, "Filter")
+  expect_s3_class(objRand, "Filter")
 })
 
 test_that("toList works", {
-  expect_is(objEmpty$toList(), "list")
-  expect_is(objRand$toList(), "list")
+  expect_type(objEmpty$toList(), "list")
+  expect_type(objRand$toList(), "list")
 })
 
 test_that("fromList works", {
   obj <- Filter$new()
   obj$fromList(objRand$toList())
   # expect_equal(obj, objRand)
-  expect_is(obj, "Filter")
+  expect_s3_class(obj, "Filter")
 })
 
 test_that("toJSONString works", {
-  expect_is(objEmpty$toJSONString(), "json")
+  expect_s3_class(objEmpty$toJSONString(), "json")
   expect_true(objEmpty$toJSONString() != "")
-  expect_is(objRand$toJSONString(), "json")
+  expect_s3_class(objRand$toJSONString(), "json")
   expect_true(objRand$toJSONString() != "")
 })
 
@@ -55,12 +37,12 @@ test_that("fromJSONString works", {
   obj <- Filter$new()
   obj$fromJSONString(objRand$toJSONString())
   # expect_equal(obj, objRand)
-  expect_is(obj, "Filter")
+  expect_s3_class(obj, "Filter")
 })
 
 test_that("print works", {
   obj <- Filter$new()
   obj$fromJSONString(objRand$toJSONString())
   ## check that the print method doesn't error
-  expect_error(obj$print(), NA)
+  expect_snapshot(obj$print())
 })

@@ -59,7 +59,6 @@ The interaction with the API is accomplished by the API client classes:
 
 
 ```{r}
-
 # initialize client
 client <- SpecimenClient$new()
 ```
@@ -79,11 +78,10 @@ one can pass a named list as the `queryParams` parameter to the `query` function
 
 ```{r}
 # specify two query conditions
-l <- list(identifications.typeStatus="holotype", sex="female")
+l <- list(identifications.typeStatus = "holotype", sex = "female")
 
 # run query
-res <- client$query(queryParams=l)
-
+res <- client$query(queryParams = l)
 ```
 
 The `query` function then returns an object of class `Response`, which, in turn, has a field `content`
@@ -95,7 +93,6 @@ spec <- res$content$resultSet[[1]]$item
 
 # object should be of type Specimen
 class(spec)
-
 ```
 
 Note that by default, both conditions are connected by a logical `AND`.
@@ -125,19 +122,21 @@ client <- SpecimenClient$new()
 
 # specify search in QueryCondition object
 qc <-
-  QueryCondition$new(field = "unitID",
-                     operator = "EQUALS",
-                     value = "L.4304195")
+  QueryCondition$new(
+    field = "unitID",
+    operator = "EQUALS",
+    value = "L.4304195"
+  )
 ```
 
 Now, a `QuerySpec` object can be assembled with the `QueryCondition`(s) passed as a list:
 
 ```{r}
 # build QuerySpec using above conditions
-qs <- QuerySpec$new(conditions=list(qc))
+qs <- QuerySpec$new(conditions = list(qc))
 
 # do the query
-res <- client$query(querySpec=qs)
+res <- client$query(querySpec = qs)
 ```
 
 Below, we show an example of how to nest multiple query conditions. The query conditions below define to query for
@@ -145,16 +144,22 @@ specimens of sex ** female* and family *Equidae* and of rank *Species*.
 
 ```{r}
 # specify multiple conditions
-q1 <- QueryCondition$new(field = "sex",
-                         operator = "EQUALS",
-                         value = "female")
+q1 <- QueryCondition$new(
+  field = "sex",
+  operator = "EQUALS",
+  value = "female"
+)
 q2 <-
-  QueryCondition$new(field = "identifications.defaultClassification.family",
-                     operator = "EQUALS",
-                     value = "Equidae")
-q3 <- QueryCondition$new(field = "identifications.taxonRank",
-                         operator = "EQUALS",
-                         value = "species")
+  QueryCondition$new(
+    field = "identifications.defaultClassification.family",
+    operator = "EQUALS",
+    value = "Equidae"
+  )
+q3 <- QueryCondition$new(
+  field = "identifications.taxonRank",
+  operator = "EQUALS",
+  value = "species"
+)
 ```
 
 Extending the constraint to also include specimens of rank *Subspecies*,
@@ -162,15 +167,17 @@ we can combine the latter condition with an additional one using the method `or`
 
 ```{r}
 # logical conjunction using 'or' method
-q3$or <- list(QueryCondition$new(field = "identifications.taxonRank",
-                                 operator="EQUALS",
-                                 value="subspecies"))
+q3$or <- list(QueryCondition$new(
+  field = "identifications.taxonRank",
+  operator = "EQUALS",
+  value = "subspecies"
+))
 
 # build QuerySpec from QueryConditions
-qs <- QuerySpec$new(conditions=list(q1, q2, q3))
+qs <- QuerySpec$new(conditions = list(q1, q2, q3))
 
 # call API
-res <-client$query(querySpec=qs)
+res <- client$query(querySpec = qs)
 ```
 
 ### Size of the query result set
@@ -193,8 +200,8 @@ passed to the constructor of a `QuerySpec` object. Below, we will get
 the first 1000 records of the query above:
 
 ```{r}
-qs <- QuerySpec$new(size=1000)
-res <- client$query(querySpec=qs)
+qs <- QuerySpec$new(size = 1000)
+res <- client$query(querySpec = qs)
 length(res$content$resultSet)
 ```
 
@@ -207,22 +214,26 @@ and ignoring cases:
 
 ```{r}
 ## search for specimens of genus 'musa'
-qc <- QueryCondition$new(field='identifications.defaultClassification.genus', 
-                         operator='EQUALS', 
-                         value='musa')
-qs <- QuerySpec$new(conditions=list(qc))
-res <- client$query(querySpec=qs)
+qc <- QueryCondition$new(
+  field = "identifications.defaultClassification.genus",
+  operator = "EQUALS",
+  value = "musa"
+)
+qs <- QuerySpec$new(conditions = list(qc))
+res <- client$query(querySpec = qs)
 
 ## how many hits?
 res$content$totalSize
 
 ## no hits! But: Genus names are capitalised, so
 ## we will ignore the case using operator EQUALS_IC
-qc <- QueryCondition$new(field='identifications.defaultClassification.genus', 
-                         operator='EQUALS_IC', 
-                         value='musa')
-qs <- QuerySpec$new(conditions=list(qc))
-res <- client$query(querySpec=qs)
+qc <- QueryCondition$new(
+  field = "identifications.defaultClassification.genus",
+  operator = "EQUALS_IC",
+  value = "musa"
+)
+qs <- QuerySpec$new(conditions = list(qc))
+res <- client$query(querySpec = qs)
 
 ## do we have more hits now?
 res$content$totalSize
@@ -235,18 +246,20 @@ other operators which can be used for this field:
 
 ```{r}
 client$get_field_info()$
-content$identifications.defaultClassification.genus$
-allowedOperators
+  content$identifications.defaultClassification.genus$
+  allowedOperators
 ```
 
 Often useful is e.g. the operator `IN`, which allowes
 matching against multiple values given as a vector:
 
 ```{r}
-qc <- QueryCondition$new(field='identifications.defaultClassification.genus', 
-                         operator='IN', 
-                         value=c("Phoenix", "Trachycarpus"))
-qs <- QuerySpec$new(conditions=list(qc))
+qc <- QueryCondition$new(
+  field = "identifications.defaultClassification.genus",
+  operator = "IN",
+  value = c("Phoenix", "Trachycarpus")
+)
+qs <- QuerySpec$new(conditions = list(qc))
 
 ## print QuerySpec JSON representation
 qs$toJSONString()
@@ -258,15 +271,17 @@ For numeric or date fields, common comparison operators such as `LT`
 ```{r}
 ## operators for gatheringEvent.dateTimeBegin
 client$get_field_info()$
-content$gatheringEvent.dateTimeBegin$
-allowedOperators
+  content$gatheringEvent.dateTimeBegin$
+  allowedOperators
 
 ## how many specimens were collected between 1600 and 1700?
-qc <- QueryCondition$new(field='gatheringEvent.dateTimeBegin', 
-                         operator='BETWEEN', 
-                         value=c("1600", "1700"))
-qs <- QuerySpec$new(conditions=list(qc))
-client$count(querySpec=qs)$content
+qc <- QueryCondition$new(
+  field = "gatheringEvent.dateTimeBegin",
+  operator = "BETWEEN",
+  value = c("1600", "1700")
+)
+qs <- QuerySpec$new(conditions = list(qc))
+client$count(querySpec = qs)$content
 ```
 
 For more information, please also refer to the [NBA documentation on

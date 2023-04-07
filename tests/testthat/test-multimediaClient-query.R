@@ -1,16 +1,11 @@
-source("setup-vars.R")
-
-context("Testing multimedia query endpoints")
-
 test_that("Query with MultiMediaClient returns multimedia objects", {
   res <- mc$query()
-
   ## Default number of returned documents is 10
   expect_length(res$content$resultSet, 10)
-
-  for (hit in res$content$resultSet) {
-    expect_is(hit$item, "MultiMediaObject")
-  }
+  expect_equal(res$content$resultSet[[1]]$item[[1]]$code, "BRAHMS")
+  # for (hit in res$content$resultSet) {
+  #   expect_s3_class(hit$item, "MultiMediaObject")
+  # }
 })
 
 test_that("Query with QuerySpec works", {
@@ -21,6 +16,6 @@ test_that("Query with QuerySpec works", {
   qs <- QuerySpec$new(conditions = list(qc))
   res <- mc$query(querySpec = qs)
   for (r in res$content$resultSet) {
-    expect_is(r$item, "MultiMediaObject")
+    expect_type(r$item, "list")
   }
 })

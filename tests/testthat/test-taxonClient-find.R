@@ -1,11 +1,7 @@
-source("setup-vars.R")
-
-context("Testing taxon find functions")
-
 test_that("find function works", {
   id <- "AHCYFBRDJBG@NSR"
   res <- tc$find(id)
-  expect_is(res$content, "Taxon")
+  expect_s3_class(res$content, "Taxon")
   expect_equal(id, res$content$id)
 })
 
@@ -16,10 +12,10 @@ test_that("findByIds works", {
     sep = ","
   )
   res <- tc$find_by_ids(ids)
-  expect_is(res$content, "list")
+  expect_type(res$content, "list")
   expect_length(res$content, 3)
   for (i in seq_along(res$content)) {
-    expect_is(res$content[[i]], "Taxon")
+    expect_s3_class(res$content[[i]], "Taxon")
   }
 })
 

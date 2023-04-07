@@ -27,10 +27,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ source_system_code } : Example query param 
-        
-        \item \code{ queryParams } : named list or vector with query parameters 
-        
+        \item \code{ source_system_code } : Example query param
+
+        \item \code{ queryParams } : named list or vector with query parameters
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -43,10 +43,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ field } : name of field in the taxon object 
-        
-        
+
+        \item \code{ field } : name of field in the taxon object
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -59,10 +59,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ group } : name of field in the taxon object you want to group by \item \code{ field } : name of field in the taxon object 
-        
-        
+
+        \item \code{ group } : name of field in the taxon object you want to group by \item \code{ field } : name of field in the taxon object
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -75,10 +75,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ source_system_code } : Example query param 
-        
-        \item \code{ queryParams } : named list or vector with query parameters 
-        
+        \item \code{ source_system_code } : Example query param
+
+        \item \code{ queryParams } : named list or vector with query parameters
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -91,10 +91,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ dataset } : name of dataset 
-        
-        
+
+        \item \code{ dataset } : name of dataset
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -107,10 +107,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        
-        
-        
+
+
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -123,10 +123,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ source_system_code } : Example query param 
-        
-        \item \code{ queryParams } : named list or vector with query parameters 
-        
+        \item \code{ source_system_code } : Example query param
+
+        \item \code{ queryParams } : named list or vector with query parameters
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -139,10 +139,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ id } : id of taxon 
-        
-        
+
+        \item \code{ id } : id of taxon
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -155,10 +155,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ ids } : ids of multiple taxa, separated by comma 
-        
-        
+
+        \item \code{ ids } : ids of multiple taxa, separated by comma
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -171,10 +171,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ field } : name of field in a taxon object 
-        
-        
+
+        \item \code{ field } : name of field in a taxon object
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -187,10 +187,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ group } : name of field in the taxon object you want to group by \item \code{ field } : name of field in the taxon object 
-        
-        
+
+        \item \code{ group } : name of field in the taxon object you want to group by \item \code{ field } : name of field in the taxon object
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -203,10 +203,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        
-        
-        
+
+
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -219,10 +219,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        
-        
-        
+
+
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -235,10 +235,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        
-        
-        
+
+
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -251,10 +251,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ name } : name of setting 
-        
-        
+
+        \item \code{ name } : name of setting
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -267,10 +267,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ default_classification_family } : Example query param 
-        
-        \item \code{ queryParams } : named list or vector with query parameters 
-        
+        \item \code{ default_classification_family } : Example query param
+
+        \item \code{ queryParams } : named list or vector with query parameters
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -283,10 +283,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ field } : specimen document field \item \code{ operator } : operator 
-        
-        
+
+        \item \code{ field } : specimen document field \item \code{ operator } : operator
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -299,10 +299,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ default_classification_genus } : Example query param 
-        
-        \item \code{ queryParams } : named list or vector with query parameters 
-        
+        \item \code{ default_classification_genus } : Example query param
+
+        \item \code{ queryParams } : named list or vector with query parameters
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -350,6 +350,7 @@ by the user (see section 'Fields' below).
 \item \href{#method-TaxonClient-get_field_info}{\code{TaxonClient$get_field_info()}}
 \item \href{#method-TaxonClient-get_paths}{\code{TaxonClient$get_paths()}}
 \item \href{#method-TaxonClient-get_settings}{\code{TaxonClient$get_settings()}}
+\item \href{#method-TaxonClient-get_setting}{\code{TaxonClient$get_setting()}}
 \item \href{#method-TaxonClient-group_by_scientific_name}{\code{TaxonClient$group_by_scientific_name()}}
 \item \href{#method-TaxonClient-is_operator_allowed}{\code{TaxonClient$is_operator_allowed()}}
 \item \href{#method-TaxonClient-query}{\code{TaxonClient$query()}}
@@ -497,7 +498,16 @@ by the user (see section 'Fields' below).
 \if{latex}{\out{\hypertarget{method-TaxonClient-get_settings}{}}}
 \subsection{Method \code{get_settings()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{TaxonClient$get_settings(name = NULL, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{TaxonClient$get_settings(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-TaxonClient-get_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-TaxonClient-get_setting}{}}}
+\subsection{Method \code{get_setting()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TaxonClient$get_setting(name = NULL, ...)}\if{html}{\out{</div>}}
 }
 
 }

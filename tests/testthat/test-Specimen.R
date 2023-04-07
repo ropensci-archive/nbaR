@@ -1,146 +1,69 @@
-
-
-context("Testing class Specimen")
-
 # Make a list with random arguments for all fields in the class
 args <- list()
 args[["sourceSystem"]] <- SourceSystem$new()
-args[["sourceSystemId"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["recordURI"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["id"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["unitID"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["unitGUID"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["collectorsFieldNumber"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["assemblageID"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["sourceInstitutionID"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["sourceID"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-randomList <- lapply(
-  1:sample(5:10, 1),
-  function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
-)
-args[["previousSourceID"]] <- randomList
-args[["owner"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["licenseType"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["license"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["recordBasis"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["kindOfUnit"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["collectionType"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["sex"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["phaseOrStage"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["title"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["notes"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["preparationType"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["previousUnitsText"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
+args[["sourceSystemId"]] <- random_string()
+args[["recordURI"]] <- random_string()
+args[["id"]] <- random_string()
+args[["unitID"]] <- random_string()
+args[["unitGUID"]] <- random_string()
+args[["collectorsFieldNumber"]] <- random_string()
+args[["assemblageID"]] <- random_string()
+args[["sourceInstitutionID"]] <- random_string()
+args[["sourceID"]] <- random_string()
+args[["previousSourceID"]] <- random_string_list()
+args[["owner"]] <- random_string()
+args[["licenseType"]] <- random_string()
+args[["license"]] <- random_string()
+args[["recordBasis"]] <- random_string()
+args[["kindOfUnit"]] <- random_string()
+args[["collectionType"]] <- random_string()
+args[["sex"]] <- random_string()
+args[["phaseOrStage"]] <- random_string()
+args[["title"]] <- random_string()
+args[["notes"]] <- random_string()
+args[["preparationType"]] <- random_string()
+args[["previousUnitsText"]] <- random_string()
 args[["numberOfSpecimen"]] <- sample(0:10, 1)
 args[["fromCaptivity"]] <- sample(c(TRUE, FALSE), 1)
 args[["objectPublic"]] <- sample(c(TRUE, FALSE), 1)
 args[["multiMediaPublic"]] <- sample(c(TRUE, FALSE), 1)
 args[["acquiredFrom"]] <- Agent$new()
 args[["gatheringEvent"]] <- GatheringEvent$new()
-randomList <- lapply(
+args[["identifications"]] <- lapply(
   1:sample(1:10, 1),
   function(x) SpecimenIdentification$new()
 )
-args[["identifications"]] <- randomList
-randomList <- lapply(
+args[["associatedMultiMediaUris"]] <- lapply(
   1:sample(1:10, 1),
   function(x) ServiceAccessPoint$new()
 )
-args[["associatedMultiMediaUris"]] <- randomList
-randomList <- lapply(
-  1:sample(5:10, 1),
-  function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
-)
-args[["theme"]] <- randomList
+args[["theme"]] <- random_string_list()
 
 # make Specimen object without and with args
 objEmpty <- Specimen$new()
 objRand <- do.call(Specimen$new, args)
 
 test_that("Constructor works", {
-  expect_is(objEmpty, "Specimen")
-  expect_is(objRand, "Specimen")
+  expect_s3_class(objEmpty, "Specimen")
+  expect_s3_class(objRand, "Specimen")
 })
 
 test_that("toList works", {
-  expect_is(objEmpty$toList(), "list")
-  expect_is(objRand$toList(), "list")
+  expect_type(objEmpty$toList(), "list")
+  expect_type(objRand$toList(), "list")
 })
 
 test_that("fromList works", {
   obj <- Specimen$new()
   obj$fromList(objRand$toList())
   # expect_equal(obj, objRand)
-  expect_is(obj, "Specimen")
+  expect_s3_class(obj, "Specimen")
 })
 
 test_that("toJSONString works", {
-  expect_is(objEmpty$toJSONString(), "json")
+  expect_s3_class(objEmpty$toJSONString(), "json")
   expect_true(objEmpty$toJSONString() != "")
-  expect_is(objRand$toJSONString(), "json")
+  expect_s3_class(objRand$toJSONString(), "json")
   expect_true(objRand$toJSONString() != "")
 })
 
@@ -148,12 +71,12 @@ test_that("fromJSONString works", {
   obj <- Specimen$new()
   obj$fromJSONString(objRand$toJSONString())
   # expect_equal(obj, objRand)
-  expect_is(obj, "Specimen")
+  expect_s3_class(obj, "Specimen")
 })
 
 test_that("print works", {
   obj <- Specimen$new()
   obj$fromJSONString(objRand$toJSONString())
   ## check that the print method doesn't error
-  expect_error(obj$print(), NA)
+  expect_snapshot(obj$print())
 })

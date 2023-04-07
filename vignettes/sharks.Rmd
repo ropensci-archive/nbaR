@@ -66,10 +66,11 @@ using the operator `IN`:
 
 ```{r qc_1}
 qc <-
-  QueryCondition$new(field = "identifications.defaultClassification.order",
-                     operator = "IN",
-                     value = shark_orders)
-
+  QueryCondition$new(
+    field = "identifications.defaultClassification.order",
+    operator = "IN",
+    value = shark_orders
+  )
 ```
 
 For many specimens, chronological information is available in the fields `gatheringEvent.chronoStratigraphy.youngChronoName`
@@ -79,15 +80,19 @@ Below, we will formulate a `QueryCondition` that requires either one of these fi
 ```{r qc_2}
 ## formulate query conditions for fields to be non-empty
 qc2 <-
-  QueryCondition$new(field =
-                       "gatheringEvent.chronoStratigraphy.youngChronoName",
-                     operator = "NOT_EQUALS",
-                     value = "")
+  QueryCondition$new(
+    field =
+      "gatheringEvent.chronoStratigraphy.youngChronoName",
+    operator = "NOT_EQUALS",
+    value = ""
+  )
 qc3 <-
-  QueryCondition$new(field =
-                       "gatheringEvent.chronoStratigraphy.oldChronoName",
-                     operator = "NOT_EQUALS",
-                     value = "")
+  QueryCondition$new(
+    field =
+      "gatheringEvent.chronoStratigraphy.oldChronoName",
+    operator = "NOT_EQUALS",
+    value = ""
+  )
 
 ## join qc2 and qc3 with operator OR
 qc2$or <- list(qc3)
@@ -121,17 +126,20 @@ Now we can explore the data:
 
 ```{r explore}
 ## load all specimens
-specimens <- lapply(res$content$resultSet, function(x)
-  x$item)
+specimens <- lapply(res$content$resultSet, function(x) {
+  x$item
+})
 
 ## check the fields youngCronoName and oldChronoName
 unique(unlist(
-  lapply(specimens, function(x)
-    x$gatheringEvent$chronoStratigraphy[[1]]$youngChronoName)
+  lapply(specimens, function(x) {
+    x$gatheringEvent$chronoStratigraphy[[1]]$youngChronoName
+  })
 ))
 unique(unlist(
-  lapply(specimens, function(x)
-    x$gatheringEvent$chronoStratigraphy[[1]]$oldChronoName)
+  lapply(specimens, function(x) {
+    x$gatheringEvent$chronoStratigraphy[[1]]$oldChronoName
+  })
 ))
 ```
 
@@ -139,8 +147,9 @@ unique(unlist(
 specimen. Check how many we have per specimen:
 
 ```{r num_chrono}
-unique(sapply(res$content$resultSet, function(x)
-  length(x$item$gatheringEvent$chronoStratigraphy)))
+unique(sapply(res$content$resultSet, function(x) {
+  length(x$item$gatheringEvent$chronoStratigraphy)
+}))
 ```
 
 Each `gatheringEvent` in each `Specimen` has only one `chronoStratigraphy`. We thus do not miss data by taking
@@ -153,14 +162,16 @@ for all specimen.
 ## make table with counts for each order
 tab <-
   table(unlist(
-    lapply(specimens, function(x)
-      x$identifications[[1]]$defaultClassification$order)
+    lapply(specimens, function(x) {
+      x$identifications[[1]]$defaultClassification$order
+    })
   ))
 par(mar = c(5.1, 8, 4.1, 2.1))
 barplot(sort(tab),
-        horiz = TRUE,
-        las = 2,
-        xlab = "Number of specimens")
+  horiz = TRUE,
+  las = 2,
+  xlab = "Number of specimens"
+)
 ```
 
 **Caution**: There can be multiple identifications for one specimen. Some specimens 
@@ -172,9 +183,11 @@ It can, however, occur that there are multiple identifications of which none is 
 ```{r preferred}
 ## get the specimens which have a preferred identification
 ident <-
-  sapply(specimens, function(s)
-    any(sapply(s$identifications, function(i)
-      i$preferred)))
+  sapply(specimens, function(s) {
+    any(sapply(s$identifications, function(i) {
+      i$preferred
+    }))
+  })
 
 ## how many do not have a preferred identification?
 sum(!ident)
@@ -215,20 +228,24 @@ first 50 specimen objects:
 data <-
   as.data.frame(do.call(rbind, lapply(specimens[1:50], function(x) {
     genus <- x$identifications[[1]]$defaultClassification$genus
-    if (is.null(genus))
+    if (is.null(genus)) {
       genus <- NA
+    }
     specificEpithet <-
       x$identifications[[1]]$defaultClassification$specificEpithet
-    if (is.null(specificEpithet))
+    if (is.null(specificEpithet)) {
       specificEpithet <- NA
+    }
     youngChronoName <-
       x$gatheringEvent$chronoStratigraphy[[1]]$youngChronoName
-    if (is.null(youngChronoName))
+    if (is.null(youngChronoName)) {
       youngChronoName <- NA
+    }
     oldChronoName <-
       x$gatheringEvent$chronoStratigraphy[[1]]$oldChronoName
-    if (is.null(oldChronoName))
+    if (is.null(oldChronoName)) {
       oldChronoName <- NA
+    }
     c(
       genus = genus,
       specificEpithet = specificEpithet,
@@ -246,11 +263,13 @@ times <-
 
 ## add upper and lower bounds to ages
 data$young_age <-
-  sapply(data$youngChronoName, function(x)
-    ifelse(is.na(x), NA, unlist(times["late_age", as.character(x)])))
+  sapply(data$youngChronoName, function(x) {
+    ifelse(is.na(x), NA, unlist(times["late_age", as.character(x)]))
+  })
 data$old_age <-
-  sapply(data$oldChronoName, function(x)
-    ifelse(is.na(x), NA, unlist(times["early_age", as.character(x)])))
+  sapply(data$oldChronoName, function(x) {
+    ifelse(is.na(x), NA, unlist(times["early_age", as.character(x)]))
+  })
 
 data
 ```
@@ -312,7 +331,7 @@ routine. We will therefore remove the calibration points for genus *Squatina* be
 ```{r plot_calib}
 ## clean up: one rogue taxon in genus "Squatina"! Skip this genus
 calibration_table <-
-  calibration_table[calibration_table$taxon != "Squatina",]
+  calibration_table[calibration_table$taxon != "Squatina", ]
 
 ## run ape's chronos
 chronogram <- chronos(shark_tree, calibration = calibration_table)

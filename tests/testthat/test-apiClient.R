@@ -1,13 +1,9 @@
-source("setup-vars.R")
-
-test_that("Constructor works", {
-  ## constructor with default base path
-  ac <- ApiClient$new()
-  ## test with other basePath
-  ac <- ApiClient$new(basePath = "http://localhost:8080/v2")
-  ## test with other userAgent
-  ac <- ApiClient$new(userAgent = "test/0.0")
-})
+## constructor with default base path
+ac <- ApiClient$new()
+## test with other basePath
+ac <- ApiClient$new(basePath = "http://localhost:8080/v2")
+## test with other userAgent
+ac <- ApiClient$new(userAgent = "test/0.0")
 
 test_that("HandleError function works", {
   ## make call that produces error

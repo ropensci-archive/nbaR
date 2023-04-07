@@ -27,10 +27,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation 
-        
-        \item \code{ queryParams } : named list or vector with query parameters 
-        
+        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+
+        \item \code{ queryParams } : named list or vector with query parameters
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -43,10 +43,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ field } : name of field in taxon object 
-        
-        
+
+        \item \code{ field } : name of field in taxon object
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -59,10 +59,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ group } : name of field in the geo area object to group by \item \code{ field } : name of field in the geo area object 
-        
-        
+
+        \item \code{ group } : name of field in the geo area object to group by \item \code{ field } : name of field in the geo area object
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -75,10 +75,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ id } : id of geo area 
-        
-        
+
+        \item \code{ id } : id of geo area
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -91,10 +91,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ ids } : ids of multiple geo areas, separated by comma 
-        
-        
+
+        \item \code{ ids } : ids of multiple geo areas, separated by comma
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -107,10 +107,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ field } : name of field in geo area object 
-        
-        
+
+        \item \code{ field } : name of field in geo area object
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -123,10 +123,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ group } : name of field in the geo area object to group by \item \code{ field } : name of field in the geo area object 
-        
-        
+
+        \item \code{ group } : name of field in the geo area object to group by \item \code{ field } : name of field in the geo area object
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -139,10 +139,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        
-        
-        
+
+
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -155,10 +155,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ locality } :  
-        
-        
+
+        \item \code{ locality } :
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -171,10 +171,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        
-        
-        
+
+
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -187,10 +187,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ name } : name of setting 
-        
-        
+
+        \item \code{ name } : name of setting
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -203,10 +203,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        
-        
-        
+
+
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -219,10 +219,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ field } : Field in geo area document \item \code{ operator } : operator 
-        
-        
+
+        \item \code{ field } : Field in geo area document \item \code{ operator } : operator
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -235,10 +235,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation 
-        
-        \item \code{ queryParams } : named list or vector with query parameters 
-        
+        \item \code{ query_spec } : Object of type QuerySpec or its JSON representation
+
+        \item \code{ queryParams } : named list or vector with query parameters
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:

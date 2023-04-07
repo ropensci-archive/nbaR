@@ -1,15 +1,9 @@
-source("setup-vars.R")
-
-context("Testing query function")
-
 test_that("Query with TaxonClient returns Taxon objects", {
   res <- tc$query()
-
   ## Default number of returned documents is 10
   expect_length(res$content$resultSet, 10)
-
   for (hit in res$content$resultSet) {
-    expect_is(hit$item, "Taxon")
+    expect_s3_class(hit$item, "Taxon")
   }
 })
 
@@ -20,7 +14,7 @@ test_that("Query with QuerySpec works", {
     operator = "EQUALS"
   )))
   res <- tc$query(querySpec = qs)
-  expect_is(res$content$resultSet[[1]]$item, "Taxon")
+  expect_s3_class(res$content$resultSet[[1]]$item, "Taxon")
 })
 
 
@@ -33,7 +27,7 @@ test_that("Operators other than EQUALS work", {
   res <- tc$query(qs)
 
   for (hit in res$content$resultSet) {
-    expect_is(hit$item, "Taxon")
+    expect_s3_class(hit$item, "Taxon")
   }
 })
 

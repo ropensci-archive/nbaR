@@ -68,11 +68,11 @@
           queryParams['{{baseName}}'] <- param
         }
         ## querySpec parameter has underscore in NBA, omitted in function argument for convenience
-         names(queryParams) <- gsub(
-        "\\.querySpec", 
-        paste0("_", "querySpec"), # tweak to not transform _querySpec
-        names(queryParams)
-      )
+        names(queryParams) <- gsub(
+          paste0("\\.", "querySpec"), # tweak to not transform .querySpec 
+          "_querySpec", 
+          names(queryParams)
+        )
 
           {{/queryParams}}
       {{/hasQueryParams}}
@@ -122,7 +122,7 @@
                                  {{/isResponseFile}}
                                  ...)
 
-        if (httr::status_code(response) < 200 || httr::status_code(response) > 299) {
+        if (httr::status_code(response) %/% 100 != 2) {
             self$handleError(response)
         } else {
         {{#returnType}}

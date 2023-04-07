@@ -16,7 +16,7 @@
 #' @docType class
 #'
 #' @format R6 class
-#' 
+#'
 #' @field basePath Stores url path of the request, defaults to http://api.biodiversitydata.nl/v2
 #' @field userAgent Set the user agent of the request, defaults to nbaR/0.1.0
 #'
@@ -24,7 +24,7 @@
 #'
 #' @usage
 #' # client <- TaxonClient$new()
-#' 
+#'
 #' @section Methods:
 #' \describe{
 #' \item{\code{ count }}{
@@ -34,10 +34,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         \item \code{ source_system_code } : Example query param 
-#'         
-#'         \item \code{ queryParams } : named list or vector with query parameters 
-#'         
+#'         \item \code{ source_system_code } : Example query param
+#'
+#'         \item \code{ queryParams } : named list or vector with query parameters
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -50,10 +50,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         
-#'         \item \code{ field } : name of field in the taxon object 
-#'         
-#'         
+#'
+#'         \item \code{ field } : name of field in the taxon object
+#'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -66,10 +66,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         
-#'         \item \code{ group } : name of field in the taxon object you want to group by \item \code{ field } : name of field in the taxon object 
-#'         
-#'         
+#'
+#'         \item \code{ group } : name of field in the taxon object you want to group by \item \code{ field } : name of field in the taxon object
+#'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -82,10 +82,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         \item \code{ source_system_code } : Example query param 
-#'         
-#'         \item \code{ queryParams } : named list or vector with query parameters 
-#'         
+#'         \item \code{ source_system_code } : Example query param
+#'
+#'         \item \code{ queryParams } : named list or vector with query parameters
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -98,10 +98,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         
-#'         \item \code{ dataset } : name of dataset 
-#'         
-#'         
+#'
+#'         \item \code{ dataset } : name of dataset
+#'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -114,10 +114,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         
-#'         
-#'         
-#'         
+#'
+#'
+#'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -130,10 +130,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         \item \code{ source_system_code } : Example query param 
-#'         
-#'         \item \code{ queryParams } : named list or vector with query parameters 
-#'         
+#'         \item \code{ source_system_code } : Example query param
+#'
+#'         \item \code{ queryParams } : named list or vector with query parameters
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -146,10 +146,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         
-#'         \item \code{ id } : id of taxon 
-#'         
-#'         
+#'
+#'         \item \code{ id } : id of taxon
+#'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -162,10 +162,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         
-#'         \item \code{ ids } : ids of multiple taxa, separated by comma 
-#'         
-#'         
+#'
+#'         \item \code{ ids } : ids of multiple taxa, separated by comma
+#'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -178,10 +178,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         
-#'         \item \code{ field } : name of field in a taxon object 
-#'         
-#'         
+#'
+#'         \item \code{ field } : name of field in a taxon object
+#'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -194,10 +194,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         
-#'         \item \code{ group } : name of field in the taxon object you want to group by \item \code{ field } : name of field in the taxon object 
-#'         
-#'         
+#'
+#'         \item \code{ group } : name of field in the taxon object you want to group by \item \code{ field } : name of field in the taxon object
+#'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -210,10 +210,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         
-#'         
-#'         
-#'         
+#'
+#'
+#'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -226,10 +226,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         
-#'         
-#'         
-#'         
+#'
+#'
+#'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -242,10 +242,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         
-#'         
-#'         
-#'         
+#'
+#'
+#'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -258,10 +258,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         
-#'         \item \code{ name } : name of setting 
-#'         
-#'         
+#'
+#'         \item \code{ name } : name of setting
+#'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -274,10 +274,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         \item \code{ default_classification_family } : Example query param 
-#'         
-#'         \item \code{ queryParams } : named list or vector with query parameters 
-#'         
+#'         \item \code{ default_classification_family } : Example query param
+#'
+#'         \item \code{ queryParams } : named list or vector with query parameters
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -290,10 +290,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         
-#'         \item \code{ field } : specimen document field \item \code{ operator } : operator 
-#'         
-#'         
+#'
+#'         \item \code{ field } : specimen document field \item \code{ operator } : operator
+#'
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -306,10 +306,10 @@
 #'
 #'     Parameters:
 #'     \itemize{
-#'         \item \code{ default_classification_genus } : Example query param 
-#'         
-#'         \item \code{ queryParams } : named list or vector with query parameters 
-#'         
+#'         \item \code{ default_classification_genus } : Example query param
+#'
+#'         \item \code{ queryParams } : named list or vector with query parameters
+#'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
 #'     }
 #'     Returns:
@@ -319,597 +319,637 @@
 #'
 #' @export
 TaxonClient <- R6::R6Class(
-    "TaxonClient",
-    inherit = ApiClient,
-    public = list(
-        initialize = function(basePath, userAgent){
-        super$initialize(basePath, userAgent)
+  "TaxonClient",
+  inherit = ApiClient,
+  public = list(
+    initialize = function(basePath, userAgent) {
+      super$initialize(basePath, userAgent)
     },
+    count = function(sourceSystem.code = NULL,
+                     queryParams = list(),
+                     ...) {
+      headerParams <- character()
+      if (!is.null(querySpec) & length(queryParams) > 0) {
+        stop("Either querySpec or queryParams argument allowed, not both.")
+      }
 
-      count = function(
-          sourceSystem.code = NULL,
-          queryParams = list(),
-          ... ) {
-        headerParams <- character()
-        if (!is.null(querySpec) & length(queryParams) > 0) {
-            stop("Either querySpec or queryParams argument allowed, not both.")
-        }
-            
-        if (!missing(`sourceSystem.code`)) {
-          ## querySpec can be either JSON string or object of type QuerySpec. 
-          param <- ifelse(typeof(`sourceSystem.code`) == "environment",
-                          `sourceSystem.code`$toJSONString(),
-                          `sourceSystem.code`)    
-          queryParams["sourceSystem.code"] <- param
-        }
-        ## querySpec parameter has underscore in NBA, omitted in argument
-        names(queryParams) <- gsub("querySpec",
-                                    "querySpec",
-                                    names(queryParams))
+      if (!missing(`sourceSystem.code`)) {
+        ## querySpec can be either JSON string or object of type QuerySpec.
+        param <- ifelse(typeof(`sourceSystem.code`) == "environment",
+          `sourceSystem.code`$toJSONString(),
+          `sourceSystem.code`
+        )
+        queryParams["sourceSystem.code"] <- param
+      }
+      ## querySpec parameter has underscore in NBA, omitted in argument
+      names(queryParams) <- sub(
+        "\\.querySpec",
+        paste0("_", "querySpec"), # tweak to not transform .querySpec
+        names(queryParams)
+      )
 
-        urlPath <- "/taxon/count"
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = as.list(queryParams),
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+      urlPath <- "/taxon/count"
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = as.list(queryParams),
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
 
-        if (httr::status_code(response) < 200 ||
-               httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is "primitive type", return vector or single value
-            result <- as.integer(httr::content(response))
-            Response$new(result, response)
-        }        
+      if (httr::status_code(response) %/% 100 != 2) {
+        self$handleError(response)
+      } else {
+        ## API call result is "primitive type", return vector or single value
+        result <- as.integer(httr::content(response))
+        Response$new(result, response)
+      }
     },
-      count_distinct_values = function(
-          field = NULL,
-          ... ) {
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/taxon/countDistinctValues/{field}"
-            
-        if (!missing(`field`)) {
-            ## build URL for path param
-            urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
-        }
+    count_distinct_values = function(field = NULL,
+                                     ...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/taxon/countDistinctValues/{field}"
 
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = as.list(queryParams),
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+      if (!missing(`field`)) {
+        ## build URL for path param
+        urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
+      }
 
-        if (httr::status_code(response) < 200 ||
-               httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector = TRUE)
-            Response$new(result, response)
-        }        
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = as.list(queryParams),
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
+
+      if (httr::status_code(response) %/% 100 != 2) {
+        self$handleError(response)
+      } else {
+        ## API call result is a "map container" and will be parsed to list
+        result <- httr::content(response, simplifyVector = TRUE)
+        Response$new(result, response)
+      }
     },
-      count_distinct_values_per_group = function(
-          group = NULL,
-          field = NULL,
-          ... ) {
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/taxon/countDistinctValuesPerGroup/{group}/{field}"
-            
-        if (!missing(`group`)) {
-            ## build URL for path param
-            urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
-        }
+    count_distinct_values_per_group = function(group = NULL,
+                                               field = NULL,
+                                               ...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/taxon/countDistinctValuesPerGroup/{group}/{field}"
 
-            
-        if (!missing(`field`)) {
-            ## build URL for path param
-            urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
-        }
+      if (!missing(`group`)) {
+        ## build URL for path param
+        urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
+      }
 
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = as.list(queryParams),
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
 
-        if (httr::status_code(response) < 200 ||
-               httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector = TRUE)
-            Response$new(result, response)
-        }        
+      if (!missing(`field`)) {
+        ## build URL for path param
+        urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
+      }
+
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = as.list(queryParams),
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
+
+      if (httr::status_code(response) %/% 100 != 2) {
+        self$handleError(response)
+      } else {
+        ## API call result is a "map container" and will be parsed to list
+        result <- httr::content(response, simplifyVector = TRUE)
+        Response$new(result, response)
+      }
     },
-      download_query = function(
-          sourceSystem.code = NULL,
-          queryParams = list(),
-          ... ) {
-        headerParams <- character()
-        if (!is.null(querySpec) & length(queryParams) > 0) {
-            stop("Either querySpec or queryParams argument allowed, not both.")
-        }
-            
-        if (!missing(`sourceSystem.code`)) {
-          ## querySpec can be either JSON string or object of type QuerySpec. 
-          param <- ifelse(typeof(`sourceSystem.code`) == "environment",
-                          `sourceSystem.code`$toJSONString(),
-                          `sourceSystem.code`)    
-          queryParams["sourceSystem.code"] <- param
-        }
-        ## querySpec parameter has underscore in NBA, omitted in argument
-        names(queryParams) <- gsub("querySpec",
-                                    "querySpec",
-                                    names(queryParams))
+    download_query = function(sourceSystem.code = NULL,
+                              queryParams = list(),
+                              ...) {
+      headerParams <- character()
+      if (!is.null(querySpec) & length(queryParams) > 0) {
+        stop("Either querySpec or queryParams argument allowed, not both.")
+      }
 
-        urlPath <- "/taxon/download"
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = as.list(queryParams),
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+      if (!missing(`sourceSystem.code`)) {
+        ## querySpec can be either JSON string or object of type QuerySpec.
+        param <- ifelse(typeof(`sourceSystem.code`) == "environment",
+          `sourceSystem.code`$toJSONString(),
+          `sourceSystem.code`
+        )
+        queryParams["sourceSystem.code"] <- param
+      }
+      ## querySpec parameter has underscore in NBA, omitted in argument
+      names(queryParams) <- sub(
+        "\\.querySpec",
+        paste0("_", "querySpec"), # tweak to not transform .querySpec
+        names(queryParams)
+      )
 
-        if (httr::status_code(response) < 200 ||
-               httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## empty response, e.g. when file is downloaded
-            result <- NULL
-            Response$new(result, response)
-        }        
+      urlPath <- "/taxon/download"
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = as.list(queryParams),
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
+
+      if (httr::status_code(response) %/% 100 != 2) {
+        self$handleError(response)
+      } else {
+        ## empty response, e.g. when file is downloaded
+        result <- NULL
+        Response$new(result, response)
+      }
     },
-      dwca_get_data_set = function(
-          dataset = NULL,
-          ... ) {
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/taxon/dwca/getDataSet/{dataset}"
-            
-        if (!missing(`dataset`)) {
-            ## build URL for path param
-            urlPath <- gsub(paste0("\\{", "dataset", "\\}"), `dataset`, urlPath)
-        }
+    dwca_get_data_set = function(dataset = NULL,
+                                 ...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/taxon/dwca/getDataSet/{dataset}"
 
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = as.list(queryParams),
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+      if (!missing(`dataset`)) {
+        ## build URL for path param
+        urlPath <- gsub(paste0("\\{", "dataset", "\\}"), `dataset`, urlPath)
+      }
 
-        if (httr::status_code(response) < 200 ||
-               httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## empty response, e.g. when file is downloaded
-            result <- NULL
-            Response$new(result, response)
-        }        
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = as.list(queryParams),
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
+
+      if (httr::status_code(response) %/% 100 != 2) {
+        self$handleError(response)
+      } else {
+        ## empty response, e.g. when file is downloaded
+        result <- NULL
+        Response$new(result, response)
+      }
     },
-      dwca_get_data_set_names = function(
-          ... ) {
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/taxon/dwca/getDataSetNames"
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = as.list(queryParams),
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+    dwca_get_data_set_names = function(...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/taxon/dwca/getDataSetNames"
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = as.list(queryParams),
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
 
-        if (httr::status_code(response) < 200 ||
-               httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is "primitive type", return vector or single value
-            result <- as.character(httr::content(response))
-            Response$new(result, response)
-        }        
+      if (httr::status_code(response) %/% 100 != 2) {
+        self$handleError(response)
+      } else {
+        ## API call result is "primitive type", return vector or single value
+        result <- as.character(httr::content(response))
+        Response$new(result, response)
+      }
     },
-      dwca_query = function(
-          sourceSystem.code = NULL,
-          queryParams = list(),
-          ... ) {
-        headerParams <- character()
-        if (!is.null(querySpec) & length(queryParams) > 0) {
-            stop("Either querySpec or queryParams argument allowed, not both.")
-        }
-            
-        if (!missing(`sourceSystem.code`)) {
-          ## querySpec can be either JSON string or object of type QuerySpec. 
-          param <- ifelse(typeof(`sourceSystem.code`) == "environment",
-                          `sourceSystem.code`$toJSONString(),
-                          `sourceSystem.code`)    
-          queryParams["sourceSystem.code"] <- param
-        }
-        ## querySpec parameter has underscore in NBA, omitted in argument
-        names(queryParams) <- gsub("querySpec",
-                                    "querySpec",
-                                    names(queryParams))
+    dwca_query = function(sourceSystem.code = NULL,
+                          queryParams = list(),
+                          ...) {
+      headerParams <- character()
+      if (!is.null(querySpec) & length(queryParams) > 0) {
+        stop("Either querySpec or queryParams argument allowed, not both.")
+      }
 
-        urlPath <- "/taxon/dwca/query"
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = as.list(queryParams),
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+      if (!missing(`sourceSystem.code`)) {
+        ## querySpec can be either JSON string or object of type QuerySpec.
+        param <- ifelse(typeof(`sourceSystem.code`) == "environment",
+          `sourceSystem.code`$toJSONString(),
+          `sourceSystem.code`
+        )
+        queryParams["sourceSystem.code"] <- param
+      }
+      ## querySpec parameter has underscore in NBA, omitted in argument
+      names(queryParams) <- sub(
+        "\\.querySpec",
+        paste0("_", "querySpec"), # tweak to not transform .querySpec
+        names(queryParams)
+      )
 
-        if (httr::status_code(response) < 200 ||
-               httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## empty response, e.g. when file is downloaded
-            result <- NULL
-            Response$new(result, response)
-        }        
+      urlPath <- "/taxon/dwca/query"
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = as.list(queryParams),
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
+
+      if (httr::status_code(response) %/% 100 != 2) {
+        self$handleError(response)
+      } else {
+        ## empty response, e.g. when file is downloaded
+        result <- NULL
+        Response$new(result, response)
+      }
     },
-      find = function(
-          id = NULL,
-          ... ) {
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/taxon/find/{id}"
-            
-        if (!missing(`id`)) {
-            ## build URL for path param
-            urlPath <- gsub(paste0("\\{", "id", "\\}"), `id`, urlPath)
-        }
+    find = function(id = NULL,
+                    ...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/taxon/find/{id}"
 
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = as.list(queryParams),
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+      if (!missing(`id`)) {
+        ## build URL for path param
+        urlPath <- gsub(paste0("\\{", "id", "\\}"), `id`, urlPath)
+      }
 
-        if (httr::status_code(response) < 200 ||
-               httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is object of model class
-            returnObject <- Taxon$new()
-            ## if API call result is QueryResult,
-            ## list items must be mapped to model class            
-            result <- returnObject$fromList(
-                httr::content(response),
-                  typeMapping = list(item = private$getBaseDataType()))
-            Response$new(result, response)
-        }        
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = as.list(queryParams),
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
+
+      if (httr::status_code(response) %/% 100 != 2) {
+        self$handleError(response)
+      } else {
+        ## API call result is object of model class
+        returnObject <- Taxon$new()
+        ## if API call result is QueryResult,
+        ## list items must be mapped to model class
+        result <- returnObject$fromList(
+          httr::content(response),
+          typeMapping = list(item = private$getBaseDataType())
+        )
+        Response$new(result, response)
+      }
     },
-      find_by_ids = function(
-          ids = NULL,
-          ... ) {
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/taxon/findByIds/{ids}"
-            
-        if (!missing(`ids`)) {
-            ## build URL for path param
-            ## input can be vector or string with comma separated items
-            ## API takes string, so translate vector, if present
-            if (length(`ids`) > 1) {
-                ids <- paste(ids, collapse = ",")
-            }
-            urlPath <- gsub(paste0("\\{", "ids", "\\}"), `ids`, urlPath)
+    find_by_ids = function(ids = NULL,
+                           ...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/taxon/findByIds/{ids}"
+
+      if (!missing(`ids`)) {
+        ## build URL for path param
+        ## input can be vector or string with comma separated items
+        ## API takes string, so translate vector, if present
+        if (length(`ids`) > 1) {
+          ids <- paste(ids, collapse = ",")
         }
+        urlPath <- gsub(paste0("\\{", "ids", "\\}"), `ids`, urlPath)
+      }
 
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = as.list(queryParams),
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = as.list(queryParams),
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
 
-        if (httr::status_code(response) < 200 ||
-               httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is object of model class
-            returnObject <- Taxon$new()
-            ## API call result is "list container"
-            result <- lapply(httr::content(response),
-                             function(x) {
-                                 cl <- returnObject$clone()
-                                 cl$fromList(x,
-                                 typeMapping = list(item = private$getBaseDataType()))
-                                 })
-            Response$new(result, response)
-        }        
+      if (httr::status_code(response) %/% 100 != 2) {
+        self$handleError(response)
+      } else {
+        ## API call result is object of model class
+        returnObject <- Taxon$new()
+        ## API call result is "list container"
+        result <- lapply(
+          httr::content(response),
+          function(x) {
+            cl <- returnObject$clone()
+            cl$fromList(x,
+              typeMapping = list(item = private$getBaseDataType())
+            )
+          }
+        )
+        Response$new(result, response)
+      }
     },
-      get_distinct_values = function(
-          field = NULL,
-          ... ) {
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/taxon/getDistinctValues/{field}"
-            
-        if (!missing(`field`)) {
-            ## build URL for path param
-            urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
-        }
+    get_distinct_values = function(field = NULL,
+                                   ...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/taxon/getDistinctValues/{field}"
 
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = as.list(queryParams),
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+      if (!missing(`field`)) {
+        ## build URL for path param
+        urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
+      }
 
-        if (httr::status_code(response) < 200 ||
-               httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector = TRUE)
-            Response$new(result, response)
-        }        
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = as.list(queryParams),
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
+
+      if (httr::status_code(response) %/% 100 != 2) {
+        self$handleError(response)
+      } else {
+        ## API call result is a "map container" and will be parsed to list
+        result <- httr::content(response, simplifyVector = TRUE)
+        Response$new(result, response)
+      }
     },
-      get_distinct_values_per_group = function(
-          group = NULL,
-          field = NULL,
-          ... ) {
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/taxon/getDistinctValuesPerGroup/{group}/{field}"
-            
-        if (!missing(`group`)) {
-            ## build URL for path param
-            urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
-        }
+    get_distinct_values_per_group = function(group = NULL,
+                                             field = NULL,
+                                             ...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/taxon/getDistinctValuesPerGroup/{group}/{field}"
 
-            
-        if (!missing(`field`)) {
-            ## build URL for path param
-            urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
-        }
+      if (!missing(`group`)) {
+        ## build URL for path param
+        urlPath <- gsub(paste0("\\{", "group", "\\}"), `group`, urlPath)
+      }
 
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = as.list(queryParams),
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
 
-        if (httr::status_code(response) < 200 ||
-               httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is "primitive type", return vector or single value
-            result <- as.list(httr::content(response))
-            Response$new(result, response)
-        }        
+      if (!missing(`field`)) {
+        ## build URL for path param
+        urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
+      }
+
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = as.list(queryParams),
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
+
+      if (httr::status_code(response) %/% 100 != 2) {
+        self$handleError(response)
+      } else {
+        ## API call result is "primitive type", return vector or single value
+        result <- as.list(httr::content(response))
+        Response$new(result, response)
+      }
     },
-      get_field_info = function(
-          ... ) {
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/taxon/metadata/getFieldInfo"
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = as.list(queryParams),
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+    get_field_info = function(...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/taxon/metadata/getFieldInfo"
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = as.list(queryParams),
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
 
-        if (httr::status_code(response) < 200 ||
-               httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector = TRUE)
-            Response$new(result, response)
-        }        
+      if (httr::status_code(response) %/% 100 != 2) {
+        self$handleError(response)
+      } else {
+        ## API call result is a "map container" and will be parsed to list
+        result <- httr::content(response, simplifyVector = TRUE)
+        Response$new(result, response)
+      }
     },
-      get_paths = function(
-          ... ) {
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/taxon/metadata/getPaths"
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = as.list(queryParams),
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+    get_paths = function(...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/taxon/metadata/getPaths"
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = as.list(queryParams),
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
 
-        if (httr::status_code(response) < 200 ||
-               httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is "primitive type", return vector or single value
-            result <- as.character(httr::content(response))
-            Response$new(result, response)
-        }        
+      if (httr::status_code(response) %/% 100 != 2) {
+        self$handleError(response)
+      } else {
+        ## API call result is "primitive type", return vector or single value
+        result <- as.character(httr::content(response))
+        Response$new(result, response)
+      }
     },
-      get_settings = function(
-          name = NULL,
-          ... ) {
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/taxon/metadata/getSetting/{name}"
-            
-        if (!missing(`name`)) {
-            ## build URL for path param
-            urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
-        }
+    get_settings = function(...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/taxon/metadata/getSettings"
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = as.list(queryParams),
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
 
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = as.list(queryParams),
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
-
-        if (httr::status_code(response) < 200 ||
-               httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is "primitive type", return vector or single value
-            result <- as.list(httr::content(response))
-            Response$new(result, response)
-        }        
+      if (httr::status_code(response) %/% 100 != 2) {
+        self$handleError(response)
+      } else {
+        ## API call result is a "map container" and will be parsed to list
+        result <- httr::content(response, simplifyVector = TRUE)
+        Response$new(result, response)
+      }
     },
-      group_by_scientific_name = function(
-          defaultClassification.family = NULL,
-          queryParams = list(),
-          ... ) {
-        headerParams <- character()
-        if (!is.null(querySpec) & length(queryParams) > 0) {
-            stop("Either querySpec or queryParams argument allowed, not both.")
-        }
-            
-        if (!missing(`defaultClassification.family`)) {
-          ## querySpec can be either JSON string or object of type QuerySpec. 
-          param <- ifelse(typeof(`defaultClassification.family`) == "environment",
-                          `defaultClassification.family`$toJSONString(),
-                          `defaultClassification.family`)    
-          queryParams["defaultClassification.family"] <- param
-        }
-        ## querySpec parameter has underscore in NBA, omitted in argument
-        names(queryParams) <- gsub("querySpec",
-                                    "querySpec",
-                                    names(queryParams))
+    get_setting = function(name = NULL,
+                            ...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/taxon/metadata/getSetting/{name}"
 
-        urlPath <- "/taxon/groupByScientificName"
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = as.list(queryParams),
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+      if (!missing(`name`)) {
+        ## build URL for path param
+        urlPath <- gsub(paste0("\\{", "name", "\\}"), `name`, urlPath)
+      }
 
-        if (httr::status_code(response) < 200 ||
-               httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is object of model class
-            returnObject <- QueryResult$new()
-            ## if API call result is QueryResult,
-            ## list items must be mapped to model class            
-            result <- returnObject$fromList(
-                httr::content(response),
-                  typeMapping = list(item = private$getBaseDataType()))
-            Response$new(result, response)
-        }        
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = as.list(queryParams),
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
+
+      if (httr::status_code(response) %/% 100 != 2) {
+        self$handleError(response)
+      } else {
+        ## API call result is "primitive type", return vector or single value
+        result <- as.list(httr::content(response))
+        Response$new(result, response)
+      }
     },
-      is_operator_allowed = function(
-          field = NULL,
-          operator = NULL,
-          ... ) {
-        headerParams <- character()
-        queryParams <- list()
-        urlPath <- "/taxon/metadata/isOperatorAllowed/{field}/{operator}"
-            
-        if (!missing(`field`)) {
-            ## build URL for path param
-            urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
-        }
+    group_by_scientific_name = function(defaultClassification.family = NULL,
+                                        queryParams = list(),
+                                        ...) {
+      headerParams <- character()
+      if (!is.null(querySpec) & length(queryParams) > 0) {
+        stop("Either querySpec or queryParams argument allowed, not both.")
+      }
 
-            
-        if (!missing(`operator`)) {
-            ## build URL for path param
-            urlPath <- gsub(paste0("\\{", "operator", "\\}"), `operator`, urlPath)
-        }
+      if (!missing(`defaultClassification.family`)) {
+        ## querySpec can be either JSON string or object of type QuerySpec.
+        param <- ifelse(typeof(`defaultClassification.family`) == "environment",
+          `defaultClassification.family`$toJSONString(),
+          `defaultClassification.family`
+        )
+        queryParams["defaultClassification.family"] <- param
+      }
+      ## querySpec parameter has underscore in NBA, omitted in argument
+      names(queryParams) <- sub(
+        "\\.querySpec",
+        paste0("_", "querySpec"), # tweak to not transform .querySpec
+        names(queryParams)
+      )
 
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = as.list(queryParams),
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+      urlPath <- "/taxon/groupByScientificName"
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = as.list(queryParams),
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
 
-        if (httr::status_code(response) < 200 ||
-               httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is a "map container" and will be parsed to list 
-            result <- httr::content(response, simplifyVector = TRUE)
-            Response$new(result, response)
-        }        
+      if (httr::status_code(response) %/% 100 != 2) {
+        self$handleError(response)
+      } else {
+        ## API call result is object of model class
+        returnObject <- QueryResult$new()
+        ## if API call result is QueryResult,
+        ## list items must be mapped to model class
+        result <- returnObject$fromList(
+          httr::content(response),
+          typeMapping = list(item = private$getBaseDataType())
+        )
+        Response$new(result, response)
+      }
     },
-      query = function(
-          defaultClassification.genus = NULL,
-          queryParams = list(),
-          ... ) {
-        headerParams <- character()
-        if (!is.null(querySpec) & length(queryParams) > 0) {
-            stop("Either querySpec or queryParams argument allowed, not both.")
-        }
-            
-        if (!missing(`defaultClassification.genus`)) {
-          ## querySpec can be either JSON string or object of type QuerySpec. 
-          param <- ifelse(typeof(`defaultClassification.genus`) == "environment",
-                          `defaultClassification.genus`$toJSONString(),
-                          `defaultClassification.genus`)    
-          queryParams["defaultClassification.genus"] <- param
-        }
-        ## querySpec parameter has underscore in NBA, omitted in argument
-        names(queryParams) <- gsub("querySpec",
-                                    "querySpec",
-                                    names(queryParams))
+    is_operator_allowed = function(field = NULL,
+                                   operator = NULL,
+                                   ...) {
+      headerParams <- character()
+      queryParams <- list()
+      urlPath <- "/taxon/metadata/isOperatorAllowed/{field}/{operator}"
 
-        urlPath <- "/taxon/query"
-        response <- self$callApi(url = paste0(self$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = as.list(queryParams),
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
+      if (!missing(`field`)) {
+        ## build URL for path param
+        urlPath <- gsub(paste0("\\{", "field", "\\}"), `field`, urlPath)
+      }
 
-        if (httr::status_code(response) < 200 ||
-               httr::status_code(response) > 299) {
-            self$handleError(response)
-        } else {
-            ## API call result is object of model class
-            returnObject <- QueryResult$new()
-            ## if API call result is QueryResult,
-            ## list items must be mapped to model class            
-            result <- returnObject$fromList(
-                httr::content(response),
-                  typeMapping = list(item = private$getBaseDataType()))
-            Response$new(result, response)
-        }        
+
+      if (!missing(`operator`)) {
+        ## build URL for path param
+        urlPath <- gsub(paste0("\\{", "operator", "\\}"), `operator`, urlPath)
+      }
+
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = as.list(queryParams),
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
+
+      if (httr::status_code(response) %/% 100 != 2) {
+        self$handleError(response)
+      } else {
+        ## API call result is a "map container" and will be parsed to list
+        result <- httr::content(response, simplifyVector = TRUE)
+        Response$new(result, response)
+      }
+    },
+    query = function(defaultClassification.genus = NULL,
+                     queryParams = list(),
+                     ...) {
+      headerParams <- character()
+      if (!is.null(querySpec) & length(queryParams) > 0) {
+        stop("Either querySpec or queryParams argument allowed, not both.")
+      }
+
+      if (!missing(`defaultClassification.genus`)) {
+        ## querySpec can be either JSON string or object of type QuerySpec.
+        param <- ifelse(typeof(`defaultClassification.genus`) == "environment",
+          `defaultClassification.genus`$toJSONString(),
+          `defaultClassification.genus`
+        )
+        queryParams["defaultClassification.genus"] <- param
+      }
+      ## querySpec parameter has underscore in NBA, omitted in argument
+      names(queryParams) <- sub(
+        "\\.querySpec",
+        paste0("_", "querySpec"), # tweak to not transform .querySpec
+        names(queryParams)
+      )
+
+      urlPath <- "/taxon/query"
+      response <- self$callApi(
+        url = paste0(self$basePath, urlPath),
+        method = "GET",
+        queryParams = as.list(queryParams),
+        headerParams = headerParams,
+        body = body,
+        ...
+      )
+
+      if (httr::status_code(response) %/% 100 != 2) {
+        self$handleError(response)
+      } else {
+        ## API call result is object of model class
+        returnObject <- QueryResult$new()
+        ## if API call result is QueryResult,
+        ## list items must be mapped to model class
+        result <- returnObject$fromList(
+          httr::content(response),
+          typeMapping = list(item = private$getBaseDataType())
+        )
+        Response$new(result, response)
+      }
     },
     print = function(...) {
-       ## print class name
-       cat("<TaxonClient>\n")
-       cat("\tInherits from: <ApiClient>\n\n")
-       ## print all members with values
-       cat("Fields:\n")
-       cat("\tbasePath:\t", self$basePath, "\n")
-       cat("\tuserAgent:\t", self$userAgent, "\n")
-       ## print all methods
-       cat("Methods:\n")
-           cat("\tcount", "\n")
-           cat("\tcount_distinct_values", "\n")
-           cat("\tcount_distinct_values_per_group", "\n")
-           cat("\tdownload_query", "\n")
-           cat("\tdwca_get_data_set", "\n")
-           cat("\tdwca_get_data_set_names", "\n")
-           cat("\tdwca_query", "\n")
-           cat("\tfind", "\n")
-           cat("\tfind_by_ids", "\n")
-           cat("\tget_distinct_values", "\n")
-           cat("\tget_distinct_values_per_group", "\n")
-           cat("\tget_field_info", "\n")
-           cat("\tget_paths", "\n")
-           cat("\tget_settings", "\n")
-           cat("\tget_settings", "\n")
-           cat("\tgroup_by_scientific_name", "\n")
-           cat("\tis_operator_allowed", "\n")
-           cat("\tquery", "\n")
-       cat("\tping\n")
-       invisible(self)
+      ## print class name
+      cat("<TaxonClient>\n")
+      cat("\tInherits from: <ApiClient>\n\n")
+      ## print all members with values
+      cat("Fields:\n")
+      cat("\tbasePath:\t", self$basePath, "\n")
+      cat("\tuserAgent:\t", self$userAgent, "\n")
+      ## print all methods
+      cat("Methods:\n")
+      cat("\tcount", "\n")
+      cat("\tcount_distinct_values", "\n")
+      cat("\tcount_distinct_values_per_group", "\n")
+      cat("\tdownload_query", "\n")
+      cat("\tdwca_get_data_set", "\n")
+      cat("\tdwca_get_data_set_names", "\n")
+      cat("\tdwca_query", "\n")
+      cat("\tfind", "\n")
+      cat("\tfind_by_ids", "\n")
+      cat("\tget_distinct_values", "\n")
+      cat("\tget_distinct_values_per_group", "\n")
+      cat("\tget_field_info", "\n")
+      cat("\tget_paths", "\n")
+      cat("\tget_setting", "\n")
+      cat("\tget_settings", "\n")
+      cat("\tgroup_by_scientific_name", "\n")
+      cat("\tis_operator_allowed", "\n")
+      cat("\tquery", "\n")
+      cat("\tping\n")
+      invisible(self)
     }
   )
 )
-

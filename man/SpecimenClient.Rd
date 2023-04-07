@@ -27,10 +27,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ collection_type } : Example query param 
-        
-        \item \code{ queryParams } : named list or vector with query parameters 
-        
+        \item \code{ collection_type } : Example query param
+
+        \item \code{ queryParams } : named list or vector with query parameters
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -43,10 +43,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ field } : Name of field in the specimen object 
-        
-        
+
+        \item \code{ field } : Name of field in the specimen object
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -59,10 +59,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ group } : Name of field in the specimen object you want to group by \item \code{ field } : Name of field in the specimen object 
-        
-        
+
+        \item \code{ group } : Name of field in the specimen object you want to group by \item \code{ field } : Name of field in the specimen object
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -75,10 +75,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ collection_type } : Example query param 
-        
-        \item \code{ queryParams } : named list or vector with query parameters 
-        
+        \item \code{ collection_type } : Example query param
+
+        \item \code{ queryParams } : named list or vector with query parameters
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -91,10 +91,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ dataset } : name of dataset 
-        
-        
+
+        \item \code{ dataset } : name of dataset
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -107,10 +107,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        
-        
-        
+
+
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -123,10 +123,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ collection_type } : Example query param 
-        
-        \item \code{ queryParams } : named list or vector with query parameters 
-        
+        \item \code{ collection_type } : Example query param
+
+        \item \code{ queryParams } : named list or vector with query parameters
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -139,10 +139,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ unit_id } : the unitID of the specimen to query 
-        
-        
+
+        \item \code{ unit_id } : the unitID of the specimen to query
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -155,10 +155,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ id } : id of specimen 
-        
-        
+
+        \item \code{ id } : id of specimen
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -171,10 +171,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ ids } : ids of multiple specimen, separated by comma 
-        
-        
+
+        \item \code{ ids } : ids of multiple specimen, separated by comma
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -187,10 +187,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ unit_id } : the unitID of the specimen to query 
-        
-        
+
+        \item \code{ unit_id } : the unitID of the specimen to query
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -203,10 +203,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ field } : Name of field in specimen object 
-        
-        
+
+        \item \code{ field } : Name of field in specimen object
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -219,10 +219,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ group } : Name of field in the specimen object you want to group by \item \code{ field } : Name of field in the specimen object 
-        
-        
+
+        \item \code{ group } : Name of field in the specimen object you want to group by \item \code{ field } : Name of field in the specimen object
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -235,10 +235,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        
-        
-        
+
+
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -251,10 +251,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        
-        
-        
+
+
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -267,10 +267,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        
-        
-        
+
+
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -283,10 +283,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ name } : name of setting 
-        
-        
+
+        \item \code{ name } : name of setting
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -299,10 +299,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ collection_type } : Example query param 
-        
-        \item \code{ queryParams } : named list or vector with query parameters 
-        
+        \item \code{ collection_type } : Example query param
+
+        \item \code{ queryParams } : named list or vector with query parameters
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -315,10 +315,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        
-        \item \code{ field } : specimen document field \item \code{ operator } : operator 
-        
-        
+
+        \item \code{ field } : specimen document field \item \code{ operator } : operator
+
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -331,10 +331,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ collection_type } : Example query param 
-        
-        \item \code{ queryParams } : named list or vector with query parameters 
-        
+        \item \code{ collection_type } : Example query param
+
+        \item \code{ queryParams } : named list or vector with query parameters
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -347,10 +347,10 @@ by the user (see section 'Fields' below).
 
     Parameters:
     \itemize{
-        \item \code{ _query_spec } :  
-        
-        \item \code{ queryParams } : named list or vector with query parameters 
-        
+        \item \code{ _query_spec } :
+
+        \item \code{ queryParams } : named list or vector with query parameters
+
         \item \code{ ... } : additional parameters passed to httr::GET
     }
     Returns:
@@ -400,6 +400,7 @@ by the user (see section 'Fields' below).
 \item \href{#method-SpecimenClient-get_field_info}{\code{SpecimenClient$get_field_info()}}
 \item \href{#method-SpecimenClient-get_paths}{\code{SpecimenClient$get_paths()}}
 \item \href{#method-SpecimenClient-get_settings}{\code{SpecimenClient$get_settings()}}
+\item \href{#method-SpecimenClient-get_setting}{\code{SpecimenClient$get_setting()}}
 \item \href{#method-SpecimenClient-group_by_scientific_name}{\code{SpecimenClient$group_by_scientific_name()}}
 \item \href{#method-SpecimenClient-is_operator_allowed}{\code{SpecimenClient$is_operator_allowed()}}
 \item \href{#method-SpecimenClient-query}{\code{SpecimenClient$query()}}
@@ -571,6 +572,15 @@ by the user (see section 'Fields' below).
 
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SpecimenClient-get_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-SpecimenClient-get_setting}{}}}
+\subsection{Method \code{get_setting()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$get_setting(name = NULL, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-SpecimenClient-group_by_scientific_name"></a>}}
 \if{latex}{\out{\hypertarget{method-SpecimenClient-group_by_scientific_name}{}}}
 \subsection{Method \code{group_by_scientific_name()}}{
@@ -607,7 +617,7 @@ by the user (see section 'Fields' below).
 \subsection{Method \code{query_with_name_resolution()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$query_with_name_resolution(
-  querySpec = NULL,
+  .querySpec = NULL,
   queryParams = list(),
   ...
 )}\if{html}{\out{</div>}}

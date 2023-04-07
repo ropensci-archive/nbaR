@@ -1,17 +1,7 @@
-
-
-context("Testing class Person")
-
 # Make a list with random arguments for all fields in the class
 args <- list()
-args[["agentText"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["fullName"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
+args[["agentText"]] <- random_string()
+args[["fullName"]] <- random_string()
 args[["organization"]] <- Organization$new()
 
 # make Person object without and with args
@@ -19,26 +9,26 @@ objEmpty <- Person$new()
 objRand <- do.call(Person$new, args)
 
 test_that("Constructor works", {
-  expect_is(objEmpty, "Person")
-  expect_is(objRand, "Person")
+  expect_s3_class(objEmpty, "Person")
+  expect_s3_class(objRand, "Person")
 })
 
 test_that("toList works", {
-  expect_is(objEmpty$toList(), "list")
-  expect_is(objRand$toList(), "list")
+  expect_type(objEmpty$toList(), "list")
+  expect_type(objRand$toList(), "list")
 })
 
 test_that("fromList works", {
   obj <- Person$new()
   obj$fromList(objRand$toList())
   # expect_equal(obj, objRand)
-  expect_is(obj, "Person")
+  expect_s3_class(obj, "Person")
 })
 
 test_that("toJSONString works", {
-  expect_is(objEmpty$toJSONString(), "json")
+  expect_s3_class(objEmpty$toJSONString(), "json")
   expect_true(objEmpty$toJSONString() != "")
-  expect_is(objRand$toJSONString(), "json")
+  expect_s3_class(objRand$toJSONString(), "json")
   expect_true(objRand$toJSONString() != "")
 })
 
@@ -46,12 +36,12 @@ test_that("fromJSONString works", {
   obj <- Person$new()
   obj$fromJSONString(objRand$toJSONString())
   # expect_equal(obj, objRand)
-  expect_is(obj, "Person")
+  expect_s3_class(obj, "Person")
 })
 
 test_that("print works", {
   obj <- Person$new()
   obj$fromJSONString(objRand$toJSONString())
   ## check that the print method doesn't error
-  expect_error(obj$print(), NA)
+  expect_snapshot(obj$print())
 })

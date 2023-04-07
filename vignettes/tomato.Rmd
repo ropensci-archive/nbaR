@@ -80,8 +80,10 @@ search in `identifications.taxonomicEnrichments.vernacularNames.name`:
 res <-
   sc$query(
     queryParams =
-      list(identifications.taxonomicEnrichments.vernacularNames.name =
-             "tomato")
+      list(
+        identifications.taxonomicEnrichments.vernacularNames.name =
+          "tomato"
+      )
   )
 # how many hits?
 res$content$totalSize
@@ -102,7 +104,8 @@ qc <-
   QueryCondition$new(
     field = "identifications.taxonomicEnrichments.vernacularNames.name",
     operator = "MATCHES",
-    value = "tomato")
+    value = "tomato"
+  )
 ```
 
 Note that we use the operator `MATCHES` that does a partial instead of an exact match
@@ -112,10 +115,10 @@ From one or multiple `QueryConditions`, a `QuerySpec` can be created, and used a
 for he `query` function.
 
 ```{r}
-qs <- QuerySpec$new(conditions=list(qc))
+qs <- QuerySpec$new(conditions = list(qc))
 
 # do the query with SpecimenClient
-res <- sc$query(querySpec=qs)
+res <- sc$query(querySpec = qs)
 
 # how many hits?
 res$content$totalSize
@@ -143,10 +146,10 @@ To fetch more records, we need to specify this in the `QuerySpec` object.
 
 ```{r}
 # specify size in QuerySpec obejct
-qs <- QuerySpec$new(conditions=list(qc), size=1000)
+qs <- QuerySpec$new(conditions = list(qc), size = 1000)
 
 # perform query
-res <- sc$query(querySpec=qs)
+res <- sc$query(querySpec = qs)
 
 # do we have all records?
 res$content$totalSize == length(res$content$resultSet)
@@ -166,13 +169,13 @@ descending. We will sort our results by the values of the field
 
 ```{r}
 # specify field to sort
-sf <- SortField$new(path="gatheringEvent.dateTimeBegin", sortOrder="asc")
+sf <- SortField$new(path = "gatheringEvent.dateTimeBegin", sortOrder = "asc")
 
 # make querySpec using sortField
-qs <- QuerySpec$new(conditions=list(qc), size=1000, sortFields=list(sf))
+qs <- QuerySpec$new(conditions = list(qc), size = 1000, sortFields = list(sf))
 
 # do the query
-res <- sc$query(querySpec=qs)
+res <- sc$query(querySpec = qs)
 ```
 
 Now, the first result should be the specimen with a gathering event the furthest
@@ -213,34 +216,42 @@ we use the operator `NOT_EQUALS` in combination with the value `NULL`.
 ```{r}		
 # conditions for specimens for Solanum lycopersicum
 qc <-
-  QueryCondition$new(field =
-                       'identifications.defaultClassification.genus',
-                     operator =
-                       'EQUALS',
-                     value =
-                       'Solanum')
+  QueryCondition$new(
+    field =
+      "identifications.defaultClassification.genus",
+    operator =
+      "EQUALS",
+    value =
+      "Solanum"
+  )
 qc2 <-
-  QueryCondition$new(field =
-                       'identifications.defaultClassification.specificEpithet',
-                     operator =
-                       'EQUALS',
-                     value = 'lycopersicum')
+  QueryCondition$new(
+    field =
+      "identifications.defaultClassification.specificEpithet",
+    operator =
+      "EQUALS",
+    value = "lycopersicum"
+  )
 
 # coditions for lat/long coordinates to be present
 qc3 <-
-  QueryCondition$new(field =
-                       'gatheringEvent.siteCoordinates.longitudeDecimal',
-                     operator =
-                       "NOT_EQUALS",
-                     value =
-                       NULL)
+  QueryCondition$new(
+    field =
+      "gatheringEvent.siteCoordinates.longitudeDecimal",
+    operator =
+      "NOT_EQUALS",
+    value =
+      NULL
+  )
 qc4 <-
-  QueryCondition$new(field =
-                       'gatheringEvent.siteCoordinates.latitudeDecimal',
-                     operator =
-                       "NOT_EQUALS",
-                     value =
-                       NULL)
+  QueryCondition$new(
+    field =
+      "gatheringEvent.siteCoordinates.latitudeDecimal",
+    operator =
+      "NOT_EQUALS",
+    value =
+      NULL
+  )
 qs <-
   QuerySpec$new(conditions = list(qc, qc2, qc3, qc4), size = 1000)
 
@@ -249,14 +260,16 @@ res <- sc$query(querySpec = qs)
 
 # extract coordinates
 lat <-
-  sapply(res$content$resultSet, function(x)
-    x$item$gatheringEvent$siteCoordinates[[1]]$latitudeDecimal)
+  sapply(res$content$resultSet, function(x) {
+    x$item$gatheringEvent$siteCoordinates[[1]]$latitudeDecimal
+  })
 long <-
-  sapply(res$content$resultSet, function(x)
-    x$item$gatheringEvent$siteCoordinates[[1]]$longitudeDecimal)
+  sapply(res$content$resultSet, function(x) {
+    x$item$gatheringEvent$siteCoordinates[[1]]$longitudeDecimal
+  })
 
-#plot on world map
-library('maps')
+# plot on world map
+library("maps")
 map(
   "world",
   fill = TRUE,
@@ -265,7 +278,7 @@ map(
   ylim = c(-60, 90),
   mar = c(0, 0, 0, 0)
 )
-points(long, lat, col = 'red', pch = 16)
+points(long, lat, col = "red", pch = 16)
 ```
 
 

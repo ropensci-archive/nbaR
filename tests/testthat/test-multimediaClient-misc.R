@@ -1,7 +1,3 @@
-source("setup-vars.R")
-
-context("Testing miscellaneous multimedia endpoints")
-
 test_that("count works", {
   res <- mc$count()
   expect_true(is.numeric(res$content))
@@ -16,7 +12,7 @@ test_that("getDistinctValues works", {
   for (p in paths) {
     res <- mc$get_distinct_values(p)
     ## check if we get list back
-    expect_is(res$content, "list")
+    expect_type(res$content, "list")
   }
   ## method should give a warning if field is not found
   expect_warning(mc$get_distinct_values("XX"))

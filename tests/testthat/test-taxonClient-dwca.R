@@ -1,10 +1,6 @@
-source("setup-vars.R")
-
-context("Testing dwca related functions for taxon objects")
-
 test_that("dwca_get_data_set_names() works", {
   res <- tc$dwca_get_data_set_names()
-  expect_is(res$content, "character")
+  expect_type(res$content, "character")
   expect_true(length(res$content) > 0)
 })
 

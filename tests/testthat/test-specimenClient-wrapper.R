@@ -1,7 +1,3 @@
-source("setup-vars.R")
-
-context("Testing wrapper functions for specimen client")
-
 test_that("specimen_count works", {
   cnt <- specimen_count()
   expect_true(is.numeric(cnt))
@@ -9,12 +5,12 @@ test_that("specimen_count works", {
 
   ## test with query param
   qp <- list(sex = "female")
-  cnt2 <- specimen_count(qp)
+  cnt2 <- specimen_count(queryParam = qp)
   expect_lt(cnt2, cnt)
 
   ## test with multiple params
   qp <- list(sex = "female", sourceSystem.code = "CRS")
-  cnt3 <- specimen_count(qp)
+  cnt3 <- specimen_count(queryParam = qp)
   expect_lt(cnt3, cnt2)
 
   ## test if with vector instead of list
@@ -43,14 +39,14 @@ test_that("specimen_count_distinct_values_per_group works", {
     specimen_count_distinct_values_per_group("sex", "sourceSystem.code",
       returnType = "list"
     )
-  ## expect_is(res, "list")
+  ## expect_s3_class(res, "list")
   expect_gt(length(res), 0)
 
   res <-
     specimen_count_distinct_values_per_group("sex", "sourceSystem.code",
       returnType = "data.frame"
     )
-  expect_is(res, "data.frame")
+  expect_s3_class(res, "data.frame")
 })
 
 test_that("specimen_download_query works", {
@@ -58,16 +54,16 @@ test_that("specimen_download_query works", {
   qp <-
     list("identifications.defaultClassification.genus" = "Hydrochoerus")
   res <- specimen_download_query(qp, returnType = "list")
-  expect_is(res, "list")
+  expect_s3_class(res, "list")
 
   ## this should not return objects but the list representation of specimens
   for (i in seq_along(res)) {
-    expect_is(res[[i]], "list")
+    expect_s3_class(res[[i]], "list")
   }
 
   ## check data frame return
   res <- specimen_download_query(qp, returnType = "data.frame")
-  expect_is(res, "data.frame")
+  expect_s3_class(res, "data.frame")
 })
 
 test_that("specimen_dwca_get_data_set works", {
@@ -107,47 +103,47 @@ test_that("specimen_dwca_query works", {
 test_that("specimen_exists works", {
   ## test for existing specimen
   res <- specimen_exists("L.4191428")
-  expect_is(res, "logical")
+  expect_s3_class(res, "logical")
   expect_true(res)
 
   ## test for nonexisting specimen
   res <- specimen_exists("XXX")
-  expect_is(res, "logical")
+  expect_s3_class(res, "logical")
   expect_false(res)
 })
 
 test_that("specimen_find works", {
   id <- "RMNH.MAM.17209.B@CRS"
   res <- specimen_find(id, returnType = "list")
-  expect_is(res, "list")
+  expect_s3_class(res, "list")
   expect_equal(res$id, id)
 
   res <- specimen_find(id, returnType = "data.frame")
-  expect_is(res, "data.frame")
+  expect_s3_class(res, "data.frame")
 })
 
 test_that("specimen_find_by_ids works", {
   ids_vec <- c("RMNH.INS.657083@CRS", "L.1589244@BRAHMS")
   res <- specimen_find_by_ids(ids_vec, returnType = "list")
-  expect_is(res, "list")
+  expect_s3_class(res, "list")
   expect_length(res, 2)
   for (i in seq_along(res)) {
-    expect_is(res[[i]], "list")
+    expect_s3_class(res[[i]], "list")
     expect_true(res[[i]]$id %in% ids_vec)
   }
 
   res <- specimen_find_by_ids(ids_vec, returnType = "data.frame")
-  expect_is(res, "data.frame")
+  expect_s3_class(res, "data.frame")
 })
 
 test_that("specimen_find_by_unit_id", {
   unitID <- "RMNH.MAM.1513"
   res <- specimen_find_by_unit_id(unitID, returnType = "list")
-  expect_is(res, "list")
-  expect_is(res[[1]], "list")
+  expect_s3_class(res, "list")
+  expect_s3_class(res[[1]], "list")
   expect_equal(res[[1]]$unitID, unitID)
   res <- specimen_find_by_unit_id(unitID, returnType = "data.frame")
-  expect_is(res, "data.frame")
+  expect_s3_class(res, "data.frame")
 })
 
 test_that("specimen_get_distinct_values works", {
@@ -158,7 +154,7 @@ test_that("specimen_get_distinct_values works", {
   for (p in paths) {
     res <- specimen_get_distinct_values(p)
     ## check if we get list back
-    expect_is(res, "list")
+    expect_s3_class(res, "list")
   }
   ## method should give a warning if field is not found
   expect_warning(specimen_get_distinct_values("XX"))
@@ -170,13 +166,13 @@ test_that("specimen_get_distinct_values_per_group works", {
     field = "recordBasis"
   )
   ## Result should be a list with two entries, for BRAHMS and CRS, and XC
-  expect_is(res, "list")
+  expect_s3_class(res, "list")
   expect_true(length(res) > 1)
 })
 
 test_that("specimen_get_field_info and specimen_get_paths works", {
   res <- specimen_get_field_info()
-  expect_is(res, "list")
+  expect_s3_class(res, "list")
   ## The list should be named by the paths of the different fields, compare
   paths <- specimen_get_paths()
   expect_equal(sort(paths), sort(names(res)))
@@ -184,13 +180,13 @@ test_that("specimen_get_field_info and specimen_get_paths works", {
 
 test_that("specimen_get_ids_in_collection works", {
   res <- specimen_get_ids_in_collection("siebold")
-  expect_is(res, "character")
+  expect_s3_class(res, "character")
   expect_true(length(res) > 0)
 })
 
 test_that("getNamedCollections works", {
   res <- specimen_get_named_collections()
-  expect_is(res, "character")
+  expect_s3_class(res, "character")
   expect_true(length(res) > 0)
 })
 
@@ -204,7 +200,7 @@ test_that("specimen_get_setting works", {
 
 test_that("specimen_get_settings works", {
   res <- specimen_get_settings()
-  expect_is(res, "list")
+  expect_s3_class(res, "list")
   expect_true(length(res) > 0)
 })
 
@@ -216,18 +212,18 @@ test_that("specimen_group_by_scientific_name works", {
 
   ## check if we get specimen documents
   for (hit in res) {
-    expect_is(hit, "list")
+    expect_s3_class(hit, "list")
   }
 })
 
 test_that("specimen_is_operator_allowed works", {
   ## test operator that should be allowed
   res <- specimen_is_operator_allowed("collectionType", "EQUALS")
-  expect_is(res, "logical")
+  expect_s3_class(res, "logical")
   expect_true(res)
   ## test operator that should not be allowed
   res <- specimen_is_operator_allowed("collectionType", "LT")
-  expect_is(res, "logical")
+  expect_s3_class(res, "logical")
   expect_false(res)
 })
 
@@ -238,19 +234,19 @@ test_that("specimen_query works", {
   expect_length(res, 10)
 
   for (i in seq_along(res)) {
-    expect_is(res[[i]], "list")
+    expect_s3_class(res[[i]], "list")
     ## check if we can access a value
-    expect_is(res[[i]]$unitID, "character")
+    expect_s3_class(res[[i]]$unitID, "character")
   }
 
   ## test if this works with basic vector for params
   queryParams <-
     c("identifications.defaultClassification.genus" = "Passiflora")
   res <- specimen_query(queryParams, returnType = "list")
-  expect_is(res, "list")
+  expect_s3_class(res, "list")
   expect_length(res, 10)
 
   ## check different return type
   res <- specimen_query(queryParams, returnType = "data.frame")
-  expect_is(res, "data.frame")
+  expect_s3_class(res, "data.frame")
 })

@@ -1,136 +1,57 @@
-
-
-context("Testing class ChronoStratigraphy")
-
 # Make a list with random arguments for all fields in the class
 args <- list()
-args[["youngRegionalSubstage"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["youngRegionalStage"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["youngRegionalSeries"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["youngDatingQualifier"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["youngInternSystem"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["youngInternSubstage"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["youngInternStage"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["youngInternSeries"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["youngInternErathem"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["youngInternEonothem"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["youngChronoName"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["youngCertainty"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["oldDatingQualifier"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
+args[["youngRegionalSubstage"]] <- random_string()
+args[["youngRegionalStage"]] <- random_string()
+args[["youngRegionalSeries"]] <- random_string()
+args[["youngDatingQualifier"]] <- random_string()
+args[["youngInternSystem"]] <- random_string()
+args[["youngInternSubstage"]] <- random_string()
+args[["youngInternStage"]] <- random_string()
+args[["youngInternSeries"]] <- random_string()
+args[["youngInternErathem"]] <- random_string()
+args[["youngInternEonothem"]] <- random_string()
+args[["youngChronoName"]] <- random_string()
+args[["youngCertainty"]] <- random_string()
+args[["oldDatingQualifier"]] <- random_string()
 args[["chronoPreferredFlag"]] <- sample(c(TRUE, FALSE), 1)
-args[["oldRegionalSubstage"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["oldRegionalStage"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["oldRegionalSeries"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["oldInternSystem"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["oldInternSubstage"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["oldInternStage"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["oldInternSeries"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["oldInternErathem"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["oldInternEonothem"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["oldChronoName"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["chronoIdentifier"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["oldCertainty"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
+args[["oldRegionalSubstage"]] <- random_string()
+args[["oldRegionalStage"]] <- random_string()
+args[["oldRegionalSeries"]] <- random_string()
+args[["oldInternSystem"]] <- random_string()
+args[["oldInternSubstage"]] <- random_string()
+args[["oldInternStage"]] <- random_string()
+args[["oldInternSeries"]] <- random_string()
+args[["oldInternErathem"]] <- random_string()
+args[["oldInternEonothem"]] <- random_string()
+args[["oldChronoName"]] <- random_string()
+args[["chronoIdentifier"]] <- random_string()
+args[["oldCertainty"]] <- random_string()
 
 # make ChronoStratigraphy object without and with args
 objEmpty <- ChronoStratigraphy$new()
 objRand <- do.call(ChronoStratigraphy$new, args)
 
 test_that("Constructor works", {
-  expect_is(objEmpty, "ChronoStratigraphy")
-  expect_is(objRand, "ChronoStratigraphy")
+  expect_s3_class(objEmpty, "ChronoStratigraphy")
+  expect_s3_class(objRand, "ChronoStratigraphy")
 })
 
 test_that("toList works", {
-  expect_is(objEmpty$toList(), "list")
-  expect_is(objRand$toList(), "list")
+  expect_type(objEmpty$toList(), "list")
+  expect_type(objRand$toList(), "list")
 })
 
 test_that("fromList works", {
   obj <- ChronoStratigraphy$new()
   obj$fromList(objRand$toList())
   # expect_equal(obj, objRand)
-  expect_is(obj, "ChronoStratigraphy")
+  expect_s3_class(obj, "ChronoStratigraphy")
 })
 
 test_that("toJSONString works", {
-  expect_is(objEmpty$toJSONString(), "json")
+  expect_s3_class(objEmpty$toJSONString(), "json")
   expect_true(objEmpty$toJSONString() != "")
-  expect_is(objRand$toJSONString(), "json")
+  expect_s3_class(objRand$toJSONString(), "json")
   expect_true(objRand$toJSONString() != "")
 })
 
@@ -138,12 +59,12 @@ test_that("fromJSONString works", {
   obj <- ChronoStratigraphy$new()
   obj$fromJSONString(objRand$toJSONString())
   # expect_equal(obj, objRand)
-  expect_is(obj, "ChronoStratigraphy")
+  expect_s3_class(obj, "ChronoStratigraphy")
 })
 
 test_that("print works", {
   obj <- ChronoStratigraphy$new()
   obj$fromJSONString(objRand$toJSONString())
   ## check that the print method doesn't error
-  expect_error(obj$print(), NA)
+  expect_snapshot(obj$print())
 })

@@ -1,124 +1,43 @@
-
-
-context("Testing class MultiMediaObject")
-
 # Make a list with random arguments for all fields in the class
 args <- list()
 args[["sourceSystem"]] <- SourceSystem$new()
-args[["sourceSystemId"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["recordURI"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["id"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["sourceInstitutionID"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["sourceID"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["owner"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["licenseType"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["license"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["unitID"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["collectionType"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["title"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["caption"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["description"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-randomList <- lapply(
+args[["sourceSystemId"]] <- random_string()
+args[["recordURI"]] <- random_string()
+args[["id"]] <- random_string()
+args[["sourceInstitutionID"]] <- random_string()
+args[["sourceID"]] <- random_string()
+args[["owner"]] <- random_string()
+args[["licenseType"]] <- random_string()
+args[["license"]] <- random_string()
+args[["unitID"]] <- random_string()
+args[["collectionType"]] <- random_string()
+args[["title"]] <- random_string()
+args[["caption"]] <- random_string()
+args[["description"]] <- random_string()
+args[["serviceAccessPoints"]] <- lapply(
   1:sample(1:10, 1),
   function(x) ServiceAccessPoint$new()
 )
-args[["serviceAccessPoints"]] <- randomList
-args[["type"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
+args[["type"]] <- random_string()
 args[["taxonCount"]] <- sample(0:10, 1)
-args[["creator"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["copyrightText"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["associatedSpecimenReference"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["associatedTaxonReference"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
+args[["creator"]] <- random_string()
+args[["copyrightText"]] <- random_string()
+args[["associatedSpecimenReference"]] <- random_string()
+args[["associatedTaxonReference"]] <- random_string()
 args[["multiMediaPublic"]] <- sample(c(TRUE, FALSE), 1)
-randomList <- lapply(
-  1:sample(5:10, 1),
-  function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
-)
-args[["subjectParts"]] <- randomList
-randomList <- lapply(
-  1:sample(5:10, 1),
-  function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
-)
-args[["subjectOrientations"]] <- randomList
-randomList <- lapply(
-  1:sample(5:10, 1),
-  function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
-)
-args[["phasesOrStages"]] <- randomList
-randomList <- lapply(
-  1:sample(5:10, 1),
-  function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
-)
-args[["sexes"]] <- randomList
-randomList <- lapply(
+args[["subjectParts"]] <- random_string_list()
+args[["subjectOrientations"]] <- random_string_list()
+args[["phasesOrStages"]] <- random_string_list()
+args[["sexes"]] <- random_string_list()
+args[["gatheringEvents"]] <- lapply(
   1:sample(1:10, 1),
   function(x) MultiMediaGatheringEvent$new()
 )
-args[["gatheringEvents"]] <- randomList
-randomList <- lapply(
+args[["identifications"]] <- lapply(
   1:sample(1:10, 1),
   function(x) MultiMediaContentIdentification$new()
 )
-args[["identifications"]] <- randomList
-randomList <- lapply(
-  1:sample(5:10, 1),
-  function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
-)
-args[["theme"]] <- randomList
+args[["theme"]] <- random_string_list()
 args[["associatedSpecimen"]] <- Specimen$new()
 args[["associatedTaxon"]] <- Taxon$new()
 
@@ -127,26 +46,26 @@ objEmpty <- MultiMediaObject$new()
 objRand <- do.call(MultiMediaObject$new, args)
 
 test_that("Constructor works", {
-  expect_is(objEmpty, "MultiMediaObject")
-  expect_is(objRand, "MultiMediaObject")
+  expect_s3_class(objEmpty, "MultiMediaObject")
+  expect_s3_class(objRand, "MultiMediaObject")
 })
 
 test_that("toList works", {
-  expect_is(objEmpty$toList(), "list")
-  expect_is(objRand$toList(), "list")
+  expect_type(objEmpty$toList(), "list")
+  expect_type(objRand$toList(), "list")
 })
 
 test_that("fromList works", {
   obj <- MultiMediaObject$new()
   obj$fromList(objRand$toList())
   # expect_equal(obj, objRand)
-  expect_is(obj, "MultiMediaObject")
+  expect_s3_class(obj, "MultiMediaObject")
 })
 
 test_that("toJSONString works", {
-  expect_is(objEmpty$toJSONString(), "json")
+  expect_s3_class(objEmpty$toJSONString(), "json")
   expect_true(objEmpty$toJSONString() != "")
-  expect_is(objRand$toJSONString(), "json")
+  expect_s3_class(objRand$toJSONString(), "json")
   expect_true(objRand$toJSONString() != "")
 })
 
@@ -154,12 +73,12 @@ test_that("fromJSONString works", {
   obj <- MultiMediaObject$new()
   obj$fromJSONString(objRand$toJSONString())
   # expect_equal(obj, objRand)
-  expect_is(obj, "MultiMediaObject")
+  expect_s3_class(obj, "MultiMediaObject")
 })
 
 test_that("print works", {
   obj <- MultiMediaObject$new()
   obj$fromJSONString(objRand$toJSONString())
   ## check that the print method doesn't error
-  expect_error(obj$print(), NA)
+  expect_snapshot(obj$print())
 })

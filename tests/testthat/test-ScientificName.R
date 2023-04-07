@@ -1,93 +1,51 @@
-
-
-context("Testing class ScientificName")
-
 # Make a list with random arguments for all fields in the class
 args <- list()
-args[["fullScientificName"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["taxonomicStatus"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["genusOrMonomial"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["subgenus"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["specificEpithet"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["infraspecificEpithet"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["infraspecificMarker"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["nameAddendum"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["authorshipVerbatim"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["author"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["year"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["scientificNameGroup"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-randomList <- lapply(
+args[["fullScientificName"]] <- random_string()
+args[["taxonomicStatus"]] <- random_string()
+args[["genusOrMonomial"]] <- random_string()
+args[["subgenus"]] <- random_string()
+args[["specificEpithet"]] <- random_string()
+args[["infraspecificEpithet"]] <- random_string()
+args[["infraspecificMarker"]] <- random_string()
+args[["nameAddendum"]] <- random_string()
+args[["authorshipVerbatim"]] <- random_string()
+args[["author"]] <- random_string()
+args[["year"]] <- random_string()
+args[["scientificNameGroup"]] <- random_string()
+args[["references"]] <- lapply(
   1:sample(1:10, 1),
   function(x) Reference$new()
 )
-args[["references"]] <- randomList
-randomList <- lapply(
+args[["experts"]] <- lapply(
   1:sample(1:10, 1),
   function(x) Expert$new()
 )
-args[["experts"]] <- randomList
 
 # make ScientificName object without and with args
 objEmpty <- ScientificName$new()
 objRand <- do.call(ScientificName$new, args)
 
 test_that("Constructor works", {
-  expect_is(objEmpty, "ScientificName")
-  expect_is(objRand, "ScientificName")
+  expect_s3_class(objEmpty, "ScientificName")
+  expect_s3_class(objRand, "ScientificName")
 })
 
 test_that("toList works", {
-  expect_is(objEmpty$toList(), "list")
-  expect_is(objRand$toList(), "list")
+  expect_type(objEmpty$toList(), "list")
+  expect_type(objRand$toList(), "list")
 })
 
 test_that("fromList works", {
   obj <- ScientificName$new()
   obj$fromList(objRand$toList())
   # expect_equal(obj, objRand)
-  expect_is(obj, "ScientificName")
+  expect_s3_class(obj, "ScientificName")
 })
 
 test_that("toJSONString works", {
-  expect_is(objEmpty$toJSONString(), "json")
+  expect_s3_class(objEmpty$toJSONString(), "json")
   expect_true(objEmpty$toJSONString() != "")
-  expect_is(objRand$toJSONString(), "json")
+  expect_s3_class(objRand$toJSONString(), "json")
   expect_true(objRand$toJSONString() != "")
 })
 
@@ -95,12 +53,12 @@ test_that("fromJSONString works", {
   obj <- ScientificName$new()
   obj$fromJSONString(objRand$toJSONString())
   # expect_equal(obj, objRand)
-  expect_is(obj, "ScientificName")
+  expect_s3_class(obj, "ScientificName")
 })
 
 test_that("print works", {
   obj <- ScientificName$new()
   obj$fromJSONString(objRand$toJSONString())
   ## check that the print method doesn't error
-  expect_error(obj$print(), NA)
+  expect_snapshot(obj$print())
 })

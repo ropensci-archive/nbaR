@@ -1,10 +1,6 @@
-source("setup-vars.R")
-
-context("Testing miscellaneous TaxonClient endpoints")
-
 test_that("count works", {
   res <- tc$count()
-  expect_is(res$content, "integer")
+  expect_s3_class(res$content, "integer")
   expect_true(res$content > 0)
 })
 
@@ -19,7 +15,7 @@ test_that("getDistinctValues works", {
   for (p in paths) {
     res <- tc$get_distinct_values(p)
     ## check if we get list back
-    expect_is(res$content, "list")
+    expect_type(res$content, "list")
   }
   ## method should give a warning if field is not found
   expect_warning(tc$get_distinct_values("XX"))

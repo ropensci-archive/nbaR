@@ -150,8 +150,7 @@
                                  {{/isResponseFile}}
                                  ...)
 
-        if (httr::status_code(response) < 200 ||
-               httr::status_code(response) > 299) {
+        if (httr::status_code(response) %/% 100 != 2) {
             self$handleError(response)
         } else {
         {{#isResponseFile}}

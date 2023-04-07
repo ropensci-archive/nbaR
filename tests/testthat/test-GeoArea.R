@@ -1,68 +1,40 @@
-
-
-context("Testing class GeoArea")
-
 # Make a list with random arguments for all fields in the class
 args <- list()
 args[["sourceSystem"]] <- SourceSystem$new()
-args[["sourceSystemId"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["recordURI"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["id"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["areaType"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["locality"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["source"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["isoCode"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-args[["countryNL"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
+args[["sourceSystemId"]] <- random_string()
+args[["recordURI"]] <- random_string()
+args[["id"]] <- random_string()
+args[["areaType"]] <- random_string()
+args[["locality"]] <- random_string()
+args[["source"]] <- random_string()
+args[["isoCode"]] <- random_string()
+args[["countryNL"]] <- random_string()
 
 # make GeoArea object without and with args
 objEmpty <- GeoArea$new()
 objRand <- do.call(GeoArea$new, args)
 
 test_that("Constructor works", {
-  expect_is(objEmpty, "GeoArea")
-  expect_is(objRand, "GeoArea")
+  expect_s3_class(objEmpty, "GeoArea")
+  expect_s3_class(objRand, "GeoArea")
 })
 
 test_that("toList works", {
-  expect_is(objEmpty$toList(), "list")
-  expect_is(objRand$toList(), "list")
+  expect_type(objEmpty$toList(), "list")
+  expect_type(objRand$toList(), "list")
 })
 
 test_that("fromList works", {
   obj <- GeoArea$new()
   obj$fromList(objRand$toList())
   # expect_equal(obj, objRand)
-  expect_is(obj, "GeoArea")
+  expect_s3_class(obj, "GeoArea")
 })
 
 test_that("toJSONString works", {
-  expect_is(objEmpty$toJSONString(), "json")
+  expect_s3_class(objEmpty$toJSONString(), "json")
   expect_true(objEmpty$toJSONString() != "")
-  expect_is(objRand$toJSONString(), "json")
+  expect_s3_class(objRand$toJSONString(), "json")
   expect_true(objRand$toJSONString() != "")
 })
 
@@ -70,12 +42,12 @@ test_that("fromJSONString works", {
   obj <- GeoArea$new()
   obj$fromJSONString(objRand$toJSONString())
   # expect_equal(obj, objRand)
-  expect_is(obj, "GeoArea")
+  expect_s3_class(obj, "GeoArea")
 })
 
 test_that("print works", {
   obj <- GeoArea$new()
   obj$fromJSONString(objRand$toJSONString())
   ## check that the print method doesn't error
-  expect_error(obj$print(), NA)
+  expect_snapshot(obj$print())
 })

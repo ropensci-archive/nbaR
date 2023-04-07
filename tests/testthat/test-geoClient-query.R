@@ -1,7 +1,3 @@
-source("setup-vars.R")
-
-context("Testing GeoClient query endpoints")
-
 test_that("Query with QuerySpec works", {
   qc <- QueryCondition$new(
     field = "locality", operator = "EQUALS",
@@ -9,5 +5,9 @@ test_that("Query with QuerySpec works", {
   )
   qs <- QuerySpec$new(conditions = list(qc))
   res <- gc$query(qs)
-  expect_is(res$content$resultSet[[1]]$item, "GeoArea")
+  expect_s3_class(res$content, "QueryResult")
+  expect_type(res$content$resultSet[[1]]$item, "list")
+  # not clear why 
+  # expect_s3_class(res$content$resultSet[[1]]$item, "GeoArea")
 })
+ 

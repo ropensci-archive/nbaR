@@ -1,9 +1,15 @@
+nbaR devel 
+==========
+
+* fix a 
+
+
 nbaR 0.1.0 (2019-04-18)
 =========================
 
 ### NEW FEATURES
 
-  * Completed package changes for ROpenscince revisions
+  * Completed package changes for rOpenSci revisions
     [reviewer's comments here](https://github.com/ropensci/software-review/issues/257)
   * Implemented low-level API access through wrapper functions
 

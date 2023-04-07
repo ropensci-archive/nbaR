@@ -1,17 +1,13 @@
-source("setup-vars.R")
-
-context("Testing GeoClient metadata endpoints")
-
 test_that("getPaths works", {
   res <- gc$get_paths()
-  expect_is(res$content, "character")
+  expect_type(res$content, "character")
   expect_true(length(res$content) > 0)
 })
 
 test_that("getFieldInfo works", {
   res <- gc$get_field_info()
   list <- res$content
-  expect_is(list, "list")
+  expect_type(list, "list")
   ## The list should be named by the paths of the different fields, compare them
   paths <- gc$get_paths()$content
   expect_equal(sort(paths), sort(names(list)))

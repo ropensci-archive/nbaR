@@ -1,10 +1,3 @@
-library("nbaR")
-library("testthat")
-
-set.seed(111)
-
-context("Testing miscellaneous QuerySpec properties")
-
 test_that("named list input works", {
   ## when list with query conditions
   ## in QuerySpec is a named list, this

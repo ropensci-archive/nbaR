@@ -1,75 +1,54 @@
-
-
-context("Testing class MultiMediaContentIdentification")
-
 # Make a list with random arguments for all fields in the class
 args <- list()
-args[["taxonRank"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
+args[["taxonRank"]] <- random_string()
 args[["scientificName"]] <- ScientificName$new()
-args[["typeStatus"]] <- paste(sample(
-  c(LETTERS, letters),
-  sample(1:20, 1)
-), collapse = "")
-randomDate <- as.character(sample(seq(as.Date("1600/01/01"),
-  as.Date("2018/06/04"),
-  by = "day"
-), 1))
+args[["typeStatus"]] <- random_string()
+randomDate <- random_date()
 args[["dateIdentified"]] <- randomDate
 args[["defaultClassification"]] <- DefaultClassification$new()
-randomList <- lapply(
+args[["systemClassification"]] <- lapply(
   1:sample(1:10, 1),
   function(x) Monomial$new()
 )
-args[["systemClassification"]] <- randomList
-randomList <- lapply(
+args[["vernacularNames"]] <- lapply(
   1:sample(1:10, 1),
   function(x) VernacularName$new()
 )
-args[["vernacularNames"]] <- randomList
-randomList <- lapply(
-  1:sample(5:10, 1),
-  function(x) paste(sample(letters, sample(1:10, 1)), collapse = "")
-)
-args[["identificationQualifiers"]] <- randomList
-randomList <- lapply(
+args[["identificationQualifiers"]] <- random_string_list()
+args[["identifiers"]] <- lapply(
   1:sample(1:10, 1),
   function(x) Agent$new()
 )
-args[["identifiers"]] <- randomList
-randomList <- lapply(
+args[["taxonomicEnrichments"]] <- lapply(
   1:sample(1:10, 1),
   function(x) TaxonomicEnrichment$new()
 )
-args[["taxonomicEnrichments"]] <- randomList
 
 # make MultiMediaContentIdentification object without and with args
 objEmpty <- MultiMediaContentIdentification$new()
 objRand <- do.call(MultiMediaContentIdentification$new, args)
 
 test_that("Constructor works", {
-  expect_is(objEmpty, "MultiMediaContentIdentification")
-  expect_is(objRand, "MultiMediaContentIdentification")
+  expect_s3_class(objEmpty, "MultiMediaContentIdentification")
+  expect_s3_class(objRand, "MultiMediaContentIdentification")
 })
 
 test_that("toList works", {
-  expect_is(objEmpty$toList(), "list")
-  expect_is(objRand$toList(), "list")
+  expect_type(objEmpty$toList(), "list")
+  expect_type(objRand$toList(), "list")
 })
 
 test_that("fromList works", {
   obj <- MultiMediaContentIdentification$new()
   obj$fromList(objRand$toList())
   # expect_equal(obj, objRand)
-  expect_is(obj, "MultiMediaContentIdentification")
+  expect_s3_class(obj, "MultiMediaContentIdentification")
 })
 
 test_that("toJSONString works", {
-  expect_is(objEmpty$toJSONString(), "json")
+  expect_s3_class(objEmpty$toJSONString(), "json")
   expect_true(objEmpty$toJSONString() != "")
-  expect_is(objRand$toJSONString(), "json")
+  expect_s3_class(objRand$toJSONString(), "json")
   expect_true(objRand$toJSONString() != "")
 })
 
@@ -77,12 +56,12 @@ test_that("fromJSONString works", {
   obj <- MultiMediaContentIdentification$new()
   obj$fromJSONString(objRand$toJSONString())
   # expect_equal(obj, objRand)
-  expect_is(obj, "MultiMediaContentIdentification")
+  expect_s3_class(obj, "MultiMediaContentIdentification")
 })
 
 test_that("print works", {
   obj <- MultiMediaContentIdentification$new()
   obj$fromJSONString(objRand$toJSONString())
   ## check that the print method doesn't error
-  expect_error(obj$print(), NA)
+  expect_snapshot(obj$print())
 })
