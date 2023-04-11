@@ -1,4 +1,3 @@
-
 test_that("dwca_get_data_set_names() works", {
   res <- sc$dwca_get_data_set_names()
   expect_type(res$content, "character")

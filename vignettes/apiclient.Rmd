@@ -41,8 +41,7 @@ library(nbaR)
 
 # instanciate specimen object
 spec <- Specimen$new()
-```
-```r
+
 # represent data as JSON or list
 spec$toJSONString()
 spec$toList()
@@ -266,7 +265,7 @@ qs$toJSONString()
 ```
 
 For numeric or date fields, common comparison operators such as `LT`
-(less than) or `GT` (greater than) or `BETWEEn` are implemented:
+(less than) or `GT` (greater than) or `BETWEEN` are implemented:
 
 ```{r}
 ## operators for gatheringEvent.dateTimeBegin

@@ -330,7 +330,7 @@ Specimen <- R6::R6Class(
         )
         self[["kindOfUnit"]] <- `kindOfUnit`
       }
-      if (!missing(collectionType) & !is.null(collectionType)) {
+      if (!missing(`collectionType`)) {
         stopifnot(
           is.character(`collectionType`),
           length(`collectionType`) == 1

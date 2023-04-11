@@ -295,7 +295,7 @@ MultimediaClient <- R6::R6Class(
       }
       ## querySpec parameter has underscore in NBA, omitted in argument
       names(queryParams) <- sub(
-        "\\.querySpec",
+        "querySpec",
         paste0("_", "querySpec"), # tweak to not transform .querySpec
         names(queryParams)
       )
@@ -337,7 +337,7 @@ MultimediaClient <- R6::R6Class(
       }
       ## querySpec parameter has underscore in NBA, omitted in argument
       names(queryParams) <- sub(
-        "\\.querySpec",
+        "querySpec",
         paste0("_", "querySpec"), # tweak to not transform .querySpec
         names(queryParams)
       )
@@ -419,7 +419,7 @@ MultimediaClient <- R6::R6Class(
       }
       ## querySpec parameter has underscore in NBA, omitted in argument
       names(queryParams) <- sub(
-        "\\.querySpec",
+        "querySpec",
         paste0("_", "querySpec"), # tweak to not transform .querySpec
         names(queryParams)
       )
@@ -773,7 +773,7 @@ MultimediaClient <- R6::R6Class(
       }
       ## querySpec parameter has underscore in NBA, omitted in argument
       names(queryParams) <- sub(
-        "\\.querySpec",
+        "querySpec",
         paste0("_", "querySpec"), # tweak to not transform .querySpec
         names(queryParams)
       )

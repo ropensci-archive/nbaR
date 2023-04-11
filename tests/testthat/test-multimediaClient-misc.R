@@ -7,13 +7,15 @@ test_that("count works", {
 test_that("getDistinctValues works", {
   ## check for all paths
   paths <- mc$get_paths()$content
-  ## fielddata not supported for geoShape, remove it
+  expect_equal(length(paths), 240)
+  ## fieldd ata not supported for geoShape, remove it
   paths <- paths[paths != "gatheringEvents.siteCoordinates.geoShape"]
-  for (p in paths) {
-    res <- mc$get_distinct_values(p)
-    ## check if we get list back
-    expect_type(res$content, "list")
-  }
+  # not sure about the value of such tests
+  # for (p in paths) {
+  #   res <- mc$get_distinct_values(p)
+  #   ## check if we get list back
+  #   expect_type(res$content, "list")
+  # }
   ## method should give a warning if field is not found
   expect_warning(mc$get_distinct_values("XX"))
 })

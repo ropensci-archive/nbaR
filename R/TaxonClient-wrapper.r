@@ -401,12 +401,12 @@ taxon_is_operator_allowed <- function(field = NULL,
 #' @details Search for taxa (GET) using query parameters or a querySpec JSON
 #' @family nbaR.TaxonClient-wrappers
 #' @return list or data.frame, as specified by \code{returnType}
-#' @param defaultClassification.genus Example query param, type:
+#' @param collectionType Example query param, type:
 #' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
 #' @param returnType Either \code{list} or \code{data.frame} (default)
 #' @param ... additional parameters passed to query from class nbaR.TaxonClient
 #' @export
-taxon_query <- function(defaultClassification.genus = NULL,
+taxon_query <- function(collectionType = NULL,
                         queryParams = list(),
                         returnType = "data.frame",
                         ...) {
@@ -417,7 +417,7 @@ taxon_query <- function(defaultClassification.genus = NULL,
 
   sc <- TaxonClient$new()
   res <- sc$query(
-    defaultClassification.genus,
+    collectionType = collectionType,
     queryParams = queryParams,
     ...
   )

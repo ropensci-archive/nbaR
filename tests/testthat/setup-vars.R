@@ -9,7 +9,7 @@ ac <- ApiClient$new(basePath = basePath)
 sc <- SpecimenClient$new(basePath = basePath)
 tc <- TaxonClient$new(basePath = basePath)
 mc <- MultimediaClient$new(basePath = basePath)
-gc <- GeoClient$new(basePath = basePath) # not a good name, gc() is a function 
+gc <- GeoClient$new(basePath = basePath) # not a good name, gc() is a function
 mdc <- MetadataClient$new(basePath = basePath)
 
 ## test if NBA is up and running

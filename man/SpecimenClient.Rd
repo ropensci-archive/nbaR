@@ -352,7 +352,7 @@ by the user (see section 'Fields' below).
         \item \code{ queryParams } : named list or vector with query parameters
 
         \item \code{ ... } : additional parameters passed to httr::GET
-    }
+    }!is.null(querySpec)
     Returns:
         \code{  }
 }
@@ -441,7 +441,7 @@ by the user (see section 'Fields' below).
 \if{latex}{\out{\hypertarget{method-SpecimenClient-count_distinct_values}{}}}
 \subsection{Method \code{count_distinct_values()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$count_distinct_values(field = NULL, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$count_distinct_values(field = NULL, queryParams = list(), ...)}\if{html}{\out{</div>}}
 }
 
 }
@@ -486,7 +486,12 @@ by the user (see section 'Fields' below).
 \if{latex}{\out{\hypertarget{method-SpecimenClient-dwca_query}{}}}
 \subsection{Method \code{dwca_query()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$dwca_query(collectionType = NULL, queryParams = list(), ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$dwca_query(
+  collectionType = NULL,
+  queryParams = list(),
+  filename = format(Sys.time(), "download-\%Y-\%m-\%dT\%H:\%m.zip"),
+  ...
+)}\if{html}{\out{</div>}}
 }
 
 }
@@ -607,7 +612,7 @@ by the user (see section 'Fields' below).
 \if{latex}{\out{\hypertarget{method-SpecimenClient-query}{}}}
 \subsection{Method \code{query()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$query(collectionType = NULL, queryParams = list(), ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SpecimenClient$query(queryParams = list(), collectionType = NULL, ...)}\if{html}{\out{</div>}}
 }
 
 }

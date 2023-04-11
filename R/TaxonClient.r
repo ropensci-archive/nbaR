@@ -325,7 +325,7 @@ TaxonClient <- R6::R6Class(
     initialize = function(basePath, userAgent) {
       super$initialize(basePath, userAgent)
     },
-    count = function(sourceSystem.code = NULL,
+    count = function(querySpec = NULL,
                      queryParams = list(),
                      ...) {
       headerParams <- character()
@@ -333,13 +333,13 @@ TaxonClient <- R6::R6Class(
         stop("Either querySpec or queryParams argument allowed, not both.")
       }
 
-      if (!missing(`sourceSystem.code`)) {
+      if (!missing(`querySpec`)) {
         ## querySpec can be either JSON string or object of type QuerySpec.
-        param <- ifelse(typeof(`sourceSystem.code`) == "environment",
-          `sourceSystem.code`$toJSONString(),
-          `sourceSystem.code`
+        param <- ifelse(typeof(`querySpec`) == "environment",
+          `querySpec`$toJSONString(),
+          `querySpec`
         )
-        queryParams["sourceSystem.code"] <- param
+        queryParams["querySpec"] <- param
       }
       ## querySpec parameter has underscore in NBA, omitted in argument
       names(queryParams) <- sub(
@@ -429,7 +429,7 @@ TaxonClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    download_query = function(sourceSystem.code = NULL,
+    download_query = function(querySpec = NULL,
                               queryParams = list(),
                               ...) {
       headerParams <- character()
@@ -437,13 +437,13 @@ TaxonClient <- R6::R6Class(
         stop("Either querySpec or queryParams argument allowed, not both.")
       }
 
-      if (!missing(`sourceSystem.code`)) {
+      if (!missing(`querySpec`)) {
         ## querySpec can be either JSON string or object of type QuerySpec.
-        param <- ifelse(typeof(`sourceSystem.code`) == "environment",
-          `sourceSystem.code`$toJSONString(),
-          `sourceSystem.code`
+        param <- ifelse(typeof(`querySpec`) == "environment",
+          `querySpec`$toJSONString(),
+          `querySpec`
         )
-        queryParams["sourceSystem.code"] <- param
+        queryParams["querySpec"] <- param
       }
       ## querySpec parameter has underscore in NBA, omitted in argument
       names(queryParams) <- sub(
@@ -470,8 +470,13 @@ TaxonClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    dwca_get_data_set = function(dataset = NULL,
-                                 ...) {
+    dwca_get_data_set = function(
+        dataset = NULL,
+        filename = format(
+          Sys.time(),
+          "download-%Y-%m-%dT%H:%m.zip"
+        ),
+        ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/taxon/dwca/getDataSet/{dataset}"
@@ -487,6 +492,8 @@ TaxonClient <- R6::R6Class(
         queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
+        httr::write_disk(filename),
+        httr::progress(),
         ...
       )
 
@@ -519,28 +526,26 @@ TaxonClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    dwca_query = function(sourceSystem.code = NULL,
+    dwca_query = function(querySpec = NULL,
                           queryParams = list(),
+                          filename = format(
+                            Sys.time(),
+                            "download-%Y-%m-%dT%H:%m.zip"
+                          ),
                           ...) {
       headerParams <- character()
       if (!is.null(querySpec) & length(queryParams) > 0) {
         stop("Either querySpec or queryParams argument allowed, not both.")
       }
 
-      if (!missing(`sourceSystem.code`)) {
+      if (!missing(`querySpec`)) {
         ## querySpec can be either JSON string or object of type QuerySpec.
-        param <- ifelse(typeof(`sourceSystem.code`) == "environment",
-          `sourceSystem.code`$toJSONString(),
-          `sourceSystem.code`
+        param <- ifelse(typeof(`querySpec`) == "environment",
+          `querySpec`$toJSONString(),
+          `querySpec`
         )
-        queryParams["sourceSystem.code"] <- param
+        queryParams["_querySpec"] <- param
       }
-      ## querySpec parameter has underscore in NBA, omitted in argument
-      names(queryParams) <- sub(
-        "\\.querySpec",
-        paste0("_", "querySpec"), # tweak to not transform .querySpec
-        names(queryParams)
-      )
 
       urlPath <- "/taxon/dwca/query"
       response <- self$callApi(
@@ -549,6 +554,8 @@ TaxonClient <- R6::R6Class(
         queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
+        httr::write_disk(filename),
+        httr::progress(),
         ...
       )
 
@@ -764,7 +771,7 @@ TaxonClient <- R6::R6Class(
       }
     },
     get_setting = function(name = NULL,
-                            ...) {
+                           ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/taxon/metadata/getSetting/{name}"
@@ -873,7 +880,7 @@ TaxonClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    query = function(defaultClassification.genus = NULL,
+    query = function(querySpec = NULL,
                      queryParams = list(),
                      ...) {
       headerParams <- character()
@@ -881,20 +888,14 @@ TaxonClient <- R6::R6Class(
         stop("Either querySpec or queryParams argument allowed, not both.")
       }
 
-      if (!missing(`defaultClassification.genus`)) {
+      if (!missing(`querySpec`)) {
         ## querySpec can be either JSON string or object of type QuerySpec.
-        param <- ifelse(typeof(`defaultClassification.genus`) == "environment",
-          `defaultClassification.genus`$toJSONString(),
-          `defaultClassification.genus`
+        param <- ifelse(typeof(`querySpec`) == "environment",
+          `querySpec`$toJSONString(),
+          `querySpec`
         )
-        queryParams["defaultClassification.genus"] <- param
+        queryParams["_querySpec"] <- param
       }
-      ## querySpec parameter has underscore in NBA, omitted in argument
-      names(queryParams) <- sub(
-        "\\.querySpec",
-        paste0("_", "querySpec"), # tweak to not transform .querySpec
-        names(queryParams)
-      )
 
       urlPath <- "/taxon/query"
       response <- self$callApi(

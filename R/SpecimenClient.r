@@ -359,7 +359,7 @@
 #'         \item \code{ queryParams } : named list or vector with query parameters
 #'
 #'         \item \code{ ... } : additional parameters passed to httr::GET
-#'     }
+#'     }!is.null(querySpec)
 #'     Returns:
 #'         \code{  }
 #' }
@@ -374,21 +374,22 @@ SpecimenClient <- R6::R6Class(
       super$initialize(basePath, userAgent)
     },
     count = function(collectionType = NULL,
-                    queryParams = list(),
+                     queryParams = list(),
                      ...) {
       headerParams <- character()
-      if (!is.null(collectionType) & length(queryParams) > 0) {
+      if (!is.null(collectionType) && length(queryParams) > 0) {
         stop("Either querySpec or queryParams argument allowed, not both.")
       }
 
-      if (!missing(collectionType) & !is.null(collectionType)) {
+      if (!is.null(collectionType)) {
         ## querySpec can be either JSON string or object of type QuerySpec.
         param <- ifelse(typeof(`collectionType`) == "environment",
           `collectionType`$toJSONString(),
           `collectionType`
         )
-        queryParams["collectionType"] <- param
+        queryParams["_querySpec"] <- param
       }
+
 
       urlPath <- "/specimen/count"
       response <- self$callApi(
@@ -409,9 +410,9 @@ SpecimenClient <- R6::R6Class(
       }
     },
     count_distinct_values = function(field = NULL,
+                                     queryParams = list(),
                                      ...) {
       headerParams <- character()
-      queryParams <- list()
       urlPath <- "/specimen/countDistinctValues/{field}"
 
       if (!missing(`field`)) {
@@ -479,14 +480,16 @@ SpecimenClient <- R6::R6Class(
         stop("Either querySpec or queryParams argument allowed, not both.")
       }
 
-      if (!missing(collectionType)) {
+      if (!is.null(collectionType)) {
         ## querySpec can be either JSON string or object of type QuerySpec.
-        param <- ifelse(typeof(collectionType) == "environment",
-          collectionType$toJSONString(),
-          collectionType
+        param <- ifelse(typeof(`collectionType`) == "environment",
+          `collectionType`$toJSONString(),
+          `collectionType`
         )
-        queryParams["collectionType"] <- param
+        queryParams["_querySpec"] <- param
       }
+
+
       urlPath <- "/specimen/download"
       response <- self$callApi(
         url = paste0(self$basePath, urlPath),
@@ -556,20 +559,22 @@ SpecimenClient <- R6::R6Class(
     },
     dwca_query = function(collectionType = NULL,
                           queryParams = list(),
+                          filename = format(
+                            Sys.time(),
+                            "download-%Y-%m-%dT%H:%m.zip"
+                          ),
                           ...) {
       headerParams <- character()
-      if (!is.null(collectionType) & length(queryParams) > 0) {
+      if (!is.null(collectionType) && length(queryParams) > 0) {
         stop("Either querySpec or queryParams argument allowed, not both.")
       }
 
-      if (!missing(collectionType)) {
+      if (!is.null(collectionType)) {
         ## querySpec can be either JSON string or object of type QuerySpec.
-        param <- ifelse(typeof(collectionType) == "environment",
-          collectionType$toJSONString(),
-          collectionType
+        param <- ifelse(typeof(`collectionType`) == "environment",
+          `collectionType`$toJSONString(),
+          `collectionType`
         )
-        # this is a temporary tweak to get the old behavior using the new  new 
-        # parameter collectionType
         queryParams["_querySpec"] <- param
       }
 
@@ -580,6 +585,8 @@ SpecimenClient <- R6::R6Class(
         queryParams = as.list(queryParams),
         headerParams = headerParams,
         body = body,
+        httr::write_disk(filename),
+        httr::progress(),
         ...
       )
 
@@ -861,7 +868,7 @@ SpecimenClient <- R6::R6Class(
       }
     },
     get_setting = function(name = NULL,
-                            ...) {
+                           ...) {
       headerParams <- character()
       queryParams <- list()
       urlPath <- "/specimen/metadata/getSetting/{name}"
@@ -892,24 +899,19 @@ SpecimenClient <- R6::R6Class(
                                         queryParams = list(),
                                         ...) {
       headerParams <- character()
-      if (!is.null(collectionType) & length(queryParams) > 0) {
+      if (!is.null(collectionType) && length(queryParams) > 0) {
         stop("Either querySpec or queryParams argument allowed, not both.")
       }
 
-      if (!missing(collectionType) & !is.null(collectionType)) {
+      if (!is.null(collectionType)) {
         ## querySpec can be either JSON string or object of type QuerySpec.
         param <- ifelse(typeof(`collectionType`) == "environment",
           `collectionType`$toJSONString(),
           `collectionType`
         )
-        queryParams["collectionType"] <- param
+        queryParams["_querySpec"] <- param
       }
-      ## querySpec parameter has underscore in NBA, omitted in argument
-      names(queryParams) <- sub(
-        "querySpec",
-        paste0("_", "querySpec"), # tweak to not transform .querySpec
-        names(queryParams)
-      )
+
 
       urlPath <- "/specimen/groupByScientificName"
       response <- self$callApi(
@@ -970,24 +972,15 @@ SpecimenClient <- R6::R6Class(
         Response$new(result, response)
       }
     },
-    query = function(collectionType = NULL,
-                     queryParams = list(),
+    query = function(queryParams = list(),
+                     collectionType = NULL,
                      ...) {
       headerParams <- character()
-      if (!is.null(collectionType) & length(queryParams) > 0) {
+      if (!is.null(collectionType) && length(queryParams) > 0) {
         stop("Either querySpec or queryParams argument allowed, not both.")
       }
 
-      if (!missing(collectionType)) {
-        ## querySpec can be either JSON string or object of type QuerySpec.
-        param <- ifelse(typeof(collectionType) == "environment",
-          collectionType$toJSONString(),
-          collectionType
-        )
-        # this is a temporary tweak to get the old behavior using the new  new 
-        # parameter collectionType
-        queryParams["_querySpec"] <- param
-      }
+
 
       urlPath <- "/specimen/query"
       response <- self$callApi(
@@ -1017,7 +1010,7 @@ SpecimenClient <- R6::R6Class(
                                           queryParams = list(),
                                           ...) {
       headerParams <- character()
-      if (!is.null(querySpec) & length(queryParams) > 0) {
+      if (!is.null(collectionType) && length(queryParams) > 0) {
         stop("Either querySpec or queryParams argument allowed, not both.")
       }
 
@@ -1029,12 +1022,7 @@ SpecimenClient <- R6::R6Class(
         )
         queryParams[".querySpec"] <- param
       }
-      ## querySpec parameter has underscore in NBA, omitted in argument
-      names(queryParams) <- sub(
-        "\\.querySpec",
-        paste0("_", "querySpec"), # tweak to not transform .querySpec
-        names(queryParams)
-      )
+
 
       urlPath <- "/specimen/queryWithNameResolution"
       response <- self$callApi(

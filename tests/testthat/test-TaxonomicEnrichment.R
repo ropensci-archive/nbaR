@@ -1,15 +1,13 @@
 # Make a list with random arguments for all fields in the class
 args <- list()
-random_string_list() <- lapply(
+args[["vernacularNames"]] <- lapply(
   1:sample(1:10, 1),
   function(x) SummaryVernacularName$new()
 )
-args[["vernacularNames"]] <- random_string_list()
-random_string_list() <- lapply(
+args[["synonyms"]] <-  lapply(
   1:sample(1:10, 1),
   function(x) SummaryScientificName$new()
 )
-args[["synonyms"]] <- random_string_list()
 args[["sourceSystem"]] <- SummarySourceSystem$new()
 args[["taxonId"]] <- random_string()
 

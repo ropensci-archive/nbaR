@@ -11,7 +11,6 @@ test_that("Query with SpecimenClient returns specimens", {
   ## Default number of returned documents is 10
   expect_length(res$content$resultSet, 10)
   expect_s3_class(res$content$resultSet[[1]], "QueryResultItemObject")
-
 })
 
 test_that("Query with QuerySpec works", {
@@ -56,4 +55,3 @@ test_that("Query with query params works", {
   res3 <- sc$query(queryParams = qpvec)
   expect_equal(res1$content$resultSet, res3$content$resultSet)
 })
-

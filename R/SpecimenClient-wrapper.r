@@ -20,8 +20,8 @@
 #' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
 #' @param ... additional parameters passed to count from class nbaR.SpecimenClient
 #' @export
-specimen_count <- function(queryParams = list(),
-                           collectionType = NULL,
+specimen_count <- function(collectionType = NULL,
+                           queryParams = list(),
                            ...) {
   sc <- SpecimenClient$new()
   res <- sc$count(
@@ -36,21 +36,23 @@ specimen_count <- function(queryParams = list(),
 #' @title Count the distinct number of values that exist for a given field
 #' @description This is a wrapper for the method \code{ count_distinct_values }
 #' from class \code{ SpecimenClient}.
-#' @details
+#' @details See also endpoint /getDistinctValues
 #' @family nbaR.SpecimenClient-wrappers
 #' @return scalar
 #' @param field Name of field in the specimen object, type:
+#' @param queryParams Named list or vector with names being the fields to be queried and values being the values to match
 #' @param ... additional parameters passed to count_distinct_values from class nbaR.SpecimenClient
 #' @export
 specimen_count_distinct_values <- function(field = NULL,
-    ...) {
+                                           queryParams = list(),
+                                           ...) {
   sc <- SpecimenClient$new()
   res <- sc$count_distinct_values(
     field,
+    queryParams = queryParams,
     ...
   )
-  result <- res$content
-  return(result)
+  return(res$content)
 }
 #' @name specimen_count_distinct_values_per_group
 #' @title Count the distinct number of field values that exist per the given field to group by
@@ -148,11 +150,16 @@ specimen_dwca_get_data_set_names <- function(returnType = "data.frame",
 #' @export
 specimen_dwca_query <- function(collectionType = NULL,
                                 queryParams = list(),
+                                filename = format(
+                                  Sys.time(),
+                                  "download-%Y-%m-%dT%H:%m.zip"
+                                ),
                                 ...) {
   sc <- SpecimenClient$new()
   res <- sc$dwca_query(
-    collectionType,
+    collectionType = collectionType,
     queryParams = queryParams,
+    filename = filename,
     ...
   )
 }
@@ -407,12 +414,14 @@ specimen_group_by_scientific_name <- function(collectionType = NULL,
 
   sc <- SpecimenClient$new()
   res <- sc$group_by_scientific_name(
-    collectionType,
+    collectionType = collectionType,
     queryParams = queryParams,
     ...
   )
   ## return simpler data structure for object response
-  result <- .un_object(res, returnType = returnType)
+  ## result <- .un_object(res, returnType = returnType)
+  ## dataframe does not work
+  result  <- lapply(res$content$resultSet, function(x) x$item)
   return(result)
 }
 #' @name specimen_is_operator_allowed
@@ -423,7 +432,7 @@ specimen_group_by_scientific_name <- function(collectionType = NULL,
 #' @family nbaR.SpecimenClient-wrappers
 #' @return scalar
 #' @param field specimen document field, type:
-#' @param operator operator, type:
+#' @param operator operator, type:sc <- SpecimenClient$new()
 #' @param returnType Either \code{list} or \code{data.frame} (default)
 #' @param ... additional parameters passed to is_operator_allowed from class nbaR.SpecimenClient
 #' @export
@@ -463,7 +472,7 @@ specimen_query <- function(collectionType = NULL,
 
   sc <- SpecimenClient$new()
   res <- sc$query(
-    collectionType,
+    collectionType = collectionType,
     queryParams = queryParams,
     ...
   )

@@ -112,12 +112,12 @@ for a specific genus, we can query the field
 query parameters are given as a named list (a named vector also
 works!):
 
-```{r}
+```{r, eval = FALSE}
 queryParams <- list(
   "identifications.scientificName.genusOrMonomial" =
     "Mola"
 )
-sp_data <- specimen_query(queryParams)
+sp_data <- specimen_query(queryParams = queryParams)
 
 ## how many specimens are found?
 nrow(sp_data)
@@ -164,7 +164,7 @@ queryParams <- list(
 )
 
 ## do the query
-tax_data <- taxon_query(queryParams)
+tax_data <- taxon_query(queryParams = queryParams)
 
 ## access nested field 'accepted Name' -> 'specificEpithet'
 tax_data$acceptedName$specificEpithet
@@ -199,7 +199,7 @@ physical specimens (e.g. photos and videos) but also from human
 observations (e.g. recordings of bird sounds).
 
 As an example, we will retrieve records that represent sounds that
-were recorded in the country *Cape Verde*.  The sound data accessible
+were recorded in the country *Cape Verde*. The sound data accessible
 via the NBA is stored in the
 [Xeno-Canto database](https://www.xeno-canto.org), hosted at the
 Naturalis Biodiversity Center.  The field `sourceSystem.code` for
@@ -234,7 +234,7 @@ wrapper functions. They relate to basic, human readable NBA queries
    For more complex logical query constructs including *OR* 
    operators or negations, the full API client must be used.
 
-The wrappers are thus designed for easy access for simple queries.  In
+The wrappers are thus designed for easy access for simple queries. In
 many situations it might be necessary to use the full API client which
 offers (almost) the entire functionality of the NBA API. Detailed
 documentation for the full client can be found [here](apiclient.html).

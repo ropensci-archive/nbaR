@@ -5,14 +5,14 @@
 \title{Query for taxa}
 \usage{
 taxon_query(
-  defaultClassification.genus = NULL,
+  collectionType = NULL,
   queryParams = list(),
   returnType = "data.frame",
   ...
 )
 }
 \arguments{
-\item{defaultClassification.genus}{Example query param, type:}
+\item{collectionType}{Example query param, type:}
 
 \item{queryParams}{Named list or vector with names being the fields to be queried and values being the values to match}
 

@@ -381,7 +381,7 @@ by the user (see section 'Fields' below).
 \if{latex}{\out{\hypertarget{method-TaxonClient-count}{}}}
 \subsection{Method \code{count()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{TaxonClient$count(sourceSystem.code = NULL, queryParams = list(), ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{TaxonClient$count(querySpec = NULL, queryParams = list(), ...)}\if{html}{\out{</div>}}
 }
 
 }
@@ -408,7 +408,7 @@ by the user (see section 'Fields' below).
 \if{latex}{\out{\hypertarget{method-TaxonClient-download_query}{}}}
 \subsection{Method \code{download_query()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{TaxonClient$download_query(sourceSystem.code = NULL, queryParams = list(), ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{TaxonClient$download_query(querySpec = NULL, queryParams = list(), ...)}\if{html}{\out{</div>}}
 }
 
 }
@@ -417,7 +417,11 @@ by the user (see section 'Fields' below).
 \if{latex}{\out{\hypertarget{method-TaxonClient-dwca_get_data_set}{}}}
 \subsection{Method \code{dwca_get_data_set()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{TaxonClient$dwca_get_data_set(dataset = NULL, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{TaxonClient$dwca_get_data_set(
+  dataset = NULL,
+  filename = format(Sys.time(), "download-\%Y-\%m-\%dT\%H:\%m.zip"),
+  ...
+)}\if{html}{\out{</div>}}
 }
 
 }
@@ -435,7 +439,12 @@ by the user (see section 'Fields' below).
 \if{latex}{\out{\hypertarget{method-TaxonClient-dwca_query}{}}}
 \subsection{Method \code{dwca_query()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{TaxonClient$dwca_query(sourceSystem.code = NULL, queryParams = list(), ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{TaxonClient$dwca_query(
+  querySpec = NULL,
+  queryParams = list(),
+  filename = format(Sys.time(), "download-\%Y-\%m-\%dT\%H:\%m.zip"),
+  ...
+)}\if{html}{\out{</div>}}
 }
 
 }
@@ -538,11 +547,7 @@ by the user (see section 'Fields' below).
 \if{latex}{\out{\hypertarget{method-TaxonClient-query}{}}}
 \subsection{Method \code{query()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{TaxonClient$query(
-  defaultClassification.genus = NULL,
-  queryParams = list(),
-  ...
-)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{TaxonClient$query(querySpec = NULL, queryParams = list(), ...)}\if{html}{\out{</div>}}
 }
 
 }

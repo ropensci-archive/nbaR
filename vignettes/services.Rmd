@@ -44,7 +44,7 @@ can query specimens of the Family *Ebenaceae* that were collected in
 Europe:
 
 ```{r}
-library("nbaR")
+library(nbaR)
 
 # instantiate specimen client
 sc <- SpecimenClient$new()
@@ -62,7 +62,7 @@ res <- sc$query(queryParams = qp)
 
 If we now want to know all the countries that the specimens were
 collected in, we can access the `Specimen` objects in
-```res$content$resultSet``` as follows:
+`res$content$resultSet` as follows:
 
 ```{r}
 sapply(res$content$resultSet, function(x) x$item$gatheringEvent$country)
@@ -108,18 +108,7 @@ matching a certain identifier or being part of a certain
 collection. Below we give examples of how to use the currently
 implemented data access services for specimen records:
 
-#### Access to collections
 
-Some of the specimens available via the NBA are categorised
-thematically into special collections, such as the Siebold-, Dubois-
-or Jongmans collection.  The function `get_named_collection` lists all
-available special collections and the identifiers of the specimens
-within a collection can be queries with `get_ids_in_collection`
-
-```{r}
-sc$get_named_collections()$content
-sc$get_ids_in_collection("siebold")$content
-```
 
 #### count
 

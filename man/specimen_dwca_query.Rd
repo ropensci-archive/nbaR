@@ -4,7 +4,12 @@
 \alias{specimen_dwca_query}
 \title{Dynamic download service: Query for specimens and return result as Darwin Core Archive File}
 \usage{
-specimen_dwca_query(collectionType = NULL, queryParams = list(), ...)
+specimen_dwca_query(
+  collectionType = NULL,
+  queryParams = list(),
+  filename = format(Sys.time(), "download-\%Y-\%m-\%dT\%H:\%m.zip"),
+  ...
+)
 }
 \arguments{
 \item{collectionType}{Example query param, type:}

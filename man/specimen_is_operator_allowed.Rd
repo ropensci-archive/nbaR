@@ -14,7 +14,7 @@ specimen_is_operator_allowed(
 \arguments{
 \item{field}{specimen document field, type:}
 
-\item{operator}{operator, type:}
+\item{operator}{operator, type:sc <- SpecimenClient$new()}
 
 \item{returnType}{Either \code{list} or \code{data.frame} (default)}
 

@@ -4,12 +4,12 @@
 \alias{specimen_count}
 \title{Get the number of specimens matching a given condition}
 \usage{
-specimen_count(queryParams = list(), collectionType = NULL, ...)
+specimen_count(collectionType = NULL, queryParams = list(), ...)
 }
 \arguments{
-\item{queryParams}{Named list or vector with names being the fields to be queried and values being the values to match}
-
 \item{collectionType}{Example query param, type:}
+
+\item{queryParams}{Named list or vector with names being the fields to be queried and values being the values to match}
 
 \item{...}{additional parameters passed to count from class nbaR.SpecimenClient}
 }

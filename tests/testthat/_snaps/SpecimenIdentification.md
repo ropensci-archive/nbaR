@@ -5,23 +5,23 @@
     Output
       <SpecimenIdentification>
       Fields:
-      	taxonRank:	 YlN 
+      	taxonRank:	 qWItycwvD 
       	scientificName:	object of class <ScientificName> 
-      	typeStatus:	 v 
-      	dateIdentified:	 1712-01-01 
+      	typeStatus:	 gTFGeztO 
+      	dateIdentified:	 1938-10-19 
       	defaultClassification:	object of class <DefaultClassification> 
-      	systemClassification:	list of length 1 
-      	vernacularNames:	list of length 2 
+      	systemClassification:	list of length 3 
+      	vernacularNames:	list of length 6 
       	identificationQualifiers:	list of length 10 
-      	identifiers:	list of length 2 
-      	taxonomicEnrichments:	list of length 4 
+      	identifiers:	list of length 7 
+      	taxonomicEnrichments:	list of length 1 
       	preferred:	 TRUE 
-      	verificationStatus:	 Olmy 
-      	rockType:	 JOpxvwVHNYRTXZqn 
-      	associatedFossilAssemblage:	 cRUeLoVvnwDJ 
-      	rockMineralUsage:	 lhMKafXvUsIQRWpO 
-      	associatedMineralName:	 sMTKwEFmLBvcCUf 
-      	remarks:	 HIGPkhiDBgRAfdu 
+      	verificationStatus:	 CF 
+      	rockType:	 M 
+      	associatedFossilAssemblage:	 PMCAanYks 
+      	rockMineralUsage:	 kfwxJTonsi 
+      	associatedMineralName:	 Fogircu 
+      	remarks:	 dXPBLinHoAFfcQ 
       Methods:
       	fromJSONString
       	toJSONString

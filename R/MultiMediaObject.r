@@ -314,7 +314,7 @@ MultiMediaObject <- R6::R6Class(
         )
         self[["previousUnitsText"]] <- `previousUnitsText`
       }
-      if (!missing(collectionType) & !is.null(collectionType)) {
+      if (!missing(`collectionType`)) {
         stopifnot(
           is.character(`collectionType`),
           length(`collectionType`) == 1

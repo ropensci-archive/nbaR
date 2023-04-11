@@ -18,7 +18,7 @@ test_that("count works", {
       value = "Passiflora"
     ))
   )
-  res <- sc$count(querySpec = qs)
+  res <- sc$count(collectionType = qs)
   expect_true(is.numeric(res$content))
   expect_true(res$content > 0)
 

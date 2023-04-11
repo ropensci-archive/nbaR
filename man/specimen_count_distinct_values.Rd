@@ -4,10 +4,12 @@
 \alias{specimen_count_distinct_values}
 \title{Count the distinct number of values that exist for a given field}
 \usage{
-specimen_count_distinct_values(field = NULL, ...)
+specimen_count_distinct_values(field = NULL, queryParams = list(), ...)
 }
 \arguments{
 \item{field}{Name of field in the specimen object, type:}
+
+\item{queryParams}{Named list or vector with names being the fields to be queried and values being the values to match}
 
 \item{...}{additional parameters passed to count_distinct_values from class nbaR.SpecimenClient}
 }
@@ -17,6 +19,9 @@ scalar
 \description{
 This is a wrapper for the method \code{ count_distinct_values }
 from class \code{ SpecimenClient}.
+}
+\details{
+See also endpoint /getDistinctValues
 }
 \seealso{
 Other nbaR.SpecimenClient-wrappers: 

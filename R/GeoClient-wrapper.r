@@ -339,7 +339,7 @@ geo_query <- function(queryParams = list(),
   l <- response$content
 
   ## Handle return objects of class QueryResult
-  if (class(l)[1] == "QueryResult") {
+  if (inherits(l, "QueryResult")) {
     tmp <- list()
     for (r in l$resultSet) {
       tmp <- append(tmp, r$item)
